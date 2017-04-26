@@ -1,0 +1,32 @@
+{
+  "author": "Paco <paco@ifanr.com>",
+  "description": "知晓云平台 JS SDK 文档",
+  "extension": null,
+  "generator": "site",
+  "links": {
+    "sharing": {
+      "all": null,
+      "facebook": null,
+      "google": null,
+      "twitter": null,
+      "weibo": null
+    }
+  },
+  "output": null,
+  "pdf": {
+    "fontSize": 12,
+    "footerTemplate": null,
+    "headerTemplate": null,
+    "margin": {
+      "bottom": 36,
+      "left": 62,
+      "right": 62,
+      "top": 36
+    },
+    "pageNumbers": true,
+    "paperSize": "a4"
+  },
+  "plugins": [],
+  "title": "知晓云平台 JS SDK 文档",
+  "variables": {}
+}
