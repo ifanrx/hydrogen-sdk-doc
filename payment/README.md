@@ -21,7 +21,7 @@
 
 当用户阅读此付费文章时, 则可以通过 merchandiseSchemaID, merchandiseRecordID 来查询用户是否付完成费。
 
-`merchandiseSnapshot `可将发起支付时的其他数据放在此参数中传递给服务端做持久化存储。
+`merchandiseSnapshot`可将发起支付时的其他数据放在此参数中传递给服务端做持久化存储。
 
 ##### 接口说明
 

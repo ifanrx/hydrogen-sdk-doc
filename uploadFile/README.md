@@ -20,7 +20,7 @@
 - 上传成功或失败都会调用 `wx.BaaS.uploadFile` 接口事先返回的 `Promise` 对象。上传成功会返回资源的网络地址, 失败则会告知 SDK 使用者失败原因
 - 注: 微信提供了统一的返回描述字符串 `res.errMsg` 来通知开发者上传接口调用结果的详细信息
 ##### 示例代码
-```
+```javascript
 // 文件上传示例代码
 let params = {}
 params.clientID = '当前小程序的 cilentID'
