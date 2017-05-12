@@ -1,4 +1,4 @@
-# 交易查询
+# 支付查询
 
 通过 BaaS SDK 提供的 `wx.BaaS.order(OBJECT)` 方法, 可查询到交易的详细信息。典型的使用场景为: 调用 `wx.BaaS.pay(object)` 发起支付, 在成功回调中获取到 transactionID, 在要路由到新的页面时带上此 ID, 在新页面的 onLoad 方法中获取到该 ID, 从而使用此 ID 获取交易的详细信息。
 
@@ -12,6 +12,7 @@
 ##### 接口说明
 - 使用 `wx.BaaS.order(object)` 发起事务查询请求后, BaaS 服务器会返回当前事务 ID 的详细信息。
   部分关键字段和含义如下:
+
 ```javascript
 data: {
   created_at: '',              // 调用 wx.BaaS.pay(object) 的时刻
@@ -23,6 +24,7 @@ data: {
   transaction_no: '',          // BaaS 平台所记录的 transactionID
 }
 ```
+
 ##### 示例代码
 
 ```

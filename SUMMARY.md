@@ -9,7 +9,7 @@
 * [登入/登出](login/README.md)
 * [支付](payment/README.md)
     * [微信支付](payment/pay.md)
-    * [凭证详情](payment/order.md)
+    * [支付详情](payment/order.md)
 * [数据](schema/README.md)
     * [创建数据表](schema/create-schema.md)
     * [操作数据](schema/data.md)
