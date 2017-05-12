@@ -13,9 +13,17 @@
 | merchandiseRecordID    | Integer |  N   | 商品 ID          |
 | merchandiseSnapshot    | Object  |  N   | 根据业务需求自定义的数据   |
 
-注： 通过 `merchandiseSchemaID` 和 `merchandiseRecordID` 即可唯一确定某个商品。`merchandiseSnapshot `可将发起支付时的其他数据放在此参数中传递给服务端做持久化存储。
+注： 通过 `merchandiseSchemaID` 和 `merchandiseRecordID` 来定位用户购买的物品。
 
-##### 接口说明
+使用场景: 
+
+例如开发者有一个 Article 表，里面有免费 /  付费的文章，当用户对一篇付费文章进行支付时，则可以将 Article 表的 ID 作为 merchandiseSchemaID，文章记录的 ID 作为你 merchandiseRecordID 传入到 `wx.BaaS.pay(object)` 写进支付订单记录。
+
+当用户阅读此付费文章时，则可以通过 merchandiseSchemaID, merchandiseRecordID 来查询用户是否付完成费。
+
+`merchandiseSnapshot `可将发起支付时的其他数据放在此参数中传递给服务端做持久化存储。
+
+接口说明
 
 调用微信支付接口时包含以下操作：
 
