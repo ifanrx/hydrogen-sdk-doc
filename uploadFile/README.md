@@ -8,7 +8,6 @@
 | 参数名      | 类型     | 是否必填 | 参数描述                    |
 | :------- | :----- | :--: | :---------------------- |
 | filePath | String |  Y   | 本地资源路径                  |
-| clientID | String |  Y   | 当前小程序的 clientID         |
 | formData | Object |  N   | HTTP 请求中其他额外的 form data |
 
 注: 本地资源路径的获取方法要视具体情况而定。例如通过 `wx.chooseImage(object)` 获取的图片, 可以在用户选好本地图片后的成功回调中获取到其本地路径。
@@ -23,7 +22,6 @@
 ```javascript
 // 文件上传示例代码
 let params = {}
-params.clientID = '当前小程序的 cilentID'
 params.formData = {} // 可选的 formData
 
 wx.chooseImage({
