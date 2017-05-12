@@ -32,7 +32,7 @@ wx.chooseImage({
     params.filePath = tempFilePaths
 
     wx.BaaS.uploadFile(params).then((res) => {
-	  // success. 服务器成功响应
+      // success. 服务器成功响应
       // 注: 只要是服务器有响应的情况都会进入 success, 即便是 4xx，5xx 都会进入
       // 这是微信的处理方式与 BaaS 服务(器)无关
       // 如果上传成功则会返回资源远程地址
