@@ -24,15 +24,15 @@
 // 文件上传示例代码
 let params = {}
 params.clientID = '当前小程序的 cilentID'
-params.formData = {} // 可选的 formData 
+params.formData = {} // 可选的 formData
 
 wx.chooseImage({
   success: function(res) {
     let tempFilePaths = res.tempFilePaths
     params.filePath = tempFilePaths
-    
+
     wx.BaaS.uploadFile(params).then((res) => {
-	  // success. 服务器成功响应
+	    // success. 服务器成功响应
       // 注: 只要是服务器有响应的情况都会进入 success, 即便是 4xx，5xx 都会进入
       // 这是微信的处理方式与 BaaS 服务(器)无关
       // 如果上传成功则会返回资源远程地址
