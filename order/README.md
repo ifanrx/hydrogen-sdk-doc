@@ -31,9 +31,10 @@ let params = {}
 params.transactionID = 'iMiTAsOrgjDKItmkifWzzayHAwneiojh'
 
 wx.BaaS.pay(params).then((res) => {
-  // success
+  // 注: 只要是服务器有返回的情况都会进入 success, 即便是 4xx，5xx 都会进入
+  // 这是微信的处理方式与 BaaS 服务(器)无关
 }, (err) => {
-  // err
+  // err 只有发生网络异常等其他系统级别的错误才会进入这里
+  // 这是微信服务器的处理方式，与 BaaS 服务(器)无关
 });
-
 ```
