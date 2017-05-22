@@ -33,6 +33,6 @@
 * [本地存储](localStorage/README.md)
 * [文件上传](uploadFile/README.md)
 * [网络请求](request/README.md)
-* [SDK 下载](https://raw.githubusercontent.com/ifanrx/hydrogen-js-sdk/master/dist/sdk-v1.0.3.js)
+* [SDK 下载](https://raw.githubusercontent.com/ifanrx/hydrogen-js-sdk/master/dist/sdk-v1.0.4.js)
 * [更新](update/README.md)
 
