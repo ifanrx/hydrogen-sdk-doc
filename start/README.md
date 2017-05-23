@@ -1,39 +1,83 @@
 # 开始
 
-## 1、在小程序项目引入 SDK
-
-在小程序根目录的 `app.js` 内引入 SDK
+## 1. 下载并引入 SDK
+1. (下载最新版 SDK 到本地)[https://raw.githubusercontent.com/ifanrx/hydrogen-js-sdk/master/dist/sdk-v1.0.4.js]
+2. 将第一步获取到的 SDK 文件放在小程序项目目录中
+3. 在 `app.js` 中引入 SDK
 
 ```
 // app.js
 App({
-  onLaunch: function () {
-    // import BaaS SDK
-    require('./sdk-v1.0.0');
+  onLaunch() {
+    // require SDK
+    require('./sdk-v1.0.4')
   }
 })
-
 ```
 
-引入 SDK 后，就能在小程序页面内使用 SDK 完成功能开发了。
+成功引入 SDK 后, 就可以根据本文档的介绍使用 SDK API 来获取知晓云提供的后端云服务了。
 
-## 2、初始化（客户端认证）
+## 2. SDK 初始化(客户端认证)
 
-```
-// clientID 在 BaaS 后台获取
-wx.BaaS.init(clientID);
-```
-
-## 3、使用 SDK 完成相关功能
-
-> 举一个使用 SDK 获取 BaaS 富文本内容的例子
+在(知晓云后台 - 我的应用)[http://127.0.0.1:8000/hydrogen/miniapp/]页面获取要接入知晓云服务的小程序 ClientID, 按照如下方式进行 SDK 初始化:
 
 ```
-// 获取 BaaS 富文本内容
-let contentID = 1;
-wx.BaaS.getContent(contentID).then((res) => {
-  // success
-}, (err) => {
-  // err
-});
+// app.js
+App({
+  onLaunch() {
+    // 引入 SDK
+    require('./sdk-v1.0.4')
+
+    // 初始化 SDK
+    wx.BaaS.init(clientID)
+  }
+})
 ```
+
+## 3. 创建数据表
+
+完成 1、2 两步工作后, SDK 的配置工作就已完成。现在开发者需要根据自己应用的业务逻辑, 确定所需的数据表。确定好后即可在 (知晓云后台 - 数据管理 - 数据列表)[http://127.0.0.1:8000/hydrogen/flex/schema/] 页面开始创建数据表的工作:
+
+1. 创建数据表、同时设置表级别 ACL(Access Control List) 此项为数据表中数据纪录的默认 ACL 权限
+   ![数据表创建界面](/images/start/create-schema.png "数据表创建界面")
+
+2. 成功创建数据表
+   在步骤 1 中点击提交按钮成功创建 `book` 数据表后如下图所示: `id`、`created_by`、`created_at`、`updated_at`、`acl` 这 5 个字段为知晓云后端为每个数据表设置的内建字段。内建字段含义如下:
+
+   | 内建字段       | 说明                    | 字段类型   |
+   | :--------- | --------------------- | :----- |
+   | id         | 数据表纪录 ID, 数据库自动生成且自增长 | string |
+   | created_by | 当前数据记录的创建者            | int    |
+   | created_at | 当前纪录创建时间              | int    |
+   | updated_at | 当前纪录更新时间              | int    |
+   | acl        | 当前纪录的访问控制             | int    |
+
+   ![数据表成功创建界面](/images/start/book-table.png "数据表成功创建界面")
+
+   > 注: 上图中底部灰色区域注明了当前数据表在 SDK 中的用法。开发者可在 SDK 中使用 tableID 的值来访问该数据表。
+
+3. 为数据表添加列 / 添加字段
+   对于一个新创建的数据表, 只包含上述 5 个内建字段。要实现开发者的业务逻辑, 需要使用 dashboard 面板的「添加列」功能来为数据表增加新的字段：
+
+   ![添加列界面](/images/start/add-column.png "添加列界面")
+
+   添加列时需要填写列名称(数据表字段名称), 指定列类型。知晓云服务目前支持 5 种列类型: `string`、`integer`、`number`、`boolean` 以及 `array`.
+
+   > 注: 当列类型为 `array` 时, 需要填写列表元素类型, 此时列表元素类型不可再为 `array`
+
+## 4. 使用 SDK API 访问数据表
+   按照上述步骤创建好业务所需的数据表, 则可以使用获取到的 tableID 来进行数据表的操作了。例如可以使用 `wx.BaaS.getTable(Object)` 接口来获取之前创建的 `book` 表详情:
+    ```
+    // 获取 book 的数据表详情(由上图可知 book 表的 tableID 为 41)
+    let tableID = 41;
+    let objects = { tableID };
+
+    wx.BaaS.getTable(objects).then( (res) => {
+      // success
+    }, (err) => {
+      // err
+    });
+    ```
+    >注: 这里补充一张获取数据表返回详情的截图作为说明
+
+   ​
