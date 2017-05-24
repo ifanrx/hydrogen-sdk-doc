@@ -5,7 +5,6 @@
     * [注册账号](ready/注册账号.md)
     * [绑定应用](ready/绑定应用.md)
 * [开始](start/README.md)
-* [初始化](init/README.md)
 * [登入/登出](login/README.md)
 * [支付](payment/README.md)
     * [微信支付](payment/pay.md)
