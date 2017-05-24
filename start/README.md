@@ -69,20 +69,6 @@ App({
    > 注: 当列类型为 `array` 时, 需要填写列表元素类型, 此时列表元素类型不可再为 `array`
 
 ## 4. 使用 SDK API 访问数据表
-   按照上述步骤创建好业务所需的数据表, 则可以使用获取到的 tableID 来进行数据表的操作了。例如可以使用 `wx.BaaS.getTable(Object)` 接口来获取之前创建的 `book` 表详情:
+   按照上述步骤创建好业务所需的数据表后, 便可以使用获取到的 tableID 来进行数据表的操作了。     
 
-   ```
-    // 获取 book 的数据表详情(由上图可知 book 表的 tableID 为 41)
-    let tableID = 41
-    let objects = { tableID }
-
-    wx.BaaS.getTable(objects).then( (res) => {
-      // success
-    }, (err) => {
-      // err
-    })
-
-    > 注: 这里补充一张获取数据表返回详情的截图作为说明
-    ```
-
-   ​
+> 待完善                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

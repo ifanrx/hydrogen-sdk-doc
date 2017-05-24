@@ -15,8 +15,6 @@
         * [新增数据项](schema/data/create-record.md)
         * [更新数据项](schema/data/update-record.md)
         * [删除数据项](schema/data/delete-record.md)
-        * [获取数据表列表](schema/data/get-table-list.md)
-        * [获取数据表详情](schema/data/get-table-detail.md)
         * [获取数据项列表](schema/data/get-record-list.md)
         * [获取数据项详情](schema/data/get-record-detail.md)
         * [获取用户信息](schema/data/get-userinfo.md)
