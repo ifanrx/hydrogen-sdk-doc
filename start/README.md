@@ -1,7 +1,7 @@
 # 开始
 
-## 1. 下载并引入 SDK
-1. (下载最新版 SDK 到本地)[https://raw.githubusercontent.com/ifanrx/hydrogen-js-sdk/master/dist/sdk-v1.0.4.js]
+## 1. 下载并导入 SDK
+1. (下载最新版 SDK 到本地)[https://raw.githubusercontent.com/ifanrx/hydrogen-js-sdk/master/dist]
 2. 将第一步获取到的 SDK 文件放在小程序项目目录中
 3. 在 `app.js` 中引入 SDK
 
@@ -19,7 +19,9 @@ App({
 
 ## 2. SDK 初始化(客户端认证)
 
-在(知晓云后台 - 我的应用)[http://127.0.0.1:8000/hydrogen/miniapp/]页面获取要接入知晓云服务的小程序 ClientID, 按照如下方式进行 SDK 初始化:
+通过初始化 SDK , 知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 SDK 提供的全部功能
+
+在(知晓云后台 - 我的应用)[https://sso.ifanr.com/hydrogen/miniapp/]页面获取要接入知晓云服务的小程序 ClientID, 按照如下方式进行 SDK 初始化:
 
 ```
 // app.js
@@ -36,9 +38,10 @@ App({
 
 ## 3. 创建数据表
 
-完成 1、2 两步工作后, SDK 的配置工作就已完成。现在开发者需要根据自己应用的业务逻辑, 确定所需的数据表。确定好后即可在 (知晓云后台 - 数据管理 - 数据列表)[http://127.0.0.1:8000/hydrogen/flex/schema/] 页面开始创建数据表的工作:
+完成 1、2 两步工作后, SDK 的配置工作就已完成。现在开发者需要根据自己应用的业务逻辑, 确定所需的数据表。确定好后即可在 (知晓云后台 - 数据管理 - 数据列表)[https://sso.ifanr.com:8000/hydrogen/flex/schema/] 页面开始创建数据表的工作:
 
-1. 创建数据表、同时设置表级别 ACL(Access Control List) 此项为数据表中数据纪录的默认 ACL 权限
+1. 创建数据表、同时设置表级别 ACL(Access Control List) 此项为数据表中数据纪录的默认 ACL 权限。ACL, 又称访问控制列表，是使用以访问控制矩阵为基础的访问控制方法，每一个对象对应一个串列主体。访问控制表描述每一个对象各自的访问控制，并记录可对此对象进行访问的所有主体对对象的权限。（来自维基百科）(点此查看更多 ACL 信息)[https://zh.wikipedia.org/wiki/%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6%E4%B8%B2%E5%88%97]
+
    ![数据表创建界面](/images/start/create-schema.png "数据表创建界面")
 
 2. 成功创建数据表
@@ -67,17 +70,19 @@ App({
 
 ## 4. 使用 SDK API 访问数据表
    按照上述步骤创建好业务所需的数据表, 则可以使用获取到的 tableID 来进行数据表的操作了。例如可以使用 `wx.BaaS.getTable(Object)` 接口来获取之前创建的 `book` 表详情:
-    ```
+
+   ```
     // 获取 book 的数据表详情(由上图可知 book 表的 tableID 为 41)
-    let tableID = 41;
-    let objects = { tableID };
+    let tableID = 41
+    let objects = { tableID }
 
     wx.BaaS.getTable(objects).then( (res) => {
       // success
     }, (err) => {
       // err
-    });
+    })
+
+    > 注: 这里补充一张获取数据表返回详情的截图作为说明
     ```
-    >注: 这里补充一张获取数据表返回详情的截图作为说明
 
    ​
