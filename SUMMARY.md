@@ -31,4 +31,11 @@
 * [网络请求](request/README.md)
 * [SDK 下载](https://raw.githubusercontent.com/ifanrx/hydrogen-js-sdk/master/dist/sdk-v1.0.3.js)
 * [更新](update/README.md)
+* [操作指南](dashboard/README.md)
+    * [数据管理](dashboard/page/data.md)
+    * [文件管理](dashboard/page/file.md)
+    * [内容管理](dashboard/page/content.md)
+    * [用户管理](dashboard/page/user.md)
+    * [ACL 简介](dashboard/page/acl.md)
+
 
