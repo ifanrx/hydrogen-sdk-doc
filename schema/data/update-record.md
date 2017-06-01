@@ -4,11 +4,11 @@
 
 ##### OBJECT 参数说明
 
-| 参数名 | 类型   | 必填| 描述 |
-| :---:  | :----: | :----: | :----: |
-| tableID | Number | 是 | 数据表 ID |
-| recordID | Number | 是 | 数据项 ID |
-| data | Object | 是 | 待更新的自定义数据 |
+|   参数名    |   类型   |  必填  |    描述     |
+| :------: | :----: | :--: | :-------: |
+| tableID  | Number |  是   |  数据表 ID   |
+| recordID | Number |  是   |  数据项 ID   |
+|   data   | Object |  是   | 待更新的自定义数据 |
 
 ##### 请求示例
 
@@ -33,27 +33,28 @@ wx.BaaS.updateRecord(objects).then( (res) => {
 
 ##### 返回参数
 
-| 参数名 | 类型   | 描述 |
-| :---:  | :----: | :----: |
-| id | Number | 数据项 ID |
-| created_at | Number | 创建时间 |
-| response | Object | 自定义数据内容 |
+|    参数名     |   类型    |   描述   |
+| :--------: | :-----: | :----: |
+|     id     | String  | 数据项 ID |
+| created_at | Number  |  创建时间  |
+|  is_admin  | Boolean | 自定义字段  |
+|    name    | String  | 自定义字段  |
+|   price    | Number  | 自定义字段  |
+|    tags    |  Array  | 自定义字段  |
 
 ##### 返回示例
 
 ```
 {
   "created_at": 1487055951,
-  "id": 20,
-  "response": {
-    "is_admin": false,
-    "name": "VwlPCaUJzxAyNUSNMgzikTQySFoaTZtm",
-    "price": 10,
-    "tags": [
-      "UZbJ",
-      "eSYo"
-    ]
-  }
+  "id": "20",
+  "is_admin": false,
+  "name": "VwlPCaUJzxAyNUSNMgzikTQySFoaTZtm",
+  "price": 10,
+  "tags": [
+    "UZbJ",
+    "eSYo"
+  ]
 }
 ```
 
