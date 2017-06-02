@@ -1,4 +1,4 @@
-# 新增数据纪录
+# 新增数据记录
 
 `wx.BaaS.createRecord(OBJECT)`
 

@@ -11,7 +11,7 @@
 ##### 请求示例
 
 ```
-// 获取 tableID 为 10 的数据表中的第一页的数据纪录
+// 获取 tableID 为 10 的数据表中的第一页的数据记录
 let tableID = 10
 let objects = { tableID }
 wx.BaaS.getRecordList(objects).then( (res) => {
