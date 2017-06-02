@@ -7,6 +7,9 @@
 - 再次手动下载 SDK
 
 ### 更新记录
+- 2016-06-02, Version 1.0.5 (Maintenance)
+  - 升级 `RECORD_LIST`、`RECORD_DETAIL`、`CREATE_RECORD`、`UPDATE_RECORD` 以及 `DELETE_RECORD` 接口到 v1.1 版本
+
 - 2016-05-22, Version 1.0.4 (Maintenance)
   - 修复 baasRequest 参数顺序导致的 bug
 
