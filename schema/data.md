@@ -10,7 +10,7 @@
 
 #### 过滤
 
-BaaS 提供的查询数据接口提供两种过滤查询方式：
+BaaS 提供的查询数据接口提供三种过滤查询方式：
 
 - 精确查询
 - 模糊查询
@@ -18,14 +18,14 @@ BaaS 提供的查询数据接口提供两种过滤查询方式：
 
 提供小于，小于等于，大于，大于等于，范围操作，而且可以组合使用。后缀的使用规则如： `price__range`，`name__contains`，`recordID__lte`
 
-| 参数后缀 | 对应 Schema 类型   | 说明 |
-| :---:  | :----: | :----: |
-| lt | Integer | 小于 |
-| lte | Integer | 小于等于 |
-| gt | Integer | 大于 |
-| gte | Integer | 大于等于 |
-| range | Integer/Float | 范围 |
-| contains | String | 包含 |
+|   参数后缀   | 对应数据表类型  |  说明  |
+| :------: | :-----------: | :--: |
+|    lt    |    Integer    |  小于  |
+|   lte    |    Integer    | 小于等于 |
+|    gt    |    Integer    |  大于  |
+|   gte    |    Integer    | 大于等于 |
+|  range   | Integer/Float |  范围  |
+| contains |    String     |  包含  |
 
 示例 1：查询创建者 `ID` 为 1，`name` 为 `知晓云` 的记录（精确查询）
 
