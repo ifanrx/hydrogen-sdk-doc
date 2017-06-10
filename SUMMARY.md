@@ -18,6 +18,7 @@
         * [获取数据项详情](schema/data/get-record-detail.md)
         * [获取用户信息](schema/data/get-userinfo.md)
 * [内容模块](content/README.md)
+    * [功能简介](content/intro.md)
     * [创建内容](content/creation.md)
     * [操作内容](content/data.md)
         * [获取内容详情](content/data/get-content.md)
