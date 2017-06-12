@@ -57,8 +57,7 @@ App({
   | acl        | 当前记录的访问控制             | int    |
 
 
-   > ![数据表成功创建界面](/images/start/book-table.png "数据表成功创建界面")
-
+   ![数据表成功创建界面](/images/start/book-table.png "数据表成功创建界面")
 
    > 注: 上图中底部灰色区域注明了当前数据表在 SDK 中的用法。开发者可在 SDK 中使用 tableID 的值来访问该数据表。
 
