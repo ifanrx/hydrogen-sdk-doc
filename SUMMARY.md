@@ -29,6 +29,7 @@
         * [获取分类详情](content/data/get-content-category.md)
     * [渲染内容](content/render.md)
 * [SDK 下载](https://raw.githubusercontent.com/ifanrx/hydrogen-js-sdk/master/dist/sdk-v1.0.5.js)
+* [富文本渲染模块](https://github.com/ifanrx/wxParser/tree/master/wxParser)
 * [更新日志](update/README.md)
 * [后台简介](dashboard/README.md)
     * [数据管理](dashboard/page/data.md)

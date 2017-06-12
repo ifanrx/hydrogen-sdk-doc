@@ -1,7 +1,7 @@
 # 开始
 
 ## 1. 下载并导入 SDK
-1. (下载最新版 SDK 到本地)[https://raw.githubusercontent.com/ifanrx/hydrogen-js-sdk/master/dist]
+1. [下载最新版 SDK 到本地](https://github.com/ifanrx/hydrogen-js-sdk/tree/master/dist)
 2. 将第一步获取到的 SDK 文件放在小程序项目目录中
 3. 在 `app.js` 中引入 SDK
 
@@ -10,7 +10,7 @@
 App({
   onLaunch() {
     // require SDK
-    require('./sdk-v1.0.4')
+    require('./sdk-v1.0.5')
   }
 })
 ```
@@ -28,7 +28,7 @@ App({
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-v1.0.4')
+    require('./sdk-v1.0.5')
 
     // 初始化 SDK
     wx.BaaS.init(clientID)
@@ -45,15 +45,16 @@ App({
    ![数据表创建界面](/images/start/create-schema.png "数据表创建界面")
 
 2. 成功创建数据表
-   在步骤 1 中点击提交按钮成功创建 `book` 数据表后如下图所示: `id`、`created_by`、`created_at`、`updated_at`、`acl` 这 5 个字段为知晓云后端为每个数据表设置的内建字段。内建字段含义如下:
+  在步骤 1 中点击提交按钮成功创建 `book` 数据表后如下图所示: `id`、`created_by`、`created_at`、`updated_at`、`acl` 这 5 个字段为知晓云后端为每个数据表设置的内建字段。内建字段含义如下:
 
-   | 内建字段       | 说明                    | 字段类型   |
-   | :--------- | --------------------- | :----- |
-   | id         | 数据表记录 ID, 数据库自动生成且自增长 | string |
-   | created_by | 当前数据记录的创建者            | int    |
-   | created_at | 当前记录创建时间              | int    |
-   | updated_at | 当前记录更新时间              | int    |
-   | acl        | 当前记录的访问控制             | int    |
+  | 内建字段       | 说明                    | 字段类型   |
+  | :--------- | --------------------- | :----- |
+  | id         | 数据表记录 ID, 数据库自动生成且自增长 | string |
+  | created_by | 当前数据记录的创建者            | int    |
+  | created_at | 当前记录创建时间              | int    |
+  | updated_at | 当前记录更新时间              | int    |
+  | acl        | 当前记录的访问控制             | int    |
+
 
    ![数据表成功创建界面](/images/start/book-table.png "数据表成功创建界面")
 

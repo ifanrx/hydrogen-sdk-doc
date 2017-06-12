@@ -40,7 +40,7 @@
 
 ### 引入小程序内容渲染组件
 
-为了能让微信小程序正确的解析 BaaS 后台创建的富文本内容，首先需要引入 [小程序内容渲染组件](https://github.com/pacochan/wxParser)。
+为了能让微信小程序正确的解析 BaaS 后台创建的富文本内容，首先需要引入 [小程序内容渲染组件](https://github.com/ifanrx/wxParser)。
 
 推荐在小程序根目录下新建 `wxParser` 目录，把下载好的小程序内容渲染组件放到该目录下。
 

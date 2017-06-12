@@ -2,7 +2,7 @@
 
 ### 步骤
 
-1. 下载 [小程序内容渲染模块](https://github.com/pacochan/wxParser)
+1. 下载 [小程序内容渲染模块](https://github.com/ifanrx/wxParser/tree/master/wxParser)
 2. 把 `wxParser` 目录放到小程序项目的根目录下
 3. 在需要富文本解析的的 `WXML` 内引入 `wxParser/index.wxml`
 4. 在页面 `JS` 文件内使用 `wxParser.parse(options)` 方法解析 `HTML` 内容
