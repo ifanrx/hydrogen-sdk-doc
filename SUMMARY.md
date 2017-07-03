@@ -28,7 +28,7 @@
         * [获取内容库列表](content/data/get-content-group-list.md)
         * [获取分类详情](content/data/get-content-category.md)
     * [渲染内容](content/render.md)
-* [SDK 下载](https://dl.ifanr.cn/hydrogen/sdk/sdk-v1.0.5.zip)
+* [SDK 下载](https://dl.ifanr.cn/hydrogen/sdk/sdk-latest.zip)
 * [富文本渲染模块](https://github.com/ifanrx/wxParser/tree/master/wxParser)
 * [更新日志](update/README.md)
 * [后台简介](dashboard/README.md)
