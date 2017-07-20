@@ -8,7 +8,7 @@
 
 ### 更新记录
 - 2017-07-20, Version 1.0.8 (Maintenance)
-  修复 wx.BaaS.getUserInfo 传递 userID 参数 400 bug
+  - 修复 wx.BaaS.getUserInfo 传递 userID 参数 400 bug
 
 
 - 2017-06-02, Version 1.0.5 (Maintenance)
