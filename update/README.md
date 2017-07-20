@@ -7,11 +7,17 @@
 - 再次手动下载 SDK
 
 ### 更新记录
+- 2017-07-20, Version 1.0.8 (Maintenance)
+  修复 wx.BaaS.getUserInfo 传递 userID 参数 400 bug
+
+
 - 2017-06-02, Version 1.0.5 (Maintenance)
   - 升级 `RECORD_LIST`、`RECORD_DETAIL`、`CREATE_RECORD`、`UPDATE_RECORD` 以及 `DELETE_RECORD` 接口到 v1.1 版本
 
+
 - 2017-05-22, Version 1.0.4 (Maintenance)
   - 修复 baasRequest 参数顺序导致的 bug
+
 
 - 2017-05-12, Version 1.0.3 (Maintenance)
   - 新增微信支付接口、支付交易详情查询接口以及文件上传接口

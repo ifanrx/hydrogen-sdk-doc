@@ -28,7 +28,7 @@ params.formData = {} // 可选的 formData
 wx.chooseImage({
   success: function(res) {
     let tempFilePaths = res.tempFilePaths
-    params.filePath = tempFilePaths
+    params.filePath = tempFilePaths[0]
 
     wx.BaaS.uploadFile(params).then((res) => {
       // success. 服务器成功响应
