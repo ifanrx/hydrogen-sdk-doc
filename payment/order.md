@@ -28,11 +28,11 @@ data: {
 ##### 示例代码
 
 ```
-// 支付示例代码
-let params = {}
-params.transactionID = 'iMiTAsOrgjDKItmkifWzzayHAwneiojh'
+// 获取支付交易示例代码
+let transactionID = "iMiTAsOrgjDKItmKifWzzayHAwneYwYo"
+let params = { transactionID }
 
-wx.BaaS.pay(params).then((res) => {
+wx.BaaS.order(params).then((res) => {
   // 注: 只要是服务器有返回的情况都会进入 success, 即便是 4xx，5xx 都会进入
   // 这是微信的处理方式与 BaaS 服务(器)无关
 }, (err) => {
