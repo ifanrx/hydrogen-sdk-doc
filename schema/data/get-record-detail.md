@@ -7,13 +7,13 @@
 |   参数名    |   类型   |  必填  |   描述   |
 | :------: | :----: | :--: | :----: |
 | tableID  | Number |  是   | 数据表 ID |
-| recordID | Number |  是   | 数据项 ID |
+| recordID | String |  是   | 数据项 ID |
 
 ##### 请求示例
 
 ```
 let tableID = 10
-let recordID = 20
+let recordID = '59897882ff650c0477f00485'
 let objects = {
   tableID,
   recordID
@@ -41,7 +41,7 @@ wx.BaaS.getRecord(objects).then( (res) => {
 ```
 {
   "created_at": 1487053095,
-  "id": "20",
+  "id": "59897882ff650c0477f00485",
   "is_admin": false,
   "name": "JlpvHdheLh",
   "price": 89,

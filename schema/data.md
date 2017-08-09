@@ -20,10 +20,10 @@ BaaS 提供的查询数据接口提供三种过滤查询方式：
 
 |   参数后缀   | 对应数据表类型  |  说明  |
 | :------: | :-----------: | :--: |
-|    lt    |    Integer    |  小于  |
-|   lte    |    Integer    | 小于等于 |
-|    gt    |    Integer    |  大于  |
-|   gte    |    Integer    | 大于等于 |
+|    lt    |    Integer/String    |  小于  |
+|   lte    |    Integer/Sring    | 小于等于 |
+|    gt    |    Integer/String    |  大于  |
+|   gte    |    Integer/String    | 大于等于 |
 |  range   | Integer/Float |  范围  |
 | contains |    String     |  包含  |
 
@@ -70,12 +70,12 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 });
 ```
 
-示例 4：查询创建者 recordID 大于等于 10 的记录
+示例 4：查询创建者 recordID 大于等于 '5919eb015f281f2b321720be' 的记录
 
 ```
 let objects = {
   tableID: 10,
-  recordID__gte: 10,
+  recordID__gte: '5919eb015f281f2b321720be',
 };
 wx.BaaS.getRecordList(objects).then( (res) => {
   // success
@@ -84,12 +84,12 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 });
 ```
 
-示例 5：查询创建者 recordID 大于等于 10，且 price 小于 1000 的记录
+示例 5：查询创建者 recordID 大于等于 '5919eb015f281f2b321720be'，且 price 小于 1000 的记录
 
 ```
 let objects = {
   tableID: 10,
-  recordID__gte: 10,
+  recordID__gte: '5919eb015f281f2b321720be',
   price__lt: 1000
 };
 wx.BaaS.getRecordList(objects).then( (res) => {
