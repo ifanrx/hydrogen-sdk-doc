@@ -1,16 +1,16 @@
 # 开始
 
 ## 1. 下载并导入 SDK
-1. [下载最新版 SDK 到本地](https://github.com/ifanrx/hydrogen-js-sdk/tree/master/dist)
+1. [下载最新版 SDK 到本地](https://dl.ifanr.cn/hydrogen/sdk/sdk-latest.zip)
 2. 将第一步获取到的 SDK 文件放在小程序项目目录中
-3. 在 `app.js` 中引入 SDK
+3. 在 `app.js` 中引入 SDK，注意，请将最新的 sdk 版本替换下面代码片段里的 sdk-1.0.9 以确保使用的是最新的 sdk。
 
 ```
 // app.js
 App({
   onLaunch() {
     // require SDK
-    require('./sdk-v1.0.5')
+    require('./sdk-v1.0.9')
   }
 })
 ```
@@ -28,7 +28,7 @@ App({
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-v1.0.5')
+    require('./sdk-v1.0.9')
 
     // 初始化 SDK
     wx.BaaS.init(clientID)
