@@ -7,6 +7,9 @@
 - 再次手动下载 SDK
 
 ### 更新记录
+- 2017-08-10, Version 1.0.10 (Maintenance)
+  - 修复: 在传入参数时可能产生多余的 query string 的问题
+
 - 2017-08-08, Version 1.0.9 (Maintenance)
   - 修复: wx.BaaS.pay 调用失败问题
   - 修复: 内容库接口用户自定义参数无法被转为服务端所需参数问题
