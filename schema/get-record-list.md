@@ -1,14 +1,102 @@
-# 数据操作
+# 获取数据项列表
 
-在 BaaS 后台创建好数据表后，可以通过 SDK 提供的相关方法来操作数据表的数据。
+`wx.BaaS.getRecordList(OBJECT)`
 
-## 过滤/排序/分页
+## 一般情况
 
-数据相关查询接口支持过滤和排序功能
+##### OBJECT 参数说明
+
+|   参数名   |   类型   |  必填  |   描述   |
+| :-----: | :----: | :--: | :----: |
+| tableID | Number |  是   | 数据表 ID |
+
+##### 请求示例
+
+```
+// 获取 tableID 为 10 的数据表中的第一页(默认 20 条)的数据记录
+let tableID = 10
+let objects = { tableID }
+wx.BaaS.getRecordList(objects).then( (res) => {
+  // success
+}, (err) => {
+  // err
+})
+```
+
+##### 返回参数
+
+- meta: 元信息
+- objects: 数据列表
+
+列表项属性说明
+
+|    参数名     |   类型    |   描述   |
+| :--------: | :-----: | :----: |
+|     id     | String  | 数据表 ID |
+| created_at | Integer |  创建时间  |
+|  is_admin  | Boolean | 自定义字段 |
+|    name    | String  | 自定义字段 |
+|   price    | Integer | 自定义字段 |
+|    tags    |  Array  | 自定义字段 |
+
+##### 返回示例
+
+```
+{
+  "meta": {
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total_count": 1
+  },
+  "objects": [
+    {
+      "created_at": 1487053095,
+      "id": "7",
+      "is_admin": false,
+      "name": "JlpvHdheLh",
+      "price": 89,
+      "tags": [
+        "xGHt",
+        "hHqz"
+      ]
+    }
+  ]
+}
+```
 
 ---
 
-#### 过滤
+## 分页
+
+使用 `limit` 和 `offset` 参数来控制分页请求
+
+- `limit`， 指定该请求返回的结果个数（默认 20，最大 1000）
+- `offset`（偏移量），指定该请求返回的结果的起始位置（`offset` 从 0 开始算起）
+
+示例：查询数据表 `ID` 为 10 的第 3 页数据
+
+```
+let pageNum = 3; // 页码
+let limit = 16;
+let offset = limit * (pageNum - 1);
+
+let objects = {
+  tableID: 10,
+  limit
+  offset
+};
+wx.BaaS.getRecordList(objects).then( (res) => {
+  // success
+}, (err) => {
+  // err
+});
+```
+
+---
+
+## 查询
 
 BaaS 提供的查询数据接口提供三种过滤查询方式：
 
@@ -101,7 +189,7 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 
 ---
 
-#### 排序
+## 排序
 
 示例 1：查询数据表 `ID` 为 10 的数据，返回的数据按 `id` 逆序排序
 
@@ -131,32 +219,6 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 });
 ```
 ---
-
-#### 分页
-
-使用 `limit` 和 `offset` 参数来控制分页请求
-
-- `limit`， 指定该请求返回的结果个数
-- `offset`（偏移量），指定该请求返回的结果的起始位置（`offset` 从 0 开始算起）
-
-示例：查询数据表 `ID` 为 10 的第 3 页数据
-
-```
-let pageNum = 3; // 页码
-let limit = 16;
-let offset = limit * (pageNum - 1);
-
-let objects = {
-  tableID: 10,
-  limit
-  offset
-};
-wx.BaaS.getRecordList(objects).then( (res) => {
-  // success
-}, (err) => {
-  // err
-});
-```
 
 ### 注意事项
 
