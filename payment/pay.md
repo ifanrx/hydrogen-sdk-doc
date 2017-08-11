@@ -10,7 +10,7 @@
 | totalCost              | Number  |  Y   | 支付总额           |
 | merchandiseDescription | String  |  Y   | 微信支付凭证-商品详情的内容 |
 | merchandiseSchemaID    | Integer |  N   | 商品表 ID         |
-| merchandiseRecordID    | Integer |  N   | 商品 ID          |
+| merchandiseRecordID    | String |  N   | 商品记录 ID          |
 | merchandiseSnapshot    | Object  |  N   | 根据业务需求自定义的数据   |
 
 注: 通过 `merchandiseSchemaID` 和 `merchandiseRecordID` 来定位用户购买的物品。
