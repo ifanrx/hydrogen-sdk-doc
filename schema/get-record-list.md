@@ -2,7 +2,7 @@
 
 `wx.BaaS.getRecordList(OBJECT)`
 
-## 一般情况
+## 一般情况
 
 ##### OBJECT 参数说明
 
@@ -187,6 +187,12 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 });
 ```
 
+### 注意事项
+
+- 加入查询的字段必须是 `FlexSchema` 定义过的字段。其中，`id` 和 `created_by`（创建者）字段默认支持
+- 模糊查询的字段不能是 `Array` 类型
+- 多项匹配的字段只能是 `Array` 类型
+
 ---
 
 ## 排序
@@ -218,10 +224,3 @@ wx.BaaS.getRecordList(objects).then( (res) => {
   // err
 });
 ```
----
-
-### 注意事项
-
-- 加入查询的字段必须是 `FlexSchema` 定义过的字段。其中，`id` 和 `created_by`（创建者）字段默认支持
-- 模糊查询的字段不能是 `Array` 类型
-- 多项匹配的字段只能是 `Array` 类型
