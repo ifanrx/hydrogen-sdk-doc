@@ -1,6 +1,6 @@
 # 限制和排序
 
-### 限制（主要用于分页操作）
+### 限制（主要用于分页操作）
 
 ```
 // 通过查询获取到的数据列表默认 limit 为 20, offset 为 0，我们也可以手动指定 limit 和 offset 来控制
@@ -23,7 +23,7 @@ Product.setQuery(query).limit(10).offset(0).find().then( (res) => {
 ```
 var Product = new BaaS.TableObject(tableID)
 
-// 升序
+// 升序
 Product.orderBy('createAt')
 // or
 Product.orderBy(['createAt'])
