@@ -1,49 +1,35 @@
 # 新增数据记录
 
-`wx.BaaS.createRecord(OBJECT)`
-
-##### OBJECT 参数说明
-
-|   参数名   |   类型   |  必填  |    描述     |
-| :-----: | :----: | :--: | :-------: |
-| tableID | Number |  是   |  数据表 ID   |
-|  data   | Object |  是   | 待插入的自定义数据 |
-
 ##### 请求示例
 
 ```
 // 向 tableID 为 10 的数据表插入一条记录
 let tableID = 10
-let data = {
-  "is_admin": false,
-  "name": "OSfvvQFoNm",
-  "price": 99,
-  "tags": [
-    "LRpq",
-    "HGLa"
-  ]
+let Product = wx.BaaS.TableObject(tableID)
+let product = Obj.create()
+
+// 设置方式一
+let apple = {
+  name: 'fushi',
+  price: 10,
+  dec: [
+    'sweet',
+    'red'
+  ],
+  amount: 2
 }
-let objects = {
-  tableID,
-  data
-}
-wx.BaaS.createRecord(objects).then( (res) => {
+product.set(apple).save().then( (res) => {
   // success
 }, (err) => {
   // err
 })
+
+// 设置方式二
+obj.set('name', 'fushi')
+obj.set('price', 10)
+obj.set('desc', ["LRpq", "HGLa"])
+obj.save().then((res) => {}, (err) => {})
 ```
-
-##### 返回参数
-
-|    参数名     |   类型    |   描述   |
-| :--------: | :-----: | :----: |
-|     id     | String  | 数据表 ID |
-| created_at | Integer  |  创建时间  |
-|  is_admin  | Boolean | 自定义字段 |
-|    name    | String  | 自定义字段 |
-|   price    | Number  | 自定义字段 |
-|    tags    |  Array  | 自定义字段 |
 
 ##### 返回示例
 

@@ -1,46 +1,30 @@
 # 更新数据项
 
-`wx.BaaS.updateRecord(OBJECT)`
-
-##### OBJECT 参数说明
-
-|   参数名    |   类型   |  必填  |    描述     |
-| :------: | :----: | :--: | :-------: |
-| tableID  | Number |  是   |  数据表 ID   |
-| recordID | String |  是   |  数据项 ID   |
-|   data   | Object |  是   | 待更新的自定义数据 |
-
 ##### 请求示例
 
+- 普通数据更新
+
 ```
-// 更新 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项的 name 字段
-let tableID = 10;
-let recordID = '59897882ff650c0477f00485';
-let data = {
-  name: "VwlPCaUJzxAyNUSNMgzikTQySFoaTZtm"
-}
-let objects = {
-  tableID,
-  recordID,
-  data
-};
-wx.BaaS.updateRecord(objects).then( (res) => {
+// 更新 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项的 price 字段
+let tableID = 10
+let recordID = '59897882ff650c0477f00485'
+
+let Product = wx.BaaS.TableObject(tableID)
+let product = Obj.getWithoutData(recordID)
+
+obj.set('price', 11)
+obj.update().then( (res) => {
   // success
 }, (err) => {
   // err
-});
+})
 ```
 
-##### 返回参数
+- 计数器更新（对数字类型的字段进行原子性增减操作）
 
-|    参数名     |   类型    |   描述   |
-| :--------: | :-----: | :----: |
-|     id     | String  | 数据项 ID |
-| created_at | Number  |  创建时间  |
-|  is_admin  | Boolean | 自定义字段  |
-|    name    | String  | 自定义字段  |
-|   price    | Number  | 自定义字段  |
-|    tags    |  Array  | 自定义字段  |
+```
+
+```
 
 ##### 返回示例
 
