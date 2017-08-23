@@ -6,7 +6,7 @@
 // 向 tableID 为 10 的数据表插入一条记录
 let tableID = 10
 let Product = wx.BaaS.TableObject(tableID)
-let product = Obj.create()
+let product = Product.create()
 
 // 设置方式一
 let apple = {
@@ -25,10 +25,10 @@ product.set(apple).save().then( (res) => {
 })
 
 // 设置方式二
-obj.set('name', 'fushi')
-obj.set('price', 10)
-obj.set('desc', ["LRpq", "HGLa"])
-obj.save().then((res) => {}, (err) => {})
+product.set('name', 'fushi')
+product.set('price', 10)
+product.set('desc', ["LRpq", "HGLa"])
+product.save().then((res) => {}, (err) => {})
 ```
 
 ##### 返回示例
@@ -37,13 +37,13 @@ obj.save().then((res) => {}, (err) => {})
 {
   "created_at": 1487053095,
   "id": "7",
-  "is_admin": false,
-  "name": "OSfvvQFoNm",
-  "price": 99,
-  "tags": [
-    "LRpq",
-    "HGLa"
-  ]
+  "name": "fushi",
+  "price": 10,
+  "desc": [
+    "sweet",
+    "red"
+  ],
+  amount: 2
 }
 ```
 

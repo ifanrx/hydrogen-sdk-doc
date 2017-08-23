@@ -6,9 +6,9 @@
 let tableID = 10
 let recordID = '59897882ff650c0477f00485'
 
-let Obj = wx.BaaS.TableObject(tableID)
+let Product = wx.BaaS.TableObject(tableID)
 
-Obj.get(recordID).then( (res) => {
+product.get(recordID).then( (res) => {
   // success
 }, (err) => {
   // err
@@ -20,13 +20,13 @@ Obj.get(recordID).then( (res) => {
 ```
 {
   "created_at": 1487053095,
-  "id": "59897882ff650c0477f00485",
-  "is_admin": false,
-  "name": "JlpvHdheLh",
-  "price": 89,
-  "tags": [
-    "xGHt",
-    "hHqz"
-  ]
+  "id": "7",
+  "name": "fushi",
+  "price": 10,
+  "desc": [
+    "sweet",
+    "red"
+  ],
+  amount: 2
 }
 ```

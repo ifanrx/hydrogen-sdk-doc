@@ -7,10 +7,10 @@
 let tableID = 10
 let recordID = '59897882ff650c0477f00485'
 
-let Obj = wx.BaaS.TableObject(tableID)
-let obj = Obj.getWithoutData(recordID)
+let Product = wx.BaaS.TableObject(tableID)
+let product = Product.getWithoutData(recordID)
 
-obj.delete().then( (res) => {
+product.delete().then( (res) => {
   // success
 }, (err) => {
   // err
