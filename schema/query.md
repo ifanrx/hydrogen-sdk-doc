@@ -18,21 +18,38 @@ Product.setQuery(query).find().then( (res) => {
 }, (err) => {
   // err
 })
+
+// 不设置查询条件
+Product.find().then()
 ```
 
-##### 返回示例
+##### 返回示例 (res.statusCode === 200)
 
+res.data:
 ```
 {
-  "created_at": 1487053095,
-  "id": "7",
-  "name": "fushi",
-  "price": 10,
-  "desc": [
-    "sweet",
-    "red"
-  ],
-  amount: 2
+  "meta": {
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total_count": 3
+  },
+  "objects": [
+    {
+      "_id": "59a3c2b5afb7766a5ec6e84e",
+      "acl_gid": null,
+      "acl_permission": 7,
+      "amount": 0,
+      "created_at": 1503904437,
+      "created_by": 36395395,
+      "desc": ["good"],
+      "id": "59a3c2b5afb7766a5ec6e84e",
+      "name": "apple",
+      "price": 1.0, "updated_at": 1503904437
+    },
+    ...
+  ]
 }
 ```
 

@@ -9,7 +9,7 @@
 let tableID = 10
 let recordID = '59897882ff650c0477f00485'
 
-let Product = wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableID)
 let product = Product.getWithoutData(recordID)
 
 product.set('price', 11)
@@ -100,17 +100,19 @@ product.uAppend('desc, 'sweet')
 
 #### 从原数组中删除指定的值
 
-`product.uAppend(key, value)`
+`product.remove(key, value)`
 
 ##### 参数说明
 
 |   参数名   |   类型   |  必填  |   描述   |
 | :-----------: | :----: | :--: | :------------------------ |
 | key | String | 是 | 在数据表中的类型必须是 Array |
-| value | Array item |  是   |  |
+| value | Array 或 Array item |  是   |  |
 
 ##### 请求示例
 
 ```
 product.remove('desc', ['sweet'])
+// or
+product.remove('desc', 'sweet')
 ```

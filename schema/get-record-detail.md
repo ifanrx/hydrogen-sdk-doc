@@ -6,7 +6,7 @@
 let tableID = 10
 let recordID = '59897882ff650c0477f00485'
 
-let Product = wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableID)
 
 product.get(recordID).then( (res) => {
   // success
@@ -15,18 +15,21 @@ product.get(recordID).then( (res) => {
 })
 ```
 
-##### 返回示例
+##### 返回示例 (res.statusCode === 200)
 
+res.data:
 ```
 {
-  "created_at": 1487053095,
-  "id": "7",
-  "name": "fushi",
-  "price": 10,
-  "desc": [
-    "sweet",
-    "red"
-  ],
-  amount: 2
+  "_id": "59a3c2b5afb7766a5ec6e84e",
+  "acl_gid": null,
+  "acl_permission": 7,
+  "amount": 0,
+  "created_at": 1503904437,
+  "created_by": 36395395,
+  "desc": ["good"],
+  "id": "59a3c2b5afb7766a5ec6e84e",
+  "name": "apple",
+  "price": 1.0,
+  "updated_at": 1503904437
 }
 ```

@@ -5,18 +5,15 @@
 ```
 // 向 tableID 为 10 的数据表插入一条记录
 let tableID = 10
-let Product = wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableID)
 let product = Product.create()
 
 // 设置方式一
 let apple = {
-  name: 'fushi',
-  price: 10,
-  dec: [
-    'sweet',
-    'red'
-  ],
-  amount: 2
+  name: 'apple',
+  price: 1,
+  desc: ['good'],
+  amount: 0
 }
 product.set(apple).save().then( (res) => {
   // success
@@ -25,28 +22,37 @@ product.set(apple).save().then( (res) => {
 })
 
 // 设置方式二
-product.set('name', 'fushi')
-product.set('price', 10)
-product.set('desc', ["LRpq", "HGLa"])
+product.set('name', 'apple')
+product.set('price', 1)
+product.set('desc', ['good'])
+product.set('amount', 0)
+
 product.save().then((res) => {}, (err) => {})
 ```
 
-##### 返回示例
+##### 返回示例 （res.statusCode === 201）
 
+res.data:
 ```
 {
-  "created_at": 1487053095,
-  "id": "7",
-  "name": "fushi",
-  "price": 10,
-  "desc": [
-    "sweet",
-    "red"
-  ],
-  amount: 2
+  "_id": "59a3c2b5afb7766a5ec6e84e",
+  "acl_gid": null,
+  "acl_permission": 7,
+  "amount": 0,
+  "created_at": 1503904437,
+  "created_by": 36395395,
+  "desc": ["good"],
+  "id": "59a3c2b5afb7766a5ec6e84e",
+  "name": "apple",
+  "price": 1.0,
+  "updated_at": 1503904437
 }
 ```
 
 ### Tip
 
 - 插入的数据要与预先在知晓云平台设定的数据类型一致
+- 时间类型的数据需要是 ISO 格式的字符串
+```
+((new Date()).toISOString()).toString()
+```
