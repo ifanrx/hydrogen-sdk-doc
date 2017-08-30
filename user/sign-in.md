@@ -1,6 +1,4 @@
-# 用户登录 / 登出
-
-### 登入
+# 登入
 
 通过 `wx.BaaS.login()` 完成用户登录(静默登录)以及用户信息授权(弹框询问)：
 
@@ -22,23 +20,6 @@ wx.BaaS.login().then((res) => {
 用户点击拒绝, 登录成功的回调方法返回空对象, 开发者无法获取到该登录用户的用户信息。但此时该用户仍然是一个有效的登录用户, 只是开发者无法拿到其昵称、头像等信息。
 
 有关用户登录以及用户信息获取的更多详细信息请参考: [wx.login](https://mp.weixin.qq.com/debug/wxadoc/dev/api/api-login.html#wxloginobject) 和 [wx.getUserInfo](https://mp.weixin.qq.com/debug/wxadoc/dev/api/open.html#wxgetuserinfoobject) `wx.BaaS.login()` 封装了 `wx.login` 和 `wx.getUserInfo`
-
-### 登出
-
-清理客户端存储的用户授权信息
-
-通过 `wx.BaaS.logout()` 函数完成登出功能：
-
-```
-// 登出 BaaS
-wx.BaaS.logout().then((res) => {
-  // success
-}, (err) => {
-  // err
-});
-```
-
-
 
 ### 注意事项
 
