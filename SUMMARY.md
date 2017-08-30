@@ -20,6 +20,7 @@
 * [支付](payment/README.md)
     * [微信支付](payment/pay.md)
     * [支付详情](payment/order.md)
+* [模板消息](templateMessage/README.md)
 * [本地存储](localStorage/README.md)
 * [文件上传](uploadFile/README.md)
 * [内容模块](content/README.md)
