@@ -1,5 +1,7 @@
 # 删除数据项
 
+<p style='color:red'>* Deprecated</p>
+
 `wx.BaaS.deleteRecord(OBJECT)`
 
 ##### OBJECT 参数说明

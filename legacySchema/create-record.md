@@ -1,5 +1,7 @@
 # 新增数据记录
 
+<p style='color:red'>* Deprecated</p>
+
 `wx.BaaS.createRecord(OBJECT)`
 
 ##### OBJECT 参数说明

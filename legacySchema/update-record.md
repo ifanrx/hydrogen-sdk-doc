@@ -1,5 +1,7 @@
 # 更新数据项
 
+<p style='color:red'>* Deprecated</p>
+
 `wx.BaaS.updateRecord(OBJECT)`
 
 ##### OBJECT 参数说明

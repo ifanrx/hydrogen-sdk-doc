@@ -1,5 +1,7 @@
 # 获取数据项列表
 
+<p style='color:red'>* Deprecated</p>
+
 `wx.BaaS.getRecordList(OBJECT)`
 
 ## 一般情况

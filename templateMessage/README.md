@@ -1,14 +1,13 @@
 # 模板消息
 
-`Baas.sendTemplateMessage(type, value)`
+<p style='color:red'>* sdk version >= v1.1.0</p>
+
+`Baas.wxReportTicket(formID)`
 
 ##### 参数说明
 
 |   参数名   |   类型   |  必填  |   描述   |
 | :-----------: | :----: | :--: | :------------------------ |
-| type | String | 是 | 'form_id' or 'prepay_id' |
-| value | String |  是   | form_id or prepay_id |
+| formID | String |  是   |  |
 
-### 注意事项
-
-在进行以上操作时，请确保 sdk 版本在 v1.1.0 或以上
+当使用小程序的 <form/> 组件，且属性 report-submit 设为 true 时，此时表单是声明为需要要发模板消息的，当点击按钮提交表单即可获取 formID。

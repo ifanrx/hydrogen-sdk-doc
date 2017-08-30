@@ -1,5 +1,7 @@
 # 查询
 
+<p style='color:red'>* sdk version >= v1.1.0</p>
+
 ### 通用操作
 
 ##### 请求示例

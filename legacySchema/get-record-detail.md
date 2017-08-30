@@ -1,5 +1,7 @@
 # 获取数据项详情
 
+<p style='color:red'>* Deprecated</p>
+
 `wx.BaaS.getRecord(OBJECT)`
 
 ##### OBJECT 参数说明

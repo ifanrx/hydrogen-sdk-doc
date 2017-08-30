@@ -1,5 +1,7 @@
 # 获取数据项详情
 
+<p style='color:red'>* sdk version >= v1.1.0</p>
+
 ##### 请求示例
 
 ```

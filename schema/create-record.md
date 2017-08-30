@@ -1,5 +1,7 @@
 # 新增数据记录
 
+<p style='color:red'>* sdk version >= v1.1.0</p>
+
 ##### 请求示例
 
 ```
