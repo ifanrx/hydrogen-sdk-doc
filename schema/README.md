@@ -12,4 +12,5 @@
 
 ### 注意事项
 
-[旧版本操作数据表的方法](../legacySchema/README.md) 不建议再使用
+- 在进行以上操作时，请确保 sdk 版本在 v1.1.0 或以上
+- [旧版本操作数据表的方法](../legacySchema/README.md) 不建议再使用

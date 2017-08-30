@@ -33,7 +33,7 @@
     * [渲染内容](content/render.md)
 * [SDK 下载](https://dl.ifanr.cn/hydrogen/sdk/sdk-latest.zip)
 * [富文本渲染模块](https://github.com/ifanrx/wxParser/tree/master/wxParser)
-* [更新日志](./CHANGELOG.md)
+* [更新日志](https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md)
 * [后台简介](dashboard/README.md)
     * [数据管理](dashboard/page/data.md)
     * [文件管理](dashboard/page/file.md)
