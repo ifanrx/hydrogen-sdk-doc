@@ -19,15 +19,15 @@
 ##### 请求示例
 
 ```
-var Product = new BaaS.TableObject(tableID)
+var Product = new wx.BaaS.TableObject(tableID)
 
-var point = new BaaS.GeoPoint(20, 20)
+var point = new wx.BaaS.GeoPoint(20, 20)
 Product.set(‘origin’, point)
 
-var polygon = new BaaS.GeoPolygon([point1, point2, point3])
+var polygon = new wx.BaaS.GeoPolygon([point1, point2, point3])
 
 // or
-polygon = new BaaS.GeoPolygon([[10, 10], [20, 20], [30, 30]])
+polygon = new wx.BaaS.GeoPolygon([[10, 10], [20, 20], [30, 30]])
 
 Product.set('origin', polygon)
 ```

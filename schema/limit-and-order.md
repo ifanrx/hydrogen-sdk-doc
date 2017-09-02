@@ -6,9 +6,9 @@
 
 ```
 // 通过查询获取到的数据列表默认 limit 为 20, offset 为 0，我们也可以手动指定 limit 和 offset 来控制
-var Product = new BaaS.TableObject(tableID)
+var Product = new wx.BaaS.TableObject(tableID)
 
-var query = new BaaS.Query()
+var query = new wx.BaaS.Query()
 query.compare('amount', '>', 0)
 
 Product.setQuery(query).limit(10).offset(0).find().then( (res) => {
@@ -23,7 +23,7 @@ Product.setQuery(query).limit(10).offset(0).find().then( (res) => {
 ### 排序
 
 ```
-var Product = new BaaS.TableObject(tableID)
+var Product = new wx.BaaS.TableObject(tableID)
 
 // 升序
 Product.orderBy('createAt')

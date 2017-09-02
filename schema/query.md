@@ -8,13 +8,13 @@
 
 ```
 // 实例化查询对象
-var query = new BaaS.Query()
+var query = new wx.BaaS.Query()
 
-// 设置查询条件（比较、字符串包含、组合等）
+// 设置查询条件（比较、字符串包含、组合等）
 ...
 
 // 应用查询对象
-var Product = new BaaS.TableObject(tableID)
+var Product = new wx.BaaS.TableObject(tableID)
 Product.setQuery(query).find().then( (res) => {
   // success
 }, (err) => {
@@ -94,33 +94,33 @@ query.isNotNull(['name', 'price'])
 
 ### 组合查询
 ```
-var query1 = new BaaS.Query()
+var query1 = new wx.BaaS.Query()
 query1.isNull('name')
-var query2 = new BaaS.Query()
+var query2 = new wx.BaaS.Query()
 query1.compare('price', '>', 10)
 ...
 
 // and 查询
-var andQuery = BaaS.Query.and(query1, query2, ...)
+var andQuery = wx.BaaS.Query.and(query1, query2, ...)
 
 // or 查询
-var orQuery =  BaaS.Query.or(query1, query2, ...)
+var orQuery =  wx.BaaS.Query.or(query1, query2, ...)
 ```
 
 
 ### 复杂组合查询
 ```
-var query1 = new BaaS.Query()
+var query1 = new wx.BaaS.Query()
 query1.isNull('name')
-var query2 = new BaaS.Query()
+var query2 = new wx.BaaS.Query()
 query1.compare('price', '>', 10)
 ...
 
 // and 查询
-var andQuery = BaaS.Query.and(query1, query2)
+var andQuery = wx.BaaS.Query.and(query1, query2)
 
 // or 查询中包含 and 查询
-var query3 = new BaaS.Query()
+var query3 = new wx.BaaS.Query()
 query3.compare('amount', '>', 3)
-var orQuery =  BaaS.Query.or(andQuery, query3)
+var orQuery = wx.BaaS.Query.or(andQuery, query3)
 ```
