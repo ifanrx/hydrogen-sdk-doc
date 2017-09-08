@@ -1,6 +1,6 @@
 # 获取数据项列表
 
-<p style='color:red'>* Deprecated</p>
+<p style='color:red'>* SDK 版本 <= 1.0.11</p>
 
 `wx.BaaS.getRecordList(OBJECT)`
 

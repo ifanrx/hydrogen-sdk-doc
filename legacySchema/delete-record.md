@@ -1,6 +1,6 @@
 # 删除数据项
 
-<p style='color:red'>* Deprecated</p>
+<p style='color:red'>* SDK 版本 <= 1.0.11</p>
 
 `wx.BaaS.deleteRecord(OBJECT)`
 
