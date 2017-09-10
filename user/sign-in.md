@@ -43,7 +43,7 @@ wx.BaaS.login().then((res) => {
 }
 ```
 
-也可以通过 `wx.BaaS.storage.get('userinfo')` 获取相对应信息
+也可以通过 `wx.BaaS.storage.get('userinfo')` 获取相对应信息, 该方法的具体使用请参照 “获取用户信息” 说明。
 
 - 当用户拒绝授权时
 
