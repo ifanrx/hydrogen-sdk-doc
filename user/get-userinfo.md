@@ -1,5 +1,34 @@
 # 获取用户信息
 
+### 获取当前用户信息
+
+`wx.BaaS.login` 方法会返回完成登录后的当前用户信息，同时，我们也给出 `wx.BaaS.storage.get('userinfo')` 获取存储在 storage 的当前用户信息。
+
+如果用户授权登录过，该方法将返回如下字段：
+
+```
+{
+  "nickName": "hip hop man",
+  "gender": 1,
+  "language": "en",
+  "city": "Guangzhou",
+  "province": "Guangdong",
+  "country": "China",
+  "avatarUrl": "xxxxxx",
+  "id": "36395395", // 需 SDK v1.1.0 及以上版本
+  "openid": "xxxxx", // 需 SDK v1.1.0 及以上版本
+  "unionid": "xxxxxx" // 需 SDK v1.1.0 及以上版本
+}
+```
+
+如果用户未进行授权登录，将返回空。
+
+此时，可通过 `wx.BaaS.storage.get('uid')` 获取 uid (用户 id), `wx.BaaS.storage.get('openid')` 获取 openid, `wx.BaaS.storage.get('unionid')` 获取 unionid。
+
+**注意** ： 如果用户已在 SDK 1.1.0 之前版本完成了登录，`wx.BaaS.storage.get('userinfo')` 将不返回 `id`、`openid`、`unionid` 三个字段，请配合使用 `wx.BaaS.storage.get('uid')` 以兼容；或者让用户重新登录一次即可。
+
+### 获取指定用户信息
+
 `wx.BaaS.getUserInfo(OBJECT)`
 
 ##### OBJECT 参数说明
@@ -32,6 +61,10 @@ wx.BaaS.getUserInfo({
   // err
 });
 ```
+
+##### 返回字段说明
+
+出于安全性考虑，该接口目前只开放了 user id、nickname、avatar 三个字段。如需展示当前用户的完整信息，请参照上方 “获取当前用户信息”。
 
 ### 注意事项
 
