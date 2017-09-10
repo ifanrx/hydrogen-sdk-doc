@@ -25,7 +25,7 @@
 
 此时，可通过 `wx.BaaS.storage.get('uid')` 获取 uid (用户 id), `wx.BaaS.storage.get('openid')` 获取 openid, `wx.BaaS.storage.get('unionid')` 获取 unionid。
 
-**注意** ： 如果用户已在 SDK 1.1.0 之前版本完成了登录，`wx.BaaS.storage.get('userinfo')` 将不返回 `id`、`openid`、`unionid` 三个字段，请配合使用 `wx.BaaS.storage.get('uid')` 以兼容；或者让用户重新登录一次即可。
+**注意** ： 如果用户已在 SDK v1.1.0 之前版本完成了登录，`wx.BaaS.storage.get('userinfo')` 将不返回 `id`、`openid`、`unionid` 三个字段，请配合使用 `wx.BaaS.storage.get('uid')` 以兼容；或者让用户重新登录一次即可。
 
 ### 获取指定用户信息
 
