@@ -69,7 +69,7 @@ wx.BaaS.login().then((res) => {
 ##### 请求示例
 
 ```
-wx.BaaS.silentLogin().then((res) => {
+wx.BaaS.login(false).then((res) => {
 
 }, (err) => {
 
