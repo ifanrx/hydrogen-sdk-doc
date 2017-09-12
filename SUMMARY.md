@@ -30,6 +30,7 @@
 * [模板消息](templateMessage/README.md)
 * [本地存储](localStorage/README.md)
 * [文件上传](uploadFile/README.md)
+* [微信加密数据解密](wechatDecrypt/README.md)
 * [内容模块](content/README.md)
     * [操作内容模块](content/operate.md)
         * [获取内容详情](content/data/get-content.md)

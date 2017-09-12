@@ -60,7 +60,7 @@ wx.BaaS.login().then((res) => {
 
 ### 静默登录，不弹出授权窗口，仅获取用户基础信息
 
-<p style='color:red'>* sdk version >= v1.1.0b1</p>
+<p style='color:red'>* sdk version >= v1.1.0</p>
 
 `wx.BaaS.login(false)`
 
