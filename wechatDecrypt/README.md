@@ -2,7 +2,7 @@
 
 <p style='color:red'>* sdk version >= v1.1.0</p>
 
-`wx.BaaS.wxDecryptData(encryptedData, iv, dataKey)`
+`wx.BaaS.wxDecryptData(encryptedData, iv, type)`
 
 当调用微信小程序接口获取敏感信息时，返回的数据往往是经过加密的，开发者如需获取这些敏感数据，需要对接口返回的加密数据进行对称解密。  
 
