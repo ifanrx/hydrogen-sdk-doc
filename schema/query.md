@@ -77,14 +77,24 @@ query.contains('name', 'apple')
 
 ### 数组查询
 
+查询 array 类型的 desc 字段包含 good 的记录
 ```
-query.in('desc', ['good']) // 查询 array 类型的 desc 字段包含 good 的记录
+query.in('desc', ['good'])
+```
 
-query.in('desc', ['good', 'great', 'best']) // 查询 array 类型的 desc 字段包含 good 或者 great 或者 best 的记录，注意，此处是 “或” 的关系，如果要查询既包含 good 又包含 great 的记录，则需要用 and 操作符
+查询 array 类型的 desc 字段包含 good 或者 great 或者 best 的记录，注意，此处是 “或” 的关系，如果要查询既包含 good 又包含 great 的记录，则需要用 and 操作符
+```
+query.in('desc', ['good', 'great', 'best']) 
+```
 
-query.compare('desc', ['good', 'great']) // 查询 array 类型的 desc 字段包含且只包含 good 和 great 的记录
+查询 array 类型的 desc 字段包含且只包含 good 和 great 的记录
+```
+query.compare('desc', '=', ['good', 'great']) 
+```
 
-query.notIn('desc', ['good', 'great']) // 查询 array 类型的 desc 字段不包含 good 或不包含 great 的记录，此处依然是 或的关系。
+查询 array 类型的 desc 字段不包含 good 或不包含 great 的记录，此处依然是 或的关系。
+```
+query.notIn('desc', ['good', 'great']) 
 ```
 
 ### 判断 is null
