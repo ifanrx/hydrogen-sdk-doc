@@ -37,8 +37,9 @@ wx.chooseImage({
         如果上传成功则会返回资源远程地址
         如果上传失败则会返回失败信息
       */
+      let data = res.data  // data 为 JSON String 类型，JSON.parse(data) 获取 json 格式使用。
 
-      // 目前开发者工具上传文件功能有 bug, 请务必使用设备进行操作，同时打开 console 观察结果
+      // 目前开发者工具上传文件功能可能有 bug, 请务必使用设备进行操作，同时打开 console 观察结果
     }, (err) => {
       // 微信自身系统级别错误
     })
