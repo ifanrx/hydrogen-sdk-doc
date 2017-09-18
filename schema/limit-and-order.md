@@ -26,12 +26,12 @@ Product.setQuery(query).limit(10).offset(0).find().then( (res) => {
 var Product = new wx.BaaS.TableObject(tableID)
 
 // 升序
-Product.orderBy('createAt')
+Product.orderBy('create_at')
 // or
-Product.orderBy(['createAt'])
+Product.orderBy(['create_at'])
 
 // 降序
-Product.orderBy('-createAt')
+Product.orderBy('-create_at')
 // or
-Product.orderBy(['-createAt'])
+Product.orderBy(['-create_at'])
 ```
