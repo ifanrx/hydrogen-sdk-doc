@@ -26,7 +26,15 @@
     "pageNumbers": true,
     "paperSize": "a4"
   },
-  "plugins": [],
+  "plugins": ["algolia"],
   "title": "知晓云平台 JS SDK 文档",
-  "variables": {}
+  "variables": {},
+  "pluginsConfig": {
+    "algolia": {
+      "index": "prod_minapp_doc",
+      "applicationID": "7TN0U2FL3Q",
+      "publicKey": "b9ab71bfe55a6bcb2e1474e14d79d95a",
+      "freeAccount": "false"
+    }
+  }
 }
