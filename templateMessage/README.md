@@ -4,7 +4,7 @@
 
 <p style='color:red'>* sdk version >= v1.1.0</p>
 
-`wx.Baas.wxReportTicket(formID)`
+`wx.BaaS.wxReportTicket(formID)`
 
 ##### 参数说明
 
