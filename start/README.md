@@ -31,6 +31,7 @@ App({
     require('./sdk-v1.0.9')
 
     // 初始化 SDK
+    let clientID = '知晓云管理后台获取到的 ClientID'
     wx.BaaS.init(clientID)
   }
 })
