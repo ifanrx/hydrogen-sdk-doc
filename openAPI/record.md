@@ -95,10 +95,19 @@ https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
 
 ### 提交参数
 
-  - `where`    查询语句（JSON）
+  - `where`    查询语句（JSONString）
   - `order_by` 对资源进行排序字段
   - `limit`    返回资源的个数
   - `offset`   返回资源的起始偏移值
+
+
+### 请求示例
+
+```
+GET https://cloud.minapp.com/hserve/v2/table/1/record/?where={"price": {"$gt": 400}} HTTP/1.1
+Host cloud.minapp.com
+Accept: application/json
+```
 
 ### 返回示例
 
@@ -287,11 +296,7 @@ https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
 
 ### 请求参数
 
-```json
-{
-
-}
-```
+*请求参数为空*
 
 ### Content-Type
 
