@@ -8,7 +8,7 @@
 
 ```
 
-  Authorization: hydrogen-o1 <Access Token>
+  Authorization: Bearer <Access Token>
 
 ```
 
