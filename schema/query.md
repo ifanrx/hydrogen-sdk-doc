@@ -73,28 +73,32 @@ query.compare('amount', '>',  1)
 ```
 query.contains('name', 'apple')
 ```
+也支持正则匹配
+```
+query.matches('name', regExp)
+```
 
 
 ### 数组查询
 
-查询 array 类型的 desc 字段包含 good 的记录
+field 的类型不限制，field 的 value 含有 array 中的一个或多个
 ```
-query.in('desc', ['good'])
-```
-
-查询 array 类型的 desc 字段包含 good 或者 great 或者 best 的记录，注意，此处是 “或” 的关系，如果要查询既包含 good 又包含 great 的记录，则需要用 and 操作符
-```
-query.in('desc', ['good', 'great', 'best']) 
+query.in(fieldName, array)
 ```
 
-查询 array 类型的 desc 字段包含且只包含 good 和 great 的记录
+field 的类型不限制，field 的 value 不含有 array 中的任何一个
 ```
-query.compare('desc', '=', ['good', 'great']) 
+query.notIn(fieldName, array)
 ```
 
-查询 array 类型的 desc 字段不包含 good 或不包含 great 的记录，此处依然是 或的关系。
+field 的类型必须为数组, field 的 value 包含 array 中的每一个
 ```
-query.notIn('desc', ['good', 'great']) 
+query.arrayContains(fieldName, array)
+```
+
+如果希望对数组进行完全匹配查询，可以使用比较查询
+```
+query.compare(fieldName, '=', array)
 ```
 
 ### 判断 is null
@@ -107,7 +111,18 @@ query.isNotNull('name')
 query.isNotNull(['name', 'price'])
 ```
 
+### 判断字段是否存在
+
+```
+query.isExist('name')
+query.isExist(['name', 'price'])
+
+query.isNotExist('name')
+query.isNotExist(['name', 'price'])
+```
+
 ### 组合查询
+
 ```
 var query1 = new wx.BaaS.Query()
 query1.isNull('name')
@@ -124,6 +139,7 @@ var orQuery =  wx.BaaS.Query.or(query1, query2, ...)
 
 
 ### 复杂组合查询
+
 ```
 var query1 = new wx.BaaS.Query()
 query1.isNull('name')

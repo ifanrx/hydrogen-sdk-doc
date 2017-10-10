@@ -25,13 +25,16 @@ Product.setQuery(query).limit(10).offset(0).find().then( (res) => {
 ```
 var Product = new wx.BaaS.TableObject(tableID)
 
+var query = new wx.BaaS.Query()
+query.compare('amount', '>', 0)
+
 // 升序
-Product.orderBy('created_at')
+Product.setQuery(query).orderBy('created_at').find()
 // or
-Product.orderBy(['created_at'])
+Product.setQuery(query).orderBy(['created_at']).find()
 
 // 降序
-Product.orderBy('-created_at')
+Product.setQuery(query).orderBy('-created_at').find()
 // or
-Product.orderBy(['-created_at'])
+Product.setQuery(query).orderBy(['-created_at']).find()
 ```
