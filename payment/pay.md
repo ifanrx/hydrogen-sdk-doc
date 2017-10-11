@@ -25,6 +25,8 @@
 
 ##### 接口说明
 
+调用 `wx.BaaS.pay(object)` 之前 **必须完成用户授权**，否则支付将失败。请在产品设计上做好这块的处理，尤其注意处理用户拒绝授权之后的处理方法，具体请参考 “获取用户信息” 章节说明。
+
 调用 `wx.BaaS.pay(object)`时实际执行了以下操作：
 
 - SDK 内部封装了[小程序官方微信支付接口](https://mp.weixin.qq.com/debug/wxadoc/dev/api/api-pay.html#wxrequestpaymentobject) `wx.requestPayment(object)`
@@ -32,8 +34,6 @@
 - SDK 使用者只需要调用`wx.BaaS.pay(object)` , 传入必填参数即可发起微信支付。用户感知到的现象就是, 点击付款按钮，弹出支付弹框, 要求用户输入密码, 用户输入正确的密码后完成支付流程, 停在支付结果页。用户可在支付结果页点击返回商家按钮回到支付前界面
 
 - 支付请求会先经过 BaaS 服务器, 与 BaaS 服务器通信成功后，BaaS 服务器会返回 `wx.requestPayment(object)` 接口的必填参数, 例如: `timeStamp`、`nonceStr` 等, 具体可参看 [这里](https://mp.weixin.qq.com/debug/wxadoc/dev/api/api-pay.html#wxrequestpaymentobject)。同时也会返回额外的 appId
-
-- SDK 会确认用户具备有效的登录态 (获取到有效的 token) 后再在内部自动发起 `wx.requestPayment(object)`
 
 - 支付成功或失败(某种原因引起的支付失败或者用户取消)都会调用该接口事先返回的 `Promise` 对象
 
