@@ -126,7 +126,10 @@ $ curl -L ifanr.com
 
 ```json
 {
-  "access_token": "11898f29ce1c4ab6284f22ccaa691d8c03f7e4ce",
-  "expires_in": 31535999
+    "access_token": "eb84c57b1bd89919814b224a7194b06ca03893ee",
+    "token_type": "Bearer",
+    "expires_in": 31535999,
+    "refresh_token": "4215259afd7f3d33c04ae39080a8ea5eb1c166e8",
+    "scope": "write"
 }
 ```

@@ -100,11 +100,12 @@ https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
   - `limit`    返回资源的个数
   - `offset`   返回资源的起始偏移值
 
+  > Tips: 所有 URL 上的参数均需要进行 URL Encode
 
 ### 请求示例
 
 ```
-GET https://cloud.minapp.com/hserve/v2/table/1/record/?where={"price": {"$gt": 400}} HTTP/1.1
+GET https://cloud.minapp.com/hserve/v2/table/1/record/?where=%7B%22price%22%3A%20%7B%22%24eq%22%3A%20100%7D%7D HTTP/1.1
 Host cloud.minapp.com
 Accept: application/json
 ```
@@ -135,6 +136,39 @@ Accept: application/json
     ]
 }
 ```
+
+### 代码示例（Python）
+
+```python
+import json
+import urllib
+
+import requests
+
+BASE_API = 'https://cloud.minapp.com/hserve/v2/table/38/record/'
+TOKEN = ''
+HEADERS = {
+  'Authorization': 'Bearer %s' % TOKEN
+}
+
+where_ = {
+  'price': {'$gt': 100},
+  'order_by': '-id',
+  'limit': 10,
+  'offset': 20
+}
+
+query_ = urllib.urlencode({
+  'where': json.dumps(where_)
+})
+
+API = '?'.join((BASE_API, query_))
+
+resp_ = requests.get(API, headers=HEADERS)
+print resp_.content
+
+```
+
 
 ## 查询数据项
 
