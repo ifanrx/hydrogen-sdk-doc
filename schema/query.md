@@ -73,7 +73,9 @@ query.compare('amount', '>',  1)
 ```
 query.contains('name', 'apple')
 ```
-也支持正则匹配
+
+也支持正则匹配 ( <span style='color:red'>* sdk version >= v1.1.1</span> )
+
 ```
 query.matches('name', regExp)
 ```
@@ -91,7 +93,7 @@ field 的类型不限制，field 的 value 不含有 array 中的任何一个
 query.notIn(fieldName, array)
 ```
 
-field 的类型必须为数组, field 的 value 包含 array 中的每一个
+field 的类型必须为数组, field 的 value 包含 array 中的每一个  ( <span style='color:red'>* sdk version >= v1.1.1</span> )
 ```
 query.arrayContains(fieldName, array)
 ```
@@ -99,6 +101,29 @@ query.arrayContains(fieldName, array)
 如果希望对数组进行完全匹配查询，可以使用比较查询
 ```
 query.compare(fieldName, '=', array)
+```
+
+##### 请求示例：
+```
+/* color 是类型为字符串的字段，desc 是类型为数组的字段 */
+
+// 查询 color 是 green 或 red 或 yellow 的记录
+query.in('color', ['green', 'red', 'yellow'])
+
+// 查询 desc 中包含 green 或 red 或 yellow 的记录
+query.in('desc', ['green', 'red', 'yellow'])
+
+// 查询 color 不是 green、red 和 yellow 的记录
+query.notIn('color', ['green', 'red', 'yellow'])
+
+// 查询 desc 中不包含 green、red 和 yellow 的记录
+query.notIn('desc', ['green', 'red', 'yellow'])
+
+// 查询 desc 中包含 green、red 和 yellow 的记录
+query.arrayContains('desc', ['green', 'red', 'yellow'])
+
+// 查询 desc 中只包含 green、red 和 yellow 的记录
+query.compare('desc', '=', ['green', 'red', 'yellow'])
 ```
 
 ### 判断 is null
@@ -111,7 +136,7 @@ query.isNotNull('name')
 query.isNotNull(['name', 'price'])
 ```
 
-### 判断字段是否存在
+### 判断字段是否存在 ( <span style='color:red'>* sdk version >= v1.1.1</span> )
 
 ```
 query.isExist('name')
