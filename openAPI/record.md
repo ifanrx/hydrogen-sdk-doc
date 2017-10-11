@@ -33,7 +33,7 @@ https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
 
   - `where`    查询语句
   - `order_by` 对资源进行排序字段
-  - `limit`    返回资源的个数
+  - `limit`    返回资源的个数（单次最大可设置 *1000*）
   - `offset`   返回资源的起始偏移值
 
   `where` 参数值应经过 JSON 编码，在实际请求中它先被 JSON 编码过，再经过 URL 编码。
