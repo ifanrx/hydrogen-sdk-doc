@@ -33,12 +33,23 @@ https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
 
   - `where`    查询语句
   - `order_by` 对资源进行排序字段
-  - `limit`    返回资源的个数（单次最大可设置 *1000*）
+  - `limit`    返回资源的个数（默认为 *20*，最大可设置为 *1000*）
   - `offset`   返回资源的起始偏移值
 
-  `where` 参数值应经过 JSON 编码，在实际请求中它先被 JSON 编码过，再经过 URL 编码。
+  `where` 参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码。
 
   例如需要查询价格为 10 元的物品时，我们应该这样构造查询:
+
+  查询语句
+  ```json
+  {
+    "price": {"$eq": 10}
+  }
+  ```
+
+  > 其中 `$eq` 为『等于运算符』
+
+  执行
 
   ```
   curl -X GET \
@@ -46,10 +57,10 @@ https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
   -H "Content-Type: application/json" \
   -G \
   --data-urlencode 'where={"price":"$eq":10}' \
-  https://cloud.minapp.com/hserve/v2/table/1record/
+  https://cloud.minapp.com/hserve/v2/table/1/record/
   ```
 
-  除了支持 `$eq` (等于) 运算符，此接口还支持许多运算符，具体可查询下表：
+  除了支持 `$eq`（等于运算符），此接口还支持许多运算符，具体可查询下表：
 
   | 运算符 |含义|
   |:--------:|:--------:|
@@ -69,7 +80,7 @@ https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
 
   如需要价格为 10 元并名称中包含`包`的物品时，筛选条件应为：
 
-  ```
+  ```json
   {
     "$and": [
       {
@@ -84,7 +95,7 @@ https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
 
   如需要价格为 10 元并名称中包含`包`或价格大于 100 元的物品时，筛选条件应为：
 
-  ```
+  ```json
   {
     "$or": [
       {
