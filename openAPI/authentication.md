@@ -59,14 +59,14 @@
 
 ```json
 {
-  "code": "7743956163d65914c63ba1a5d48370ff791d1e16",
-  "expires_in": 600
+    "code": "7743956163d65914c63ba1a5d48370ff791d1e16",
+    "expires_in": 600
 }
 ```
 
 ### 注意事项
 
-获取 Code 会经过两次的 `HTTP 302 Found` 跳转，开发者在实现时需要请求客户端跟随跳转。
+获取 Code 会经过两次的 `HTTP 302 Found` 跳转，开发者在实现时需要允许客户端跟随跳转。
 
 不跟随跳转示例：
 
@@ -88,14 +88,14 @@ $ curl -L ifanr.com
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta property="og:site_name" content="爱范儿" />
+    <meta charset="UTF-8">
+    <meta property="og:site_name" content="爱范儿" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://www.ifanr.com" />
-  <meta name="MSSmartTagsPreventParsing" content="true"/>
-  <meta http-equiv="imagetoolbar" content="no"/>
-  <meta name="robots" content="all"/>
-  <title>  爱范儿 · 报道未来，服务新生活引领者
+    <meta name="MSSmartTagsPreventParsing" content="true"/>
+    <meta http-equiv="imagetoolbar" content="no"/>
+    <meta name="robots" content="all"/>
+    <title>  爱范儿 · 报道未来，服务新生活引领者
 </title>
 ....
 ```

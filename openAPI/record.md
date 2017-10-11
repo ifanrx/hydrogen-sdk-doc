@@ -5,70 +5,6 @@
 
 ## 查询数据
 
-本接口支持使用 `$and`, `$or` 等逻辑运算符来进行筛选条件的组织。
-
-如需要价格为 10 元的物品时，筛选条件应为：
-
-```
-{
-  "price": {"$eq": 10}
-}
-```
-
-如需要价格为 10 元并名称中包含`包`的物品时，筛选条件应为：
-
-```
-{
-  "$and": [
-    {
-      "price": {"$eq": 10}
-    },
-    {
-      "name": {"$contains": "包"}
-    }
-  ]
-}
-```
-
-如需要价格为 10 元并名称中包含`包`或价格大于 100 元的物品时，筛选条件应为：
-
-```
-{
-  "$or": [
-    {
-      "$and": [
-        {
-          "price": {"$eq": 10}
-        },
-        {
-          "name": {"$contains": "包"}
-        }
-      ]
-    },
-    {
-      "price": {"$gt": 100}
-    }
-  ]
-}
-```
-
-如上所示便可以查询出符合条件的数据，除了支持 `$eq` (等于) 运算符，此接口还支持许多运算符，具体可查询下表：
-
-| 运算符 |含义|
-|:--------:|:--------:|
-|`$eq`     |等于|
-|`$ne`      |不等于|
-|`$lt`      |小于|
-|`$lte`     |小于等于|
-|`$gt`      |大于|
-|`$gte`     |大于等于|
-|`$contains`|包含任意一个值|
-|`$nin`     |不包含任意一个数组值|
-|`$in`      |包含任意一个数组值|
-|`$isnull`  |是否为 NULL|
-|`$range`   |包含数组值区间的值|
-
-
 ### 接口地址
 
 `https://cloud.minapp.com/hserve/v2/table/:table_id/record/`
@@ -95,20 +31,79 @@ https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
 
 ### 提交参数
 
-  - `where`    查询语句（JSONString）
+  - `where`    查询语句
   - `order_by` 对资源进行排序字段
   - `limit`    返回资源的个数
   - `offset`   返回资源的起始偏移值
 
-  > Tips: 所有 URL 上的参数均需要进行 URL Encode
+  `where` 参数值应经过 JSON 编码，在实际请求中它先被 JSON 编码过，再经过 URL 编码。
 
-### 请求示例
+  例如需要查询价格为 10 元的物品时，我们应该这样构造查询:
 
-```
-GET https://cloud.minapp.com/hserve/v2/table/1/record/?where=%7B%22price%22%3A%20%7B%22%24eq%22%3A%20100%7D%7D HTTP/1.1
-Host cloud.minapp.com
-Accept: application/json
-```
+  ```
+  curl -X GET \
+  -H "Authorization: Bearer token" \
+  -H "Content-Type: application/json" \
+  -G \
+  --data-urlencode 'where={"price":"$eq":10}' \
+  https://cloud.minapp.com/hserve/v2/table/1record/
+  ```
+
+  除了支持 `$eq` (等于) 运算符，此接口还支持许多运算符，具体可查询下表：
+
+  | 运算符 |含义|
+  |:--------:|:--------:|
+  |`$eq`     |等于|
+  |`$ne`      |不等于|
+  |`$lt`      |小于|
+  |`$lte`     |小于等于|
+  |`$gt`      |大于|
+  |`$gte`     |大于等于|
+  |`$contains`|包含任意一个值|
+  |`$nin`     |不包含任意一个数组值|
+  |`$in`      |包含任意一个数组值|
+  |`$isnull`  |是否为 NULL|
+  |`$range`   |包含数组值区间的值|
+
+  通过运算符可以查询出简单条件的数据，如有逻辑运算需求，则可以使用 `$and` 或 `$or` 来实现逻辑组织。
+
+  如需要价格为 10 元并名称中包含`包`的物品时，筛选条件应为：
+
+  ```
+  {
+    "$and": [
+      {
+        "price": {"$eq": 10}
+      },
+      {
+        "name": {"$contains": "包"}
+      }
+    ]
+  }
+  ```
+
+  如需要价格为 10 元并名称中包含`包`或价格大于 100 元的物品时，筛选条件应为：
+
+  ```
+  {
+    "$or": [
+      {
+        "$and": [
+          {
+            "price": {"$eq": 10}
+          },
+          {
+            "name": {"$contains": "包"}
+          }
+        ]
+      },
+      {
+        "price": {"$gt": 100}
+      }
+    ]
+  }
+  ```
+
 
 ### 返回示例
 
