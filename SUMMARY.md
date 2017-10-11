@@ -15,7 +15,7 @@
     * [删除数据项](schema/delete-record.md)
     * [获取数据项](schema/get-record-detail.md)
     * [查询数据项](schema/query.md)
-    * [限制和排序](schema/limit-and-order.md)
+    * [分页和排序](schema/limit-and-order.md)
     * [地理位置操作](schema/geo.md)
 * [数据表 (SDK 1.1.0 以下版本)](legacySchema/README.md)
     * [新增数据项](legacySchema/create-record.md)

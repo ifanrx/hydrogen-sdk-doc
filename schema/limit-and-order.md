@@ -1,11 +1,14 @@
-# 限制和排序
+# 分页和排序
 
 <p style='color:red'>* sdk version >= v1.1.0</p>
 
-### 限制（主要用于分页操作）
+### 分页
+
+通过使用 limit 和 offset 来控制分页数据，默认 limit 为 20, offset 为 0，我们也可以手动指定 limit 和 offset 来控制，limit 最大可设置为 1000。
+
+例如，每页展示 20 条数据，需要获取第五页的数据，将 limit 设置为 100、offset 设置为 80 即可。
 
 ```
-// 通过查询获取到的数据列表默认 limit 为 20, offset 为 0，我们也可以手动指定 limit 和 offset 来控制
 var Product = new wx.BaaS.TableObject(tableID)
 
 var query = new wx.BaaS.Query()

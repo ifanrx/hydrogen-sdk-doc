@@ -1,6 +1,6 @@
 {
-  "author": "Paco <paco@ifanr.com>",
-  "description": "知晓云平台 JS SDK 文档",
+  "author": "知晓云开发组 <minapp-support@ifanr.com>",
+  "description": "知晓云平台开发文档",
   "extension": null,
   "generator": "site",
   "links": {
@@ -27,7 +27,7 @@
     "paperSize": "a4"
   },
   "plugins": ["algolia"],
-  "title": "知晓云平台 JS SDK 文档",
+  "title": "知晓云平台开发文档",
   "variables": {},
   "pluginsConfig": {
     "algolia": {
