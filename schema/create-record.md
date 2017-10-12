@@ -58,3 +58,4 @@ res.data:
 ```
 ((new Date()).toISOString()).toString()
 ```
+- file 类型的数据结构可参考 [wx.BaaS.uploadFile](../uploadFile/README.md) 返回数据中的 file 字段
