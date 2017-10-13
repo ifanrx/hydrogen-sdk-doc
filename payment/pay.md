@@ -1,4 +1,4 @@
-# 支付
+# 微信支付
 
 通过 BaaS SDK 提供的 `wx.BaaS.pay(OBJECT)` 方法, 可以方便地完成微信支付。
 
@@ -19,7 +19,7 @@
 
 例如开发者有一个 Article 表, 里面有免费 / 付费的文章, 当用户对一篇付费文章进行支付时, 则可以将 Article 表的 ID 作为 merchandiseSchemaID, 文章记录的 ID 作为你 merchandiseRecordID 传入到 `wx.BaaS.pay(object)` 写进支付订单记录。
 
-当用户阅读此付费文章时, 则可以通过 merchandiseSchemaID, merchandiseRecordID 来查询用户是否付完成费。
+当用户阅读此付费文章时, 则可以通过 merchandiseSchemaID, merchandiseRecordID 来查询用户是否付费。
 
 `merchandiseSnapshot`可将发起支付时的其他数据放在此参数中传递给服务端做持久化存储。
 
@@ -57,7 +57,6 @@ wx.BaaS.pay(params).then((res) => {
     这是微信的处理方式与 BaaS 服务(器)无关
   */
 }, (err) => {
-  // err. 系统级别错误导致失败。只有发生网络异常等其他系统级错误才会进入这里
-  // 这是微信服务器的处理方式与 BaaS 服务(器)无关
+  // 未完成用户授权或发生网络异常等
 });
 ```

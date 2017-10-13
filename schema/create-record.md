@@ -58,3 +58,11 @@ res.data:
 ```
 ((new Date()).toISOString()).toString()
 ```
+- file 类型的数据可使用调用 [wx.BaaS.uploadFile](../uploadFile/README.md) 后返回数据里 file 字段的值 ( <span style='color:red'>* sdk version >= v1.1.1</span> )
+```
+wx.BaaS.uploadFile(params).then((res) => {
+  let data = JSON.parse(res.data)
+  product.set('manual', data.file)
+  product.save()
+})
+```

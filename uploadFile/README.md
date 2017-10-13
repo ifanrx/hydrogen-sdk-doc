@@ -46,3 +46,21 @@ wx.chooseImage({
   }
 })
 ```
+
+##### 返回示例
+JSON.parse(res.data)
+```
+{
+  status: "ok",
+  path: "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1e2fVFaWoaoAZPyr.svg",
+  file: {
+    cdn_path: "1e2fVFaWoaoAZPyr.svg",
+    created_at: 1507822469,
+    id: "59df8b852ab80e3656cf8783",
+    mime_type: "text/plain; charset=utf-8",
+    name: "tmp_262601706o6zAJs-pmaywKzqHIvzwU97rtiGIe4dd39171563993cf10b12bae2ac30ec.svg",
+    size: 3879
+  }
+}
+```
+其中 file 字段可用于含有 file 类型的数据表的数据操作，详细见 [新增数据记录](../schema/create-record.md)

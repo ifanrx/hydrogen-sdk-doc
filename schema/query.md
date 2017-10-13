@@ -48,7 +48,7 @@ res.data:
       "desc": ["good", 'great'],
       "id": "59a3c2b5afb7766a5ec6e84e",
       "name": "apple",
-      "price": 1.0, 
+      "price": 1.0,
       "updated_at": 1503904437
     },
     ...
@@ -74,27 +74,86 @@ query.compare('amount', '>',  1)
 query.contains('name', 'apple')
 ```
 
+也支持正则匹配 ( <span style='color:red'>* sdk version >= v1.1.1</span> )
+
+```
+query.matches('name', regExp)
+```
+
+构建一个 regExp 可通过以下两种方法之一:
+
+- 使用正则表达式字面量
+```
+const regExp = /^abc/i
+```
+
+- 调用 RegExp 对象的构造函数
+```
+const regExp = new RegExp('^abc', 'i');
+```
+
+##### 正则匹配示例
+```
+/* 以查找手机号码为例，phoneNumber 字段必须为 string 类型 */
+
+let regExp
+
+// 查找 以 188 开头的手机号码
+regExp = /^188/
+
+// 查找 以 708 结尾的手机号码
+regx = /708$/
+
+// 查找 以 188 开头的手机号码，以 708 结尾的手机号码
+regx = /^188\d+708$/
+
+query.matches('phoneNumber', regx)
+```
+
 
 ### 数组查询
 
-查询 array 类型的 desc 字段包含 good 的记录
+field 的类型不限制，field 的 value 含有 array 中的一个或多个
 ```
-query.in('desc', ['good'])
-```
-
-查询 array 类型的 desc 字段包含 good 或者 great 或者 best 的记录，注意，此处是 “或” 的关系，如果要查询既包含 good 又包含 great 的记录，则需要用 and 操作符
-```
-query.in('desc', ['good', 'great', 'best']) 
+query.in(fieldName, array)
 ```
 
-查询 array 类型的 desc 字段包含且只包含 good 和 great 的记录
+field 的类型不限制，field 的 value 不含有 array 中的任何一个
 ```
-query.compare('desc', '=', ['good', 'great']) 
+query.notIn(fieldName, array)
 ```
 
-查询 array 类型的 desc 字段不包含 good 或不包含 great 的记录，此处依然是 或的关系。
+field 的类型必须为数组, field 的 value 包含 array 中的每一个  ( <span style='color:red'>* sdk version >= v1.1.1</span> )
 ```
-query.notIn('desc', ['good', 'great']) 
+query.arrayContains(fieldName, array)
+```
+
+如果希望查找数组中只包含指定数组中所有的值的记录，可以使用比较查询
+```
+query.compare(fieldName, '=', array)
+```
+
+##### 请求示例：
+```
+/* color 是类型为字符串的字段，desc 是类型为数组的字段 */
+
+// 查询 color 是 green 或 red 或 yellow 的记录
+query.in('color', ['green', 'red', 'yellow'])
+
+// 查询 desc 中包含 green 或 red 或 yellow 的记录
+query.in('desc', ['green', 'red', 'yellow'])
+
+// 查询 color 不是 green、red 和 yellow 的记录
+query.notIn('color', ['green', 'red', 'yellow'])
+
+// 查询 desc 中不包含 green、red 和 yellow 的记录
+query.notIn('desc', ['green', 'red', 'yellow'])
+
+// 查询 desc 中包含 green、red 和 yellow 的记录
+query.arrayContains('desc', ['green', 'red', 'yellow'])
+
+// 查询 desc 中只包含 green、red 和 yellow 的记录
+query.compare('desc', '=', ['green', 'red', 'yellow'])
 ```
 
 ### 判断 is null
@@ -107,7 +166,18 @@ query.isNotNull('name')
 query.isNotNull(['name', 'price'])
 ```
 
+### 判断字段是否存在 ( <span style='color:red'>* sdk version >= v1.1.1</span> )
+
+```
+query.exists('name')
+query.exists(['name', 'price'])
+
+query.notExists('name')
+query.notExists(['name', 'price'])
+```
+
 ### 组合查询
+
 ```
 var query1 = new wx.BaaS.Query()
 query1.isNull('name')
@@ -124,6 +194,7 @@ var orQuery =  wx.BaaS.Query.or(query1, query2, ...)
 
 
 ### 复杂组合查询
+
 ```
 var query1 = new wx.BaaS.Query()
 query1.isNull('name')
