@@ -48,7 +48,7 @@ res.data:
       "desc": ["good", 'great'],
       "id": "59a3c2b5afb7766a5ec6e84e",
       "name": "apple",
-      "price": 1.0, 
+      "price": 1.0,
       "updated_at": 1503904437
     },
     ...
@@ -80,6 +80,36 @@ query.contains('name', 'apple')
 query.matches('name', regExp)
 ```
 
+构建一个 regExp 可通过以下两种方法之一:
+
+- 使用正则表达式字面量
+```
+const regExp = /^abc/i
+```
+
+- 调用 RegExp 对象的构造函数
+```
+const regExp = new RegExp('^abc', 'i');
+```
+
+##### 正则匹配示例
+```
+/* 以查找手机号码为例，phoneNumber 字段必须为 string 类型 */
+
+let regExp
+
+// 查找 以 188 开头的手机号码
+regExp = /^188/
+
+// 查找 以 708 结尾的手机号码
+regx = /708$/
+
+// 查找 以 188 开头的手机号码，以 708 结尾的手机号码
+regx = /^188\d+708$/
+
+query.matches('phoneNumber', regx)
+```
+
 
 ### 数组查询
 
@@ -98,7 +128,7 @@ field 的类型必须为数组, field 的 value 包含 array 中的每一个 
 query.arrayContains(fieldName, array)
 ```
 
-如果希望对数组进行完全匹配查询，可以使用比较查询
+如果希望查找数组中只包含指定数组中所有的值的记录，可以使用比较查询
 ```
 query.compare(fieldName, '=', array)
 ```
@@ -139,11 +169,11 @@ query.isNotNull(['name', 'price'])
 ### 判断字段是否存在 ( <span style='color:red'>* sdk version >= v1.1.1</span> )
 
 ```
-query.isExist('name')
-query.isExist(['name', 'price'])
+query.exists('name')
+query.exists(['name', 'price'])
 
-query.isNotExist('name')
-query.isNotExist(['name', 'price'])
+query.notExists('name')
+query.notExists(['name', 'price'])
 ```
 
 ### 组合查询
