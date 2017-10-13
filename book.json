@@ -26,7 +26,7 @@
     "pageNumbers": true,
     "paperSize": "a4"
   },
-  "plugins": ["algolia"],
+  "plugins": ["algolia", "custom-favicon"],
   "title": "知晓云平台开发文档",
   "variables": {},
   "pluginsConfig": {
@@ -35,6 +35,7 @@
       "applicationID": "7TN0U2FL3Q",
       "publicKey": "b9ab71bfe55a6bcb2e1474e14d79d95a",
       "freeAccount": "false"
-    }
+    },
+    "favicon": "https://mcache.ifanr.cn/static/hydrogen/src/img/minapp@64X64.ico"
   }
 }
