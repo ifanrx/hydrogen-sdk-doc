@@ -55,14 +55,16 @@ res.data:
 
 - 插入的数据要与预先在知晓云平台设定的数据类型一致
 - 时间类型的数据需要是 ISO 格式的字符串
-```
-((new Date()).toISOString()).toString()
-```
+
+  ```
+  ((new Date()).toISOString()).toString()
+  ```
 - file 类型的数据可使用调用 [wx.BaaS.uploadFile](../uploadFile/README.md) 后返回数据里 file 字段的值 ( <span style='color:red'>* sdk version >= v1.1.1</span> )
-```
-wx.BaaS.uploadFile(params).then((res) => {
-  let data = JSON.parse(res.data)
-  product.set('manual', data.file)
-  product.save()
-})
-```
+
+  ```
+  wx.BaaS.uploadFile(params).then((res) => {
+    let data = JSON.parse(res.data)
+    product.set('manual', data.file)
+    product.save()
+  })
+  ```

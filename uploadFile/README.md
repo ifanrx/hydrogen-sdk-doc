@@ -63,4 +63,4 @@ JSON.parse(res.data)
   }
 }
 ```
-其中 file 字段可用于含有 file 类型的数据表的数据操作，详细见 [新增数据记录](../schema/create-record.md)
+其中 file 字段只在 <span style='color:red'> sdk version >= v1.1.1</span> 中出现，其可用于含有 file 类型的数据表的数据操作，详细见 [新增数据记录](../schema/create-record.md)
