@@ -26,7 +26,7 @@
     "pageNumbers": true,
     "paperSize": "a4"
   },
-  "plugins": ["algolia", "custom-favicon"],
+  "plugins": ["algolia", "favicon"],
   "title": "知晓云平台开发文档",
   "variables": {},
   "pluginsConfig": {
@@ -36,6 +36,14 @@
       "publicKey": "b9ab71bfe55a6bcb2e1474e14d79d95a",
       "freeAccount": "false"
     },
-    "favicon": "images/minapp@64X64.ico"
+    "favicon": {
+      "shortcut": "images/minapp@64X64.ico",
+      "bookmark": "images/minapp@64X64.ico",
+      "appleTouch": "images/minapp@64X64.ico",
+      "appleTouchMore": {
+        "120x120": "images/minapp@64X64.ico",
+        "180x180": "images/minapp@64X64.ico"
+      }
+    }
   }
 }
