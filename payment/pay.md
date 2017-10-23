@@ -58,5 +58,6 @@ wx.BaaS.pay(params).then((res) => {
   */
 }, (err) => {
   // 未完成用户授权或发生网络异常等
+  console.log(err)
 });
 ```
