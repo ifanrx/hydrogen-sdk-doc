@@ -28,16 +28,16 @@ https://cloud.minapp.com/oserve/v1/content/group/
 
 ### 返回示例
 
-```
+```json
 {
-    meta: {
-        limit: 10,
-        next: null,
-        offset: 0,
-        previous: null,
-        total_count: 1
+    "meta": {
+        "limit": 10,
+        "next": null,
+        "offset": 0,
+        "previous": null,
+        "total_count": 1
     },
-    objects: [
+    "objects": [
         {
             "id": 1680,
             "name": "内容组 1"
@@ -51,6 +51,8 @@ https://cloud.minapp.com/oserve/v1/content/group/
 ### 接口地址
 
 `https://cloud.minapp.com/oserve/v1/content/group/:content_group_id/`
+
+`content_group_id` 是内容库 ID
 
 ### 请求方法
 
@@ -67,7 +69,7 @@ https://cloud.minapp.com/oserve/v1/content/group/:content_group_id/
 
 ### 返回示例
 
-```
+```json
 {
     "id": 1680,
     "name": "内容组 1"

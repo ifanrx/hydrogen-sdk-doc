@@ -36,16 +36,16 @@ https://cloud.minapp.com/oserve/v1/content/category/
 
 ### 返回示例
 
-```
+```json
 {
-    meta: {
-        limit: 10,
-        next: null,
-        offset: 0,
-        previous: null,
-        total_count: 1
+    "meta": {
+        "limit": 10,
+        "next": null,
+        "offset": 0,
+        "previous": null,
+        "total_count": 1
     },
-    objects: [
+    "objects": [
         {
             "id": 1680,
             "name": "分类 1"
@@ -59,6 +59,8 @@ https://cloud.minapp.com/oserve/v1/content/category/
 ### 接口地址
 
 `https://cloud.minapp.com/oserve/v1/content/category/:category_id/`
+
+`category_id` 是内容分类的 ID
 
 ### 请求方法
 
@@ -75,7 +77,7 @@ https://cloud.minapp.com/oserve/v1/content/category/:category_id/
 
 ### 返回示例
 
-```
+```json
 {
     "id": 1680,
     "name": "分类 1"

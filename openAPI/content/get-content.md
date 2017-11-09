@@ -54,16 +54,16 @@ https://cloud.minapp.com/oserve/v1/content/detail/
 
 ### 返回示例
 
-```
+```json
 {
-    meta: {
-        limit: 10,
-        next: null,
-        offset: 0,
-        previous: null,
-        total_count: 1
+    "meta": {
+        "limit": 10,
+        "next": null,
+        "offset": 0,
+        "previous": null,
+        "total_count": 1
     },
-    objects: [
+    "objects": [
         {
             "content": "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
             "cover": "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1donykIpnuvcRiAX.jpg",
@@ -82,6 +82,8 @@ https://cloud.minapp.com/oserve/v1/content/detail/
 
 `https://cloud.minapp.com/oserve/v1/content/detail/:content_id/`
 
+`content_id` 是内容的 ID
+
 ### 请求方法
 
 `GET`
@@ -97,7 +99,7 @@ https://cloud.minapp.com/oserve/v1/content/detail/:content_id/
 
 ### 返回示例
 
-```
+```json
 {
     "content": "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
     "cover": "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1donykIpnuvcRiAX.jpg",
