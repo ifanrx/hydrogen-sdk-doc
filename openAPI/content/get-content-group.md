@@ -1,8 +1,8 @@
-# 获取内容组
+# 获取内容库
 
 本文档所描述的接口均需要同认证授权才可使用，认证授权请参考 [授权认证](./authentication.md)。
 
-## 获取内容组列表
+## 获取内容库列表
 
 ### 接口地址
 
@@ -40,7 +40,7 @@ https://cloud.minapp.com/oserve/v1/content/group/
     "objects": [
         {
             "id": 1680,
-            "name": "内容组 1"
+            "name": "内容库 1"
         }
     ]
 }
@@ -72,6 +72,6 @@ https://cloud.minapp.com/oserve/v1/content/group/:content_group_id/
 ```json
 {
     "id": 1680,
-    "name": "内容组 1"
+    "name": "内容库 1"
 }
 ```
