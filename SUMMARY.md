@@ -45,7 +45,7 @@
     * [内容模块](openAPI/content/README.md)
         * [获取内容](openAPI/content/get-content.md)
         * [获取内容库](openAPI/content/get-content-group.md)
-        * [获取内容分类](openAPI/content/get-content-category.md)
+        * [获取内容分类](openAPI/content/get-category.md)
 * [SDK 下载](downloadSDK/README.md)
 * [富文本渲染模块](https://github.com/ifanrx/wxParser/tree/master/wxParser)
 * [更新日志](https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md)
