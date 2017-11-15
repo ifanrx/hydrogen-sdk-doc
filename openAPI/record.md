@@ -7,7 +7,7 @@
 
 ### 接口地址
 
-`https://cloud.minapp.com/hserve/v2/table/:table_id/record/`
+`https://cloud.minapp.com/oserve/v1/table/:table_id/record/`
 
 ### 请求方法
 
@@ -23,10 +23,10 @@
 
 ```
 # 顺序
-https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=id
+https://cloud.minapp.com/oserve/v1/table/:table_id/record/?order_by=id
 
 # 倒序
-https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
+https://cloud.minapp.com/oserve/v1/table/:table_id/record/?order_by=-id
 ```
 
 ### 提交参数
@@ -43,7 +43,7 @@ https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
   查询语句
   ```json
   {
-    "price": {"$eq": 10}
+      "price": {"$eq": 10}
   }
   ```
 
@@ -57,7 +57,7 @@ https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
   -H "Content-Type: application/json" \
   -G \
   --data-urlencode 'where={"price":"$eq":10}' \
-  https://cloud.minapp.com/hserve/v2/table/1/record/
+  https://cloud.minapp.com/oserve/v1/table/1/record/
   ```
 
   除了支持 `$eq`（等于运算符），此接口还支持许多运算符，具体可查询下表：
@@ -82,14 +82,14 @@ https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
 
   ```json
   {
-    "$and": [
-      {
-        "price": {"$eq": 10}
-      },
-      {
-        "name": {"$contains": "包"}
-      }
-    ]
+      "$and": [
+          {
+              "price": {"$eq": 10}
+          },
+          {
+              "name": {"$contains": "包"}
+          }
+      ]
   }
   ```
 
@@ -97,21 +97,21 @@ https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
 
   ```json
   {
-    "$or": [
-      {
-        "$and": [
+      "$or": [
           {
-            "price": {"$eq": 10}
+              "$and": [
+                  {
+                      "price": {"$eq": 10}
+                  },
+                  {
+                    "name": {"$contains": "包"}
+                  }
+              ]
           },
           {
-            "name": {"$contains": "包"}
+              "price": {"$gt": 100}
           }
-        ]
-      },
-      {
-        "price": {"$gt": 100}
-      }
-    ]
+      ]
   }
   ```
 
@@ -122,7 +122,7 @@ https://cloud.minapp.com/hserve/v2/table/:table_id/record/?order_by=-id
 {
     "meta": {
         "limit": 20,
-        "next": "/hserve/v2/table/50/record/?limit=20&offset=20",
+        "next": "/oserve/v1/table/50/record/?limit=20&offset=20",
         "offset": 0,
         "previous": null,
         "total_count": 1
@@ -151,7 +151,10 @@ import urllib
 
 import requests
 
-BASE_API = 'https://cloud.minapp.com/hserve/v2/table/38/record/'
+
+table_id = ''
+BASE_API = r'https://cloud.minapp.com/oserve/v1/table/%s/record/' % table_id
+
 TOKEN = ''
 HEADERS = {
   'Authorization': 'Bearer %s' % TOKEN
@@ -159,13 +162,13 @@ HEADERS = {
 
 where_ = {
   'price': {'$gt': 100},
-  'order_by': '-id',
-  'limit': 10,
-  'offset': 20
 }
 
 query_ = urllib.urlencode({
-  'where': json.dumps(where_)
+  'where': json.dumps(where_),
+  'order_by': '-id',
+  'limit': 10,
+  'offset': 0,
 })
 
 API = '?'.join((BASE_API, query_))
@@ -182,7 +185,7 @@ print resp_.content
 
 ### 接口地址
 
-`https://cloud.minapp.com/hserve/v2/table/:table_id/record/:record_id/`
+`https://cloud.minapp.com/oserve/v1/table/:table_id/record/:record_id/`
 
 ### 请求方法
 
@@ -214,7 +217,7 @@ print resp_.content
 
 ### 接口地址
 
-`https://cloud.minapp.com/hserve/v2/table/:table_id/record/`
+`https://cloud.minapp.com/oserve/v1/table/:table_id/record/`
 
 ### 请求方法
 
@@ -271,7 +274,7 @@ print resp_.content
 
 ### 接口地址
 
-`https://cloud.minapp.com/hserve/v2/table/:table_id/record/:record_id/`
+`https://cloud.minapp.com/oserve/v1/table/:table_id/record/:record_id/`
 
 ### 请求方法
 
@@ -328,7 +331,7 @@ print resp_.content
 
 ### 接口地址
 
-`https://cloud.minapp.com/hserve/v2/table/:table_id/record/:record_id/`
+`https://cloud.minapp.com/oserve/v1/table/:table_id/record/:record_id/`
 
 ### 请求方法
 
@@ -437,7 +440,7 @@ print resp_.content
 
 ### 接口地址
 
-`https://cloud.minapp.com/hserve/v2/table/:table_id/record/:record_id/`
+`https://cloud.minapp.com/oserve/v1/table/:table_id/record/:record_id/`
 
 ### 请求方法
 
