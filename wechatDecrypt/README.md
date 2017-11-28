@@ -31,9 +31,9 @@
 ```
 wx.getWeRunData({
   success(res) {
-    wx.BaaS.wxDecryptData(res.encryptedData, res.iv, 'we-run-data').then((res) =>  {
-      const decrytedData = res.data
-    }, (err) => {
+    wx.BaaS.wxDecryptData(res.encryptedData, res.iv, 'we-run-data').then((decrytedData) =>  {
+      console.log('decrytedData: ', decrytedData)
+    }, (err) => {
       // 失败的原因有可能是以下几种：用户未登录或 session_key 过期，微信解密插件未开启，提交的解密信息有误
     })
   }
