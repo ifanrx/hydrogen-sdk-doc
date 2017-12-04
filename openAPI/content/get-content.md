@@ -49,7 +49,7 @@ curl -X GET \
 -G \
 -d order_by=-created_at \
 -d category_id=category_id \
-https://cloud.minapp.com/oserve/v1/content/detail/
+https://cloud.minapp.com/oserve/v1/content/detail/?content_group_id=1
 ```
 
 ### 返回示例
