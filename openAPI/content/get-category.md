@@ -1,6 +1,6 @@
 # 获取内容分类
 
-本文档所描述的接口均需要同认证授权才可使用，认证授权请参考 [授权认证](./authentication.md)。
+本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](./authentication.md)。
 
 ## 获取内容分类列表
 
@@ -49,13 +49,13 @@ https://cloud.minapp.com/oserve/v1/content/category/?content_group_id=1
         {
             "id": 1680,
             "name": "分类 1",
-            "have_children": true
+            "has_children": true
         }
     ]
 }
 ```
 
-`have_children` 表示该分类是否包含子分类，通过`获取内容分类详情接口`可获得子分类的内容。
+`has_children` 表示该分类是否包含子分类，通过`获取内容分类详情接口`可获得子分类的内容。
 
 
 ## 获取内容分类详情
@@ -85,10 +85,10 @@ https://cloud.minapp.com/oserve/v1/content/category/:category_id/
 {
     "id": 1680,
     "name": "分类 1",
-    "have_children": true,
+    "has_children": true,
     "children": [
         {
-            "have_children": false,
+            "has_children": false,
             "id": 1708,
             "name": "子分类"
         }

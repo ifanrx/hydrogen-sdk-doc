@@ -1,6 +1,6 @@
 # 用户模块
 
-本文档所描述的接口均需要同认证授权才可使用，认证授权请参考 [授权认证](./authentication.md)。
+本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](./authentication.md)。
 
 ## 获取用户列表
 
@@ -13,6 +13,8 @@
 `GET`
 
 ### 提交参数
+
+若无格外提醒，默认为等值查询
 
 - `nickname` 用户的微信昵称，支持等值查询、模糊查询
 
@@ -47,6 +49,8 @@
 
       https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?group__in=258,360
 
+- `openid` 用户的 OpenID
+- `unionid` 用户的 UnionID
 - `offset` 返回资源的起始偏移值
 - `limit` 返回资源的个数（默认为 20，最大可设置为 1000）
 - `order_by` 排序（支持 `created_at` 进行排序）
@@ -82,6 +86,8 @@ https://cloud.minapp.com/oserve/v1/miniapp/user-profile/
             "city": "Guangzhou",
             "country": "China",
             "created_at": 1504504504,
+            "openid": "onzns0KsLKFyg3-VcW0GwTE652_k",
+            "unionid": "onzns0KsLKFyg3-VcW0GwTE652_k",
             "gender": 1,
             "id": 55019,
             "nickname": "PCG",
@@ -128,6 +134,8 @@ https://cloud.minapp.com/oserve/v1/miniapp/user-profile/55019/
     "gender": 1,
     "id": 55019,
     "nickname": "PCG",
+    "openid": "onzns0KsLKFyg3-VcW0GwTE652_k",
+    "unionid": "onzns0KsLKFyg3-VcW0GwTE652_k",
     "province": "Guangdong",
     "user_group": [
         137

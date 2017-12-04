@@ -1,6 +1,6 @@
 # 组集的操作
 
-本文档所描述的接口均需要同认证授权才可使用，认证授权请参考 [授权认证](./authentication.md)。
+本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](./authentication.md)。
 
 ## 获取组集列表
 
@@ -52,8 +52,6 @@ https://cloud.minapp.com/oserve/v1/user-supergroup/
     ]
 }
 ```
-
-- `members` 表示在组集下的用户数量
 
 ## 获取组集详情
 
@@ -122,6 +120,8 @@ https://cloud.minapp.com/oserve/v1/user-supergroup/
 
 
 ## 修改组集
+
+请注意本接口 **会清除掉旧有的组集和用户组的关系，重新与传入的用户组建立关系**。
 
 ### 接口地址
 
