@@ -49,6 +49,7 @@
     * [文件模块](openAPI/file/README.md)
         * [文件分类操作](openAPI/file/get-file-category.md)
         * [文件操作](openAPI/file/get-file.md)
+        * [上传文件操作](openAPI/file/upload.md)
     * [分组模块](openAPI/group/README.md)
         * [用户组操作](openAPI/group/user-group.md)
         * [组集操作](openAPI/group/super-group.md)
