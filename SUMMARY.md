@@ -56,7 +56,7 @@
         * [用户组与用户的操作](openAPI/group/membership.md)
     * [用户模块](openAPI/user.md)
 * [SDK 下载](downloadSDK/README.md)
-* [富文本渲染模块](https://github.com/ifanrx/wxParser/tree/master/wxParser)
+* [富文本渲染模块](https://github.com/ifanrx/wxParser)
 * [更新日志](https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md)
 * [后台简介](dashboard/README.md)
     * [数据管理](dashboard/page/data.md)
