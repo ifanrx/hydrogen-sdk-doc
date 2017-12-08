@@ -1,8 +1,8 @@
 # 获取内容分类
 
-本文档所描述的接口均需要同认证授权才可使用，认证授权请参考 [授权认证](./authentication.md)。
+本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](./authentication.md)。
 
-## 获取内容列表
+## 获取内容分类列表
 
 ### 接口地址
 
@@ -31,7 +31,7 @@ curl -X GET \
 -G \
 -d order_by=-created_at \
 -d content_group_id=content_group_id \
-https://cloud.minapp.com/oserve/v1/content/category/
+https://cloud.minapp.com/oserve/v1/content/category/?content_group_id=1
 ```
 
 ### 返回示例
@@ -48,13 +48,17 @@ https://cloud.minapp.com/oserve/v1/content/category/
     "objects": [
         {
             "id": 1680,
-            "name": "分类 1"
+            "name": "分类 1",
+            "has_children": true
         }
     ]
 }
 ```
 
-## 获取内容详情
+`has_children` 表示该分类是否包含子分类，通过`获取内容分类详情接口`可获得子分类的内容。
+
+
+## 获取内容分类详情
 
 ### 接口地址
 
@@ -80,6 +84,14 @@ https://cloud.minapp.com/oserve/v1/content/category/:category_id/
 ```json
 {
     "id": 1680,
-    "name": "分类 1"
+    "name": "分类 1",
+    "has_children": true,
+    "children": [
+        {
+            "has_children": false,
+            "id": 1708,
+            "name": "子分类"
+        }
+    ]
 }
 ```

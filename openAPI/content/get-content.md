@@ -1,6 +1,6 @@
 # 获取内容
 
-本文档所描述的接口均需要同认证授权才可使用，认证授权请参考 [授权认证](./authentication.md)。
+本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](./authentication.md)。
 
 ## 获取内容列表
 
@@ -49,7 +49,7 @@ curl -X GET \
 -G \
 -d order_by=-created_at \
 -d category_id=category_id \
-https://cloud.minapp.com/oserve/v1/content/detail/
+https://cloud.minapp.com/oserve/v1/content/detail/?content_group_id=1
 ```
 
 ### 返回示例
