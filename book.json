@@ -37,12 +37,12 @@
       "freeAccount": "false"
     },
     "favicon": {
-      "shortcut": "images/minapp@64X64.ico",
-      "bookmark": "images/minapp@64X64.ico",
-      "appleTouch": "images/minapp@64X64.ico",
+      "shortcut": "/images/minapp@64X64.ico",
+      "bookmark": "/images/minapp@64X64.ico",
+      "appleTouch": "/images/minapp@64X64.ico",
       "appleTouchMore": {
-        "120x120": "images/minapp@64X64.ico",
-        "180x180": "images/minapp@64X64.ico"
+        "120x120": "/images/minapp@64X64.ico",
+        "180x180": "/images/minapp@64X64.ico"
       }
     }
   }
