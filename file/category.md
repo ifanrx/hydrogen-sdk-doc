@@ -1,6 +1,7 @@
-#文件分类操作
+# 文件分类操作
 
 <p style='color:red'>* sdk version >= v1.1.2</p>
+
 `let FileCategory = new wx.BaaS.FileCategory()`
 
 ### 获取文件分类详情
@@ -26,10 +27,17 @@ FileCategory.get('5a2fe91508443e3123dbe1cb').then((res) => {
 ```
 
 ##### 返回示例
-
 res.data
 ```
+{
+  created_at: 1513089301,
+  files: 2,
+  id: "5a2fe91508443e3123dbe1cb",
+  name: "重要",
+  updated_at: 1513089306
+}
 ```
+files 为文件分类下的文件数
 
 
 ### 获取分类下的所有文件
