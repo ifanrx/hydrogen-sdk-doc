@@ -1,6 +1,7 @@
-#文件操作
+# 文件操作
 
 <p style='color:red'>* sdk version >= v1.1.2</p>
+
 `let File = new wx.BaaS.File()`
 
 ### 文件上传
@@ -67,7 +68,7 @@ JSON.parse(res.data)
 }
 ```
 
-注： file 字段可用于含有 file 类型的数据表的数据操作，详细见 [新增数据记录](../schema/create-record.md)
+注： file 字段可用于含有 file 类型的数据表的数据操作，详细见 [新增数据项](../schema/create-record.md)
 
 ##### 特别注意
 微信开发者工具**录音**结束后生成的是 base64 格式文本文件，而在真机上生成的是正常的 buffer。如果在开发者工具里上传录音文件，实际上传的会是一个 base64 格式的文本文件。因此，如果你在使用知晓云上传录音文件，请在真机上调试。
