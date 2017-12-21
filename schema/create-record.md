@@ -59,7 +59,20 @@ res.data:
   ```
   ((new Date()).toISOString()).toString()
   ```
-- file 类型的数据可使用调用 [wx.BaaS.uploadFile](../uploadFile/README.md) 后返回数据里 file 字段的值 ( <span style='color:red'>* sdk version >= v1.1.1</span> )
+
+- 添加 file 类型
+
+  <span style='color:red'>* sdk version >= v1.1.2</span>
+
+  ```
+  let MyFile = new wx.BaaS.File()
+  MyFile.upload(params).then((res) => {
+    product.set('manual', res.data.file)
+    product.save()
+  })
+  ```
+
+  <span style='color:red'>* sdk version >= v1.1.1</span>
 
   ```
   wx.BaaS.uploadFile(params).then((res) => {
