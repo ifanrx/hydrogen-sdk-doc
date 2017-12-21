@@ -92,7 +92,7 @@ File.setQuery(query).find()
 | 支持字段    | 描述      |
 | :--------- | :------------------- |
 | name       | 文件名                |
-| created_at | 文件分类 id           |
+| created_at | 文件创建时间           |
 
 ### 分页
 文件分类查询排序与[数据表分页](../schema/limit-and-order.md)方法一致
