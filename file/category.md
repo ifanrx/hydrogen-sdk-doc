@@ -2,11 +2,11 @@
 
 <p style='color:red'>* sdk version >= v1.1.2</p>
 
-`let FileCategory = new wx.BaaS.FileCategory()`
+`let MyFileCategory = new wx.BaaS.FileCategory()`
 
 ### 获取文件分类详情
 
-`FileCategory.get(categoryID)`
+`MyFileCategory.get(categoryID)`
 
 ##### 参数说明
 
@@ -17,9 +17,9 @@
 ##### 示例代码
 
 ```
-let FileCategory = new wx.BaaS.FileCategory()
+let MyFileCategory = new wx.BaaS.FileCategory()
 
-FileCategory.get('5a2fe91508443e3123dbe1cb').then((res) => {
+MyFileCategory.get('5a2fe91508443e3123dbe1cb').then((res) => {
   // success
 }, (err) => {
   // err
@@ -42,7 +42,7 @@ files 为文件分类下的文件数
 
 ### 获取分类下的所有文件
 
-`FileCategory.getFileList(categoryID)`
+`MyFileCategory.getFileList(categoryID)`
 
 ##### 参数说明
 
@@ -53,9 +53,9 @@ files 为文件分类下的文件数
 ##### 示例代码
 
 ```
-let FileCategory = new wx.BaaS.FileCategory()
+let MyFileCategory = new wx.BaaS.FileCategory()
 
-FileCategory.getFileList('5a2fe91508443e3123dbe1cb').then((res) => {
+MyFileCategory.getFileList('5a2fe91508443e3123dbe1cb').then((res) => {
   // success
 }, (err) => {
   // err
@@ -75,10 +75,10 @@ FileCategory.getFileList('5a2fe91508443e3123dbe1cb').then((res) => {
 ##### 示例代码
 
 ```
-let FileCategory = new wx.BaaS.FileCategory()
+let MyFileCategory = new wx.BaaS.FileCategory()
 
 // 查找所有文件分类
-FileCategory.find()
+MyFileCategory.find()
 
 // 设置查询条件
 let query = new wx.BaaS.Query()
