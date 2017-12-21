@@ -2,8 +2,7 @@
 
 ### 文件上传
 
-<p style='color:red'>* metaData 参数需要 sdk version >= v1.1.2</p>
-`wx.BaaS.uploadFile(fileParams, metaData)`
+`wx.BaaS.uploadFile(fileParams)`
 
 ##### fileParams 参数说明
 
@@ -11,25 +10,14 @@
 | :------- | :----- | :-----: | :------------|
 | filePath | String |    Y    | 本地资源路径   |
 
-##### metaData 参数说明
-
-| 参数名      | 类型     | 是否必填 | 参数描述      |
-| :--------  | :------ | :-----: | :------------|
-| categoryID | String |    N    | 要上传的文件分类 ID |
-| categoryName | String |    N    | 要上传的文件分类名 |
-
-注： 请勿同时填写 categoryID 和 categoryName，默认只使用 categoryID
-
-
 ##### 示例代码
 
 ```
 wx.chooseImage({
   success: function(res) {
     let fileParams = {filePath: res.tempFilePaths[0]}
-    let metaData = {categoryID: 1513076252710475}
 
-    wx.BaaS.uploadFile(fileParams, metaData).then((res) => {
+    wx.BaaS.uploadFile(fileParams).then((res) => {
       /*
       * 注: 只要是服务器有响应的情况都会进入 success, 即便是 4xx，5xx 都会进入这里
       * 如果上传成功则会返回资源远程地址,如果上传失败则会返回失败信息
@@ -51,10 +39,6 @@ JSON.parse(res.data)
   status: "ok",
   path: "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1e2fVFaWoaoAZPyr.svg",
   file: {
-    category: {
-      id: '5a2fe91508443e3123dbe1cb',
-      name: '科技'
-    },
     cdn_path: "1e2fVFaWoaoAZPyr.svg",
     created_at: 1507822469,
     id: "59df8b852ab80e3656cf8783",
