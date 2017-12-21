@@ -156,7 +156,7 @@ query.arrayContains('desc', ['green', 'red', 'yellow'])
 query.compare('desc', '=', ['green', 'red', 'yellow'])
 ```
 
-### 判断 is null
+### 查询字段值为 null 或非 null 的记录
 
 ```
 query.isNull('name')
@@ -166,7 +166,8 @@ query.isNotNull('name')
 query.isNotNull(['name', 'price'])
 ```
 
-### 判断字段是否存在 ( <span style='color:red'>* sdk version >= v1.1.1</span> )
+### 查询字段值为空或非空的记录
+<span style='color:red'>* sdk version >= v1.1.1</span>
 
 ```
 query.exists('name')
