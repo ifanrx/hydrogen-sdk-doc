@@ -9,6 +9,7 @@
     * [登入](user/sign-in.md)
     * [登出](user/sign-out.md)
     * [获取用户信息](user/get-userinfo.md)
+    * [查询用户信息(新)](user/user.md)
 * [数据表（SDK 1.1.0 及以上版本）](schema/README.md)
     * [新增数据项](schema/create-record.md)
     * [更新数据项](schema/update-record.md)
