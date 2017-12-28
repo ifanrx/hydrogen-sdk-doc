@@ -63,7 +63,7 @@ MyContentGroup.get(richTextID).then( (res) => {
 
 ### 查询，获取内容列表
 
-内容查询与[数据表查询](../schema/query.md)方法一致
+内容查询与[数据表查询](../schema/query.md)方法一致
 
 ##### 请求示例
 

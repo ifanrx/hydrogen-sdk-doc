@@ -20,7 +20,7 @@
 </div>
 ```
 
-借助 wxParser, 以上富文本 `HTML` 将会被转化为能被微信小程序解析的内容：
+借助 wxParser, 以上富文本 `HTML` 将会被转化为能被微信小程序解析的 WXML：
 
 ```
 <view class="wxParser">
