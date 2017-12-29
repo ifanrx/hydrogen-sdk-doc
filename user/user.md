@@ -55,16 +55,15 @@ MyUser.get('36395395').then((res) => {
 
 一般情况下，返回字段为 id, user_id, avatar, nickname 这四个系统字段和用户自定义字段，如果 userID 等于当前用户的 user_id ，即查询当前用户信息，则会额外输出 city, country, gender,, language, openid, province 这几个字段
 
-### 更新用户信息
+### 更新当前用户信息
 
-更新用户信息与[数据表更新数据项](../schema/update-record.md)方法一致，只支持对 _userprofile 表中自定义的字段进行更新
+更新用户信息与[数据表更新数据项](../schema/update-record.md)方法一致。这里只允许更新当前用户的信息，因此不需要指定 usrID，并且只支持对 _userprofile 表中自定义的字段进行更新
 
 ##### 请求示例
 
 ```
 let MyUser = new wx.BaaS.User()
-let user = MyUser.getWithoutData(userID)
-user.set('age', 30).update().then((res) => {
+MyUser.set('age', 30).update().then((res) => {
   // success
 }, (err) => {
   // err
