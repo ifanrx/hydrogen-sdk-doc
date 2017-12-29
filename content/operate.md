@@ -12,7 +12,7 @@
 
 ### 获取内容详情
 
-`MyContentGroup.get(richTextID)`
+`MyContentGroup.getContent(richTextID)`
 
 ##### 参数说明
 
@@ -20,17 +20,14 @@
 | :--------: | :----: | :----: | :----: |
 | richTextID | Number |   是   | 内容 ID |
 
-注：获取内容详情支持通过 id 或 contentID 查找
-
 ##### 请求示例
 
 ```
-// 获取指定内容库中 id 为 111 的内容的详细信息
-let contentGroupID = 10
+let contentGroupID = 1513076211190694
 let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)
 
-let richTextID = 111
-MyContentGroup.get(richTextID).then((res) => {
+let richTextID = 1514529306082815
+MyContentGroup.getContent(richTextID).then((res) => {
   // success
 }, (err) => {
   // err
@@ -41,13 +38,13 @@ MyContentGroup.get(richTextID).then((res) => {
 
 |    参数名    |      类型      |     描述    |
 | :--------:  | :-----------: | :---------: |
-| categories  |  String Array |   内容详情   |
+| categories  |  Number Array |   内容详情   |
 |   content   |     String    |   内容详情   |
 |    cover    |     String    |  封面图 url  |
 | created_at  |     Number    |   创建时间  |
 | created_by  |     Number    |   user ID   |
 | description |     String    |     摘要    |
-|  group_id   |     String    |  内容库 ID  |
+|  group_id   |     Number    |  内容库 ID  |
 |     id      |     Number    |   内容 ID  |
 |    title    |     String    |   内容标题  |
 |  update_at  |     Number    |   更新时间  |
@@ -58,13 +55,13 @@ MyContentGroup.get(richTextID).then((res) => {
 
 ```
 {
-  categories: ["5a2fb61c09a8051e1b53d7c1"],
+  categories: [1513076252710475],
   content: "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
   cover: "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1donykIpnuvcRiAX.jpg",
   created_at: 1513076305,
   created_by: 16042162,
   description: "iphoneX 发布",
-  group_id: "5a2fb5f3fff1d64cbb982099",
+  group_id: 1513076211190694,
   id: 1513076305938456,
   title: "iphone X",
   updated_at: 1513076364
@@ -78,15 +75,15 @@ MyContentGroup.get(richTextID).then((res) => {
 ##### 请求示例
 
 ```
-let contentGroupID = 10
+let contentGroupID = 1513076211190694
 let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)
 
 // 查找该内容库下的所有内容
 MyContentGroup.find().then()
 
-// 查找该内容库下分类 ID 为 200 的内容
+// 查找该内容库下在指定分类下的内容
 let query = new wx.BaaS.Query()
-query.compare('categories', '=', ['200'])
+query.arrayContains('categories', [1513076252710475])
 MyContentGroup.setQuery(query).find().then((res) => {
   // success
 }, (err) => {
@@ -107,10 +104,10 @@ MyContentGroup.setQuery(query).find().then((res) => {
 ##### 请求示例
 
 ```
-let contentGroupID = 10
+let contentGroupID = 1513076211190694
 let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)
 
-let categoryID = 100
+let categoryID = 1513076252710475
 MyContentGroup.getCategory(categoryID).then( (res) => {
   // success
 }, (err) => {
@@ -118,12 +115,31 @@ MyContentGroup.getCategory(categoryID).then( (res) => {
 });
 ```
 
+##### 返回示例
+
+```
+{
+  have_children: true,
+  id: 1513076252710475,
+  name: "科技",
+  children: [
+    {
+      have_children: false,
+      id: 1514515552050186,
+      name: "评测"
+    }
+  ]
+}
+```
+
 ##### 返回参数
 
-| 参数名 |  类型  |   描述  |
-| :---: | :----: | :-----: |
-|  id   | Number | 分类 ID |
-| name  | String | 分类名称 |
+|     参数名     |   类型   |      描述       |
+| :-----------: | :-----: | :-------------: |
+|    children   |  Array  |     子分类列表    |
+| have_children | Boolean |   是否含有子分类   |
+|       id      |  Number |     分类 ID     |
+|     name      |  String |     分类名称     |
 
 
 ### 获取内容库分类列表
@@ -133,7 +149,7 @@ MyContentGroup.getCategory(categoryID).then( (res) => {
 ##### 请求示例
 
 ```
-let contentGroupID = 10
+let contentGroupID = 1513076211190694
 let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)
 
 MyContentGroup.getCategoryList().then( (res) => {

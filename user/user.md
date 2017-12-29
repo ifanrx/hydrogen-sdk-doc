@@ -12,16 +12,16 @@
 
 ```
 {
-  "nickName": "hip hop man",
-  "gender": 1,
-  "language": "en",
-  "city": "Guangzhou",
-  "province": "Guangdong",
-  "country": "China",
-  "avatarUrl": "xxxxxx",
-  "id": "36395395",
-  "openid": "xxxxx",
-  "unionid": "xxxxxx"
+  nickName: "hip hop man",
+  gender: 1,
+  language: "en",
+  city: "Guangzhou",
+  province: "Guangdong",
+  country: "China",
+  avatarUrl: "xxxxxx",
+  id: "36395395",
+  openid: "xxxxx",
+  unionid: "xxxxxx"
 }
 ```
 
@@ -54,7 +54,31 @@ MyUser.get(userID).then((res) => {
 
 ##### 返回字段说明
 
-一般情况下，返回字段为 id, user_id, avatar, nickname 这四个系统字段和用户自定义字段，如果 userID 等于当前用户的 user_id ，即查询当前用户信息，则会额外输出 city, country, gender,, language, openid, province 这几个字段
+一般情况下，返回字段为 id, avatar, nickname 这三个系统字段和用户自定义字段，如果 userID 等于当前用户的 id ，即查询当前用户信息，则会额外输出 city, country, gender, language, openid, province 这几个字段, 如下：
+
+非当前用户：
+```
+{
+  avatar: "https://media.ifanrusercontent.com/media/tavatar/9a/1d/9a1db7592d6a325a845548f2fecbfb4516e138d0.jpg",
+  id: 36395394,
+  nickname: "hip hop man",
+}
+```
+
+当前用户：
+```
+{
+  avatar: "https://media.ifanrusercontent.com/media/tavatar/9a/1d/9a1db7592d6a325a845548f2fecbfb4516e138d0.jpg",
+  city: "Guangzhou",
+  country: "China",
+  gender: 1,
+  id: 36395394,
+  language: "en",
+  nickname: "hip hop man",
+  openid: "oXUfx0HKez4qLqgX-XSwLCpiBYS9",
+  province: "Guangdong"
+}
+```
 
 ### 更新当前用户信息
 
@@ -65,6 +89,8 @@ MyUser.get(userID).then((res) => {
 ```
 let MyUser = new wx.BaaS.User()
 let currentUser = MyUser.getCurrentUserWithoutData()
+
+// age 为自定义字段
 currentUser.set('age', 30).update().then((res) => {
   // success
 }, (err) => {
