@@ -44,7 +44,8 @@
 
 ```
 let MyUser = new wx.BaaS.User()
-MyUser.get('36395395').then((res) => {
+let userID = 36395395
+MyUser.get(userID).then((res) => {
   // success
 }, (err) => {
   // err
@@ -57,13 +58,14 @@ MyUser.get('36395395').then((res) => {
 
 ### 更新当前用户信息
 
-更新用户信息与[数据表更新数据项](../schema/update-record.md)方法一致。这里只允许更新当前用户的信息，因此不需要指定 usrID，并且只支持对 _userprofile 表中自定义的字段进行更新
+更新用户信息与[数据表更新数据项](../schema/update-record.md)方法基本一致。这里只允许更新当前用户的信息，并且只支持对 _userprofile 表中自定义的字段进行更新
 
 ##### 请求示例
 
 ```
 let MyUser = new wx.BaaS.User()
-MyUser.set('age', 30).update().then((res) => {
+let currentUser = MyUser.getCurrentUserWithoutData()
+currentUser.set('age', 30).update().then((res) => {
   // success
 }, (err) => {
   // err

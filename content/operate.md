@@ -20,6 +20,8 @@
 | :--------: | :----: | :----: | :----: |
 | richTextID | Number |   是   | 内容 ID |
 
+注：获取内容详情支持通过 id 或 contentID 查找
+
 ##### 请求示例
 
 ```
@@ -37,14 +39,18 @@ MyContentGroup.get(richTextID).then((res) => {
 
 ##### 返回参数
 
-|    参数名    |    类型   |     描述    |
-| :--------:  | :------: | :---------: |
-|   content   |  String  |   内容详情   |
-|    cover    |  String  |  封面图 url  |
-| created_at  |  Number  |   创建时间  |
-| description |  String  |     摘要    |
-|     id      |  Number  |   内容 ID  |
-|    title    |  String  |   内容标题  |
+|    参数名    |      类型      |     描述    |
+| :--------:  | :-----------: | :---------: |
+| categories  |  String Array |   内容详情   |
+|   content   |     String    |   内容详情   |
+|    cover    |     String    |  封面图 url  |
+| created_at  |     Number    |   创建时间  |
+| created_by  |     Number    |   user ID   |
+| description |     String    |     摘要    |
+|  group_id   |     String    |  内容库 ID  |
+|     id      |     Number    |   内容 ID  |
+|    title    |     String    |   内容标题  |
+|  update_at  |     Number    |   更新时间  |
 
 注：如果有自定义字段，则一并返回
 
@@ -52,12 +58,16 @@ MyContentGroup.get(richTextID).then((res) => {
 
 ```
 {
-  "content": "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
-  "cover": "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1donykIpnuvcRiAX.jpg",
-  "created_at": 1504152062,
-  "description": "超新约全书摘要",
-  "id": 1680,
-  "title": "超新约全书"
+  categories: ["5a2fb61c09a8051e1b53d7c1"],
+  content: "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
+  cover: "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1donykIpnuvcRiAX.jpg",
+  created_at: 1513076305,
+  created_by: 16042162,
+  description: "iphoneX 发布",
+  group_id: "5a2fb5f3fff1d64cbb982099",
+  id: 1513076305938456,
+  title: "iphone X",
+  updated_at: 1513076364
 }
 ```
 
