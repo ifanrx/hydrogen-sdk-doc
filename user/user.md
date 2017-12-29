@@ -53,7 +53,7 @@ MyUser.get('36395395').then((res) => {
 
 ##### 返回字段说明
 
-一般情况下，返回字段为 id, user_id, avatar, nickname 这四个系统字段和用户自定义字段，如果 userID 等于当前用户的 userID ，即查询当前用户信息，则会额外输出 city, country, gender,, language, openid, province 这几个字段
+一般情况下，返回字段为 id, user_id, avatar, nickname 这四个系统字段和用户自定义字段，如果 userID 等于当前用户的 user_id ，即查询当前用户信息，则会额外输出 city, country, gender,, language, openid, province 这几个字段
 
 ### 更新用户信息
 
@@ -64,7 +64,7 @@ MyUser.get('36395395').then((res) => {
 ```
 let MyUser = new wx.BaaS.User()
 let user = MyUser.getWithoutData(userID)
-user.set(age, 30).update().then((res) => {
+user.set('age', 30).update().then((res) => {
   // success
 }, (err) => {
   // err
@@ -83,8 +83,8 @@ let MyUser = new wx.BaaS.User()
 // 查找所有用户
 MyUser.find()
 
-let query = new wx.BaaS.Query()
 // 查询 nickName 中包含 like 的用户
+let query = new wx.BaaS.Query()
 query.contains('nickName', 'like')
 MyUser.setQuery(query).find().then((res) => {
   // success
@@ -93,12 +93,8 @@ MyUser.setQuery(query).find().then((res) => {
 })
 ```
 
-##### 返回字段说明
-
-每个用户包含的字段与获取单个用户接口返回的字段一致
-
 ### 排序
-文件查询排序与[数据表排序](../schema/limit-and-order.md)方法一致，不包含在返回数据里的字段不支持排序，如 created_at
+用户查询排序与[数据表排序](../schema/limit-and-order.md)方法一致，不包含在返回数据里的字段不支持排序，如 created_at
 
 ### 分页
-文件查询分页与[数据表分页](../schema/limit-and-order.md)方法一致
+用户查询分页与[数据表分页](../schema/limit-and-order.md)方法一致

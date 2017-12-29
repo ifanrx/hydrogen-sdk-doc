@@ -23,12 +23,12 @@
 ##### 请求示例
 
 ```
-// 获取 ID 为 10 的内容库中内容 ID 为 111 的内容详情
+// 获取指定内容库中 id 为 111 的内容的详细信息
 let contentGroupID = 10
 let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)
 
 let richTextID = 111
-MyContentGroup.get(richTextID).then( (res) => {
+MyContentGroup.get(richTextID).then((res) => {
   // success
 }, (err) => {
   // err
@@ -68,7 +68,6 @@ MyContentGroup.get(richTextID).then( (res) => {
 ##### 请求示例
 
 ```
-// 获取 ID 为 10 的内容库中内容 ID 为 111 的内容详情
 let contentGroupID = 10
 let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)
 
@@ -111,29 +110,11 @@ MyContentGroup.getCategory(categoryID).then( (res) => {
 
 ##### 返回参数
 
-| 参数名 | 类型   |  描述 |
-| :---:  | :----: | :----: |
-| id | Number | 分类 ID |
-| name   | String     | 分类名称     |
-| have_children   | Boolean      | 是否包含子分类     |
-| children   | Array      | 子分类列表，见 Tip     |
+| 参数名 |  类型  |   描述  |
+| :---: | :----: | :-----: |
+|  id   | Number | 分类 ID |
+| name  | String | 分类名称 |
 
-##### 返回示例
-
-```
-{
-  "have_children": true,
-  "id": 7,
-  "name": "sOjPLsIfGhfrdtIU",
-  "children": [
-    {
-      "have_children": false,
-      "id": 8,
-      "name": "KdaPCuwRAKrGdsPS"
-    }
-  ]
-}
-```
 
 ### 获取内容库分类列表
 
