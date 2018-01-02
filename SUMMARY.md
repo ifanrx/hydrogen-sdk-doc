@@ -8,7 +8,7 @@
 * [用户](user/README.md)
     * [登入登出](user/signin-signout.md)
     * [获取用户信息](user/user.md)
-    * [获取用户信息 (SDK 1.1.3 以下版本)](user/user-lagecy.md)
+    * [获取用户信息 (SDK 1.1.3 以下版本)](user/user-legacy.md)
 * [数据表（SDK 1.1.0 及以上版本）](schema/README.md)
     * [新增数据项](schema/create-record.md)
     * [更新数据项](schema/update-record.md)
