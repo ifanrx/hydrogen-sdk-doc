@@ -38,7 +38,7 @@ MyContentGroup.getContent(richTextID).then((res) => {
 
 |    参数名    |      类型      |     描述    |
 | :--------:  | :-----------: | :---------: |
-| categories  |  Number Array |   内容详情   |
+| categories  |  Number Array |   内容分类   |
 |   content   |     String    |   内容详情   |
 |    cover    |     String    |  封面图 url  |
 | created_at  |     Number    |   创建时间  |
@@ -53,6 +53,7 @@ MyContentGroup.getContent(richTextID).then((res) => {
 
 ##### 返回示例
 
+res.data:
 ```
 {
   categories: [1513076252710475],
@@ -117,6 +118,7 @@ MyContentGroup.getCategory(categoryID).then( (res) => {
 
 ##### 返回示例
 
+res.data:
 ```
 {
   have_children: true,
