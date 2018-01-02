@@ -47,7 +47,9 @@ res.data:
   "id": "59a3c2b5afb7766a5ec6e84e",
   "name": "apple",
   "price": 1.0,
-  "updated_at": 1503904437
+  "read_perm": ["user:*"],
+  "updated_at": 1503904437,
+  "write_perm": ["user:*"]
 }
 ```
 
