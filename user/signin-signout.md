@@ -1,13 +1,15 @@
-# 登入
+# 登入登出
 
-### 自动登录
+### 登入
+
+#### 自动登录
 
 > 注：sdk 1.1.0 以下版本为自动授权登录
 
 使用 wx.BaaS 的方法进行接口调用时，会自动进行静默登录，获取用户基本信息。
 
 
-### 登录并请求用户信息授权
+#### 登录并请求用户信息授权
 `wx.BaaS.login()`
 
 该方法会进行登录并在成功登录后弹框询问是否授权获取用户信息
@@ -58,7 +60,7 @@ wx.BaaS.login().then((res) => {
 也可以通过 `wx.BaaS.storage.get(<key>)` 获取相对应信息（uid, openid, unionid)
 
 
-### 静默登录，不弹出授权窗口，仅获取用户基础信息
+#### 静默登录，不弹出授权窗口，仅获取用户基础信息
 
 <p style='color:red'>* sdk version >= v1.1.0</p>
 
@@ -89,6 +91,22 @@ wx.BaaS.login(false).then((res) => {
 也可以通过 `wx.BaaS.storage.get(<key>)` 获取相对应信息（uid, openid, unionid)
 
 
-### 错误说明
+##### 错误说明
 
 当 appID、ClientID 配置有误时，登录会抛出异常：“认证失败，请检查 AppID、ClientID 配置”，需要进行检查和重新配置后重试。
+
+
+### 登出
+
+清理客户端存储的用户授权信息
+
+通过 `wx.BaaS.logout()` 函数完成登出功能：
+
+```
+// 登出 BaaS
+wx.BaaS.logout().then((res) => {
+  // success
+}, (err) => {
+  // err
+});
+```
