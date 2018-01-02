@@ -38,8 +38,6 @@ res.data:
 ```
 {
   "_id": "59a3c2b5afb7766a5ec6e84e",
-  "acl_gid": null,
-  "acl_permission": 7,
   "amount": 0,
   "created_at": 1503904437,
   "created_by": 36395395,
