@@ -123,5 +123,21 @@ MyUser.setQuery(query).find().then((res) => {
 ### 排序
 用户查询排序与[数据表排序](../schema/limit-and-order.md)方法一致，不包含在返回数据里的字段不支持排序，如 created_at
 
+##### 请求示例
+
+```
+let MyUser = new wx.BaaS.User()
+
+MyUser.orderBy('-nickname').find().then()
+```
+
 ### 分页
 用户查询分页与[数据表分页](../schema/limit-and-order.md)方法一致
+
+##### 请求示例
+
+```
+let MyUser = new wx.BaaS.User()
+
+MyUser.limit(5).offset(10).find().then()
+```

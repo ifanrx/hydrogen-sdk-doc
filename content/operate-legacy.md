@@ -113,7 +113,7 @@ wx.BaaS.getContentList(objects).then( (res) => {
 
 ##### Tip
 
-分页、查询和排序参考数据表中 [获取数据项列表](../../schema/get-record-list.md) 的操作
+分页、查询和排序参考数据表中 [获取数据项列表](../../legacySchema/get-record-list.md) 的操作
 
 
 ### 获取内容库详情

@@ -175,5 +175,21 @@ MyFile.setQuery(query).find()
 | size       | 文件大小 (以字节为单位) |
 | created_at | 文件分类 id           |
 
+##### 示例代码
+
+```
+let MyFile = new wx.BaaS.File()
+
+MyFile.orderBy('-created_at').find().then()
+```
+
 ### 分页
 文件查询排序与[数据表分页](../schema/limit-and-order.md)方法一致
+
+##### 示例代码
+
+```
+let MyFile = new wx.BaaS.File()
+
+MyFile.limit(10).offset(5).find().then()
+```

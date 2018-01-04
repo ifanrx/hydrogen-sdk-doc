@@ -164,3 +164,12 @@ MyContentGroup.getCategoryList().then( (res) => {
 
 ### 分页与排序
 内容查询的分页与排序操作和[数据表分页与排序](../schema/limit-and-order.md)方法一致
+
+##### 请求示例
+
+```
+let contentGroupID = 1513076211190694
+let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)
+
+MyContentGroup.orderBy('-created_by').limit(5).offset(10).find().then()
+```
