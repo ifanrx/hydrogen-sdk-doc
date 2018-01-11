@@ -1,6 +1,6 @@
 # SDK 下载
 
-#### [最新稳定版 v1.1.3（推荐）](https://dl.ifanr.cn/hydrogen/sdk/sdk-latest.zip)
+#### [最新稳定版 v1.1.4（推荐）](https://dl.ifanr.cn/hydrogen/sdk/sdk-latest.zip) (<span style='color:red'>该版本重构优化了错误返回信息，请阅读[文档](../errorCode/README.md)后再做升级</span>)
 
 [更新日志](https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md)
 
