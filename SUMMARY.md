@@ -33,6 +33,7 @@
     * [内容操作](content/operate.md)
     * [内容操作 (SDK 1.1.3 以下版本)](content/operate-legacy.md)
     * [渲染内容](content/render.md)
+* [错误码详解](errorCode/README.md)
 * [知晓云开放 API](openAPI/README.md)
     * [授权认证](openAPI/authentication.md)
     * [数据操作](openAPI/record.md)
