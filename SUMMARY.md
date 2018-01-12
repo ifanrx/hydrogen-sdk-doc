@@ -44,7 +44,6 @@
         * [分页和排序](NodeSDK/schema/limit-and-order.md)
         * [地理位置操作](NodeSDK/schema/geo.md)
     * [内容库](NodeSDK/content.md)
-    * [用户](NodeSDK/user.md)
     * [文件](NodeSDK/file.md)
     * [文件分类](NodeSDK/fileCategory.md)
     * [调用云函数](NodeSDK/cloudFunction.md)
