@@ -32,6 +32,9 @@ let data = 	{
 }
 
 BaaS.sendTemplateMessage(data).then(res => {
-
+  // 发送成功
+}, err => {
+  // 发送失败
+  console.log(err)
 })
 ```

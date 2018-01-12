@@ -12,8 +12,12 @@
 
 ##### 请求示例
 
+定义一个云函数，其接受一个 name 作为参数，返回 hello ${name}
+
 ```
 BaaS.invokeFunction('1ef2f34tdgdf43r4', {name: 'allen'}).then(res => {
-  console.log(res.data)
+  console.log(res.data.result)  // hello allen
+}, err => {
+  console.log(err)
 })
 ```
