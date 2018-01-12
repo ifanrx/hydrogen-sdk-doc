@@ -107,7 +107,7 @@ let contentGroupID = 1513076211190694
 let MyContentGroup = new BaaS.ContentGroup(contentGroupID)
 
 let categoryID = 1513076252710475
-MyContentGroup.getCategory(categoryID).then( (res) => {
+MyContentGroup.getCategory(categoryID).then((res) => {
   // success
 }, (err) => {
   // err
@@ -152,7 +152,7 @@ res.data:
 let contentGroupID = 1513076211190694
 let MyContentGroup = new BaaS.ContentGroup(contentGroupID)
 
-MyContentGroup.getCategoryList().then( (res) => {
+MyContentGroup.getCategoryList().then((res) => {
   // success
 }, (err) => {
   // err
