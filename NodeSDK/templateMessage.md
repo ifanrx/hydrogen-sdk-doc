@@ -21,12 +21,12 @@ let data = {
   template_id: "tadfDf23asdi8dfd",
   submission_type: "email title",
   keywords: {
-    keyword1: {
-      value: 124sdfaf",
+    物品名称: {
+      value: "书籍",
       color: "#173177"  // 可为空
     }
-    keyword2: {
-      value: "qgfq4erg",
+    购买价格: {
+      value: "50.5",
       color: "#173177"  // 可为空
     }
   }
