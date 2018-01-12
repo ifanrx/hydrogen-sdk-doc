@@ -5,6 +5,7 @@
 ##### 参数说明
 
 data 是 Object 类型，它包括以下几个属性
+
 |      参数名      |  类型   |  必填  |    描述   |
 | :-------------: | :----: | :----: | :------: |
 |     user_id     | Number |   是   |  用户 ID  |
@@ -15,7 +16,7 @@ data 是 Object 类型，它包括以下几个属性
 ##### 请求示例
 
 ```
-let data = 	{
+let data = {
 	user_id: 23425,
   template_id: "tadfDf23asdi8dfd",
   submission_type: "email title",
