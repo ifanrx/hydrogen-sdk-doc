@@ -17,7 +17,7 @@ data 是 Object 类型，它包括以下几个属性
 
 ```
 let data = {
-	user_id: 23425,
+  user_id: 23425,
   template_id: "tadfDf23asdi8dfd",
   submission_type: "email title",
   keywords: {
