@@ -34,7 +34,7 @@
     * [内容操作 (SDK 1.1.3 以下版本)](content/operate-legacy.md)
     * [渲染内容](content/render.md)
 * [错误码详解](errorCode/README.md)
-* [云函数 SDK](NodeSDK/README.md)
+* [云函数](NodeSDK/README.md)
     * [数据表](NodeSDK/schema/README.md)
         * [新增数据项](NodeSDK/schema/create-record.md)
         * [更新数据项](NodeSDK/schema/update-record.md)

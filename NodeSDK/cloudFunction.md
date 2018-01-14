@@ -21,3 +21,5 @@ BaaS.invokeFunction('1ef2f34tdgdf43r4', {name: 'allen'}).then(res => {
   console.log(err)
 })
 ```
+
+sync 为 true 时，res.data 中会包含 result 字段，用于表示函数的返回值
