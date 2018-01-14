@@ -4,14 +4,13 @@
 
 
 目前支持的 Node.js 开发语言包括如下版本：
-- Node.js 6.10
+- Node.js 8.9
 
 
 ### 代码编写格式
 ```
 exports.main = function (event, callback) {
-  let eventObj = JSON.parse(event)
-  let name = eventObj.data.name
+  let name = event.data.name
   console.info(name + ' in')
   callback(null, 'hello ' + name)
 }
