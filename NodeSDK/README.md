@@ -45,7 +45,7 @@ exports.main = function (event, callback) {
 
 ##### callback
 
-可选项。使用此参数用于将您所希望的信息返回给调用方。格式如 `callback(err, data)`，err 为错误信息，可为 Error 类型或字符串，没有出错的情况下，可设置为 null；data 为函数成功执行的结果信息。
+可选项。使用此参数用于将您所希望的信息返回给调用方。格式如 `callback(err, data)`，err 为错误信息，可为 Error 类型或字符串，没有出错的情况下，可设置为 null；data 为函数成功执行的结果信息。
 
 
 ### 日志
@@ -58,7 +58,7 @@ console.warn(message)
 console.info(message)
 ```
 
-日志格式为：ISOString + 日志级别 + message，如下示例：
+日志格式为：ISOString + 日志级别 + message，如下示例：
 
 ```
 2017-07-05T05:13:35.920Z INFO hello world
@@ -66,7 +66,7 @@ console.info(message)
 
 ### 已包含的库及使用方法
 
-目前支持在云函数中对知晓云中的数据，内容和文件进行操作，同时也支持调用其它云函数，发送邮件和模板消息等功能，使用如下：
+目前支持在云函数中对知晓云中的数据，内容和文件进行操作，同时也支持调用其它云函数，发送邮件和模板消息等功能，使用如下：
 
 ```
 exports.main = function (event, callback) {
