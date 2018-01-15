@@ -2,7 +2,7 @@
 
 <p style='color:red'>* sdk version >= v1.1.5</p>
 
-`wx.BaaS.invokeFunction(functionName, params)`
+`wx.BaaS.invokeFunction(functionName, params, sync)`
 
 ##### 参数说明
 
@@ -10,6 +10,7 @@
 | :----------: | :----: | :---: | :------------------|
 | functionName | String |  是   |      云函数名        |
 |    params    |  不限   |  否   | 传递给指定云函数的参数 |
+|     sync     |  Bool  |   否  | 是否等待返回函数执行结果，默认为 true |
 
 ##### 请求示例
 
