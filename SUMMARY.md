@@ -27,6 +27,7 @@
     * [文件操作](file/file.md)
     * [文件分类操作](file/category.md)
     * [文件上传 (SDK 1.1.2 以下版本)](file/file-upload-lagecy.md)
+* [调用云函数](invokeFunction/README.md)
 * [模板消息](templateMessage/README.md)
 * [微信加密数据解密](wechatDecrypt/README.md)
 * [内容库](content/README.md)
