@@ -214,7 +214,7 @@ var orQuery = wx.BaaS.Query.or(andQuery, query3)
 
 ### 时间类型字段查询
 
-##### created_at & updated_at 内置时间类型字段查询
+#### created_at & updated_at 内置时间类型字段查询
 
 created_at 和 updated_at 是 integer 类型，表示以秒为单位的时间戳，查询示例如下：
 
@@ -226,12 +226,12 @@ query.compare('created_at', '<=', timestamp)
 
 // 查找在今天创建的数据
 let startTimestamp = (new Date()).setHours(0, 0, 0, 0)/1000
-let endTimestamp = startTimestamp + 24*60*60
+let endTimestamp = startTimestamp + 24 * 60 * 60
 query.compare('created_at', '>=', startTimestamp)
 query.compare('created_at', '<', endTimestamp)
 ```
 
-##### date 类型字段查询
+#### date 类型字段查询
 
 在知晓云控制台中创建的 date 类型字段，实际上数据是以 ISO string 的形式进行保存的，因此，对 date 类型字段查询，需要做相应的转换，查询示例如下:
 
