@@ -212,20 +212,41 @@ query3.compare('amount', '>', 3)
 var orQuery = wx.BaaS.Query.or(andQuery, query3)
 ```
 
-### 按时间查询
-目前我们并没有提供更方便进行时间查询的接口，但你完全可以通过 javascript 的 Date 对象创建出足够满足需求的时间查询条件，如下：
+### 时间类型字段查询
+
+##### created_at & updated_at 内置时间类型字段查询
+
+created_at 和 updated_at 是 integer 类型，表示以秒为单位的时间戳，查询示例如下：
 
 ```
-// 查找 2018 年前创建的数据
-let date = new Date(2018, 0, 1)
-// created_at 和 updated_at 是 integer 类型，表示以秒为单位的时间戳，因此需要对 date 做下装换
-query.compare('created_at', '<', Date.parse(date)/1000)
+// 查找在 2018 年前创建的数据
+// Date.parse 得到的时间戳是以毫秒为单位，需要转为以秒为单位
+let timestamp = Date.parse(new Date(2018, 0, 1))/1000
+query.compare('created_at', '<=', timestamp)
 
 // 查找在今天创建的数据
 let startTimestamp = (new Date()).setHours(0, 0, 0, 0)/1000
 let endTimestamp = startTimestamp + 24*60*60
 query.compare('created_at', '>=', startTimestamp)
 query.compare('created_at', '<', endTimestamp)
+```
+
+##### date 类型字段查询
+
+在知晓云控制台中创建的 date 类型字段，实际上数据是以 ISO string 的形式进行保存的，因此，对 date 类型字段查询，需要做相应的转换，查询示例如下:
+
+```
+/* 创建一个 date 类型的字段 duedate，表示到期时间 */
+
+// 查找在 2018 年前到期的数据
+let timestamp = (new Date(2018, 0, 1)).setHours(0, 0, 0, 0)
+query.compare('duedate', '<=', (new Date(timestamp)).toISOString())
+
+// 查找将在今天到期的的数据
+let startTimestamp = new Date().setHours(0, 0, 0, 0)
+let endTimestamp = startTimestamp + 24 * 60 * 60 * 1000
+query.compare('duedate', '>=', (new Date(startTimestamp)).toISOString())
+query.compare('duedate', '<', (new Date(endTimestamp)).toISOString())
 ```
 
 更复杂的时间构造，你可以查看 [MDN 文档](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
