@@ -211,3 +211,21 @@ var query3 = new wx.BaaS.Query()
 query3.compare('amount', '>', 3)
 var orQuery = wx.BaaS.Query.or(andQuery, query3)
 ```
+
+### 按时间查询
+目前我们并没有提供更方便进行时间查询的接口，但你完全可以通过 javascript 的 Date 对象创建出足够满足需求的时间查询条件，如下：
+
+```
+// 查找 2018 年前创建的数据
+let date = new Date(2018, 0, 1)
+// created_at 和 updated_at 是 integer 类型，表示以秒为单位的时间戳，因此需要对 date 做下装换
+query.compare('created_at', '<', Date.parse(date)/1000)
+
+// 查找在今天创建的数据
+let startTimestamp = (new Date()).setHours(0, 0, 0, 0)/1000
+let endTimestamp = startTimestamp + 24*60*60
+query.compare('created_at', '>=', startTimestamp)
+query.compare('created_at', '<', endTimestamp)
+```
+
+更复杂的时间构造，你可以查看 [MDN 文档](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
