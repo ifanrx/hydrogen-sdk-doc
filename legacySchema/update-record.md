@@ -1,6 +1,6 @@
 # 更新数据项
 
-<p style='color:red'>* sdk version &lt;= v1.0.11</p>
+<p style='color:red'>* 该写法在 sdk v2.0 前仍有效</p>
 
 `wx.BaaS.updateRecord(OBJECT)`
 
