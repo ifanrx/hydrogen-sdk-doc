@@ -1,3 +1,9 @@
+# 新增数据记录
+
+<p style='color:red'>* sdk version &lt;= v1.0.11</p>
+
+`wx.BaaS.createRecord(OBJECT)`
+
 ##### OBJECT 参数说明
 
 |   参数名   |   类型   |  必填  |    描述     |
