@@ -123,11 +123,14 @@ product.remove('desc', 'sweet')
 
 - 设置的数据要与预先在知晓云平台设定的数据类型一致，当仅更新一个字段，并且数据不合法时，将无法成功保存，请求返回 `Failed to save record, type conflict on fields` 错误，如果更新多个字段，其中有一个或一个以上字段数据合法，则请求成功，但其中数据不合法的字段将不会成功保存，如下示例：
 
-```
-/* 同时设置 amount 和 date 字段，其中 date 为日期类型，这里为其赋了一个字符串类型的值，该请求会返回 200，但只有 amount 被成功设置为 10 */
+  ```
+  /*
+  * 同时设置 amount 和 date 字段，其中 date 为日期类型，这里为其赋了一个字符串类型的值，
+  * 该请求会返回 200，但只有 amount 被成功设置为 10
+  */
 
-let order = Order.getWithoutData(orderID)
-order.set('amount', 10)
-order.set('date', 'abc')
-order.update()
-```
+  let order = Order.getWithoutData(orderID)
+  order.set('amount', 10)
+  order.set('date', 'abc')
+  order.update()
+  ```
