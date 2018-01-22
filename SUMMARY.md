@@ -75,4 +75,5 @@
     * [内容管理](dashboard/page/content.md)
     * [用户管理](dashboard/page/user.md)
     * [ACL 简介](dashboard/page/acl.md)
+* [技术细节](technicalNotes/README.md)
 * [服务协议](terms/README.md)
