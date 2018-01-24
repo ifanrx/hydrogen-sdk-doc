@@ -13,7 +13,7 @@
 |  参数名  |  类型  |  必填  |  描述  |
 | :-----------: | :----: | :--: | :------------------------ |
 |  key  |  String |  是  |  在数据表中的类型必须是 geojson  |
-|  value  |  GeoPoint 或 GeoPolygon  |  是  |  |
+|  value  |  GeoPoint 或 GeoPolygon  |  是  | GeoPoint(longitude, latitude) 经度在前，纬度在后 |
 
 
 ##### 请求示例
@@ -23,7 +23,7 @@ var Product = new wx.BaaS.TableObject(tableID)
 let product = Product.create()
 
 // 保存一个点
-var point = new wx.BaaS.GeoPoint(10, 10)   // GeoPoint(longitude, latitude) 经度在前，纬度在后
+var point = new wx.BaaS.GeoPoint(10, 10)
 product.set('origin', point).save()
 
 // 保存一个多边形
