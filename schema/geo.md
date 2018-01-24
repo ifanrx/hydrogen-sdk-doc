@@ -23,7 +23,7 @@ var Product = new wx.BaaS.TableObject(tableID)
 let product = Product.create()
 
 // 保存一个点
-var point = new wx.BaaS.GeoPoint(10, 10)
+var point = new wx.BaaS.GeoPoint(10, 10)   // GeoPoint(longitude, latitude) 经度在前，纬度在后
 product.set('origin', point).save()
 
 // 保存一个多边形
