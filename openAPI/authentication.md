@@ -176,8 +176,8 @@ var opt = {
   headers: {
     "Content-Type": "multipart/form-data"
   },
-  jar: true,                // 设置为 true, 自动记住接下来需要使用到的 cookie 
-  followAllRedirects: true,     // 设置为需要 true, 自动重定向
+  jar: true,                // 设置为 true, 允许记住 cookie 
+  followAllRedirects: true,     // 设置为 true, 允许重定向
 }
 
 request(opt, function(err, res, body) {

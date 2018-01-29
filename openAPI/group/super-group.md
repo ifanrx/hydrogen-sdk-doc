@@ -272,6 +272,25 @@ https://cloud.minapp.com/oserve/v1/user-supergroup/52/
 
 - `204` 删除成功
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-supergroup/666/',  // 666 对应 :group_id
+  method: 'DELETE',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(res.statusCode)
+})
+```
 
 ## 批量删除组集
 
@@ -295,3 +314,23 @@ https://cloud.minapp.com/oserve/v1/user-supergroup/?id__in=58,56
 ### 状态码说明
 
 - `204` 删除成功
+
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-supergroup/?id__in=667,668',  // id__in=:667,668 对应 id__in=:group_id,group1_id
+  method: 'DELETE',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(res.statusCode)
+})
+```
