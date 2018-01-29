@@ -53,6 +53,26 @@ https://cloud.minapp.com/oserve/v1/user-supergroup/
 }
 ```
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-supergroup/',
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+}
+```
+
 ## 获取组集详情
 
 ### 接口地址
@@ -89,6 +109,26 @@ https://cloud.minapp.com/oserve/v1/user-supergroup/52/
 }
 ```
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-supergroup/666',  // 666 对应 :group_id
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
+```
+
 ## 创建组集
 
 ### 接口地址
@@ -118,6 +158,29 @@ https://cloud.minapp.com/oserve/v1/user-supergroup/
 
 - `201` 写入成功
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-supergroup/',
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  json: {
+    name: 'super group',
+    children: [561]
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(res.statusCode)
+})
+```
 
 ## 修改组集
 
@@ -162,6 +225,29 @@ https://cloud.minapp.com/oserve/v1/user-supergroup/52/
 
 - `200` 修改成功
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-supergroup/666/',  // 665 对应 :group_id
+  method: 'PUT',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  json: {
+    name: 'super group',
+    children: [561]
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(res.statusCode, body)
+})
+```
 
 ## 删除组集
 

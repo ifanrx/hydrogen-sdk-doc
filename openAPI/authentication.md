@@ -100,6 +100,29 @@ $ curl -L ifanr.com
 ....
 ```
 
+### 代码示例 
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/api/oauth2/hydrogen/openapi/authorize/',
+  method: 'POST',
+  json: {
+    client_id: 'a4d2d62965ddb57fa4xx',
+    client_secret: 'e5802b40135baab9b4e84e35bed058a264c37dxx'
+  },
+  jar: true,                // 设置为 true, 自动记住接下来需要使用到的 cookie 
+  followAllRedirects: true,     // 设置为需要 true, 自动重定向
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
+```
+
 
 ## 获取 Access Token
 
@@ -132,4 +155,32 @@ $ curl -L ifanr.com
     "refresh_token": "4215259afd7f3d33c04ae39080a8ea5eb1c166e8",
     "scope": "write"
 }
+```
+
+### 代码示例 
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/api/oauth2/access_token/',
+  method: 'POST',
+  form: {
+    client_id: 'a4d2d62965ddb57fa4xx',
+    client_secret: 'e5802b40135baab9b4e84e35bed058a264c37dxx',
+    grant_type: 'authorization_code',
+    code: 'a4225e625284af09505973587bf995d8bb878bxx'
+  },
+  headers: {
+    "Content-Type": "multipart/form-data"
+  },
+  jar: true,                // 设置为 true, 自动记住接下来需要使用到的 cookie 
+  followAllRedirects: true,     // 设置为需要 true, 自动重定向
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
 ```

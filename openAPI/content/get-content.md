@@ -76,6 +76,30 @@ https://cloud.minapp.com/oserve/v1/content/detail/?content_group_id=1
 }
 ```
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+    uri: 'https://cloud.minapp.com/oserve/v1/content/detail/',
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`  // token的来源请看”授权认证”章节
+    },
+    qs: {     // 被附加到uri的参数
+      content_group_id: '15130762111906xx',
+      category_id: '15130762527104xx'
+    }
+  }
+  
+  request(opt, function(err, res, body) {
+      console.log(body)
+  })
+```
+
 ## 获取内容详情
 
 ### 接口地址
@@ -109,3 +133,27 @@ https://cloud.minapp.com/oserve/v1/content/detail/:content_id/
     "title": "超新约全书"
 }
 ```
+
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/content/detail/15145144732272xx/', // 15145144732272xx 对应 uri :content_id
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  qs: {     // 被附加到uri的参数
+    content_id: '15145144732272xx'
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
+```
+

@@ -91,6 +91,29 @@ https://cloud.minapp.com/oserve/v1/upload/
   - `file_link`     文件上传成功后的访问地址
   - `upload_url`    上传文件的目标地址
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/upload/',
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  json: {
+    filename: 'aTest.xlsm',
+    categories: '5a3b569109a80579061d63xx'
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(res.statusCode, body)
+})
+```
 
 ## 上传文件
 

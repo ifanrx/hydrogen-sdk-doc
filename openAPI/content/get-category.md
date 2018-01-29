@@ -57,6 +57,28 @@ https://cloud.minapp.com/oserve/v1/content/category/?content_group_id=1
 
 `has_children` 表示该分类是否包含子分类，通过`获取内容分类详情接口`可获得子分类的内容。
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/content/category/',
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  qs: {     // 被附加到uri的参数
+    content_group_id: '15130762111906xx'
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
+```
 
 ## 获取内容分类详情
 
@@ -94,4 +116,27 @@ https://cloud.minapp.com/oserve/v1/content/category/:category_id/
         }
     ]
 }
+```
+
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/content/category/15130762527104xx/',  // 15130762527104xx 对应 uri :category_id
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  qs: {     // 被附加到uri的参数
+    category_id: '15130762527104xx'
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
 ```

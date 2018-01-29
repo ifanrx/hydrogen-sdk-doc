@@ -57,6 +57,31 @@ https://cloud.minapp.com/oserve/v1/user-group/
 - `members` 表示在用户组下的用户数量
 - `parent` 表示用户组的组集
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-group/',
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  qs: {
+    parent_id: "234565423456787645xx",   // 可选, 没有用户组的组集 ID, 可以设置为 null 或者不设置
+    offset: 0,         // 可选
+    limit: 20          // 可选
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
+```
+
 ## 获取用户组详情
 
 ### 接口地址
@@ -92,6 +117,26 @@ https://cloud.minapp.com/oserve/v1/user-group/47/
 }
 ```
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-group/655',  // 655 对应 :group_id
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
+```
+
 ## 创建用户组
 
 ### 接口地址
@@ -121,6 +166,28 @@ https://cloud.minapp.com/oserve/v1/user-group/
 
 - `201` 写入成功
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-group/',
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  json: {
+    name: 'testGroup'
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(res.statusCode, body)
+})
+```
 
 ## 修改用户组
 
@@ -162,6 +229,28 @@ https://cloud.minapp.com/oserve/v1/user-group/47/
 
 - `200` 修改成功
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-group/655/',  // 655 对应 :group_id
+  method: 'PUT',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  json: {
+    name: 'testGroup_3'   // 修改后的用户组名
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(res.statusCode)
+})
+```
 
 ## 删除用户组
 
@@ -186,6 +275,25 @@ https://cloud.minapp.com/oserve/v1/user-group/47/
 
 - `204` 删除成功
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-group/655/',  // 655 对应 :group_id
+  method: 'DELETE',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(res.statusCode)
+})
+```
 
 ## 批量删除用户组
 
@@ -209,3 +317,23 @@ https://cloud.minapp.com/oserve/v1/user-group/?id__in=48,50
 ### 状态码说明
 
 - `204` 删除成功
+
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-group/?id__in=652,653',  // id__in=652,653 对应 id__in=:group_id,group1_id
+  method: 'DELETE',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(res.statusCode)
+})
+```

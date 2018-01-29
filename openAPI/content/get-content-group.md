@@ -46,6 +46,30 @@ https://cloud.minapp.com/oserve/v1/content/group/
 }
 ```
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/content/group/',
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  qs: {
+    offset: 0, // 可选
+    limit: 20  // 可选
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
+```
+
 ## 获取内容详情
 
 ### 接口地址
@@ -74,4 +98,27 @@ https://cloud.minapp.com/oserve/v1/content/group/:content_group_id/
     "id": 1680,
     "name": "内容库 1"
 }
+```
+
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/content/group/15130762111906xx/',  // 15130762111906xx 对应 uri :content_group_id
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  qs: {     // 被附加到uri的参数
+    content_group_id: '15130762111906xx'
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
 ```

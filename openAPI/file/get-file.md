@@ -65,6 +65,32 @@ https://cloud.minapp.com/oserve/v1/file/
 }
 ```
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/file/',
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  qs: {     // 被附加到uri的参数
+    offset: 0,     // 可选
+    limit: 20,     // 可选
+    order_by: 'created_at'  // 按照创建时间来排序，可选
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
+    
+```
+
 ## 文件详情
 
 ### 接口地址
@@ -108,6 +134,26 @@ https://cloud.minapp.com/oserve/v1/file/5a1ba9c1fff1d651135e5ff1/
 }
 ```
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/file/5a2fe93308443e313a428cxx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :file_id
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
+    
+```
 
 ## 删除文件
 
@@ -132,6 +178,26 @@ https://cloud.minapp.com/oserve/v1/file/5a1ba9c1fff1d651135e5ff1/
 
 - `204` 删除成功
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/file/5a45f22bfff1d659681c87xx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :file_id
+  method: 'DELETE',
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(res.statusCode)
+})
+    
+```
 
 ## 批量删除文件
 
@@ -155,3 +221,24 @@ https://cloud.minapp.com/oserve/v1/file/?id__in=5a1ba9c1fff1d651135e5ff1,59ca3d2
 ### 状态码说明
 
 - `204` 删除成功
+
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/file/?id__in=5a3b8e8908443e06aa6f0a99,5a3b673308443e643f1b0c47',  // id__in=:file1_id,:file2_id
+  method: 'DELETE',
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(res.statusCode)
+})
+    
+```
