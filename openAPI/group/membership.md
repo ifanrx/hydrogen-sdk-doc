@@ -38,3 +38,27 @@ https://cloud.minapp.com/oserve/v1/miniapp/group/membership/
 
 - `204` 修改成功
 - `400` 参数错误
+
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/miniapp/group/membership/',
+  method: 'PATCH',
+  headers: {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": 'application/json'
+  },
+  body: JSON.stringify([
+    {"op": "add", "path": "/membership", "users": [36476036], "groups": [561]}
+  ])
+}
+
+request(opt, function(err, res, body) {
+    console.log(res.statusCode)
+})
+```  
