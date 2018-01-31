@@ -328,7 +328,7 @@ var opt = {
   },
   json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
     name: 'nickname',
-    desc: ['update insert data'],
+    desc: ['description'],
     price: 19,
     amount: 19,
     code: '18814098707'
@@ -336,7 +336,7 @@ var opt = {
 }
 
 request(opt, function(err, res, body) {
-  console.log(body)
+  console.log(res.statusCode)
 })
 ```
 
@@ -416,7 +416,7 @@ var opt = {
 }
 
 request(opt, function(err, res, body) {
-  console.log(body)
+  console.log(res.statusCode)
 })
 ```
 
