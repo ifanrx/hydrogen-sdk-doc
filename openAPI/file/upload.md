@@ -104,7 +104,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`
   },
-  json: {
+  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
     filename: 'aTest.xlsm',
     categories: '5a3b569109a80579061d63xx'
   }
@@ -182,10 +182,9 @@ var opt = {
   uri: upload_url,  // 获取上传文件的授权凭证成功返回的 upload_url
   method: 'POST',
   headers: {
-    Authorization: `Bearer ${token}`,
-    "Content-Type": "multipart/form-data"    // 传数据的格式
+    Authorization: `Bearer ${token}`
   },
-  formData: {
+  formData: {   // 指定 data 以 "Content-Type": "multipart/form-data" 传送
     authorization,
     policy,
     file: fs.createReadStream(__dirname + '/demo.js')   // 参数需为文件流

@@ -78,7 +78,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`
   },
-  qs: {     // 被附加到uri的参数
+  qs: {     // query string, 被附加到uri的参数
     offset: 0,     // 可选
     limit: 20,     // 可选
     order_by: 'created_at'  // 按照创建时间来排序，可选

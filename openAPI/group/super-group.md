@@ -171,7 +171,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`,
   },
-  json: {
+  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
     name: 'super group',
     children: [561]
   }
@@ -238,7 +238,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`,
   },
-  json: {
+  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
     name: 'super group',
     children: [561]
   }

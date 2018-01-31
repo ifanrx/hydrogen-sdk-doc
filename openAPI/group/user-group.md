@@ -70,7 +70,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`,
   },
-  qs: {
+  qs: {     // query string, 被附加到uri的参数
     parent_id: "234565423456787645xx",   // 可选, 没有用户组的组集 ID, 可以设置为 null 或者不设置
     offset: 0,         // 可选
     limit: 20          // 可选
@@ -179,7 +179,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`,
   },
-  json: {
+  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
     name: 'testGroup'
   }
 }
@@ -242,7 +242,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`,
   },
-  json: {
+  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
     name: 'testGroup_3'   // 修改后的用户组名
   }
 }

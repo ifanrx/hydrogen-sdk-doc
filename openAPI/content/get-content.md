@@ -89,7 +89,7 @@ var opt = {
     headers: {
       Authorization: `Bearer ${token}`  // token的来源请看”授权认证”章节
     },
-    qs: {     // 被附加到uri的参数
+    qs: {     // query string, 被附加到uri的参数
       content_group_id: '15130762111906xx',
       category_id: '15130762527104xx'
     }
@@ -147,7 +147,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`
   },
-  qs: {     // 被附加到uri的参数
+  qs: {     // query string, 被附加到uri的参数
     content_id: '15145144732272xx'
   }
 }

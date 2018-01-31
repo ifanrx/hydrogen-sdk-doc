@@ -69,7 +69,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`
   },
-  qs: {     // 被附加到uri的参数
+  qs: {     // query string, 被附加到uri的参数
     offset: 0,     // 可选
     limit: 20,     // 可选
     order_by: 'created_at'  // 按照创建时间来排序，可选
@@ -125,7 +125,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`
   },
-  qs: {     // 被附加到uri的参数
+  qs: {     // query string, 被附加到uri的参数
     category_id: '5a2fe91508443e3123dbe1xx'
   }
 }
@@ -177,7 +177,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`
   },
-  json: {
+  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
     name: 'testCreateFile'
   }
 }
@@ -238,7 +238,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`
   },
-  json: {
+  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
     name: 'testCreateFiles'
   }
 }

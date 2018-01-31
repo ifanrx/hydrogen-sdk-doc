@@ -110,12 +110,12 @@ var request = require('request');
 var opt = {
   uri: 'https://cloud.minapp.com/api/oauth2/hydrogen/openapi/authorize/',
   method: 'POST',
-  json: {
+  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
     client_id: 'a4d2d62965ddb57fa4xx',
     client_secret: 'e5802b40135baab9b4e84e35bed058a264c37dxx'
   },
-  jar: true,                // 设置为 true, 自动记住接下来需要使用到的 cookie 
-  followAllRedirects: true,     // 设置为需要 true, 自动重定向
+  jar: true,                // 设置为 true, 允许记住 cookie 
+  followAllRedirects: true,     // 设置为 true, 允许重定向
 }
 
 request(opt, function(err, res, body) {
@@ -167,17 +167,12 @@ var request = require('request');
 var opt = {
   uri: 'https://cloud.minapp.com/api/oauth2/access_token/',
   method: 'POST',
-  form: {
+  formData: {   // 指定 data 以 "Content-Type": "multipart/form-data" 传送
     client_id: 'a4d2d62965ddb57fa4xx',
     client_secret: 'e5802b40135baab9b4e84e35bed058a264c37dxx',
     grant_type: 'authorization_code',
     code: 'a4225e625284af09505973587bf995d8bb878bxx'
-  },
-  headers: {
-    "Content-Type": "multipart/form-data"
-  },
-  jar: true,                // 设置为 true, 允许记住 cookie 
-  followAllRedirects: true,     // 设置为 true, 允许重定向
+  }
 }
 
 request(opt, function(err, res, body) {
