@@ -200,7 +200,7 @@ var opt = {
 }
 
 request(opt, function(err, res, body) {
-  console.log(res)
+  console.log(body)
 })
 ```
 
