@@ -157,7 +157,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`,
   },
-  qs: {     // 被附加到uri的参数
+  qs: {     // query string, 被附加到uri的参数
     nickname__contains: 'username',
     gender: 1,
     created_at__gte: 1483228800,

@@ -189,7 +189,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`,
   },
-  qs: {
+  qs: {     // query string, 被附加到uri的参数
     where: JSON.stringify({   // 可选, 参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码
       "price": {"$eq": 10}
     }),
@@ -326,7 +326,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`,
   },
-  json: {
+  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
     name: 'nickname',
     desc: ['update insert data'],
     price: 19,
@@ -410,7 +410,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`,
   },
-  json: {
+  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
     name: 'nickname'
   }
 }
@@ -610,7 +610,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`,
   },
-  json: {
+  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
     desc: {
       "$append": ['atomic data']
     },
