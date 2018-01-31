@@ -59,7 +59,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`
   },
-  qs: {
+  qs: {     // query string, 被附加到uri的参数
     offset: 0, // 可选
     limit: 20  // 可选
   }
@@ -113,7 +113,7 @@ var opt = {
   headers: {
     Authorization: `Bearer ${token}`
   },
-  qs: {     // 被附加到uri的参数
+  qs: {     // query string, 被附加到uri的参数
     content_group_id: '15130762111906xx'
   }
 }
