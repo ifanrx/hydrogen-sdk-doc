@@ -50,12 +50,11 @@ var opt = {
   uri: 'https://cloud.minapp.com/oserve/v1/miniapp/group/membership/',
   method: 'PATCH',
   headers: {
-    Authorization: `Bearer ${token}`,
-    "Content-Type": 'application/json'
+    Authorization: `Bearer ${token}`
   },
-  body: JSON.stringify([
+  json: [   // 指定 data 以 "Content-Type": 'application/json' 传送
     {"op": "add", "path": "/membership", "users": [36476036], "groups": [561]}
-  ])
+  ]
 }
 
 request(opt, function(err, res, body) {
