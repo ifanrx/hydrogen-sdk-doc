@@ -101,6 +101,32 @@ https://cloud.minapp.com/oserve/v1/miniapp/user-profile/
 }
 ```
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/miniapp/user-profile/', 
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  qs: {     // query string, 被附加到uri的参数
+    nickname__contains: 'username',
+    gender: 1,
+    created_at__gte: 1483228800,
+    user_id: '363953xx',
+    order_by: '-created_at'
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
+```
 
 ## 获取用户详情
 
@@ -149,24 +175,15 @@ https://cloud.minapp.com/oserve/v1/miniapp/user-profile/55019/
 nodejs 版本
 
 ```
-var request = require('request');
-
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/miniapp/user-profile/', 
+  uri: 'https://cloud.minapp.com/oserve/v1/miniapp/user-profile/427177/',   // 427177 对应 :profile_id
   method: 'GET',
   headers: {
     Authorization: `Bearer ${token}`,
-  },
-  qs: {     // query string, 被附加到uri的参数
-    nickname__contains: 'username',
-    gender: 1,
-    created_at__gte: 1483228800,
-    user_id: '363953xx',
-    order_by: '-created_at'
   }
 }
 
 request(opt, function(err, res, body) {
-    console.log(body)
+  console.log(body)
 })
 ```
