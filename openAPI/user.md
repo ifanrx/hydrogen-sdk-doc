@@ -176,7 +176,7 @@ nodejs 版本
 
 ```
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/miniapp/user-profile/427177/',   // 427177 对应 :profile_id
+  uri: 'https://cloud.minapp.com/oserve/v1/miniapp/user-profile/4271xx/',   // 4271xx 对应 :profile_id
   method: 'GET',
   headers: {
     Authorization: `Bearer ${token}`,
