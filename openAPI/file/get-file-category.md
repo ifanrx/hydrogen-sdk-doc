@@ -109,7 +109,9 @@ https://cloud.minapp.com/oserve/v1/file-category/5a1bb2ed7026d950ca7d2a78/
     "files": 0,
     "id": "5a1bb2ed7026d950ca7d2a78",
     "name": "Category 1",
-    "created_at": 1511761847
+    "created_at": 1511761847,
+    "parent": null,
+    "subcategories": []
 }
 ```
 ### 代码示例
@@ -124,9 +126,6 @@ var opt = {
   method: 'GET',
   headers: {
     Authorization: `Bearer ${token}`
-  },
-  qs: {     // query string, 被附加到uri的参数
-    category_id: '5a2fe91508443e3123dbe1xx'
   }
 }
 
