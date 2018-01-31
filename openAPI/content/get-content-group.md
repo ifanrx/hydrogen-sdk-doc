@@ -112,9 +112,6 @@ var opt = {
   method: 'GET',
   headers: {
     Authorization: `Bearer ${token}`
-  },
-  qs: {     // query string, 被附加到uri的参数
-    content_group_id: '15130762111906xx'
   }
 }
 
