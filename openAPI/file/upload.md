@@ -91,6 +91,29 @@ https://cloud.minapp.com/oserve/v1/upload/
   - `file_link`     文件上传成功后的访问地址
   - `upload_url`    上传文件的目标地址
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/upload/',
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  json: {
+    filename: 'aTest.xlsm',
+    categories: '5a3b569109a80579061d63xx'
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(res.statusCode, body)
+})
+```
 
 ## 上传文件
 
@@ -146,3 +169,31 @@ https://v0.api.upyun.com/cloud-minapp-287
 ### 状态码说明
 
 - `200` 上传成功
+
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+var fs = require('fs');
+
+var opt = {
+  uri: upload_url,  // 获取上传文件的授权凭证成功返回的 upload_url
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "multipart/form-data"    // 传数据的格式
+  },
+  formData: {
+    authorization,
+    policy,
+    file: fs.createReadStream(__dirname + '/demo.js')   // 参数需为文件流
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(res.statusCode, body)
+})
+```
+  

@@ -178,6 +178,31 @@ print resp_.content
 
 ```
 
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/',  // 3906 对应 :table_id
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  qs: {
+    where: JSON.stringify({   // 可选, 参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码
+      "price": {"$eq": 10}
+    }),
+    order_by: 'id',   // 可选
+    offset: 0,    // 可选
+    limit: 20,    // 可选
+  }
+}
+
+request(opt, function(err, res, body) {
+  console.log(res)
+})
+```
 
 ## 查询数据项
 
@@ -206,6 +231,26 @@ print resp_.content
     "tag": ["Hello"],
     "updated_at": 1506444506
 }
+```
+
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/5a2fa9b008443e59e0e678xx/',  // 3906 对应 :table_id, 5a2fa9b008443e59e0e678xx 对应 :record_id
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  }
+}
+
+request(opt, function(err, res, body) {
+  console.log(body)
+})
 ```
 
 ## 写入数据
@@ -268,6 +313,33 @@ print resp_.content
 - `201` 写入成功
 - `400` 请求参数有错
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/',  // 3906 对应 :table_id
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  json: {
+    name: 'nickname',
+    desc: ['update insert data'],
+    price: 19,
+    amount: 19,
+    code: '18814098707'
+  }
+}
+
+request(opt, function(err, res, body) {
+  console.log(body)
+})
+```
+
 ## 更新数据
 
 本接口提供数据更新的能力，通过指定表 ID 以及 Record ID 来完成操作， 需注意，更新的数据所包含的字段需要与数据表中定义的字段一致。
@@ -325,6 +397,29 @@ print resp_.content
 - `201` 写入成功
 - `400` 请求参数有错
 
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/5a6ee2ab4a7baa1fc083e3xx',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
+  method: 'PUT',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  json: {
+    name: 'nickname'
+  }
+}
+
+request(opt, function(err, res, body) {
+  console.log(body)
+})
+```
+
 ## 数据删除
 
 请注意本接口 **可直接删除任意数据不受 ACL 控制**。
@@ -347,7 +442,27 @@ print resp_.content
 
 ### 状态码说明
 
-- `200` 删除成功
+- `204` 删除成功
+
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/5a6ee2ab4a7baa1fc083e3xx/',// 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
+  method: 'DELETE',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  }
+}
+
+request(opt, function(err, res, body) {
+  console.log(res.statusCode)
+})
+```
 
 ## 数据原子性更新
 
@@ -482,3 +597,30 @@ print resp_.content
 
 - `200` 更新成功
 - `400` 操作符不支持/请求参数有错
+### 代码示例
+
+nodejs 版本
+
+```
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/5a33406909a805412e3169xx/',  // 3906 对应 :table_id, 5a33406909a805412e3169xx 对应 :record_id
+  method: 'PUT',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  json: {
+    desc: {
+      "$append": ['atomic data']
+    },
+    price: {
+      "$incr_by": -1
+    }
+  }
+}
+
+request(opt, function(err, res, body) {
+  console.log(res.statusCode)
+})
+```
