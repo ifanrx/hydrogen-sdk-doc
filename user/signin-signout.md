@@ -26,6 +26,35 @@ wx.BaaS.login().then((res) => {
 })
 ```
 
+注：在 1.1.4 版本中，我们对用户拒绝授权回调做了调整，此时用户拒绝授权会返回一个 Error 对象，你可以通过以下方法做判断
+
+```
+wx.BaaS.login().then((res) => {
+  console.log(res)
+}, (err) => {
+  if (err.code === 603) {
+    console.log('用户拒绝授权')
+  } else if (err.code === 600) {
+    console.log('网络已断开')
+  } else if (err.code === 601) {
+    console.log('请求超时')
+  }
+}
+```
+
+由于以上变动对先前接口影响较大，我们在 1.1.6 版本中，又令用户拒绝授权后，返回用户基本信息，你可以通过以下方法做判断
+
+```
+wx.BaaS.login().then((res) => {
+  console.log(res)
+}, (res) => {
+  if (!(res instanceof Error)) {
+    console.log('用户拒绝授权')
+    console.log('用户基本信息', res)
+  }
+}
+```
+
 ##### 请求返回
 
 - 当用户允许授权时
