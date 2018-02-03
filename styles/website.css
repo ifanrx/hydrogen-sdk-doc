@@ -1,0 +1,42 @@
+.markdown-section h1 {
+  font-size: 1.75em;
+}
+
+.markdown-section h2 {
+  font-size: 1.5em;
+}
+
+.markdown-section h3 {
+  font-size: 1.25em;
+}
+
+.markdown-section h4 {
+  font-size: 1em;
+}
+
+/* reset tabs plugin */
+.markdown-section ol, .markdown-section ul {
+  padding-left: 0;
+  border-bottom: 1px solid #ebedf0;
+}
+.nav-tabs>li>a {
+  color: #CCC;
+}
+.nav-tabs > li.active > a:hover {
+  background: #FFF;
+}
+.nav-tabs > li > a:hover,
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  border: none;
+  background: #FFF;
+  border-bottom: 2px solid #1890ff;
+  color: #1890ff;
+  font-weight: bold;
+}
+
+/* reset navigation plugin */
+#anchor-navigation-ex-navbar ul{
+  display: block !important;
+}

@@ -1,10 +1,11 @@
 # 新增数据记录
 
-<p style='color:red'>* sdk version >= v1.1.0</p>
+> **danger**
+> sdk version >= v1.1.0
 
 ##### 请求示例
 
-```
+```js
 // 向 tableID 为 10 的数据表插入一条记录
 let tableID = 10
 let Product = new wx.BaaS.TableObject(tableID)

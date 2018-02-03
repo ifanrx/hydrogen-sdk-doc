@@ -135,42 +135,52 @@ $ curl -L ifanr.com
 
 ### 代码示例 
 
-nodejs 版本
+{% tabs first="Node", second="Python" %}
 
-```
-var request = require('request');
+{% content "first" %}
 
-// 获取 code
-var opt = {
-  uri: 'https://cloud.minapp.com/api/oauth2/hydrogen/openapi/authorize/',
-  method: 'POST',
-  json: {
-    client_id: 'a4d2d62965ddb57fa4xx',
-    client_secret: 'e5802b40135baab9b4e84e35bed058a264c37dxx'
-  },
-  jar: true,                // 允许记住 cookie 
-  followAllRedirects: true,     // 允许重定向
-}
+  ```js
+  var request = require('request');
 
-request(opt, function(err, res, body) {
-    getToken(body.code)  // 回调调用 getToken 函数
-})
-
-// 获取 token
-function getToken(code) {
+  // 获取 code
   var opt = {
-    uri: 'https://cloud.minapp.com/api/oauth2/access_token/',
+    uri: 'https://cloud.minapp.com/api/oauth2/hydrogen/openapi/authorize/',
     method: 'POST',
-    formData: {   // 指定 data 以 "Content-Type": "multipart/form-data" 传送
+    json: {
       client_id: 'a4d2d62965ddb57fa4xx',
-      client_secret: 'e5802b40135baab9b4e84e35bed058a264c37dxx',
-      grant_type: 'authorization_code',
-      code,
-    }
+      client_secret: 'e5802b40135baab9b4e84e35bed058a264c37dxx'
+    },
+    jar: true,                // 允许记住 cookie 
+    followAllRedirects: true,     // 允许重定向
   }
 
   request(opt, function(err, res, body) {
-      let token = JSON.parse(body).access_token
+      getToken(body.code)  // 回调调用 getToken 函数
   })
-}
-```
+
+  // 获取 token
+  function getToken(code) {
+    var opt = {
+      uri: 'https://cloud.minapp.com/api/oauth2/access_token/',
+      method: 'POST',
+      formData: {   // 指定 data 以 "Content-Type": "multipart/form-data" 传送
+        client_id: 'a4d2d62965ddb57fa4xx',
+        client_secret: 'e5802b40135baab9b4e84e35bed058a264c37dxx',
+        grant_type: 'authorization_code',
+        code,
+      }
+    }
+
+    request(opt, function(err, res, body) {
+        let token = JSON.parse(body).access_token
+    })
+  }
+  ```
+
+{% content "second" %}
+
+  ```python
+    ptthon code ……
+  ```
+
+{% endtabs %}

@@ -1,13 +1,5 @@
 # 内容管理
 
-## 该模块可以实现在小程序中渲染富文本的功能
-
-该模块涵盖以下主要内容:
-1. 内容库
-2. 内容
-3. 关联内容
-
-
 ### 内容库
 
 内容库是管理内容的容器, 配合用户组访问权限控制, 实现内容的分发。在内容库界面, 可以分类管理内容，实现内容的精细化组织，更可以对内容进行增删查改。 在小程序项目中配合 SDK API 一同使用即能实现将开发者创建好的富文本内容在小程序中正确渲染出来。
@@ -15,10 +7,12 @@
 #### 如何创建内容库 ?
 
 1. 如下图所示, 开发者可在知晓云后台内容模块点击"新增内容库"按钮来创建一个内容库。如果开发者已经对用户进行过分组, 创建内容库的同时还可以通过选择用户分组来设置该内容库的访问权限。
-![创建内容库](/images/content-create-library.jpg "创建内容")
+
+![创建内容库](/images/content-create-library.jpg)
 
 2. 成功创建内容库后, 可在当前页面得到该内容库 ID。该 ID 可用于 SDK API 的调用。对于已创建的内容库, 开发者还可对其执行更名以及重新设置内容库访问权限操作。
-![修改内容库](/images/content-update-library.jpg "修改内容库")
+
+![修改内容库](/images/content-update-library.jpg)
 
 
 
@@ -29,10 +23,12 @@
 #### 如何创建内容 ?
 
 1. 开发者可在知晓云后台内容模块中点击"添加内容"按钮创建一条内容。内容创建界面如下:
-![如何创建内容](/images/content-add-content.jpg "如何创建内容")
+
+![如何创建内容](/images/content-add-content.jpg)
 
 2. 成功创建内容后, 会在"所有分类"下看到新创建的内容
-![新增的内容](/images/content-add-content-succeed.jpg "新增内容")
+
+![新增的内容](/images/content-add-content-succeed.jpg)
 
 
 
@@ -47,11 +43,12 @@
 
   选中或新建一个分类, 点击"关联内容"按钮, 弹出关联界面。开发者可从左侧选中需要关联的内容, 点击中间相应的箭头并保存, 即可实现内容到分类的关联或者取消
 
-  ![关联内容界面](/images/content-associate.jpg "关联内容界面")
+  ![关联内容界面](/images/content-associate.jpg)
 
 
 
 2. 关联成功后的界面如下图所示:
-  ![成功关联界面](/images/content-associate-succeed.jpg "成功关联界面")
+
+  ![成功关联界面](/images/content-associate-succeed.jpg)
 
   开发者仍然可以对已关联的内容取消关联
