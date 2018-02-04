@@ -2,18 +2,18 @@
 
 通过 BaaS SDK 提供的 `wx.BaaS.order(OBJECT)` 方法, 可查询到交易的详细信息。典型的使用场景为: 调用 `wx.BaaS.pay(object)` 发起支付, 在成功回调中获取到 transactionID, 在要路由到新的页面时带上此 ID, 在新页面的 onLoad 方法中获取到该 ID, 从而使用此 ID 获取交易的详细信息。
 
-##### OBJECT 参数说明
+**OBJECT 参数说明**
 参数列表采用**驼峰命名, 区分大小写**的命名方式和书写规范
 
-|      参数名      |   类型   | 是否必填 | 参数描述                      |
-| :-----------: | :----: | :--: | :------------------------ |
-| transactionID | String |  Y   | BaaS 平台所记录的 transactionID |
+|      参数     |   类型  | 必填 | 参数描述 |
+| :-----------: | :----: | :-: | :-----: |
+| transactionID | String |  Y  | BaaS 平台所记录的 transactionID |
 
-##### 接口说明
+**接口说明**
 - 使用 `wx.BaaS.order(object)` 发起事务查询请求后, BaaS 服务器会返回当前事务 ID 的详细信息。
   部分关键字段和含义如下:
 
-```javascript
+```js
 data: {
   created_at: '',              // 调用 wx.BaaS.pay(object) 的时刻
   merchandise_description: '', // 微信支付-微信支付凭证-商品详情上的文字描述
@@ -25,9 +25,9 @@ data: {
 }
 ```
 
-##### 示例代码
+**示例代码**
 
-```
+```js
 // 获取支付交易示例代码
 let transactionID = "iMiTAsOrgjDKItmKifWzzayHAwneYwYo"
 let params = { transactionID }

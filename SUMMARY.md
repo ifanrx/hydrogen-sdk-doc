@@ -1,23 +1,30 @@
 # Summary
 
 * [简介](README.md)
+
+----
+
 * [新手入门](newbies/README.md)
+    * [注册账号](newbies/sign-up.md)
+    * [绑定小程序](newbies/bind-minapp.md)
+
+----
+
 * [控制台操作](dashboard/README.md)
     * [数据管理](dashboard/schema.md)
     * [文件管理](dashboard/file.md)
     * [内容管理](dashboard/content.md)
     * [用户管理](dashboard/user.md)
     * [ACL 简介](dashboard/acl.md)
+
+----
+
 * [JS SDK](js-sdk/README.md)
-    * [准备工作](js-sdk/ready/README.md)
-        * [注册账号](js-sdk/ready/sign-up.md)
-        * [绑定小程序](js-sdk/ready/bind-minapp.md)
-    * [开始](js-sdk/start/README.md)
+    * [开始](js-sdk/start.md)
     * [用户](js-sdk/user/README.md)
         * [登入登出](js-sdk/user/signin-signout.md)
         * [获取用户信息](js-sdk/user/user.md)
-        * [获取用户信息 (SDK 1.1.3 以下版本)](js-sdk/user/user-legacy.md)
-    * [数据表（SDK 1.1.0 及以上版本）](js-sdk/schema/README.md)
+    * [数据表](js-sdk/schema/README.md)
         * [新增数据项](js-sdk/schema/create-record.md)
         * [更新数据项](js-sdk/schema/update-record.md)
         * [删除数据项](js-sdk/schema/delete-record.md)
@@ -25,31 +32,26 @@
         * [查询数据项](js-sdk/schema/query.md)
         * [分页和排序](js-sdk/schema/limit-and-order.md)
         * [地理位置操作](js-sdk/schema/geo.md)
-    * [数据表 (SDK 1.1.0 以下版本)](js-sdk/legacy-schema/README.md)
-        * [新增数据项](js-sdk/legacy-schema/create-record.md)
-        * [更新数据项](js-sdk/legacy-schema/update-record.md)
-        * [删除数据项](js-sdk/legacy-schema/delete-record.md)
-        * [获取数据项列表](js-sdk/legacy-schema/get-record-list.md)
-        * [获取数据项详情](js-sdk/legacy-schema/get-record-detail.md)
-    * [网络请求](js-sdk/request/README.md)
+    * [网络请求](js-sdk/request.md)
     * [支付](js-sdk/payment/README.md)
         * [微信支付](js-sdk/payment/pay.md)
         * [订单查询](js-sdk/payment/order.md)
-    * [本地存储](js-sdk/local-storage/README.md)
+    * [本地存储](js-sdk/local-storage.md)
     * [文件与文件分类](js-sdk/file/README.md)
         * [文件操作](js-sdk/file/file.md)
         * [文件分类操作](js-sdk/file/category.md)
         * [文件上传 (SDK 1.1.2 以下版本)](js-sdk/file/file-upload-lagecy.md)
-    * [模板消息](js-sdk/template-message/README.md)
-    * [微信加密数据解密](js-sdk/wechat-decrypt/README.md)
+    * [模板消息](js-sdk/template-message.md)
+    * [微信加密数据解密](js-sdk/wechat-decrypt.md)
     * [内容库](js-sdk/content/README.md)
         * [内容操作](js-sdk/content/operate.md)
-        * [内容操作 (SDK 1.1.3 以下版本)](js-sdk/content/operate-legacy.md)
         * [渲染内容](js-sdk/content/render.md)
-    * [错误码详解](js-sdk/error-code/README.md)
-    * [SDK 下载](js-sdk/download-sdk/README.md)
-    * [富文本渲染模块](https://github.com/ifanrx/wxParser)
+    * [错误码详解](js-sdk/error-code.md)
+    * [SDK 下载](js-sdk/download-sdk.md)
     * [更新日志](https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md)
+
+----
+
 * [知晓云开放 API](open-api/README.md)
     * [授权认证](open-api/authentication.md)
     * [数据操作](open-api/record.md)
@@ -66,6 +68,12 @@
         * [组集操作](open-api/group/super-group.md)
         * [用户组与用户的操作](open-api/group/membership.md)
     * [用户模块](open-api/user.md)
+
+----
+
 * [云函数](cloud-function/README.md)
+
+----
+
 * [管理与支持](support/README.md)
     * [服务协议](support/terms.md)

@@ -2,16 +2,16 @@
 
 通过 BaaS SDK 提供的 `wx.BaaS.pay(OBJECT)` 方法, 可以方便地完成微信支付。
 
-##### OBJECT 参数说明
+**OBJECT 参数说明**
 参数列表采用**驼峰命名, 区分大小写**的命名方式和书写规范
 
-| 参数名                    | 类型      | 是否必填 | 参数描述           |
-| :--------------------- | :------ | :--: | :------------- |
-| totalCost              | Number  |  Y   | 支付总额           |
-| merchandiseDescription | String  |  Y   | 微信支付凭证-商品详情的内容 |
-| merchandiseSchemaID    | Integer |  N   | 商品表 ID         |
-| merchandiseRecordID    | String |  N   | 商品记录 ID          |
-| merchandiseSnapshot    | Object  |  N   | 根据业务需求自定义的数据   |
+|           参数          |   类型  | 必填 | 参数描述 |
+| :--------------------: | :-----: | :-: | :---- : |
+|      totalCost         | Number  |  Y  | 支付总额 |
+| merchandiseDescription | String  |  Y  | 微信支付凭证-商品详情的内容 |
+|   merchandiseSchemaID  | Integer |  N  | 商品表 ID |
+|   merchandiseRecordID  | String  |  N  | 商品记录 ID |
+|   merchandiseSnapshot  | Object  |  N  | 根据业务需求自定义的数据 |
 
 注: 通过 `merchandiseSchemaID` 和 `merchandiseRecordID` 来定位用户购买的物品。
 
@@ -23,7 +23,7 @@
 
 `merchandiseSnapshot`可将发起支付时的其他数据放在此参数中传递给服务端做持久化存储。
 
-##### 接口说明
+**接口说明**
 
 调用 `wx.BaaS.pay(object)` 之前 **必须完成用户授权**（[使用 `wx.BaaS.login()`](../user/sign-in.md)），否则支付将失败。请在产品设计上做好这块的处理，尤其注意处理用户拒绝授权之后的处理方法，具体请参考 “获取用户信息” 章节说明。
 
@@ -40,7 +40,7 @@
 - 注: 微信提供了统一的返回描述字符串 `res.errMsg` 来通知开发者支付结果的详细信息
 
 
-##### 示例代码
+**示例代码**
 
 ```
 // 支付示例代码

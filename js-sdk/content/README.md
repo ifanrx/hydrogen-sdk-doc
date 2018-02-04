@@ -10,7 +10,7 @@
 
 富文本 `HTML`：
 
-```
+```html
 <b>Hello, world!</b>
 <div>
   <i>客村地铁站</i>
@@ -22,7 +22,7 @@
 
 借助 wxParser, 以上富文本 `HTML` 将会被转化为能被微信小程序解析的 WXML：
 
-```
+```html
 <view class="wxParser">
   <view class=" wxParser-b wxParser-inline">
     <view class="wxParserText wxParser-inline">Hello, world!</view>

@@ -12,21 +12,19 @@
 
 **`wxParser.parse(options)` 方法的 `options` 参数说明**
 
-| 参数名 | 类型   | 必填 |描述 |
-| :---:  | :----: | :----: |:----: |
-| bind | String | 是 | 要绑定的数据名称 |
-| html | String | 是 | HTML 内容 |
-| target | Object | 是 | 绑定数据的模块对象 |
-| enablePreviewImage | Boolean | 否 | 是否启用富文本内的图片预览功能，默认是 |
-| tapLink | Function | 否 | 点击超链接时的回调函数 |
+|         参数        |   类型   | 必填 | 说明 |
+| :----------------: | :------: | :-: | :-: |
+|         bind       |  String  |  是 | 要绑定的数据名称 |
+|         html       |  String  |  是 | HTML 内容 |
+|        target      |  Object  |  是 | 绑定数据的模块对象 |
+| enablePreviewImage | Boolean  |  否 | 是否启用富文本内的图片预览功能，默认是 |
+|       tapLink      | Function |  否 | 点击超链接时的回调函数 |
 
 ### 示例
 
----
-
 **WXML**
 
-```
+```html
 <import src="../../wxParser/index.wxml"/>
 <view class="wxParser">
   <template is="wxParser" data="{{wxParserData:richText.nodes}}"/>
@@ -35,7 +33,7 @@
 
 **JS**
 
-```
+```js
 const wxParser = require('../../wxParser/index');
 
 Page({
@@ -64,7 +62,7 @@ Page({
 
 **WXSS**
 
-```
+```js
 @import '../wxParser/index.wxss'
 ```
 

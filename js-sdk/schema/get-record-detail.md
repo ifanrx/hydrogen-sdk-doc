@@ -1,10 +1,12 @@
 # 获取数据项详情
 
-<p style='color:red'>* sdk version >= v1.1.0</p>
+{% tabs first="SDK 1.1.0 及以上版本", second="SDK 1.1.0 以下版本" %}
 
-##### 请求示例
+{% content "first" %}
 
-```
+**请求示例**
+
+```js
 let tableID = 10
 let recordID = '59897882ff650c0477f00485'
 
@@ -17,10 +19,10 @@ Product.get(recordID).then( (res) => {
 })
 ```
 
-##### 返回示例 (res.statusCode === 200)
+**返回示例** (res.statusCode === 200)
 
 res.data:
-```
+```js
 {
   "_id": "59a3c2b5afb7766a5ec6e84e",
   "amount": 0,
@@ -35,3 +37,61 @@ res.data:
   "write_perm": ["user:*"]
 }
 ```
+
+{% content "second" %}
+
+<p style='color:red'>* 该写法在 sdk v2.0 前仍然有效</p>
+
+`wx.BaaS.getRecord(OBJECT)`
+
+**OBJECT 参数说明**
+
+|   参数名    |   类型   |  必填  |   描述   |
+| :------: | :----: | :--: | :----: |
+| tableID  | Number |  是   | 数据表 ID |
+| recordID | String |  是   | 数据项 ID |
+
+**请求示例**
+
+```js
+let tableID = 10
+let recordID = '59897882ff650c0477f00485'
+let objects = {
+  tableID,
+  recordID
+};
+wx.BaaS.getRecord(objects).then( (res) => {
+  // success
+}, (err) => {
+  // err
+})
+```
+
+**返回参数**
+
+|    参数名   |   类型   |   描述   |
+| :--------: | :-----: | :------: |
+|     id     | String  | 数据项 ID |
+| created_at | Integer |  创建时间 |
+|  is_admin  | Boolean | 自定义字段 |
+|    name    | String  | 自定义字段 |
+|   price    | Number  | 自定义字段 |
+|    tags    |  Array  | 自定义字段 |
+
+**返回示例**
+
+```js
+{
+  "created_at": 1487053095,
+  "id": "59897882ff650c0477f00485",
+  "is_admin": false,
+  "name": "JlpvHdheLh",
+  "price": 89,
+  "tags": [
+    "xGHt",
+    "hHqz"
+  ]
+}
+```
+
+{% endtabs %}
