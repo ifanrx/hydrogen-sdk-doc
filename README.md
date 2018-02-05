@@ -1,27 +1,27 @@
 <div class="doc-wrapper">
-  <p class="doc-title">
-    知晓云文档中心
-  </p>
+  <section class="doc-header">
+    <p class="doc-title">
+      知晓云文档中心
+    </p>
+    <p class="doc-desc">
+      知晓云是个好用、顺手的小程序开发工具。它免去了小程序开发中服务器搭建、域名备案、数据接口实现等繁琐流程。让您专注于业务逻辑的实现，使用知晓云开发小程序，门槛更低，效率更高。
+    </p>
+  </section>
+
   <ul class="doc-detail">
     <li>
       <h3>
-        <a href="/newbies/">新手入门</a>
+        <a href="/newbies/README.md/">新手入门</a>
       </h3>
       <ul class="doc-newbie doc-detail-item">
         <li>
-          <a href="">准备工作</a>
+          <a href="/newbies/#小程序注册指引">小程序注册指引</a>
         </li>
         <li>
-          <a href="">知晓云账号注册</a>
+          <a href="/newbies/#知晓云账号注册">知晓云账号注册</a>
         </li>
         <li>
-          <a href="">小程序注册</a>
-        </li>
-        <li>
-          <a href="">微信开发者工具</a>
-        </li>
-        <li>
-          <a href="">演示 demo</a>
+          <a href="/newbies/#创建第一个接入知晓云的小程序">第一个接入知晓云的小程序</a>
         </li>
       </ul>
     </li>

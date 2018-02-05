@@ -5,8 +5,6 @@
 ----
 
 * [新手入门](newbies/README.md)
-    * [注册账号](newbies/sign-up.md)
-    * [绑定小程序](newbies/bind-minapp.md)
 
 ----
 
