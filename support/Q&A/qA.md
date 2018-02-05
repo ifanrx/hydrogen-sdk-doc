@@ -11,7 +11,7 @@
 ##  <span id="appid">如何获取AppID?</span>
 
 您可以直接登录小程序后台，进入“设置-开发设置”查看即可
-![查看appId](../../images/support/support-qa-appid3.png)
+![查看appId](../../images/support/support-qa-appid.png)
  
 ## <span id="Wechat-config">如何在微信后台配置安全域名?</span>
 1.您可以在知晓云后台 – [设置](https://cloud.minapp.com/admin/profile/) – 小程序设置，查看域名配置项
