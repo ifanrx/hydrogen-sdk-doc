@@ -49,8 +49,8 @@ params.totalCost = 398
 params.merchandiseDescription = '一条支付描述'
 
 wx.BaaS.pay(params).then((res) => {
-  // success. 支付请求成功响应。
-  /* 如果支付成功, 则可以在 res 中拿到 transaction_no 和支付结果信息
+  // success. 支付请求成功响应，可以在 res 中拿到 transaction_no 和支付结果信息
+  /* 1.1.4 以下版本：
     如果支付失败, 则可以获取失败原因
     注: 只要是服务器有返回的情况都会进入 success, 即便是 4xx，5xx 都会进入
     所以非系统级别错误导致的支付失败也会进入这里, 例如用户取消，参数错误等
@@ -60,4 +60,20 @@ wx.BaaS.pay(params).then((res) => {
   // 未完成用户授权或发生网络异常等
   console.log(err)
 });
+```
+
+注：1.1.4 版本之后，为了方便开发者清楚区分用户取消支付还是支付失败，我们为其增加了错误类型，你可以通过像以下操作，对支付状态进行判断
+
+```
+wx.BaaS.pay(params).then(res => {
+  // success. 支付请求成功响应。
+}, err => {
+  if (err.code === 603) {
+    console.log('用户尚未授权')
+  } else if (err.code === 607) {
+    console.log('用户取消支付')
+  } else if (err.code === 608){
+    console.log(err.message)
+  }
+})
 ```
