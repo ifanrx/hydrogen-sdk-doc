@@ -1,6 +1,6 @@
 # 渲染内容
 
-### 步骤
+## 使用步骤
 
 1. 下载 [小程序内容渲染模块](https://github.com/ifanrx/wxParser/tree/master/wxParser)
 2. 把 `wxParser` 目录放到小程序项目的根目录下
@@ -12,15 +12,15 @@
 
 **`wxParser.parse(options)` 方法的 `options` 参数说明**
 
-|         参数        |   类型   | 必填 | 说明 |
-| :----------------: | :------: | :-: | :-: |
-|         bind       |  String  |  是 | 要绑定的数据名称 |
-|         html       |  String  |  是 | HTML 内容 |
-|        target      |  Object  |  是 | 绑定数据的模块对象 |
-| enablePreviewImage | Boolean  |  否 | 是否启用富文本内的图片预览功能，默认是 |
-|       tapLink      | Function |  否 | 点击超链接时的回调函数 |
+| 参数                |   类型   | 必填 | 说明 |
+| :----------------- | :------- | :-- | :-- |
+| bind               | String   | 是  | 要绑定的数据名称 |
+| html               | String   | 是  | HTML 内容 |
+| target             | Object   | 是  | 绑定数据的模块对象 |
+| enablePreviewImage | Boolean  | 否  | 是否启用富文本内的图片预览功能，默认是 |
+| tapLink            | Function | 否  | 点击超链接时的回调函数 |
 
-### 示例
+## 示例
 
 **WXML**
 
@@ -66,9 +66,7 @@ Page({
 @import '../wxParser/index.wxss'
 ```
 
-### 注意
-
----
+<span class="attention">注:</span>
 
 - `JS` 中的 `richText` 可以自定义，但是必须要与 `WXML` 中的 `richText` 对应
 - 推荐把 template 放到 `<view class="wxParser"></view>` 内部，这样可以受 `wxParser` 控制并具有 `wxParser` 的一些默认样式

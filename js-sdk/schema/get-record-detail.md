@@ -4,6 +4,8 @@
 
 {% content "first" %}
 
+## SDK 1.1.0 及以上版本
+
 **请求示例**
 
 ```js
@@ -40,16 +42,19 @@ res.data:
 
 {% content "second" %}
 
-<p style='color:red'>* 该写法在 sdk v2.0 前仍然有效</p>
+## SDK 1.1.0 以下版本
+
+> **info**
+> 该写法在 sdk v2.0 前仍然有效
 
 `wx.BaaS.getRecord(OBJECT)`
 
 **OBJECT 参数说明**
 
-|   参数名    |   类型   |  必填  |   描述   |
-| :------: | :----: | :--: | :----: |
-| tableID  | Number |  是   | 数据表 ID |
-| recordID | String |  是   | 数据项 ID |
+| 参数      | 类型   | 必填 | 说明 |
+| :------  | :----- | :-- | :-- |
+| tableID  | Number | 是  | 数据表 ID |
+| recordID | String | 是  | 数据项 ID |
 
 **请求示例**
 
@@ -69,14 +74,14 @@ wx.BaaS.getRecord(objects).then( (res) => {
 
 **返回参数**
 
-|    参数名   |   类型   |   描述   |
-| :--------: | :-----: | :------: |
-|     id     | String  | 数据项 ID |
-| created_at | Integer |  创建时间 |
-|  is_admin  | Boolean | 自定义字段 |
-|    name    | String  | 自定义字段 |
-|   price    | Number  | 自定义字段 |
-|    tags    |  Array  | 自定义字段 |
+| 参数        | 类型    | 说明 |
+| :--------- | :------ | :-- |
+| id         | String  | 数据项 ID |
+| created_at | Integer | 创建时间 |
+| is_admin   | Boolean | 自定义字段 |
+| name       | String  | 自定义字段 |
+| price      | Number  | 自定义字段 |
+| tags       |  Array  | 自定义字段 |
 
 **返回示例**
 

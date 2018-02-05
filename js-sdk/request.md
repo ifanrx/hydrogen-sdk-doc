@@ -11,13 +11,13 @@ BaaS 提供 `wx.BaaS.request(OBJECT)` 函数用于调用 API。
 
 **OBJECT 参数说明**
 
-|   参数名  |      类型      | 必填 | 说明 |
-| :------: | :-----------: | :-: | :-: |
-|    url   |     String    |  是  | 接口地址 |
-|  method  |     String    |  是  | 默认为 GET，有效值：OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT |
-|   data   | Object/String |  否  | 请求参数 |
-|  header  |    Object     |  否  | 设置请求的 header , header 中不能设置 Referer |
-| dataType |    String     |  否  | 默认为 json |
+| 参数      |      类型      | 必填 | 说明 |
+| :------- | :-----------: | :--- | :-- |
+| url      | String        | 是   | 接口地址 |
+| method   | String        | 是   | 默认为 GET，有效值：OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT |
+| data     | Object/String | 否   | 请求参数 |
+| header   | Object        | 否   | 设置请求的 header , header 中不能设置 Referer |
+| dataType | String        | 否   | 默认为 json |
 
 **示例**
 
@@ -37,17 +37,17 @@ wx.BaaS.request({
 
 BaaS 提供的 API，如果返回结果是与列表相关的，返回参数中会附有 meta 元信息，其结构如下：
 
-|      参数    |  类型  |  描述  |
-| :--------:  | :----: | :---: |
+| 参数         | 类型   | 说明 |
+| :---------  | :----- | :--- |
 | total_count | Number | 列表中元素总数 |
-|    next     | String | 下页地址 |
-|   previous  | String | 上页地址 |
-|    limit    | Number | 每次拉取数量的最大值，见 Tip |
-|    offset   | Number | 相对起始位置的偏移量 |
+| next        | String | 下页地址 |
+| previous    | String | 上页地址 |
+| limit       | Number | 每次拉取数量的最大值，见 Tip |
+| offset      | Number | 相对起始位置的偏移量 |
 
 **meta 返回示例**
 
-```
+```js
 {
   "limit": 20,
   "next": null,

@@ -4,11 +4,13 @@
 
 {% content "first" %}
 
-## 通用操作
+## SDK 1.1.0 及以上版本
+
+### 通用操作
 
 **请求示例**
 
-```
+```js
 // 实例化查询对象
 var query = new wx.BaaS.Query()
 
@@ -96,12 +98,12 @@ query.matches('name', regExp)
 构建一个 regExp 可通过以下两种方法之一:
 
 - 使用正则表达式字面量
-```
+```js
 const regExp = /^abc/i
 ```
 
 - 调用 RegExp 对象的构造函数
-```
+```js
 const regExp = new RegExp('^abc', 'i');
 ```
 
@@ -228,21 +230,24 @@ var orQuery = wx.BaaS.Query.or(andQuery, query3)
 
 {% content "second" %}
 
-<p style='color:red'>* 该写法在 sdk v2.0 前仍然有效</p>
+## SDK 1.1.0 以下版本
+
+> **info**
+> 该写法在 sdk v2.0 前仍然有效
 
 `wx.BaaS.getRecordList(OBJECT)`
 
-## 一般情况
+### 一般情况
 
 **OBJECT 参数说明**
 
-|    参数  |   类型  | 必填 |   描述   |
-| :-----: | :----: | :-: | :-----: |
-| tableID | Number |  是 | 数据表 ID |
+| 参数     | 类型   | 必填 | 说明 |
+| :------ | :----- | :-- | :-- |
+| tableID | Number | 是  | 数据表 ID |
 
 **请求示例**
 
-```
+```js
 // 获取 tableID 为 10 的数据表中的第一页(默认 20 条)的数据记录
 let tableID = 10
 let objects = { tableID }
@@ -260,18 +265,18 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 
 列表项属性说明
 
-|    参数名     |   类型    |   描述   |
-| :--------: | :-----: | :----: |
-|     id     | String  | 数据表 ID |
-| created_at | Integer |  创建时间  |
-|  is_admin  | Boolean | 自定义字段 |
-|    name    | String  | 自定义字段 |
-|   price    | Integer | 自定义字段 |
-|    tags    |  Array  | 自定义字段 |
+| 参数名      | 类型     | 说明 |
+| :--------- | :------ | :--: |
+| id         | String  | 数据表 ID |
+| created_at | Integer | 创建时间 |
+| is_admin   | Boolean | 自定义字段 |
+| name       | String  | 自定义字段 |
+| price      | Integer | 自定义字段 |
+| tags       | Array   | 自定义字段 |
 
 **返回示例**
 
-```
+```js
 {
   "meta": {
     "limit": 20,
@@ -296,7 +301,7 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 }
 ```
 
-## 查询
+### 查询
 
 BaaS 提供的查询数据接口提供三种过滤查询方式：
 
@@ -306,18 +311,18 @@ BaaS 提供的查询数据接口提供三种过滤查询方式：
 
 提供小于，小于等于，大于，大于等于，范围操作，而且可以组合使用。后缀的使用规则如： `price__range`，`name__contains`，`recordID__lte`
 
-|   参数后缀   | 对应数据表类型  |  说明  |
-| :------: | :-----------: | :--: |
-|    lt    |    Integer/String    |  小于  |
-|   lte    |    Integer/Sring    | 小于等于 |
-|    gt    |    Integer/String    |  大于  |
-|   gte    |    Integer/String    | 大于等于 |
-|  range   | Integer/Float |  范围  |
-| contains |    String     |  包含  |
+| 参数后缀  | 对应数据表类型    | 说明 |
+| :------- | :------------- | :-- |
+| lt       | Integer/String | 小于 |
+| lte      | Integer/Sring  | 小于等于 |
+| gt       | Integer/String | 大于 |
+| gte      | Integer/String | 大于等于 |
+| range    | Integer/Float  | 范围 |
+| contains | String         | 包含 |
 
 示例 1：查询创建者 `ID` 为 1，`name` 为 `知晓云` 的记录（精确查询）
 
-```
+```js
 let objects = {
   tableID: 10,
   created_by: 1,
@@ -332,7 +337,7 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 
 示例 2：查询 `name` 中包含 `知晓云` 字符串的记录（模糊查询）
 
-```
+```js
 let objects = {
   tableID: 10,
   name__contains: '知晓云',
@@ -346,7 +351,7 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 
 示例 3：查询创建者 ID 为在范围 [1, 3] 的记录（多项匹配）
 
-```
+```js
 let objects = {
   tableID: 10,
   created_by__range: '1,3',
@@ -360,7 +365,7 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 
 示例 4：查询创建者 recordID 大于等于 '5919eb015f281f2b321720be' 的记录
 
-```
+```js
 let objects = {
   tableID: 10,
   recordID__gte: '5919eb015f281f2b321720be',
@@ -374,7 +379,7 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 
 示例 5：查询创建者 recordID 大于等于 '5919eb015f281f2b321720be'，且 price 小于 1000 的记录
 
-```
+```js
 let objects = {
   tableID: 10,
   recordID__gte: '5919eb015f281f2b321720be',

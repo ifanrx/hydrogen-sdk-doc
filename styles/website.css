@@ -40,3 +40,8 @@
 #anchor-navigation-ex-navbar ul{
   display: block !important;
 }
+
+.attention {
+  font-size: 1.5em;
+  color: red;
+}

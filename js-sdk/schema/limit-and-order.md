@@ -4,7 +4,9 @@
 
 {% content "first" %}
 
-## 分页
+## SDK 1.1.0 及以上版本
+
+### 分页
 
 通过使用 limit 和 offset 来控制分页数据，默认 limit 为 20, offset 为 0，我们也可以手动指定 limit 和 offset 来控制，limit 最大可设置为 1000。
 
@@ -44,7 +46,9 @@ Product.setQuery(query).orderBy(['-created_at']).find()
 
 {% content "second" %}
 
-## 分页
+## SDK 1.1.0 以下版本
+
+### 分页
 
 使用 `limit` 和 `offset` 参数来控制分页请求
 
@@ -70,7 +74,7 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 });
 ```
 
-## 排序
+### 排序
 
 示例 1：查询数据表 `ID` 为 10 的数据，返回的数据按 `id` 逆序排序
 

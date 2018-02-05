@@ -4,23 +4,25 @@
 
 {% content "first" %}
 
+## SDK 1.1.3 及以上版本
+
 `let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)`
 
 **参数说明**
 
-|       参数      |  类型   |  必填  | 说明 |
-| :------------: | :----: | :----: | :-: |
-| contentGroupID | Number |   是   | 内容库 ID |
+| 参数           | 类型    | 必填 | 说明 |
+| :------------: | :----- | :-- | :-- |
+| contentGroupID | Number | 是  | 内容库 ID |
 
-## 获取内容详情
+### 获取内容详情
 
 `MyContentGroup.getContent(richTextID)`
 
 **参数说明**
 
-|   参数名    |   类型  |  必填  |   说明  |
-| :--------: | :----: | :----: | :----: |
-| richTextID | Number |   是   | 内容 ID |
+| 参数名      | 类型   | 必填  | 说明 |
+| :--------- | :----- | :--- | :-: |
+| richTextID | Number | 是    | 内容 ID |
 
 **请求示例**
 
@@ -36,20 +38,20 @@ MyContentGroup.getContent(richTextID).then((res) => {
 });
 ```
 
-##### 返回参数
+**返回参数**
 
-|     参数     |      类型      |     说明    |
-| :--------:  | :-----------: | :---------: |
-| categories  |  Number Array |   内容分类   |
-|   content   |     String    |   内容详情   |
-|    cover    |     String    |  封面图 url  |
-| created_at  |     Number    |   创建时间  |
-| created_by  |     Number    |   user ID   |
-| description |     String    |     摘要    |
-|  group_id   |     Number    |  内容库 ID  |
-|     id      |     Number    |   内容 ID  |
-|    title    |     String    |   内容标题  |
-|  update_at  |     Number    |   更新时间  |
+| 参数         | 类型         | 说明 |
+| :---------- | :----------- | :-- |
+| categories  | Number Array | 内容分类 |
+| content     | String       | 内容详情 |
+| cover       | String       | 封面图 url |
+| created_at  | Number       | 创建时间 |
+| created_by  | Number       | user ID |
+| description | String       | 摘要 |
+| group_id    | Number       | 内容库 ID |
+| id          | Number       | 内容 ID |
+| title       | String       | 内容标题 |
+|  update_at  | Number       | 更新时间 |
 
 > **info**
 > 如果有自定义字段，则一并返回
@@ -72,7 +74,7 @@ res.data:
 }
 ```
 
-## 查询，获取内容列表
+### 查询，获取内容列表
 
 内容查询与[数据表查询](../schema/query.md)方法一致
 
@@ -95,15 +97,15 @@ MyContentGroup.setQuery(query).find().then((res) => {
 });
 ```
 
-## 获取分类详情
+### 获取分类详情
 
 `MyContentGroup.getCategory(categoryID)`
 
 **OBJECT 参数说明**
 
-|     参数    |   类型  | 必填 | 说明 |
-| :--------: | :----: | :----: | :-: |
-| categoryID | Number |  是  | 分类 ID |
+| 参数        | 类型   | 必填 | 说明 |
+| :--------- | :----  | :-- | :-- |
+| categoryID | Number |  是 | 分类 ID |
 
 **请求示例**
 
@@ -139,15 +141,15 @@ res.data:
 
 **返回参数**
 
-|      参数      |   类型   | 说明 |
-| :-----------: | :-----: | :--: |
-|    children   |  Array  | 子分类列表 |
+|  参数          | 类型    | 说明 |
+| :------------ | :------ | :-- |
+| children      |  Array  | 子分类列表 |
 | have_children | Boolean | 是否含有子分类 |
-|       id      |  Number | 分类 ID  |
-|      name     |  String | 分类名称 |
+| id            |  Number | 分类 ID |
+| name          |  String | 分类名称 |
 
 
-## 获取内容库分类列表
+### 获取内容库分类列表
 
 `MyContentGroup.getCategoryList()`
 
@@ -165,7 +167,7 @@ MyContentGroup.getCategoryList().then( (res) => {
 ```
 
 
-## 分页与排序
+### 分页与排序
 内容查询的分页与排序操作和[数据表分页与排序](../schema/limit-and-order.md)方法一致
 
 **请求示例**
@@ -179,15 +181,17 @@ MyContentGroup.orderBy('-created_by').limit(5).offset(10).find().then()
 
 {% content "second" %}
 
-## 获取内容详情
+## SDK 1.1.3 以下版本
+
+### 获取内容详情
 
 `wx.BaaS.getContent(OBJECT)`
 
 **OBJECT 参数说明**
 
-|     参数    |  类型  | 必填 | 说明 |
-| :--------: | :----: | :-: | :-: |
-| richTextID | Number |  是 | 内容 ID |
+| 参数        | 类型    | 必填 | 说明 |
+| :--------- | :----- | :--- | :-- |
+| richTextID | Number |  是  | 内容 ID |
 
 **请求示例**
 
@@ -204,14 +208,14 @@ wx.BaaS.getContent(objects).then( (res) => {
 
 **返回参数**
 
-|      参数    |  类型  | 说明 |
-| :--------:  | :----: | :-: |
-|   content   | String | 内容详情 |
-|     cover   | String | 封面图 url |
-|  created_at | Number | 创建时间 |
+| 参数         | 类型   | 说明 |
+| :---------- | :----- | :-- |
+| content     | String | 内容详情 |
+| cover       | String | 封面图 url |
+| created_at  | Number | 创建时间 |
 | description | String | 摘要 |
-|     id      | Number | 内容 ID |
-|    title    | String | 内容标题 |
+| id          | Number | 内容 ID |
+| title       | String | 内容标题 |
 
 **返回示例**
 
@@ -226,18 +230,19 @@ wx.BaaS.getContent(objects).then( (res) => {
 }
 ```
 
-## 查询，获取内容列表
+### 查询，获取内容列表
 
 `wx.BaaS.getContentList(OBJECT)`
 
 **OBJECT 参数说明**
 
-| 参数名 | 类型   | 必填| 描述 |
-| :---:  | :----: | :----: | :----: |
-| contentGroupID | Number | 是 | 内容库 ID |
-| categoryID | Number | 是 |分类 ID |
+| 参数           | 类型    | 必填 | 说明 |
+| :------------- | :----- | :-- | :---- |
+| contentGroupID | Number | 是  | 内容库 ID |
+| categoryID     | Number | 是  | 分类 ID |
 
-注意：contentGroupID 和 categoryID 两个参数只能选填一个，不能同时添加。
+> **info**
+> contentGroupID 和 categoryID 两个参数只能选填一个，不能同时添加。
 
 **请求示例**
 
@@ -263,10 +268,10 @@ wx.BaaS.getContentList(objects).then( (res) => {
 
 列表项属性说明
 
-|     参数    |  类型  | 描述 |
-| :--------: | :----: | :-: |
-|      id    | Number | 分类 ID |
-|    title   | String | 标题 |
+| 参数        | 类型   | 说明 |
+| :--------- | :----- | :-- |
+| id         | Number | 分类 ID |
+| title      | String | 标题 |
 | created_at | Number | 创建时间 |
 
 **返回示例**
@@ -294,14 +299,14 @@ wx.BaaS.getContentList(objects).then( (res) => {
 > 分页、查询和排序参考数据表中 [获取数据项列表](../../legacySchema/get-record-list.md) 的操作
 
 
-## 获取内容库详情
+### 获取内容库详情
 
 `wx.BaaS.getContentGroup(OBJECT)`
 
 **OBJECT 参数说明**
 
-|       参数      |  类型  | 必填 | 描述 |
-| :------------: | :----: | :-: | :-: |
+| 参数            | 类型   | 必填 | 说明 |
+| :------------- | :----- | :-- | :-- |
 | contentGroupID | Number |  是 | 内容库 ID |
 
 **请求示例**
@@ -324,11 +329,11 @@ wx.BaaS.getContentGroup(objects).then( (res) => {
 
 列表项属性说明
 
-|      参数     |   类型   | 描述 |
-| :-----------: | :-----: | :-: |
+| 参数           | 类型    | 说明 |
+| :------------ | :------ | :-- |
 | have_children | Boolean | 是否含有子分类 |
-|       id      | Number  | 内容/分类 ID |
-|      name     | String  | 内容/分类名称 |
+| id            | Number  | 内容/分类 ID |
+| name          | String  | 内容/分类名称 |
 
 **返回示例**
 
@@ -375,9 +380,9 @@ wx.BaaS.getContentGroupList().then( (res) => {
 
 列表项属性说明
 
-|  参数 | 类型   | 说明 |
-| :--: | :----: | :-: |
-|  id  | Number | 内容库 ID |
+| 参数  | 类型   | 说明 |
+| :--- | :----- | :-- |
+| id   | Number | 内容库 ID |
 | name | String | 内容库名称 |
 
 **返回示例**
@@ -401,17 +406,17 @@ wx.BaaS.getContentGroupList().then( (res) => {
 ```
 
 > **info**
-分页、查询和排序参考数据表中 [获取数据项列表](../../schema/get-record-list.md) 的操作
+> 分页、查询和排序参考数据表中 [获取数据项列表](../../schema/get-record-list.md) 的操作
 
 
-## 获取分类详情
+### 获取分类详情
 
 `wx.BaaS.getContentCategory(OBJECT)`
 
 **OBJECT 参数说明**
 
-|     参数    |  类型  | 必填 | 说明 |
-| :-------:  | :----: | --: |:--: |
+| 参数       | 类型    | 必填 | 说明 |
+| :--------  | :----- | :-- | :-- |
 | categoryID | Number | 是  | 分类 ID |
 
 **请求示例**
@@ -429,12 +434,12 @@ wx.BaaS.getContentCategory(objects).then( (res) => {
 
 **返回参数**
 
-|      参数      |  类型   | 描述 |
-| :-----------: | :-----: | :-: |
-|       id      | Number  | 分类 ID |
-|      name     | String  | 分类名称 |
+| 参数           | 类型    | 描述 |
+| :------------ | :------ | :-- |
+| id            | Number  | 分类 ID |
+| name          | String  | 分类名称 |
 | have_children | Boolean | 是否包含子分类 |
-|    children   | Array   | 子分类列表，见 Tip |
+| children      | Array   | 子分类列表，见 Tip |
 
 **返回示例**
 

@@ -13,22 +13,22 @@
 - 通过设置 button 的 open-type 为 [`getPhoneNumber`](https://mp.weixin.qq.com/debug/wxadoc/dev/api/getPhoneNumber.html) 获取到的微信用户绑定的手机号
 - 通过调用 [`wx.getShareInfo`](https://mp.weixin.qq.com/debug/wxadoc/dev/api/share.html#wxgetshareinfoobject) 获取到的转发详细信息
 
-##### 参数说明
+**参数说明**
 
-|      参数名      |   类型   | 是否必填 | 参数描述                      |
-| :-----------: | :----: | :--: | :------------------------ |
-|  encryptedData  |  String  |  Y  |  加密的数据  |
-|  iv  |  String  |  Y  |  加密算法的初始向量  |
-|  type  |  String  |  Y  |  数据类型，现支持 'we-run-data', 'phone-number', 'open-gid'  |
+| 参数           | 类型    | 必填 | 说明 |
+| :------------ | :------ | :-- | :-- |
+| encryptedData | String  | Y   | 加密的数据 |
+| iv            | String  | Y   | 加密算法的初始向量 |
+| type          | String  | Y   | 数据类型，现支持 'we-run-data', 'phone-number', 'open-gid' |
 
 - 当解密微信运动步数时，type = 'we-run-data'
 - 当解密手机号时，type = 'phone-number'
 - 当解密转发详细信息时，type = 'open-gid'
 
 
-##### 请求示例
+**请求示例**
 
-```
+```js
 wx.getWeRunData({
   success(res) {
     wx.BaaS.wxDecryptData(res.encryptedData, res.iv, 'we-run-data').then((decrytedData) =>  {
