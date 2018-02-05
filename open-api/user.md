@@ -4,60 +4,63 @@
 
 ## 获取用户列表
 
-### 接口地址
+**接口地址**
 
-`https://cloud.minapp.com/oserve/v1/miniapp/user-profile/`
+`GET https://cloud.minapp.com/oserve/v1/miniapp/user-profile/`
 
-### 请求方法
+**参数说明**
 
-`GET`
+| 参数               | 类型    | 必填 | 说明 |
+| :------------  | :----- | :-- | :-- |
+| nickname       | String | N  | 用户的微信昵称，支持等值查询(默认): `https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?nickname=Tom`, 模糊查询: `https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?nickname__contains=Tom` |
+| gender         | Number | N  | 户的性别，其中 `1` 表示男，`2` 表示女 |
+| created_at     | String | N  | 用户创建的时间，值为时间戳。查询创建时间大于等于 2017-01-01 的用户:`https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?created_at__gte=1483228800`，查询创建时间小于等于 2017-01-01 的用户：`https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?created_at__lte=1483228800`，查询创建时间大于 2017-01-01 和小于 2017-12-01 的用户：`https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?created_at__gt=1483228800&created_at__lt=1512086400` |
+| user_id        | String | N  | 用户 ID |
+| group          | String | N  | 给定用户组 ID 查询在用户组下的用户列表。只支持 `in` 查询：`https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?group__in=258,360`|
+| openid         | String | N  | 用户的 OpenID |
+| unionid        | String | N  | 用户的 UnionID |
+| offset         | String | N  | 返回资源的起始偏移值 |
+| limit          | String | N  | 返回资源的个数（默认为 20，最大可设置为 1000）|
+| order_by       | String | N  | 排序（支持 `created_at` 进行排序） |
 
-### 提交参数
+**代码示例**
 
-若无格外提醒，默认为等值查询
+{% tabs first="Node", second="Python", third="curl命令" %}
 
-- `nickname` 用户的微信昵称，支持等值查询、模糊查询
+{% content "first" %}
 
-    等值查询：
+  ```js
+  var request = require('request');
 
-      https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?nickname=Tom
+  var opt = {
+    uri: 'https://cloud.minapp.com/oserve/v1/miniapp/user-profile/', 
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    qs: {     // query string, 被附加到uri的参数
+      nickname__contains: 'username',
+      gender: 1,
+      created_at__gte: 1483228800,
+      user_id: '363953xx',
+      order_by: '-created_at'
+    }
+  }
 
-    模糊查询
+  request(opt, function(err, res, body) {
+      console.log(body)
+  })
+  ```
 
-      https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?nickname__contains=Tom
+{% content "second" %}
 
-- `gender` 用户的性别，其中 `1` 表示男，`2` 表示女
+  ```python
+    python code ……
+  ```
 
-- `created_at` 用户创建的时间，值为时间戳
+{% content "third" %}
 
-    查询创建时间大于等于 2017-01-01 的用户：
-
-      https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?created_at__gte=1483228800
-
-    查询创建时间小于等于 2017-01-01 的用户：
-
-      https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?created_at__lte=1483228800
-
-    查询创建时间大于 2017-01-01 和小于 2017-12-01 的用户：
-
-      https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?created_at__gt=1483228800&created_at__lt=1512086400
-
-- `user_id` 用户 ID
-- `group` 给定用户组 ID 查询在用户组下的用户列表
-
-    只支持 `in` 查询：
-
-      https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?group__in=258,360
-
-- `openid` 用户的 OpenID
-- `unionid` 用户的 UnionID
-- `offset` 返回资源的起始偏移值
-- `limit` 返回资源的个数（默认为 20，最大可设置为 1000）
-- `order_by` 排序（支持 `created_at` 进行排序）
-
-### 请求示例
-
-```
+```curl
 curl -X GET \
 -H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
 -H "Content-Type: application/json" \
@@ -69,7 +72,9 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/miniapp/user-profile/
 ```
 
-### 返回示例
+{% endtabs %}
+
+**返回示例**
 
 ```json
 {
@@ -101,46 +106,19 @@ https://cloud.minapp.com/oserve/v1/miniapp/user-profile/
 }
 ```
 
-### 代码示例
-
-nodejs 版本
-
-```
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/miniapp/user-profile/', 
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  qs: {     // query string, 被附加到uri的参数
-    nickname__contains: 'username',
-    gender: 1,
-    created_at__gte: 1483228800,
-    user_id: '363953xx',
-    order_by: '-created_at'
-  }
-}
-
-request(opt, function(err, res, body) {
-    console.log(body)
-})
-```
-
 ## 获取用户详情
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/miniapp/user-profile/:profile_id/`
+`GET https://cloud.minapp.com/oserve/v1/miniapp/user-profile/:profile_id/`
 
-`profile_id` 是用户的 ID
+> `profile_id` 是用户的 ID
 
-### 请求方法
+**代码示例**
 
-`GET`
+{% tabs  curl="curl命令", node="Node", python="Python" %}
 
-### 请求示例
+{% content "curl"%}
 
 ```
 curl -X GET \
@@ -149,32 +127,9 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/miniapp/user-profile/55019/
 ```
 
-### 返回示例
+{% content "node" %}
 
-```json
-{
-    "avatar": "https://media.ifanrusercontent.com/media/tavatar/55/c3/55c3dbebcc61891be10d29ded808c84a01dcf864.jpg",
-    "city": "Guangzhou",
-    "country": "China",
-    "created_at": 1504504504,
-    "gender": 1,
-    "id": 55019,
-    "nickname": "PCG",
-    "openid": "onzns0KsLKFyg3-VcW0GwTE652_k",
-    "unionid": "onzns0KsLKFyg3-VcW0GwTE652_k",
-    "province": "Guangdong",
-    "user_group": [
-        137
-    ],
-    "user_id": 36619758
-}
-```
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var opt = {
   uri: 'https://cloud.minapp.com/oserve/v1/miniapp/user-profile/4271xx/',   // 4271xx 对应 :profile_id
   method: 'GET',
@@ -186,4 +141,33 @@ var opt = {
 request(opt, function(err, res, body) {
   console.log(body)
 })
+```
+
+{% content "python" %}
+
+```python
+  python code ……
+```
+
+{% endtabs %}
+
+**返回参数**
+
+```json
+{
+  "avatar": "https://media.ifanrusercontent.com/media/tavatar/55/c3/55c3dbebcc61891be10d29ded808c84a01dcf864.jpg",
+  "city": "Guangzhou",
+  "country": "China",
+  "created_at": 1504504504,
+  "gender": 1,
+  "id": 55019,
+  "nickname": "PCG",
+  "openid": "onzns0KsLKFyg3-VcW0GwTE652_k",
+  "unionid": "onzns0KsLKFyg3-VcW0GwTE652_k",
+  "province": "Guangdong",
+  "user_group": [
+      137
+  ],
+  "user_id": 36619758
+}
 ```

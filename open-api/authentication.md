@@ -34,37 +34,34 @@
 
 ```
 
-> ID/Secert 为知晓云应用的 `ClientID`, `ClientSecret` 可通过知晓云管理后台进行获取。
+> ID/Secert 为知晓云应用的 `ClientID`、`ClientSecret`，可通过知晓云管理后台进行获取。
 
 ## 获取 Code
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/api/oauth2/hydrogen/openapi/authorize/`
+`POST https://cloud.minapp.com/api/oauth2/hydrogen/openapi/authorize/`
 
-### 请求方法
-
-`POST`
-
-### Content-Type
+**Content-Type**
 
 `application/json`
 
-### 提交参数
+**参数说明**
 
-  - client_id
-  - client_secret
+| 参数               | 类型    | 必填 | 说明 |
+| :------------     | :----- | :-- | :-- |
+| client_id         | String | Y  | 知晓云应用的 ClientID |
+| client_secret     | String | Y  | 知晓云应用的 ClientSecret |
 
-### 返回参数
+**返回参数**
 
-```json
-{
-    "code": "7743956163d65914c63ba1a5d48370ff791d1e16",
-    "expires_in": 600
-}
-```
+| 参数         | 类型         | 说明 |
+| :---------- | :----------- | :-- |
+| code        | String       | 授权码 |
+| expires_in  | Number       | 过期时间 |
 
-### 注意事项
+> **danger**
+> 注意事项
 
 获取 Code 会经过两次的 `HTTP 302 Found` 跳转，开发者在实现时需要允许客户端跟随跳转。
 
@@ -102,38 +99,34 @@ $ curl -L ifanr.com
 
 ## 获取 Access Token
 
-### 接口地址
+**接口地址**
 
-`https://cloud.minapp.com/api/oauth2/access_token/`
+`POST https://cloud.minapp.com/api/oauth2/access_token/`
 
-### 请求方法
-
-`POST`
-
-### Content-Type
+**Content-Type**
 
 `multipart/form-data`
 
-### 提交参数
+**参数说明**
 
-  - client_id
-  - client_secret
-  - code
-  - grant_type（需指定为：authorization_code）
+| 参数               | 类型    | 必填 | 说明 |
+| :------------     | :----- | :-- | :-- |
+| client_id         | String | Y  | 知晓云应用的 ClientID |
+| client_secret     | String | Y  | 知晓云应用的 ClientSecret |
+| code              | String | Y  | 授权码 |
+| grant_type        | String | Y  | 授权类型(需指定为"authorization_code") |
 
-### 返回参数
+**返回参数**
 
-```json
-{
-    "access_token": "eb84c57b1bd89919814b224a7194b06ca03893ee",
-    "token_type": "Bearer",
-    "expires_in": 31535999,
-    "refresh_token": "4215259afd7f3d33c04ae39080a8ea5eb1c166e8",
-    "scope": "write"
-}
-```
+| 参数           | 类型         | 说明 |
+| :----------   | :----------- | :-- |
+| access_token  | String       | 访问令牌(token) |
+| token_type    | String       | 令牌(token)类型 |
+| expires_in    | Number       | 过期时间 |
+| refresh_token | String       | 更新令牌(token)） |
+| scope         | String       | 权限范围 |
 
-### 代码示例 
+**代码示例** 
 
 {% tabs first="Node", second="Python" %}
 
