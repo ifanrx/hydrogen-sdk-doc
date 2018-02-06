@@ -1,6 +1,9 @@
+<!-- ex_nonav -->
+
 # 微信加密数据解密
 
-<p style='color:red'>* sdk version >= v1.1.0</p>
+> **danger**
+> 以下操作仅适用于 SDK version >= v1.1.0
 
 `wx.BaaS.wxDecryptData(encryptedData, iv, type)`
 

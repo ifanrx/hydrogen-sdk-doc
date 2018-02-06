@@ -6,6 +6,8 @@
 
 ## SDK 1.1.3 及以上版本
 
+以下操作都需指明操作的内容库，方法如下：
+
 `let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)`
 
 **参数说明**
@@ -22,21 +24,7 @@
 
 | 参数名      | 类型   | 必填  | 说明 |
 | :--------- | :----- | :--- | :-: |
-| richTextID | Number | 是    | 内容 ID |
-
-**请求示例**
-
-```js
-let contentGroupID = 1513076211190694
-let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)
-
-let richTextID = 1514529306082815
-MyContentGroup.getContent(richTextID).then((res) => {
-  // success
-}, (err) => {
-  // err
-});
-```
+| richTextID | Number | 是   | 内容 ID |
 
 **返回参数**
 
@@ -55,6 +43,17 @@ MyContentGroup.getContent(richTextID).then((res) => {
 
 > **info**
 > 如果有自定义字段，则一并返回
+
+**请求示例**
+
+```js
+let richTextID = 1514529306082815
+MyContentGroup.getContent(richTextID).then((res) => {
+  // success
+}, (err) => {
+  // err
+});
+```
 
 **返回示例**
 
@@ -81,9 +80,6 @@ res.data:
 **请求示例**
 
 ```js
-let contentGroupID = 1513076211190694
-let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)
-
 // 查找该内容库下的所有内容
 MyContentGroup.find().then()
 
@@ -107,12 +103,18 @@ MyContentGroup.setQuery(query).find().then((res) => {
 | :--------- | :----  | :-- | :-- |
 | categoryID | Number |  是 | 分类 ID |
 
+**返回参数**
+
+|  参数          | 类型    | 说明 |
+| :------------ | :------ | :-- |
+| children      |  Array  | 子分类列表 |
+| have_children | Boolean | 是否含有子分类 |
+| id            | Number  | 分类 ID |
+| name          | String  | 分类名称 |
+
 **请求示例**
 
 ```js
-let contentGroupID = 1513076211190694
-let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)
-
 let categoryID = 1513076252710475
 MyContentGroup.getCategory(categoryID).then( (res) => {
   // success
@@ -139,15 +141,6 @@ res.data:
 }
 ```
 
-**返回参数**
-
-|  参数          | 类型    | 说明 |
-| :------------ | :------ | :-- |
-| children      |  Array  | 子分类列表 |
-| have_children | Boolean | 是否含有子分类 |
-| id            |  Number | 分类 ID |
-| name          |  String | 分类名称 |
-
 
 ### 获取内容库分类列表
 
@@ -156,9 +149,6 @@ res.data:
 **请求示例**
 
 ```js
-let contentGroupID = 1513076211190694
-let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)
-
 MyContentGroup.getCategoryList().then( (res) => {
   // success
 }, (err) => {
@@ -173,9 +163,6 @@ MyContentGroup.getCategoryList().then( (res) => {
 **请求示例**
 
 ```js
-let contentGroupID = 1513076211190694
-let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)
-
 MyContentGroup.orderBy('-created_by').limit(5).offset(10).find().then()
 ```
 
@@ -193,6 +180,17 @@ MyContentGroup.orderBy('-created_by').limit(5).offset(10).find().then()
 | :--------- | :----- | :--- | :-- |
 | richTextID | Number |  是  | 内容 ID |
 
+**返回参数**
+
+| 参数         | 类型   | 说明 |
+| :---------- | :----- | :-- |
+| content     | String | 内容详情 |
+| cover       | String | 封面图 url |
+| created_at  | Number | 创建时间 |
+| description | String | 摘要 |
+| id          | Number | 内容 ID |
+| title       | String | 内容标题 |
+
 **请求示例**
 
 ```js
@@ -205,17 +203,6 @@ wx.BaaS.getContent(objects).then( (res) => {
   // err
 });
 ```
-
-**返回参数**
-
-| 参数         | 类型   | 说明 |
-| :---------- | :----- | :-- |
-| content     | String | 内容详情 |
-| cover       | String | 封面图 url |
-| created_at  | Number | 创建时间 |
-| description | String | 摘要 |
-| id          | Number | 内容 ID |
-| title       | String | 内容标题 |
 
 **返回示例**
 
@@ -244,6 +231,14 @@ wx.BaaS.getContent(objects).then( (res) => {
 > **info**
 > contentGroupID 和 categoryID 两个参数只能选填一个，不能同时添加。
 
+**返回参数**
+
+| 参数        | 类型   | 说明 |
+| :--------- | :----- | :-- |
+| id         | Number | 分类 ID |
+| title      | String | 标题 |
+| created_at | Number | 创建时间 |
+
 **请求示例**
 
 ```js
@@ -260,19 +255,6 @@ wx.BaaS.getContentList(objects).then( (res) => {
   // err
 });
 ```
-
-**返回参数**
-
-- meta: 元信息
-- objects：分类列表
-
-列表项属性说明
-
-| 参数        | 类型   | 说明 |
-| :--------- | :----- | :-- |
-| id         | Number | 分类 ID |
-| title      | String | 标题 |
-| created_at | Number | 创建时间 |
 
 **返回示例**
 
@@ -309,6 +291,14 @@ wx.BaaS.getContentList(objects).then( (res) => {
 | :------------- | :----- | :-- | :-- |
 | contentGroupID | Number |  是 | 内容库 ID |
 
+**返回参数**
+
+| 参数           | 类型    | 说明 |
+| :------------ | :------ | :-- |
+| have_children | Boolean | 是否含有子分类 |
+| id            | Number  | 内容/分类 ID |
+| name          | String  | 内容/分类名称 |
+
 **请求示例**
 
 ```js
@@ -321,19 +311,6 @@ wx.BaaS.getContentGroup(objects).then( (res) => {
   // err
 });
 ```
-
-**返回参数**
-
-- meta: 元信息
-- objects：分类列表
-
-列表项属性说明
-
-| 参数           | 类型    | 说明 |
-| :------------ | :------ | :-- |
-| have_children | Boolean | 是否含有子分类 |
-| id            | Number  | 内容/分类 ID |
-| name          | String  | 内容/分类名称 |
 
 **返回示例**
 
@@ -375,11 +352,6 @@ wx.BaaS.getContentGroupList().then( (res) => {
 
 **返回参数**
 
-- meta: 元信息
-- objects：分类列表
-
-列表项属性说明
-
 | 参数  | 类型   | 说明 |
 | :--- | :----- | :-- |
 | id   | Number | 内容库 ID |
@@ -419,6 +391,15 @@ wx.BaaS.getContentGroupList().then( (res) => {
 | :--------  | :----- | :-- | :-- |
 | categoryID | Number | 是  | 分类 ID |
 
+**返回参数**
+
+| 参数           | 类型    | 描述 |
+| :------------ | :------ | :-- |
+| id            | Number  | 分类 ID |
+| name          | String  | 分类名称 |
+| have_children | Boolean | 是否包含子分类 |
+| children      | Array   | 子分类列表，见 Tip |
+
 **请求示例**
 
 ```js
@@ -431,15 +412,6 @@ wx.BaaS.getContentCategory(objects).then( (res) => {
   // err
 });
 ```
-
-**返回参数**
-
-| 参数           | 类型    | 描述 |
-| :------------ | :------ | :-- |
-| id            | Number  | 分类 ID |
-| name          | String  | 分类名称 |
-| have_children | Boolean | 是否包含子分类 |
-| children      | Array   | 子分类列表，见 Tip |
 
 **返回示例**
 

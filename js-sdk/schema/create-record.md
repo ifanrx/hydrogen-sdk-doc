@@ -6,6 +6,51 @@
 
 ## SDK 1.1.0 及以上版本
 
+### 操作步骤
+
+1.通过 tableID 实例化一个 TableObject 对象，操作该对象即相当于操作对应的数据表
+
+`let MyTableObject = new wx.BaaS.TableObject(tableID)`
+
+**参数说明**
+
+| 参数     | 类型   | 必填 | 说明 |
+| :-----  | :----- | :-- | :---|
+| tableID | Number |  是 | 数据表 ID |
+
+2.本地创建一条空记录
+
+`let MyRecord = MyTableObject.create()`
+
+3.为上面创建的空记录赋值
+
+`MyRecord.set(data)`
+
+该方法支持两种类型的赋值操作：
+
+a.一次性赋值：
+
+```js
+MyRecord.set({
+  key1: value1,
+  key2: value2
+})
+```
+
+b.逐个赋值
+
+```js
+MyRecord.set(key1, value1)
+MyRecord.set(key2, value2)
+```
+
+4.将创建的记录保存到服务器
+
+`MyRecord.save()`
+
+通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。
+
+
 ### 添加普通数据
 
 **请求示例**
@@ -59,10 +104,11 @@ res.data:
 
 ### 添加时间类型的数据
 
-需要是 ISO 格式的字符串
+数据表允许添加时间类型的列，为该类型的记录赋值，需要使用 ISO 格式的字符串，如 Product 表定义一个时间类型的列 expiration_time，创建一条记录时，该字段的赋值操作如下：
 
-```
-((new Date()).toISOString()).toString()
+```js
+let isoStr = ((new Date()).toISOString()).toString()
+product.set('expiration_time', isoStr)
 ```
 
 ### 添加 file 类型数据
@@ -91,15 +137,19 @@ wx.BaaS.uploadFile(params).then((res) => {
 
 ```js
 /*
-  * 同时设置 amount 和 date 字段，其中 date 为日期类型，这里为其赋了一个字符类型的值，
-  * 该请求会返回 200，但只有 amount 被成功设置为 10
-  */
+ * 同时设置 amount 和 date 字段，其中 date 为日期类型，这里为其赋了一个字符类型的值，
+ * 该请求会返回 200，但只有 amount 被成功设置为 10
+ */
 
 let order = Order.create()
 order.set('amount', 10)
 order.set('date', 'abc')
 order.save()
 ```
+
+### 添加 geojson 类型数据
+
+查看 [地理位置操作](./geo.md) 章节
 
 {% content "second" %}
 
@@ -113,9 +163,20 @@ order.save()
 **OBJECT 参数说明**
 
 | 参数     | 类型   | 必填 | 说明 |
-| :-----  | :----- | :-- | :---|
-| tableID | Number |  是 | 数据表 ID |
-| data    | Object |  是 | 待插入的自定义数据 |
+| :-----  | :----- | :-- | :-- |
+| tableID | Number | 是  | 数据表 ID |
+| data    | Object | 是  | 待插入的自定义数据 |
+
+**返回参数**
+
+| 参数        | 类型    | 描述 |
+| :--------- | :------ | :-- |
+| id         | String  | 数据表 ID |
+| created_at | Integer | 创建时间 |
+| is_admin   | Boolean | 自定义字段 |
+| name       | String  | 自定义字段 |
+| price      | Number  | 自定义字段 |
+| tags       |  Array  | 自定义字段 |
 
 **请求示例**
 
@@ -138,17 +199,6 @@ wx.BaaS.createRecord(objects).then( (res) => {
   // err
 })
 ```
-
-**返回参数**
-
-| 参数        | 类型    | 描述 |
-| :--------- | :------ | :-- |
-| id         | String  | 数据表 ID |
-| created_at | Integer | 创建时间 |
-| is_admin   | Boolean | 自定义字段 |
-| name       | String  | 自定义字段 |
-| price      | Number  | 自定义字段 |
-| tags       |  Array  | 自定义字段 |
 
 **返回示例**
 

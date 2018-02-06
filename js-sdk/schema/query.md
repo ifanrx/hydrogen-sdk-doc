@@ -6,19 +6,41 @@
 
 ## SDK 1.1.0 及以上版本
 
-### 通用操作
+### 操作步骤
+
+1.通过 tableID 实例化一个 TableObject 对象，操作该对象即相当于操作对应的数据表
+
+`let MyTableObject = new wx.BaaS.TableObject(tableID)`
+
+**参数说明**
+
+| 参数     | 类型   | 必填 | 说明 |
+| :-----  | :----- | :-- | :---|
+| tableID | Number |  是 | 数据表 ID |
+
+2.示例化一个 Query 对象，在该对象上添加查询条件
+
+`let query = new wx.BaaS.Query()`
+
+查看下面的文档，了解目前支持的查询条件
+
+3.支持查询条件并执行查找操作
+
+`MyTableObject.setQuery(query).find()`
+
+### 示例
 
 **请求示例**
 
 ```js
 // 实例化查询对象
-var query = new wx.BaaS.Query()
+let query = new wx.BaaS.Query()
 
 // 设置查询条件（比较、字符串包含、组合等）
 ...
 
 // 应用查询对象
-var Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableID)
 Product.setQuery(query).find().then( (res) => {
   // success
 }, (err) => {
@@ -196,36 +218,36 @@ query.notExists(['name', 'price'])
 ### 组合查询
 
 ```js
-var query1 = new wx.BaaS.Query()
+let query1 = new wx.BaaS.Query()
 query1.isNull('name')
-var query2 = new wx.BaaS.Query()
+let query2 = new wx.BaaS.Query()
 query1.compare('price', '>', 10)
 ...
 
 // and 查询
-var andQuery = wx.BaaS.Query.and(query1, query2, ...)
+let andQuery = wx.BaaS.Query.and(query1, query2, ...)
 
 // or 查询
-var orQuery =  wx.BaaS.Query.or(query1, query2, ...)
+let orQuery =  wx.BaaS.Query.or(query1, query2, ...)
 ```
 
 
 ### 复杂组合查询
 
 ```js
-var query1 = new wx.BaaS.Query()
+let query1 = new wx.BaaS.Query()
 query1.isNull('name')
-var query2 = new wx.BaaS.Query()
+let query2 = new wx.BaaS.Query()
 query1.compare('price', '>', 10)
 ...
 
 // and 查询
-var andQuery = wx.BaaS.Query.and(query1, query2)
+let andQuery = wx.BaaS.Query.and(query1, query2)
 
 // or 查询中包含 and 查询
-var query3 = new wx.BaaS.Query()
+let query3 = new wx.BaaS.Query()
 query3.compare('amount', '>', 3)
-var orQuery = wx.BaaS.Query.or(andQuery, query3)
+let orQuery = wx.BaaS.Query.or(andQuery, query3)
 ```
 
 {% content "second" %}
@@ -292,10 +314,7 @@ wx.BaaS.getRecordList(objects).then( (res) => {
       "is_admin": false,
       "name": "JlpvHdheLh",
       "price": 89,
-      "tags": [
-        "xGHt",
-        "hHqz"
-      ]
+      "tags": ["xGHt", "hHqz"]
     }
   ]
 }

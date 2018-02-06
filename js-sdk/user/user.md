@@ -12,22 +12,20 @@
 
 `wx.BaaS.login` 方法会返回完成登录后的当前用户信息，同时，我们也给出 `wx.BaaS.storage.get('userinfo')` 获取存储在 storage 的当前用户信息。
 
-如果用户授权登录过，该方法将返回如下字段：
+如果用户授权登录过，该方法将返回以下字段：
 
-```js
-{
-  nickName: "hip hop man",
-  gender: 1,
-  language: "en",
-  city: "Guangzhou",
-  province: "Guangdong",
-  country: "China",
-  avatarUrl: "xxxxxx",
-  id: "36395395",
-  openid: "xxxxx",
-  unionid: "xxxxxx"
-}
-```
+| 参数       | 类型   | 说明 |
+| :-------- | :----- | :-- |
+| avatarUrl | String | 用户头像 |
+| city      | String | 用户所在城市 |
+| country   | String | 用户所在国家 |
+| gender    | String | 用户的性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知 |
+| id        | String | 用户在用户表中的 ID |
+| language  | String | 用户的语言，简体中文为 zh_CN |
+| nickname  | String | 用户昵称 |
+| openid    | String | 用户唯一标识，由微信提供 |
+| province  | String | 用户所在省份 |
+| unionid   | String | 用户在开放平台的唯一标识符，由微信提供 |
 
 微信目前对小程序获取用户信息有两个小时的缓存设定，因此，如果一个用户修改了个人信息如头像、昵称等，需两个小时才能重新授权拿到最新的信息。
 如果用户未进行授权登录，将返回空。
@@ -40,10 +38,32 @@
 
 **参数说明**
 
-| 参数    | 类型    | 必填 | 说明   |
-| :----- | :----- | :--- | :---- |
-| userID | Number |  是  | 用户 ID |
+| 参数    | 类型   | 必填 | 说明 |
+| :----- | :----- | :-- | :---- |
+| userID | Number | 是  | 用户 ID |
 
+**返回字段说明**
+当查询的用户为非当前用户时：
+
+| 参数      | 类型   | 说明 |
+| :------- | :----- | :-- |
+| avatar   | String | 用户头像 |
+| id       | String | 用户所在城市 |
+| nickname | String | 用户昵称 |
+
+当查询的用户为当前用户时：
+
+| 参数      | 类型   | 说明 |
+| :------- | :----- | :-- |
+| avatar   | String | 用户头像 |
+| city     | String | 用户所在城市 |
+| country  | String | 用户所在国家 |
+| gender   | Number | 用户的性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知 |
+| id       | Number | 用户 ID |
+| language | String | 用户的语言，简体中文为 zh_CN |
+| nickname | String | 用户昵称 |
+| openid   | String | 用户唯一标识，由微信提供 |
+| province | String | 用户所在省份 |
 
 **请求示例**
 
@@ -57,9 +77,7 @@ MyUser.get(userID).then((res) => {
 })
 ```
 
-**返回字段说明**
-
-一般情况下，返回字段为 id, avatar, nickname 这三个系统字段和用户自定义字段，如果 userID 等于当前用户的 id ，即查询当前用户信息，则会额外输出 city, country, gender, language, openid, province 这几个字段, 如下：
+**返回示例**
 
 非当前用户：
 ```js
@@ -157,22 +175,20 @@ MyUser.limit(5).offset(10).find().then()
 
 `wx.BaaS.login` 方法会返回完成登录后的当前用户信息，同时，我们也给出 `wx.BaaS.storage.get('userinfo')` 获取存储在 storage 的当前用户信息。
 
-如果用户授权登录过，该方法将返回如下字段：
+如果用户授权登录过，该方法将返回以下字段：
 
-```js
-{
-  "nickName": "hip hop man",
-  "gender": 1,
-  "language": "en",
-  "city": "Guangzhou",
-  "province": "Guangdong",
-  "country": "China",
-  "avatarUrl": "xxxxxx",
-  "id": "36395395", // 需 SDK v1.1.0 及以上版本
-  "openid": "xxxxx", // 需 SDK v1.1.0 及以上版本
-  "unionid": "xxxxxx" // 需 SDK v1.1.0 及以上版本
-}
-```
+| 参数       | 类型   | 说明 |
+| :-------- | :----- | :-- |
+| avatarUrl | String | 用户头像 |
+| city      | String | 用户所在城市 |
+| country   | String | 用户所在国家 |
+| gender    | String | 用户的性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知 |
+| id        | String | 用户在用户表中的 ID，<span style="color:red">SDK v1.1.0 及以上版本才会返回</span> |
+| language  | String | 用户的语言，简体中文为 zh_CN |
+| nickname  | String | 用户昵称 |
+| openid    | String | 用户唯一标识，由微信提供，<span style="color:red">SDK v1.1.0 及以上版本才会返回</span> |
+| province  | String | 用户所在省份 |
+| unionid   | String | 用户在开放平台的唯一标识符，由微信提供，<span style="color:red">SDK v1.1.0 及以上版本才会返回</span> |
 
 微信目前对小程序获取用户信息有两个小时的缓存设定，因此，如果一个用户修改了个人信息如头像、昵称等，需两个小时才能重新授权拿到最新的信息。
 如果用户未进行授权登录，将返回空。
@@ -189,9 +205,20 @@ MyUser.limit(5).offset(10).find().then()
 **OBJECT 参数说明**
 
 | 参数         | 类型   | 必填 | 说明 |
-| :---------- | :----- | :-- | :- |
+| :---------- | :----- | :-- | :-- |
 | userID      | Number | 否  | 用户 ID |
 | user_id__in | String | 否  | 多个用户 ID，用逗号分隔 |
+
+**返回字段说明**
+当查询的用户为非当前用户时：
+
+| 参数      | 类型   | 说明 |
+| :------- | :----- | :-- |
+| avatar   | String | 用户头像 |
+| id       | String | 用户所在城市 |
+| nickname | String | 用户昵称 |
+
+出于安全性考虑，该接口目前只开放了 user id、nickname、avatar 三个字段。如需展示当前用户的完整信息，请参照上方 “获取当前用户信息”。
 
 **请求示例**
 
@@ -216,10 +243,6 @@ wx.BaaS.getUserInfo({
   // err
 });
 ```
-
-**返回字段说明**
-
-出于安全性考虑，该接口目前只开放了 user id、nickname、avatar 三个字段。如需展示当前用户的完整信息，请参照上方 “获取当前用户信息”。
 
 > **info**
 > `userID` 和 `user_id__in` 参数必选一

@@ -1,7 +1,8 @@
 # 地理位置操作
 
 > **danger**
-> sdk version >= v1.1.0
+> 以下操作仅适用于 SDK version >= v1.1.0
+
 
 ## 添加地理位置
 
@@ -13,8 +14,8 @@
 
 | 参数   | 类型                     | 必填 | 说明 |
 | :---- | :---------------------- | :--- | :--- |
-| key   |  String                 | 是   | 在数据表中的类型必须是 geojson |
-| value |  GeoPoint 或 GeoPolygon  | 是   | GeoPoint(longitude, latitude) 经度在前，纬度在后 |
+| key   | String                  | 是   | 在数据表中的类型必须是 geojson |
+| value | GeoPoint 或 GeoPolygon   | 是   | GeoPoint(longitude, latitude) 经度在前，纬度在后 |
 
 **请求示例**
 

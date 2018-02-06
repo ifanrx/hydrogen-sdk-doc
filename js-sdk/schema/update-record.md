@@ -6,6 +6,57 @@
 
 ## SDK 1.1.0 及以上版本
 
+### 操作步骤
+
+1.通过 tableID 实例化一个 TableObject 对象，操作该对象即相当于操作对应的数据表
+
+`let MyTableObject = new wx.BaaS.TableObject(tableID)`
+
+**参数说明**
+
+| 参数     | 类型   | 必填 | 说明 |
+| :-----  | :----- | :-- | :---|
+| tableID | Number |  是 | 数据表 ID |
+
+2.通过 recordID 设置指定记录
+
+`let MyRecord = MyTableObject.getWithoutData(recordID)`
+
+**参数说明**
+
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :---|
+| recordID | String | 是  | 数据表 ID |
+
+3.修改指定记录的数据
+
+`MyRecord.set(data)`
+
+该方法支持两种类型的赋值操作：
+
+a.一次性赋值：
+
+```js
+MyRecord.set({
+  key1: value1,
+  key2: value2
+})
+```
+
+b.逐个赋值
+
+```js
+MyRecord.set(key1, value1)
+MyRecord.set(key2, value2)
+```
+
+4.将修改后的记录保存到服务器
+
+`MyRecord.update()`
+
+通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。
+
+
 ### 普通数据更新
 
 **请求示例**
@@ -34,10 +85,7 @@ product.update().then( (res) => {
   "id": "7",
   "name": "fushi",
   "price": 11,
-  "desc": [
-    "sweet",
-    "red",
-  ],
+  "desc": ["sweet", "red"],
   amount: 2
 }
 ```
@@ -74,7 +122,7 @@ product.update().then( (res) => {}, (err) => {})
 
 | 参数   | 类型                | 必填 | 说明 |
 | :---- | :----------------- | :-- | :--- |
-| key   | String             | 是  | 在数据表中的类型必须是 Array |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
 | value | Array 或 Array item | 是  | - |
 
 **请求示例**

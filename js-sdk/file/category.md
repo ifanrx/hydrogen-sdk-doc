@@ -1,9 +1,9 @@
 # 文件分类操作
 
-<p style='color:red'></p>
-
 > **danger**
-> sdk version >= v1.1.2
+> 以下操作仅适用于 SDK version >= v1.1.1
+
+实例化一个 wx.BaaS.FileCategory 对象，以下操作都是在该对象上进行操作，如下进行实例化：
 
 `let MyFileCategory = new wx.BaaS.FileCategory()`
 
@@ -13,15 +13,23 @@
 
 **参数说明**
 
-|    参数     |  类型  | 必填 | 说明 |
-| :--------: | :----: | :-: | :-: |
-| categoryID | String |  Y  | 文件分类 ID |
+| 参数        | 类型   | 必填 | 说明 |
+| :--------- | :----- | :-- | :-- |
+| categoryID | String | Y   | 文件分类 ID |
+
+**返回参数说明**
+
+| 参数        | 类型   | 必填 | 说明 |
+| :--------- | :----- | :-- | :-- |
+| created_at | Number | Y   | 分类创建时间 |
+| files      | Number | Y   | 分类下的文件数 |
+| id         | String | Y   | 分类 ID |
+| name       | String | Y   | 分类名 |
+| updated_at | Number | Y   | 分裂更新时间 |
 
 **示例代码**
 
 ```js
-let MyFileCategory = new wx.BaaS.FileCategory()
-
 MyFileCategory.get('5a2fe91508443e3123dbe1cb').then((res) => {
   // success
 }, (err) => {
@@ -30,7 +38,7 @@ MyFileCategory.get('5a2fe91508443e3123dbe1cb').then((res) => {
 ```
 
 **返回示例**
-res.data
+
 ```js
 {
   created_at: 1513089301,
@@ -40,7 +48,6 @@ res.data
   updated_at: 1513089306
 }
 ```
-files 为文件分类下的文件数
 
 
 ## 获取分类下的所有文件
@@ -49,9 +56,9 @@ files 为文件分类下的文件数
 
 **参数说明**
 
-|     参数    |  类型   | 必填 | 参数描述 |
-| :-------:  | :-----: | :-: | :-----: |
-| categoryID | String  |  Y  | 文件分类 ID |
+| 参数        | 类型    | 必填 | 说明 |
+| :--------- | :------ | :-- | :-------- |
+| categoryID | String  | Y   | 文件分类 ID |
 
 **示例代码**
 
@@ -71,10 +78,10 @@ MyFileCategory.getFileList('5a2fe91508443e3123dbe1cb').then((res) => {
 
 文件分类查询与[数据表查询](../schema/query.md)方法一致，但只支持以下指定字段的筛选
 
-| 支持字段 |  类型   | 说明 |
-| :-----: | :----: | :-: |
-|   id    | String | 文件分类 id |
-|  name   | String | 文件分类名 |
+| 支持字段 | 类型   | 说明 |
+| :----- | :----- | :-- |
+| id     | String | 文件分类 ID |
+| name   | String | 文件分类名 |
 
 **示例代码**
 
@@ -91,6 +98,7 @@ File.setQuery(query).find()
 ```
 
 ## 排序
+
 文件分类查询排序与[数据表排序](../schema/limit-and-order.md)方法一致，但只支持对以下指定字段进行排序
 
 | 支持字段    | 描述        |

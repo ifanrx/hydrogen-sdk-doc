@@ -56,8 +56,7 @@
       }
     },
     "simple-page-toc": {
-      "maxDepth": 3,
-      "skipFirstH1": true
+      "maxDepth": 3
     },
     "image-captions": {
       "caption": "_CAPTION_"
