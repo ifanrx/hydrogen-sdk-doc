@@ -29,7 +29,7 @@
   },
   "plugins": [
     "algolia",
-    "anchor-navigation-ex",
+    "anchor-nav-x",
     "editlink",
     "expandable-chapters-small",
     "favicon",
@@ -68,7 +68,8 @@
         "tocLevel1Icon": "fa fa-hand-o-right",
         "tocLevel2Icon": "fa fa-hand-o-right",
         "tocLevel3Icon": "fa fa-hand-o-right"
-      }
+      },
+      "toolTipMode": "click"
     },
     "editlink": {
       "base": "https://github.com/ifanrx/hydrogen-js-sdk-doc/edit/master",

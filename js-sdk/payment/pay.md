@@ -62,6 +62,7 @@ wx.BaaS.pay(params).then(res => {
 })
 ```
 
+<<<<<<< HEAD
 > **info**
 > 调用 `wx.BaaS.pay(object)` 之前 **必须完成用户授权**（[使用 `wx.BaaS.login()`](../user/sign-in.md)），否则支付将失败。请在产品设计上做好这块的处理，尤其注意处理用户拒绝授权之后的处理方法，具体请参考 “获取用户信息” 章节说明。
 
@@ -71,3 +72,20 @@ wx.BaaS.pay(params).then(res => {
 
 
 `wx.BaaS.pay(object)` 实际上做了发起支付统一下单请求，及调用 `wx.requestPayment()` 接口等操作。开发者只需要调用 `wx.BaaS.pay(object)` , 传入必填参数即可发起微信支付。用户感知到的现象就是, 点击付款按钮，弹出支付弹框, 要求用户输入密码, 用户输入正确的密码后完成支付流程, 停在支付结果页。用户可在支付结果页点击返回商家按钮回到支付前界面。
+=======
+注：1.1.4 版本之后，为了方便开发者清楚区分用户取消支付还是支付失败，我们为其增加了错误类型，你可以通过像以下操作，对支付状态进行判断
+
+```
+wx.BaaS.pay(params).then(res => {
+  // success. 支付请求成功响应。
+}, err => {
+  if (err.code === 603) {
+    console.log('用户尚未授权')
+  } else if (err.code === 607) {
+    console.log('用户取消支付')
+  } else if (err.code === 608){
+    console.log(err.message)
+  }
+})
+```
+>>>>>>> ef38360f26467bf46f1ac9c842afadc51991b645

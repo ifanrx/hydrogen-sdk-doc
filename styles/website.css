@@ -19,13 +19,9 @@
 }
 
 /* reset tabs plugin */
-
-/* .markdown-section ol,
-.markdown-section ul {
-  padding-left: 0;
-  list-style: none;
-  border-bottom: 1px solid #ebedf0;
-} */
+.nav-tabs {
+  border-bottom: 1px solid #ebedf0 !important;
+}
 
 .nav-tabs>li>a {
   color: #CCC;
@@ -48,18 +44,25 @@
 
 /* reset navigation plugin */
 
-#anchor-navigation-ex-navbar ul {
-  display: block !important;
+.doc-header {
+  background: #008cff;
 }
 
 .doc-title {
   height: 100px;
-  background: #008cff;
   text-align: center;
   line-height: 100px;
   color: #FFF;
   letter-spacing: 5px;
   font-size: 35px;
+  margin: 0 !important;
+}
+
+.doc-desc {
+  font-size: 12px;
+  color: #FFF;
+  padding: 0px 40px 20px;
+  text-align: center;
 }
 
 .doc-detail {
@@ -72,6 +75,7 @@
 
 .doc-detail li {
   padding: 20px 0;
+  list-style: none;
 }
 
 .doc-detail>li:nth-child(2n) {

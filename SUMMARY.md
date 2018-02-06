@@ -5,8 +5,6 @@
 ----
 
 * [新手入门](newbies/README.md)
-    * [注册账号](newbies/sign-up.md)
-    * [绑定小程序](newbies/bind-minapp.md)
 
 ----
 
@@ -16,6 +14,7 @@
     * [内容管理](dashboard/content.md)
     * [用户管理](dashboard/user.md)
     * [ACL 简介](dashboard/acl.md)
+    * [触发器](dashboard/trigger.md)
 
 ----
 
@@ -75,3 +74,4 @@
 
 * [管理与支持](support/README.md)
     * [服务协议](support/terms.md)
+    * [常见问题](support/Q&A/qA.md)
