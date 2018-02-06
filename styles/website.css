@@ -46,10 +46,6 @@
 
 /* reset navigation plugin */
 
-#anchor-navigation-ex-navbar ul {
-  display: block !important;
-}
-
 .doc-header {
   background: #008cff;
 }
