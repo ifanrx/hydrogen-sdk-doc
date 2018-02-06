@@ -4,11 +4,12 @@
 
 ## 获取用户列表
 
-**接口地址**
+**接口**
 
 `GET https://cloud.minapp.com/oserve/v1/miniapp/user-profile/`
 
-**参数说明**
+**参数说明
+**
 
 | 参数               | 类型    | 必填 | 说明 |
 | :------------  | :----- | :-- | :-- |
@@ -19,15 +20,29 @@
 | group          | String | N  | 给定用户组 ID 查询在用户组下的用户列表。只支持 `in` 查询：`https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?group__in=258,360`|
 | openid         | String | N  | 用户的 OpenID |
 | unionid        | String | N  | 用户的 UnionID |
-| offset         | String | N  | 返回资源的起始偏移值 |
-| limit          | String | N  | 返回资源的个数（默认为 20，最大可设置为 1000）|
+| offset         | Number | N  | 返回资源的起始偏移值 |
+| limit          | Number | N  | 返回资源的个数（默认为 20，最大可设置为 1000）|
 | order_by       | String | N  | 排序（支持 `created_at` 进行排序） |
 
 **代码示例**
 
-{% tabs first="Node", second="Python", third="curl命令" %}
+{% tabs first="Curl", second="Node", third="Python" %}
 
 {% content "first" %}
+
+```
+curl -X GET \
+-H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "Content-Type: application/json" \
+-G \
+-d nickname__contains=Tom \
+-d gender=1 \
+-d created_at__gt=1483228800 \
+-d order_by=-created_at \
+https://cloud.minapp.com/oserve/v1/miniapp/user-profile/
+```
+
+{% content "second" %}
 
   ```js
   var request = require('request');
@@ -52,29 +67,15 @@
   })
   ```
 
-{% content "second" %}
+{% content "third" %}
 
   ```python
     python code ……
   ```
 
-{% content "third" %}
-
-```curl
-curl -X GET \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
--H "Content-Type: application/json" \
--G \
--d nickname__contains=Tom \
--d gender=1 \
--d created_at__gt=1483228800 \
--d order_by=-created_at \
-https://cloud.minapp.com/oserve/v1/miniapp/user-profile/
-```
-
 {% endtabs %}
 
-**返回示例**
+**返回参数**
 
 ```json
 {
@@ -112,11 +113,11 @@ https://cloud.minapp.com/oserve/v1/miniapp/user-profile/
 
 `GET https://cloud.minapp.com/oserve/v1/miniapp/user-profile/:profile_id/`
 
-> `profile_id` 是用户的 ID
+`profile_id` 是用户的 ID
 
 **代码示例**
 
-{% tabs  curl="curl命令", node="Node", python="Python" %}
+{% tabs  curl="Curl", node="Node", python="Python" %}
 
 {% content "curl"%}
 

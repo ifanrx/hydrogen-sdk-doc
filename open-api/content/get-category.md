@@ -1,28 +1,30 @@
 # 获取内容分类
 
-本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](./authentication.md)。
+本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](../authentication.md)。
 
 ## 获取内容分类列表
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/content/category/`
+`GET https://cloud.minapp.com/oserve/v1/content/category/`
 
-### 请求方法
+**参数说明**
 
-`GET`
+Content-Type: `application/json`
 
-### 提交参数
+| 参数              | 类型   | 必填 | 说明 |
+| :------------    | :----- | :-- | :-- |
+| content_group_id | String | Y   | 内容库的 ID|
+| offset           | Number | N   | 返回资源的起始偏移值 |
+| limit            | Number | N   | 返回资源的个数（默认为 *20*，最大可设置为 *1000*）|
 
-- `content_group_id` 内容库的 ID
-- `offset` 返回资源的起始偏移值
-- `limit` 返回资源的个数（默认为 20，最大可设置为 1000）
+`has_children` 表示该分类是否包含子分类，通过`获取内容分类详情接口`可获得子分类的内容。
 
-  `content_group_id` 参数值应该是换取 `token` 的应用下的内容库 ID。
+**代码示例**
 
-  注意：发起请求时需要携带 `content_group_id` 参数。
+{% tabs getCategoryCurl="Curl", getCategoryNode="Node" %}
 
-### 请求示例
+{% content "getCategoryCurl" %}
 
 ```
 curl -X GET \
@@ -34,7 +36,30 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/content/category/?content_group_id=1
 ```
 
-### 返回示例
+{% content "getCategoryNode" %}
+
+```js
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/content/category/',
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  qs: {     // query string, 被附加到uri的参数
+    content_group_id: '15130762111906xx'
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
+```
+
+{% endtabs %}
+
+**返回参数**
 
 ```json
 {
@@ -55,44 +80,19 @@ https://cloud.minapp.com/oserve/v1/content/category/?content_group_id=1
 }
 ```
 
-`has_children` 表示该分类是否包含子分类，通过`获取内容分类详情接口`可获得子分类的内容。
-
-### 代码示例
-
-nodejs 版本
-
-```
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/content/category/',
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`
-  },
-  qs: {     // query string, 被附加到uri的参数
-    content_group_id: '15130762111906xx'
-  }
-}
-
-request(opt, function(err, res, body) {
-    console.log(body)
-})
-```
-
 ## 获取内容分类详情
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/content/category/:category_id/`
+`GET https://cloud.minapp.com/oserve/v1/content/category/:category_id/`
 
 `category_id` 是内容分类的 ID
 
-### 请求方法
+**代码示例**
 
-`GET`
+{% tabs getDetailCurl="Curl", getDetailNode="Node" %}
 
-### 请求示例
+{% content "getDetailCurl"%}
 
 ```
 curl -X GET \
@@ -101,28 +101,9 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/content/category/:category_id/
 ```
 
-### 返回示例
+{% content "getDetailNode" %}
 
-```json
-{
-    "id": 1680,
-    "name": "分类 1",
-    "has_children": true,
-    "children": [
-        {
-            "has_children": false,
-            "id": 1708,
-            "name": "子分类"
-        }
-    ]
-}
-```
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -136,4 +117,23 @@ var opt = {
 request(opt, function(err, res, body) {
     console.log(body)
 })
+```
+
+{% endtabs %}
+
+**返回参数**
+
+```json
+{
+  "id": 1680,
+  "name": "分类 1",
+  "has_children": true,
+  "children": [
+    {
+      "has_children": false,
+      "id": 1708,
+      "name": "子分类"
+    }
+  ]
+}
 ```

@@ -1,18 +1,31 @@
 # 获取内容
 
-本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](./authentication.md)。
+本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](../authentication.md)。
 
 ## 获取内容列表
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/content/detail/`
+`GET https://cloud.minapp.com/oserve/v1/content/detail/`
 
-### 请求方法
+**参数说明**
 
-`GET`
+Content-Type: `application/json`
 
-### 排序
+| 参数               | 类型   | 必填 | 说明 |
+| :------------     | :----- | :-- | :-- |
+| category_id       | String | Y/N   | 内容分类的 ID |
+| content_group_id  | String | Y/N   | 内容库的 ID |
+| order_by          | String | N   | 对资源进行排序|
+| offset            | Number | N   | 返回资源的起始偏移值）|
+| limit             | Number | N   | 返回资源的个数（默认为 *20*，最大可设置为 *1000*）|
+
+  `category_id` 和 `content_group_id` 参数值应该是换取 `token` 的应用下的内容分类 ID 和内容库 ID。
+
+> **info**
+> 注意：发起请求时需要携带 `category_id` 或 `content_group_id` 参数。
+
+**排序**
 
 接口支持以 `created_at` 字段进行排序，默认是以`创建时间的顺序`进行排序。
 
@@ -28,19 +41,11 @@ https://cloud.minapp.com/oserve/v1/content/detail/?order_by=created_at
 https://cloud.minapp.com/oserve/v1/content/detail/?order_by=-created_at
 ```
 
-### 提交参数
+**代码示例**
 
-- `category_id` 内容分类的 ID
-- `content_group_id` 内容库的 ID
-- `order_by` 对资源进行排序
-- `offset` 返回资源的起始偏移值
-- `limit` 返回资源的个数（默认为 20，最大可设置为 1000）
+{% tabs getContentCurl="Curl", getContentNode="Node" %}
 
-  `category_id` 和 `content_group_id` 参数值应该是换取 `token` 的应用下的内容分类 ID 和内容库 ID。
-
-  注意：发起请求时需要携带 `category_id` 或 `content_group_id` 参数。
-
-### 请求示例
+{% content "getContentCurl" %}
 
 ```
 curl -X GET \
@@ -52,7 +57,31 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/content/detail/?content_group_id=1
 ```
 
-### 返回示例
+{% content "getContentNode" %}
+
+```js
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/content/detail/',
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`  // token的来源请看”授权认证”章节
+  },
+  qs: {     // query string, 被附加到uri的参数
+    content_group_id: '15130762111906xx',
+    category_id: '15130762527104xx'
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
+```
+
+{% endtabs %}
+
+**返回参数**
 
 ```json
 {
@@ -76,43 +105,19 @@ https://cloud.minapp.com/oserve/v1/content/detail/?content_group_id=1
 }
 ```
 
-### 代码示例
-
-nodejs 版本
-
-```
-var request = require('request');
-
-var opt = {
-    uri: 'https://cloud.minapp.com/oserve/v1/content/detail/',
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${token}`  // token的来源请看”授权认证”章节
-    },
-    qs: {     // query string, 被附加到uri的参数
-      content_group_id: '15130762111906xx',
-      category_id: '15130762527104xx'
-    }
-  }
-  
-  request(opt, function(err, res, body) {
-      console.log(body)
-  })
-```
-
 ## 获取内容详情
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/content/detail/:content_id/`
+`GET https://cloud.minapp.com/oserve/v1/content/detail/:content_id/`
 
 `content_id` 是内容的 ID
 
-### 请求方法
+**代码示例**
 
-`GET`
+{% tabs getDetailCurl="Curl", getDetailNode="Node" %}
 
-### 请求示例
+{% content "getDetailCurl"%}
 
 ```
 curl -X GET \
@@ -121,24 +126,9 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/content/detail/:content_id/
 ```
 
-### 返回示例
+{% content "getDetailNode"%}
 
-```json
-{
-    "content": "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
-    "cover": "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1donykIpnuvcRiAX.jpg",
-    "created_at": 1504152062,
-    "description": "超新约全书摘要",
-    "id": 1680,
-    "title": "超新约全书"
-}
-```
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -154,3 +144,17 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% endtabs %}
+
+**返回参数**
+
+```json
+{
+    "content": "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
+    "cover": "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1donykIpnuvcRiAX.jpg",
+    "created_at": 1504152062,
+    "description": "超新约全书摘要",
+    "id": 1680,
+    "title": "超新约全书"
+}
+```

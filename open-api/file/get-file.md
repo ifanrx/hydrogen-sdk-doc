@@ -2,25 +2,29 @@
 
 OpenAPI 暂支持文件的创建和删除操作。
 
-本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](./authentication.md)。
+本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](../authentication.md)。
 
 ## 获取文件列表
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/file/`
+`GET https://cloud.minapp.com/oserve/v1/file/`
 
-### 请求方法
+**参数说明**
 
-`GET`
+Content-Type: `application/json`
 
-### 提交参数
+| 参数              | 类型   | 必填 | 说明 |
+| :------------    | :----- | :-- | :-- |
+| order_by         | String | Y   | 排序（支持 `created_at` 进行排序）|
+| offset           | Number | N   | 返回资源的起始偏移值 |
+| limit            | Number | N   | 返回资源的个数（默认为 *20*，最大可设置为 *1000*）|
 
-- `order_by` 排序（支持 `created_at` 进行排序）
-- `offset` 返回资源的起始偏移值
-- `limit` 返回资源的个数（默认为 20，最大可设置为 1000）
+**代码示例**
 
-### 请求示例
+{% tabs getFileListCurl="Curl", getFileListNode="Node" %}
+
+{% content "getFileListCurl" %}
 
 ```
 curl -X GET \
@@ -32,7 +36,33 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/file/
 ```
 
-### 返回示例
+{% content "getFileListNode" %}
+
+```js
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/file/',
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  qs: {     // query string, 被附加到uri的参数
+    offset: 0,     // 可选
+    limit: 20,     // 可选
+    order_by: 'created_at'  // 按照创建时间来排序，可选
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
+    
+```
+
+{% endtabs %}
+
+**返回参数**
 
 ```json
 {
@@ -65,23 +95,37 @@ https://cloud.minapp.com/oserve/v1/file/
 }
 ```
 
-### 代码示例
+## 文件详情
 
-nodejs 版本
+**接口**
+
+`GET https://cloud.minapp.com/oserve/v1/file/:file_id/`
+
+`file_id` 是文件的 ID
+
+**代码示例**
+
+{% tabs getFileDetailCurl="Curl", getFileDetailNode="Node" %}
+
+{% content "getFileDetailCurl" %}
 
 ```
+curl -X GET \
+-H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "Content-Type: application/json" \
+https://cloud.minapp.com/oserve/v1/file/5a1ba9c1fff1d651135e5ff1/
+```
+
+{% content "getFileDetailNode" %}
+
+```js
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/file/',
+  uri: 'https://cloud.minapp.com/oserve/v1/file/5a2fe93308443e313a428cxx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :file_id
   method: 'GET',
   headers: {
     Authorization: `Bearer ${token}`
-  },
-  qs: {     // query string, 被附加到uri的参数
-    offset: 0,     // 可选
-    limit: 20,     // 可选
-    order_by: 'created_at'  // 按照创建时间来排序，可选
   }
 }
 
@@ -91,28 +135,9 @@ request(opt, function(err, res, body) {
     
 ```
 
-## 文件详情
+{% endtabs %}
 
-### 接口地址
-
-`https://cloud.minapp.com/oserve/v1/file/:file_id/`
-
-`file_id` 是文件的 ID
-
-### 请求方法
-
-`GET`
-
-### 请求示例
-
-```
-curl -X GET \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/file/5a1ba9c1fff1d651135e5ff1/
-```
-
-### 返回示例
+**返回参数**
 
 ```json
 {
@@ -134,38 +159,19 @@ https://cloud.minapp.com/oserve/v1/file/5a1ba9c1fff1d651135e5ff1/
 }
 ```
 
-### 代码示例
-
-nodejs 版本
-
-```
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/file/5a2fe93308443e313a428cxx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :file_id
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`
-  }
-}
-
-request(opt, function(err, res, body) {
-    console.log(body)
-})
-    
-```
-
 ## 删除文件
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/file/:file_id/`
+`DELETE https://cloud.minapp.com/oserve/v1/file/:file_id/`
 
-### 请求方法
+`file_id` 为文件 ID
 
-`DELETE`
+**代码示例**
 
-### 请求示例
+{% tabs deleteFileCurl="Curl", deleteFileNode="Node" %}
+
+{% content "deleteFileCurl" %}
 
 ```
 curl -X DELETE \
@@ -174,15 +180,9 @@ curl -X DELETE \
 https://cloud.minapp.com/oserve/v1/file/5a1ba9c1fff1d651135e5ff1/
 ```
 
-### 状态码说明
+{% content "deleteFileNode" %}
 
-- `204` 删除成功
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -199,17 +199,23 @@ request(opt, function(err, res, body) {
     
 ```
 
+{% endtabs %}
+
+**状态码说明**
+
+- `204` 删除成功
+
 ## 批量删除文件
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/file/?id__in=:file1_id,:file2_id`
+`DELETE https://cloud.minapp.com/oserve/v1/file/?id__in=:file1_id,:file2_id`
 
-### 请求方法
+**代码示例**
 
-`DELETE`
+{% tabs patchDeleteCurl="Curl", patchDeleteNode="Node" %}
 
-### 请求示例
+{% content "patchDeleteCurl" %}
 
 ```
 curl -X DELETE \
@@ -218,15 +224,9 @@ curl -X DELETE \
 https://cloud.minapp.com/oserve/v1/file/?id__in=5a1ba9c1fff1d651135e5ff1,59ca3d275f281f58523fc47a
 ```
 
-### 状态码说明
+{% content "patchDeleteNode" %}
 
-- `204` 删除成功
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -242,3 +242,9 @@ request(opt, function(err, res, body) {
 })
     
 ```
+
+{% endtabs %}
+
+**状态码说明**
+
+- `204` 删除成功

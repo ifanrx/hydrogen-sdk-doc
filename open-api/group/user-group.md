@@ -1,24 +1,28 @@
 # 用户组的操作
 
-本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](./authentication.md)。
+本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](../authentication.md)。
 
 ## 获取用户组列表
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/user-group/`
+`GET https://cloud.minapp.com/oserve/v1/user-group/`
 
-### 请求方法
+**参数说明**
 
-`GET`
+Content-Type: `application/json`
 
-### 提交参数
+| 参数          | 类型   | 必填 | 说明 |
+| :------------| :----- | :-- | :-- |
+| parent_id    | String | N   | 用户组的组集 ID |
+| offset       | String | N   | 返回资源的起始偏移值 |
+| limit        | String | N   | 返回资源的个数（默认为 20，最大可设置为 1000 |
 
-- `parent_id` 用户组的组集 ID
-- `offset` 返回资源的起始偏移值
-- `limit` 返回资源的个数（默认为 20，最大可设置为 1000）
+**代码示例**
 
-### 请求示例
+{% tabs userGroupCurl="Curl", userGroupNode="Node" %}
+
+{% content "userGroupCurl" %}
 
 ```
 curl -X GET \
@@ -29,7 +33,32 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/user-group/
 ```
 
-### 返回示例
+{% content "userGroupNode" %}
+
+```js
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-group/',
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  qs: {     // query string, 被附加到uri的参数
+    parent_id: "234565423456787645xx",   // 可选, 没有用户组的组集 ID, 可以设置为 null 或者不设置
+    offset: 0,         // 可选
+    limit: 20          // 可选
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+})
+```
+
+{% endtabs %}
+
+**返回参数**
 
 ```json
 {
@@ -57,44 +86,19 @@ https://cloud.minapp.com/oserve/v1/user-group/
 - `members` 表示在用户组下的用户数量
 - `parent` 表示用户组的组集
 
-### 代码示例
-
-nodejs 版本
-
-```
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/user-group/',
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  qs: {     // query string, 被附加到uri的参数
-    parent_id: "234565423456787645xx",   // 可选, 没有用户组的组集 ID, 可以设置为 null 或者不设置
-    offset: 0,         // 可选
-    limit: 20          // 可选
-  }
-}
-
-request(opt, function(err, res, body) {
-    console.log(body)
-})
-```
-
 ## 获取用户组详情
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/user-group/:group_id/`
+`GET https://cloud.minapp.com/oserve/v1/user-group/:group_id/`
 
 `group_id` 是用户组的 ID
 
-### 请求方法
+**代码示例**
 
-`GET`
+{% tabs userGroupDetailCurl="Curl", userGroupDetailNode="Node" %}
 
-### 请求示例
+{% content "userGroupDetailCurl" %}
 
 ```
 curl -X GET \
@@ -103,25 +107,9 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/user-group/47/
 ```
 
-### 返回示例
+{% content "userGroupDetailNode" %}
 
-```json
-{
-    "id": 47,
-    "members": 0,
-    "name": "User Group",
-    "parent": {
-        "id": 1,
-        "name": "Super Group"
-    }
-}
-```
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -137,22 +125,42 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% endtabs %}
+
+**返回参数**
+
+```json
+{
+    "id": 47,
+    "members": 0,
+    "name": "User Group",
+    "parent": {
+        "id": 1,
+        "name": "Super Group"
+    }
+}
+```
+
 ## 创建用户组
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/user-group/`
+`POST https://cloud.minapp.com/oserve/v1/user-group/`
 
-### 请求方法
+**参数说明**
 
-`POST`
+Content-Type: `application/json`
 
-### 请求参数
+| 参数          | 类型   | 必填 | 说明 |
+| :------------| :----- | :-- | :-- |
+| name    | String | Y   | 用户组的名称 |
+| parent       | String | N   | 组集 ID |
 
-- `name` 用户组的名称
-- `parent` 组集 ID（可选）
+**代码示例**
 
-### 请求示例
+{% tabs createUserGroupCurl="Curl", createUserGroupNode="Node" %}
+
+{% content "createUserGroupCurl" %}
 
 ```
 curl -X POST \
@@ -162,15 +170,9 @@ curl -X POST \
 https://cloud.minapp.com/oserve/v1/user-group/
 ```
 
-### 状态码说明
+{% content "createUserGroupNode" %}
 
-- `201` 写入成功
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -189,19 +191,25 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% endtabs %}
+
+**状态码说明**
+
+- `201` 写入成功
+
 ## 修改用户组
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/user-group/:group_id/`
+`PUT https://cloud.minapp.com/oserve/v1/user-group/:group_id/`
 
 `group_id` 是用户组的 ID
 
-### 请求方法
+**代码示例**
 
-`PUT`
+{% tabs updateGroupCurl="Curl", updateGroupNode="Node" %}
 
-### 请求示例
+{% content "updateGroupCurl" %}
 
 ```
 curl -X PUT \
@@ -211,29 +219,9 @@ curl -X PUT \
 https://cloud.minapp.com/oserve/v1/user-group/47/
 ```
 
-### 返回示例
+{% content "updateGroupNode" %}
 
-```json
-{
-    "id": 47,
-    "members": 0,
-    "name": "user group",
-    "parent": {
-        "id": 1,
-        "name": "Super Group"
-    }
-}
-```
-
-### 状态码说明
-
-- `200` 修改成功
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -252,17 +240,37 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% endtabs %}
+
+**返回参数**
+
+```json
+{
+    "id": 47,
+    "members": 0,
+    "name": "user group",
+    "parent": {
+        "id": 1,
+        "name": "Super Group"
+    }
+}
+```
+
+**状态码说明**
+
+- `200` 修改成功
+
 ## 删除用户组
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/user-group/:group_id/`
+`DELETE https://cloud.minapp.com/oserve/v1/user-group/:group_id/`
 
-### 请求方法
+**代码示例**
 
-`DELETE`
+{% tabs deleteGroupCurl="Curl", deleteGroupNode="Node" %}
 
-### 请求示例
+{% content "deleteGroupCurl" %}
 
 ```
 curl -X DELETE \
@@ -271,15 +279,9 @@ curl -X DELETE \
 https://cloud.minapp.com/oserve/v1/user-group/47/
 ```
 
-### 状态码说明
+{% content "deleteGroupNode" %}
 
-- `204` 删除成功
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -295,17 +297,23 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% endtabs %}
+
+**状态码说明**
+
+- `204` 删除成功
+
 ## 批量删除用户组
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/user-group/?id__in=:group_id,group1_id`
+`DELETE https://cloud.minapp.com/oserve/v1/user-group/?id__in=:group_id,group1_id`
 
-### 请求方法
+**代码示例**
 
-`DELETE`
+{% tabs patchDeleteGroupCurl="Curl", patchDeleteGroupNode="Node" %}
 
-### 请求示例
+{% content "patchDeleteGroupCurl" %}
 
 ```
 curl -X DELETE \
@@ -314,15 +322,9 @@ curl -X DELETE \
 https://cloud.minapp.com/oserve/v1/user-group/?id__in=48,50
 ```
 
-### 状态码说明
+{% content "patchDeleteGroupNode" %}
 
-- `204` 删除成功
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -337,3 +339,9 @@ request(opt, function(err, res, body) {
     console.log(res.statusCode)
 })
 ```
+
+{% endtabs %}
+
+**状态码说明**
+
+- `204` 删除成功

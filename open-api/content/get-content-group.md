@@ -1,23 +1,27 @@
 # 获取内容库
 
-本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](./authentication.md)。
+本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](../authentication.md)。
 
 ## 获取内容库列表
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/content/group/`
+`GET https://cloud.minapp.com/oserve/v1/content/group/`
 
-### 请求方法
+**提交参数**
 
-`GET`
+Content-Type: `application/json`
 
-### 提交参数
+| 参数           | 类型   | 必填 | 说明 |
+| :------------ | :----- | :-- | :-- |
+| offset        | Number | N   | 返回资源的起始偏移值 |
+| limit         | Number | N   | 返回资源的个数（默认为 *20*，最大可设置为 *1000*）|
 
-- `offset` 返回资源的起始偏移值
-- `limit` 返回资源的个数（默认为 20，最大可设置为 1000）
+**代码示例**
 
-### 请求示例
+{% tabs getLibraryCurl="Curl", getLibraryNode="Node" %}
+
+{% content "getLibraryCurl"%}
 
 ```
 curl -X GET \
@@ -26,31 +30,9 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/content/group/
 ```
 
-### 返回示例
+{% content "getLibraryNode" %}
 
-```json
-{
-    "meta": {
-        "limit": 10,
-        "next": null,
-        "offset": 0,
-        "previous": null,
-        "total_count": 1
-    },
-    "objects": [
-        {
-            "id": 1680,
-            "name": "内容库 1"
-        }
-    ]
-}
-```
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -70,19 +52,41 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% endtabs %}
+
+**返回参数**
+
+```json
+{
+    "meta": {
+        "limit": 10,
+        "next": null,
+        "offset": 0,
+        "previous": null,
+        "total_count": 1
+    },
+    "objects": [
+        {
+            "id": 1680,
+            "name": "内容库 1"
+        }
+    ]
+}
+```
+
 ## 获取内容详情
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/content/group/:content_group_id/`
+`GET https://cloud.minapp.com/oserve/v1/content/group/:content_group_id/`
 
-`content_group_id` 是内容库 ID
+`content_group_id` 为内容 ID
 
-### 请求方法
+**代码示例**
 
-`GET`
+{% tabs getDetailCurl="Curl", getDetailNode="Node" %}
 
-### 请求示例
+{% content "getDetailCurl" %}
 
 ```
 curl -X GET \
@@ -91,20 +95,9 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/content/group/:content_group_id/
 ```
 
-### 返回示例
+{% content "getDetailNode" %}
 
-```json
-{
-    "id": 1680,
-    "name": "内容库 1"
-}
-```
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -118,4 +111,15 @@ var opt = {
 request(opt, function(err, res, body) {
     console.log(body)
 })
+```
+
+{% endtabs %}
+
+**返回参数**
+
+```json
+{
+    "id": 1680,
+    "name": "内容库 1"
+}
 ```

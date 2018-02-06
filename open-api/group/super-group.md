@@ -1,23 +1,27 @@
 # 组集的操作
 
-本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](./authentication.md)。
+本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](../authentication.md)。
 
 ## 获取组集列表
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/user-supergroup/`
+`GET https://cloud.minapp.com/oserve/v1/user-supergroup/`
 
-### 请求方法
+**参数说明**
 
-`GET`
+Content-Type: `application/json`
 
-### 提交参数
+| 参数          | 类型   | 必填 | 说明 |
+| :------------| :----- | :-- | :-- |
+| offset       | String | N   | 返回资源的起始偏移值 |
+| limit        | String | N   | 返回资源的个数（默认为 20，最大可设置为 1000） |
 
-- `offset` 返回资源的起始偏移值
-- `limit` 返回资源的个数（默认为 20，最大可设置为 1000）
+**代码示例**
 
-### 请求示例
+{% tabs getCurl="Curl", getNode="Node" %}
+
+{% content "getCurl" %}
 
 ```
 curl -X GET \
@@ -27,7 +31,27 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/user-supergroup/
 ```
 
-### 返回示例
+{% content "getNode" %}
+
+```js
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-supergroup/',
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  }
+}
+
+request(opt, function(err, res, body) {
+    console.log(body)
+}
+```
+
+{% endtabs %}
+
+**返回参数**
 
 ```json
 {
@@ -53,39 +77,19 @@ https://cloud.minapp.com/oserve/v1/user-supergroup/
 }
 ```
 
-### 代码示例
-
-nodejs 版本
-
-```
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/user-supergroup/',
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  }
-}
-
-request(opt, function(err, res, body) {
-    console.log(body)
-}
-```
-
 ## 获取组集详情
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/user-supergroup/:group_id/`
+`GET https://cloud.minapp.com/oserve/v1/user-supergroup/:group_id/`
 
 `group_id` 是组集的 ID
 
-### 请求方法
+**代码示例**
 
-`GET`
+{% tabs getDetailCurl="Curl", getDetailNode="Node" %}
 
-### 请求示例
+{% content "getDetailCurl" %}
 
 ```
 curl -X GET \
@@ -94,26 +98,9 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/user-supergroup/52/
 ```
 
-### 返回示例
+{% content "getDetailNode" %}
 
-```json
-{
-    "children": [
-        {
-            "id": 51,
-            "name": "User Group"
-        }
-    ],
-    "id": 52,
-    "name": "Super Group"
-}
-```
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -129,22 +116,43 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% endtabs %}
+
+**返回参数**
+
+```json
+{
+    "children": [
+        {
+            "id": 51,
+            "name": "User Group"
+        }
+    ],
+    "id": 52,
+    "name": "Super Group"
+}
+```
+
 ## 创建组集
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/user-supergroup/`
+`POST https://cloud.minapp.com/oserve/v1/user-supergroup/`
 
-### 请求方法
+**参数说明**
 
-`POST`
+Content-Type: `application/json`
 
-### 请求参数
+| 参数          | 类型   | 必填 | 说明 |
+| :------------| :----- | :-- | :-- |
+| name         | String | Y   | 组集的名称 |
+| children       | String | N   | 用户组 ID 列表 |
 
-- `name` 组集的名称
-- `children` 用户组 ID 列表
+**代码示例**
 
-### 请求示例
+{% tabs createCurl="Curl", createNode="Node" %}
+
+{% content "createCurl" %}
 
 ```
 curl -X POST \
@@ -154,15 +162,9 @@ curl -X POST \
 https://cloud.minapp.com/oserve/v1/user-supergroup/
 ```
 
-### 状态码说明
+{% content "createNode" %}
 
-- `201` 写入成功
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -182,21 +184,31 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% endtabs %}
+
+**状态码说明**
+
+- `201` 写入成功
+
 ## 修改组集
 
 请注意本接口 **会清除掉旧有的组集和用户组的关系，重新与传入的用户组建立关系**。
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/user-supergroup/:group_id/`
+`PUT https://cloud.minapp.com/oserve/v1/user-supergroup/:group_id/`
 
 `group_id` 是组集的 ID
 
-### 请求方法
+**状态码说明**
 
-`PUT`
+- `200` 修改成功
 
-### 请求示例
+**代码示例**
+
+{% tabs updateCurl="Curl", updateNode="Node" %}
+
+{% content "updateCurl" %}
 
 ```
 curl -X PUT \
@@ -206,30 +218,9 @@ curl -X PUT \
 https://cloud.minapp.com/oserve/v1/user-supergroup/52/
 ```
 
-### 返回示例
+{% content "updateNode" %}
 
-```json
-{
-    "children": [
-        {
-            "id": 51,
-            "name": "User Group"
-        }
-    ],
-    "id": 52,
-    "name": "super group 3"
-}
-```
-
-### 状态码说明
-
-- `200` 修改成功
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -249,17 +240,34 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% endtabs %}
+
+**返回参数**
+
+```json
+{
+    "children": [
+        {
+            "id": 51,
+            "name": "User Group"
+        }
+    ],
+    "id": 52,
+    "name": "super group 3"
+}
+```
+
 ## 删除组集
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/user-supergroup/:group_id/`
+`DELETE https://cloud.minapp.com/oserve/v1/user-supergroup/:group_id/`
 
-### 请求方法
+**代码示例**
 
-`DELETE`
+{% tabs deleteCurl="Curl", deleteNode="Node" %}
 
-### 请求示例
+{% content "deleteCurl" %}
 
 ```
 curl -X DELETE \
@@ -268,15 +276,9 @@ curl -X DELETE \
 https://cloud.minapp.com/oserve/v1/user-supergroup/52/
 ```
 
-### 状态码说明
+{% content "deleteNode" %}
 
-- `204` 删除成功
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -292,17 +294,23 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% endtabs %}
+
+**状态码说明**
+
+- `204` 删除成功
+
 ## 批量删除组集
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/user-supergroup/?id__in=:group_id,group1_id`
+`DELETE https://cloud.minapp.com/oserve/v1/user-supergroup/?id__in=:group_id,group1_id`
 
-### 请求方法
+**代码示例**
 
-`DELETE`
+{% tabs patchDeleteCurl="Curl", patchDeleteNode="Node" %}
 
-### 请求示例
+{% content "patchDeleteCurl" %}
 
 ```
 curl -X DELETE \
@@ -311,15 +319,9 @@ curl -X DELETE \
 https://cloud.minapp.com/oserve/v1/user-supergroup/?id__in=58,56
 ```
 
-### 状态码说明
+{% content "patchDeleteNode" %}
 
-- `204` 删除成功
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -334,3 +336,9 @@ request(opt, function(err, res, body) {
     console.log(res.statusCode)
 })
 ```
+
+{% endtabs %}
+
+**状态码说明**
+
+- `204` 删除成功

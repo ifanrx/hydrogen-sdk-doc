@@ -1,27 +1,31 @@
 # 用户组与用户的操作
 
-本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](./authentication.md)。
+本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](../authentication.md)。
 
 ## 用户 加入／移除 用户组操作
 
-### 接口地址
+**接口**
 
-`https://cloud.minapp.com/oserve/v1/miniapp/group/membership/`
+`PATCH https://cloud.minapp.com/oserve/v1/miniapp/group/membership/`
 
-### 请求方法
+**参数说明**
 
-`PATCH`
+Content-Type: `application/json`
 
-### 提交参数
+| 参数          | 类型   | 必填 | 说明 |
+| :------------| :----- | :-- | :-- |
+| op       | String | N   | 将要执行的操作，即 `add` 为将用户加入用户组；`remove` 将用户从用户组中移除 |
+| path     | String | N   | 访问的路径，默认为 `/membership` |
+| users    | String | N   | 用户的 user_id 列表，列表不能为空 |
+| groups   | String | N   | 用户组 ID 列表，列表不能为空 |
 
-提交的数据是一个数组，数组中包含一系列由下面参数组成的操作。
+提交的数据是一个数组，数组中包含一系列由上面参数组成的操作。
 
-- `op` 将要执行的操作，即 `add` 为将用户加入用户组；`remove` 将用户从用户组中移除
-- `path` 访问的路径，默认为 `/membership`
-- `users` 用户的 user_id 列表，列表不能为空
-- `groups` 用户组 ID 列表，列表不能为空
+**代码示例**
 
-### 请求示例
+{% tabs patchCurl="Curl", patchNode="Node" %}
+
+{% content "patchCurl"%}
 
 ```
 curl -X PATCH \
@@ -34,16 +38,9 @@ curl -X PATCH \
 https://cloud.minapp.com/oserve/v1/miniapp/group/membership/
 ```
 
-### 状态码说明
+{% content "patchNode"%}
 
-- `204` 修改成功
-- `400` 参数错误
-
-### 代码示例
-
-nodejs 版本
-
-```
+```js
 var request = require('request');
 
 var opt = {
@@ -61,3 +58,10 @@ request(opt, function(err, res, body) {
     console.log(res.statusCode)
 })
 ```  
+
+{% endtabs %}
+
+**状态码说明**
+
+- `204` 修改成功
+- `400` 参数错误
