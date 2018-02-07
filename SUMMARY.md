@@ -89,6 +89,6 @@
 
 * [管理与支持](support/README.md)
     * [服务协议](support/terms.md)
-    * [常见问题](support/Q&A/qA.md)
+    * [常见问题](support/qA.md)
 
 * [技术细节](technical-notes.md)
