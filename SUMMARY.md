@@ -69,9 +69,26 @@
 ----
 
 * [云函数](cloud-function/README.md)
+    * [云函数 Node SDK](cloud-function/node-sdk/README.md)
+        * [数据表](cloud-function/node-sdk/schema/README.md)
+            * [新增数据项](cloud-function/node-sdk/schema/create-record.md)
+            * [更新数据项](cloud-function/node-sdk/schema/update-record.md)
+            * [删除数据项](cloud-function/node-sdk/schema/delete-record.md)
+            * [获取数据项](cloud-function/node-sdk/schema/get-record-detail.md)
+            * [查询数据项](cloud-function/node-sdk/schema/query.md)
+            * [分页和排序](cloud-function/node-sdk/schema/limit-and-order.md)
+            * [地理位置操作](cloud-function/node-sdk/schema/geo.md)
+        * [内容库](cloud-function/node-sdk/content.md)
+        * [文件](cloud-function/node-sdk/file.md)
+        * [文件分类](cloud-function/node-sdk/file-category.md)
+        * [调用云函数](cloud-function/node-sdk/cloud-function.md)
+        * [发送邮件](cloud-function/node-sdk/email.md)
+        * [发送模板函数](cloud-function/node-sdk/template-message.md)
 
 ----
 
 * [管理与支持](support/README.md)
     * [服务协议](support/terms.md)
     * [常见问题](support/Q&A/qA.md)
+
+* [技术细节](technical-notes.md)

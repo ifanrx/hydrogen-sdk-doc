@@ -1,24 +1,23 @@
-# 云函数
+# 云函数 Node SDK
 
-云函数可以帮助您在没有购买和管理服务器时仍能运行代码。您只需要进行核心代码的编写及设置代码运行的条件，代码即可在知晓云云基础设施上自动、安全地运行。
-
-
-目前支持的 Node.js 开发语言包括如下版本：
+目前知晓云云函数支持的 Node.js 开发语言包括如下版本：
 - Node.js 8.9
 
 
-### 代码编写格式
+## 代码编写格式
+
+在云函数中使用 Nodejs 编程，需要定义一个 Nodejs 函数作为入口，一个简单的函数定义如下：
+
 ```
-exports.main = function (event, callback) {
+exports.main = function helloWorld(event, callback) {
   let name = event.data.name
-  console.info(name + ' in')
   callback(null, 'hello ' + name)
 }
 ```
 
-### 参数介绍
+## 参数介绍
 
-##### event
+**event**
 
 此参数包含了触发事件的相关数据:
 
@@ -43,12 +42,12 @@ exports.main = function (event, callback) {
 `timeLimitInMS` 当前函数的 timeout 时间
 
 
-##### callback
+**callback**
 
 可选项。使用此参数用于将您所希望的信息返回给调用方。格式如 `callback(err, data)`，err 为错误信息，可为 Error 类型或字符串，没有出错的情况下，可设置为 null；data 为函数成功执行的结果信息。
 
 
-### 日志
+## 日志
 您可以在程序中使用如下几种不同的日志级别来完成日志输出:
 
 ```
@@ -64,7 +63,7 @@ console.info(message)
 2017-07-05T05:13:35.920Z INFO hello world
 ```
 
-### 已包含的库及使用方法
+## 已包含的库及使用方法
 
 目前支持在云函数中对知晓云中的数据，内容和文件进行操作，同时也支持调用其它云函数，发送邮件和模板消息等功能，使用如下：
 
@@ -79,11 +78,3 @@ exports.main = function (event, callback) {
   })
 }
 ```
-
-具体可参看相关文档：
-
-- [在云函数中操作数据表](./schema/README.md)
-- [在云函数中操作内容库](./schema/content.md)
-- [在云函数中调用其它云函数](./schema/cloudFunction.md)
-- [在云函数中发送模板消息](./schema/templateMessage.md)
-- [在云函数中发送邮件](./schema/email.md)

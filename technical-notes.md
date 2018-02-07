@@ -1,0 +1,98 @@
+# 技术细节
+
+本节描述知晓云系统重的技术细节以及限制。
+
+
+## 标准版本中的限制条件
+
+知晓云的各标准版本均可承载高并发量之负载，作为服务承诺的一部分，不同套餐可保证承载量不低于以下之描述：
+
+- 开发版: 10 QPS / 应用
+- 个人版: 100 QPS / 应用
+- 企业版: 300 QPS / 应用
+
+以上限制条件可满足绝大部分用户的正常工作负载，若有更高的 QPS 需求，请通过工单联系知晓云客服。
+
+## 云函数
+
+### GPL Code
+
+云函数的构建离不开开源社区的贡献。在云函数的实现中，知晓云使用了诸多 GPL 协议的源代码并进行了修改。
+
+知晓云团队基于以下工具构建了云函数功能：
+
+- buildroot
+- busybox
+- node.js
+
+所有的 GPL 源代码可通过发起工单的方式获取。
+
+### 云函数的实现
+
+云函数是基于知晓云团队自研的轻量级容器 Iceberg 的，并非基于 docker 或类似方案实现的。每次用户云函数执行完后，容器即立即销毁。
+
+### 云函数的临时文件存储
+
+临时文件可存储在 /tmp 中。用户有高达 16MB 的高速临时文件存储空间可供使用。临时文件的生命周期限制在云函数的执行周期中，云函数返回后临时文件即时销毁，并将无法找回。
+
+### 云函数的网络请求
+
+云函数内无法对外界发起直接的网络请求。若希望发起请求，应使用 SDK 中提供的方法进行。
+
+### 执行环境内的可用工具、资源
+
+为方便使用，知晓云在云函数的执行环境内准备了如下工具/资源：
+
+- gd
+- ghostscript
+- imagemagick
+
+以下 emoji 字体:
+
+/usr/share/fonts/google-material/MaterialIcons-Regular.ttf
+
+以下西文字体:
+
+/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf
+/usr/share/fonts/dejavu/DejaVuSans-BoldOblique.ttf
+/usr/share/fonts/dejavu/DejaVuSans-ExtraLight.ttf
+/usr/share/fonts/dejavu/DejaVuSans-Oblique.ttf
+/usr/share/fonts/dejavu/DejaVuSans.ttf
+/usr/share/fonts/dejavu/DejaVuSansCondensed-Bold.ttf
+/usr/share/fonts/dejavu/DejaVuSansCondensed-BoldOblique.ttf
+/usr/share/fonts/dejavu/DejaVuSansCondensed-Oblique.ttf
+/usr/share/fonts/dejavu/DejaVuSansCondensed.ttf
+/usr/share/fonts/dejavu/DejaVuSansMono-Bold.ttf
+/usr/share/fonts/dejavu/DejaVuSansMono-BoldOblique.ttf
+/usr/share/fonts/dejavu/DejaVuSansMono-Oblique.ttf
+/usr/share/fonts/dejavu/DejaVuSansMono.ttf
+/usr/share/fonts/dejavu/DejaVuSerif-Bold.ttf
+/usr/share/fonts/dejavu/DejaVuSerif-BoldItalic.ttf
+/usr/share/fonts/dejavu/DejaVuSerif-Italic.ttf
+/usr/share/fonts/dejavu/DejaVuSerif.ttf
+/usr/share/fonts/dejavu/DejaVuSerifCondensed-Bold.ttf
+/usr/share/fonts/dejavu/DejaVuSerifCondensed-BoldItalic.ttf
+/usr/share/fonts/dejavu/DejaVuSerifCondensed-Italic.ttf
+/usr/share/fonts/dejavu/DejaVuSerifCondensed.ttf
+/usr/share/fonts/liberation/LiberationMono-Bold.ttf
+/usr/share/fonts/liberation/LiberationMono-BoldItalic.ttf
+/usr/share/fonts/liberation/LiberationMono-Italic.ttf
+/usr/share/fonts/liberation/LiberationMono-Regular.ttf
+/usr/share/fonts/liberation/LiberationSans-Bold.ttf
+/usr/share/fonts/liberation/LiberationSans-BoldItalic.ttf
+/usr/share/fonts/liberation/LiberationSans-Italic.ttf
+/usr/share/fonts/liberation/LiberationSans-Regular.ttf
+/usr/share/fonts/liberation/LiberationSerif-Bold.ttf
+/usr/share/fonts/liberation/LiberationSerif-BoldItalic.ttf
+/usr/share/fonts/liberation/LiberationSerif-Italic.ttf
+/usr/share/fonts/liberation/LiberationSerif-Regular.ttf
+/usr/share/fonts/ttf-bitstream-vera/Vera.ttf
+/usr/share/fonts/ttf-bitstream-vera/VeraBI.ttf
+/usr/share/fonts/ttf-bitstream-vera/VeraBd.ttf
+/usr/share/fonts/ttf-bitstream-vera/VeraIt.ttf
+/usr/share/fonts/ttf-bitstream-vera/VeraMoBI.ttf
+/usr/share/fonts/ttf-bitstream-vera/VeraMoBd.ttf
+/usr/share/fonts/ttf-bitstream-vera/VeraMoIt.ttf
+/usr/share/fonts/ttf-bitstream-vera/VeraMono.ttf
+/usr/share/fonts/ttf-bitstream-vera/VeraSe.ttf
+/usr/share/fonts/ttf-bitstream-vera/VeraSeBd.ttf
