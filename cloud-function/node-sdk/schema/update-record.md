@@ -1,12 +1,6 @@
 # 更新数据项
 
-{% tabs first="SDK 1.1.0 及以上版本", second="SDK 1.1.0 以下版本" %}
-
-{% content "first" %}
-
-## SDK 1.1.0 及以上版本
-
-### 操作步骤
+## 操作步骤
 
 1.通过 tableID 实例化一个 TableObject 对象，操作该对象即相当于操作对应的数据表
 
@@ -57,7 +51,7 @@ MyRecord.set(key2, value2)
 通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。
 
 
-### 普通数据更新
+## 普通数据更新
 
 **请求示例**
 
@@ -91,7 +85,7 @@ product.update().then( (res) => {
 ```
 
 
-### 计数器更新
+## 计数器更新
 
 对数字类型的字段进行原子性增减操作
 
@@ -112,7 +106,7 @@ product.update().then( (res) => {}, (err) => {})
 ```
 
 
-### 数组原子性更新
+## 数组原子性更新
 
 #### 将待插入数组加到原数组末尾
 
@@ -184,70 +178,3 @@ order.set('amount', 10)
 order.set('date', 'abc')
 order.update()
 ```
-
-{% content "second" %}
-
-## SDK 1.1.0 以下版本
-
-> **info**
-> 该写法在 sdk v2.0 前仍然有效
-
-`wx.BaaS.updateRecord(OBJECT)`
-
-**OBJECT 参数说明**
-
-| 参数      | 类型   | 必填 | 说明 |
-| :------  | :----  | :-- | :-- |
-| tableID  | Number | 是  | 数据表 ID |
-| recordID | String | 是  | 数据项 ID |
-| data     | Object | 是  | 待更新的自定义数据 |
-
-**请求示例**
-
-```js
-// 更新 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项的 name 字段
-let tableID = 10;
-let recordID = '59897882ff650c0477f00485';
-let data = {
-  name: "VwlPCaUJzxAyNUSNMgzikTQySFoaTZtm"
-}
-let objects = {
-  tableID,
-  recordID,
-  data
-};
-wx.BaaS.updateRecord(objects).then( (res) => {
-  // success
-}, (err) => {
-  // err
-});
-```
-
-**返回参数**
-
-| 参数        |   类型  | 说明 |
-| :--------- | :------ | :-- |
-| id         | String  | 数据项 ID |
-| created_at | Number  | 创建时间 |
-| is_admin   | Boolean | 自定义字段 |
-| name       | String  | 自定义字段 |
-| price      | Number  | 自定义字段 |
-| tags       |  Array  | 自定义字段 |
-
-**返回示例**
-
-```js
-{
-  "created_at": 1487055951,
-  "id": "59897882ff650c0477f00485",
-  "is_admin": false,
-  "name": "VwlPCaUJzxAyNUSNMgzikTQySFoaTZtm",
-  "price": 10,
-  "tags": ["UZbJ", "eSYo"]
-}
-```
-
-> **info**
-> 本方法支持部分更新和全量更新
-
-{% endtabs %}

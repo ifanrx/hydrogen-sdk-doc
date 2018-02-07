@@ -1,3 +1,7 @@
+.markdown-section h1 {
+  font-size: 1.75em;
+}
+
 .markdown-section h2 {
   font-size: 1.5em;
 }
@@ -10,17 +14,15 @@
   font-size: 1em;
 }
 
+.nav.nav-tabs {
+  padding-left: 0;
+}
+
 .markdown-section a {
   color: #008cff;
 }
 
 /* reset tabs plugin */
-
-.markdown-section ol,
-.markdown-section ul {
-  padding-left: 0;
-}
-
 .nav-tabs {
   border-bottom: 1px solid #ebedf0 !important;
 }
@@ -45,10 +47,6 @@
 }
 
 /* reset navigation plugin */
-
-#anchor-navigation-ex-navbar ul {
-  display: block !important;
-}
 
 .doc-header {
   background: #008cff;
@@ -107,4 +105,9 @@
 .doc-detail-item li a:focus {
   color: #008cff;
   text-decoration: none;
+}
+
+.attention {
+  font-size: 1.25em;
+  color: red;
 }

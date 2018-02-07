@@ -1,3 +1,5 @@
+<!-- ex_nonav -->
+
 # SDK 下载
 
 #### [最新稳定版 v1.1.6（推荐）](https://dl.ifanr.cn/hydrogen/sdk/sdk-latest.zip)
