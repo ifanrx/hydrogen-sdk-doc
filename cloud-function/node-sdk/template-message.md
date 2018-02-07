@@ -9,7 +9,7 @@
 data 是 Object 类型，它包括以下几个属性
 
 | 参数             | 类型   | 必填  | 说明 |
-| :-------------: | :----- | :--- | :-- |
+| :-------------- | :----- | :--- | :-- |
 | user_id         | Number | 是   | 用户 ID |
 | template_id     | String | 是   | 模板 ID |
 | submission_type | String | 是   | 标题 |
@@ -38,6 +38,5 @@ BaaS.sendTemplateMessage(data).then(res => {
   // 发送成功
 }, err => {
   // 发送失败
-  console.log(err)
 })
 ```

@@ -21,25 +21,18 @@ exports.main = function helloWorld(event, callback) {
 
 此参数包含了触发事件的相关数据:
 
-`data` 在用户调用云函数时传入的参数
-
-`miniappId` 云函数所属小程序 id
-
-`token` 云函数所属小程序的 token，用于在云函数中处理 BaaS 数据时的验证
-
-`request` 若云函数请求来自 BaaS SDK, 此处存储请求用户及其他客户端信息
-
-`ssl_cert` 容器用于外部网络请求的 certificate
-
-`ssl_key` 容器用于外部网络请求的 key
-
-`eventType` 提供给用户的触发来源的信息 // enum：http-call/event-payment/event-data/event-schedule
-
-`jobId` 当前函数执行的 id
-
-`memoryLimitInMB` 当前函数的内存资源限制
-
-`timeLimitInMS` 当前函数的 timeout 时间
+| 包含字段         | 类型            | 说明 |
+| :-------------- | :------------- | :-- |
+| data            | 任何 js 合法类型 | 在用户调用云函数时传入的参数 |
+| eventType       | String         | 提供给用户的触发来源的信息，包括http-call/event-payment/event-data/event-schedule |
+| jobId           | Number         | 当前函数执行的 id |
+| memoryLimitInMB | Number         | 当前函数的内存资源限制 |
+| miniappId       | Number         | 云函数所属小程序 id |
+| request         | Object         | 若云函数请求来自 BaaS SDK, 此处存储请求用户及其他客户端信息 |
+| ssl_cert        | String         | 容器用于外部网络请求的 certificate |
+| ssl_key         | String         | 容器用于外部网络请求的 key |
+| timeLimitInMS   | Number         | 当前函数的 timeout 时间 |
+| token           | String         | 云函数所属小程序的 token，用于在云函数中处理 BaaS 数据时的验证 |
 
 
 **callback**
