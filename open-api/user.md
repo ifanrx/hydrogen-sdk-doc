@@ -26,7 +26,7 @@
 
 **代码示例**
 
-{% tabs first="Curl", second="Node", third="Python" %}
+{% tabs first="Curl", second="Node" %}
 
 {% content "first" %}
 
@@ -67,15 +67,9 @@ https://cloud.minapp.com/oserve/v1/miniapp/user-profile/
   })
   ```
 
-{% content "third" %}
-
-  ```python
-    python code ……
-  ```
-
 {% endtabs %}
 
-**返回参数**
+**返回示例**
 
 ```json
 {
@@ -117,7 +111,7 @@ https://cloud.minapp.com/oserve/v1/miniapp/user-profile/
 
 **代码示例**
 
-{% tabs  curl="Curl", node="Node", python="Python" %}
+{% tabs  curl="Curl", node="Node" %}
 
 {% content "curl"%}
 
@@ -144,15 +138,9 @@ request(opt, function(err, res, body) {
 })
 ```
 
-{% content "python" %}
-
-```python
-  python code ……
-```
-
 {% endtabs %}
 
-**返回参数**
+**返回示例**
 
 ```json
 {

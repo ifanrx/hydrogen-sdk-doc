@@ -52,6 +52,16 @@ Content-Type: `application/json`
 | filename         | String | N   | 上传的文件名 |
 | categories       | String | N   | 上传文件的所属分类，格式为文件分类的 ID 数组 |
 
+**返回参数**
+
+| 参数           | 类型         | 说明 |
+| :----------   | :----------- | :-- |
+| id            | String       | 上传的文件 ID |
+| policy        | String       | 文件上传配置 |
+| authorization | String       | 文件上传凭证 |
+| file_link     | String       | 文件上传成功后的访问地址 |
+| upload_url    | String       | 上传文件的目标地址 |
+
 **代码示例**
 
 {% tabs getTokenCurl="Curl", getTokenNode="Node" %}
@@ -93,7 +103,7 @@ request(opt, function(err, res, body) {
 
 {% endtabs %}
  
-**返回参数**
+**返回示例**
 
 ```json
 {
@@ -104,12 +114,6 @@ request(opt, function(err, res, body) {
     "authorization": "UPYUN allenzhang:MzmYCcWVjrWoeovC4+tM5Bgwusg="
 }
 ```
-
-  - `id`            上传的文件 ID
-  - `policy`        文件上传配置
-  - `authorization` 文件上传凭证
-  - `file_link`     文件上传成功后的访问地址
-  - `upload_url`    上传文件的目标地址
 
 **状态码说明**
 
@@ -179,7 +183,7 @@ request(opt, function(err, res, body) {
 
 {% endtabs %}
 
-**返回参数**
+**返回示例**
 
 ```
 {

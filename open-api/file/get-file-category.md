@@ -16,7 +16,7 @@ Content-Type: `application/json`
 
 | 参数              | 类型   | 必填 | 说明 |
 | :------------    | :----- | :-- | :-- |
-| order_by         | String | Y   | 排序（支持 `created_at` 进行排序）|
+| order_by         | String | N   | 排序（支持 `created_at` 进行排序）|
 | offset           | Number | N   | 返回资源的起始偏移值 |
 | limit            | Number | N   | 返回资源的个数（默认为 *20*，最大可设置为 *1000*）|
 
@@ -60,7 +60,7 @@ request(opt, function(err, res, body) {
 
 {% endtabs %}
 
-**返回参数**
+**返回示例**
 
 ```json
 {
@@ -128,7 +128,7 @@ request(opt, function(err, res, body) {
 
 {% endtabs %}
 
-**返回参数**
+**返回示例**
 
 ```json
 {
@@ -246,7 +246,7 @@ request(opt, function(err, res, body) {
 
 {% endtabs %}
 
-**返回参数**
+**返回示例**
 
 ```json
 {

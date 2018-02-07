@@ -183,7 +183,7 @@ print resp_.content
 
 {% endtabs %}
 
-**返回参数**
+**返回示例**
 
 ```json
 {
@@ -222,7 +222,7 @@ print resp_.content
 
 **代码示例**
 
-{% tabs itemFirst="Node", itemSecond="Python" %}
+{% tabs itemFirst="Node" %}
 
 {% content "itemFirst" %}
 
@@ -242,15 +242,9 @@ request(opt, function(err, res, body) {
 })
 ```
 
-{% content "itemSecond" %}
-
-```python
-  python code ……
-```
-
 {% endtabs %}
 
-**返回参数**
+**返回示例**
 
 ```json
 {
@@ -288,7 +282,9 @@ Content-Type: `application/json`
 
 **代码示例**
 
-nodejs 版本
+{% tabs insertNode="Node" %}
+
+{% content "insertNode" %}
 
 ```js
 var request = require('request');
@@ -313,7 +309,9 @@ request(opt, function(err, res, body) {
 })
 ```
 
-**返回参数**
+{% endtabs %}
+
+**返回示例**
 
 成功返回
 
@@ -362,7 +360,9 @@ Content-Type: `application/json`
 
 **代码示例**
 
-nodejs 版本
+{% tabs updateNode="Node" %}
+
+{% content "updateNode" %}
 
 ```js
 var request = require('request');
@@ -383,7 +383,9 @@ request(opt, function(err, res, body) {
 })
 ```
 
-**返回参数**
+{% endtabs %}
+
+**返回示例**
 
 成功返回
 
@@ -426,7 +428,9 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-nodejs 版本
+{% tabs deleteNode="Node" %}
+
+{% content "deleteNode" %}
 
 ```js
 var request = require('request');
@@ -443,6 +447,8 @@ request(opt, function(err, res, body) {
   console.log(res.statusCode)
 })
 ```
+
+{% endtabs %}
 
 **状态码说明**
 
@@ -533,7 +539,9 @@ Content-Type: `application/json`
 
 **代码示例**
 
-nodejs 版本
+{% tabs atomicNode="Node" %}
+
+{% content "atomicNode" %}
 
 ```js
 var request = require('request');
@@ -559,7 +567,9 @@ request(opt, function(err, res, body) {
 })
 ```
 
-**返回参数**
+{% endtabs %}
+
+**返回示例**
 
 成功返回
 

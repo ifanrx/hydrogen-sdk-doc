@@ -58,7 +58,7 @@ request(opt, function(err, res, body) {
 
 {% endtabs %}
 
-**返回参数**
+**返回示例**
 
 ```json
 {
@@ -83,8 +83,8 @@ request(opt, function(err, res, body) {
 }
 ```
 
-- `members` 表示在用户组下的用户数量
-- `parent` 表示用户组的组集
+`members` 表示在用户组下的用户数量，
+`parent` 表示用户组的组集
 
 ## 获取用户组详情
 
@@ -127,7 +127,7 @@ request(opt, function(err, res, body) {
 
 {% endtabs %}
 
-**返回参数**
+**返回示例**
 
 ```json
 {
@@ -242,7 +242,7 @@ request(opt, function(err, res, body) {
 
 {% endtabs %}
 
-**返回参数**
+**返回示例**
 
 ```json
 {

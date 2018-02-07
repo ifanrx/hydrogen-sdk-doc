@@ -54,7 +54,7 @@ request(opt, function(err, res, body) {
 
 {% endtabs %}
 
-**返回参数**
+**返回示例**
 
 ```json
 {
@@ -115,7 +115,7 @@ request(opt, function(err, res, body) {
 
 {% endtabs %}
 
-**返回参数**
+**返回示例**
 
 ```json
 {

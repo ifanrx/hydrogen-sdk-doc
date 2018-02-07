@@ -109,9 +109,19 @@ Content-Type: `multipart/form-data`
 | code              | String | Y  | 授权码 |
 | grant_type        | String | Y  | 授权类型(需指定为"authorization_code") |
 
+**返回参数**
+
+| 参数           | 类型         | 说明 |
+| :----------   | :----------- | :-- |
+| access_token  | String       | 访问令牌(token) |
+| token_type    | String       | 令牌(token)类型 |
+| expires_in    | Number       | 过期时间 |
+| refresh_token | String       | 更新令牌(token)） |
+| scope         | String       | 权限范围 |
+
 **代码示例** 
 
-{% tabs first="Node", second="Python" %}
+{% tabs first="Node" %}
 
 {% content "first" %}
 
@@ -153,20 +163,4 @@ Content-Type: `multipart/form-data`
   }
   ```
 
-{% content "second" %}
-
-  ```python
-    python code ……
-  ```
-
 {% endtabs %}
-
-**返回参数**
-
-| 参数           | 类型         | 说明 |
-| :----------   | :----------- | :-- |
-| access_token  | String       | 访问令牌(token) |
-| token_type    | String       | 令牌(token)类型 |
-| expires_in    | Number       | 过期时间 |
-| refresh_token | String       | 更新令牌(token)） |
-| scope         | String       | 权限范围 |
