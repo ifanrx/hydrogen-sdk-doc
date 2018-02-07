@@ -5,11 +5,11 @@
 ### 文件分类
 由于目前暂不支持移动已上传文件的文件分类，所以在上传文件之前，建议开发者先新建文件分类。点击「添加分类」按钮，输入文件分类名字即可完成新建文件分类。
 
-![新建文件分类](../images/dashboard-file/dashboard-file.png)
+![新建文件分类](/images/dashboard/file-category-add.png)
 
 如需编辑或删除文件分类，请将光标移动到对应文件分类上，点击对应图标即可完成对应操作。
 
-![编辑或删除文件分类](../images/dashboard-file/dashboard-file04.png)
+![编辑或删除文件分类](/images/dashboard/file-category-edit.png)
 
 > **danger**
 > 删除文件分类并不会删除该文件分类下的文件。
@@ -17,13 +17,13 @@
 ### 上传文件
 点击所要上传文件所属的文件分类，点击「上传文件」按钮, 选择本地资源完成文件上传。资源文件上传支持单文件上传或者批量上传。
 
-![上传文件按钮](../images/dashboard-file/dashboard-file01.jpg)
+![上传文件按钮](/images/dashboard/file-upload-button.jpg)
 
-![上传文件界面](../images/dashboard-file/dashboard-file02.jpg)
+![上传文件界面](/images/dashboard/file-upload-modal.jpg)
 
 上传成功后在列表第一行即可看到最新上传成功的文件基本信息。
  
-![查看文件基本信息](../images/dashboard-file/dashboard-file03.png)
+![查看文件基本信息](/images/dashboard/file-upload-success.png)
  
 点击缩略图或者文件路径栏目下「链接」即可下载该资源文件。如需该资源网络地址，请点击文件路径栏目下「链接」侧的「复制」图标按钮，即可复制到粘贴板。
   

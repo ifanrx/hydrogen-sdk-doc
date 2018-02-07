@@ -3,7 +3,9 @@
 
 ## 概览
 ###触发器配置卡片
-![触发器配置](../images/trigger/trigger-1.jpg)
+
+![触发器配置](/images/dashboard/trigger-config.jpg)
+
 此面板配置一些触发器的基本信息，或者进行查阅触发器触发日志等操作。
 
 触发类型目前有两种：
@@ -12,11 +14,15 @@
 - [微信支付回调](#微信支付回调)
 
 ###条件卡片
-![触发器条件](../images/trigger/trigger-2.jpg)
+
+![触发器条件](/images/dashboard/trigger-condition.jpg)
+
 对应上面的触发类型，设置不同触发类型的参数。
 
 ###动作卡片
-![触发器动作](../images/trigger/trigger-3.jpg)
+
+![触发器动作](/images/dashboard/trigger-action.jpg)
+
 当触发器的条件被满足，将会执行触发器中的动作。
 
 目前有四种动作类型可选，分别如下：

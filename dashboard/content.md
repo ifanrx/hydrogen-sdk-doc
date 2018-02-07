@@ -8,11 +8,11 @@
 
 1. 如下图所示, 开发者可在知晓云后台内容模块点击"新增内容库"按钮来创建一个内容库。如果开发者已经对用户进行过分组, 创建内容库的同时还可以通过选择用户分组来设置该内容库的访问权限。
 
-![创建内容库](/images/content-create-library.jpg)
+![创建内容库](/images/dashboard/content-create-library.jpg)
 
 2. 成功创建内容库后, 可在当前页面得到该内容库 ID。该 ID 可用于 SDK API 的调用。对于已创建的内容库, 开发者还可对其执行更名以及重新设置内容库访问权限操作。
 
-![修改内容库](/images/content-update-library.jpg)
+![修改内容库](/images/dashboard/content-update-library.jpg)
 
 
 
@@ -24,11 +24,11 @@
 
 1. 开发者可在知晓云后台内容模块中点击"添加内容"按钮创建一条内容。内容创建界面如下:
 
-![如何创建内容](/images/content-add-content.jpg)
+![如何创建内容](/images/dashboard/content-add-content.jpg)
 
 2. 成功创建内容后, 会在"所有分类"下看到新创建的内容
 
-![新增的内容](/images/content-add-content-succeed.jpg)
+![新增的内容](/images/dashboard/content-add-content-succeed.jpg)
 
 
 
@@ -43,12 +43,12 @@
 
   选中或新建一个分类, 点击"关联内容"按钮, 弹出关联界面。开发者可从左侧选中需要关联的内容, 点击中间相应的箭头并保存, 即可实现内容到分类的关联或者取消
 
-  ![关联内容界面](/images/content-associate.jpg)
+  ![关联内容界面](/images/dashboard/content-associate.jpg)
 
 
 
 2. 关联成功后的界面如下图所示:
 
-  ![成功关联界面](/images/content-associate-succeed.jpg)
+  ![成功关联界面](/images/dashboard/content-associate-succeed.jpg)
 
   开发者仍然可以对已关联的内容取消关联
