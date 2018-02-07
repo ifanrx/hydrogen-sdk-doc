@@ -15,6 +15,7 @@
     * [用户管理](dashboard/user.md)
     * [ACL 简介](dashboard/acl.md)
     * [触发器](dashboard/trigger.md)
+    * [云函数](dashboard/cloud-function.md)
 
 ----
 
