@@ -51,7 +51,7 @@
 |delete  |数据行被删除时触发|
 
 |满足条件|说明                |
-|:--     |:----------      |
+|:--     |:----------         |
 |任一    |OR  满足任一条件    |
 |所有    |AND 同时满足所有条件|
 
@@ -64,7 +64,7 @@
 |date    |=, !=, >, >=, <, <=, isempty, range|
 |integer |=, !=, >, >=, <, <=, isempty, range|
 |number  |=, !=, >, >=, <, <=, isempty, range|
-|string  |regex, =, !=, isempty|
+|string  |regex, =, !=, isempty              |
 
 
 ###微信支付回调
@@ -72,16 +72,10 @@
 
 使用场景：用户支付成功，微信模板消息提醒用户订单详情。
 
-> **info**
-> 注：目前微信支付回调只有成功的情况。
-
 ##动作
 
 ###邮件
 执行结果：向指定邮件地址发送一封邮件。
-
->**info**
->注：收件人和邮件标题也可以输入模板变量
 
 ###微信模板消息
 执行结果：向指定用户发送一条微信模板消息
@@ -96,7 +90,8 @@
 
 执行动作时，服务器发送请求参数如下：
 
-|名称|说明|
+####请求参数
+|名称        |说明|
 |---        |---     |
 |请求方法 |POST|
 |超时时间 |5 秒|
@@ -106,18 +101,25 @@
 |X-Hydrogen-Webhook-Action-Id |本次 trigger 触发动作的 uuid，webhook 重试时此 id 保持不变|
 |X-Hydrogen-Trigger-Event|on_create, on_update, on_delete|
 
-POST 内容根据 event 类型有所差别，具体差异如下
+####请求 BODY
+**请求 BODY 为一个 JSON Web Tokens 的文本，需要开发者自己去验证并解码，可以在这里[在线调试 jwt](https://jwt.io/)**
+
+请求 BODY 示例：
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIn0.FGhYH5IF-PkNV8b4SNh-1WKwV8h-Gj8JYVlXmUdCGs8
+```
+
+当触发类型为数据表，则请求 BODY 则为数据行内容
+数据行内容根据 event 类型有所差别，具体差异如下
 
 |event 类型 | 请求 BODY                |
 |-----------|--------------------------|
-| on_create | 创建后的 record 信息     |
-| on_update | 更新后的 record 信息     |
-| on_delete | 被删除的 record 的原信息 |
+| on_create | 创建后的数据行信息     |
+| on_update | 更新后的数据行信息     |
+| on_delete | 被删除的数据行的原信息 |
 
 > **info**
-> 注：
-> 1. webhook 不支持模板变量
-> 2. 对于 date 类型的字段，将其转化为 timestamp 后输出。
+> 注：webhook 不支持模板变量
 
 
 ###数据表操作
