@@ -25,7 +25,7 @@ Product.setQuery(query).limit(10).offset(0).find().then( (res) => {
 })
 ```
 
-## 排序
+### 排序
 
 ```js
 var Product = new wx.BaaS.TableObject(tableID)
