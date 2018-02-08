@@ -10,12 +10,13 @@
 
 * [控制台操作](dashboard/README.md)
     * [数据管理](dashboard/schema.md)
-    * [文件管理](dashboard/file.md)
     * [内容管理](dashboard/content.md)
+    * [文件管理](dashboard/file.md)
     * [用户管理](dashboard/user.md)
-    * [ACL 简介](dashboard/acl.md)
+    * [支付](dashboard/payment.md)
     * [触发器](dashboard/trigger.md)
     * [云函数](dashboard/cloud-function.md)
+    * [ACL 简介](dashboard/acl.md)
 
 ----
 
