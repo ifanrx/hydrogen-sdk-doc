@@ -43,12 +43,12 @@
 
   选中或新建一个分类, 点击"关联内容"按钮, 弹出关联界面。开发者可从左侧选中需要关联的内容, 点击中间相应的箭头并保存, 即可实现内容到分类的关联或者取消
 
-  ![关联内容界面](/images/dashboard/content-associate.jpg)
+![关联内容界面](/images/dashboard/content-associate.jpg)
 
 
 
 2.关联成功后的界面如下图所示:
 
-  ![成功关联界面](/images/dashboard/content-associate-succeed.jpg)
+![成功关联界面](/images/dashboard/content-associate-succeed.jpg)
 
   开发者仍然可以对已关联的内容取消关联
