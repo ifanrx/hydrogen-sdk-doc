@@ -6,9 +6,9 @@
 
 1.如何创建和编写云函数：
 
-开发者可以登录到知晓云控制台，进入到**引擎-云函数**界面，知晓云提供了一个在线代码编辑器，你可以在上面编写你的云函数。目前编写云函数的渠道只有这这里，后续我们会提供命令行功能上传云函数等渠道。
+开发者可以登录到知晓云控制台，进入到**引擎-云函数**界面，知晓云提供了一个在线代码编辑器，你可以在上面编写你的云函数。目前编写云函数的渠道只有这里，后续我们会提供命令行功能上传云函数等渠道。
 
-创建完云函数后为其编写的逻辑代码，目前支持的编程语言仅有 `Nodejs`，后续我们也会提供其它对语言的支持。
+创建完云函数后为其编写逻辑代码，目前支持的编程语言仅有 `Nodejs`，后续我们也会增加对其它语言的支持。
 
 编写完代码，点击提交，你的第一个云函数就诞生啦。
 
@@ -22,15 +22,15 @@
 
 ### 在控制台创建云函数
 
-进入知晓云控制台，选择一个应用进入，依次点击「 引擎 」、「 云函數 」、「 添加 」
+进入知晓云控制台，选择一个应用进入，依次点击「 引擎 」、「 云函數 」、「 添加 」。
 
 ![进入云函数控制台面板](/images/cloud-function/dashboard-into.png)
 
-在弹出添加云函数模态框中，选择 `Hello world` 模板，函数命名为 `helloWorld`，点击确认，即可完成云函数的创建
+在弹出添加云函数模态框中，选择 `Hello world` 模板，函数命名为 `helloWorld`，点击确认，即可完成云函数的创建。
 
 ![创建 hello world 函数](/images/cloud-function/dashboard-hello-world.png)
 
-创建好云函数后，在代码编辑器中，默认会添加以下一段代码，代码功能是当调用该方法后，函数会返回 'hello world'
+创建好云函数后，在代码编辑器中，默认会添加以下一段代码，它的作用是当调用该方法后，函数会返回 'hello world'。
 
 ```js
 exports.main = function helloWorld(event, callback) {
@@ -41,7 +41,7 @@ exports.main = function helloWorld(event, callback) {
 
 ### 在小程序中触发云函数
 
-云函数创建好后，就可以在你的微信小程序代码中，触发该函数了。在此之前，你的先装好我们的 JS SDK，并进行初始化，关于这块的内容，可以查看 [JS SDK 文档](/js-sdk/README.md)。现在让我们写段触发我们的云函数的代码吧。
+云函数创建好后，就可以在你的微信小程序代码中，触发该函数了。在此之前，你得先下载我们的 JS SDK，导入项目并进行初始化，关于这块的内容，可以查看我们的 [JS SDK 文档](/js-sdk/README.md)。现在让我们写段触发我们的云函数的代码吧。
 
 ```
 wx.BaaS.invokeFunction('helloWorld').then(res => {
@@ -49,11 +49,11 @@ wx.BaaS.invokeFunction('helloWorld').then(res => {
 })
 ```
 
-### 使用 SDK 实现数据操作
+### 云函数中使用 Node SDK
 
 上面只是简单地返回了一个 'hello world' 字符串，现在让我们使用知晓云的数据存储功能，做些更有意义的事吧。
 
-按照上面创建云函数的方法，我们创建一个 `getArticles` 的函数。然后在知晓云数据模块创建一张 article 的表，为它添加几条记录，调用我们的云函数 `getArticles` 获取 article 表中的记录。
+按照上面创建云函数的方法，我们创建一个 `getArticles` 的函数。然后在数据面板创建一张 article 表，为它添加几条记录，调用我们的云函数 `getArticles` 获取 article 表中的记录。
 
 修改云函数的代码如下：
 
@@ -77,3 +77,5 @@ wx.BaaS.invokeFunction('getArticles').then(res => {
   console.log(res.data) // articles
 })
 ```
+
+done!

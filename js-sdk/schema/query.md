@@ -8,7 +8,7 @@
 
 ### 操作步骤
 
-1.通过 tableID 实例化一个 TableObject 对象，操作该对象即相当于操作对应的数据表
+1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
 
 `let MyTableObject = new wx.BaaS.TableObject(tableID)`
 
@@ -18,7 +18,7 @@
 | :-----  | :----- | :-- | :---|
 | tableID | Number |  是 | 数据表 ID |
 
-2.示例化一个 Query 对象，在该对象上添加查询条件
+2.示例化一个 `Query` 对象，在该对象上添加查询条件
 
 `let query = new wx.BaaS.Query()`
 

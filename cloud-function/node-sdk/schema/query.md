@@ -2,7 +2,7 @@
 
 ## 操作步骤
 
-1.通过 tableID 实例化一个 TableObject 对象，操作该对象即相当于操作对应的数据表
+1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
 
 `let MyTableObject = new wx.BaaS.TableObject(tableID)`
 
@@ -22,7 +22,7 @@
 
 `MyTableObject.setQuery(query).find()`
 
-### 示例
+## 示例
 
 **请求示例**
 
@@ -77,7 +77,7 @@ res.data:
 ```
 
 
-### 比较查询
+## 比较查询
 
 `query.compare(key, operator, value)`
 
@@ -88,7 +88,7 @@ query.compare('amount', '>',  1)
 ```
 
 
-### 多个查询条件
+## 多个查询条件
 当存在多个查询条件时，它们之间默认为 AND 关系，查询返回满足所有条件的记录，如下示例，
 
 ```js
@@ -99,7 +99,7 @@ query.compare('amount', '<', 10)
 多个查询条件之间需要更复杂的组合关系，可以查看以下 `复杂组合查询` 小节
 
 
-### 字符串查询
+## 字符串查询
 
 ```js
 query.contains('name', 'apple')
@@ -123,7 +123,7 @@ const regExp = /^abc/i
 const regExp = new RegExp('^abc', 'i')
 ```
 
-### 正则匹配示例
+## 正则匹配示例
 
 ```js
 /* 以查找手机号码为例，phoneNumber 字段必须为 string 类型 */
@@ -143,7 +143,7 @@ query.matches('phoneNumber', regx)
 ```
 
 
-### 数组查询
+## 数组查询
 
 field 的类型不限制，field 的 value 含有 array 中的一个或多个
 ```js
@@ -188,7 +188,7 @@ query.arrayContains('desc', ['green', 'red', 'yellow'])
 query.compare('desc', '=', ['green', 'red', 'yellow'])
 ```
 
-### 查询字段值为 null 或非 null 的记录
+## 查询字段值为 null 或非 null 记录
 
 ```js
 query.isNull('name')
@@ -198,7 +198,7 @@ query.isNotNull('name')
 query.isNotNull(['name', 'price'])
 ```
 
-### 查询字段值为空或非空的记录
+## 查询字段值为空或非空记录
 <span style='color:red'>* sdk version >= v1.1.1</span>
 
 ```js
@@ -209,7 +209,7 @@ query.notExists('name')
 query.notExists(['name', 'price'])
 ```
 
-### 组合查询
+## 组合查询
 
 ```js
 let query1 = new wx.BaaS.Query()
@@ -226,7 +226,7 @@ let orQuery =  wx.BaaS.Query.or(query1, query2, ...)
 ```
 
 
-### 复杂组合查询
+## 复杂组合查询
 
 ```js
 let query1 = new wx.BaaS.Query()

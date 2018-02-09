@@ -2,7 +2,7 @@
 
 ## 操作步骤
 
-1.通过 tableID 实例化一个 TableObject 对象，操作该对象即相当于操作对应的数据表
+1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
 
 `let MyTableObject = new wx.BaaS.TableObject(tableID)`
 
@@ -12,7 +12,7 @@
 | :-----  | :----- | :-- | :---|
 | tableID | Number |  是 | 数据表 ID |
 
-2.通过 recordID 设置指定记录
+2.通过 `recordID` 设置指定记录
 
 `let MyRecord = MyTableObject.getWithoutData(recordID)`
 
@@ -85,16 +85,16 @@ product.update().then(res => {
 ```
 
 
-## 计数器更新
+## 计数器原子性更新
 
-对数字类型的字段进行原子性增减操作
+对数字类型的字段进行原子性增减操作。当请求同时对一个数据进行增减时，原子性使得冲突和覆盖导致的数据不正确的情况不会出现。
 
 `product.incrementBy(key, value)`
 
 **参数说明**
 
 | 参数   | 类型              | 必填 | 说明 |
-| :---- | :---------------- | :- | :--- |
+| :---- | :---------------- | :-- | :-- |
 | key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
 | value | Number 或 Integer | 是  | 与 key 的类型保持一致 |
 
@@ -102,13 +102,13 @@ product.update().then(res => {
 
 ```js
 product.incrementBy('amount', 1)
-product.update().then(res => {}, (err) => {})
+product.update().then(res => {}, err => {})
 ```
 
 
 ## 数组原子性更新
 
-#### 将待插入数组加到原数组末尾
+#### 将 _待插入的数组_ 加到原数组末尾
 
 `product.append(key, value)`
 
@@ -127,7 +127,7 @@ product.append('desc', ['big'])
 product.append('desc, 'big')
 ```
 
-#### 将待插入数组中不包含在原数组的数据加到原数组末尾
+#### 将 _待插入的数组_ 中不包含在原数组的数据加到原数组末尾
 
 `product.uAppend(key, value)`
 

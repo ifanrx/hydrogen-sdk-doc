@@ -37,11 +37,12 @@ exports.main = function helloWorld(event, callback) {
 
 **callback**
 
-可选项。使用此参数用于将您所希望的信息返回给调用方。格式如 `callback(err, data)`，err 为错误信息，可为 Error 类型或字符串，没有出错的情况下，可设置为 null；data 为函数成功执行的结果信息。
+可选项。使用此参数用于将你所希望的信息返回给调用方。格式如 `callback(err, data)`，err 为错误信息，可为 Error 类型或字符串，没有出错的情况下，可设置为 null；data 为函数成功执行的结果信息。
 
 
 ## 日志
-您可以在程序中使用如下几种不同的日志级别来完成日志输出:
+
+你可以在程序中使用如下几种不同的日志级别来完成日志输出:
 
 ```
 console.log(message)

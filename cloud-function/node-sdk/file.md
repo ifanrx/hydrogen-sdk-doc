@@ -1,6 +1,6 @@
 # 文件操作
 
-实例化一个 wx.BaaS.File 对象，以下操作都是在该对象上进行操作，如下进行实例化：
+实例化一个 `wx.BaaS.File` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
 
 `let MyFile = new wx.BaaS.File()`
 
@@ -12,9 +12,11 @@
 
 |  参数  |  类型   | 必填 | 说明 |
 | :----- | :-- -- | :-- | :-- |
-| fileID | Number |  Y  | 文件 id |
+| fileID | Number | Y   | 文件 id |
 
 **返回参数说明**
+
+res.data:
 
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
@@ -36,6 +38,7 @@ category 参数说明：
 **示例代码**
 
 ```js
+let MyFile = new wx.BaaS.File()
 MyFile.get('5a2fe93308443e313a428c4f').then(res => {
   // success
 }, err => {
@@ -45,7 +48,6 @@ MyFile.get('5a2fe93308443e313a428c4f').then(res => {
 
 **返回示例**
 
-res.data
 ```js
 {
   category: {
@@ -75,6 +77,8 @@ res.data
 **示例代码**
 
 ```js
+let MyFile = new wx.BaaS.File()
+
 MyFile.delete('5a2fe93308443e313a428c4f').then()
 
 MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
