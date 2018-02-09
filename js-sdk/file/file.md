@@ -20,11 +20,11 @@
 | :------- | :----- | :-- | :-- |
 | filePath | String |  Y  | 本地资源路径 |
 
-**metaData 参数说明 (可选)**
+**metaData 参数说明（可选）**
 
-|     参数      |  类型  | 必填 | 说明 |
+| 参数          |  类型  | 必填 | 说明 |
 | :----------- | :----- | :-- | :-- |
-|  categoryID  | String |  N  | 要上传的文件分类 ID |
+| categoryID   | String |  N  | 要上传的文件分类 ID |
 | categoryName | String |  N  | 要上传的文件分类名 |
 
 > **info**
@@ -32,11 +32,13 @@
 
 **返回参数说明**
 
-|     参数      |  类型  | 说明 |
-| :----------: | :----: | :-----: |
-| status  | String | 成功返回 'ok' |
-| path | String | 上传后的文件地址 |
-| file | Object | 包含文件详细信息，详见以下 |
+res.data:
+
+|   参数  | 类型   | 说明 |
+| :----- | :----- | :-- |
+| status | String | 成功返回 'ok' |
+| path   | String | 上传后的文件地址 |
+| file   | Object | 包含文件详细信息，详见以下 |
 
 file 参数说明：
 
@@ -58,14 +60,14 @@ wx.chooseImage({
     let fileParams = {filePath: res.tempFilePaths[0]}
     let metaData = {categoryName: 'SDK'}
 
-    MyFile.upload(fileParams, metaData).then((res) => {
+    MyFile.upload(fileParams, metaData).then(res => {
       /*
        * 注: 只要是服务器有响应的情况都会进入 success, 即便是 4xx，5xx 都会进入这里
        * 如果上传成功则会返回资源远程地址,如果上传失败则会返回失败信息
        */
 
       let data = res.data  // res.data 为 Object 类型
-    }, (err) => {
+    }, err => {
 
     })
   }
@@ -77,7 +79,6 @@ wx.chooseImage({
 
 **返回示例**
 
-res.data
 ```js
 {
   status: "ok",
@@ -109,6 +110,8 @@ res.data
 
 **返回参数说明**
 
+res.data:
+
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | category   | Object | 包含文件分类信息，详见以下 |
@@ -129,16 +132,16 @@ category 参数说明：
 **示例代码**
 
 ```js
+let MyFile = new wx.BaaS.File()
 MyFile.get('5a2fe93308443e313a428c4f').then((res) => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```
 
 **返回示例**
 
-res.data
 ```js
 {
   category: {
@@ -163,11 +166,13 @@ res.data
 
 | 参数    | 类型                   | 必填 | 说明 |
 | :----- | :--------------------- | :-- | :-- |
-| fileID | Number or Number Array |  Y  | 文件 id (可为数组) |
+| fileID | Number or Number Array | Y   | 文件 id (可为数组) |
 
 **示例代码**
 
 ```js
+let MyFile = new wx.BaaS.File()
+
 MyFile.delete('5a2fe93308443e313a428c4f').then()
 
 MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
@@ -192,6 +197,8 @@ MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 **示例代码**
 
 ```js
+let MyFile = new wx.BaaS.File()
+
 // 查找所有文件
 MyFile.find()
 
@@ -215,6 +222,7 @@ MyFile.setQuery(query).find()
 **示例代码**
 
 ```js
+let MyFile = new wx.BaaS.File()
 MyFile.orderBy('-created_at').find().then()
 ```
 
@@ -224,6 +232,7 @@ MyFile.orderBy('-created_at').find().then()
 **示例代码**
 
 ```js
+let MyFile = new wx.BaaS.File()
 MyFile.limit(10).offset(5).find().then()
 ```
 
@@ -232,15 +241,15 @@ MyFile.limit(10).offset(5).find().then()
 
 利用 CDN 图片云处理，可以快速便捷地完成图片缩放、裁切、打水印等操作，示例如下：
 
-``
+```
 // 缩放图片至 400x400
 https://cloud-minapp-7894.cloud.ifanrusercontent.com/1eRuaPvwdleauqyZ.jpg!/both/400x400
 
 // 在图片右下角添加 “知晓云” 文字水印
-// https://cloud-minapp-7894.cloud.ifanrusercontent.com/1eiuEUuISgOstoVZ.png!/watermark/align/southeast/text/55+l5pmT5LqRCg==
-``
+https://cloud-minapp-7894.cloud.ifanrusercontent.com/1eiuEUuISgOstoVZ.png!/watermark/align/southeast/text/55+l5pmT5LqRCg==
+```
 
-具体用法和更多功能可参看文档：[如何通过图片 URL 进行图片云处理？](http://support.minapp.com/hc/kb/article/1082737/)
+具体用法和更多功能可查看文档：[如何通过图片 URL 进行图片云处理？](http://support.minapp.com/hc/kb/article/1082737/)
 
 {% content "second" %}
 
@@ -257,6 +266,7 @@ https://cloud-minapp-7894.cloud.ifanrusercontent.com/1eRuaPvwdleauqyZ.jpg!/both/
 | filePath | String |  Y  | 本地资源路径 |
 
 **返回参数说明**
+
 这里效仿微信的 `wx.uploadFile` 接口，放回 json string 的 data，经过 JSON parse 后的数据结构如下：
 
 | 参数    | 类型   | 说明 |
@@ -290,14 +300,14 @@ wx.chooseImage({
   success: function(res) {
     let fileParams = {filePath: res.tempFilePaths[0]}
 
-    wx.BaaS.uploadFile(fileParams).then((res) => {
+    wx.BaaS.uploadFile(fileParams).then(res => {
       /*
       * 注: 只要是服务器有响应的情况都会进入 success, 即便是 4xx，5xx 都会进入这里
       * 如果上传成功则会返回资源远程地址,如果上传失败则会返回失败信息
       */
 
       let data = JSON.parse(res.data) // res.data 为 JSON String 类型
-    }, (err) => {
+    }, err => {
 
     })
   }

@@ -29,9 +29,9 @@
 **示例代码**
 
 ```js
-MyFileCategory.get('5a2fe91508443e3123dbe1cb').then((res) => {
+MyFileCategory.get('5a2fe91508443e3123dbe1cb').then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```

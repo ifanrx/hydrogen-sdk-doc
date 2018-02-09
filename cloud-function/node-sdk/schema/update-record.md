@@ -64,9 +64,9 @@ let Product = new wx.BaaS.TableObject(tableID)
 let product = Product.getWithoutData(recordID)
 
 product.set('price', 11)
-product.update().then( (res) => {
+product.update().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```
@@ -102,7 +102,7 @@ product.update().then( (res) => {
 
 ```js
 product.incrementBy('amount', 1)
-product.update().then( (res) => {}, (err) => {})
+product.update().then(res => {}, (err) => {})
 ```
 
 

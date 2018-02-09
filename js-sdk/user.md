@@ -10,7 +10,7 @@
 
 ### 获取当前用户信息
 
-`wx.BaaS.login` 方法会返回完成登录后的当前用户信息，同时，我们也给出 `wx.BaaS.storage.get('userinfo')` 获取存储在 storage 的当前用户信息。
+`wx.BaaS.login` 方法会返回完成登录后的当前用户信息，同时，我们也给出 `wx.BaaS.storage.get('userinfo')` 获取存储在 storage 的当前用户信息（该方式目前暂不支持获取自定义字段）。
 
 如果用户授权登录过，该方法将返回以下字段：
 
@@ -23,9 +23,9 @@
 | id        | String | 用户在用户表中的 ID |
 | language  | String | 用户的语言，简体中文为 zh_CN |
 | nickname  | String | 用户昵称 |
-| openid    | String | 用户唯一标识，由微信提供 |
+| openid    | String | 用户唯一标识，由微信生成 |
 | province  | String | 用户所在省份 |
-| unionid   | String | 用户在开放平台的唯一标识符，由微信提供 |
+| unionid   | String | 用户在开放平台的唯一标识符，由微信生成 |
 
 微信目前对小程序获取用户信息有两个小时的缓存设定，因此，如果一个用户修改了个人信息如头像、昵称等，需两个小时才能重新授权拿到最新的信息。
 如果用户未进行授权登录，将返回空。
@@ -43,6 +43,7 @@
 | userID | Number | 是  | 用户 ID |
 
 **返回字段说明**
+
 当查询的用户为非当前用户时：
 
 | 参数      | 类型   | 说明 |
@@ -70,9 +71,9 @@
 ```js
 let MyUser = new wx.BaaS.User()
 let userID = 36395395
-MyUser.get(userID).then((res) => {
+MyUser.get(userID).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```
@@ -114,9 +115,9 @@ let MyUser = new wx.BaaS.User()
 let currentUser = MyUser.getCurrentUserWithoutData()
 
 // age 为自定义字段
-currentUser.set('age', 30).update().then((res) => {
+currentUser.set('age', 30).update().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```
@@ -136,9 +137,9 @@ MyUser.find()
 // 查询 nickName 中包含 like 的用户
 let query = new wx.BaaS.Query()
 query.contains('nickName', 'like')
-MyUser.setQuery(query).find().then((res) => {
+MyUser.setQuery(query).find().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```
@@ -226,22 +227,22 @@ MyUser.limit(5).offset(10).find().then()
 // 获取 userID 为 1 的用户信息（单个获取）
 wx.BaaS.getUserInfo({
   userID: 1
-}).then((res) => {
+}).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 ```js
 // 获取 userID 为 1、2、3 的用户信息（多个获取）
 wx.BaaS.getUserInfo({
   user_id__in: '1,2,3'
-}).then((res) => {
+}).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 > **info**

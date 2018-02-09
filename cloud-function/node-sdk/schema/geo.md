@@ -86,7 +86,7 @@ Restaurant.setQuery(query).find()
 
 var Neighbourhood = new wx.BaaS.TableObject(neighbourhoodTableID)
 
-Neighbourhood.get(recordID).then((res) => {
+Neighbourhood.get(recordID).then(res => {
   var neighbourhood = res.data
 
   var query = new wx.BaaS.Query()

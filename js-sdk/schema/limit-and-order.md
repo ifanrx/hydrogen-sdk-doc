@@ -8,9 +8,12 @@
 
 ### 分页
 
-通过使用 limit 和 offset 来控制分页数据，默认 limit 为 20, offset 为 0，我们也可以手动指定 limit 和 offset 来控制，limit 最大可设置为 1000。
+使用 limit 和 offset 来控制分页数据：
 
-例如，每页展示 20 条数据，需要获取第五页的数据，将 limit 设置为 100、offset 设置为 80 即可。
+- `limit`  指定该请求返回的结果个数
+- `offset`  偏移量，指定该请求返回的结果的起始位置
+
+默认 limit 为 20, offset 为 0，我们也可以手动指定 limit 和 offset 来控制。例如，每页展示 100 条数据，需要获取第五页的数据，将 limit 设置为 100、offset 设置为 400 即可。limit 最大可设置为 1000。
 
 ```js
 var Product = new wx.BaaS.TableObject(tableID)
@@ -18,14 +21,16 @@ var Product = new wx.BaaS.TableObject(tableID)
 var query = new wx.BaaS.Query()
 query.compare('amount', '>', 0)
 
-Product.setQuery(query).limit(10).offset(0).find().then( (res) => {
+Product.setQuery(query).limit(10).offset(0).find().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```
 
 ### 排序
+
+使用 orderBy 来控制使用升序或降序获取数据列表。
 
 ```js
 var Product = new wx.BaaS.TableObject(tableID)
@@ -58,20 +63,20 @@ Product.setQuery(query).orderBy(['-created_at']).find()
 示例：查询数据表 `ID` 为 10 的第 3 页数据
 
 ```js
-let pageNum = 3; // 页码
-let limit = 16;
-let offset = limit * (pageNum - 1);
+let pageNum = 3 // 页码
+let limit = 16
+let offset = limit * (pageNum - 1)
 
 let objects = {
   tableID: 10,
   limit
   offset
-};
-wx.BaaS.getRecordList(objects).then( (res) => {
+}
+wx.BaaS.getRecordList(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 ### 排序
@@ -82,12 +87,12 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 let objects = {
   tableID: 10,
   order_by: '-id', // 如果是正序就是 order_by: 'id'
-};
-wx.BaaS.getRecordList(objects).then( (res) => {
+}
+wx.BaaS.getRecordList(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 示例 2：查询数据表 `ID` 为 10 的数据，返回的数据按 `id` 逆序、`created_by` 正序排序（前面的优先）
@@ -96,12 +101,12 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 let objects = {
   tableID: 10,
   order_by: '-id,created_by', // 如果是正序就是 order_by: id
-};
-wx.BaaS.getRecordList(objects).then( (res) => {
+}
+wx.BaaS.getRecordList(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 {% endtabs %}

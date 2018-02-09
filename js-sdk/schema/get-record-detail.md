@@ -19,6 +19,7 @@
 | tableID | Number |  是 | 数据表 ID |
 
 **返回参数说明**
+
 无数据返回
 
 2.指定 recordID 执行删除操作
@@ -28,7 +29,7 @@
 **参数说明**
 
 | 参数      | 类型   | 必填 | 说明 |
-| :------- | :----- | :-- | :---|
+| :------- | :----- | :-- | :-- |
 | recordID | String | 是  | 数据表 ID |
 
 
@@ -42,14 +43,14 @@ let recordID = '59897882ff650c0477f00485'
 
 let Product = new wx.BaaS.TableObject(tableID)
 
-Product.get(recordID).then( (res) => {
+Product.get(recordID).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```
 
-**返回示例** (res.statusCode === 200)
+**返回示例**
 
 res.data:
 ```js
@@ -92,15 +93,18 @@ let recordID = '59897882ff650c0477f00485'
 let objects = {
   tableID,
   recordID
-};
-wx.BaaS.getRecord(objects).then( (res) => {
+}
+
+wx.BaaS.getRecord(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```
 
 **返回参数**
+
+res.data:
 
 | 参数        | 类型    | 说明 |
 | :--------- | :------ | :-- |
@@ -113,6 +117,7 @@ wx.BaaS.getRecord(objects).then( (res) => {
 
 **返回示例**
 
+res.data:
 ```js
 {
   "created_at": 1487053095,
@@ -120,10 +125,7 @@ wx.BaaS.getRecord(objects).then( (res) => {
   "is_admin": false,
   "name": "JlpvHdheLh",
   "price": 89,
-  "tags": [
-    "xGHt",
-    "hHqz"
-  ]
+  "tags": ["xGHt", "hHqz"]
 }
 ```
 

@@ -41,9 +41,9 @@ let query = new wx.BaaS.Query()
 
 // 应用查询对象
 let Product = new wx.BaaS.TableObject(tableID)
-Product.setQuery(query).find().then( (res) => {
+Product.setQuery(query).find().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 
@@ -95,6 +95,7 @@ query.compare('amount', '>',  1)
 
 
 ### 多个查询条件
+
 当存在多个查询条件时，它们之间默认为 AND 关系，查询返回满足所有条件的记录，如下示例，
 
 ```js
@@ -126,7 +127,7 @@ const regExp = /^abc/i
 
 - 调用 RegExp 对象的构造函数
 ```js
-const regExp = new RegExp('^abc', 'i');
+const regExp = new RegExp('^abc', 'i')
 ```
 
 ### 正则匹配示例
@@ -194,7 +195,7 @@ query.arrayContains('desc', ['green', 'red', 'yellow'])
 query.compare('desc', '=', ['green', 'red', 'yellow'])
 ```
 
-### 查询字段值为 null 或非 null 的记录
+### 查询字段值为 null 或非 null 记录
 
 ```js
 query.isNull('name')
@@ -204,7 +205,8 @@ query.isNotNull('name')
 query.isNotNull(['name', 'price'])
 ```
 
-### 查询字段值为空或非空的记录
+### 查询字段值为空或非空记录
+
 <span style='color:red'>* sdk version >= v1.1.1</span>
 
 ```js
@@ -259,7 +261,7 @@ let orQuery = wx.BaaS.Query.or(andQuery, query3)
 
 `wx.BaaS.getRecordList(OBJECT)`
 
-### 一般情况
+### 普通查询
 
 **OBJECT 参数说明**
 
@@ -273,9 +275,9 @@ let orQuery = wx.BaaS.Query.or(andQuery, query3)
 // 获取 tableID 为 10 的数据表中的第一页(默认 20 条)的数据记录
 let tableID = 10
 let objects = { tableID }
-wx.BaaS.getRecordList(objects).then( (res) => {
+wx.BaaS.getRecordList(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```
@@ -320,7 +322,7 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 }
 ```
 
-### 查询
+### 条件查询
 
 BaaS 提供的查询数据接口提供三种过滤查询方式：
 
@@ -346,12 +348,12 @@ let objects = {
   tableID: 10,
   created_by: 1,
   name: '知晓云'
-};
-wx.BaaS.getRecordList(objects).then( (res) => {
+}
+wx.BaaS.getRecordList(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 示例 2：查询 `name` 中包含 `知晓云` 字符串的记录（模糊查询）
@@ -360,12 +362,12 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 let objects = {
   tableID: 10,
   name__contains: '知晓云',
-};
-wx.BaaS.getRecordList(objects).then( (res) => {
+}
+wx.BaaS.getRecordList(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 示例 3：查询创建者 ID 为在范围 [1, 3] 的记录（多项匹配）
@@ -374,12 +376,12 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 let objects = {
   tableID: 10,
   created_by__range: '1,3',
-};
-wx.BaaS.getRecordList(objects).then( (res) => {
+}
+wx.BaaS.getRecordList(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 示例 4：查询创建者 recordID 大于等于 '5919eb015f281f2b321720be' 的记录
@@ -388,12 +390,12 @@ wx.BaaS.getRecordList(objects).then( (res) => {
 let objects = {
   tableID: 10,
   recordID__gte: '5919eb015f281f2b321720be',
-};
-wx.BaaS.getRecordList(objects).then( (res) => {
+}
+wx.BaaS.getRecordList(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 示例 5：查询创建者 recordID 大于等于 '5919eb015f281f2b321720be'，且 price 小于 1000 的记录
@@ -403,12 +405,13 @@ let objects = {
   tableID: 10,
   recordID__gte: '5919eb015f281f2b321720be',
   price__lt: 1000
-};
-wx.BaaS.getRecordList(objects).then( (res) => {
+}
+
+wx.BaaS.getRecordList(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 > **info**

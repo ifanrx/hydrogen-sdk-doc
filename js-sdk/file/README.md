@@ -18,3 +18,8 @@ wx.chooseImage({
 ```
 https://cloud-minapp-7894.cloud.ifanrusercontent.com/1eRuaPvwdleauqyZ.jpg!/both/400x400
 ```
+
+阅读以下章节，了解更多文件操作接口：
+
+* [文件操作](./file.md)
+* [文件分类操作](./category.md)

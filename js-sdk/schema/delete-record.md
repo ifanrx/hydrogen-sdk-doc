@@ -42,9 +42,9 @@ let tableID = 10
 let recordID = '59897882ff650c0477f00485'
 
 let Product = new wx.BaaS.TableObject(tableID)
-Product.delete(recordID).then( (res) => {
+Product.delete(recordID).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```
@@ -79,9 +79,9 @@ let objects = {
   tableID,
   recordID
 }
-wx.BaaS.deleteRecord(objects).then( (res) => {
+wx.BaaS.deleteRecord(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```

@@ -61,9 +61,9 @@ let apple = {
   desc: ['good'],
   amount: 0
 }
-product.set(apple).save().then( (res) => {
+product.set(apple).save().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 
@@ -73,7 +73,7 @@ product.set('price', 1)
 product.set('desc', ['good'])
 product.set('amount', 0)
 
-product.save().then((res) => {}, (err) => {})
+product.save().then(res => {}, (err) => {})
 ```
 
 **返回示例** （res.statusCode === 201）
@@ -110,7 +110,7 @@ product.set('expiration_time', isoStr)
 **请求示例**
 ```
 let MyFile = new wx.BaaS.File()
-MyFile.upload(params).then((res) => {
+MyFile.upload(params).then(res => {
   product.set('manual', res.data.file)
   product.save()
 })

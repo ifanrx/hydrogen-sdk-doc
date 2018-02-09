@@ -63,9 +63,9 @@ exports.main = function functionName(event, callback) {
     let tableID = 233
     let recordID = "5a7291050fc321091e97bcdc"
     let table = new BaaS.TableObject(tableID)
-    table.find().then((res) => {
+    table.find().then(res => {
       callback(null, res.data)
-    }, (err) => {
+    }, err => {
       callback(err)
     })
   }

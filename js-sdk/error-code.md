@@ -2,12 +2,12 @@
 
 # 错误码详解
 
-sdk 1.1.4 版本重构优化了错误返回信息，你可以通过如下方式对错误信息进行判断
+`sdk v1.1.4` 版本重构优化了错误返回信息，你可以通过如下方式对错误信息进行判断
 
 ```js
-wx.BaaS.login().then((res) => {
+wx.BaaS.login().then(res => {
   console.log('登录成功')
-}, (err) => {
+}, err => {
   if (err.code === 600) {
     console.log('网络已断开')
   } if (err.code === 601) {

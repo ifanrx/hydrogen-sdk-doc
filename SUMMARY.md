@@ -21,9 +21,8 @@
 ----
 
 * [JS SDK](js-sdk/README.md)
-    * [用户](js-sdk/user/README.md)
-        * [登入登出](js-sdk/user/signin-signout.md)
-        * [获取用户信息](js-sdk/user/user.md)
+    * [登入登出](js-sdk/signin-signout.md)
+    * [用户](js-sdk/user.md)
     * [数据表](js-sdk/schema/README.md)
         * [新增数据项](js-sdk/schema/create-record.md)
         * [更新数据项](js-sdk/schema/update-record.md)
@@ -92,7 +91,7 @@
 ----
 
 * [管理与支持](support/README.md)
-    * [服务协议](support/terms.md)
     * [常见问题](support/qA.md)
+    * [服务协议](support/terms.md)
 
 * [技术细节](technical-notes.md)

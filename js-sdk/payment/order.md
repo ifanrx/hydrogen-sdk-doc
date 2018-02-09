@@ -32,7 +32,7 @@ let params = { transactionID }
 
 wx.BaaS.order(params).then(res => {
   // 注: 只要是服务器有返回的情况都会进入 success，这是微信的处理方式与 BaaS 服务(器)无关
-}, (err) => {
+}, err => {
   // 注：只有发生网络异常等其他系统级别的错误才会进入这里
 })
 ```

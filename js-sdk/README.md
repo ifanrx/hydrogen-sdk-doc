@@ -2,7 +2,7 @@
 
 ## 简介
 
-知晓云 JS SDK 是方便开发者结合知晓云产品，进行小程序开发的工具包，通过该 SDK，你可以在小程序中操作存储在知晓云中的数据表、内容库、媒体文件，及方便地进行微信登录，微信支付，发送模板消息等功能。
+知晓云 JS SDK 是方便开发者结合知晓云产品，进行小程序开发的工具包，通过该 SDK，你可以在小程序中操作存储在知晓云中的数据表、内容库、媒体文件，及方便地调用微信登录，微信支付，发送模板消息等功能。
 
 
 ## 下载并导入 SDK
@@ -24,9 +24,9 @@ App({
 ```
 
 
-## 初始化 SDK (客户端认证)
+## 初始化 SDK
 
-通过初始化 SDK , 知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 SDK 提供的全部功能
+通过初始化 SDK ，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 SDK 提供的全部功能
 
 在[知晓云后台 - 我的应用](https://cloud.minapp.com/admin/profile/)页面获取要接入知晓云服务的小程序 ClientID, 按照如下方式进行 SDK 初始化:
 
@@ -60,9 +60,21 @@ let apple = {
   amount: 0
 }
 
-product.set(apple).save().then( (res) => {
+product.set(apple).save().then(res => {
   console.log('成功插入数据：', res)
-}, (err) => {
+}, err => {
   // err
 })
 ```
+
+
+更多内容，可查看以下功能模块介绍：
+
+* [登入登出](js-sdk/signin-signout.md)
+* [用户](js-sdk/user.md)
+* [数据表](js-sdk/schema/README.md)
+* [内容库](js-sdk/content/README.md)
+* [文件](js-sdk/file/README.md)
+* [支付](js-sdk/payment/README.md)
+* [模板消息](js-sdk/template-message.md)
+* [微信加密数据解密](js-sdk/wechat-decrypt.md)

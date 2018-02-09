@@ -12,9 +12,9 @@ var Product = new wx.BaaS.TableObject(tableID)
 var query = new wx.BaaS.Query()
 query.compare('amount', '>', 0)
 
-Product.setQuery(query).limit(10).offset(0).find().then( (res) => {
+Product.setQuery(query).limit(10).offset(0).find().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```

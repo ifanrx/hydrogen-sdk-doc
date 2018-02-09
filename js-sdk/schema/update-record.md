@@ -70,15 +70,16 @@ let Product = new wx.BaaS.TableObject(tableID)
 let product = Product.getWithoutData(recordID)
 
 product.set('price', 11)
-product.update().then( (res) => {
+product.update().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```
 
 **返回示例**
 
+res.data
 ```js
 {
   "created_at": 1487053095,
@@ -91,16 +92,16 @@ product.update().then( (res) => {
 ```
 
 
-### 计数器更新
+### 计数器原子性更新
 
-对数字类型的字段进行原子性增减操作
+对数字类型的字段进行原子性增减操作。当请求同时对一个数据进行增减时，原子性使得冲突和覆盖导致的数据不正确的情况不会出现。
 
 `product.incrementBy(key, value)`
 
 **参数说明**
 
 | 参数   | 类型              | 必填 | 说明 |
-| :---- | :---------------- | :- | :--- |
+| :---- | :---------------- | :-- | :-- |
 | key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
 | value | Number 或 Integer | 是  | 与 key 的类型保持一致 |
 
@@ -108,13 +109,13 @@ product.update().then( (res) => {
 
 ```js
 product.incrementBy('amount', 1)
-product.update().then( (res) => {}, (err) => {})
+product.update().then(res => {}, err => {})
 ```
 
 
 ### 数组原子性更新
 
-#### 将待插入数组加到原数组末尾
+#### 将 _待插入的数组_ 加到原数组末尾
 
 `product.append(key, value)`
 
@@ -133,7 +134,7 @@ product.append('desc', ['big'])
 product.append('desc, 'big')
 ```
 
-#### 将待插入数组中不包含在原数组的数据加到原数组末尾
+#### 将 _待插入的数组_ 中不包含在原数组的数据加到原数组末尾
 
 `product.uAppend(key, value)`
 
@@ -206,8 +207,8 @@ order.update()
 
 ```js
 // 更新 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项的 name 字段
-let tableID = 10;
-let recordID = '59897882ff650c0477f00485';
+let tableID = 10
+let recordID = '59897882ff650c0477f00485'
 let data = {
   name: "VwlPCaUJzxAyNUSNMgzikTQySFoaTZtm"
 }
@@ -215,12 +216,13 @@ let objects = {
   tableID,
   recordID,
   data
-};
-wx.BaaS.updateRecord(objects).then( (res) => {
+}
+
+wx.BaaS.updateRecord(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 **返回参数**
@@ -236,6 +238,7 @@ wx.BaaS.updateRecord(objects).then( (res) => {
 
 **返回示例**
 
+res.data:
 ```js
 {
   "created_at": 1487055951,

@@ -68,9 +68,10 @@ let apple = {
   desc: ['good'],
   amount: 0
 }
-product.set(apple).save().then( (res) => {
+
+product.set(apple).save().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 
@@ -80,7 +81,7 @@ product.set('price', 1)
 product.set('desc', ['good'])
 product.set('amount', 0)
 
-product.save().then((res) => {}, (err) => {})
+product.save().then(res => {}, err => {})
 ```
 
 **返回示例** （res.statusCode === 201）
@@ -116,8 +117,8 @@ product.set('expiration_time', isoStr)
 使用 SDK 1.1.2 及以上版本，操作如下：
 
 ```
-let MyFile = new wx.BaaS.File()
-MyFile.upload(params).then((res) => {
+let MyFile = new wx.BaaS.File()  // 具体操作查看「文件操作」章节
+MyFile.upload(params).then(res => {
   product.set('manual', res.data.file)
   product.save()
 })
@@ -126,14 +127,14 @@ MyFile.upload(params).then((res) => {
 使用 SDK 1.1.2 以下版本，，操作如下：
 
 ```
-wx.BaaS.uploadFile(params).then((res) => {
+wx.BaaS.uploadFile(params).then(res => {
   let data = JSON.parse(res.data)
   product.set('manual', data.file)
   product.save()
 })
   ```
 
-<span class="attention">注：</span> 设置的数据要与预先在知晓云平台设定的数据类型一致，当仅更新一个字段，并且数据不合法时，将无法成功保存，请求返回 `Failed to save record, type conflict on fields` 错误，如果更新多个字段，其中有一个或一个以上字段数据合法，则请求成功，但其中数据不合法的字段将不会成功保存，如下示例：
+<span class="attention">注：</span> 添加记录时为字段设置的数据，要与预先在知晓云平台设定的字段的数据类型一致，当仅更新一个字段，并且使用的数据不合法时，将无法成功保存，请求返回 `Failed to save record, type conflict on fields` 错误，如果更新多个字段，其中有一个或一个以上字段数据合法，则请求成功，但其中数据不合法的字段将不会成功保存，如下示例：
 
 ```js
 /*
@@ -193,9 +194,9 @@ let objects = {
   tableID,
   data
 }
-wx.BaaS.createRecord(objects).then( (res) => {
+wx.BaaS.createRecord(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```

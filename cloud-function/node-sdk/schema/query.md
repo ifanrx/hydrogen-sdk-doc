@@ -35,9 +35,9 @@ let query = new wx.BaaS.Query()
 
 // 应用查询对象
 let Product = new wx.BaaS.TableObject(tableID)
-Product.setQuery(query).find().then( (res) => {
+Product.setQuery(query).find().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 
@@ -120,7 +120,7 @@ const regExp = /^abc/i
 
 - 调用 RegExp 对象的构造函数
 ```js
-const regExp = new RegExp('^abc', 'i');
+const regExp = new RegExp('^abc', 'i')
 ```
 
 ### 正则匹配示例

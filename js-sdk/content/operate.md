@@ -13,7 +13,7 @@
 **参数说明**
 
 | 参数           | 类型    | 必填 | 说明 |
-| :------------: | :----- | :-- | :-- |
+| :------------- | :----- | :-- | :-- |
 | contentGroupID | Number | 是  | 内容库 ID |
 
 ### 获取内容详情
@@ -23,7 +23,7 @@
 **参数说明**
 
 | 参数名      | 类型   | 必填  | 说明 |
-| :--------- | :----- | :--- | :-: |
+| :--------- | :----- | :--- | :-- |
 | richTextID | Number | 是   | 内容 ID |
 
 **返回参数**
@@ -47,12 +47,15 @@
 **请求示例**
 
 ```js
+let contentGroupID = 1513076211190694
 let richTextID = 1514529306082815
-MyContentGroup.getContent(richTextID).then((res) => {
+
+let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)
+MyContentGroup.getContent(richTextID).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 **返回示例**
@@ -86,11 +89,11 @@ MyContentGroup.find().then()
 // 查找该内容库下在指定分类下的内容
 let query = new wx.BaaS.Query()
 query.arrayContains('categories', [1513076252710475])
-MyContentGroup.setQuery(query).find().then((res) => {
+MyContentGroup.setQuery(query).find().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 ### 获取分类详情
@@ -116,11 +119,11 @@ MyContentGroup.setQuery(query).find().then((res) => {
 
 ```js
 let categoryID = 1513076252710475
-MyContentGroup.getCategory(categoryID).then( (res) => {
+MyContentGroup.getCategory(categoryID).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 **返回示例**
@@ -149,11 +152,11 @@ res.data:
 **请求示例**
 
 ```js
-MyContentGroup.getCategoryList().then( (res) => {
+MyContentGroup.getCategoryList().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 
@@ -195,13 +198,13 @@ MyContentGroup.orderBy('-created_by').limit(5).offset(10).find().then()
 
 ```js
 // 获取 内容ID 为 10 的内容详情
-let richTextID = 10;
-let objects = { richTextID };
-wx.BaaS.getContent(objects).then( (res) => {
+let richTextID = 10
+let objects = { richTextID }
+wx.BaaS.getContent(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 **返回示例**
@@ -242,18 +245,19 @@ wx.BaaS.getContent(objects).then( (res) => {
 **请求示例**
 
 ```js
-// 获取内容库 ID 为 10 内容库的内容列表
-let contentGroupID = 10;
-// let categoryID = 10;
+// 获取 ID 为 10的内容库下的内容列表
+let contentGroupID = 10
+let objects = { contentGroupID }
 
-let objects = { contentGroupID };
-// let objects = { categoryID };
+// 获取分类 ID 为 123 的内容列表
+// let categoryID = 123
+// let objects = { categoryID }
 
-wx.BaaS.getContentList(objects).then( (res) => {
+wx.BaaS.getContentList(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 **返回示例**
@@ -303,13 +307,13 @@ wx.BaaS.getContentList(objects).then( (res) => {
 
 ```js
 // 获取 contentGroupID 为 10 内容库详情
-let contentGroupID = 10;
-let objects = { contentGroupID };
-wx.BaaS.getContentGroup(objects).then( (res) => {
+let contentGroupID = 10
+let objects = { contentGroupID }
+wx.BaaS.getContentGroup(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 **返回示例**
@@ -343,11 +347,11 @@ wx.BaaS.getContentGroup(objects).then( (res) => {
 **请求示例**
 
 ```js
-wx.BaaS.getContentGroupList().then( (res) => {
+wx.BaaS.getContentGroupList().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 **返回参数**
@@ -404,13 +408,13 @@ wx.BaaS.getContentGroupList().then( (res) => {
 
 ```js
 // 获取 categoryID 为 10 的分类详情
-let categoryID = 10;
-let objects = { categoryID };
-wx.BaaS.getContentCategory(objects).then( (res) => {
+let categoryID = 10
+let objects = { categoryID }
+wx.BaaS.getContentCategory(objects).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 **返回示例**

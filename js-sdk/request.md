@@ -2,7 +2,7 @@
 
 # 网络请求
 
-BaaS 提供 `wx.BaaS.request(OBJECT)` 函数用于调用 API。
+BaaS 提供 `wx.BaaS.request(OBJECT)` 接口用于调用 API。
 
 **`wx.BaaS.request()` 相比 `wx.request()` 的优势：**
 
@@ -13,8 +13,8 @@ BaaS 提供 `wx.BaaS.request(OBJECT)` 函数用于调用 API。
 
 **OBJECT 参数说明**
 
-| 参数      |      类型      | 必填 | 说明 |
-| :------- | :-----------: | :--- | :-- |
+| 参数      | 类型           | 必填 | 说明 |
+| :------- | :------------ | :--- | :-- |
 | url      | String        | 是   | 接口地址 |
 | method   | String        | 是   | 默认为 GET，有效值：OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT |
 | data     | Object/String | 否   | 请求参数 |
@@ -53,15 +53,16 @@ BaaS 提供的 API，如果返回结果是与列表相关的，返回参数中�
 wx.BaaS.request({
   url: '/orderlist/',
   data: {orderby: 'orderID'})
-}).then((res) => {
+}).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 ### 状态码
 
 BaaS 提供的 API 遵循 RESTful 规范，返回的状态码与对应的请求方法相对应。
 
-需要特别说明的是：**当返回 401 状态码时，SDK 会清除本地的客户端认证 `Token`、BaaS 登录状态和BaaS 用户信息（与调用 `wx.BaaS.logout()` 退出 BaaS 一样）。**
+> **info**
+> 当返回 401 状态码时，SDK 会清除本地的客户端认证 `Token`、BaaS 登录状态和BaaS 用户信息（与调用 `wx.BaaS.logout()` 退出 BaaS 一样）

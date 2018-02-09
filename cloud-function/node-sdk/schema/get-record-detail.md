@@ -36,9 +36,9 @@ let recordID = '59897882ff650c0477f00485'
 
 let Product = new wx.BaaS.TableObject(tableID)
 
-Product.get(recordID).then( (res) => {
+Product.get(recordID).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```

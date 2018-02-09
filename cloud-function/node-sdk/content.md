@@ -42,11 +42,11 @@
 
 ```js
 let richTextID = 1514529306082815
-MyContentGroup.getContent(richTextID).then((res) => {
+MyContentGroup.getContent(richTextID).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 **返回示例**
@@ -80,11 +80,11 @@ MyContentGroup.find().then()
 // 查找该内容库下在指定分类下的内容
 let query = new wx.BaaS.Query()
 query.arrayContains('categories', [1513076252710475])
-MyContentGroup.setQuery(query).find().then((res) => {
+MyContentGroup.setQuery(query).find().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 ## 获取分类详情
@@ -110,11 +110,11 @@ MyContentGroup.setQuery(query).find().then((res) => {
 
 ```js
 let categoryID = 1513076252710475
-MyContentGroup.getCategory(categoryID).then( (res) => {
+MyContentGroup.getCategory(categoryID).then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 **返回示例**
@@ -143,11 +143,11 @@ res.data:
 **请求示例**
 
 ```js
-MyContentGroup.getCategoryList().then( (res) => {
+MyContentGroup.getCategoryList().then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
-});
+})
 ```
 
 

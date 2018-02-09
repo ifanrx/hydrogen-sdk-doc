@@ -36,9 +36,9 @@ category 参数说明：
 **示例代码**
 
 ```js
-MyFile.get('5a2fe93308443e313a428c4f').then((res) => {
+MyFile.get('5a2fe93308443e313a428c4f').then(res => {
   // success
-}, (err) => {
+}, err => {
   // err
 })
 ```
