@@ -1,111 +1,84 @@
 # 数据操作
 
-本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](./authentication.md)。
-
-
 ## 查询数据
 
 **接口**
 
 `GET https://cloud.minapp.com/oserve/v1/table/:table_id/record/`
 
-`table_id` 是表格 ID
+其中 `:table_id` 需替换为你的数据表 ID
 
 **参数说明**
 
 Content-Type: `application/json`
 
-| 参数           | 类型   | 必填 | 说明 |
-| :------------ | :----- | :-- | :-- |
-| where         | String | N   | 查询语句 |
-| order_by      | String | N   | 对资源进行排序字段 |
-| limit         | Number | N   | 返回资源的个数（默认为 *20*，最大可设置为 *1000*）|
-| offset        | Number | N   | 返回资源的起始偏移值 |
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :-- |
+| where    | String | N   | 查询语句，参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码 |
+| order_by | String | N   | 对资源进行排序字段 |
+| limit    | Number | N   | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
+| offset   | Number | N   | 设置返回资源的起始偏移值，默认为 0 |
 
-  `where` 参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码。
+例如需要查询价格为 10 元的物品时，我们应该这样构造查询语句:
 
-  例如需要查询价格为 10 元的物品时，我们应该这样构造查询:
+```json
+{
+  "price": {"$eq": 10}
+}
+```
 
-  查询语句
-  ```json
-  {
-      "price": {"$eq": 10}
-  }
-  ```
+执行
 
-  > 其中 `$eq` 为『等于运算符』
+```
+curl -X GET \
+-H "Authorization: Bearer token" \
+-H "Content-Type: application/json" \
+-G \
+--data-urlencode 'where={"price":"$eq":10}' \
+https://cloud.minapp.com/oserve/v1/table/1/record/
+```
 
-  执行
+该接口完整支持的查询操作符如下：
 
-  ```
-  curl -X GET \
-  -H "Authorization: Bearer token" \
-  -H "Content-Type: application/json" \
-  -G \
-  --data-urlencode 'where={"price":"$eq":10}' \
-  https://cloud.minapp.com/oserve/v1/table/1/record/
-  ```
+| 查询操作符  | 含义 |
+| :-------  | :-- |
+| $eq       | 等于 |
+| $ne       | 不等于 |
+| $lt       | 小于 |
+| $lte      | 小于等于 |
+| $gt       | 大于 |
+| $gte      | 大于等于 |
+| $contains | 包含任意一个值 |
+| $nin      | 不包含任意一个数组值 |
+| $in       | 包含任意一个数组值 |
+| $isnull   | 是否为 NULL |
+| $range    | 包含数组值区间的值 |
 
-  除了支持 `$eq`（等于运算符），此接口还支持许多运算符，具体可查询下表：
+使用以上查询操作符即可完成一些简单的条件查询，同时，你也可以使用 `$and` 和 `$or` 查询操作符，对以上查询操作符进行组合使用，完成更复杂的条件查询，如查询 __价格为 10 元且产品名称中包含 “包” 的物品__ 或 __价格大于 100 元的物品__，其筛选条件为：
 
-  | 运算符 |含义|
-  |:--------:|:--------:|
-  |`$eq`     |等于|
-  |`$ne`      |不等于|
-  |`$lt`      |小于|
-  |`$lte`     |小于等于|
-  |`$gt`      |大于|
-  |`$gte`     |大于等于|
-  |`$contains`|包含任意一个值|
-  |`$nin`     |不包含任意一个数组值|
-  |`$in`      |包含任意一个数组值|
-  |`$isnull`  |是否为 NULL|
-  |`$range`   |包含数组值区间的值|
-
-  通过运算符可以查询出简单条件的数据，如有逻辑运算需求，则可以使用 `$and` 或 `$or` 来实现逻辑组织。
-
-  如需要价格为 10 元并名称中包含`包`的物品时，筛选条件应为：
-
-  ```json
-  {
+```json
+{
+  "$or": [
+    {
       "$and": [
-          {
-              "price": {"$eq": 10}
-          },
-          {
-              "name": {"$contains": "包"}
-          }
+        {
+          "price": {"$eq": 10}
+        },
+        {
+          "name": {"$contains": "包"}
+        }
       ]
-  }
-  ```
+    },
+    {
+      "price": {"$gt": 100}
+    }
+  ]
+}
+```
 
-  如需要价格为 10 元并名称中包含`包`或价格大于 100 元的物品时，筛选条件应为：
+## 排序返回查询数据
 
-  ```json
-  {
-      "$or": [
-          {
-              "$and": [
-                  {
-                      "price": {"$eq": 10}
-                  },
-                  {
-                    "name": {"$contains": "包"}
-                  }
-              ]
-          },
-          {
-              "price": {"$gt": 100}
-          }
-      ]
-  }
-  ```
-
-**排序**
-
-很多时候我们均需要对查询结果进行排序，接口默认的排序规则是`创建时间倒序`。
-
-如需修改，可通过提交 `order_by` 参数来实现。
+查询接口默认按**创建时间倒序**的顺序来返回数据列表，你也可以通过设置 `order_by` 参数来实现。
 
 示例：
 
@@ -183,42 +156,14 @@ print resp_.content
 
 {% endtabs %}
 
-**返回示例**
 
-```json
-{
-    "meta": {
-        "limit": 20,
-        "next": "/oserve/v1/table/50/record/?limit=20&offset=20",
-        "offset": 0,
-        "previous": null,
-        "total_count": 1
-    },
-    "objects": [
-        {
-            "_id": "59c3a1981eefef0be7d7ffaa",
-            "acl_gid": null,
-            "acl_permission": 7,
-            "created_at": 1505993112,
-            "created_by": 1513231,
-            "id": "59c3a1981eefef0be7d7ffaa",
-            "name": "百搭双肩包 campus bluelounge",
-            "price": 498,
-            "updated_at": 1506444506
-        }
-    ]
-}
-```
-
-## 查询数据项
-
-可根据数据的 `id` 字段来获取该数据项。
+## 获取数据项
 
 **接口**
 
 `GET https://cloud.minapp.com/oserve/v1/table/:table_id/record/:record_id/`
 
-`table_id` 是某个表的 ID，`record_id` 是该表下的一条记录 ID
+其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
 **代码示例**
 
@@ -244,41 +189,25 @@ request(opt, function(err, res, body) {
 
 {% endtabs %}
 
-**返回示例**
-
-```json
-{
-    "_id": "59c3a1981eefef0be7d7ffaa",
-    "acl_gid": null,
-    "acl_permission": 7,
-    "created_at": 1505993112,
-    "created_by": 1513231,
-    "id": "59c3a1981eefef0be7d7ffaa",
-    "name": "百搭双肩包 campus bluelounge",
-    "price": 499,
-    "tag": ["Hello"],
-    "updated_at": 1506444506
-}
-```
 
 ## 写入数据
-
-本接口提供保存数据的能力，通过指定要你写入的表 ID 来完成操作， 需注意，插入的数据所包含的字段需要与数据表中定义的字段一致。
-
-> 由于数据默认会写入 `created_by` 字段，此参数可以在请求参数中提交，取值需为知晓云的用户 id，具体可参考`用户-登入`。
-> 如未提交或者提交错误的用户 ID，则会默认设置为企业账户本身的用户 ID。
 
 **接口**
 
 `POST https://cloud.minapp.com/oserve/v1/table/:table_id/record/`
 
+其中 `:table_id` 需替换为你的数据表 ID
+
 **参数说明**
 
 Content-Type: `application/json`
 
-| 参数               | 类型    | 必填 | 说明 |
-| :------------     | :----- | :-- | :-- |
-| key         | String(字段对应的数据类型)） | Y  | key 为数据表中定义的字段 |
+| 参数  | 类型                | 必填 | 说明 |
+| :--- | :------------------ | :-- | :-- |
+| key  | key 字段对应的数据类型 | Y   | key 应为数据表中定义的字段名 |
+
+> **info**
+> 插入的数据要与预先在知晓云平台设定的数据类型一致
 
 **代码示例**
 
@@ -311,36 +240,10 @@ request(opt, function(err, res, body) {
 
 {% endtabs %}
 
-**返回示例**
-
-成功返回
-
-```json
-{
-    "_id": "59c3a1981eefef0be7d7ffaa",
-    "acl_gid": null,
-    "acl_permission": 7,
-    "created_at": 1505993112,
-    "created_by": 1513231,
-    "id": "59c3a1981eefef0be7d7ffaa",
-    "hello": "world",
-    "updated_at": 1506444506
-}
-```
-
-错误返回
-
-```json
-{
-  "status": "error",
-  "error_msg": "Error message from Hydrogen."
-}
-```
-
 **状态码说明**
 
-- `201` 写入成功
-- `400` 请求参数有错
+`201` 写入成功，`400` 请求参数有错
+
 
 ## 更新数据
 
@@ -350,13 +253,18 @@ request(opt, function(err, res, body) {
 
 `PUT https://cloud.minapp.com/oserve/v1/table/:table_id/record/:record_id/`
 
+其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
+
 **参数说明**
 
 Content-Type: `application/json`
 
-| 参数               | 类型    | 必填 | 说明 |
-| :------------     | :----- | :-- | :-- |
-| key         | String(字段对应的数据类型)） | Y  | key 为数据表中定义的字段 |
+| 参数  | 类型                | 必填 | 说明 |
+| :--- | :------------------ | :-- | :-- |
+| key  | key 字段对应的数据类型 | Y   | key 应为数据表中定义的字段名 |
+
+> **info**
+> 更新的数据要与预先在知晓云平台设定的数据类型一致
 
 **代码示例**
 
@@ -385,46 +293,21 @@ request(opt, function(err, res, body) {
 
 {% endtabs %}
 
-**返回示例**
-
-成功返回
-
-```json
-{
-    "_id": "59c3a1981eefef0be7d7ffaa",
-    "acl_gid": null,
-    "acl_permission": 7,
-    "created_at": 1505993112,
-    "created_by": 1513231,
-    "id": "59c3a1981eefef0be7d7ffaa",
-    "hello": "dlrow",
-    "updated_at": 1506444506
-}
-```
-
-错误返回
-
-```json
-{
-  "status": "error",
-  "error_msg": "Error message from Hydrogen."
-}
-```
-
 **状态码说明**
 
-- `201` 写入成功
-- `400` 请求参数有错
+`201` 写入成功，`400` 请求参数有错
+
 
 ## 数据删除
 
-请注意本接口 **可直接删除任意数据不受 ACL 控制**。
+> **danger**
+> 本接口可直接删除任意数据，不受 ACL 控制
 
 **接口**
 
 `DELETE https://cloud.minapp.com/oserve/v1/table/:table_id/record/:record_id/`
 
-`table_id` 是某个表的 ID，`record_id` 是该表下的一条记录 ID
+其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
 **代码示例**
 
@@ -452,34 +335,30 @@ request(opt, function(err, res, body) {
 
 **状态码说明**
 
-- `204` 删除成功
+`204` 删除成功
+
 
 ## 数据原子性更新
+
+当请求同时对一个数据进行修改时，原子性更新使得冲突和覆盖导致的数据不正确的情况不会出现，目前支持的数据类型是**数字类型**和**数字类型**
 
 **接口**
 
 `PUT https://cloud.minapp.com/oserve/v1/table/:table_id/record/:record_id/`
 
-`table_id` 是某个表的 ID，`record_id` 是该表下的一条记录 ID
+其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
 **参数说明**
 
 Content-Type: `application/json`
 
-| 参数               | 类型    | 必填 | 说明 |
-| :------------     | :----- | :-- | :-- |
-| key         | String(字段对应的数据类型)） | Y  | key 为数据表中定义的字段, 如表中 `key` 字段 |
-
-原子操作适用于数值递增的场景，如点赞数或者阅读数递增。
+| 参数  | 类型                | 必填 | 说明 |
+| :--- | :------------------ | :-- | :-- |
+| key  | key 字段对应的数据类型 | Y   | key 应为数据表中定义的字段名 |
 
 本接口支持以下原子性操作：
 
-- `incr_by`
-- `append`
-- `append_unique`
-- `remove`
-
-(1) `incr_by` 对数字类型的键进行增减操作
+(1) `incr_by` 对数字类型的字段的值进行增减操作
 
 将对象中的价格（price）字段加 1
 
@@ -501,7 +380,7 @@ Content-Type: `application/json`
 }
 ```
 
-(2) append 数组类型的键追加数值（同样为数组类型）
+(2) `append` 对数组类型的字段的值追加一个数组
 
 往对象中的 tag 字段追加 「Hello」
 
@@ -513,7 +392,7 @@ Content-Type: `application/json`
 }
 ```
 
-(3) append_unique 数组类型的键追加数值（同样为数组类型），当已在对象中的值不会再被追加
+(3) `append_unique` 对数组类型的字段的值追加一个数组，但追加的数组里的数组项，如果已存在于原数组中，则该**数组项**不会再被追加
 
 往对象中的 tag 字段追加 「Hello」，tag 字段依然为 `["Hello"]`
 
@@ -525,7 +404,7 @@ Content-Type: `application/json`
 }
 ```
 
-(4) remove 数组类型的键删除数值（同样为数组类型）
+(4) `remove` 从数组类型的字段的值里，删除包含在指定数组中的数组项
 
 往对象中的 tag 字段删除 「Hello」
 
@@ -569,35 +448,6 @@ request(opt, function(err, res, body) {
 
 {% endtabs %}
 
-**返回示例**
-
-成功返回
-
-```json
-{
-    "_id": "59c3a1981eefef0be7d7ffaa",
-    "acl_gid": null,
-    "acl_permission": 7,
-    "created_at": 1505993112,
-    "created_by": 1513231,
-    "id": "59c3a1981eefef0be7d7ffaa",
-    "name": "百搭双肩包 campus bluelounge",
-    "price": 499,
-    "tag": ["Hello"],
-    "updated_at": 1506444506
-}
-```
-
-错误返回
-
-```json
-{
-  "status": "error",
-  "error_msg": "Error message from Hydrogen."
-}
-```
-
 **状态码说明**
 
-- `200` 更新成功
-- `400` 操作符不支持/请求参数有错
+`200` 更新成功，`400` 操作符不支持/请求参数有错
