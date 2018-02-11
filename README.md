@@ -85,11 +85,11 @@
         <li>
           <a href="/js-sdk/local-storage.md/">本地存储</a>
         </li>
-      </ul>
-      <ul class="doc-js-sdk doc-detail-item">
         <li>
           <a href="/js-sdk/template-message.md/">模板消息</a>
         </li>
+      </ul>
+      <ul class="doc-js-sdk doc-detail-item">
         <li>
           <a href="/js-sdk/wechat-decrypt.md/">微信加密数据解密</a>
         </li>
