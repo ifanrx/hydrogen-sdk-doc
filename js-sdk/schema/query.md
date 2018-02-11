@@ -195,7 +195,9 @@ query.arrayContains('desc', ['green', 'red', 'yellow'])
 query.compare('desc', '=', ['green', 'red', 'yellow'])
 ```
 
-### 查询字段值为 null 或非 null 记录
+### null 或非 null 查询
+
+查询字段值为 null 或非 null 记录
 
 ```js
 query.isNull('name')
@@ -205,7 +207,9 @@ query.isNotNull('name')
 query.isNotNull(['name', 'price'])
 ```
 
-### 查询字段值为空或非空记录
+### 空或非空查询
+
+查询字段值为空或非空记录
 
 <span style='color:red'>* sdk version >= v1.1.1</span>
 

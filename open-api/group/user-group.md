@@ -1,6 +1,62 @@
-# 用户组的操作
+# 用户组操作
 
-本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](../authentication.md)。
+## 获取用户组详情
+
+**接口**
+
+`GET https://cloud.minapp.com/oserve/v1/user-group/:group_id/`
+
+其中 `:group_id` 需替换为你的用户组 ID
+
+**代码示例**
+
+{% tabs userGroupDetailCurl="Curl", userGroupDetailNode="Node" %}
+
+{% content "userGroupDetailCurl" %}
+
+```
+curl -X GET \
+-H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "Content-Type: application/json" \
+https://cloud.minapp.com/oserve/v1/user-group/47/
+```
+
+{% content "userGroupDetailNode" %}
+
+```js
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-group/655',  // 655 对应 :group_id
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  }
+}
+
+request(opt, function(err, res, body) {
+  console.log(body)
+})
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```json
+{
+  "id": 47,
+  "members": 0,
+  "name": "User Group",
+  "parent": {
+    "id": 1,
+    "name": "Super Group"
+  }
+}
+```
+
+`members` 表示在用户组下的用户数量，`parent` 表示用户组的组集
+
 
 ## 获取用户组列表
 
@@ -10,13 +66,11 @@
 
 **参数说明**
 
-Content-Type: `application/json`
-
-| 参数          | 类型   | 必填 | 说明 |
-| :------------| :----- | :-- | :-- |
-| parent_id    | String | N   | 用户组的组集 ID |
-| offset       | String | N   | 返回资源的起始偏移值 |
-| limit        | String | N   | 返回资源的个数（默认为 20，最大可设置为 1000 |
+| 参数       | 类型   | 必填 | 说明 |
+| :---------| :----- | :-- | :-- |
+| parent_id | String | N   | 用户组的组集 ID |
+| limit     | Number | N   | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
+| offset    | Number | N   | 设置返回资源的起始偏移值，默认为 0 |
 
 **代码示例**
 
@@ -52,94 +106,12 @@ var opt = {
 }
 
 request(opt, function(err, res, body) {
-    console.log(body)
+  console.log(body)
 })
 ```
 
 {% endtabs %}
 
-**返回示例**
-
-```json
-{
-    "meta": {
-        "limit": 20,
-        "next": null,
-        "offset": 0,
-        "previous": null,
-        "total_count": 1
-    },
-    "objects": [
-        {
-            "id": 47,
-            "members": 0,
-            "name": "User Group",
-            "parent": {
-                "id": 1,
-                "name": "Super Group"
-            }
-        }
-    ]
-}
-```
-
-`members` 表示在用户组下的用户数量，
-`parent` 表示用户组的组集
-
-## 获取用户组详情
-
-**接口**
-
-`GET https://cloud.minapp.com/oserve/v1/user-group/:group_id/`
-
-`group_id` 是用户组的 ID
-
-**代码示例**
-
-{% tabs userGroupDetailCurl="Curl", userGroupDetailNode="Node" %}
-
-{% content "userGroupDetailCurl" %}
-
-```
-curl -X GET \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/user-group/47/
-```
-
-{% content "userGroupDetailNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/user-group/655',  // 655 对应 :group_id
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  }
-}
-
-request(opt, function(err, res, body) {
-    console.log(body)
-})
-```
-
-{% endtabs %}
-
-**返回示例**
-
-```json
-{
-    "id": 47,
-    "members": 0,
-    "name": "User Group",
-    "parent": {
-        "id": 1,
-        "name": "Super Group"
-    }
-}
-```
 
 ## 创建用户组
 
@@ -151,10 +123,10 @@ request(opt, function(err, res, body) {
 
 Content-Type: `application/json`
 
-| 参数          | 类型   | 必填 | 说明 |
-| :------------| :----- | :-- | :-- |
-| name    | String | Y   | 用户组的名称 |
-| parent       | String | N   | 组集 ID |
+| 参数    | 类型   | 必填 | 说明 |
+| :----- | :----- | :-- | :-- |
+| name   | String | Y   | 用户组的名称 |
+| parent | String | N   | 组集 ID |
 
 **代码示例**
 
@@ -187,7 +159,7 @@ var opt = {
 }
 
 request(opt, function(err, res, body) {
-    console.log(res.statusCode, body)
+  console.log(res.statusCode, body)
 })
 ```
 
@@ -195,7 +167,8 @@ request(opt, function(err, res, body) {
 
 **状态码说明**
 
-- `201` 写入成功
+`201` 写入成功
+
 
 ## 修改用户组
 
@@ -203,7 +176,7 @@ request(opt, function(err, res, body) {
 
 `PUT https://cloud.minapp.com/oserve/v1/user-group/:group_id/`
 
-`group_id` 是用户组的 ID
+其中 `:group_id` 需替换为你的用户组 ID
 
 **代码示例**
 
@@ -236,29 +209,16 @@ var opt = {
 }
 
 request(opt, function(err, res, body) {
-    console.log(res.statusCode)
+  console.log(res.statusCode)
 })
 ```
 
 {% endtabs %}
 
-**返回示例**
-
-```json
-{
-    "id": 47,
-    "members": 0,
-    "name": "user group",
-    "parent": {
-        "id": 1,
-        "name": "Super Group"
-    }
-}
-```
-
 **状态码说明**
 
-- `200` 修改成功
+`200` 修改成功
+
 
 ## 删除用户组
 
@@ -293,7 +253,7 @@ var opt = {
 }
 
 request(opt, function(err, res, body) {
-    console.log(res.statusCode)
+  console.log(res.statusCode)
 })
 ```
 
@@ -301,7 +261,8 @@ request(opt, function(err, res, body) {
 
 **状态码说明**
 
-- `204` 删除成功
+`204` 删除成功
+
 
 ## 批量删除用户组
 
@@ -336,7 +297,7 @@ var opt = {
 }
 
 request(opt, function(err, res, body) {
-    console.log(res.statusCode)
+  console.log(res.statusCode)
 })
 ```
 
@@ -344,4 +305,4 @@ request(opt, function(err, res, body) {
 
 **状态码说明**
 
-- `204` 删除成功
+`204` 删除成功

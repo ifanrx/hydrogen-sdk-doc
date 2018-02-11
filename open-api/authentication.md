@@ -1,16 +1,12 @@
 # 授权认证
 
-知晓云开放 API 授权通过 **Access Token** 作为接口调用的凭证，开发者需要保证 **Access Token** 的安全性。
+## 鉴权方式
 
-## 开放 API 鉴权方式
-
-在对开放 API 发起请求时，均需要在 HTTP Header 加入一下授权参数
+知晓云开放 API 授权通过 **Access Token** 作为接口调用的凭证，在对开放 API 发起请求时，均需要在 HTTP Header 加入以下授权参数：
 
 ```
   Authorization: Bearer <Access Token>
 ```
-
-Access Token 的获取请阅读👇 的内容
 
 
 ## 授权流程
@@ -35,7 +31,12 @@ Access Token 的获取请阅读👇 的内容
 > **info**
 > ID/Secert 为知晓云应用的 `ClientID`、`ClientSecret`，可通过知晓云管理后台进行获取。
 
-## 获取 Code
+
+## 获取 Access Token
+
+获取 Access Token 需要经过以下两个步骤
+
+### 获取 code
 
 **接口**
 
@@ -45,17 +46,17 @@ Access Token 的获取请阅读👇 的内容
 
 Content-Type: `application/json`
 
-| 参数               | 类型    | 必填 | 说明 |
-| :------------     | :----- | :-- | :-- |
-| client_id         | String | Y  | 知晓云应用的 ClientID |
-| client_secret     | String | Y  | 知晓云应用的 ClientSecret |
+| 参数          | 类型    | 必填 | 说明 |
+| :------------ | :----- | :-- | :-- |
+| client_id     | String | Y  | 知晓云应用的 ClientID |
+| client_secret | String | Y  | 知晓云应用的 ClientSecret |
 
 **返回参数**
 
-| 参数         | 类型         | 说明 |
-| :---------- | :----------- | :-- |
-| code        | String       | 授权码 |
-| expires_in  | Number       | 过期时间 |
+| 参数        | 类型   | 说明 |
+| :--------- | :----- | :-- |
+| code       | String | 授权码 |
+| expires_in | Number | code 的过期时间 |
 
 > **info**
 > 获取 Code 会经过两次的 `HTTP 302 Found` 跳转，开发者在实现时需要允许客户端跟随跳转。
@@ -67,8 +68,8 @@ $ curl ifanr.com
 <html>
 <head><title>302 Found</title></head>
 <body bgcolor="white">
-<center><h1>302 Found</h1></center>
-<hr><center>nginx/1.11.5</center>
+  <center><h1>302 Found</h1></center>
+  <hr><center>nginx/1.11.5</center>
 </body>
 </html>
 ```
@@ -80,19 +81,18 @@ $ curl -L ifanr.com
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta property="og:site_name" content="爱范儿" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://www.ifanr.com" />
-    <meta name="MSSmartTagsPreventParsing" content="true"/>
-    <meta http-equiv="imagetoolbar" content="no"/>
-    <meta name="robots" content="all"/>
-    <title>  爱范儿 · 报道未来，服务新生活引领者
-</title>
-....
+  <meta charset="UTF-8">
+  <meta property="og:site_name" content="爱范儿" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="http://www.ifanr.com" />
+  <meta name="MSSmartTagsPreventParsing" content="true"/>
+  <meta http-equiv="imagetoolbar" content="no"/>
+  <meta name="robots" content="all"/>
+  <title>  爱范儿 · 报道未来，服务新生活引领者</title>
+  ....
 ```
 
-## 获取 Access Token
+### 使用 code 获取 Access Token
 
 **接口地址**
 
@@ -102,22 +102,22 @@ $ curl -L ifanr.com
 
 Content-Type: `multipart/form-data`
 
-| 参数               | 类型    | 必填 | 说明 |
-| :------------     | :----- | :-- | :-- |
-| client_id         | String | Y  | 知晓云应用的 ClientID |
-| client_secret     | String | Y  | 知晓云应用的 ClientSecret |
-| code              | String | Y  | 授权码 |
-| grant_type        | String | Y  | 授权类型(需指定为"authorization_code") |
+| 参数           | 类型   | 必填 | 说明 |
+| :------------ | :----- | :-- | :-- |
+| client_id     | String | Y   | 知晓云应用的 ClientID |
+| client_secret | String | Y   | 知晓云应用的 ClientSecret |
+| code          | String | Y   | 授权码，通过上一步获取到的 |
+| grant_type    | String | Y   | 授权类型，这里需指定为 "authorization_code" |
 
 **返回参数**
 
-| 参数           | 类型         | 说明 |
-| :----------   | :----------- | :-- |
-| access_token  | String       | 访问令牌(token) |
-| token_type    | String       | 令牌(token)类型 |
-| expires_in    | Number       | 过期时间 |
-| refresh_token | String       | 更新令牌(token)） |
-| scope         | String       | 权限范围 |
+| 参数           | 类型   | 说明 |
+| :----------   | :----- | :-- |
+| access_token  | String | 用户授权的唯一票据 |
+| token_type    | String | token 类型 |
+| expires_in    | Number | access_token 过期时间 |
+| refresh_token | String | 用于刷新授权有效期 |
+| scope         | String | 权限范围 |
 
 **代码示例** 
 
@@ -158,9 +158,12 @@ Content-Type: `multipart/form-data`
     }
 
     request(opt, function(err, res, body) {
-        let token = JSON.parse(body).access_token
+      let token = JSON.parse(body).access_token
     })
   }
   ```
 
 {% endtabs %}
+
+> **danger**
+> 开发者需要保证 **Access Token** 的安全性

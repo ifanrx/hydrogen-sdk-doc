@@ -1,43 +1,33 @@
-# 上传文件操作
+<!-- ex_nonav -->
 
-本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](../authentication.md)。
+# 上传文件
 
-## 上传文件流程
+**上传流程图**
 
 ```
-
       +-----------------+ +-----------------+ +-----------------+
       | Client/Browser  | |    FORM API     | |     知晓云       |
       +-----------------+ +-----------------+ +-----------------+
               |                   |                   |
-              |                   |                   |
              +++        Request authorization        +++
              |-|====================================>|-|
-             |-|                  |                  |-|
              |-|                  |                  |-|
              |-|        Response authorization       |-|
              |-|<====================================|-|
              +++                  |                  +++
               |                   |                   |
-              |                   |                   |
-              |                   |                   |
              +++     Upload      +++                 +++
              |-|================>|-|                 |-|
-             |-|                 |-|                 |-|
              |-|                 |-|                 |-|
              |-|     Response    |-|                 |-|
              |-|<================|-|                 |-|
              +++                 +++                 +++
               |                   |                   |
-              |                   |                   |  
-
 ```
 
-1. 开发者请求知晓云，生成、获取上传所需的 policy、authorization 等授权凭证；
-2. 开发者通过 FORM API 上传文件，返回上传结果信息；
+使用知晓云开放 API 上传文件需要以下两个步骤：
 
-
-## 获取上传的文件的授权凭证
+#### 1. 获取上传文件所需授权凭证和上传地址
 
 **接口**
 
@@ -47,10 +37,10 @@
 
 Content-Type: `application/json`
 
-| 参数              | 类型   | 必填 | 说明 |
-| :------------    | :----- | :-- | :-- |
-| filename         | String | N   | 上传的文件名 |
-| categories       | String | N   | 上传文件的所属分类，格式为文件分类的 ID 数组 |
+| 参数           | 类型   | 必填 | 说明 |
+| :------------ | :----- | :-- | :-- |
+| filename      | String | N   | 上传的文件名 |
+| categories    | String | N   | 上传文件的所属分类，格式为文件分类的 ID 数组 |
 
 **返回参数**
 
@@ -97,12 +87,12 @@ var opt = {
 }
 
 request(opt, function(err, res, body) {
-    console.log(res.statusCode, body)
+  console.log(res.statusCode, body)
 })
 ```
 
 {% endtabs %}
- 
+
 **返回示例**
 
 ```json
@@ -117,29 +107,29 @@ request(opt, function(err, res, body) {
 
 **状态码说明**
 
-  - `200` 获得授权凭证成功
-  - `400` 参数错误（不支持上传的文件格式)
-  - `404` 找不到文件分类 ID
+`200` 获得授权凭证成功，`400` 参数错误（不支持上传的文件格式)，`404` 找不到文件分类 ID
 
-## 上传文件
-
-开发者需要先调用授权凭证接口，拿到凭证后才能上传文件。
+#### 2. 使用上一步获取的授权凭证和上传地址，进行文件上传
 
 **接口**
 
-`POST https://v0.api.upyun.com/:bucket`
+`POST {UPLOAD_URL}`
 
-这里的接口地址是调用获取上传的文件的授权凭证接口返回的字段 `upload_url`
+`UPLOAD_URL`  是调用上一步的接口所返回的字段 `upload_url` 的值，形如：
+
+```
+  https://v0.api.upyun.com/cloud-minapp-287
+```
 
 **参数说明**
 
 Content-Type: `multipart/form-data`
 
-| 参数              | 类型   | 必填 | 说明 |
-| :------------    | :----- | :-- | :-- |
-| authorization    | String | Y   | 授权凭证接口返回的字段 `authorization` 的值 |
-| file             | String | Y   | 上传的文件流 |
-| policy           | String | Y   | 授权凭证接口返回的字段 `policy` 的值 |
+| 参数           | 类型   | 必填 | 说明 |
+| :------------ | :----- | :-- | :-- |
+| authorization | String | Y   | 授权凭证 |
+| file          | String | Y   | 上传的文件流 |
+| policy        | String | Y   | 授权凭证 |
 
 **代码示例**
 
@@ -177,7 +167,7 @@ var opt = {
 }
 
 request(opt, function(err, res, body) {
-    console.log(res.statusCode, body)
+  console.log(res.statusCode, body)
 })
 ```
 
@@ -202,4 +192,4 @@ request(opt, function(err, res, body) {
 
 **状态码说明**
 
-- `200` 上传成功
+`200` 上传成功

@@ -1,81 +1,4 @@
-# 组集的操作
-
-本文档所描述的接口均需要经认证授权后才可使用，认证授权请参考 [授权认证](../authentication.md)。
-
-## 获取组集列表
-
-**接口**
-
-`GET https://cloud.minapp.com/oserve/v1/user-supergroup/`
-
-**参数说明**
-
-Content-Type: `application/json`
-
-| 参数          | 类型   | 必填 | 说明 |
-| :------------| :----- | :-- | :-- |
-| offset       | String | N   | 返回资源的起始偏移值 |
-| limit        | String | N   | 返回资源的个数（默认为 20，最大可设置为 1000） |
-
-**代码示例**
-
-{% tabs getCurl="Curl", getNode="Node" %}
-
-{% content "getCurl" %}
-
-```
-curl -X GET \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
--H "Content-Type: application/json" \
--G \
-https://cloud.minapp.com/oserve/v1/user-supergroup/
-```
-
-{% content "getNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/user-supergroup/',
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  }
-}
-
-request(opt, function(err, res, body) {
-    console.log(body)
-}
-```
-
-{% endtabs %}
-
-**返回示例**
-
-```json
-{
-    "meta": {
-        "limit": 20,
-        "next": null,
-        "offset": 0,
-        "previous": null,
-        "total_count": 1
-    },
-    "objects": [
-        {
-            "children": [
-                {
-                    "id": 51,
-                    "name": "User Group"
-                },
-            ],
-            "id": 52,
-            "name": "Super Group"
-        }
-    ]
-}
-```
+# 组集操作
 
 ## 获取组集详情
 
@@ -83,7 +6,7 @@ request(opt, function(err, res, body) {
 
 `GET https://cloud.minapp.com/oserve/v1/user-supergroup/:group_id/`
 
-`group_id` 是组集的 ID
+其中 `:group_id` 需替换为你的用户组 ID
 
 **代码示例**
 
@@ -122,16 +45,65 @@ request(opt, function(err, res, body) {
 
 ```json
 {
-    "children": [
-        {
-            "id": 51,
-            "name": "User Group"
-        }
-    ],
-    "id": 52,
-    "name": "Super Group"
+  "children": [
+    {
+      "id": 51,
+      "name": "User Group"
+    }
+  ],
+  "id": 52,
+  "name": "Super Group"
 }
 ```
+
+
+## 获取组集列表
+
+**接口**
+
+`GET https://cloud.minapp.com/oserve/v1/user-supergroup/`
+
+**参数说明**
+
+| 参数    | 类型   | 必填 | 说明 |
+| :----- | :----- | :-- | :-- |
+| limit  | Number | N   | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
+| offset | Number | N   | 设置返回资源的起始偏移值，默认为 0 |
+
+**代码示例**
+
+{% tabs getCurl="Curl", getNode="Node" %}
+
+{% content "getCurl" %}
+
+```
+curl -X GET \
+-H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "Content-Type: application/json" \
+-G \
+https://cloud.minapp.com/oserve/v1/user-supergroup/
+```
+
+{% content "getNode" %}
+
+```js
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/user-supergroup/',
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  }
+}
+
+request(opt, function(err, res, body) {
+  console.log(body)
+}
+```
+
+{% endtabs %}
+
 
 ## 创建组集
 
@@ -143,10 +115,10 @@ request(opt, function(err, res, body) {
 
 Content-Type: `application/json`
 
-| 参数          | 类型   | 必填 | 说明 |
-| :------------| :----- | :-- | :-- |
-| name         | String | Y   | 组集的名称 |
-| children       | String | N   | 用户组 ID 列表 |
+| 参数      | 类型   | 必填 | 说明 |
+| :--------| :----- | :-- | :-- |
+| name     | String | Y   | 组集的名称 |
+| children | String | N   | 用户组 ID 列表 |
 
 **代码示例**
 
@@ -180,7 +152,7 @@ var opt = {
 }
 
 request(opt, function(err, res, body) {
-    console.log(res.statusCode)
+  console.log(res.statusCode)
 })
 ```
 
@@ -188,21 +160,23 @@ request(opt, function(err, res, body) {
 
 **状态码说明**
 
-- `201` 写入成功
+`201` 写入成功
+
 
 ## 修改组集
 
-请注意本接口 **会清除掉旧有的组集和用户组的关系，重新与传入的用户组建立关系**。
+> **danger**
+> 该接口会清除掉旧有的组集和用户组的关系，重新与传入的用户组建立关系
 
 **接口**
 
 `PUT https://cloud.minapp.com/oserve/v1/user-supergroup/:group_id/`
 
-`group_id` 是组集的 ID
+其中 `:group_id` 需替换为你的用户组 ID
 
 **状态码说明**
 
-- `200` 修改成功
+`200` 修改成功
 
 **代码示例**
 
@@ -236,7 +210,7 @@ var opt = {
 }
 
 request(opt, function(err, res, body) {
-    console.log(res.statusCode, body)
+  console.log(res.statusCode, body)
 })
 ```
 
@@ -246,14 +220,14 @@ request(opt, function(err, res, body) {
 
 ```json
 {
-    "children": [
-        {
-            "id": 51,
-            "name": "User Group"
-        }
-    ],
-    "id": 52,
-    "name": "super group 3"
+  "children": [
+    {
+      "id": 51,
+      "name": "User Group"
+    }
+  ],
+  "id": 52,
+  "name": "super group 3"
 }
 ```
 
@@ -290,7 +264,7 @@ var opt = {
 }
 
 request(opt, function(err, res, body) {
-    console.log(res.statusCode)
+  console.log(res.statusCode)
 })
 ```
 
@@ -298,7 +272,8 @@ request(opt, function(err, res, body) {
 
 **状态码说明**
 
-- `204` 删除成功
+`204` 删除成功
+
 
 ## 批量删除组集
 
@@ -333,7 +308,7 @@ var opt = {
 }
 
 request(opt, function(err, res, body) {
-    console.log(res.statusCode)
+  console.log(res.statusCode)
 })
 ```
 
@@ -341,4 +316,4 @@ request(opt, function(err, res, body) {
 
 **状态码说明**
 
-- `204` 删除成功
+`204` 删除成功

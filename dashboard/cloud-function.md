@@ -10,7 +10,7 @@
 
 ![新建云函数](/images/dashboard/cloud-function-add.jpg)
 
-<span class="attention">注：</span>修改后的代码需要点击编辑左下方的“**提交审核**”按钮，保存成功后生效。云函数功能在内测期间免费开放，但上线前需通过审核。编辑器的右下方可以看到当前函数的审核状态。
+<span class="attention">注：</span>修改后的代码需要点击编辑器左下方的“**提交审核**”按钮，保存成功后生效。云函数功能在内测期间免费开放，但上线前需通过审核。编辑器的右下方可以看到当前函数的审核状态。
 
 ## 测试
 
@@ -54,9 +54,9 @@ exports.main = function functionName(event, callback) {
 
   方法默认传递两个参数：`event` 和 `callback`。`event` 对象包含了函数调用的相关信息，包括触发源、参数等。`callback` 是一个回调方法，它接收两个参数，第一个参数是：`Error` 错误信息，第二个参数是返回的运行结果。可以使用 `callback` 为下一云函数或者其他操作传递数据。
 
-- node SDK
+- Node.js SDK
 
-  为了方便开发者使用，知晓云提供了 node 版本的 SDK，在您的云代码中可以使用全局的 `BaaS` 对象。下面是查询某个数据表的某条数据的示例代码：
+  为了方便开发者使用，知晓云提供了 Node.js 版本的 SDK，在您的云代码中可以使用全局的 `BaaS` 对象。下面是查询某个数据表的某条数据的示例代码：
 
   ```js
   exports.main = function testSchema(event, callback) {
@@ -71,11 +71,11 @@ exports.main = function functionName(event, callback) {
   }
   ```
 
-  详细的 node SDK 的文档参见：[云函数 node SDK](../cloud-function/node-sdk/)
+  详细的 Node.js SDK 的文档参见：[云函数 Node.js SDK](../cloud-function/node-sdk/)
 
 - 云代码运行环境
 
-  云代码的运行环境是 node v8.9.0，请以此考虑编写云代码时使用的 `javascript` 语法。
+  云代码的运行环境是 Node.js v8.9.0，请以此考虑编写云代码时使用的 `javascript` 语法。
 
 <span class="attention">注：</span>云代码在运行时会直接调用 `main` 方法，并默认传递 `event`、`callback`，因此不能擅自修改 `exports.main = function functionName (event, callback) {}` 的代码结构。
 

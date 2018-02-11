@@ -15,4 +15,4 @@
 查看以下章节，了解更多关于知晓云云函数的使用：
 
 * [快速入门](./pay.md)
-* [Node SDK 使用](./node-sdk/README.md)
+* [Node.js SDK 使用](./node-sdk/README.md)

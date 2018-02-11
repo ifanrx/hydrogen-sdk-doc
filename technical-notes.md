@@ -23,7 +23,7 @@
 
 - buildroot
 - busybox
-- node.js
+- Node.js
 
 所有的 GPL 源代码可通过发起工单的方式获取。
 

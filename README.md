@@ -27,129 +27,118 @@
     </li>
     <li>
       <h3>
-        <a href="">产品功能</a>
+        <a href="/dashboard/README.md/">控制台操作</a>
       </h3>
-      <ul class="doc-product doc-detail-item">
+      <ul class="doc-dashboard doc-detail-item">
         <li>
-          <a href="">数据存储</a>
+          <a href="/dashboard/schema.md/">数据管理</a>
         </li>
         <li>
-          <a href="">富文本渲染</a>
+          <a href="/dashboard/content.md/">内容管理</a>
         </li>
         <li>
-          <a href="">文件管理</a>
+          <a href="/dashboard/file.md/">文件管理</a>
         </li>
         <li>
-          <a href="">图片云处理</a>
+          <a href="/dashboard/user.md/">用户管理</a>
         </li>
         <li>
-          <a href="">微信支付</a>
+          <a href="/dashboard/payment.md/">支付</a>
         </li>
         <li>
-          <a href="">触发器</a>
+          <a href="/dashboard/trigger.md/">触发器</a>
         </li>
         <li>
-          <a href="">云函数</a>
+          <a href="/dashboard/cloud-function.md/">云函数</a>
         </li>
         <li>
-          <a href="">ACL 权限</a>
+          <a href="/dashboard/acl.md/">ACL 简介</a>
         </li>
       </ul>
     </li>
     <li>
       <h3>
-        <a href="/dev-tools/">开发者工具</a>
-      </h3>
-      <ul class="doc-dev-tool doc-detail-item">
-        <li>
-          <a href="/js-sdk/download-sdk.md/">SDK 下载</a>
-        </li>
-        <li>
-          <a href="">微信开发者工具</a>
-        </li>
-        <li>
-          <a href="">云函数命令行工具</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <h3>
-        <a href="/js-sdk/">js SDK</a>
+        <a href="/js-sdk/">JS SDK</a>
       </h3>
       <ul class="doc-js-sdk doc-detail-item">
         <li>
-          <a href="/js-sdk/request.md/">网络请求</a>
+          <a href="/js-sdk/signin-signout.md/">登入登出</a>
         </li>
         <li>
-          <a href="/js-sdk/schema/README.md/">数据</a>
+          <a href="/js-sdk/user.md/">用户</a>
         </li>
         <li>
-          <a href="/js-sdk/user/README.md/">用户</a>
+          <a href="/js-sdk/schema/README.md/">数据表</a>
         </li>
         <li>
           <a href="/js-sdk/content/README.md/">内容库</a>
         </li>
         <li>
+          <a href="/js-sdk/file/README.md/">文件</a>
+        </li>
+        <li>
           <a href="/js-sdk/payment/README.md/">支付</a>
+        </li>
+        <li>
+          <a href="/js-sdk/request.md/">网络请求</a>
         </li>
         <li>
           <a href="/js-sdk/local-storage.md/">本地存储</a>
         </li>
         <li>
-          <a href="/js-sdk/file/README.md/">文件与文件分类</a>
-        </li>
-        <li>
           <a href="/js-sdk/template-message.md/">模板消息</a>
         </li>
+      </ul>
+      <ul class="doc-js-sdk doc-detail-item">
         <li>
           <a href="/js-sdk/wechat-decrypt.md/">微信加密数据解密</a>
         </li>
         <li>
-          <a href="">云函数</a>
+          <a href="/js-sdk/error-code.md/">错误码详解</a>
         </li>
         <li>
-          <a href="/js-sdk/error-code.md/">错误码</a>
+          <a href="/js-sdk/download-sdk.md/">SDK 下载</a>
+        </li>
+        <li>
+          <a href="https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md">更新日志</a>
         </li>
       </ul>
     </li>
     <li>
       <h3>
-        <a href="/open-api/">Open API</a>
+        <a href="/open-api/README.md/">知晓云开发 API</a>
       </h3>
       <ul class="doc-open-api doc-detail-item">
         <li>
-          <a href="">授权认证</a>
+          <a href="/open-api/authentication.md/">授权认证</a>
         </li>
         <li>
-          <a href="">数据</a>
+          <a href="/open-api/record.md/">数据表模块</a>
         </li>
         <li>
-          <a href="">内容</a>
+          <a href="/open-api/content.md/">内容模块</a>
         </li>
         <li>
-          <a href="">文件</a>
+          <a href="/open-api/file/README.md/">文件模块</a>
         </li>
         <li>
-          <a href="">用户</a>
+          <a href="/open-api/group/README.md/">分组模块</a>
         </li>
         <li>
-          <a href="">用户分组</a>
-        </li>
-        <li>
-          <a href="">富文本渲染</a>
-        </li>
-        <li>
-          <a href="">错误码</a>
+          <a href="/open-api/user.md/">用户模块</a>
         </li>
       </ul>
     </li>
     <li>
       <h3>
-        <a href="/cloud-function/">云函数</a>
+        <a href="/cloud-function/README.md/">云函数</a>
       </h3>
       <ul class="doc-cloud-function doc-detail-item">
         <li>
-          <a href="">错误码</a>
+          <a href="/cloud-function/quick-start.md/">快速入门</a>
+        </li>
+        <li>
+          <a href="/cloud-function/node-sdk/README.md/">云函数 Node SDK</a>
         </li>
       </ul>
     </li>
@@ -159,12 +148,17 @@
       </h3>
       <ul class="doc-support doc-detail-item">
         <li>
-          <a href="/support/terms.md/">服务协议</a>
+          <a href="/support/qA.md/"> 常见问题</a>
         </li>
         <li>
-          <a href="http://support.minapp.com/hc/">提交工单</a>
+          <a href="/support/terms.md/">服务协议</a>
         </li>
       </ul>
     </li>
-  </ul>
+    <li>
+      <h3>
+        <a href="/technical-notes.md/">技术细节</a>
+      </h3>
+   </li>
+   </ul>
 </div>

@@ -1,4 +1,4 @@
-# 云函数 Node SDK
+# 云函数 Node.js SDK
 
 目前知晓云云函数支持的 Node.js 开发语言包括如下版本：
 - Node.js 8.9
@@ -6,9 +6,9 @@
 
 ## 代码编写格式
 
-在云函数中使用 Nodejs 编程，需要定义一个 Nodejs 函数作为入口，一个简单的函数定义如下：
+在云函数中使用 Node.js 编程，需要定义一个 Node.js 函数作为入口，一个简单的函数定义如下：
 
-```
+```js
 exports.main = function helloWorld(event, callback) {
   let name = event.data.name
   callback(null, 'hello ' + name)
@@ -44,7 +44,7 @@ exports.main = function helloWorld(event, callback) {
 
 你可以在程序中使用如下几种不同的日志级别来完成日志输出:
 
-```
+```js
 console.log(message)
 console.error(message)
 console.warn(message)
@@ -61,7 +61,7 @@ console.info(message)
 
 目前支持在云函数中对知晓云中的数据，内容和文件进行操作，同时也支持调用其它云函数，发送邮件和模板消息等功能，使用如下：
 
-```
+```js
 exports.main = function (event, callback) {
   let AddressBook = new BaaS.TableObject(7)
 
