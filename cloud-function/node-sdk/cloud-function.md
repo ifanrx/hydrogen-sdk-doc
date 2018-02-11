@@ -24,7 +24,7 @@
 
 假设已经创建了一个云函数 helloWorld，其接受一个 name 作为参数，返回 hello ${name}，可通过以下方式在云函数中进行调用
 
-```
+```js
 BaaS.invokeFunction('helloWorld', {name: 'allen'}).then(res => {
   if (res.code === 0) {
     callback(null, res.data)
@@ -38,7 +38,7 @@ BaaS.invokeFunction('helloWorld', {name: 'allen'}).then(res => {
 
 **返回参数**
 
-```
+```json
 {
   error: {},
   code: 0,

@@ -48,7 +48,7 @@ MyRecord.set(key2, value2)
 
 **请求示例**
 
-```
+```js
 // 向 tableID 为 10 的数据表插入一条记录
 let tableID = 10
 let Product = new BaaS.TableObject(tableID)
@@ -79,7 +79,7 @@ product.save().then(res => {}, (err) => {})
 **返回示例** （res.statusCode === 201）
 
 res.data:
-```
+```json
 {
   "_id": "59a3c2b5afb7766a5ec6e84e",
   "amount": 0,
@@ -108,7 +108,7 @@ product.set('expiration_time', isoStr)
 ## 添加 file 类型数据
 
 **请求示例**
-```
+```js
 let MyFile = new wx.BaaS.File()
 MyFile.upload(params).then(res => {
   product.set('manual', res.data.file)

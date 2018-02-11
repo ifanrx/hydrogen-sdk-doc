@@ -69,8 +69,9 @@
   text-align: center;
 }
 
-.doc-detail {
+ul.doc-detail {
   text-align: center;
+  padding-left: 0;
 }
 
 .doc-detail h3 {
@@ -82,6 +83,10 @@
   list-style: none;
 }
 
+.doc-js-sdk li {
+  padding: 5px 0;
+}
+
 .doc-detail>li:nth-child(2n) {
   background: #ebf7fd;
 }
@@ -91,6 +96,7 @@
   display: flex;
   justify-content: center;
   font-size: 12px;
+  padding-left: 0 !important;
 }
 
 .doc-detail-item li {

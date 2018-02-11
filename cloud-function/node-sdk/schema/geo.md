@@ -17,7 +17,7 @@ geojson 类型字段支持使用 GeoPoint 或 GeoPolygon 类型数据进行赋�
 
 * GeoPolygon 表示地理形状，可以通过以下两种方法创建一个地理形状
 
-```
+```js
 // 1. 直接使用数字
 var polygon = new wx.BaaS.GeoPolygon([[10, 10], [20, 10], [30, 20], [10, 10]])
 

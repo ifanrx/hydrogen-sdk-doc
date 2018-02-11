@@ -77,5 +77,3 @@ wx.BaaS.invokeFunction('getArticles').then(res => {
   console.log(res.data) // articles
 })
 ```
-
-done!
