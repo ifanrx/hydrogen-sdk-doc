@@ -2,8 +2,6 @@
 
 **新手入门**章节将会带领大家如何**从零开始**将知晓云接入小程序中。
 
-## 学习目标
-
 在本章节中，你将会学到以下内容：
 
 - 小程序注册指引
@@ -12,17 +10,15 @@
 
 - 创建第一个接入知晓云的小程序
 
-## 学习内容
+## 小程序注册指引
 
-### 小程序注册指引
+在使用**知晓云**之前，请先确保按照微信官方指引完成[小程序注册流程](https://mp.weixin.qq.com/)。
 
-在使用**知晓云**之前，请先确保按照微信官方指引完成[小程序注册流程](https://mp.weixin.qq.com/cgi-bin/wx)。
-
-### 知晓云账号注册
+## 知晓云账号注册
 
 开发者在微信公众平台申请到自己的小程序后，接下来就可注册并获取知晓云账号，完成相关信息绑定与服务配置后，即可使用知晓云提供的后端服务。
 
-#### 1、注册并完成相关信息绑定
+### 注册并完成相关信息绑定
 
 前往[知晓云](https://cloud.minapp.com/)注册知晓云账号。
 
@@ -33,7 +29,7 @@
 >**danger**
 > 如果注册或邮件激活失败，请开发者根据失败提示进行后续操作。如果开发者认为是服务提供方方面导致的失败，请邮件联系 `mincloud@ifanr.com`，我们会第一时间处理您的邮件。
 
-#### 2、小程序第三方授权以及服务器域名配置
+### 小程序第三方授权以及服务器域名配置
 
 为了使用知晓云提供的后端服务，进入 dashboard 后，开发者首先需要为知晓云授权。
 
@@ -45,19 +41,19 @@
 
 ![知晓云服务器域名](https://cloud-minapp-9472.cloud.ifanrusercontent.com/1eibFFyjwBTDldsP)
 
-登录[小程序后台](https://mp.weixin.qq.com/wxopen/devprofile?action=get_profile&token=41891845&lang=zh_CN)，进入 “设置 - 开发设置”配置小程序授权后，知晓云为开发者提供的服务器域名。
+登录[小程序后台](https://mp.weixin.qq.com/wxopen/devprofile?action=get_profile&token=41891845&lang=zh_CN)，进入 “设置 - 开发设置”页面，将知晓云提供给开发者的服务器域名配置到微信开发者后台的“服务器域名”配置项中。
 
 ![小程序服务器域名配置](https://cloud-minapp-9472.cloud.ifanrusercontent.com/1eibIYVmUywIISMd)
 
-### 创建第一个接入知晓云的小程序
+## 第一个接入知晓云的小程序
 
 下面，我们以**我的书架**小程序 demo 为例，创建第一个接入知晓云的小程序。
 
-#### 1、 知晓云的初始化配置
+### 1、 知晓云的初始化配置
 
 首先，打开[微信开发者工具](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=201822)，将先前下载好的[演示 demo](https://github.com/ifanrx/hydrogen-demo.git) 的 `hello-world` 文件夹添加入小程序项目中。
 
-![创建小程序项目](https://cloud-minapp-3906.cloud.ifanrusercontent.com/1eiceFUWVVpFFlUX)
+![创建小程序项目](https://cloud-minapp-3906.cloud.ifanrusercontent.com/1ekiTWoHSlpPElZq)
 
 其中 `AppID` 为小程序的 ID，在微信小程序后台**设置 >> 开发设置** 中可获取，知晓云也在[**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)提供了快速通道获取小程序 ID。
 
@@ -97,7 +93,7 @@ App({
 })
 ```
 
-#### 2、创建数据表
+### 2、创建数据表
 
 完成知晓云的初始化配置后，开发者就可以根据自身应用的业务逻辑，确定所需的数据表，确定好后即可在**知晓云后台 >> 数据管理模块**开始数据表的创建工作。
 
@@ -107,10 +103,7 @@ App({
 
 ![添加列](https://cloud-minapp-3906.cloud.ifanrusercontent.com/1eicaHxcVIfQmegJ)
 
-> **info**
-> ACL, 又称访问控制列表，是使用以访问控制矩阵为基础的访问控制方法，每一个对象对应一个串列主体。访问控制表描述每一个对象各自的访问控制，并记录可对此对象进行访问的所有主体对对象的权限。（来自维基百科）[点此查看更多 ACL 信息](https://zh.wikipedia.org/wiki/%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6%E4%B8%B2%E5%88%97)
-
-#### 3、SDK 数据操作接口使用示例
+### 3、SDK 数据操作接口使用示例
 
 完成数据表的创建后，我们现在就可以使用知晓云的数据管理模块的功能，对数据进行 CRUD 操作。
 

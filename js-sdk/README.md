@@ -70,11 +70,11 @@ product.set(apple).save().then(res => {
 
 更多内容，可查看以下功能模块介绍：
 
-* [登入登出](js-sdk/signin-signout.md)
-* [用户](js-sdk/user.md)
-* [数据表](js-sdk/schema/README.md)
-* [内容库](js-sdk/content/README.md)
-* [文件](js-sdk/file/README.md)
-* [支付](js-sdk/payment/README.md)
-* [模板消息](js-sdk/template-message.md)
-* [微信加密数据解密](js-sdk/wechat-decrypt.md)
+* [登入登出](./signin-signout.md)
+* [用户](./user.md)
+* [数据表](./schema/README.md)
+* [内容库](./content/README.md)
+* [文件](./file/README.md)
+* [支付](./payment/README.md)
+* [模板消息](./template-message.md)
+* [微信加密数据解密](./wechat-decrypt.md)
