@@ -1,4 +1,4 @@
-# 云函数 Node SDK
+# 云函数 Node.js SDK
 
 目前知晓云云函数支持的 Node.js 开发语言包括如下版本：
 - Node.js 8.9
@@ -6,7 +6,7 @@
 
 ## 代码编写格式
 
-在云函数中使用 Nodejs 编程，需要定义一个 Nodejs 函数作为入口，一个简单的函数定义如下：
+在云函数中使用 Node.js 编程，需要定义一个 Node.js 函数作为入口，一个简单的函数定义如下：
 
 ```js
 exports.main = function helloWorld(event, callback) {
