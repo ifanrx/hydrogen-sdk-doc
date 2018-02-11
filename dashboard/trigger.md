@@ -34,12 +34,12 @@
 
 不同的触发类型对应可选的动作类型不同，每个动作类型又有可选模板变量的区别，总结如下：
 
-|动作类型    | 模板变量|触发类型：数据表  | 触发类型：微信支付回调 |
-| ---------- | :-----  | :----  | :----------- |
-|邮件        | ✔️      | ✔️     | ✔️           |      
-|微信模板消息| ✔️      | ✔️     | ✔️           |   
-|webhook     | ✘       | ✔️     | ✔️           |
-|数据表操作  | ✔️      | ✔️     | ✔️           | 
+| 动作类型    | 模板变量 |触发类型：数据表  | 触发类型：微信支付回调 |
+| ---------- | :----- | :------------ | :------------------ |
+| 邮件        | ✔️     | ✔️             | ✔️ |
+| 微信模板消息 | ✔️     | ✔️             | ✔️ |
+| webhook    | ✘      | ✔️             | ✔️ |
+| 数据表操作   | ✔️     | ✔️             | ✔️ |
 
 
 ##触发类型
@@ -51,27 +51,27 @@
 
 下面是一些参数说明：
 
-|事件类型|说明             |
-|:--------|:----------    |
-|create  |数据行被创建时触发|
-|update  |数据行被更新时触发|
-|delete  |数据行被删除时触发|
+| 事件类型 | 说明 |
+| :-------|:--- |
+| create  | 数据行被创建时触发 |
+| update  | 数据行被更新时触发 |
+| delete  | 数据行被删除时触发 |
 
-|满足条件|说明                |
-|:--     |:----------         |
-|任一    |OR  满足任一条件    |
-|所有    |AND 同时满足所有条件|
+| 满足条件 | 说明 |
+| :----- |:---- |
+| 任一    | OR  满足任一条件 |
+| 所有    | AND 同时满足所有条件 |
 
 目前触发条件支持的数据类型及其对应的操作符如下：
 
-|数据类型|操作符                             |
-|:--     |:--------------------------------- |
-|array   |contains, isempty                  |
-|boolean |=, !=, isempty                     |
-|date    |=, !=, >, >=, <, <=, isempty, range|
-|integer |=, !=, >, >=, <, <=, isempty, range|
-|number  |=, !=, >, >=, <, <=, isempty, range|
-|string  |regex, =, !=, isempty              |
+| 数据类型 | 操作符                            |
+| :------ | :------------------------------- |
+| array   | contains, isempty |
+| boolean | =, !=, isempty |
+| date    | =, !=, >, >=, <, <=, isempty, range |
+| integer | =, !=, >, >=, <, <=, isempty, range |
+| number  | =, !=, >, >=, <, <=, isempty, range |
+| string  | regex, =, !=, isempty |
 
 
 ###微信支付回调
@@ -100,10 +100,10 @@
 执行动作时，服务器发送请求参数如下：
 
 ####请求 Headers
-|请求头部|说明              |
-|--------|------------------|
-|X-Hydrogen-Webhook-Action-Id |本次触发器触发动作的 uuid，webhook 重试时此 id 保持不变|
-|X-Hydrogen-Trigger-Event|on_create, on_update, on_delete|
+| 请求头部                      | 说明 |
+| ---------------------------- | --- |
+| X-Hydrogen-Webhook-Action-Id | 本次触发器触发动作的 uuid，webhook 重试时此 id 保持不变 |
+| X-Hydrogen-Trigger-Event     | on_create, on_update, on_delete |
 
 ####请求 Body
 **请求 Body 为一个 JSON Web Tokens 的文本，需要开发者自己去验证并解码，可以在这里[在线调试 jwt](https://jwt.io/)**
@@ -114,25 +114,27 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIn0.FGhYH5IF-PkNV8b4SNh-1WK
 ```
 
 若触发类型为数据表，则请求 Body 解码后为数据行内容，示例如下：
-```
-{ _read_perm: [ 'user:*' ],
+```json
+{
+  _read_perm: [ 'user:*' ],
   name: '1',
   created_at: 1517970094,
   updated_at: 1517970094,
   created_by: 35674431,
   _write_perm: [ 'user:35674431' ],
-  id: '5a7a62aefff1d610ab2ddb10' }
+  id: '5a7a62aefff1d610ab2ddb10'
+}
 ```
 数据行内容根据 event 类型有所差别，具体差异如下
 
-|event 类型 | 请求 Body                |
-|-----------|--------------------------|
-| on_create | 创建后的数据行信息     |
-| on_update | 更新后的数据行信息     |
+| event 类型 | 请求 Body |
+| --------- | ----------|
+| on_create | 创建后的数据行信息 |
+| on_update | 更新后的数据行信息 |
 | on_delete | 被删除的数据行的原信息 |
 
 若触发类型为微信支付回调，则请求 Body 解码后为微信支付结果。示例如下：
-```
+```json
 { trade_no: '5a7a695008443e1a69e1a06a',
   transaction_no: '5a7a695008443e1a69e1a06a',
   merchandise_description: 'test',
@@ -154,11 +156,11 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIn0.FGhYH5IF-PkNV8b4SNh-1WK
 执行结果：批量修改指定的数据表的数据行。
 数据表操作动作的一些参数说明如下：
 
-|操作  |被触发时动作说明    |
-|:------|:---------------   |
-|创建  |创建一行数据        |
-|更新  |修改符合条件的数据行|
-|删除  |删除符合条件的数据行|
+| 操作 | 被触发时动作说明 |
+| :-- | :------------ |
+| 创建 | 创建一行数据 |
+| 更新 | 修改符合条件的数据行 |
+| 删除 | 删除符合条件的数据行 |
 
 当操作为**更新**或者**删除**时，需要配置查询条件，筛选出指定的数据行。数据表查询条件相关文档请[参考这里](schema.md)
 
@@ -167,15 +169,15 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIn0.FGhYH5IF-PkNV8b4SNh-1WK
 
 目前**赋值操作**支持的数据类型及其对应的操作符如下：
 
-|数据类型|操作符                          |
-| :------| :---------------------------- |
-|array   |=, append, append_unique, remove|
-|boolean |=                               |
-|date    |=                               |
-|integer |=, inc_by                       |
-|number  |=, inc_by                       |
-|string  |=                               |
-|geojson |=                               |
+| 数据类型 | 操作符 |
+| :------ | :---------------------------- |
+| array   | =, append, append_unique, remove |
+| boolean | = |
+| date    | = |
+| integer | =, inc_by |
+| number  | =, inc_by |
+| string  | = |
+| geojson | = |
 
 >**info**
 >注：append, append_unique, remove, inc_by 为原子操作符，相关文档请[参考这里](../js-sdk/schema/update-record.md)
