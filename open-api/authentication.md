@@ -36,7 +36,7 @@
 
 获取 Access Token 需要经过以下两个步骤
 
-### 获取 Code
+### 获取 code
 
 **接口**
 
@@ -46,17 +46,17 @@
 
 Content-Type: `application/json`
 
-| 参数               | 类型    | 必填 | 说明 |
-| :------------     | :----- | :-- | :-- |
-| client_id         | String | Y  | 知晓云应用的 ClientID |
-| client_secret     | String | Y  | 知晓云应用的 ClientSecret |
+| 参数          | 类型    | 必填 | 说明 |
+| :------------ | :----- | :-- | :-- |
+| client_id     | String | Y  | 知晓云应用的 ClientID |
+| client_secret | String | Y  | 知晓云应用的 ClientSecret |
 
 **返回参数**
 
-| 参数         | 类型         | 说明 |
-| :---------- | :----------- | :-- |
-| code        | String       | 授权码 |
-| expires_in  | Number       | code 的过期时间 |
+| 参数        | 类型   | 说明 |
+| :--------- | :----- | :-- |
+| code       | String | 授权码 |
+| expires_in | Number | code 的过期时间 |
 
 > **info**
 > 获取 Code 会经过两次的 `HTTP 302 Found` 跳转，开发者在实现时需要允许客户端跟随跳转。
