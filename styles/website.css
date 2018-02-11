@@ -82,6 +82,10 @@
   list-style: none;
 }
 
+.doc-js-sdk li {
+  padding: 5px 0;
+}
+
 .doc-detail>li:nth-child(2n) {
   background: #ebf7fd;
 }
