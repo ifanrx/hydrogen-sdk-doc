@@ -57,34 +57,41 @@
   数据表会根据字段类型、字段含义，为该字段提供可用的查询操作符。一般情况下，不同类型对应的可用查询操作符如下表所示
 
 
-  | 字段类型        | 支持的查询操 |
-  | ----------- | ------ |
-  | ``string``  |        |
-  | ``integer`` |        |
-  | ``number``  |        |
-  | ``boolean`` |        |
-  | ``array``   |        |
-  | ``geojson`` |        |
-  | ``date``    |        |
-  | ``file``    |    占位    |
+  | 字段类型 | 支持的查询操 |
+  | ------- | ------ |
+  | id      | =, in, range, !=, not in      |
+  | string  | =, in, contains, !=, isnull, not in, regex       |
+  | integer | =, >, >=, <, <=, in, range, !=, not in, isnull       |
+  | number  | =, >, >=, <, <=, in, range, !=, not in, isnull       |
+  | boolean | =, exists                               |
+  | array   | =, in, not in, is null, all                              |
+  | geojson | center, intersects, nearsphere       |
+  | date    | =, >, >=, <, <=, range       |
+  | file    | isnull    |
 
   ​
 
   操作符介绍及使用规则
 
 
-  | 操作符       | 描述（待补充） |
+  | 操作符       | 描述 |
   | --------- | ------- |
-  | `=`       |         |
-  | `<`       |         |
-  | `<=`      |         |
-  | `>`       |         |
-  | `>=`      |         |
-  | `!=`      |         |
-  | `in`      |         |
-  | `range`   |         |
-  | `not in`  |         |
-  | `is null` |    占位     |
+  | =       |    相等     |
+  | <       |    小于    |
+  | <=      |    小于等于   |
+  | >       |    大于    |
+  | >=      |    大于等于     |
+  | !=      |    不等于     |
+  | in      |    存在于在数组中     |
+  | all     |    数组元素全部相等  |
+  | contains|    字符串包含   |
+  | range   |    范围查询     |
+  | regex    |    正则表达式 |
+  | not in  |    不存在于在数组中    |
+  | is null |    是否为空     |
+  | center  |    请参考[withincircle](../js-sdk/schema/geo.md)  |
+  | intersects |  请参考[include](../js-sdk/schema/geo.md)         |
+  | nearsphere |  请参考[withinRegion](../js-sdk/schema/geo.md)       |
 
 
 * **编辑表**

@@ -1,8 +1,7 @@
-#触发器
--------------
+# 触发器
 
 ## 概览
-###触发器配置卡片
+### 触发器配置卡片
 
 ![触发器配置](/images/dashboard/trigger-config.jpg)
 
@@ -13,13 +12,13 @@
 - [数据表](#数据表)
 - [微信支付回调](#微信支付回调)
 
-###条件卡片
+### 条件卡片
 
 ![触发器条件](/images/dashboard/trigger-condition.jpg)
 
 对应上面的触发类型，设置不同触发类型的参数。
 
-###动作卡片
+### 动作卡片
 
 ![触发器动作](/images/dashboard/trigger-action.jpg)
 
@@ -42,9 +41,9 @@
 | 数据表操作   | ✔️     | ✔️             | ✔️ |
 
 
-##触发类型
+## 触发类型
 
-###数据表
+### 数据表
 触发条件：当指定的数据表发生改变（增、删、改），满足触发器设置的条件时。
 
 使用场景：新用户注册成功，向新用户发送一封欢迎邮件。
@@ -74,38 +73,39 @@
 | string  | regex, =, !=, isempty |
 
 
-###微信支付回调
+### 微信支付回调
 触发条件：当用户微信支付成功时。
 
 使用场景：用户微信支付成功，微信模板消息提醒用户订单详情。
 
-##动作
+## 动作
 
-###邮件
+### 邮件
 执行结果：向指定邮件地址发送一封邮件。
 
 >**info**
 >注：收件人和邮件标题也可以输入模板变量
 
-###微信模板消息
+### 微信模板消息
 执行结果：向指定用户发送一条微信模板消息。
 
 使用前要在[微信小程序后台][1]添加消息模板。当在微信小程序后台增加、删除模板后，请在微信模板消息动作编辑卡片点击**更新模板**按钮，用以更新知晓云保存的模板缓存。
+
 微信模板消息需要配合小程序来触发，无法单独在后台触发。具体触发方法为：在小程序页面中添加 form 组件，在提交表单的回调中取得 formId，调用 [BaaS.wxReportTicket](../js-sdk/template-message.md) 保存 formId，保存成功后，当触发器被触发后，这时用户就可以在手机收到通知。
 注意这里 form 组件需要添加 **report-submit** 属性，否则在回调事件对象中无法获取 formId。
 
-###WebHook
+### WebHook
 执行结果：向指定 URL 发送一个 POST 请求。
 
 执行动作时，服务器发送请求参数如下：
 
-####请求 Headers
+#### 请求 Headers
 | 请求头部                      | 说明 |
 | ---------------------------- | --- |
 | X-Hydrogen-Webhook-Action-Id | 本次触发器触发动作的 uuid，webhook 重试时此 id 保持不变 |
 | X-Hydrogen-Trigger-Event     | on_create, on_update, on_delete |
 
-####请求 Body
+#### 请求 Body
 **请求 Body 为一个 JSON Web Tokens 的文本，需要开发者自己去验证并解码，可以在这里[在线调试 jwt](https://jwt.io/)**
 
 示例：
@@ -152,7 +152,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIn0.FGhYH5IF-PkNV8b4SNh-1WK
 > 注：webhook 不支持模板变量
 
 
-###数据表操作
+### 数据表操作
 执行结果：批量修改指定的数据表的数据行。
 数据表操作动作的一些参数说明如下：
 
@@ -182,7 +182,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIn0.FGhYH5IF-PkNV8b4SNh-1WK
 >**info**
 >注：append, append_unique, remove, inc_by 为原子操作符，相关文档请[参考这里](../js-sdk/schema/update-record.md)
 
-##模板变量的使用
+## 模板变量的使用
 部分动作中支持插入变量，您可以点击动作底部的"**可选变量**"查看该动作中支持添加的所有变量。    
 
 如需插入变量，请按照`{{变量名}}`的形式插入到邮件文本中
