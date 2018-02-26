@@ -35,15 +35,15 @@
 
 知晓云在设置模块提供了**一键授权**功能，用户只需点击**立即授权**并在新开授权回调页完成授权即可。
 
-![一键授权](https://cloud-minapp-9472.cloud.ifanrusercontent.com/1eibAOwbzjjJtdtk)
+![一键授权](/images/newbies/one-key-authorization.jpeg)
 
 完成授权后，接下来用户需要进行服务器域名配置，以解锁小程序 [SDK](https://doc.minapp.com/downloadSDK/) 服务。
 
-![知晓云服务器域名](https://cloud-minapp-9472.cloud.ifanrusercontent.com/1eibFFyjwBTDldsP)
+![知晓云服务器域名](/images/newbies/hydrogen-domain-name.jpeg)
 
 登录[小程序后台](https://mp.weixin.qq.com/wxopen/devprofile?action=get_profile&token=41891845&lang=zh_CN)，进入 “设置 - 开发设置”页面，将知晓云提供给开发者的服务器域名配置到微信开发者后台的“服务器域名”配置项中。
 
-![小程序服务器域名配置](https://cloud-minapp-9472.cloud.ifanrusercontent.com/1eibIYVmUywIISMd)
+![小程序服务器域名配置](/images/newbies/hydrogen-domain-name-config.jpeg)
 
 ## 第一个接入知晓云的小程序
 
@@ -53,11 +53,11 @@
 
 首先，打开[微信开发者工具](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=201822)，将先前下载好的[演示 demo](https://github.com/ifanrx/hydrogen-demo.git) 的 `hello-world` 文件夹添加入小程序项目中。
 
-![创建小程序项目](https://cloud-minapp-3906.cloud.ifanrusercontent.com/1ekiTWoHSlpPElZq)
+![创建小程序项目](/images/newbies/minapp-creation.jpeg)
 
 其中 `AppID` 为小程序的 ID，在微信小程序后台**设置 >> 开发设置** 中可获取，知晓云也在[**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)提供了快速通道获取小程序 ID。
 
-![开发者 ID](https://cloud-minapp-3906.cloud.ifanrusercontent.com/1eibvIcPbZxfSmND.jpg)
+![开发者 ID](/images/newbies/developer-id.jpg)
 
 接下来，在 `app.js` 中引入 [SDK](https://doc.minapp.com/downloadSDK/)。
 
@@ -99,9 +99,9 @@ App({
 
 以**我的书架**为例，在数据管理模块，创建一张名为 `bookshelf` 的数据表，并添加一个名为 `bookName` 的数据列。
 
-![创建表](https://cloud-minapp-3906.cloud.ifanrusercontent.com/1eicaHxqghNIfAnM)
+![创建表](/images/newbies/table-creation.jpeg)
 
-![添加列](https://cloud-minapp-3906.cloud.ifanrusercontent.com/1eicaHxcVIfQmegJ)
+![添加列](/images/newbies/column-addition.jpeg)
 
 ### 3、SDK 数据操作接口使用示例
 
@@ -138,7 +138,7 @@ Page({
 
 同时，我们可以在数据管理模块看到新增的数据项。
 
-![bookshelf 数据表](https://cloud-minapp-3906.cloud.ifanrusercontent.com/1eicyPaYkbqthcYy)
+![bookshelf 数据表](/images/newbies/bookshelf-schema.jpeg)
 
 至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo.git)的源码。
 
