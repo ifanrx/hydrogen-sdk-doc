@@ -12,12 +12,10 @@
 | :-----  | :----- | :-- | :-- |
 | tableID | Number |  是 | 数据表 ID |
 
-**返回参数说明**
-无数据返回
 
-2.指定 recordID 执行删除操作
+2.指定 `recordID` 执行获取相应数据项操作
 
-`MyTableObject.delete(recordID)`
+`MyTableObject.get(recordID)`
 
 **参数说明**
 

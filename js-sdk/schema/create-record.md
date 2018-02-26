@@ -44,6 +44,9 @@ MyRecord.set(key1, value1)
 MyRecord.set(key2, value2)
 ```
 
+> **info**
+> 对同一字段进行多次 `set` 操作，后面的数据会覆盖掉前面的数据
+
 4.将创建的记录保存到服务器
 
 `MyRecord.save()`

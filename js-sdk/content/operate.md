@@ -42,7 +42,7 @@
 |  update_at  | Number       | 更新时间 |
 
 > **info**
-> 如果有自定义字段，则一并返回
+> 如果有自定义字段，则一并返回。
 
 **请求示例**
 
@@ -78,7 +78,7 @@ res.data:
 
 ### 查询，获取内容列表
 
-内容查询与[数据表查询](../schema/query.md)方法一致
+内容查询与[数据表查询](../schema/query.md)方法一致。
 
 **请求示例**
 
@@ -161,7 +161,7 @@ MyContentGroup.getCategoryList().then(res => {
 
 
 ### 分页与排序
-内容查询的分页与排序操作和[数据表分页与排序](../schema/limit-and-order.md)方法一致
+内容查询的分页与排序操作和[数据表分页与排序](../schema/limit-and-order.md)方法一致。
 
 **请求示例**
 
@@ -282,7 +282,7 @@ wx.BaaS.getContentList(objects).then(res => {
 ```
 
 > **info**
-> 分页、查询和排序参考数据表中 [获取数据项列表](../../legacySchema/get-record-list.md) 的操作
+> 分页、查询和排序参考数据表中 [获取数据项列表](../../legacySchema/get-record-list.md) 的操作。
 
 
 ### 获取内容库详情
@@ -338,7 +338,7 @@ wx.BaaS.getContentGroup(objects).then(res => {
 ```
 
 > **info**
-> 一个内容库里会有分类，会有内容，但不会出现同时存在的情况; 分类里可能会有分类，也就是子分类，通过 have_children 可以判定
+> 一个内容库里会有分类，会有内容，但不会出现同时存在的情况; 分类里可能会有分类，也就是子分类，通过 have_children 可以判定。
 
 ### 获取内容库列表
 
@@ -382,7 +382,7 @@ wx.BaaS.getContentGroupList().then(res => {
 ```
 
 > **info**
-> 分页、查询和排序参考数据表中 [获取数据项列表](../../schema/get-record-list.md) 的操作
+> 分页、查询和排序参考数据表中 [获取数据项列表](../../schema/get-record-list.md) 的操作。
 
 
 ### 获取分类详情

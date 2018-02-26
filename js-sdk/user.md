@@ -49,7 +49,7 @@
 | 参数      | 类型   | 说明 |
 | :------- | :----- | :-- |
 | avatar   | String | 用户头像 |
-| id       | String | 用户所在城市 |
+| id       | Number | 用户 ID |
 | nickname | String | 用户昵称 |
 
 当查询的用户为当前用户时：
@@ -106,7 +106,7 @@ MyUser.get(userID).then(res => {
 
 ### 更新当前用户信息
 
-更新用户信息与[数据表更新数据项](../schema/update-record.md)方法基本一致。这里只允许更新当前用户的信息，并且只支持对 _userprofile 表中自定义的字段进行更新
+更新用户信息与[数据表更新数据项](../schema/update-record.md)方法基本一致。这里只允许更新当前用户的信息，并且只支持对 _userprofile 表中自定义的字段进行更新。
 
 **请求示例**
 
@@ -134,9 +134,9 @@ let MyUser = new wx.BaaS.User()
 // 查找所有用户
 MyUser.find()
 
-// 查询 nickName 中包含 like 的用户
+// 查询 nickname 中包含 like 的用户
 let query = new wx.BaaS.Query()
-query.contains('nickName', 'like')
+query.contains('nickname', 'like')
 MyUser.setQuery(query).find().then(res => {
   // success
 }, err => {
@@ -146,7 +146,7 @@ MyUser.setQuery(query).find().then(res => {
 
 ### 排序
 
-用户查询排序与[数据表排序](../schema/limit-and-order.md)方法一致，不包含在返回数据里的字段不支持排序，如 created_at
+用户查询排序与[数据表排序](../schema/limit-and-order.md)方法一致，不包含在返回数据里的字段不支持排序，如 created_at。
 
 **请求示例**
 
@@ -158,7 +158,7 @@ MyUser.orderBy('-nickname').find().then()
 
 ### 分页
 
-用户查询分页与[数据表分页](../schema/limit-and-order.md)方法一致
+用户查询分页与[数据表分页](../schema/limit-and-order.md)方法一致。
 
 **请求示例**
 
@@ -216,7 +216,7 @@ MyUser.limit(5).offset(10).find().then()
 | 参数      | 类型   | 说明 |
 | :------- | :----- | :-- |
 | avatar   | String | 用户头像 |
-| id       | String | 用户所在城市 |
+| id       | Number | 用户 ID |
 | nickname | String | 用户昵称 |
 
 出于安全性考虑，该接口目前只开放了 user id、nickname、avatar 三个字段。如需展示当前用户的完整信息，请参照上方 “获取当前用户信息”。

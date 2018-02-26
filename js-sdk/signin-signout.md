@@ -2,12 +2,12 @@
 
 ## 登入
 
-SDK 提供了快速登录小程序的接口，省去使用微信登录接口时获取 code, session_key 等辅助操作
+SDK 提供了快速登录小程序的接口，省去使用微信登录接口时获取 code, session_key 等辅助操作。
 
 ### 登录并请求用户授权
 `wx.BaaS.login()`
 
-该方法会进行登录并在成功登录后弹框询问是否授权获取用户信息
+该方法会进行登录并在成功登录后弹框询问是否授权获取用户信息。
 
 **返回字段说明**
 当用户拒绝授权时：
@@ -93,7 +93,7 @@ wx.BaaS.login().then(res => {
 }
 ```
 
-也可以通过 `wx.BaaS.storage.get(<key>)` 获取相对应信息（uid, openid, unionid)
+也可以通过 `wx.BaaS.storage.get(<key>)` 获取相对应信息（uid, openid, unionid)。
 
 
 ### 静默登录
@@ -125,7 +125,7 @@ wx.BaaS.login(false).then(res => {
 }
 ```
 
-也可以通过 `wx.BaaS.storage.get(<key>)` 获取相对应信息（uid, openid, unionid)
+也可以通过 `wx.BaaS.storage.get(<key>)` 获取相对应信息（uid, openid, unionid)。
 
 
 > **info**
@@ -138,9 +138,9 @@ wx.BaaS.login(false).then(res => {
 
 ## 登出
 
-清理客户端存储的用户授权信息
+清理客户端存储的用户授权信息。
 
-通过 `wx.BaaS.logout()` 函数完成登出功能
+通过 `wx.BaaS.logout()` 函数完成登出功能。
 
 **请求示例**
 

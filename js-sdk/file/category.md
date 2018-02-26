@@ -76,7 +76,7 @@ MyFileCategory.getFileList('5a2fe91508443e3123dbe1cb').then(res => {
 
 ## 查询，获取分类列表
 
-文件分类查询与[数据表查询](../schema/query.md)方法一致，但只支持以下指定字段的筛选
+文件分类查询与[数据表查询](../schema/query.md)方法一致，但只支持以下指定字段的筛选：
 
 | 支持字段 | 类型   | 说明 |
 | :----- | :----- | :-- |
@@ -99,7 +99,7 @@ File.setQuery(query).find()
 
 ## 排序
 
-文件分类查询排序与[数据表排序](../schema/limit-and-order.md)方法一致，但只支持对以下指定字段进行排序
+文件分类查询排序与[数据表排序](../schema/limit-and-order.md)方法一致，但只支持对以下指定字段进行排序：
 
 | 支持字段    | 描述        |
 | :--------- | :--------- |
@@ -107,4 +107,4 @@ File.setQuery(query).find()
 | created_at | 文件创建时间 |
 
 ## 分页
-文件分类查询排序与[数据表分页](../schema/limit-and-order.md)方法一致
+文件分类查询排序与[数据表分页](../schema/limit-and-order.md)方法一致。

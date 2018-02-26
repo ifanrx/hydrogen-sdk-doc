@@ -6,7 +6,9 @@
 
 ```js
 let tableID = 10
+// 通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
 let Product = new wx.BaaS.TableObject(tableID)
+// 本地创建一条空记录
 let product = Product.create()
 
 let apple = {
@@ -15,13 +17,16 @@ let apple = {
   desc: ['good'],
   amount: 0
 }
+
+// 为上面创建的空记录赋值，并保存到服务器
 product.set(apple).save()
 ```
 
 数据表支持多种类型的数据，包括数组类型，时间类型，geojson 类型和文件类型，并且支持原子操作等高级功能，如下，既是对产品数量的进行原子性减 1 操作：
 
-```
+```js
 let product = Product.getWithoutData(recordID)
+// 执行原子性减 1
 product.incrementBy('amount', -1)
 product.update().then(res => {
 
@@ -30,7 +35,7 @@ product.update().then(res => {
 
 同时，SDK 提供了多种复杂查询操作，包括正则匹配查询，数组查询，甚至是与或的组合查询，如下是正则匹配查询的使用：
 
-```
+```js
 let Product = new wx.BaaS.TableObject(tableID)
 var query = new wx.BaaS.Query()
 

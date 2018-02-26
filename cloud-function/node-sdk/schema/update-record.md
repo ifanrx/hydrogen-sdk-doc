@@ -44,6 +44,9 @@ MyRecord.set(key1, value1)
 MyRecord.set(key2, value2)
 ```
 
+> **info**
+> 对同一字段进行多次 `set` 操作，后面的数据会覆盖掉前面的数据
+
 4.将修改后的记录保存到服务器
 
 `MyRecord.update()`
@@ -164,6 +167,9 @@ product.remove('desc', ['sweet'])
 // or
 product.remove('desc', 'sweet')
 ```
+
+> **info**
+> 对**同一字段**设置多次 `append` 或 `remove` 操作后进行 `update` 操作，则只有最后一次进行的 `append` 或 `remove` 是有效的；如果同时对**同一字段**进行 `set`、`remove` 和 `append` 操作，则只有最后执行的操作是有效的。
 
 <span class="attention">注：</span> 设置的数据要与预先在知晓云平台设定的数据类型一致，当仅更新一个字段，并且数据不合法时，将无法成功保存，请求返回 `Failed to save record, type conflict on fields` 错误，如果更新多个字段，其中有一个或一个以上字段数据合法，则请求成功，但其中数据不合法的字段将不会成功保存，如下示例：
 
