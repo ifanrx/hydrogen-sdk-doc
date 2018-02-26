@@ -1,11 +1,9 @@
-# 操作指南
+<!-- ex_nonav -->
 
-本部分介绍知晓云后台各操作面板及面板功能, 涵盖以下部分
+# 控制台操作
 
-* 数据管理
-* 文件管理
-* 内容管理
-* 用户管理
-* ACL 简介
+![知晓云官网](/images/dashboard/index-landing-page.png)
 
+![应用选择](/images/dashboard/index-app-page.png)
 
+![控制台](/images/dashboard/index-dashboard-page.png)

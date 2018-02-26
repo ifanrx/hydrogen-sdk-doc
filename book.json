@@ -13,6 +13,7 @@
     }
   },
   "output": null,
+  "website": "./styles/website.css",
   "pdf": {
     "fontSize": 12,
     "footerTemplate": null,
@@ -26,7 +27,16 @@
     "pageNumbers": true,
     "paperSize": "a4"
   },
-  "plugins": ["algolia", "favicon"],
+  "plugins": [
+    "algolia",
+    "anchor-nav-x",
+    "editlink",
+    "expandable-chapters-small",
+    "favicon",
+    "image-captions",
+    "simpletabs",
+    "styled-blockquotes"
+  ],
   "title": "知晓云平台开发文档",
   "variables": {},
   "pluginsConfig": {
@@ -44,6 +54,41 @@
         "120x120": "/images/minapp@64X64.ico",
         "180x180": "/images/minapp@64X64.ico"
       }
+    },
+    "simple-page-toc": {
+      "maxDepth": 3
+    },
+    "image-captions": {
+      "caption": "_CAPTION_"
+    },
+    "anchor-navigation-ex": {
+      "multipleH1": false,
+      "showLevel": false,
+      "float": {
+        "tocLevel1Icon": "fa fa-hand-o-right",
+        "tocLevel2Icon": "fa fa-hand-o-right",
+        "tocLevel3Icon": "fa fa-hand-o-right"
+      },
+      "toolTipMode": "click"
+    },
+    "editlink": {
+      "base": "https://github.com/ifanrx/hydrogen-js-sdk-doc/edit/master",
+      "label": "edit",
+      "multilingual": false
+    },
+    "versions": {
+      "type": "branches",
+      "options": [
+        {
+            "value": "https://rackt.github.io/history/v1.3.0/",
+            "text": "Version 1.3.0"
+        },
+        {
+            "value": "https://rackt.github.io/history/v1.4.0/",
+            "text": "Version 1.4.0",
+            "selected": true
+        }
+      ]
     }
   }
 }
