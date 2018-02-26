@@ -131,19 +131,6 @@
     </li>
     <li>
       <h3>
-        <a href="/cloud-function/README.md/">云函数</a>
-      </h3>
-      <ul class="doc-cloud-function doc-detail-item">
-        <li>
-          <a href="/cloud-function/quick-start.md/">快速入门</a>
-        </li>
-        <li>
-          <a href="/cloud-function/node-sdk/README.md/">云函数 Node SDK</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <h3>
         <a href="/support/README.md/">管理与支持</a>
       </h3>
       <ul class="doc-support doc-detail-item">
