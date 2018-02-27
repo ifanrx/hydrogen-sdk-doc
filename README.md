@@ -49,9 +49,6 @@
           <a href="/dashboard/trigger.md/">触发器</a>
         </li>
         <li>
-          <a href="/dashboard/cloud-function.md/">云函数</a>
-        </li>
-        <li>
           <a href="/dashboard/acl.md/">ACL 简介</a>
         </li>
       </ul>
