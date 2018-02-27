@@ -106,7 +106,7 @@
     </li>
     <li>
       <h3>
-        <a href="/open-api/README.md/">知晓云开发 API</a>
+        <a href="/open-api/README.md/">知晓云开放 API</a>
       </h3>
       <ul class="doc-open-api doc-detail-item">
         <li>
