@@ -15,13 +15,13 @@
       </h3>
       <ul class="doc-newbie doc-detail-item">
         <li>
-          <a href="/newbies/README.md">小程序注册指引</a>
+          <a href="/newbies/README.md#小程序注册指引">小程序注册指引</a>
         </li>
         <li>
-          <a href="/newbies/README.md">知晓云账号注册</a>
+          <a href="/newbies/README.md#知晓云账号注册">知晓云账号注册</a>
         </li>
         <li>
-          <a href="/newbies/README.md">第一个接入知晓云的小程序</a>
+          <a href="/newbies/README.md#第一个接入知晓云的小程序">第一个接入知晓云的小程序</a>
         </li>
       </ul>
     </li>
