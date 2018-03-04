@@ -52,7 +52,7 @@ BaaS 提供的 API，如果返回结果是与列表相关的，返回参数中�
 // 获取当前登录用户订单列表
 wx.BaaS.request({
   url: '/orderlist/',
-  data: {orderby: 'orderID'})
+  data: {orderby: 'orderID'}
 }).then(res => {
   // success
 }, err => {
