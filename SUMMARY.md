@@ -51,8 +51,14 @@
 
 * [知晓云开放 API](open-api/README.md)
     * [授权认证](open-api/authentication.md)
-    * [数据表模块](open-api/record.md)
-    * [内容模块](open-api/content.md)
+    * [数据模块](open-api/data/README.md)
+        * [数据表操作](open-api/data/table.md)
+        * [数据操作](open-api/data/record.md)
+    * [内容模块](open-api/content/README.md)
+        * [内容库操作](open-api/content/content-group.md)
+        * [内容分类操作](open-api/content/content-category.md)
+        * [内容操作](open-api/content/content.md)
+        * [内容操作(不建议使用)](open-api/content-abandoned.md)
     * [文件模块](open-api/file/README.md)
         * [文件上传](open-api/file/file-upload.md)
         * [文件操作](open-api/file/file.md)
@@ -62,6 +68,27 @@
         * [用户组与用户的操作](open-api/group/membership.md)
         * [组集操作](open-api/group/super-group.md)
     * [用户模块](open-api/user.md)
+
+----
+
+* [知晓云运营 API](user-dash/README.md)
+    * [授权认证](user-dash/authentication.md)
+    * [数据模块](user-dash/data/README.md)
+        * [数据表操作](user-dash/data/table.md)
+        * [数据操作](user-dash/data/record.md)
+    * [内容模块](user-dash/content/README.md)
+        * [内容库操作](user-dash/content/content-group.md)
+        * [内容分类操作](user-dash/content/content-category.md)
+        * [内容操作](user-dash/content/content.md)
+    * [文件模块](user-dash/file/README.md)
+        * [文件上传](user-dash/file/file-upload.md)
+        * [文件操作](user-dash/file/file.md)
+        * [文件分类操作](user-dash/file/file-category.md)
+    * [分组模块](user-dash/group/README.md)
+        * [用户组操作](user-dash/group/user-group.md)
+        * [用户组与用户的操作](user-dash/group/membership.md)
+        * [组集操作](user-dash/group/super-group.md)
+    * [用户模块](user-dash/user.md)
 
 ----
 
