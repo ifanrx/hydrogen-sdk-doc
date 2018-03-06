@@ -84,6 +84,7 @@
 1. 准备一台具有公网 IP 的服务器。
 2. 安装 Node.js 环境。
 3. 在当前目录下新建 `index.js`，并将下方代码块内容粘贴至`index.js`。然后执行`npm i koa jsonwebtoken`，安装依赖包。
+
 ```js
 // index.js
 const Koa = require('koa')
@@ -159,6 +160,7 @@ app.listen(8088, () => {
 ![](http://oe3m1vy95.bkt.clouddn.com/18-2-7/70001420.jpg)
 
 URL 格式如下
+
 ```
 http://<your ip>:<port>/?jwt=<JWT KEY>
 ```
@@ -211,6 +213,75 @@ http://192.168.11.11:8088/?jwt=mehXaWyZXhnzsyWYeUPhWTCOgfjGgdwN
 ![](http://oe3m1vy95.bkt.clouddn.com/18-2-7/89900278.jpg)
 添加成功后，检查数据表 B，发现触发器成功地为我们添加了一行记录
 ![](http://oe3m1vy95.bkt.clouddn.com/18-2-7/52759154.jpg)
+
+## 触发类型：微信支付回调
+### 准备工作
+1. [认证小程序，接入微信支付][4]
+2. [在知晓云配置商户号，证书等][5]
+
+
+我们新建一个小程序，在小程序入口加载 BaaS JS SDK，请求用户授权：代码如下
+```javascript
+App({
+  onLaunch: function () {
+    require('./vendor/sdk-v1.1.6.js')
+    let clientID = '此处填写clientID'
+    wx.BaaS.init(clientID)
+
+    wx.BaaS.login()
+  }
+})
+```
+
+我们在首页增加一个按钮，在按钮上绑定 click 回调，在回调函数中使用`wx.BaaS.pay`来发起支付请求
+```javascript
+Page({
+  pay: function () {
+    let params = {
+      totalCost: 0.1,
+      merchandiseDescription: '一条支付描述'
+    }
+
+    wx.BaaS.pay(params).then(res => {
+      console.log('pay')
+    }, err => {
+      // 未完成用户授权或发生网络异常等
+      console.log(err)
+    })
+  }
+})
+```
+
+支付成功结果：
+![](../../images/practice/pay-success-1.jpeg)
+![](../../images/practice/pay-success-2.jpeg)
+
+[下载完整 demo](./sdk-payment-demo.zip)
+
+**下文创建的触发器都是以微信支付回调作为触发类型，相关描述将会被省略**
+
+### 邮件-支付回调
+动作创建参照上文创建邮件小节，只是这里我们把邮件相关参数改成如下：
+
+|名称    |内容        |
+|-       |-           |
+|邮件标题|用户支付成功|
+|邮件内容|用户支付了{{total_cost}}元， 订单号：{{trade_no}}|
+
+> 注：这里我们使用了`{{total_cost}}`模板变量，用于拿到用户支付的具体金额。
+
+随后我们测试微信支付，支付成功后，查看收件箱，如图：
+![](http://oe3m1vy95.bkt.clouddn.com/18-2-10/19040484.jpg)
+
+### 微信模板消息-支付回调
+动作创建参照上文创建微信模板消息小节。只是这里我们把参数`keyword1`改为`{{total_cost}}`，这样就可以拿到用户支付的具体金额。
+
+![](http://oe3m1vy95.bkt.clouddn.com/18-2-7/12429227.jpg)
+### WebHook-支付回调
+动作创建参照上文创建 WebHook 小节。唯一要注意的是，请求 Body 参数会不同。
+
+### 数据表操作-支付回调
+动作创建参照上文创建数据表操作小节。**注意这里可选的模板变量有所不同**。
 
 
   [1]: https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html
