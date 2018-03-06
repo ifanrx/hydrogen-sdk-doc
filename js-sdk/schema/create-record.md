@@ -18,6 +18,9 @@
 | :-----  | :----- | :-- | :---|
 | tableID | Number |  是 | 数据表 ID |
 
+> **info**
+> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new wx.BaaS.TableObject('product')
+
 2.本地创建一条空记录
 
 `let MyRecord = MyTableObject.create()`

@@ -17,7 +17,7 @@
 > **info**
 > 举例：开发者有一个 Article 表, 里面有免费 / 付费的文章, 当用户对一篇付费文章进行支付时, 则可以将 Article 表的 ID 作为 `merchandiseSchemaID`, 文章记录的 ID 作为你 `merchandiseRecordID` 传入到 `wx.BaaS.pay(object)` 写进支付订单记录。当用户阅读此付费文章时, 则可以通过 `merchandiseSchemaID`, `merchandiseRecordID` 来查询用户是否付费。
 
-**返回参数说明**
+**支付成功返回参数说明**
 
 | 参数            | 类型   | 说明 |
 | :------------- | :----- | :-- |
@@ -28,8 +28,8 @@
 ```js
 // 支付示例代码
 let params = {
-  totalCost: 398,
-  merchandiseDescription: '一条支付描述'
+  totalCost: 0.1,
+  merchandiseDescription: '深蓝色秋裤'
 }
 
 wx.BaaS.pay(params).then(res => {
@@ -46,7 +46,30 @@ wx.BaaS.pay(params).then(res => {
 })
 ```
 
-注：1.1.4 版本之后，为了方便开发者清楚区分用户取消支付还是支付失败，我们为其增加了错误类型，你可以通过像以下操作，对支付状态进行判断：
+调用该接口前 **必须完成用户授权**（），因此最好在调用 `wx.BaaS.pay` 接口前，先确定一下用户是否已经授权了，如果没有授权，则需要[调用 `wx.BaaS.login()` 接口](../user/sign-in.md)，如下：
+
+```
+wx.getSetting({
+  success(res) {
+    if (res.authSetting['scope.userInfo']) {
+      wx.BaaS.pay(params)
+    } else {
+      wx.BaaS.login()
+    }
+  }
+})
+```
+
+**支付成功返回示例**
+
+```
+{
+  errMsg: "requestPayment:ok",
+  transaction_no: "MDUhtNmacdYBKokJbCXhvYuoJnHXzpeN"
+}
+```
+
+<span class="attention">注：</span>1.1.4 版本之后，为了方便开发者清楚区分用户取消支付还是支付失败，我们为其增加了错误类型，你可以通过像以下操作，对支付状态进行判断：
 
 ```js
 wx.BaaS.pay(params).then(res => {
@@ -61,9 +84,6 @@ wx.BaaS.pay(params).then(res => {
   }
 })
 ```
-
-> **info**
-> 调用 `wx.BaaS.pay(object)` 之前 **必须完成用户授权**（[使用 `wx.BaaS.login()`](../user/sign-in.md)），否则支付将失败。请在产品设计上做好这块的处理，尤其注意处理用户拒绝授权之后的处理方法，具体请参考 “获取用户信息” 章节说明。
 
 **接口说明**
 
