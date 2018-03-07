@@ -99,10 +99,10 @@ https://cloud.minapp.com/oserve/v1/content/
 
 Content-Type: `application/json`
 
-| 参数  | 类型   | 必填 | 说明 |
-| :--- | :----- | :-- | :-- |
-| name | String | Y   | 内容库名称 |
-| acl_gids | Number Array | N   | 用户的访问权限，其内为分组 ID |
+|   参数    |      类型     | 必填 | 说明 |
+| :------- | :-----------  | :--- | :--- |
+| name     | String        |  Y   | 内容库名称 |
+| acl_gids | Integer Array |  N   | 用户的访问权限，其内为分组 ID |
 
 **代码示例**
 
@@ -139,7 +139,7 @@ https://cloud.minapp.com/oserve/v1/content/
 
 `201`: 创建成功
 
-`404`: 用户组 ID 不合法
+`400`: 用户组 ID 不合法
 
 
 ## 编辑内容库
@@ -183,7 +183,7 @@ https://cloud.minapp.com/oserve/v1/content/2/
 
 `200`: 修改成功
 
-`404`: 用户组 ID 不合法
+`400`: 用户组 ID 不合法
 
 
 ## 删除内容库

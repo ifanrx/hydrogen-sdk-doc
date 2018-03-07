@@ -8,13 +8,13 @@
 
 **提交参数**
 
-| 参数  | 类型 | 必填 | 说明 |
-| :--- | :-- | :-- | :-- |
-| name | String(32) | 是 | 数据表名（表名必须是以字母开头，字母、数字、下划线的组合) |
-| schema | Object | 是 | 数据表字段的元信息 |
-| row_read_perm | String Array | 是 | 数据表行的读权限 |
-| row_write_perm | String Array | 是 | 数据表行的写权限 |
-| write_perm | String Array | 是 | 数据表的写权限 |
+|       参数     |       类型    | 必填 | 说明 |
+| :------------  | :----------- | :---| :--- |
+| name           | String(32)   |  是 | 数据表名（以字母开头，字母、数字、下划线的组合) |
+| schema         | Object       |  是 | 数据表字段的元信息 |
+| row_read_perm  | String Array |  是 | 数据表行的读权限 |
+| row_write_perm | String Array |  是 | 数据表行的写权限 |
+| write_perm     | String Array |  是 | 数据表的写权限 |
 
 参数 row_read_perm 和 row_write_perm 控制数据表数据的读写权限，读权限表示用户是否有权限获取数据，写权限表示用户是否有权限更新数据。
 
@@ -22,9 +22,9 @@
 
 权限参数的说明：
 
-| 参数  | 类型 | 说明 |
-| :--- | :-- | :-- |
-| user:* | String| 所有人可写／可读 |
+|       参数       |  类型  | 说明 |
+| :-------------- | :---- | :--- |
+| user:*          | String| 所有人可写／可读 |
 | user:<:user_id> | String| 某个用户可写／可读 |
 | gid:<:group_id> | String| 某个分组下的用户可写／可读 |
 
@@ -57,17 +57,21 @@
 
 数据表列的元信息：
 
-| 属性  | 类型 | 必填 | 说明 |
-| :--- | :-- | :-- | :-- |
-| name | String(32) | 是 | 字段名（名称必须是以字母开头，字母、数字、下划线的组合) |
-| type | String | 是 | 字段类型，可选：string、integer、number、boolean、array、geojson、file、date 等 |
-| items | Object | 否 | 列表元素类型，array 字段类型必填, 可选 string、integer、number、boolean 等 |
-| format | String | 否 | geojson 字段类型必填 |
-| coordinate_type | String | 否 | 若创建 geojson 类型的字段，geojson 字段类型必填，地球坐标：wgs84，火星坐标：gcj02 |
-| description | String | 否 | 字段的描述，不填自动赋值为字段名称 |
-| constraints | Object | 否 | 字段的约束属性，仅支持 required 属性 |
-| default | 根据字段类型变化 | 否 | 字段的默认值 |
-| acl | Object | 否 | 字段权限相关的属性 |
+|        属性     |       类型     | 必填 | 说明 |
+| :-------------- | :------------ |:---| :-- |
+| name            | String(32)    | 是 | 字段名（字母开头，字母、数字、下划线的组合） |
+| type            | String        | 是 | 字段类型，可选： 等 |
+| items           | Object        | 否 | 列表元素类型，array 字段类型必填 |
+| format          | String        | 否 | geojson 字段类型必填，值默认为 `default` |
+| description     | String        | 否 | 字段的描述，不填自动赋值为字段名称 |
+| constraints     | Object        | 否 | 字段的约束属性，仅支持 required 属性 |
+| default         | 跟字段类型一样  | 否 | 字段的默认值 |
+| acl             | Object        | 否 | 字段权限相关的属性 |
+| coordinate_type | String        | 否 | geojson 字段类型必填|
+
+`type` 目前支持 string、integer、number、boolean、array、geojson、file、date 等
+`items` 目前支持 string、integer、number、boolean 等
+`coordinate_type` 目前支持 wgs84（地球坐标）、gcj02（火星坐标）
 
 若字段是 array 类型，字段元信息为：
 
@@ -94,8 +98,8 @@
 
 字段权限相关的属性存储在 acl 中：
 
-| 属性  | 类型 | 必填 | 说明 |
-| :--- | :-- | :-- | :-- |
+|       属性      |   类型  | 必填 | 说明 |
+| :--------------| :------ | :--| :--- |
 | clientVisibile | Boolean | 否 | 客户端只读的标志位，true 表示字段在客户端只读，不能被写入／更新 |
 | clientReadOnly | Boolean | 否 | 客户端可见的标志位， false 表示字段在客户端不可见 |
 | creatorVisible | Boolean | 否 | 客户端创建者可见的标志位，true 表示字段在客户端只有创建者可见 |
@@ -187,17 +191,17 @@ https://cloud.minapp.com/oserve/v1/table/
 
 **返回参数说明**
 
-| 参数  | 类型 | 说明 |
-| :--- | :-- | :-- |
-| id | Number | 数据表 ID |
-| name | String| 数据表名 |
-| is_protected | Boolean | 数据表是否为内置表的标志位，true 为内置表 |
+|        参数       |      类型    |   说明    |
+| :--------------- | :----------- | :------- |
+| id               | Integer      | 数据表 ID |
+| name             | String       | 数据表名 |
+| is_protected     | Boolean      | 数据表是否为内置表的标志位，true 为内置表 |
 | protected_fields | String Array | 内置表的保护字段，若数据表不是内置表，该字段为 null |
-| schema | Object | 数据表字段的元信息 |
-| write_perm | String Array | 数据表写权限 |
-| default_row_perm | Object | 数据表行数据权限 |
-| created_at | Number | 数据表创建时间 |
-| updated_at | Number | 数据表更新时间 |
+| schema           | Object       | 数据表字段的元信息 |
+| write_perm       | String Array | 数据表写权限 |
+| default_row_perm | Object       | 数据表行数据权限 |
+| created_at       | Integer      | 数据表创建时间 |
+| updated_at       | Integer      | 数据表更新时间 |
 
 **状态码说明**
 

@@ -49,17 +49,18 @@ https://cloud.minapp.com/userve/v1/content/1/text/1/
 
 **返回参数说明**
 
-| 参数  | 说明 |
-| :--- | :-- |
-| id | 内容 ID |
-| title | 内容标题 |
-| content | 详细容 |
-| cover | 封面图 |
+|      参数    | 说明  |
+| :---------- | :---- |
+| id          | 内容 ID |
+| title       | 内容标题 |
+| content     | 详细容 |
+| cover       | 封面图 |
 | description | 内容摘要 |
-| group_id | 内容库 ID |
-| categories | 内容所属分类 |
-| created_at | 内容创建时间 |
-| updated_at | 内容更新时间 |
+| group_id    | 内容库 ID |
+| categories  | 内容所属分类 |
+| created_at  | 内容创建时间 |
+| updated_at  | 内容更新时间 |
+
 
 ## 获取内容列表
 
@@ -129,7 +130,21 @@ https://cloud.minapp.com/userve/v1/content/1/text/
 
 Content-Type: `application/json`
 
-内容的内置字段 ＋ 自定义字段，参数格式将与[数据表接口](../record.md)保持一致
+内容表内置字段：
+
+|      参数    |    类型       | 说明    |
+| :---------- | :----------   | :----  |
+| id          | Integer       | 内容 ID |
+| title       | String        | 内容标题 |
+| content     | String        | 详细容 |
+| cover       | File          | 封面图 |
+| description | String        | 内容摘要 |
+| group_id    | Integer       | 内容库 ID |
+| categories  | Integer Array | 内容所属分类 |
+| created_at  | Integer       | 内容创建时间 |
+| updated_at  | Integer       | 内容更新时间 |
+
+内容接口参数格式将与[数据表接口](../record.md)保持一致
 
 
 > **warning**

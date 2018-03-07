@@ -72,7 +72,6 @@
 ----
 
 * [知晓云运营 API](user-dash/README.md)
-    * [授权认证](user-dash/authentication.md)
     * [数据模块](user-dash/data/README.md)
         * [数据表操作](user-dash/data/table.md)
         * [数据操作](user-dash/data/record.md)

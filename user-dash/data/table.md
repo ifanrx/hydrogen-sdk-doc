@@ -1,22 +1,134 @@
 # 数据表操作
 
-## 获取数据表详情
+## 创建数据表
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/table/:table_id/`
+`POST https://cloud.minapp.com/userve/v1/table/`
+
+**提交参数**
+
+|       参数     |       类型    | 必填 | 说明 |
+| :------------  | :----------- | :---| :--- |
+| name           | String(32)   |  是 | 数据表名（以字母开头，字母、数字、下划线的组合) |
+| schema         | Object       |  是 | 数据表字段的元信息 |
+| row_read_perm  | String Array |  是 | 数据表行的读权限 |
+| row_write_perm | String Array |  是 | 数据表行的写权限 |
+| write_perm     | String Array |  是 | 数据表的写权限 |
+
+参数 row_read_perm 和 row_write_perm 控制数据表数据的读写权限，读权限表示用户是否有权限获取数据，写权限表示用户是否有权限更新数据。
+
+参数 write_perm 控制数据表的写权限，即表示用户是否有权限创建数据。
+
+权限参数的说明：
+
+|       参数       |  类型  | 说明 |
+| :-------------- | :---- | :--- |
+| user:*          | String| 所有人可写／可读 |
+| user:<:user_id> | String| 某个用户可写／可读 |
+| gid:<:group_id> | String| 某个分组下的用户可写／可读 |
+
+具体描述与使用场景可参考[ACL 访问控制列表][../dashboard/acl.md]。
+
+参数 schema 用于存储数据表字段的元信息，其结构遵循[JSON-Table-Schema][https://frictionlessdata.io/specs/table-schema/]的描述。
+
+例：
+
+```python
+{
+  "fields": [
+    {
+      "name": "field_name",
+      "type": "string",
+      "description": "description of field_name",
+      "constraints": {
+        "required": true # 设置写入/更新必填选项
+      },
+      "default": "hello, world", # 设置默认值
+      "acl": {
+        "clientVisibile": true, # 设置客户端可见
+        "clientReadOnly": true, # 设置客户端只读
+        "creatorVisible": true  # 设置创建者可见
+      }
+    }
+  ]
+}
+```
+
+数据表列的元信息：
+
+|        属性     |       类型     | 必填 | 说明 |
+| :-------------- | :------------ |:---| :-- |
+| name            | String(32)    | 是 | 字段名（字母开头，字母、数字、下划线的组合） |
+| type            | String        | 是 | 字段类型，可选： 等 |
+| items           | Object        | 否 | 列表元素类型，array 字段类型必填 |
+| format          | String        | 否 | geojson 字段类型必填，值默认为 `default` |
+| description     | String        | 否 | 字段的描述，不填自动赋值为字段名称 |
+| constraints     | Object        | 否 | 字段的约束属性，仅支持 required 属性 |
+| default         | 跟字段类型一样  | 否 | 字段的默认值 |
+| acl             | Object        | 否 | 字段权限相关的属性 |
+| coordinate_type | String        | 否 | geojson 字段类型必填|
+
+`type` 目前支持 string、integer、number、boolean、array、geojson、file、date 等
+`items` 目前支持 string、integer、number、boolean 等
+`coordinate_type` 目前支持 wgs84（地球坐标）、gcj02（火星坐标）
+
+若字段是 array 类型，字段元信息为：
+
+```json
+{
+  "name": "array_field",
+  "type": "array",
+  "items": {
+    "type": "string"
+  }
+}
+```
+
+若字段是 geojson 类型，字段元信息为：
+
+```json
+{
+  "name": "location",
+  "type": "geojson",
+  "format": "default",
+  "coordinate_type": "gcj02"
+}
+```
+
+字段权限相关的属性存储在 acl 中：
+
+|       属性      |   类型  | 必填 | 说明 |
+| :--------------| :------ | :--| :--- |
+| clientVisibile | Boolean | 否 | 客户端只读的标志位，true 表示字段在客户端只读，不能被写入／更新 |
+| clientReadOnly | Boolean | 否 | 客户端可见的标志位， false 表示字段在客户端不可见 |
+| creatorVisible | Boolean | 否 | 客户端创建者可见的标志位，true 表示字段在客户端只有创建者可见 |
 
 **代码示例**
 
-{% tabs getRichTextEntryCurl="Curl"%}
+{% tabs getTableListCurl="Curl"%}
 
-{% content "getRichTextEntryCurl" %}
+{% content "getTableListCurl" %}
 
 ```
-curl -X GET \
+curl -X POST \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/table/1/
+-d '{
+      "name": "Table199",
+      "schema": {
+        "fields": [
+          {
+            "name": "String",
+            "type": "string"
+          }
+        ]
+      },
+      "row_read_perm": ["user:*"],
+      "row_write_perm": ["user:*"],
+      "write_perm": ["user:*"]
+    }' \
+https://cloud.minapp.com/userve/v1/table/
 ```
 
 {% endtabs %}
@@ -52,23 +164,9 @@ https://cloud.minapp.com/userve/v1/table/1/
         "type": "integer"
       },
       {
-        "acl": {
-          "clientReadOnly": false,
-          "clientVisible": true,
-          "creatorVisible": false
-        },
-        "constraints": {
-          "required": false
-        },
-        "default": [
-          1
-        ],
-        "description": "",
-        "items": {
-          "type": "integer"
-        },
-        "name": "array_int",
-        "type": "array"
+        "name": "String",
+        "type": "string",
+        "description": "string",
       }
     ]
   },
@@ -88,43 +186,86 @@ https://cloud.minapp.com/userve/v1/table/1/
 }
 ```
 
+> **info**
+> 字段如 id、created_by、created_at、updated_at 为自动添加的内置字段
+
 **返回参数说明**
 
-接口字段说明：
-
-| 参数  | 类型 | 说明 |
-| :--- | :-- | :-- |
-| id | Number | 数据表 ID |
-| name | String| 数据表名 |
-| is_protected | Boolean | 数据表是否为内置表的标志位，true 为内置表 |
+|        参数       |      类型    |   说明    |
+| :--------------- | :----------- | :------- |
+| id               | Integer      | 数据表 ID |
+| name             | String       | 数据表名 |
+| is_protected     | Boolean      | 数据表是否为内置表的标志位，true 为内置表 |
 | protected_fields | String Array | 内置表的保护字段，若数据表不是内置表，该字段为 null |
-| schema | Object | 数据表字段的元信息 |
-| write_perm | String Array | <p>数据表写权限</p><p>- user:* 所有人可写</p><p> |
-| default_row_perm | Object | 数据表下行数据的默认权限 |
-| created_at | Number | 数据表创建时间 |
-| updated_at | Number | 数据表更新时间 |
+| schema           | Object       | 数据表字段的元信息 |
+| write_perm       | String Array | 数据表写权限 |
+| default_row_perm | Object       | 数据表行数据权限 |
+| created_at       | Integer      | 数据表创建时间 |
+| updated_at       | Integer      | 数据表更新时间 |
 
-字段 schema 参数说明：
+**状态码说明**
 
-| 参数  | 类型 | 说明 |
-| :--- | :-- | :-- |
-| name | String| 字段名 |
-| type | String | 字段类型 |
-| description | String | 字段描述 |
-| items | Object | 数组字段的元素类型 |
-| clientReadOnly | Boolean | 客户端只读的标志位，true 表示字段在客户端不能被写入／更新|
-| clientVisible | Boolean | 客户端可见的标志位， true 表示字段在客户端可见 |
-| creatorVisible | Boolean | 客户端创建者可见的标志位，true 表示字段在客户端只有创建者可见 |
-| required | Boolean | 是否是写入/更新必填选项 |
-| default | 与字段类型保持一致 | 字段的默认值 |
+`201`: 修改成功
 
-权限参数的说明：
+`400`: 表名已存在；不合法的数据
 
-| 参数  | 类型 | 说明 |
-| :--- | :-- | :-- |
-| user:* | String| 所有人可写／可读 |
-| user:<:user_id> | String| 某个用户可写／可读 |
-| gid:<:group_id> | String| 某个分组下的用户可写／可读 |
+
+## 获取数据表详情
+
+**接口**
+
+`GET https://cloud.minapp.com/userve/v1/table/:table_id/`
+
+**代码示例**
+
+{% tabs getTableCurl="Curl"%}
+
+{% content "getTableCurl" %}
+
+```
+curl -X GET \
+-H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "Content-Type: application/json" \
+https://cloud.minapp.com/userve/v1/table/1/
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```json
+{
+  "id": 1,
+  "name": "Table",
+  "is_protected": false,
+  "protected_fields": null,
+  "schema": {
+    "fields": [
+      {
+        "name": "String",
+        "type": "string"
+      }
+    ]
+  },
+  "write_perm": [
+    "user:*"
+  ],
+  "default_row_perm": {
+    "_read_perm": [
+      "user:*"
+    ],
+    "_write_perm": [
+      "user:*"
+    ]
+  },
+  "created_at": 1519538564,
+  "updated_at": 1519640477
+}
+```
+
+**状态码说明**
+
+`200`: 成功
 
 
 ## 获取数据表列表
@@ -174,53 +315,8 @@ https://cloud.minapp.com/userve/v1/table/
       "schema": {
         "fields": [
           {
-            "description": "id",
-            "name": "id",
-            "type": "id"
-          },
-          {
-            "description": "acl_permission",
-            "name": "acl_permission",
-            "type": "integer"
-          },
-          {
-            "description": "acl_gid",
-            "name": "acl_gid",
-            "type": "integer"
-          },
-          {
-            "description": "created_by",
-            "name": "created_by",
-            "type": "integer"
-          },
-          {
-            "description": "created_at",
-            "name": "created_at",
-            "type": "integer"
-          },
-          {
-            "description": "updated_at",
-            "name": "updated_at",
-            "type": "integer"
-          },
-          {
-            "acl": {
-              "clientReadOnly": false,
-              "clientVisible": true,
-              "creatorVisible": false
-            },
-            "constraints": {
-              "required": false
-            },
-            "default": [
-              1
-            ],
-            "description": "",
-            "items": {
-              "type": "integer"
-            },
-            "name": "array_int",
-            "type": "array"
+            "name": "String",
+            "type": "string"
           }
         ]
       },
@@ -241,3 +337,73 @@ https://cloud.minapp.com/userve/v1/table/
   ]
 }
 ```
+
+**状态码说明**
+
+`200`: 成功
+
+
+## 更新数据表
+
+**接口**
+
+`PUT https://cloud.minapp.com/userve/v1/table/:table_id/`
+
+> **info**
+> 数据表更新接口支持一次更新一个或多个字段
+
+**代码示例**
+
+{% tabs getTableCurl="Curl"%}
+
+{% content "getTableCurl" %}
+
+```
+curl -X PUT \
+-H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "Content-Type: application/json" \
+-d '{
+      "name": "table"
+    }' \
+https://cloud.minapp.com/userve/v1/table/1/
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```json
+{
+  "id": 1,
+  "name": "table",
+  "is_protected": false,
+  "protected_fields": null,
+  "schema": {
+    "fields": [
+      {
+        "name": "String",
+        "type": "string"
+      }
+    ]
+  },
+  "write_perm": [
+    "user:*"
+  ],
+  "default_row_perm": {
+    "_read_perm": [
+      "user:*"
+    ],
+    "_write_perm": [
+      "user:*"
+    ]
+  },
+  "created_at": 1519538564,
+  "updated_at": 1519640477
+}
+```
+
+**状态码说明**
+
+`200`: 修改成功
+
+`400`: 表名已存在；不合法的数据

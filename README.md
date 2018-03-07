@@ -128,6 +128,31 @@
     </li>
     <li>
       <h3>
+        <a href="/user-dash/README.md/">知晓云运营 API</a>
+      </h3>
+      <ul class="doc-user-dash doc-detail-item">
+        <li>
+          <a href="/user-dash/authentication.md/">授权认证</a>
+        </li>
+        <li>
+          <a href="/user-dash/record.md/">数据表模块</a>
+        </li>
+        <li>
+          <a href="/user-dash/content.md/">内容模块</a>
+        </li>
+        <li>
+          <a href="/user-dash/file/README.md/">文件模块</a>
+        </li>
+        <li>
+          <a href="/user-dash/group/README.md/">分组模块</a>
+        </li>
+        <li>
+          <a href="/user-dash/user.md/">用户模块</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <h3>
         <a href="/support/README.md/">管理与支持</a>
       </h3>
       <ul class="doc-support doc-detail-item">

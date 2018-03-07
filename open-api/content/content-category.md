@@ -50,14 +50,14 @@ https://cloud.minapp.com/oserve/v1/content/1/category/1/
 
 **返回参数说明**
 
-| 参数  | 说明 |
-| :--- | :-- |
-| id | 分类 ID |
-| name | 分类名称 |
-| parent | 分类的父类 |
+|      参数     | 说明 |
+| :-------------| :------ |
+| id            | 分类 ID |
+| name          | 分类名称 |
+| parent        | 分类的父类 |
 | subcategories | 子类名称 |
-| created_at | 分类创建时间 |
-| updated_at | 分类更新时间 |
+| created_at    | 分类创建时间 |
+| updated_at    | 分类更新时间 |
 
 ## 获取内容分类列表
 
@@ -148,10 +148,10 @@ https://cloud.minapp.com/oserve/v1/content/1/category/
 
 Content-Type: `application/json`
 
-| 参数  | 类型   | 必填 | 说明 |
-| :--- | :----- | :-- | :-- |
-| name | String | Y   | 分类名称 |
-| parent | Number | N | 父分类 ID |
+|  参数  |  类型   | 必填 | 说明 |
+| :----- | :-----  | :-- | :-- |
+| name   | String  |  Y  | 分类名称 |
+| parent | Integer |  N  | 父分类 ID |
 
 > **warning**
 > 注意：最多只允许三层嵌套分类
@@ -191,9 +191,7 @@ https://cloud.minapp.com/oserve/v1/content/1/category/
 
 `201`: 创建成功
 
-`400`: 同一父分类下的子分类名不能相同
-
-`404`: 父分类 ID 不合法
+`400`: 同一父分类下的子分类名不能相同；父分类 ID 不合法
 
 
 ## 编辑内容分类
@@ -238,10 +236,7 @@ https://cloud.minapp.com/oserve/v1/content/1/category/3/
 
 `200`: 修改成功
 
-`400`: 同一父分类下的子分类名不能相同
-
-`404`: 父分类 ID 不合法
-
+`400`: 同一父分类下的子分类名不能相同；父分类 ID 不合法
 
 ## 删除内容库
 
