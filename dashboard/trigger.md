@@ -183,7 +183,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIn0.FGhYH5IF-PkNV8b4SNh-1WK
 >注：append, append_unique, remove, inc_by 为原子操作符，相关文档请[参考这里](../js-sdk/schema/update-record.md)
 
 ## 模板变量的使用
-部分动作中支持插入变量，您可以点击动作底部的"**可选变量**"查看该动作中支持添加的所有变量。    
+部分动作中支持插入变量，您可以点击动作底部的"**可选变量**"查看该动作中支持添加的所有变量。
 
 如需插入变量，请按照`{{变量名}}`的形式插入到邮件文本中
 
@@ -195,6 +195,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIn0.FGhYH5IF-PkNV8b4SNh-1WK
 
 对于 date 类型的变量，可以自定义输出的格式，格式为 `{{created_at | date:"format"}}`，其中 format 为输出的格式，例如需要 2017-09-20 16:05:14 这样的输出格式，变量的格式为 `{{created_at | date:"Y-m-d  H:i:s"}}`，具体 format 的意义可参考「[date 格式参数说明][2]」
 
+## 实战教程
+[触发器实战教程请移步这里](../support/practice/trigger.md)
 
   [1]: https://mp.weixin.qq.com/
   [2]: http://support.minapp.com/hc/kb/article/1085622/?from=draft
