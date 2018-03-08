@@ -63,7 +63,7 @@ https://cloud.minapp.com/oserve/v1/content/1/category/1/
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/content/1/category/1/`
+`GET https://cloud.minapp.com/oserve/v1/content/1/category/`
 
 **提交参数**
 
@@ -142,7 +142,7 @@ https://cloud.minapp.com/oserve/v1/content/1/category/
 
 **接口**
 
-`POST https://cloud.minapp.com/oserve/v1/content/`
+`POST https://cloud.minapp.com/oserve/v1/content/:content_group_id/category/`
 
 **参数说明**
 

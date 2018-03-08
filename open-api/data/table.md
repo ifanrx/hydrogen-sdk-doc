@@ -28,9 +28,9 @@
 | user:<:user_id> | String| 某个用户可写／可读 |
 | gid:<:group_id> | String| 某个分组下的用户可写／可读 |
 
-具体描述与使用场景可参考[ACL 访问控制列表](../dashboard/acl.md)。
+具体描述与使用场景可参考[ACL 访问控制列表](../../dashboard/acl.md)。
 
-参数 schema 用于存储数据表字段的元信息，其结构遵循[JSON-Table-Schema][https://frictionlessdata.io/specs/table-schema/]的描述。
+参数 schema 用于存储数据表字段的元信息，其结构遵循[JSON-Table-Schema](https://frictionlessdata.io/specs/table-schema/)的描述。
 
 例：
 
@@ -60,18 +60,20 @@
 |        属性     |       类型     | 必填 | 说明 |
 | :-------------- | :------------ |:---| :-- |
 | name            | String(32)    | 是 | 字段名（字母开头，字母、数字、下划线的组合） |
-| type            | String        | 是 | 字段类型，可选： 等 |
+| type            | String        | 是 | 字段类型 |
 | items           | Object        | 否 | 列表元素类型，array 字段类型必填 |
 | format          | String        | 否 | geojson 字段类型必填，值默认为 `default` |
 | description     | String        | 否 | 字段的描述，不填自动赋值为字段名称 |
 | constraints     | Object        | 否 | 字段的约束属性，仅支持 required 属性 |
-| default         | 跟字段类型一样  | 否 | 字段的默认值 |
+| default         | 跟字段类型一致  | 否 | 字段的默认值 |
 | acl             | Object        | 否 | 字段权限相关的属性 |
 | coordinate_type | String        | 否 | geojson 字段类型必填|
 
-`type` 目前支持 string、integer、number、boolean、array、geojson、file、date 等
-`items` 目前支持 string、integer、number、boolean 等
-`coordinate_type` 目前支持 wgs84（地球坐标）、gcj02（火星坐标）
+- `type` 目前支持 string、integer、number、boolean、array、geojson、file、date 等
+
+- `items` 目前支持 string、integer、number、boolean 等
+
+- `coordinate_type` 目前支持 wgs84（地球坐标）、gcj02（火星坐标）
 
 若字段是 array 类型，字段元信息为：
 

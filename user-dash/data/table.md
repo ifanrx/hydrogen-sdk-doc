@@ -30,7 +30,7 @@
 
 具体描述与使用场景可参考[ACL 访问控制列表](../dashboard/acl.md)。
 
-参数 schema 用于存储数据表字段的元信息，其结构遵循[JSON-Table-Schema][https://frictionlessdata.io/specs/table-schema/]的描述。
+参数 schema 用于存储数据表字段的元信息，其结构遵循[JSON-Table-Schema](https://frictionlessdata.io/specs/table-schema/)的描述。
 
 例：
 
@@ -60,7 +60,7 @@
 |        属性     |       类型     | 必填 | 说明 |
 | :-------------- | :------------ |:---| :-- |
 | name            | String(32)    | 是 | 字段名（字母开头，字母、数字、下划线的组合） |
-| type            | String        | 是 | 字段类型，可选： 等 |
+| type            | String        | 是 | 字段类型 |
 | items           | Object        | 否 | 列表元素类型，array 字段类型必填 |
 | format          | String        | 否 | geojson 字段类型必填，值默认为 `default` |
 | description     | String        | 否 | 字段的描述，不填自动赋值为字段名称 |

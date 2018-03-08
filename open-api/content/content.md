@@ -120,7 +120,7 @@ https://cloud.minapp.com/oserve/v1/content/1/text/
 }
 ```
 
-## 创建内容分类
+## 创建内容
 
 **接口**
 

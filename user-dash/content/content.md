@@ -108,7 +108,7 @@ https://cloud.minapp.com/userve/v1/content/1/text/
 }
 ```
 
-## 创建内容分类
+## 创建内容
 
 **接口**
 
