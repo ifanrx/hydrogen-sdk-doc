@@ -132,7 +132,7 @@ Content-Type: `application/json`
 | created_at  | Integer       | 内容创建时间 |
 | updated_at  | Integer       | 内容更新时间 |
 
-内容接口参数格式将与[数据表接口](../record.md)保持一致
+内容接口参数格式将与[数据表接口](../data/record.md)保持一致
 
 
 > **warning**
