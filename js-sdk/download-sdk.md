@@ -10,7 +10,7 @@
 
 ### 更新注意事项
 
-- SDK v1.2.0 版本更改了接口请求域名，由原先的 sso.ifanr.com 改为 xiaoapp.io，旧版本 SDK 升级至该版本需更新小程序后台 【设置】- 【开发设置】-【服务器域名】处更新域名配置，更新后如下图：
+- SDK v1.2.0 版本更改了接口请求域名，由原先的 `sso.ifanr.com` 改为 `${clientID}.xiaoapp.io`，旧版本 SDK 升级至该版本或以上版本需更新，需到微信小程序管理后台的【设置】-【开发设置】-【服务器域名】处更新 request 合法域名为 `xiaoapp.io`，修改后，你可以到知晓云控制台[应用设置页面](https://cloud.minapp.com/dashboard/#/app/settings/app/)查看最新的域名地址
 
 - <p style='color:red'>1.1.4 版本重构优化了错误返回信息，请阅读「错误码详解」这一章节内容后再做升级</p>
 
