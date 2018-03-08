@@ -60,7 +60,7 @@ https://cloud.minapp.com/userve/v1/content/1/text/1/
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/content/1/text/`
+`GET https://cloud.minapp.com/userve/v1/content/:content_group_id/text/`
 
 **提交参数**
 

@@ -57,17 +57,17 @@ https://cloud.minapp.com/userve/v1/content/1/category/1/
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/content/1/category/`
+`GET https://cloud.minapp.com/userve/v1/content/:content_group_id/category/`
 
 **提交参数**
 
 - parent 内容分类父分类列表查询
 
-  `https://cloud.minapp.com/userve/v1/content/:content_id/category/?parent__isnull=true`
+  `https://cloud.minapp.com/userve/v1/content/:content_group_id/category/?parent__isnull=true`
 
 - name 内容分类名称的等值查询
 
-  `https://cloud.minapp.com/userve/v1/content/:content_id/category/?name=category`
+  `https://cloud.minapp.com/userve/v1/content/:content_group_id/category/?name=category`
 
 
 **代码示例**
