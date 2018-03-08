@@ -28,7 +28,7 @@
 | user:<:user_id> | String| 某个用户可写／可读 |
 | gid:<:group_id> | String| 某个分组下的用户可写／可读 |
 
-具体描述与使用场景可参考[ACL 访问控制列表][../dashboard/acl.md]。
+具体描述与使用场景可参考[ACL 访问控制列表](../dashboard/acl.md)。
 
 参数 schema 用于存储数据表字段的元信息，其结构遵循[JSON-Table-Schema][https://frictionlessdata.io/specs/table-schema/]的描述。
 
