@@ -17,12 +17,6 @@
 | type   | String  | Y   | 支持 'wxacode', 'wxacodeunlimit', 'wxaqrcode' 三种类型 |
 | params | Object  | Y   | 小程序码或小程序二维码的配置参数|
 
-**返回字段说明**
-
-| 参数    | 类型    | 必填 | 说明 |
-| :----- | :------ | :-- | :-- |
-| image  | String  | Y   | 二维码的 base64 编码 |
-
 ## 获取小程序码（数量有限）
 
 设置 `type` 为 `wxacode`，params 支持以下配置项：
@@ -60,6 +54,43 @@
 | width      | Int     | N   | 二维码的宽度，默认值为 430 |
 
 此类型适用于需要的码数量较少的业务场景。此时生成的小程序码，永久有效，数量有限（与 `wxacode` 生成的小程序二维码加起来不超过 100000），请谨慎使用。用户扫描该码进入小程序后，将直接进入 path 对应的页面。
+
+## 接口返回和请求示例
+
+**返回字段说明**
+
+| 参数    | 类型    | 必填 | 说明 |
+| :----- | :------ | :-- | :-- |
+| image  | String  | Y   | 二维码的 base64 编码 |
+
+以下几种情况会返回 400 错误：
+
+- 未在知晓云后台开启生成小程序码权限
+- 传递的参数不合法
+- 设置 `type='wxacodeunlimit'` 时，接口调用频率超过限制(目前 5000次/分钟）
+- 设置 `type='wxacode'` 或 `type='wxaqrode'`时，接口生成的码数大于限制
+- 设置 `type='wxacodeunlimit'` 时，所传的 page 页面不存在，或者小程序没有发布
+
+**请求示例**
+
+```js
+  const params = {
+    path: '../user/index?id=123456',
+    width: 250
+  }
+
+  wx.BaaS.getWXACode('wxacode', params).then(res => {
+    this.setData({ imageBase64: res.image})
+  }).catch(err => {
+    console.log(err)
+  })
+```
+
+```html
+<view style="text-align: center;">
+  <image src="data:image/png;base64,{{ imageBase64 }}" style="width: 250px; height: 250px" />
+</view
+```
 
 > **info**
 > 了解更多获取二维码的信息，可参考小程序文档 - [获取二维码](https://mp.weixin.qq.com/debug/wxadoc/dev/api/qrcode.html) 章节
