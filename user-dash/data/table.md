@@ -28,7 +28,7 @@
 | user:<:user_id> | String| 某个用户可写／可读 |
 | gid:<:group_id> | String| 某个分组下的用户可写／可读 |
 
-具体描述与使用场景可参考[ACL 访问控制列表](../dashboard/acl.md)。
+具体描述与使用场景可参考[ACL 访问控制列表](../../dashboard/acl.md)。
 
 参数 schema 用于存储数据表字段的元信息，其结构遵循[JSON-Table-Schema](https://frictionlessdata.io/specs/table-schema/)的描述。
 
@@ -378,3 +378,22 @@ https://cloud.minapp.com/userve/v1/table/1/
 `200`: 修改成功
 
 `400`: 表名已存在；不合法的数据
+
+## 删除数据表
+
+**接口**
+
+`DELETE https://cloud.minapp.com/userve/v1/table/:table_id/`
+
+**代码示例**
+
+```
+curl -X DELETE \
+-H "cookie: {{ cookie }}" \
+-H "Content-Type: application/json" \
+https://cloud.minapp.com/userve/v1/table/1/
+```
+
+**状态码说明**
+
+`204`: 删除成功

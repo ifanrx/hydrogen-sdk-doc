@@ -180,7 +180,7 @@ https://cloud.minapp.com/userve/v1/content/1/category/
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v1/content/:content_group_id/catgegory/:category_id/`
+`PUT https://cloud.minapp.com/userve/v1/content/:content_group_id/category/:category_id/`
 
 
 **代码示例**

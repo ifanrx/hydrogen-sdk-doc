@@ -404,3 +404,22 @@ https://cloud.minapp.com/oserve/v1/table/1/
 `200`: 修改成功
 
 `400`: 表名已存在；不合法的数据
+
+## 删除数据表
+
+**接口**
+
+`DELETE https://cloud.minapp.com/oserve/v1/table/:table_id/`
+
+**代码示例**
+
+```
+curl -X DELETE \
+-H "cookie: {{ cookie }}" \
+-H "Content-Type: application/json" \
+https://cloud.minapp.com/oserve/v1/table/1/
+```
+
+**状态码说明**
+
+`204`: 删除成功

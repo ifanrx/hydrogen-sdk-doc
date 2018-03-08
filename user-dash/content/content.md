@@ -64,7 +64,7 @@ https://cloud.minapp.com/userve/v1/content/1/text/1/
 
 **提交参数**
 
-内容查询与[数据表接口](../record.md)查询保持一致
+内容查询与[数据表接口](../data/record.md)查询保持一致
 
 **代码示例**
 
