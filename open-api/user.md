@@ -67,8 +67,7 @@ request(opt, function(err, res, body) {
 
 `GET https://cloud.minapp.com/oserve/v1/miniapp/user-profile/`
 
-**参数说明
-**
+**参数说明**
 
 | 参数        | 类型   | 必填 | 说明 |
 | :--------- | :----- | :-- | :-- |
@@ -107,7 +106,7 @@ https://cloud.minapp.com/oserve/v1/miniapp/user-profile/
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/miniapp/user-profile/', 
+  uri: 'https://cloud.minapp.com/oserve/v1/miniapp/user-profile/',
   method: 'GET',
   headers: {
     Authorization: `Bearer ${token}`,

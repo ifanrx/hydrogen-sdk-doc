@@ -36,7 +36,7 @@ curl -X GET \
 -H "Authorization: Bearer token" \
 -H "Content-Type: application/json" \
 -G \
---data-urlencode 'where={"price":"$eq":10}' \
+--data-urlencode 'where={"price": {"$eq": 10}}' \
 https://cloud.minapp.com/userve/v1/table/1/record/
 ```
 
@@ -90,40 +90,6 @@ https://cloud.minapp.com/userve/v1/table/:table_id/record/?order_by=id
 
 # 倒序
 https://cloud.minapp.com/userve/v1/table/:table_id/record/?order_by=-id
-```
-
-**代码示例**
-
-```python
-import json
-import urllib
-
-import requests
-
-
-table_id = ''
-BASE_API = r'https://cloud.minapp.com/userve/v1/table/%s/record/' % table_id
-
-TOKEN = ''
-HEADERS = {
-  'cookie': '{{ cookie }}'
-}
-
-where_ = {
-  'price': {'$gt': 100},
-}
-
-query_ = urllib.urlencode({
-  'where': json.dumps(where_),
-  'order_by': '-id',
-  'limit': 10,
-  'offset': 0,
-})
-
-API = '?'.join((BASE_API, query_))
-
-resp_ = requests.get(API, headers=HEADERS)
-print resp_.content
 ```
 
 ## 获取数据项

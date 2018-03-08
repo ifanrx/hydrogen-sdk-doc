@@ -110,10 +110,10 @@
           <a href="/open-api/authentication.md/">授权认证</a>
         </li>
         <li>
-          <a href="/open-api/record.md/">数据表模块</a>
+          <a href="/open-api/data/README.md/">数据表模块</a>
         </li>
         <li>
-          <a href="/open-api/content.md/">内容模块</a>
+          <a href="/open-api/content/README.md/">内容模块</a>
         </li>
         <li>
           <a href="/open-api/file/README.md/">文件模块</a>
@@ -128,17 +128,17 @@
     </li>
     <li>
       <h3>
-        <a href="/user-dash/README.md/">知晓云运营 API</a>
+        <a href="/user-dash/README.md/">运营后台 API</a>
       </h3>
       <ul class="doc-user-dash doc-detail-item">
         <li>
           <a href="/user-dash/authentication.md/">授权认证</a>
         </li>
         <li>
-          <a href="/user-dash/record.md/">数据表模块</a>
+          <a href="/user-dash/data/README.md/">数据表模块</a>
         </li>
         <li>
-          <a href="/user-dash/content.md/">内容模块</a>
+          <a href="/user-dash/content/README.md/">内容模块</a>
         </li>
         <li>
           <a href="/user-dash/file/README.md/">文件模块</a>

@@ -50,14 +50,14 @@ https://cloud.minapp.com/oserve/v1/content/1/category/1/
 
 **返回参数说明**
 
-|      参数     | 说明 |
-| :-------------| :------ |
-| id            | 分类 ID |
-| name          | 分类名称 |
-| parent        | 分类的父类 |
-| subcategories | 子类名称 |
-| created_at    | 分类创建时间 |
-| updated_at    | 分类更新时间 |
+|      参数     |      类型     |   说明   |
+| :-------------| :----------- | :------ |
+| id            | Integer      | 分类 ID |
+| name          | String       | 分类名称 |
+| parent        | Object       | 分类的父类 |
+| subcategories | Object Array | 子类名称 |
+| created_at    | Integer      | 分类创建时间 |
+| updated_at    | Integer      | 分类更新时间 |
 
 ## 获取内容分类列表
 
