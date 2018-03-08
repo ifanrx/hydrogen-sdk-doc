@@ -98,6 +98,23 @@ const app = new Koa()
  * @param ctx
  * @returns {Promise<any>}
  */
+function parsePostData(ctx) {
+  return new Promise((resolve, reject) => {
+    try {
+      let postdata = ''
+      ctx.req.addListener('data', (data) => {
+        postdata += data
+      })
+      ctx.req.addListener('end', function() {
+        let parseData = postdata
+        resolve(parseData)
+      })
+    } catch (err) {
+      reject(err)
+    }
+  })
+}
+
 /**
  * 解析 JWT 数据
  * @param str
