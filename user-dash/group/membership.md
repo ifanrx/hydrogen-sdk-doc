@@ -19,13 +19,9 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs patchCurl="Curl", patchNode="Node" %}
-
-{% content "patchCurl"%}
-
 ```
 curl -X PATCH \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '[
       {"op": "add", "path": "/membership", "users": [5, 6], "groups": [53,54]},
@@ -33,29 +29,6 @@ curl -X PATCH \
     ]' \
 https://cloud.minapp.com/userve/v1/miniapp/group/membership/
 ```
-
-{% content "patchNode"%}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/miniapp/group/membership/',
-  method: 'PATCH',
-  headers: {
-    Authorization: `Bearer ${token}`
-  },
-  json: [   // 指定 data 以 "Content-Type": 'application/json' 传送
-    {"op": "add", "path": "/membership", "users": [36476036], "groups": [561]}
-  ]
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% endtabs %}
 
 **状态码说明**
 

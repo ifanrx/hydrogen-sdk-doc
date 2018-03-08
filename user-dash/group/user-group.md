@@ -10,36 +10,12 @@
 
 **代码示例**
 
-{% tabs userGroupDetailCurl="Curl", userGroupDetailNode="Node" %}
-
-{% content "userGroupDetailCurl" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/user-group/47/
 ```
-
-{% content "userGroupDetailNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/user-group/655',  // 655 对应 :group_id
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
-```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -74,44 +50,14 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs userGroupCurl="Curl", userGroupNode="Node" %}
-
-{% content "userGroupCurl" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -G \
 -d parent_id=1 \
 https://cloud.minapp.com/userve/v1/user-group/
 ```
-
-{% content "userGroupNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/user-group/',
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  qs: {     // query string, 被附加到uri的参数
-    parent_id: "234565423456787645xx",   // 可选, 没有用户组的组集 ID, 可以设置为 null 或者不设置
-    offset: 0,         // 可选
-    limit: 20          // 可选
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
-```
-
-{% endtabs %}
-
 
 ## 创建用户组
 
@@ -130,40 +76,13 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs createUserGroupCurl="Curl", createUserGroupNode="Node" %}
-
-{% content "createUserGroupCurl" %}
-
 ```
 curl -X POST \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{"name": "User Group"}' \
 https://cloud.minapp.com/userve/v1/user-group/
 ```
-
-{% content "createUserGroupNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/user-group/',
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    name: 'testGroup'
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode, body)
-})
-```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -180,40 +99,13 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs updateGroupCurl="Curl", updateGroupNode="Node" %}
-
-{% content "updateGroupCurl" %}
-
 ```
 curl -X PUT \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{"name": "user group"}' \
 https://cloud.minapp.com/userve/v1/user-group/47/
 ```
-
-{% content "updateGroupNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/user-group/655/',  // 655 对应 :group_id
-  method: 'PUT',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    name: 'testGroup_3'   // 修改后的用户组名
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -228,36 +120,12 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs deleteGroupCurl="Curl", deleteGroupNode="Node" %}
-
-{% content "deleteGroupCurl" %}
-
 ```
 curl -X DELETE \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/user-group/47/
 ```
-
-{% content "deleteGroupNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/user-group/655/',  // 655 对应 :group_id
-  method: 'DELETE',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -272,36 +140,12 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs patchDeleteGroupCurl="Curl", patchDeleteGroupNode="Node" %}
-
-{% content "patchDeleteGroupCurl" %}
-
 ```
 curl -X DELETE \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/user-group/?id__in=48,50
 ```
-
-{% content "patchDeleteGroupNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/user-group/?id__in=652,653',  // id__in=652,653 对应 id__in=:group_id,group1_id
-  method: 'DELETE',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% endtabs %}
 
 **状态码说明**
 

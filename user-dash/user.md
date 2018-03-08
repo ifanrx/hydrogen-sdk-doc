@@ -10,34 +10,12 @@
 
 **代码示例**
 
-{% tabs  curl="Curl", node="Node" %}
-
-{% content "curl"%}
-
 ```
 curl -X GET \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/miniapp/user-profile/55019/
 ```
-
-{% content "node" %}
-
-```js
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/miniapp/user-profile/4271xx/',   // 4271xx 对应 :profile_id
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
-```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -85,13 +63,9 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs first="Curl", second="Node" %}
-
-{% content "first" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -G \
 -d nickname__contains=Tom \
@@ -100,30 +74,3 @@ curl -X GET \
 -d order_by=-created_at \
 https://cloud.minapp.com/userve/v1/miniapp/user-profile/
 ```
-
-{% content "second" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/miniapp/user-profile/', 
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  qs: {     // query string, 被附加到uri的参数
-    nickname__contains: 'username',
-    gender: 1,
-    created_at__gte: 1483228800,
-    user_id: '363953xx',
-    order_by: '-created_at'
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
-```
-
-{% endtabs %}

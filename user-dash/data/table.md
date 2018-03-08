@@ -106,13 +106,9 @@
 
 **代码示例**
 
-{% tabs getTableListCurl="Curl"%}
-
-{% content "getTableListCurl" %}
-
 ```
 curl -X POST \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{
       "name": "Table199",
@@ -131,15 +127,12 @@ curl -X POST \
 https://cloud.minapp.com/userve/v1/table/
 ```
 
-{% endtabs %}
-
 **返回示例**
 
 ```json
 {
   "id": 1,
   "name": "Table",
-  "is_protected": false,
   "protected_fields": null,
   "schema": {
     "fields": [
@@ -195,7 +188,6 @@ https://cloud.minapp.com/userve/v1/table/
 | :--------------- | :----------- | :------- |
 | id               | Integer      | 数据表 ID |
 | name             | String       | 数据表名 |
-| is_protected     | Boolean      | 数据表是否为内置表的标志位，true 为内置表 |
 | protected_fields | String Array | 内置表的保护字段，若数据表不是内置表，该字段为 null |
 | schema           | Object       | 数据表字段的元信息 |
 | write_perm       | String Array | 数据表写权限 |
@@ -218,18 +210,12 @@ https://cloud.minapp.com/userve/v1/table/
 
 **代码示例**
 
-{% tabs getTableCurl="Curl"%}
-
-{% content "getTableCurl" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/table/1/
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -237,7 +223,6 @@ https://cloud.minapp.com/userve/v1/table/1/
 {
   "id": 1,
   "name": "Table",
-  "is_protected": false,
   "protected_fields": null,
   "schema": {
     "fields": [
@@ -282,18 +267,12 @@ https://cloud.minapp.com/userve/v1/table/1/
 
 **代码示例**
 
-{% tabs getTableListCurl="Curl"%}
-
-{% content "getTableListCurl" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/table/
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -309,7 +288,6 @@ https://cloud.minapp.com/userve/v1/table/
   "objects": [
     {
       "id": 1,
-      "is_protected": false,
       "name": "Table",
       "protected_fields": null,
       "schema": {
@@ -354,13 +332,9 @@ https://cloud.minapp.com/userve/v1/table/
 
 **代码示例**
 
-{% tabs getTableCurl="Curl"%}
-
-{% content "getTableCurl" %}
-
 ```
 curl -X PUT \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{
       "name": "table"
@@ -368,15 +342,12 @@ curl -X PUT \
 https://cloud.minapp.com/userve/v1/table/1/
 ```
 
-{% endtabs %}
-
 **返回示例**
 
 ```json
 {
   "id": 1,
   "name": "table",
-  "is_protected": false,
   "protected_fields": null,
   "schema": {
     "fields": [

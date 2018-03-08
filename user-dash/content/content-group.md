@@ -10,18 +10,12 @@
 
 **代码示例**
 
-{% tabs getContentGroupCurl="Curl"%}
-
-{% content "getContentGroupCurl" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/content/1/
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -53,18 +47,12 @@ https://cloud.minapp.com/userve/v1/content/1/
 
 **代码示例**
 
-{% tabs getContentGroupListCurl="Curl"%}
-
-{% content "getContentGroupListCurl" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/content/
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -106,13 +94,9 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs createContentGroupCurl="Curl"%}
-
-{% content "createContentGroupCurl" %}
-
 ```
 curl -X POST \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{
       "name": "Content Group",
@@ -120,8 +104,6 @@ curl -X POST \
     }' \
 https://cloud.minapp.com/userve/v1/content/
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -151,21 +133,15 @@ https://cloud.minapp.com/userve/v1/content/
 
 **代码示例**
 
-{% tabs updateContentGroupCurl="Curl"%}
-
-{% content "updateContentGroupCurl" %}
-
 ```
 curl -X PUT \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{
       "name": "Test Group"
     }' \
 https://cloud.minapp.com/userve/v1/content/2/
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -195,19 +171,12 @@ https://cloud.minapp.com/userve/v1/content/2/
 
 **代码示例**
 
-{% tabs deleteContentGroupCurl="Curl"%}
-
-{% content "deleteContentGroupCurl" %}
-
 ```
 curl -X DELETE \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/content/2/
 ```
-
-{% endtabs %}
-
 
 **状态码说明**
 

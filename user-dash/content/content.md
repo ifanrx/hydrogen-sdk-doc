@@ -12,18 +12,12 @@
 
 **代码示例**
 
-{% tabs getRichTextEntryCurl="Curl"%}
-
-{% content "getRichTextEntryCurl" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/content/1/text/1/
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -74,18 +68,12 @@ https://cloud.minapp.com/userve/v1/content/1/text/1/
 
 **代码示例**
 
-{% tabs getRichTextEntryListCurlCurl="Curl"%}
-
-{% content "getRichTextEntryListCurlCurl" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/content/1/text/
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -153,19 +141,13 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs createRichTextEntryCurl="Curl"%}
-
-{% content "createRichTextEntryCurl" %}
-
 ```
 curl -X POST \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{"title": "Test Title"}' \
 https://cloud.minapp.com/userve/v1/content/1/text/
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -203,19 +185,13 @@ https://cloud.minapp.com/userve/v1/content/1/text/
 
 **代码示例**
 
-{% tabs updateRichTextEntryCurl="Curl"%}
-
-{% content "updateRichTextEntryCurl" %}
-
 ```
 curl -X PUT \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{"name": "Test Category"}' \
 https://cloud.minapp.com/userve/v1/content/1/text/2/
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -246,19 +222,12 @@ https://cloud.minapp.com/userve/v1/content/1/text/2/
 
 **代码示例**
 
-{% tabs deleteRichTextEntryCurl="Curl"%}
-
-{% content "deleteRichTextEntryCurl" %}
-
 ```
 curl -X DELETE \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/content/1/text/1/
 ```
-
-{% endtabs %}
-
 
 **状态码说明**
 

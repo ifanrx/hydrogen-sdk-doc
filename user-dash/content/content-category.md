@@ -10,18 +10,12 @@
 
 **代码示例**
 
-{% tabs getContentCategoryCurl="Curl"%}
-
-{% content "getContentCategoryCurl" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/content/1/category/1/
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -78,18 +72,12 @@ https://cloud.minapp.com/userve/v1/content/1/category/1/
 
 **代码示例**
 
-{% tabs getContentCategoryListCurl="Curl"%}
-
-{% content "getContentCategoryListCurl" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/content/1/category/
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -158,21 +146,15 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs createContentCategoryCurl="Curl"%}
-
-{% content "createContentCategoryCurl" %}
-
 ```
 curl -X POST \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{
       "name": "分类1",
     }' \
 https://cloud.minapp.com/userve/v1/content/1/category/
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -203,21 +185,15 @@ https://cloud.minapp.com/userve/v1/content/1/category/
 
 **代码示例**
 
-{% tabs updateContentCategoryCurl="Curl"%}
-
-{% content "updateContentCategoryCurl" %}
-
 ```
 curl -X PUT \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{
       "name": "Test Category"
     }' \
 https://cloud.minapp.com/userve/v1/content/1/category/3/
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -247,19 +223,12 @@ https://cloud.minapp.com/userve/v1/content/1/category/3/
 
 **代码示例**
 
-{% tabs deleteContentCategoryCurl="Curl"%}
-
-{% content "deleteContentCategoryCurl" %}
-
 ```
 curl -X DELETE \
--H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/content/1/category/1/
 ```
-
-{% endtabs %}
-
 
 **状态码说明**
 

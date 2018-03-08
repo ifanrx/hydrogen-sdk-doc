@@ -54,13 +54,9 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs getTokenCurl="Curl", getTokenNode="Node" %}
-
-{% content "getTokenCurl"%}
-
 ```
 curl -X POST \
--H "Authorization: Bearer 52ce223c5adbb66fa188a959a8b08889adb3580c" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{
       "filename":"crop.gif",
@@ -68,30 +64,6 @@ curl -X POST \
     }' \
 https://cloud.minapp.com/userve/v1/upload/
 ```
-
-{% content "getTokenNode"%}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/upload/',
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer ${token}`
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    filename: 'aTest.xlsm',
-    categories: '5a3b569109a80579061d63xx'
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode, body)
-})
-```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -133,45 +105,15 @@ Content-Type: `multipart/form-data`
 
 **代码示例**
 
-{% tabs uploadFileCurl="Curl", uploadFileNode="Node" %}
-
-{% content "uploadFileCurl" %}
-
 ```
 curl -X POST \
--H "Authorization: Bearer 52ce223c5adbb66fa188a959a8b08889adb3580c" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: multipart/form-data" \
 -F authorization="UPYUN allenzhang:MzmYCcWVjrWoeovC4+tM5Bgwusg=" \
 -F file=@"filename" \
 -F policy="eyJkYXRlIjogIldlZCwgMDYgRGVjIDIwMTcgMDM6MzI6MzMgR01UIiwgIm5vdGlmeS11cmwiOiAiaHR0cHM6Ly9zc28uaWZhbnIuY29tL2V4dGFwaS9oeWRyb2dlbi91cHl1bi9jYWxsYmFjay8yODcvNWEyNzY0ZDFmZmYxZDYxYWQwZWNhMjQ1LyIsICJidWNrZXQiOiAiY2xvdWQtbWluYXBwLTI4NyIsICJzYXZlLWtleSI6ICIxZU1RUmxrSndoZ2FNaUNnLmdpZiIsICJleHBpcmF0aW9uIjogMTUxMjUzMTQ1M30=" \
 https://v0.api.upyun.com/cloud-minapp-287
 ```
-
-{% content "uploadFileNode" %}
-
-```js
-var request = require('request');
-var fs = require('fs');
-
-var opt = {
-  uri: upload_url,  // 获取上传文件的授权凭证成功返回的 upload_url
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer ${token}`
-  },
-  formData: {   // 指定 data 以 "Content-Type": "multipart/form-data" 传送
-    authorization,
-    policy,
-    file: fs.createReadStream(__dirname + '/demo.js')   // 参数需为文件流
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode, body)
-})
-```
-
-{% endtabs %}
 
 **返回示例**
 

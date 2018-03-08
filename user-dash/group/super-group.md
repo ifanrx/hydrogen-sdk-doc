@@ -10,36 +10,12 @@
 
 **代码示例**
 
-{% tabs getDetailCurl="Curl", getDetailNode="Node" %}
-
-{% content "getDetailCurl" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/user-supergroup/52/
 ```
-
-{% content "getDetailNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/user-supergroup/666',  // 666 对应 :group_id
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  }
-}
-
-request(opt, function(err, res, body) {
-    console.log(body)
-})
-```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -72,38 +48,13 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs getCurl="Curl", getNode="Node" %}
-
-{% content "getCurl" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -G \
 https://cloud.minapp.com/userve/v1/user-supergroup/
 ```
-
-{% content "getNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/user-supergroup/',
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-}
-```
-
-{% endtabs %}
-
 
 ## 创建组集
 
@@ -122,41 +73,13 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs createCurl="Curl", createNode="Node" %}
-
-{% content "createCurl" %}
-
 ```
 curl -X POST \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{"name": "Super Group", "children": [51]}' \
 https://cloud.minapp.com/userve/v1/user-supergroup/
 ```
-
-{% content "createNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/user-supergroup/',
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    name: 'super group',
-    children: [561]
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -180,41 +103,13 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs updateCurl="Curl", updateNode="Node" %}
-
-{% content "updateCurl" %}
-
 ```
 curl -X PUT \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{"name": "super group 3", "children": [51]}' \
 https://cloud.minapp.com/userve/v1/user-supergroup/52/
 ```
-
-{% content "updateNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/user-supergroup/666/',  // 665 对应 :group_id
-  method: 'PUT',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    name: 'super group',
-    children: [561]
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode, body)
-})
-```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -239,36 +134,12 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs deleteCurl="Curl", deleteNode="Node" %}
-
-{% content "deleteCurl" %}
-
 ```
 curl -X DELETE \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/user-supergroup/52/
 ```
-
-{% content "deleteNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/user-supergroup/666/',  // 666 对应 :group_id
-  method: 'DELETE',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -283,36 +154,12 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs patchDeleteCurl="Curl", patchDeleteNode="Node" %}
-
-{% content "patchDeleteCurl" %}
-
 ```
 curl -X DELETE \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/user-supergroup/?id__in=58,56
 ```
-
-{% content "patchDeleteNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/user-supergroup/?id__in=667,668',  // id__in=:667,668 对应 id__in=:group_id,group1_id
-  method: 'DELETE',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% endtabs %}
 
 **状态码说明**
 

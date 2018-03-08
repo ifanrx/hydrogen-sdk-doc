@@ -16,42 +16,13 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs createCategoryCurl="Curl", createCategoryNode="Node" %}
-
-{% content "createCategoryCurl" %}
-
-
 ```
 curl -X POST \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{"name": "Category"}' \
 https://cloud.minapp.com/userve/v1/file-category/
 ```
-
-{% content "createCategoryNode" %}
-
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/file-category/',
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer ${token}`
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    name: 'testCreateFile'
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -68,37 +39,12 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs getDetailCurl="Curl", getDetailNode="Node" %}
-
-{% content "getDetailCurl" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d2a78/
 ```
-
-{% content "getDetailNode"%}
-
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/file-category/5a2fe91508443e3123dbe1xx/',  // 5a2fe91508443e3123dbe1xx 对应 uri :category_id
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
-```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -132,43 +78,14 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs getCategoryCurl="Curl", getCategoryNode="Node" %}
-
-{% content "getCategoryCurl" %}
-
 ```
 curl -X GET \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -G \
 -d order_by=-created_at \
 https://cloud.minapp.com/userve/v1/file-category/
 ```
-
-{% content "getCategoryNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/file-category/',
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`
-  },
-  qs: {     // query string, 被附加到uri的参数
-    offset: 0,     // 可选
-    limit: 20,     // 可选
-    order_by: 'created_at'  // 按照创建时间来排序，可选
-  }
-}
-
-request(opt, function(err, res, body) {
-    console.log(body)
-})
-```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -206,41 +123,13 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs modifyCategoryCurl="Curl", modifyCategoryNode="Node" %}
-
-{% content "modifyCategoryCurl" %}
-
 ```
 curl -X PUT \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 -d '{"name": "category"}' \
 https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d2a78/
 ```
-
-{% content "modifyCategoryNode" %}
-
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/file-category/5a6ad3cffff1d675b9e2cexx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :category_id
-  method: 'PUT',
-  headers: {
-    Authorization: `Bearer ${token}`
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    name: 'testCreateFiles'
-  }
-}
-
-request(opt, function(err, res, body) {
-    console.log(res.statusCode)
-})
-```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -268,37 +157,12 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs deleteCategoryCurl="Curl", deleteCategoryNode="Node" %}
-
-{% content "deleteCategoryCurl" %}
-
 ```
 curl -X DELETE \
--H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
+-H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d2a78/
 ```
-
-{% content "deleteCategoryNode" %}
-
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1/file-category/5a6ad3cffff1d675b9e2cexx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :category_id
-  method: 'DELETE',
-  headers: {
-    Authorization: `Bearer ${token}`
-  }
-}
-
-request(opt, function(err, res, body) {
-    console.log(res.statusCode)
-})
-```
-
-{% endtabs %}
 
 **状态码说明**
 
