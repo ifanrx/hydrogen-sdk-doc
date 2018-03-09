@@ -19,7 +19,7 @@
 
 ## 获取小程序码（数量有限）
 
-设置 `type` 为 `wxacode`，params 支持以下配置项：
+设置 `type` 为 `wxacode`，`params` 支持以下配置项：
 
 | 参数        | 类型    | 必填 | 说明 |
 | :--------- | :------ | :-- | :-- |
@@ -32,7 +32,7 @@
 
 ## 获取小程序码（数量无限制）
 
-设置 `type` 为 `wxacodeunlimit`，params 支持以下配置项：
+设置 `type` 为 `wxacodeunlimit`，`params` 支持以下配置项：
 
 | 参数        | 类型    | 必填 | 说明 |
 | :--------- | :------ | :-- | :-- |
@@ -46,7 +46,7 @@
 
 ## 获取小程序二维码（数量有限）
 
-设置 `type` 为 `wxaqrcode`，params 支持以下配置项：
+设置 `type` 为 `wxaqrcode`，`params` 支持以下配置项：
 
 | 参数        | 类型    | 必填 | 说明 |
 | :--------- | :------ | :-- | :-- |
@@ -88,7 +88,7 @@
 
 ```html
 <view style="text-align: center;">
-  <image src="data:image/png;base64,{{ imageBase64 }}" style="width: 250px; height: 250px" />
+  <image src="{{ imageBase64 }}" style="width: 250px; height: 250px" />
 </view
 ```
 
