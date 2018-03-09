@@ -59,7 +59,7 @@
         * [内容库操作](open-api/content/content-group.md)
         * [内容分类操作](open-api/content/content-category.md)
         * [内容操作](open-api/content/content.md)
-        * [内容操作(不建议使用)](open-api/content-abandoned.md)
+        * [内容操作(不建议使用)](open-api/content/content-abandoned.md)
     * [文件模块](open-api/file/README.md)
         * [文件上传](open-api/file/file-upload.md)
         * [文件操作](open-api/file/file.md)

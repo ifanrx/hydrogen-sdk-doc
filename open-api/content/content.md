@@ -12,7 +12,7 @@
 
 **代码示例**
 
-{% tabs getRichTextEntryCurl="Curl"%}
+{% tabs getRichTextEntryCurl="Curl", getRichTextEntryNode="Node" %}
 
 {% content "getRichTextEntryCurl" %}
 
@@ -21,6 +21,24 @@ curl -X GET \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/oserve/v1/content/1/text/1/
+```
+
+{% content "getRichTextEntryNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://cloud.minapp.com/oserve/v1/content/1/text/1/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
 {% endtabs %}
@@ -74,7 +92,7 @@ https://cloud.minapp.com/oserve/v1/content/1/text/1/
 
 **代码示例**
 
-{% tabs getRichTextEntryListCurlCurl="Curl"%}
+{% tabs getRichTextEntryListCurlCurl="Curl", getRichTextEntryListCurlNode="Node" %}
 
 {% content "getRichTextEntryListCurlCurl" %}
 
@@ -83,6 +101,24 @@ curl -X GET \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/oserve/v1/content/1/text/
+```
+
+{% content "getRichTextEntryListCurlNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://cloud.minapp.com/oserve/v1/content/1/text/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
 {% endtabs %}
@@ -153,7 +189,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs createRichTextEntryCurl="Curl"%}
+{% tabs createRichTextEntryCurl="Curl", createRichTextEntryNode="Node" %}
 
 {% content "createRichTextEntryCurl" %}
 
@@ -163,6 +199,26 @@ curl -X POST \
 -H "Content-Type: application/json" \
 -d '{"title": "Test Title"}' \
 https://cloud.minapp.com/oserve/v1/content/1/text/
+```
+
+{% content "createRichTextEntryNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://cloud.minapp.com/oserve/v1/content/1/text/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
+  body: { title: 'Test Title' },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
 {% endtabs %}
@@ -203,7 +259,7 @@ https://cloud.minapp.com/oserve/v1/content/1/text/
 
 **代码示例**
 
-{% tabs updateRichTextEntryCurl="Curl"%}
+{% tabs updateRichTextEntryCurl="Curl", updateRichTextEntryNode="Node" %}
 
 {% content "updateRichTextEntryCurl" %}
 
@@ -213,6 +269,26 @@ curl -X PUT \
 -H "Content-Type: application/json" \
 -d '{"name": "Test Category"}' \
 https://cloud.minapp.com/oserve/v1/content/1/text/2/
+```
+{% content "updateRichTextEntryNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'PUT',
+  url: 'https://cloud.minapp.com/oserve/v1/content/1/text/2/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
+  body: { name: 'Test Category' },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
 ```
 
 {% endtabs %}
@@ -246,7 +322,7 @@ https://cloud.minapp.com/oserve/v1/content/1/text/2/
 
 **代码示例**
 
-{% tabs deleteRichTextEntryCurl="Curl"%}
+{% tabs deleteRichTextEntryCurl="Curl", deleteRichTextEntryNode="Node" %}
 
 {% content "deleteRichTextEntryCurl" %}
 
@@ -255,6 +331,24 @@ curl -X DELETE \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/oserve/v1/content/1/text/1/
+```
+
+{% content "deleteRichTextEntryNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'DELETE',
+  url: 'https://cloud.minapp.com/oserve/v1/content/1/text/1/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
 {% endtabs %}
