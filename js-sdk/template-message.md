@@ -1,7 +1,7 @@
 # 模板消息
 
 > **danger**
-> 以下操作仅适用于 SDK version >= v1.1.0
+> 以下操作仅适用于 SDK version >= 1.1.0
 
 
 ## 上报模版消息所需 formid
