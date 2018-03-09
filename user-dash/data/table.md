@@ -69,9 +69,11 @@
 | acl             | Object        | 否 | 字段权限相关的属性 |
 | coordinate_type | String        | 否 | geojson 字段类型必填|
 
-`type` 目前支持 string、integer、number、boolean、array、geojson、file、date 等
-`items` 目前支持 string、integer、number、boolean 等
-`coordinate_type` 目前支持 wgs84（地球坐标）、gcj02（火星坐标）
+- `type` 目前支持 string、integer、number、boolean、array、geojson、file、date 等
+
+- `items` 目前支持 string、integer、number、boolean 等
+
+- `coordinate_type` 目前支持 wgs84（地球坐标）、gcj02（火星坐标）
 
 若字段是 array 类型，字段元信息为：
 
