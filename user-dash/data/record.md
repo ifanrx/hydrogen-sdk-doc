@@ -1,10 +1,12 @@
 # 数据操作
 
+获得数据表数据接口，支持对**内置表自定义字段的获取与修改**
+
 ## 查询数据
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/table/:table_id/record/`
+`GET https://cloud.minapp.com/userve/v1/table/:table_id/record/`
 
 其中 `:table_id` 需替换为你的数据表 ID
 
@@ -15,7 +17,7 @@ Content-Type: `application/json`
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
 | where    | String | N   | 查询语句，参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码 |
-| order_by | String | N   | 对资源进行排序字段 |
+| order_by | String | N   | 对资源进行字段排序 |
 | limit    | Number | N   | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
 | offset   | Number | N   | 设置返回资源的起始偏移值，默认为 0 |
 
@@ -34,8 +36,8 @@ curl -X GET \
 -H "Authorization: Bearer token" \
 -H "Content-Type: application/json" \
 -G \
---data-urlencode 'where={"price":"$eq":10}' \
-https://cloud.minapp.com/oserve/v1/table/1/record/
+--data-urlencode 'where={"price": {"$eq": 10}}' \
+https://cloud.minapp.com/userve/v1/table/1/record/
 ```
 
 该接口完整支持的查询操作符如下：
@@ -84,117 +86,25 @@ https://cloud.minapp.com/oserve/v1/table/1/record/
 
 ```
 # 顺序
-https://cloud.minapp.com/oserve/v1/table/:table_id/record/?order_by=id
+https://cloud.minapp.com/userve/v1/table/:table_id/record/?order_by=id
 
 # 倒序
-https://cloud.minapp.com/oserve/v1/table/:table_id/record/?order_by=-id
+https://cloud.minapp.com/userve/v1/table/:table_id/record/?order_by=-id
 ```
-
-**代码示例**
-
-{% tabs first="Node", second="Python" %}
-
-{% content "first" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/',  // 3906 对应 :table_id
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  qs: {     // query string, 被附加到uri的参数
-    where: JSON.stringify({   // 可选, 参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码
-      "price": {"$eq": 10}
-    }),
-    order_by: 'id',   // 可选
-    offset: 0,    // 可选
-    limit: 20,    // 可选
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
-```
-
-{% content "second" %}
-
-```python
-import json
-import urllib
-
-import requests
-
-
-table_id = ''
-BASE_API = r'https://cloud.minapp.com/oserve/v1/table/%s/record/' % table_id
-
-TOKEN = ''
-HEADERS = {
-  'Authorization': 'Bearer %s' % TOKEN
-}
-
-where_ = {
-  'price': {'$gt': 100},
-}
-
-query_ = urllib.urlencode({
-  'where': json.dumps(where_),
-  'order_by': '-id',
-  'limit': 10,
-  'offset': 0,
-})
-
-API = '?'.join((BASE_API, query_))
-
-resp_ = requests.get(API, headers=HEADERS)
-print resp_.content
-```
-
-{% endtabs %}
-
 
 ## 获取数据项
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/table/:table_id/record/:record_id/`
+`GET https://cloud.minapp.com/userve/v1/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
-
-**代码示例**
-
-{% tabs itemFirst="Node" %}
-
-{% content "itemFirst" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/5a2fa9b008443e59e0e678xx/',  // 3906 对应 :table_id, 5a2fa9b008443e59e0e678xx 对应 :record_id
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
-```
-
-{% endtabs %}
-
 
 ## 写入数据
 
 **接口**
 
-`POST https://cloud.minapp.com/oserve/v1/table/:table_id/record/`
+`POST https://cloud.minapp.com/userve/v1/table/:table_id/record/`
 
 其中 `:table_id` 需替换为你的数据表 ID
 
@@ -209,37 +119,6 @@ Content-Type: `application/json`
 > **info**
 > 插入的数据要与预先在知晓云平台设定的数据类型一致
 
-**代码示例**
-
-{% tabs insertNode="Node" %}
-
-{% content "insertNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/',  // 3906 对应 :table_id
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    name: 'nickname',
-    desc: ['description'],
-    price: 19,
-    amount: 19,
-    code: '18814098707'
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% endtabs %}
-
 **状态码说明**
 
 `201` 写入成功，`400` 请求参数有错
@@ -251,7 +130,7 @@ request(opt, function(err, res, body) {
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v1/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/userve/v1/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -266,33 +145,6 @@ Content-Type: `application/json`
 > **info**
 > 更新的数据要与预先在知晓云平台设定的数据类型一致
 
-**代码示例**
-
-{% tabs updateNode="Node" %}
-
-{% content "updateNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/5a6ee2ab4a7baa1fc083e3xx',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
-  method: 'PUT',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    name: 'nickname'
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% endtabs %}
-
 **状态码说明**
 
 `201` 写入成功，`400` 请求参数有错
@@ -305,33 +157,9 @@ request(opt, function(err, res, body) {
 
 **接口**
 
-`DELETE https://cloud.minapp.com/oserve/v1/table/:table_id/record/:record_id/`
+`DELETE https://cloud.minapp.com/userve/v1/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
-
-**代码示例**
-
-{% tabs deleteNode="Node" %}
-
-{% content "deleteNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/5a6ee2ab4a7baa1fc083e3xx/',// 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
-  method: 'DELETE',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -340,11 +168,11 @@ request(opt, function(err, res, body) {
 
 ## 数据原子性更新
 
-当请求同时对一个数据进行修改时，原子性更新使得冲突和覆盖导致的数据不正确的情况不会出现，目前支持的数据类型是**数字类型**和**数字类型**
+当请求同时对一个数据进行修改时，原子性更新使得冲突和覆盖导致的数据不正确的情况不会出现，目前支持的数据类型是**数字类型**和**数组类型**
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v1/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/userve/v1/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -415,38 +243,6 @@ Content-Type: `application/json`
   }
 }
 ```
-
-**代码示例**
-
-{% tabs atomicNode="Node" %}
-
-{% content "atomicNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/5a33406909a805412e3169xx/',  // 3906 对应 :table_id, 5a33406909a805412e3169xx 对应 :record_id
-  method: 'PUT',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    desc: {
-      "$append": ['atomic data']
-    },
-    price: {
-      "$incr_by": -1
-    }
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% endtabs %}
 
 **状态码说明**
 
