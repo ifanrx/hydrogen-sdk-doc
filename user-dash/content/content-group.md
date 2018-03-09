@@ -10,11 +10,14 @@
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/content/1/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/content/1/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -47,11 +50,18 @@ https://cloud.minapp.com/userve/v1/content/1/
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/content/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/content/',{
+  params: {
+    name: '内容库1'
+  }
+}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -68,7 +78,7 @@ https://cloud.minapp.com/userve/v1/content/
   "objects": [
     {
       "id": 1,
-      "name": "内容库",
+      "name": "内容库1",
       "acl_gids": [],
       "created_at": 1489137188,
       "updated_at": 1495769882
@@ -94,15 +104,17 @@ Content-Type: `application/json`
 
 **代码示例**
 
-```
-curl -X POST \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{
-      "name": "Content Group",
-      "acl_gids": [1, 2]
-    }' \
-https://cloud.minapp.com/userve/v1/content/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.post('https://cloud.minapp.com/userve/v1/content/', {
+  "name": "Content Group",
+  "acl_gids": [1, 2]
+}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -133,14 +145,16 @@ https://cloud.minapp.com/userve/v1/content/
 
 **代码示例**
 
-```
-curl -X PUT \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{
-      "name": "Test Group"
-    }' \
-https://cloud.minapp.com/userve/v1/content/2/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.put('https://cloud.minapp.com/userve/v1/content/2/', {
+  "name": "Test Group"
+}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -171,11 +185,14 @@ https://cloud.minapp.com/userve/v1/content/2/
 
 **代码示例**
 
-```
-curl -X DELETE \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/content/2/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.delete('https://cloud.minapp.com/userve/v1/content/2/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **状态码说明**

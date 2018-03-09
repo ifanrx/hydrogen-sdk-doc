@@ -16,12 +16,14 @@ Content-Type: `application/json`
 
 **代码示例**
 
-```
-curl -X POST \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{"name": "Category"}' \
-https://cloud.minapp.com/userve/v1/file-category/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.post('https://cloud.minapp.com/userve/v1/file-category/', {"name": "Category"}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **状态码说明**
@@ -39,11 +41,14 @@ https://cloud.minapp.com/userve/v1/file-category/
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d2a78/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d2a78/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -78,13 +83,14 @@ Content-Type: `application/json`
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--G \
--d order_by=-created_at \
-https://cloud.minapp.com/userve/v1/file-category/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/file-category/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -123,12 +129,14 @@ https://cloud.minapp.com/userve/v1/file-category/
 
 **代码示例**
 
-```
-curl -X PUT \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{"name": "category"}' \
-https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d2a78/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.put('https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d2a78/', {"name": "Category"}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -157,11 +165,14 @@ https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d2a78/
 
 **代码示例**
 
-```
-curl -X DELETE \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d2a78/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.delete('https://cloud.minapp.com/userve/v1/file-category/5a1ba9c1fff1d651135e5ff1/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **状态码说明**

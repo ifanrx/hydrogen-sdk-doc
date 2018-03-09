@@ -12,11 +12,14 @@
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/content/1/text/1/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/content/1/text/1/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -68,11 +71,14 @@ https://cloud.minapp.com/userve/v1/content/1/text/1/
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/content/1/text/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/content/1/text/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -141,12 +147,14 @@ Content-Type: `application/json`
 
 **代码示例**
 
-```
-curl -X POST \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{"title": "Test Title"}' \
-https://cloud.minapp.com/userve/v1/content/1/text/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.post('https://cloud.minapp.com/userve/v1/content/1/text/', {"title": "Test Title"}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -185,12 +193,14 @@ https://cloud.minapp.com/userve/v1/content/1/text/
 
 **代码示例**
 
-```
-curl -X PUT \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{"name": "Test Category"}' \
-https://cloud.minapp.com/userve/v1/content/1/text/2/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.put('https://cloud.minapp.com/userve/v1/content/1/text/2/', {"name": "Test name"}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -222,11 +232,14 @@ https://cloud.minapp.com/userve/v1/content/1/text/2/
 
 **代码示例**
 
-```
-curl -X DELETE \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/content/1/text/1/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.delete('https://cloud.minapp.com/userve/v1/content/1/text/1/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **状态码说明**

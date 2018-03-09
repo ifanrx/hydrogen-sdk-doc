@@ -19,15 +19,26 @@ Content-Type: `application/json`
 
 **代码示例**
 
-```
-curl -X PATCH \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '[
-      {"op": "add", "path": "/membership", "users": [5, 6], "groups": [53,54]},
-      {"op": "remove", "path": "/membership", "users": [5, 6], "groups":[53,54]}
-    ]' \
-https://cloud.minapp.com/userve/v1/miniapp/group/membership/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.patch('https://cloud.minapp.com/userve/v1/miniapp/group/membership/',
+  [{
+    op: 'add',
+    path: '/membership',
+    users: [5, 6],
+    groups: [53, 54]
+  },
+    {
+      op: 'remove',
+      path: '/membership',
+      users: [5, 6],
+      groups: [53, 54]
+    }]).then(res => {
+  console.log(res)
+})
 ```
 
 **状态码说明**

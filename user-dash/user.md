@@ -23,16 +23,21 @@
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--G \
--d nickname__contains=Tom \
--d gender=1 \
--d created_at__gt=1483228800 \
--d order_by=-created_at \
-https://cloud.minapp.com/userve/v1/miniapp/user-profile/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/miniapp/user-profile/', {
+  params: {
+    nickname__contains: 'Tom',
+    gender: '1',
+    created_at__gt: '1483228800',
+    order_by: '-created_at',
+  }
+}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -76,13 +81,16 @@ https://cloud.minapp.com/userve/v1/miniapp/user-profile/
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--G \
--d user_id=36619758 \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/miniapp/user-profile/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/miniapp/user-profile/', {
+  params: {user_id: '36619758'},
+}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**

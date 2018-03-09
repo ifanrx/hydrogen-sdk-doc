@@ -10,11 +10,14 @@
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/content/1/category/1/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/content/1/category/1/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -72,11 +75,15 @@ https://cloud.minapp.com/userve/v1/content/1/category/1/
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/content/1/category/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/content/1/category/').then(res => {
+  console.log(res.data)
+})
+
 ```
 
 **返回示例**
@@ -146,14 +153,14 @@ Content-Type: `application/json`
 
 **代码示例**
 
-```
-curl -X POST \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{
-      "name": "分类1",
-    }' \
-https://cloud.minapp.com/userve/v1/content/1/category/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.post('https://cloud.minapp.com/userve/v1/content/1/category/', {"name": "分类1",}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -185,14 +192,14 @@ https://cloud.minapp.com/userve/v1/content/1/category/
 
 **代码示例**
 
-```
-curl -X PUT \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{
-      "name": "Test Category"
-    }' \
-https://cloud.minapp.com/userve/v1/content/1/category/3/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.put('https://cloud.minapp.com/userve/v1/content/1/category/3/', {"name": "分类1",}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -223,11 +230,14 @@ https://cloud.minapp.com/userve/v1/content/1/category/3/
 
 **代码示例**
 
-```
-curl -X DELETE \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/content/1/category/1/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.delete('https://cloud.minapp.com/userve/v1/content/1/category/1/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **状态码说明**
