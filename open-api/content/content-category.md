@@ -216,7 +216,9 @@ var options = { method: 'POST',
   headers: 
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
-  body: '{\n      "name": "分类1",\n    }' };
+  body: { name: "分类1" },
+  json: true
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);

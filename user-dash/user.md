@@ -31,8 +31,8 @@ var axios = require('axios').create({
 axios.get('https://cloud.minapp.com/userve/v1/miniapp/user-profile/', {
   params: {
     nickname__contains: 'Tom',
-    gender: '1',
-    created_at__gt: '1483228800',
+    gender: 1,
+    created_at__gt: 1483228800,
     order_by: '-created_at',
   }
 }).then(res => {
@@ -87,7 +87,7 @@ var axios = require('axios').create({
 })
 
 axios.get('https://cloud.minapp.com/userve/v1/miniapp/user-profile/', {
-  params: {user_id: '36619758'},
+  params: {user_id: 36619758},
 }).then(res => {
   console.log(res.data)
 })
