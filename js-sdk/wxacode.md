@@ -30,6 +30,21 @@
 
 此类型适用于需要的码数量较少的业务场景。此时生成的小程序码，永久有效，数量有限（与 `wxaqrcode` 生成的小程序二维码加起来不超过 100000），请谨慎使用。用户扫描该码进入小程序后，将直接进入 path 对应的页面。
 
+**请求示例**
+
+```js
+  const params = {
+    path: '../user/index?id=123456',
+    width: 250
+  }
+
+  wx.BaaS.getWXACode('wxacode', params).then(res => {
+    this.setData({imageBase64: res.image})
+  }).catch(err => {
+    console.log(err)
+  })
+```
+
 ## 获取小程序码（数量无限制）
 
 设置 `type` 为 `wxacodeunlimit`，`params` 支持以下配置项：
@@ -44,6 +59,22 @@
 
 此类型适用于需要的码数量极多，或仅临时使用的业务场景。此时生成的小程序码，永久有效，数量暂无限制。用户扫描该码进入小程序后，开发者需在对应页面获取的码中 scene 字段的值，再做处理逻辑。
 
+**请求示例**
+
+```js
+  const params = {
+    scene: 'A',
+    page: 'pages/index/index',
+    width: 250
+  }
+
+  wx.BaaS.getWXACode('wxacodeunlimit', params).then(res => {
+    this.setData({imageBase64: res.image})
+  }).catch(err => {
+    console.log(err)
+  })
+```
+
 ## 获取小程序二维码（数量有限）
 
 设置 `type` 为 `wxaqrcode`，`params` 支持以下配置项：
@@ -55,7 +86,22 @@
 
 此类型适用于需要的码数量较少的业务场景。此时生成的小程序码，永久有效，数量有限（与 `wxacode` 生成的小程序二维码加起来不超过 100000），请谨慎使用。用户扫描该码进入小程序后，将直接进入 path 对应的页面。
 
-## 接口返回和请求示例
+**请求示例**
+
+```js
+  const params = {
+    path: '../user/index?id=123456',
+    width: 250
+  }
+
+  wx.BaaS.getWXACode('wxaqrcode', params).then(res => {
+    this.setData({imageBase64: res.image})
+  }).catch(err => {
+    console.log(err)
+  })
+```
+
+## 接口返回
 
 **返回字段说明**
 
@@ -71,24 +117,11 @@
 - 设置 `type='wxacode'` 或 `type='wxaqrode'`时，接口生成的码数大于限制
 - 设置 `type='wxacodeunlimit'` 时，所传的 page 页面不存在，或者小程序没有发布
 
-**请求示例**
-
-```js
-  const params = {
-    path: '../user/index?id=123456',
-    width: 250
-  }
-
-  wx.BaaS.getWXACode('wxacode', params).then(res => {
-    this.setData({ imageBase64: res.image})
-  }).catch(err => {
-    console.log(err)
-  })
-```
+**展示经过 base64 编码的二维码**
 
 ```html
 <view style="text-align: center;">
-  <image src="{{ imageBase64 }}" style="width: 250px; height: 250px" />
+  <image src="{{imageBase64}}" style="width: 250px; height: 250px" />
 </view
 ```
 
