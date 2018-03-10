@@ -91,6 +91,9 @@
           <a href="/js-sdk/wechat-decrypt.md/">微信加密数据解密</a>
         </li>
         <li>
+          <a href="/js-sdk/wxacode.md/">获取二维码</a>
+        </li>
+        <li>
           <a href="/js-sdk/error-code.md/">错误码详解</a>
         </li>
         <li>
