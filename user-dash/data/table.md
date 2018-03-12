@@ -108,25 +108,27 @@
 
 **代码示例**
 
-```
-curl -X POST \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{
-      "name": "Table199",
-      "schema": {
-        "fields": [
-          {
-            "name": "String",
-            "type": "string"
-          }
-        ]
-      },
-      "row_read_perm": ["user:*"],
-      "row_write_perm": ["user:*"],
-      "write_perm": ["user:*"]
-    }' \
-https://cloud.minapp.com/userve/v1/table/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.post('https://cloud.minapp.com/userve/v1/table/', {
+  name: 'Table',
+  schema: {
+    fields: [
+      {
+        name: 'String',
+        type: 'string'
+      }
+    ]
+  },
+  row_read_perm: ['user:*'],
+  row_write_perm: ['user:*'],
+  write_perm: ['user:*']
+}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -212,11 +214,14 @@ https://cloud.minapp.com/userve/v1/table/
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/table/1/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/table/1/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -269,11 +274,18 @@ https://cloud.minapp.com/userve/v1/table/1/
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/table/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/table/', {
+  params: {
+    name: 'test',
+  }
+}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -334,14 +346,16 @@ https://cloud.minapp.com/userve/v1/table/
 
 **代码示例**
 
-```
-curl -X PUT \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{
-      "name": "table"
-    }' \
-https://cloud.minapp.com/userve/v1/table/1/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.put('https://cloud.minapp.com/userve/v1/table/1/', {
+  name: 'table'
+}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -389,11 +403,14 @@ https://cloud.minapp.com/userve/v1/table/1/
 
 **代码示例**
 
-```
-curl -X DELETE \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/table/1/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.delete('https://cloud.minapp.com/userve/v1/table/1/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **状态码说明**

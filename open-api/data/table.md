@@ -108,7 +108,7 @@
 
 **代码示例**
 
-{% tabs getTableListCurl="Curl"%}
+{% tabs getTableListCurl="Curl", getTableListNode="Node" %}
 
 {% content "getTableListCurl" %}
 
@@ -131,6 +131,31 @@ curl -X POST \
       "write_perm": ["user:*"]
     }' \
 https://cloud.minapp.com/oserve/v1/table/
+```
+{% content "getTableListNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://cloud.minapp.com/oserve/v1/table/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
+  body: 
+   { name: 'Table199',
+     schema: { fields: [ { name: 'String', type: 'string' } ] },
+     row_read_perm: [ 'user:*' ],
+     row_write_perm: [ 'user:*' ],
+     write_perm: [ 'user:*' ] },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
 ```
 
 {% endtabs %}
@@ -218,7 +243,7 @@ https://cloud.minapp.com/oserve/v1/table/
 
 **代码示例**
 
-{% tabs getTableCurl="Curl"%}
+{% tabs getTableCurl="Curl", getTableNode="Node" %}
 
 {% content "getTableCurl" %}
 
@@ -229,6 +254,23 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/table/1/
 ```
 
+{% content "getTableNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://cloud.minapp.com/oserve/v1/table/1/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
 {% endtabs %}
 
 **返回示例**
@@ -281,7 +323,7 @@ https://cloud.minapp.com/oserve/v1/table/1/
 
 **代码示例**
 
-{% tabs getTableListCurl="Curl"%}
+{% tabs getTableListCurl="Curl", getTableListNode="Node" %}
 
 {% content "getTableListCurl" %}
 
@@ -290,6 +332,24 @@ curl -X GET \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/oserve/v1/table/
+```
+
+{% content "getTableListNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://cloud.minapp.com/oserve/v1/table/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
 {% endtabs %}
@@ -352,7 +412,7 @@ https://cloud.minapp.com/oserve/v1/table/
 
 **代码示例**
 
-{% tabs getTableCurl="Curl"%}
+{% tabs getTableCurl="Curl", getTableNode="Node" %}
 
 {% content "getTableCurl" %}
 
@@ -364,6 +424,26 @@ curl -X PUT \
       "name": "table"
     }' \
 https://cloud.minapp.com/oserve/v1/table/1/
+```
+
+{% content "getTableNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'PUT',
+  url: 'https://cloud.minapp.com/oserve/v1/table/1/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
+  body: { name: 'table' },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
 {% endtabs %}

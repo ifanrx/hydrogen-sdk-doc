@@ -10,7 +10,7 @@
 
 **代码示例**
 
-{% tabs getContentGroupCurl="Curl"%}
+{% tabs getContentGroupCurl="Curl", getContentGroupNode="Node" %}
 
 {% content "getContentGroupCurl" %}
 
@@ -19,6 +19,24 @@ curl -X GET \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/oserve/v1/content/1/
+```
+
+{% content "getContentGroupNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://cloud.minapp.com/oserve/v1/content/1/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
 {% endtabs %}
@@ -53,7 +71,7 @@ https://cloud.minapp.com/oserve/v1/content/1/
 
 **代码示例**
 
-{% tabs getContentGroupListCurl="Curl"%}
+{% tabs getContentGroupListCurl="Curl", getContentGroupListNode="Node" %}
 
 {% content "getContentGroupListCurl" %}
 
@@ -62,6 +80,24 @@ curl -X GET \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/oserve/v1/content/
+```
+
+{% content "getContentGroupListNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://cloud.minapp.com/oserve/v1/content/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
 {% endtabs %}
@@ -106,7 +142,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs createContentGroupCurl="Curl"%}
+{% tabs createContentGroupCurl="Curl", createContentGroupNode="Node"%}
 
 {% content "createContentGroupCurl" %}
 
@@ -120,6 +156,28 @@ curl -X POST \
     }' \
 https://cloud.minapp.com/oserve/v1/content/
 ```
+
+{% content "createContentGroupNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://cloud.minapp.com/oserve/v1/content/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
+  body: { name: 'Content Group', acl_gids: [ 1, 2 ] },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+```
+
 
 {% endtabs %}
 
@@ -151,7 +209,7 @@ https://cloud.minapp.com/oserve/v1/content/
 
 **代码示例**
 
-{% tabs updateContentGroupCurl="Curl"%}
+{% tabs updateContentGroupCurl="Curl", updateContentGroupNode="Node"%}
 
 {% content "updateContentGroupCurl" %}
 
@@ -163,6 +221,26 @@ curl -X PUT \
       "name": "Test Group"
     }' \
 https://cloud.minapp.com/oserve/v1/content/2/
+```
+
+{% content "updateContentGroupNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'PUT',
+  url: 'https://cloud.minapp.com/oserve/v1/content/2/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
+  body: { name: 'Test Group' },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
 {% endtabs %}
@@ -195,7 +273,7 @@ https://cloud.minapp.com/oserve/v1/content/2/
 
 **代码示例**
 
-{% tabs deleteContentGroupCurl="Curl"%}
+{% tabs deleteContentGroupCurl="Curl", deleteContentGroupNode="Node" %}
 
 {% content "deleteContentGroupCurl" %}
 
@@ -204,6 +282,25 @@ curl -X DELETE \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/oserve/v1/content/2/
+```
+
+{% content "deleteContentGroupNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'DELETE',
+  url: 'https://cloud.minapp.com/oserve/v1/content/2/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
 ```
 
 {% endtabs %}

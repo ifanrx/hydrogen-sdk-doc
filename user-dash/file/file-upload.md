@@ -54,15 +54,17 @@ Content-Type: `application/json`
 
 **代码示例**
 
-```
-curl -X POST \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{
-      "filename":"crop.gif",
-      "categories":["5a1ba7b708443e7fc5f2fb18"]
-    }' \
-https://cloud.minapp.com/userve/v1/upload/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.post('https://cloud.minapp.com/userve/v1/upload/', {
+  filename: 'crop.gif',
+  categories: ['5a1ba7b708443e7fc5f2fb18']
+}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -105,14 +107,19 @@ Content-Type: `multipart/form-data`
 
 **代码示例**
 
-```
-curl -X POST \
--H "cookie: {{ cookie }}" \
--H "Content-Type: multipart/form-data" \
--F authorization="UPYUN allenzhang:MzmYCcWVjrWoeovC4+tM5Bgwusg=" \
--F file=@"filename" \
--F policy="eyJkYXRlIjogIldlZCwgMDYgRGVjIDIwMTcgMDM6MzI6MzMgR01UIiwgIm5vdGlmeS11cmwiOiAiaHR0cHM6Ly9zc28uaWZhbnIuY29tL2V4dGFwaS9oeWRyb2dlbi91cHl1bi9jYWxsYmFjay8yODcvNWEyNzY0ZDFmZmYxZDYxYWQwZWNhMjQ1LyIsICJidWNrZXQiOiAiY2xvdWQtbWluYXBwLTI4NyIsICJzYXZlLWtleSI6ICIxZU1RUmxrSndoZ2FNaUNnLmdpZiIsICJleHBpcmF0aW9uIjogMTUxMjUzMTQ1M30=" \
-https://v0.api.upyun.com/cloud-minapp-287
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+let formData = new FormData()
+formData.append('file', fileObj)
+formData.append('policy', 'eyJkYXRlIjogIldlZCwgMDYgRGVjIDIwMTcgMDM6MzI6MzMgR01UIiwgIm5vdGlmeS11cmwiOiAiaHR0cHM6Ly9zc28uaWZhbnIuY29tL2V4dGFwaS9oeWRyb2dlbi91cHl1bi9jYWxsYmFjay8yODcvNWEyNzY0ZDFmZmYxZDYxYWQwZWNhMjQ1LyIsICJidWNrZXQiOiAiY2xvdWQtbWluYXBwLTI4NyIsICJzYXZlLWtleSI6ICIxZU1RUmxrSndoZ2FNaUNnLmdpZiIsICJleHBpcmF0aW9uIjogMTUxMjUzMTQ1M30')
+formData.append('authorization', 'UPYUN allenzhang:MzmYCcWVjrWoeovC4+tM5Bgwusg=')
+
+axios.post('https://v0.api.upyun.com/cloud-minapp-287', formData, {
+  'headers': {'Content-Type': 'multipart/form-data'},
+})
 ```
 
 **返回示例**

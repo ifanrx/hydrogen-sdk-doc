@@ -31,13 +31,14 @@ Content-Type: `application/json`
 
 执行
 
-```
-curl -X GET \
--H "Authorization: Bearer token" \
--H "Content-Type: application/json" \
--G \
---data-urlencode 'where={"price": {"$eq": 10}}' \
-https://cloud.minapp.com/userve/v1/table/1/record/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/table/1/record/', {params: {where: {price: {$eq: 10}}}}).then(res => {
+  console.log(res.data)
+})
 ```
 
 该接口完整支持的查询操作符如下：

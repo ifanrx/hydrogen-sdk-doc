@@ -10,11 +10,14 @@
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/user-group/47/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/user-group/47/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -50,13 +53,14 @@ https://cloud.minapp.com/userve/v1/user-group/47/
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--G \
--d parent_id=1 \
-https://cloud.minapp.com/userve/v1/user-group/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/user-group/').then(res => {
+  console.log(res.data)
+})
 ```
 
 ## 创建用户组
@@ -76,12 +80,14 @@ Content-Type: `application/json`
 
 **代码示例**
 
-```
-curl -X POST \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{"name": "User Group"}' \
-https://cloud.minapp.com/userve/v1/user-group/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.post('https://cloud.minapp.com/userve/v1/user-group/', {name: 'User Group'}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **状态码说明**
@@ -99,12 +105,14 @@ https://cloud.minapp.com/userve/v1/user-group/
 
 **代码示例**
 
-```
-curl -X PUT \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{"name": "user group"}' \
-https://cloud.minapp.com/userve/v1/user-group/47/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.put('https://cloud.minapp.com/userve/v1/user-group/47/', {name: 'user group'}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **状态码说明**
@@ -120,11 +128,14 @@ https://cloud.minapp.com/userve/v1/user-group/47/
 
 **代码示例**
 
-```
-curl -X DELETE \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/user-group/47/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.delete('https://cloud.minapp.com/userve/v1/user-group/47/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **状态码说明**
@@ -140,11 +151,18 @@ https://cloud.minapp.com/userve/v1/user-group/47/
 
 **代码示例**
 
-```
-curl -X DELETE \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/user-group/?id__in=48,50
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.delete('https://cloud.minapp.com/userve/v1/user-group/', {
+  params: {
+    id__in: '48,50'
+  }
+}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **状态码说明**

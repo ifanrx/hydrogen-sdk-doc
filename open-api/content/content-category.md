@@ -10,7 +10,7 @@
 
 **代码示例**
 
-{% tabs getContentCategoryCurl="Curl"%}
+{% tabs getContentCategoryCurl="Curl", getContentCategoryNode="Node" %}
 
 {% content "getContentCategoryCurl" %}
 
@@ -21,6 +21,23 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/content/1/category/1/
 ```
 
+{% content "getContentCategoryNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://cloud.minapp.com/oserve/v1/content/1/category/1/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
 {% endtabs %}
 
 **返回示例**
@@ -78,7 +95,7 @@ https://cloud.minapp.com/oserve/v1/content/1/category/1/
 
 **代码示例**
 
-{% tabs getContentCategoryListCurl="Curl"%}
+{% tabs getContentCategoryListCurl="Curl", getContentCategoryListNode="Node" %}
 
 {% content "getContentCategoryListCurl" %}
 
@@ -89,6 +106,23 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/content/1/category/
 ```
 
+{% content "getContentCategoryListNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://cloud.minapp.com/oserve/v1/content/1/category/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
 {% endtabs %}
 
 **返回示例**
@@ -158,7 +192,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs createContentCategoryCurl="Curl"%}
+{% tabs createContentCategoryCurl="Curl", createContentCategoryNode="Node" %}
 
 {% content "createContentCategoryCurl" %}
 
@@ -170,6 +204,27 @@ curl -X POST \
       "name": "分类1",
     }' \
 https://cloud.minapp.com/oserve/v1/content/1/category/
+```
+
+{% content "createContentCategoryNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://cloud.minapp.com/oserve/v1/content/1/category/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
+  body: { name: "分类1" },
+  json: true
+};
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
 {% endtabs %}
@@ -203,7 +258,7 @@ https://cloud.minapp.com/oserve/v1/content/1/category/
 
 **代码示例**
 
-{% tabs updateContentCategoryCurl="Curl"%}
+{% tabs updateContentCategoryCurl="Curl", updateContentCategoryNode="Node" %}
 
 {% content "updateContentCategoryCurl" %}
 
@@ -215,6 +270,26 @@ curl -X PUT \
       "name": "Test Category"
     }' \
 https://cloud.minapp.com/oserve/v1/content/1/category/3/
+```
+
+{% content "updateContentCategoryNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'PUT',
+  url: 'https://cloud.minapp.com/oserve/v1/content/1/category/3/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
+  body: { name: 'Test Category' },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
 {% endtabs %}
@@ -247,7 +322,7 @@ https://cloud.minapp.com/oserve/v1/content/1/category/3/
 
 **代码示例**
 
-{% tabs deleteContentCategoryCurl="Curl"%}
+{% tabs deleteContentCategoryCurl="Curl", deleteContentCategoryNode="Node" %}
 
 {% content "deleteContentCategoryCurl" %}
 
@@ -256,6 +331,25 @@ curl -X DELETE \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/oserve/v1/content/1/category/1/
+```
+
+{% content "deleteContentCategoryNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'DELETE',
+  url: 'https://cloud.minapp.com/oserve/v1/content/1/category/1/',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
 ```
 
 {% endtabs %}

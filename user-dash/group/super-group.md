@@ -10,11 +10,14 @@
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/user-supergroup/52/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/user-supergroup/52/').then(res => {
+  console.log(res)
+})
 ```
 
 **返回示例**
@@ -48,12 +51,14 @@ https://cloud.minapp.com/userve/v1/user-supergroup/52/
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--G \
-https://cloud.minapp.com/userve/v1/user-supergroup/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/user-supergroup/').then(res => {
+  console.log(res)
+})
 ```
 
 ## 创建组集
@@ -73,12 +78,14 @@ Content-Type: `application/json`
 
 **代码示例**
 
-```
-curl -X POST \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{"name": "Super Group", "children": [51]}' \
-https://cloud.minapp.com/userve/v1/user-supergroup/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.post('https://cloud.minapp.com/userve/v1/user-supergroup/', {name: 'Super Group', children: [51]}).then(res => {
+  console.log(res)
+})
 ```
 
 **状态码说明**
@@ -103,12 +110,14 @@ https://cloud.minapp.com/userve/v1/user-supergroup/
 
 **代码示例**
 
-```
-curl -X PUT \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--d '{"name": "super group 3", "children": [51]}' \
-https://cloud.minapp.com/userve/v1/user-supergroup/52/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.post('https://cloud.minapp.com/userve/v1/user-supergroup/', {name: 'Super Group', children: [51]}).then(res => {
+  console.log(res)
+})
 ```
 
 **返回示例**
@@ -134,11 +143,14 @@ https://cloud.minapp.com/userve/v1/user-supergroup/52/
 
 **代码示例**
 
-```
-curl -X DELETE \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/user-supergroup/52/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.delete('https://cloud.minapp.com/userve/v1/user-supergroup/52/').then(res => {
+  console.log(res)
+})
 ```
 
 **状态码说明**
@@ -154,11 +166,18 @@ https://cloud.minapp.com/userve/v1/user-supergroup/52/
 
 **代码示例**
 
-```
-curl -X DELETE \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/user-supergroup/?id__in=58,56
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.delete('https://cloud.minapp.com/userve/v1/user-supergroup/',{
+  params: {
+    id__in: '48,50'
+  }
+}).then(res => {
+  console.log(res)
+})
 ```
 
 **状态码说明**

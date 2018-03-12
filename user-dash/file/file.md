@@ -10,11 +10,14 @@
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/file/5a1ba9c1fff1d651135e5ff1/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/file/5a1ba9c1fff1d651135e5ff1/').then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -58,14 +61,19 @@ Content-Type: `application/json`
 
 **代码示例**
 
-```
-curl -X GET \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
--G \
--d order_by=-created_at \
--d category=5a1ba7b708443e7fc5f2fb18 \
-https://cloud.minapp.com/userve/v1/file/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/file/', {
+  params: {
+    order_by: '-created_at',
+    category: '5a1ba7b708443e7fc5f2fb18'
+  }
+}).then(res => {
+  console.log(res.data)
+})
 ```
 
 ## 删除文件
@@ -78,11 +86,14 @@ https://cloud.minapp.com/userve/v1/file/
 
 **代码示例**
 
-```
-curl -X DELETE \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/file/5a1ba9c1fff1d651135e5ff1/
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.delete('https://cloud.minapp.com/userve/v1/file/5a1ba9c1fff1d651135e5ff1/').then(res => {
+  console.log(res.data)
+})
 ```
 **状态码说明**
 
@@ -97,11 +108,18 @@ https://cloud.minapp.com/userve/v1/file/5a1ba9c1fff1d651135e5ff1/
 
 **代码示例**
 
-```
-curl -X DELETE \
--H "cookie: {{ cookie }}" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/userve/v1/file/?id__in=5a1ba9c1fff1d651135e5ff1,59ca3d275f281f58523fc47a
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.delete('https://cloud.minapp.com/userve/v1/file/', {
+  params: {
+    id__in: '5a1ba9c1fff1d651135e5ff1,59ca3d275f281f58523fc47a'
+  }
+}).then(res => {
+  console.log(res.data)
+})
 ```
 
 **状态码说明**
