@@ -12,8 +12,8 @@ Content-Type: `application/json`
 | :-------| :----- | :-- | :-- |
 | op      | String | N   | 将要执行的操作，即 `add` 为将用户加入用户组；`remove` 将用户从用户组中移出 |
 | path    | String | N   | 访问的路径，默认为 `/membership` |
-| users   | String | N   | 用户的 user_id 列表，列表不能为空 |
-| groups  | String | N   | 用户组 ID 列表，列表不能为空 |
+| users   | Integer Array | N   | 用户的 user_id 列表，列表不能为空 |
+| groups  | Integer Array | N   | 用户组 ID 列表，列表不能为空 |
 
 提交的数据是一个数组，数组中包含一系列由上面参数组成的操作。
 

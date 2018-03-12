@@ -97,18 +97,29 @@ axios.get('https://cloud.minapp.com/userve/v1/miniapp/user-profile/', {
 
 ```json
 {
-  "avatar": "https://media.ifanrusercontent.com/media/tavatar/55/c3/55c3dbebcc61891be10d29ded808c84a01dcf864.jpg",
-  "city": "Guangzhou",
-  "country": "China",
-  "created_at": 1504504504,
-  "gender": 1,
-  "nickname": "PCG",
-  "openid": "onzns0KsLKFyg3-VcW0GwTE652_k",
-  "unionid": "onzns0KsLKFyg3-VcW0GwTE652_k",
-  "province": "Guangdong",
-  "user_group": [
-      137
-  ],
-  "user_id": 36619758
+  "meta": {
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total_count": 1
+  },
+  "objects": [
+    {
+      "avatar": "https://media.ifanrusercontent.com/media/tavatar/55/c3/55c3dbebcc61891be10d29ded808c84a01dcf864.jpg",
+      "city": "Guangzhou",
+      "country": "China",
+      "created_at": 1504504504,
+      "gender": 1,
+      "nickname": "PCG",
+      "openid": "onzns0KsLKFyg3-VcW0GwTE652_k",
+      "unionid": "onzns0KsLKFyg3-VcW0GwTE652_k",
+      "province": "Guangdong",
+      "user_group": [
+          137
+      ],
+      "user_id": 36619758
+    }
+  ]
 }
 ```
