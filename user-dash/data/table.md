@@ -112,18 +112,18 @@ var axios = require('axios').create({
 })
 
 axios.post('https://cloud.minapp.com/userve/v1/table/', {
-  "name": "Table199",
-  "schema": {
-    "fields": [
+  name: 'Table',
+  schema: {
+    fields: [
       {
-        "name": "String",
-        "type": "string"
+        name: 'String',
+        type: 'string'
       }
     ]
   },
-  "row_read_perm": ["user:*"],
-  "row_write_perm": ["user:*"],
-  "write_perm": ["user:*"]
+  row_read_perm: ['user:*'],
+  row_write_perm: ['user:*'],
+  write_perm: ['user:*']
 }).then(res => {
   console.log(res.data)
 })
@@ -350,7 +350,7 @@ var axios = require('axios').create({
 })
 
 axios.put('https://cloud.minapp.com/userve/v1/table/1/', {
-  "name": "table"
+  name: 'table'
 }).then(res => {
   console.log(res.data)
 })

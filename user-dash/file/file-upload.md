@@ -60,8 +60,8 @@ var axios = require('axios').create({
 })
 
 axios.post('https://cloud.minapp.com/userve/v1/upload/', {
-  "filename": "crop.gif",
-  "categories": ["5a1ba7b708443e7fc5f2fb18"]
+  filename: 'crop.gif',
+  categories: ['5a1ba7b708443e7fc5f2fb18']
 }).then(res => {
   console.log(res.data)
 })

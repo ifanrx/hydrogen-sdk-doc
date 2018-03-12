@@ -110,7 +110,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.put('https://cloud.minapp.com/userve/v1/user-group/47/', {name: "user group"}).then(res => {
+axios.put('https://cloud.minapp.com/userve/v1/user-group/47/', {name: 'user group'}).then(res => {
   console.log(res.data)
 })
 ```

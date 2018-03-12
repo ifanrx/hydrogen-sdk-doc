@@ -36,7 +36,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/table/1/record/', {params: {where: {"price": {"$eq": 10}}}}).then(res => {
+axios.get('https://cloud.minapp.com/userve/v1/table/1/record/', {params: {where: {price: {$eq: 10}}}}).then(res => {
   console.log(res.data)
 })
 ```

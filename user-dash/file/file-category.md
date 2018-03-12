@@ -21,7 +21,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/file-category/', {"name": "Category"}).then(res => {
+axios.post('https://cloud.minapp.com/userve/v1/file-category/', {name: 'Category'}).then(res => {
   console.log(res.data)
 })
 ```
@@ -134,7 +134,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.put('https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d2a78/', {"name": "Category"}).then(res => {
+axios.put('https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d2a78/', {name: 'Category'}).then(res => {
   console.log(res.data)
 })
 ```
