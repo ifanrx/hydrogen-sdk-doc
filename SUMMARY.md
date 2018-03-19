@@ -44,6 +44,7 @@
     * [模板消息](js-sdk/template-message.md)
     * [微信加密数据解密](js-sdk/wechat-decrypt.md)
     * [获取二维码](js-sdk/wxacode.md)
+    * [调用云函数](js-sdk/invoke-function.md)
     * [错误码详解](js-sdk/error-code.md)
     * [SDK 下载](js-sdk/download-sdk.md)
     * [更新日志](https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md)
