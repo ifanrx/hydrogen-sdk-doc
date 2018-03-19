@@ -122,7 +122,7 @@
 ```html
 <view style="text-align: center;">
   <image src="{{imageBase64}}" style="width: 250px; height: 250px" />
-</view
+</view>
 ```
 
 > **info**

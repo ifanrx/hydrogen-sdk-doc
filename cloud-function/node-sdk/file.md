@@ -86,3 +86,39 @@ MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 
 > **info**
 > 删除单个文件，如果权限不足，会返回 401；删除多个文件，如果权限不足，则直接跳过该文件
+
+
+## 上传文件
+
+`MyFile.upload(uploadFile, fileMeta)`
+
+**参数说明**
+
+| 参数        | 类型                   | 必填 | 说明               | 默认值 |
+| :--------- | :--------------------- | :--- | :---------------- | ---- |
+| uploadFile | String or Buffer       |  Y   | 需要上传的文件      | 无 |
+| fileMeta   | Object                 |  N   | 文件 meta 信息，如文件名，分类 ID 等 | `FileMeta对象` |
+
+**FileMeta对象说明**
+
+| 字段名       | 类型   | 必填 | 说明           | 默认值 |
+| :---------- | :----- | :-- | :------------- | :---- |
+| category_id | String |  N  | 文件分类 ID     | ''    |
+| filename    | String |  N  | 文件名          | file.bin |
+| filepath    | String |  N  | 文件路径        | /tmp/file.bin |
+| contentType | String |  N  | 文件 MIME 类型  | application/octet-stream |
+
+**示例代码**
+
+```js
+let MyFile = new wx.BaaS.File()
+
+// 指定文件名上传
+MyFile.upload('/var/log/test.log').then()
+
+// 使用 Buffer 构建文件内容
+MyFile.upload(Buffer.from('this is file content'), {filename: 'test.txt'}).then()
+
+// 上传到指定目录
+MyFile.upload('/var/log/test.log', {category_id: 1}).then()
+```
