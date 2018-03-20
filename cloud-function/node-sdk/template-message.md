@@ -12,8 +12,8 @@ data 是 Object 类型，它包括以下几个属性
 | :-------------- | :----- | :--- | :-- |
 | user_id         | Number | 是   | 用户 ID |
 | template_id     | String | 是   | 模板 ID |
-| submission_type | String | 是   | 标题 |
-| keywords        | Object | 是   | 关键字 |
+| submission_type | String | 是   | 模板消息触发条件，`form_id` 或者 `prepay_id` |
+| keywords        | Object | 是   | 关键字（在微信小程序后台配置）|
 
 **请求示例**
 
@@ -21,7 +21,7 @@ data 是 Object 类型，它包括以下几个属性
 let data = {
   user_id: 23425,
   template_id: "tadfDf23asdi8dfd",
-  submission_type: "email title",
+  submission_type: "form_id",
   keywords: {
     物品名称: {
       value: "书籍",
@@ -40,3 +40,6 @@ BaaS.sendTemplateMessage(data).then(res => {
   // 发送失败
 })
 ```
+
+> **info**
+> 如果 `submission_type = 'form_id'`，请确保在调用 `BaaS.sendTemplateMessage` 前，已在小程序端调用 `wx.BaaS.wxReportTicker`上报模版消息所需的 `formid`
