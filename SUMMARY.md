@@ -15,6 +15,7 @@
     * [用户管理](dashboard/user.md)
     * [支付](dashboard/payment.md)
     * [触发器](dashboard/trigger.md)
+    * [云函数](dashboard/cloud-function.md)
     * [ACL 简介](dashboard/acl.md)
 
 ----
@@ -44,6 +45,7 @@
     * [模板消息](js-sdk/template-message.md)
     * [微信加密数据解密](js-sdk/wechat-decrypt.md)
     * [获取二维码](js-sdk/wxacode.md)
+    * [调用云函数](js-sdk/invoke-function.md)
     * [错误码详解](js-sdk/error-code.md)
     * [SDK 下载](js-sdk/download-sdk.md)
     * [更新日志](https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md)
@@ -90,6 +92,27 @@
         * [用户组与用户的操作](user-dash/group/membership.md)
         * [组集操作](user-dash/group/super-group.md)
     * [用户模块](user-dash/user.md)
+
+----
+
+* [云函数](cloud-function/README.md)
+    * [快速入门](cloud-function/quick-start.md)
+    * [云函数 Node.js SDK](cloud-function/node-sdk/README.md)
+        * [数据表](cloud-function/node-sdk/schema/README.md)
+            * [新增数据项](cloud-function/node-sdk/schema/create-record.md)
+            * [更新数据项](cloud-function/node-sdk/schema/update-record.md)
+            * [删除数据项](cloud-function/node-sdk/schema/delete-record.md)
+            * [获取数据项](cloud-function/node-sdk/schema/get-record-detail.md)
+            * [查询数据项](cloud-function/node-sdk/schema/query.md)
+            * [分页和排序](cloud-function/node-sdk/schema/limit-and-order.md)
+            * [地理位置操作](cloud-function/node-sdk/schema/geo.md)
+        * [内容库](cloud-function/node-sdk/content.md)
+        * [文件](cloud-function/node-sdk/file.md)
+        * [文件分类](cloud-function/node-sdk/file-category.md)
+        * [调用云函数](cloud-function/node-sdk/cloud-function.md)
+        * [发送邮件](cloud-function/node-sdk/email.md)
+        * [发送模板函数](cloud-function/node-sdk/template-message.md)
+        * [网络请求](cloud-function/node-sdk/request.md)
 
 ----
 

@@ -94,6 +94,9 @@
           <a href="/js-sdk/wxacode.md/">获取二维码</a>
         </li>
         <li>
+          <a href="/js-sdk/invoke-function.md/">调用云函数</a>
+        </li>
+        <li>
           <a href="/js-sdk/error-code.md/">错误码详解</a>
         </li>
         <li>
@@ -151,6 +154,19 @@
         </li>
         <li>
           <a href="/user-dash/user.md/">用户模块</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <h3>
+        <a href="/cloud-function/README.md/">云函数</a>
+      </h3>
+      <ul class="doc-cloud-function doc-detail-item">
+        <li>
+          <a href="/cloud-function/quick-start.md/">快速入门</a>
+        </li>
+        <li>
+          <a href="/cloud-function/node-sdk/README.md/">云函数 Node SDK</a>
         </li>
       </ul>
     </li>

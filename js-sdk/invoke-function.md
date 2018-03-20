@@ -2,6 +2,9 @@
 
 # 调用云函数
 
+> **danger**
+> 以下操作仅适用于 SDK version >= 1.3.0a，改版本还在内测阶段，仅面向受邀用户开放，详情请咨询客服
+
 `BaaS.invokeFunction(functionName, params, sync)`
 
 **参数说明**
