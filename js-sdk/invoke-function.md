@@ -42,6 +42,6 @@ BaaS.invokeFunction('helloWorld', {name: 'allen'}).then(res => {
 {
   "error": {},
   "code": 0,
-  "data": 'hello allen'
+  "data": "hello allen"
 }
 ```
