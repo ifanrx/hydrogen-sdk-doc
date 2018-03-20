@@ -30,7 +30,7 @@ BaaS.invokeFunction('helloWorld', {name: 'allen'}).then(res => {
     // success
     console.log(res.data)
   } else {
-    // faile
+    // fail
     console.log(res.error.message)
   }
 })
