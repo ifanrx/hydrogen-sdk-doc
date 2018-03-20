@@ -27,12 +27,12 @@
 ```js
 BaaS.invokeFunction('helloWorld', {name: 'allen'}).then(res => {
   if (res.code === 0) {
-    callback(null, res.data)
+    // success
+    console.log(res.data)
   } else {
-    callback(res.error.message)
+    // faile
+    console.log(res.error.message)
   }
-}, err => {
-  callback(err)
 })
 ```
 
