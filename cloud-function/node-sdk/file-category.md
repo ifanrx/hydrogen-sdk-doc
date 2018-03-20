@@ -1,8 +1,8 @@
 # 文件分类操作
 
-实例化一个 `wx.BaaS.FileCategory` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
+实例化一个 `BaaS.FileCategory` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
 
-`let MyFileCategory = new wx.BaaS.FileCategory()`
+`let MyFileCategory = new BaaS.FileCategory()`
 
 ## 获取文件分类详情
 
@@ -27,7 +27,7 @@
 **示例代码**
 
 ```js
-let MyFileCategory = new wx.BaaS.FileCategory()
+let MyFileCategory = new BaaS.FileCategory()
 MyFileCategory.get('5a2fe91508443e3123dbe1cb').then(res => {
   // success
 }, err => {

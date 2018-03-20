@@ -1,8 +1,8 @@
 # 文件操作
 
-实例化一个 `wx.BaaS.File` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
+实例化一个 `BaaS.File` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
 
-`let MyFile = new wx.BaaS.File()`
+`let MyFile = new BaaS.File()`
 
 ## 获取文件详情
 
@@ -38,7 +38,7 @@ category 参数说明：
 **示例代码**
 
 ```js
-let MyFile = new wx.BaaS.File()
+let MyFile = new BaaS.File()
 MyFile.get('5a2fe93308443e313a428c4f').then(res => {
   // success
 }, err => {
@@ -77,7 +77,7 @@ MyFile.get('5a2fe93308443e313a428c4f').then(res => {
 **示例代码**
 
 ```js
-let MyFile = new wx.BaaS.File()
+let MyFile = new BaaS.File()
 
 MyFile.delete('5a2fe93308443e313a428c4f').then()
 
@@ -111,7 +111,7 @@ MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 **示例代码**
 
 ```js
-let MyFile = new wx.BaaS.File()
+let MyFile = new BaaS.File()
 
 // 指定文件名上传
 MyFile.upload('/var/log/test.log').then()

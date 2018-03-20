@@ -4,7 +4,7 @@
 
 1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
 
-`let MyTableObject = new wx.BaaS.TableObject(tableID)`
+`let MyTableObject = new BaaS.TableObject(tableID)`
 
 **参数说明**
 
@@ -112,7 +112,7 @@ product.set('expiration_time', isoStr)
 
 **请求示例**
 ```js
-let MyFile = new wx.BaaS.File()
+let MyFile = new BaaS.File()
 MyFile.upload(params).then(res => {
   product.set('manual', res.data.file)
   product.save()

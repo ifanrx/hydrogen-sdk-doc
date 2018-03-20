@@ -4,7 +4,7 @@
 
 1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
 
-`let MyTableObject = new wx.BaaS.TableObject(tableID)`
+`let MyTableObject = new BaaS.TableObject(tableID)`
 
 **参数说明**
 
@@ -63,7 +63,7 @@ MyRecord.set(key2, value2)
 let tableID = 10
 let recordID = '59897882ff650c0477f00485'
 
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new BaaS.TableObject(tableID)
 let product = Product.getWithoutData(recordID)
 
 product.set('price', 11)

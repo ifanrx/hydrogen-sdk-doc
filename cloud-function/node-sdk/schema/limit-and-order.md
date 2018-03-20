@@ -10,9 +10,9 @@
 默认 limit 为 20, offset 为 0，我们也可以手动指定 limit 和 offset 来控制。例如，每页展示 100 条数据，需要获取第五页的数据，将 limit 设置为 100、offset 设置为 400 即可。limit 最大可设置为 1000。
 
 ```js
-var Product = new wx.BaaS.TableObject(tableID)
+var Product = new BaaS.TableObject(tableID)
 
-var query = new wx.BaaS.Query()
+var query = new BaaS.Query()
 query.compare('amount', '>', 0)
 
 Product.setQuery(query).limit(10).offset(0).find().then(res => {
@@ -27,9 +27,9 @@ Product.setQuery(query).limit(10).offset(0).find().then(res => {
 使用 orderBy 来控制使用升序或降序获取数据列表。
 
 ```js
-var Product = new wx.BaaS.TableObject(tableID)
+var Product = new BaaS.TableObject(tableID)
 
-var query = new wx.BaaS.Query()
+var query = new BaaS.Query()
 query.compare('amount', '>', 0)
 
 // 升序

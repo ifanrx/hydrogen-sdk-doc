@@ -2,7 +2,7 @@
 
 以下操作都需指明操作的内容库，方法如下：
 
-`let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)`
+`let MyContentGroup = new BaaS.ContentGroup(contentGroupID)`
 
 **参数说明**
 
@@ -78,7 +78,7 @@ res.data:
 MyContentGroup.find().then()
 
 // 查找该内容库下在指定分类下的内容
-let query = new wx.BaaS.Query()
+let query = new BaaS.Query()
 query.arrayContains('categories', [1513076252710475])
 MyContentGroup.setQuery(query).find().then(res => {
   // success
