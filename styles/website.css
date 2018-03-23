@@ -121,3 +121,7 @@ ul.doc-detail {
 #anchor-navigation-ex-navbar {
   right: 5%;
 }
+
+a[href="#sdkplugin"] {
+  color: red !important;
+}
