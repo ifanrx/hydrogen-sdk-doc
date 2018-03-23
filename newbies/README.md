@@ -37,7 +37,7 @@
 
 ![一键授权](/images/newbies/one-key-authorization.jpeg)
 
-完成授权后，接下来用户需要进行服务器域名配置，以解锁小程序 [SDK](https://doc.minapp.com/downloadSDK/) 服务（ 使用**知晓云 SDK 插件**可以跳过此步骤 ）。
+完成授权后，接下来用户需要进行服务器域名配置，以解锁小程序 [SDK](https://doc.minapp.com/downloadSDK/) 服务（ 使用**知晓云 SDK 小程序插件**可以跳过此步骤 ）。
 
 ![知晓云服务器域名](/images/newbies/hydrogen-domain-name.jpeg)
 
@@ -59,7 +59,7 @@
 
 ![开发者 ID](/images/newbies/developer-id.jpg)
 
-接下来，在 `app.js` 中引入 [SDK](https://doc.minapp.com/downloadSDK/)（ 如果使用**知晓云 SDK 插件**则参考插件的[使用文档](/js-sdk/README.md#引入 SDK 并初始化) ）。
+接下来，在 `app.js` 中引入 [SDK js 文件](https://doc.minapp.com/downloadSDK/)（ 如果使用**知晓云 SDK 小程序插件**则参考插件的[使用文档](/js-sdk/README.md#引入 SDK 并初始化) ）。
 
 ```js
 // app.js
