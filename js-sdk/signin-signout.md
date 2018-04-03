@@ -62,7 +62,7 @@ wx.BaaS.login().then(res => {
     console.log('用户拒绝授权')
     console.log('用户基本信息', res)
   }
-}
+})
 ```
 
 **返回示例**
