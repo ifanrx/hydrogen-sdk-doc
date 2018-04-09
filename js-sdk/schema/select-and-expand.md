@@ -25,3 +25,18 @@ Product.setQuery(query).select(['-created_at']).find()
 ```
 
 ## 字段扩展
+
+使用 expand 来扩展特定字段
+
+```js
+var Product = new wx.BaaS.TableObject(tableID)
+
+var query = new wx.BaaS.Query()
+query.compare('amount', '>', 0)
+
+// 扩展特定字段
+Product.setQuery(query).expand('created_by').find()
+// or
+Product.setQuery(query).expand(['created_by']).find()
+
+```
