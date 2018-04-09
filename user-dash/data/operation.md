@@ -32,14 +32,17 @@
 **代码示例**
 
 ```
-curl -X POST \
--H "Content-Type: application/json" \
--H "Cookie: {{cookie}}" \
--d '{
-    "file_type": "csv",
-    "mode": "all"
-  }' \
-https://cloud.minapp.com/userve/v1/table/:table_id/export/
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.post('https://cloud.minapp.com/userve/v1/table/:table_id/export/',
+  {
+    file_type: "csv",
+    mode: "all"
+  }).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
@@ -77,11 +80,17 @@ Content-Type: `multipart/form-data`
 **代码示例**
 
 ```
-curl -X POST \
--H "Content-Type: multipart/form-data" \
--H "Cookie: {{ cookie }}" \
--F file=@"filename" \
-https://cloud.minapp.com/userve/v1/table/:table_id/import/
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+var fileInput = document.getElementById('fileInput')
+var fd = new FormData()
+fd.append('file', fileInput.files[0])
+
+axios.post('https://cloud.minapp.com/userve/v1/table/:table_id/import/', fd).then(res => {
+  console.log(res.data)
+})
 ```
 
 **返回示例**
