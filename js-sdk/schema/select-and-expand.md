@@ -29,3 +29,18 @@ Product.setQuery(query).select(['-created_at']).find()
 通过数组控制请求返回字段时，若数组内元素同时存在“规定返回”和“规定不返回”的字段，如：`['-created_at', 'created_by']`。后端服务会忽略掉此次操作，直接返回所有字段。
 
 ## 字段扩展
+
+使用 expand 来扩展特定字段
+
+```js
+var Product = new wx.BaaS.TableObject(tableID)
+
+var query = new wx.BaaS.Query()
+query.compare('amount', '>', 0)
+
+// 扩展特定字段
+Product.setQuery(query).expand('created_by').find()
+// or
+Product.setQuery(query).expand(['created_by']).find()
+
+```
