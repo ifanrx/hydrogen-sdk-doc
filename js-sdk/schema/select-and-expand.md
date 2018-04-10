@@ -48,8 +48,37 @@ Product.setQuery(query).select(['-created_at', '-created_by']).find()
 
 ## 字段扩展
 
-使用 expand 来扩展特定字段
+使用 expand 来扩展特定字段。比如指定 expand created_by，查询结果中的 created_by 字段会被替换成这条记录的创建者信息。
 
+### expand 返回结果示例
+
+不使用 expand
+```json
+{
+  "created_at": 1516118400,
+  "created_by": 1234,
+  "id": "5a2fa9b008443e59e0e67829",
+  "name": "小米无线耳机",
+  "price": 199,
+}
+```
+
+使用 expand
+```json
+{
+  "created_at": 1516118400,
+  "created_by": {
+    "avatar": "https://media.ifanrusercontent.com/tavatar/fb/cd/xxxx.jpg",
+    "id": 62536607,
+    "nickname": "Larry。"
+  },
+  "id": "5a2fa9b008443e59e0e67829",
+  "name": "小米无线耳机",
+  "price": 199,
+}
+```
+
+### 使用方法
 ```js
 var Product = new wx.BaaS.TableObject(tableID)
 
@@ -58,7 +87,7 @@ query.compare('amount', '>', 0)
 
 // 扩展特定字段
 Product.setQuery(query).expand('created_by').find()
-// or
-Product.setQuery(query).expand(['created_by']).find()
-
 ```
+
+> **info**
+> 目前只支持 `created_by` 字段扩展
