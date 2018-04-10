@@ -40,7 +40,7 @@ query.compare('amount', '>', 0)
 
 // 扩展特定字段
 Product.setQuery(query).expand('created_by').find()
-// or
-Product.setQuery(query).expand(['created_by']).find()
-
 ```
+
+> **info**
+> 目前只支持 `created_by` 字段扩展
