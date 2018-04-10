@@ -79,6 +79,13 @@ Product.setQuery(query).select(['-created_at', '-created_by']).find()
 ```
 
 ### 使用方法
+#### 在 get 方法中使用
+```js
+var Product = new wx.BaaS.TableObject(tableID)
+Product.expand('created_by').get('5acc2904da6b737322a82f78')
+```
+
+#### 在 find 方法中使用
 ```js
 var Product = new wx.BaaS.TableObject(tableID)
 
