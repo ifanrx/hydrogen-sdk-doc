@@ -7,6 +7,24 @@
 
 使用 select 来控制请求返回的字段
 
+### 获取数据项
+
+```js
+var Product = new wx.BaaS.TableObject(tableID)
+
+// 规定返回特定字段
+Product.select('created_at').get(recordID)
+// or
+Product.select(['created_at', 'created_by']).get(recordID)
+
+// 规定不返回特定字段
+Product.select('-created_at').get(recordID)
+// or
+Product.select(['-created_at', '-created_by']).get(recordID)
+```
+
+### 查询数据项
+
 ```js
 var Product = new wx.BaaS.TableObject(tableID)
 
@@ -16,12 +34,12 @@ query.compare('amount', '>', 0)
 // 规定返回特定字段
 Product.setQuery(query).select('created_at').find()
 // or
-Product.setQuery(query).select(['created_at']).find()
+Product.setQuery(query).select(['created_at', 'created_by']).find()
 
 // 规定不返回特定字段
 Product.setQuery(query).select('-created_at').find()
 // or
-Product.setQuery(query).select(['-created_at']).find()
+Product.setQuery(query).select(['-created_at', '-created_by']).find()
 ```
 
 <span class="attention">注：</span>
