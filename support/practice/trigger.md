@@ -75,6 +75,9 @@
 第二步：在index.wxml中添加一个form组件，注意这里form组件需要添加 report-submit属性，否则在回调事件对象中无法获取formId。
 ![编写小程序代码](http://oe3m1vy95.bkt.clouddn.com/18-2-7/28564044.jpg)
 
+> **info**
+> 发送模板消息必须提前提交 formId
+
 第三步：在index.js文件中添加addProduct回调，保存数据行，同时提交formId。
 ![编写小程序代码](http://oe3m1vy95.bkt.clouddn.com/18-2-7/43025364.jpg)
 
@@ -284,6 +287,10 @@ Page({
 动作创建参照上文创建微信模板消息小节。只是这里我们把参数`keyword1`改为`{{total_cost}}`，这样就可以拿到用户支付的具体金额。
 
 ![微信模板消息-支付回调](http://oe3m1vy95.bkt.clouddn.com/18-2-7/12429227.jpg)
+
+> **info**
+> 发送模板消息必须提前提交 formId
+
 ### WebHook-支付回调
 动作创建参照上文创建 WebHook 小节。唯一要注意的是，请求 Body 参数会不同。
 
