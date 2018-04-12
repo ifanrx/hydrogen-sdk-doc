@@ -6,4 +6,4 @@
 
 快速开始：[一键部署后台 Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/user-dash-demo)
 
-若遇到问题，请联系 <minapp-support@ifanr.com> 或者客服（微信号：minsupport2）
+若遇到问题，请联系 <minapp-support@ifanr.com> 或者客服（微信号：minsupport3）

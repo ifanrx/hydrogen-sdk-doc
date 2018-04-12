@@ -48,7 +48,7 @@ Product.setQuery(query).select(['-created_at', '-created_by']).find()
 
 ## 字段扩展
 
-使用 expand 来扩展特定字段。比如指定 expand created_by，查询结果中的 created_by 字段会被替换成这条记录的创建者信息。
+目前仅支持 expand created_by。返回结果中的 created_by 会被替换为这个字段对应的完整对象，也即这条记录的创建者信息。
 
 ### expand 返回结果示例
 
@@ -95,6 +95,3 @@ query.compare('amount', '>', 0)
 // 扩展特定字段
 Product.setQuery(query).expand('created_by').find()
 ```
-
-> **info**
-> 目前只支持 `created_by` 字段扩展
