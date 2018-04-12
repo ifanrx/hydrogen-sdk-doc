@@ -7,7 +7,7 @@
 
 使用 select 来控制请求返回的字段
 
-### 获取数据项
+**在 get 方法中使用**
 
 ```js
 var Product = new wx.BaaS.TableObject(tableID)
@@ -23,7 +23,7 @@ Product.select('-created_at').get(recordID)
 Product.select(['-created_at', '-created_by']).get(recordID)
 ```
 
-### 查询数据项
+**在 find 方法中使用**
 
 ```js
 var Product = new wx.BaaS.TableObject(tableID)
@@ -79,13 +79,13 @@ Product.setQuery(query).select(['-created_at', '-created_by']).find()
 ```
 
 ### 使用方法
-#### 在 get 方法中使用
+**在 get 方法中使用**
 ```js
 var Product = new wx.BaaS.TableObject(tableID)
 Product.expand('created_by').get('5acc2904da6b737322a82f78')
 ```
 
-#### 在 find 方法中使用
+**在 find 方法中使用**
 ```js
 var Product = new wx.BaaS.TableObject(tableID)
 
