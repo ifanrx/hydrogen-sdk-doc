@@ -23,7 +23,7 @@
 | 参数          | 类型   | 必填 | 说明 |
 | :----------- | :----- | :-- | :-- |
 | cdn          | Bool   | N   | 是否上传到 CDN，默认为 false |
-| categoryName | String | N   | 指定上传文件分类名，cdn 为 true 时有效，不指定该参数，则默认上传到根目录 |
+| categoryName | String | N   | 指定上传文件分类名，cdn 为 true 时有效，不指定该参数或分类名不存在，则默认上传到根目录 |
 
 
 ## 接口返回
