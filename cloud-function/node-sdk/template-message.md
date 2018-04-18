@@ -23,11 +23,11 @@ let data = {
   template_id: "tadfDf23asdi8dfd",
   submission_type: "form_id",
   keywords: {
-    物品名称: {
+    keyword1: {
       value: "书籍",
       color: "#173177"  // 可为空
     }
-    购买价格: {
+    keyword2: {
       value: "50.5",
       color: "#173177"  // 可为空
     }
@@ -40,6 +40,11 @@ BaaS.sendTemplateMessage(data).then(res => {
   // 发送失败
 })
 ```
+
+其中 keyword1, keyword2 为微信后台中实际关键词对应的键值
+
+![关键词对应键值](/images/cloud-function/keyword.png)
+
 
 > **info**
 > 如果 `submission_type = 'form_id'`，请确保在调用 `BaaS.sendTemplateMessage` 前，已在小程序端调用 `wx.BaaS.wxReportTicker`上报模版消息所需的 `formid`
