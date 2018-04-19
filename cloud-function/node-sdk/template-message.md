@@ -14,6 +14,7 @@ data 是 Object 类型，它包括以下几个属性
 | template_id     | String | 是   | 模板 ID |
 | submission_type | String | 是   | 模板消息触发条件，`form_id` 或者 `prepay_id` |
 | keywords        | Object | 是   | 关键字（在微信小程序后台配置）|
+| page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
 
 **请求示例**
 
