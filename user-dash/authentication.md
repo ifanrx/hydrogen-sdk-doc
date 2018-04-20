@@ -37,8 +37,12 @@
 
 用户管理后台允许开发者进行本地调试开发。流程如下：
 
-1. 启动静态服务器，如 nginx、apache、react 脚手架、vue 脚手架等，使得本地可以通过 localhost、127.0.0.1 访问页面；
+1. 下载我们准备的一个包含 index.html 文件的 zip 包。[（点此下载）](https://media.ifanrusercontent.com/hydrogen/user_dash_demo_NiOXXbjVStiKtPLo.zip)
 
-2. 在登录了知晓云管理后台（cloud.minapp.com/dashboard/）的浏览器，访问对应的页面地址；
+2. 打开知晓云管理后台 - 设置模块（cloud.minapp.com/dashboard/#/app/settings/info/），点击一键部署后台，将上一步下载的 zip 包上传部署，开启部署功能。
 
-3. 即可开始开发和调试。
+2. 启动静态服务器，如 nginx、apache、react 脚手架、vue 脚手架等，使得本地可以通过 localhost、127.0.0.1 访问页面。
+
+3. 在登录了知晓云管理后台（cloud.minapp.com/dashboard/）的浏览器，访问对应的开发页面地址。
+
+4. 即可开始开发和调试。
