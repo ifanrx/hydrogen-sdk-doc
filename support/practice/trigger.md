@@ -2,12 +2,12 @@
 
 ## 触发器介绍
 我们打开应用的引擎模块，默认就进入到了触发器模块，在这个页面我们可以很方便进行的查询、编辑，禁用等操作。
-![触发器](http://oe3m1vy95.bkt.clouddn.com/18-2-7/3275474.jpg)
+![触发器](../../images/practice/trigger/3275474.jpg)
 
 触发器相关文档请[移步这里](/dashboard/trigger.md)
 ## 触发类型：数据表
 下面我们先以数据表作为触发条件，方便大家实操。
-![触发类型：数据表](http://oe3m1vy95.bkt.clouddn.com/18-2-9/42461106.jpg)
+![触发类型：数据表](../../images/practice/trigger/42461106.jpg)
 ### 邮件模板
 #### 准备工作
 我们先在数据页面，创建一个product表，然后添加如下一个字段：
@@ -37,14 +37,14 @@
 | 邮件内容 | 商品{{name}}被创建啦         |
 
 邮件动作填写完成后如下图：
-![邮件动作](http://oe3m1vy95.bkt.clouddn.com/18-2-7/73866365.jpg)
+![邮件动作](../../images/practice/trigger/73866365.jpg)
 
 #### 测试触发器
 编辑动作完成后点击保存后，我们切换到数据表模块，创建一条数据，name 字段为"我的第一件商品"，如下图：
-![测试触发器](http://oe3m1vy95.bkt.clouddn.com/18-2-7/31707512.jpg)
+![测试触发器](../../images/practice/trigger/31707512.jpg)
 
 保存后，检查邮箱，发现收到知晓云发来的邮件了
-![测试结果](http://oe3m1vy95.bkt.clouddn.com/18-2-7/57241768.jpg)
+![测试结果](../../images/practice/trigger/57241768.jpg)
 
 ### 微信模板消息
 
@@ -56,33 +56,33 @@
 5. 准备一个小程序用于测试。
 
 如果忘记了 appSecret，可以先去微信小程序后台，重置后即可获取 appSecret，如下图：
-![配置 appSecret](http://oe3m1vy95.bkt.clouddn.com/18-2-7/35478909.jpg)
+![配置 appSecret](../../images/practice/trigger/35478909.jpg)
 配置模板消息列表如下图：
-![模板消息列表](http://oe3m1vy95.bkt.clouddn.com/18-2-7/44812646.jpg)
+![模板消息列表](../../images/practice/trigger/44812646.jpg)
 
 #### 创建触发器
 我们重新创建一个触发器，这次动作类型选择微信，这时候会出现一个弹窗，要求我们输入小程序的 appSecret，如下图：
-![创建触发器](http://oe3m1vy95.bkt.clouddn.com/18-2-7/38955153.jpg)
+![创建触发器](../../images/practice/trigger/38955153.jpg)
 
 配置 appSecret 完毕后，进入编辑动作页面，填写参数，如下图：
-![创建触发器](http://oe3m1vy95.bkt.clouddn.com/18-2-10/19751164.jpg)
+![创建触发器](../../images/practice/trigger/19751164.jpg)
 
 #### 编写小程序代码
 保存后，我们打开[微信开发者工具][1]，新建一个小程序项目，开始编写小程序代码。
 第一步：在 app.js 引入 [BaaS JS SDK][2]，SDK 文档请[参考这里][3]
-![编写小程序代码](http://oe3m1vy95.bkt.clouddn.com/18-2-7/68584271.jpg)
+![编写小程序代码](../../images/practice/trigger/68584271.jpg)
 
 第二步：在index.wxml中添加一个form组件，注意这里form组件需要添加 report-submit属性，否则在回调事件对象中无法获取formId。
-![编写小程序代码](http://oe3m1vy95.bkt.clouddn.com/18-2-7/28564044.jpg)
+![编写小程序代码](../../images/practice/trigger/28564044.jpg)
 
 > **info**
 > 发送模板消息必须提前提交 formId
 
 第三步：在index.js文件中添加addProduct回调，保存数据行，同时提交formId。
-![编写小程序代码](http://oe3m1vy95.bkt.clouddn.com/18-2-7/43025364.jpg)
+![编写小程序代码](../../images/practice/trigger/43025364.jpg)
 
 最后一步，预览小程序，然后点击添加商品，不一会就可以收到微信模板消息了。
-![编写小程序代码](http://oe3m1vy95.bkt.clouddn.com/18-2-7/12429227.jpg)
+![编写小程序代码](../../images/practice/trigger/12429227.jpg)
 ### WebHook
 #### 准备工作
 搭建一个 HTTP 服务器用于接收 POST 请求。这里以 Node.js 为例，写一个简单的 demo：
@@ -163,7 +163,7 @@ app.listen(8088, () => {
 
 
 我们以数据表`product`为例，在触发器中添加一个 WebHook 动作。
-![添加动作](http://oe3m1vy95.bkt.clouddn.com/18-2-7/70001420.jpg)
+![添加动作](../../images/practice/trigger/70001420.jpg)
 
 URL 格式如下
 
@@ -177,7 +177,7 @@ http://192.168.11.11:8088/?jwt=mehXaWyZXhnzsyWYeUPhWTCOgfjGgdwN
 
 ####测试触发器
 我们在 product 表中创建一行 `name` 字段为 1 的记录，然后在我们搭建的 HTTP 服务器查看输出结果，可以看到我们成功收到了 POST 请求：
-![触发器执行成功](http://oe3m1vy95.bkt.clouddn.com/18-2-7/8044111.jpg)
+![触发器执行成功](../../images/practice/trigger/8044111.jpg)
 
 > **info**
 > 这里为了方便演示，将 JWT KEY 放入了query string 中，生产环境不推荐这么操作。
@@ -211,16 +211,16 @@ http://192.168.11.11:8088/?jwt=mehXaWyZXhnzsyWYeUPhWTCOgfjGgdwN
 | 操作1  | result = {{name}} |
 
 
-![创建触发器](http://oe3m1vy95.bkt.clouddn.com/18-2-9/91743366.jpg)
+![创建触发器](../../images/practice/trigger/91743366.jpg)
 
 > **info**
 > 这里我们使用了模板变量，result = {{name}} 的意思是将数据表 A 中 name 字段赋值给数据表 A 的 result 字段。
 
 #### 测试触发器
 我们在数据表 A 中创建一行 name = test123 的记录。
-![测试触发器](http://oe3m1vy95.bkt.clouddn.com/18-2-7/89900278.jpg)
+![测试触发器](../../images/practice/trigger/89900278.jpg)
 添加成功后，检查数据表 B，发现触发器成功地为我们添加了一行记录
-![测试触发器](http://oe3m1vy95.bkt.clouddn.com/18-2-7/52759154.jpg)
+![测试触发器](../../images/practice/trigger/52759154.jpg)
 
 ## 触发类型：微信支付回调
 ### 准备工作
@@ -281,12 +281,12 @@ Page({
 > 这里我们使用了`{{total_cost}}`模板变量，用于拿到用户支付的具体金额。
 
 随后我们测试微信支付，支付成功后，查看收件箱，如图：
-![邮件-支付回调](http://oe3m1vy95.bkt.clouddn.com/18-2-10/19040484.jpg)
+![邮件-支付回调](../../images/practice/trigger/19040484.jpg)
 
 ### 微信模板消息-支付回调
 动作创建参照上文创建微信模板消息小节。只是这里我们把参数`keyword1`改为`{{total_cost}}`，这样就可以拿到用户支付的具体金额。
 
-![微信模板消息-支付回调](http://oe3m1vy95.bkt.clouddn.com/18-2-7/12429227.jpg)
+![微信模板消息-支付回调](../../images/practice/trigger/12429227.jpg)
 
 > **info**
 > 发送模板消息必须提前提交 formId
@@ -302,18 +302,18 @@ Page({
 ### 准备工作
 
 我们首先创建一个云函数，如下图所示：
-![](http://of0ko3ras.bkt.clouddn.com/18-4-23/83745285.jpg)
+![](../../images/practice/trigger/83745285.jpg)
 
 ### 创建触发器
 我们创建一个触发类型为定时任务的云函数，触发周期为每小时，动作内容选择我们上面创建的云函数。
 
-![](http://of0ko3ras.bkt.clouddn.com/18-4-23/4236952.jpg)
-![](http://of0ko3ras.bkt.clouddn.com/18-4-23/80231555.jpg)
-![](http://of0ko3ras.bkt.clouddn.com/18-4-23/96971365.jpg)
+![](../../images/practice/trigger/4236952.jpg)
+![](../../images/practice/trigger/80231555.jpg)
+![](../../images/practice/trigger/96971365.jpg)
 
 ### 测试触发器
 过几个小时后，我们查看云函数的任务日志，可以看到云函数被成功执行了
-![](http://of0ko3ras.bkt.clouddn.com/18-4-23/99831218.jpg)
+![](../../images/practice/trigger/99831218.jpg)
 
   [1]: https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html
   [2]: https://github.com/ifanrx/hydrogen-js-sdk
