@@ -297,6 +297,23 @@ Page({
 ### 数据表操作-支付回调
 动作创建参照上文创建数据表操作小节。**注意这里可选的模板变量有所不同**。
 
+## 触发类型：定时任务
+
+### 准备工作
+
+我们首先创建一个云函数，如下图所示：
+![](http://of0ko3ras.bkt.clouddn.com/18-4-23/83745285.jpg)
+
+### 创建触发器
+我们创建一个触发类型为定时任务的云函数，触发周期为每小时，动作内容选择我们上面创建的云函数。
+
+![](http://of0ko3ras.bkt.clouddn.com/18-4-23/4236952.jpg)
+![](http://of0ko3ras.bkt.clouddn.com/18-4-23/80231555.jpg)
+![](http://of0ko3ras.bkt.clouddn.com/18-4-23/96971365.jpg)
+
+### 测试触发器
+过几个小时后，我们查看云函数的任务日志，可以看到云函数被成功执行了
+![](http://of0ko3ras.bkt.clouddn.com/18-4-23/99831218.jpg)
 
   [1]: https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html
   [2]: https://github.com/ifanrx/hydrogen-js-sdk

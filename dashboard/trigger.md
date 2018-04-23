@@ -182,6 +182,24 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIn0.FGhYH5IF-PkNV8b4SNh-1WK
 >**info**
 >注：append, append_unique, remove, inc_by 为原子操作符，相关文档请[参考这里](../js-sdk/schema/update-record.md)
 
+## 定时任务
+创建一个触发类型为定时任务的触发器后，该触发器将被周期性的触发。
+
+目前默认提供的触发周期如下：
+
+| 周期  | cron 表达式|
+| ----  | --------- |
+| 每年  | 0 0 1 1 * |
+| 每月  | 0 0 1 * * |
+| 每周  | 0 0 * * 0 |
+| 每天  | 0 0 * * * |
+| 每小时| 0 * * * * |
+
+[​Cron 表达式简介](http://support.minapp.com/hc/kb/article/1109371/)
+
+> **info**
+> 注：触发周期最小时间粒度为 1 分钟
+
 ## 模板变量的使用
 部分动作中支持插入变量，您可以点击动作底部的"**可选变量**"查看该动作中支持添加的所有变量。
 
