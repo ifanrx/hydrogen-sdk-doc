@@ -21,7 +21,7 @@
 
 | 参数            | 类型   | 说明 |
 | :------------- | :----- | :-- |
-| transaction_no | Number | 订单号 |
+| transaction_no | String | 订单号 |
 
 **示例代码**
 
