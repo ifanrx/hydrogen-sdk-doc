@@ -180,7 +180,7 @@ axios.post('https://cloud.minapp.com/userve/v1/content/1/text/', {"title": "Test
 `400`: 提交数据为空；提交的数据都不合法
 
 
-## 编辑内容分类
+## 编辑内容
 
 **接口**
 
@@ -219,7 +219,7 @@ axios.put('https://cloud.minapp.com/userve/v1/content/1/text/2/', {"name": "Test
 `400`: 提交数据为空；提交的数据都不合法
 
 
-## 删除内容库
+## 删除内容
 
 **接口**
 
