@@ -221,7 +221,7 @@ axios.put('https://cloud.minapp.com/userve/v1/content/1/category/3/', {"name": "
 
 `400`: 同一父分类下的子分类名不能相同；父分类 ID 不合法
 
-## 删除内容库
+## 删除内容分类
 
 **接口**
 
