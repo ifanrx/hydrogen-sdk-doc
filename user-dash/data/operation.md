@@ -75,7 +75,7 @@ Content-Type: `multipart/form-data`
 | file          | String | Y   | 上传的文件流 |
 
 >**info**
->支持 csv、json 文件导入，格式请于[帮组中心](http://support.minapp.com/hc/kb/article/1079263/?from=draft)查看
+>支持 csv、json 文件导入，格式请于[帮助中心](http://support.minapp.com/hc/kb/article/1079263/?from=draft)查看
 
 **代码示例**
 
