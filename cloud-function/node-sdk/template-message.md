@@ -27,7 +27,7 @@ let data = {
     keyword1: {
       value: "书籍",
       color: "#173177"  // 可为空
-    }
+    },
     keyword2: {
       value: "50.5",
       color: "#173177"  // 可为空
