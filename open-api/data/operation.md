@@ -49,7 +49,23 @@ https://cloud.minapp.com/oserve/v1/table/:table_id/export/
 {% content "exportNode" %}
 
 ```js
+var request = require('request')
 
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/table/:table_id/export/',
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
+    file_type: 'csv',
+    mode: 'all'
+  }
+}
+
+request(opt, function (err, res, body) {
+  console.log(res.statusCode)
+})
 ```
 
 {% endtabs %}
@@ -103,7 +119,23 @@ https://cloud.minapp.com/oserve/v1/table/:table_id/import/
 {% content "importNode" %}
 
 ```js
+var request = require('request');
+var fs = require('fs');
 
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/table/:table_id/import/',  
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  formData: {   // 指定 data 以 "Content-Type": "multipart/form-data" 传送
+    file: fs.createReadStream(__dirname + '/test.csv')   // 参数需为文件流
+  }
+}
+
+request(opt, function(err, res, body) {
+  console.log(res.statusCode, body)
+})
 ```
 
 {% endtabs %}
