@@ -12,7 +12,7 @@
 
 **代码示例**
 
-{% tabs getRichTextEntryCurl="Curl", getRichTextEntryNode="Node" %}
+{% tabs getRichTextEntryCurl="Curl", getRichTextEntryNode="Node", getRichTextEntryPHP="PHP" %}
 
 {% content "getRichTextEntryCurl" %}
 
@@ -39,6 +39,34 @@ request(options, function (error, response, body) {
 
   console.log(body);
 });
+```
+
+{% content "getRichTextEntryPHP" %}
+
+```php
+<?php
+$content_group_id = 1; // 内容库 ID
+$text_id = 1;// 内容 ID
+$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/text/{$text_id}/";
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+
+// 设置头部
+$header =
+    [
+        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+        'Content-Type: application/json; charset=utf-8',
+    ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+
+curl_setopt ( $ch, CURLOPT_URL, $url );
+//curl_setopt ( $ch, CURLOPT_HEADER, true ); // 是否查看请求头部，用于调试
+curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'GET');
+// 要求结果为字符串且输出到屏幕上
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+$res = curl_exec ( $ch );
+curl_close ( $ch );
 ```
 
 {% endtabs %}
@@ -92,7 +120,7 @@ request(options, function (error, response, body) {
 
 **代码示例**
 
-{% tabs getRichTextEntryListCurlCurl="Curl", getRichTextEntryListCurlNode="Node" %}
+{% tabs getRichTextEntryListCurlCurl="Curl", getRichTextEntryListCurlNode="Node", getRichTextEntryListPHP="PHP" %}
 
 {% content "getRichTextEntryListCurlCurl" %}
 
@@ -119,6 +147,32 @@ request(options, function (error, response, body) {
 
   console.log(body);
 });
+```
+
+{% content "getRichTextEntryListPHP" %}
+
+```php
+<?php
+$content_group_id = 1; // 内容库 ID
+$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/text/";
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+
+// 设置头部
+$header =
+    [
+        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+        'Content-Type: application/json; charset=utf-8',
+    ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'GET');
+// 要求结果为字符串且输出到屏幕上
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+$res = curl_exec ( $ch );
+curl_close ( $ch );
 ```
 
 {% endtabs %}
@@ -187,7 +241,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs createRichTextEntryCurl="Curl", createRichTextEntryNode="Node" %}
+{% tabs createRichTextEntryCurl="Curl", createRichTextEntryNode="Node", createRichTextEntryPHP="PHP" %}
 
 {% content "createRichTextEntryCurl" %}
 
@@ -217,6 +271,31 @@ request(options, function (error, response, body) {
 
   console.log(body);
 });
+```
+
+{% content "createRichTextEntryPHP" %}
+
+```php
+<?php
+$content_group_id = 1;
+$param['title'] = 'TestCreateGroup';
+$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/text/";
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+$header =
+    [
+        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+        'Content-Type: application/json; charset=utf-8',
+    ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_POST, true );
+curl_setopt ( $ch, CURLOPT_POSTFIELDS, json_encode($param) );
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+$res['response'] = curl_exec ( $ch ); // 反馈结果
+$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close ( $ch );
 ```
 
 {% endtabs %}
@@ -255,7 +334,7 @@ request(options, function (error, response, body) {
 
 **代码示例**
 
-{% tabs updateRichTextEntryCurl="Curl", updateRichTextEntryNode="Node" %}
+{% tabs updateRichTextEntryCurl="Curl", updateRichTextEntryNode="Node", updateRichTextEntryPHP="PHP" %}
 
 {% content "updateRichTextEntryCurl" %}
 
@@ -263,7 +342,7 @@ request(options, function (error, response, body) {
 curl -X PUT \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
--d '{"name": "Test Category"}' \
+-d '{"title": "Test Category"}' \
 https://cloud.minapp.com/oserve/v1/content/1/text/2/
 ```
 {% content "updateRichTextEntryNode" %}
@@ -276,7 +355,7 @@ var options = { method: 'PUT',
   headers: 
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
-  body: { name: 'Test Category' },
+  body: { title: 'Test Category' },
   json: true };
 
 request(options, function (error, response, body) {
@@ -285,6 +364,31 @@ request(options, function (error, response, body) {
   console.log(body);
 });
 
+```
+{% content "updateRichTextEntryPHP" %}
+
+```php
+<?php
+$content_group_id = 1; // 内容库 ID
+$text_id = 2;// 内容 ID
+$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/text/{$text_id}/";
+$param['title'] = 'TestUpdate';
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+$header =
+   [
+       'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+       'Content-Type: application/json; charset=utf-8',
+   ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt ( $ch, CURLOPT_POSTFIELDS, json_encode($param) );
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+$res['response'] = curl_exec ( $ch ); // 反馈结果
+$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close ( $ch );
 ```
 
 {% endtabs %}
@@ -318,7 +422,7 @@ request(options, function (error, response, body) {
 
 **代码示例**
 
-{% tabs deleteRichTextEntryCurl="Curl", deleteRichTextEntryNode="Node" %}
+{% tabs deleteRichTextEntryCurl="Curl", deleteRichTextEntryNode="Node", deleteRichTextEntryPHP="PHP" %}
 
 {% content "deleteRichTextEntryCurl" %}
 
@@ -345,6 +449,32 @@ request(options, function (error, response, body) {
 
   console.log(body);
 });
+```
+
+{% content "deleteRichTextEntryPHP" %}
+
+```php
+<?php
+$content_group_id = 1; // 内容库 ID
+$text_id = 1;// 内容 ID
+$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/text/{$text_id}/";
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+// 设置头部
+$header =
+    [
+        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+        'Content-Type: application/json; charset=utf-8',
+    ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+// 要求结果为字符串且输出到屏幕上
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+$res['response'] = curl_exec ( $ch ); // 反馈结果
+$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close ( $ch );
 ```
 
 {% endtabs %}

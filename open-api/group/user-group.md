@@ -10,7 +10,7 @@
 
 **代码示例**
 
-{% tabs userGroupDetailCurl="Curl", userGroupDetailNode="Node" %}
+{% tabs userGroupDetailCurl="Curl", userGroupDetailNode="Node", userGroupDetailPHP="PHP" %}
 
 {% content "userGroupDetailCurl" %}
 
@@ -37,6 +37,32 @@ var opt = {
 request(opt, function(err, res, body) {
   console.log(body)
 })
+```
+
+{% content "userGroupDetailPHP"%}
+
+```php
+<?php
+$group_id = 47; // 用户组 ID
+$url = "https://cloud.minapp.com/oserve/v1/user-group/{$group_id}/";
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+
+// 设置头部
+$header =
+    [
+        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+        'Content-Type: application/json; charset=utf-8',
+    ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'GET');
+// 要求结果为字符串且输出到屏幕上
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
+$res = curl_exec ( $ch );
+curl_close ( $ch );
 ```
 
 {% endtabs %}
@@ -74,7 +100,7 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs userGroupCurl="Curl", userGroupNode="Node" %}
+{% tabs userGroupCurl="Curl", userGroupNode="Node", userGroupPHP="PHP" %}
 
 {% content "userGroupCurl" %}
 
@@ -110,6 +136,35 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% content "userGroupPHP"%}
+
+```php
+<?php
+$query['parent_id'] = 1; // 用户组的组集 ID
+$query['offset'] = 0; // 资源的起始偏移值
+$query['limit'] = 20; // 限制返回资源的个数
+$query_string = http_build_query($query);
+$url = "https://cloud.minapp.com/oserve/v1/user-group/?".$query_string;
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+
+// 设置头部
+$header =
+    [
+        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+        'Content-Type: application/json; charset=utf-8',
+    ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'GET');
+// 要求结果为字符串且输出到屏幕上
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
+$res = curl_exec ( $ch );
+curl_close ( $ch );
+```
+
 {% endtabs %}
 
 
@@ -130,7 +185,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs createUserGroupCurl="Curl", createUserGroupNode="Node" %}
+{% tabs createUserGroupCurl="Curl", createUserGroupNode="Node", createUserGroupPHP="PHP" %}
 
 {% content "createUserGroupCurl" %}
 
@@ -163,6 +218,32 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% content "createUserGroupPHP" %}
+```php
+<?php
+$param = [
+    'name' =>'User Group',
+];
+$url = 'https://cloud.minapp.com/oserve/v1/user-group/';
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+$header =
+    [
+        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+        'Content-Type: application/json; charset=utf-8',
+    ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_POST, true );
+curl_setopt ( $ch, CURLOPT_POSTFIELDS, json_encode($param) );
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
+$res['response'] = curl_exec ( $ch ); // 反馈结果
+$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 返回状态码
+curl_close ( $ch );
+
+```
+
 {% endtabs %}
 
 **状态码说明**
@@ -180,7 +261,7 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs updateGroupCurl="Curl", updateGroupNode="Node" %}
+{% tabs updateGroupCurl="Curl", updateGroupNode="Node", updateGroupPHP="PHP" %}
 
 {% content "updateGroupCurl" %}
 
@@ -213,6 +294,33 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% content "updateGroupPHP" %}
+
+```php
+<?php
+$group_id = 47; // 用户组 ID
+$url = "https://cloud.minapp.com/oserve/v1/user-group/{$group_id}/";
+$param = [
+    'name' =>'user group'
+];
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+$header =
+   [
+       'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+       'Content-Type: application/json; charset=utf-8',
+   ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt ( $ch, CURLOPT_POSTFIELDS, json_encode($param) );
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
+$res['response'] = curl_exec ( $ch ); // 反馈结果
+$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 状态码
+curl_close ( $ch );
+```
+
 {% endtabs %}
 
 **状态码说明**
@@ -228,7 +336,7 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs deleteGroupCurl="Curl", deleteGroupNode="Node" %}
+{% tabs deleteGroupCurl="Curl", deleteGroupNode="Node", deleteGroupPHP="PHP" %}
 
 {% content "deleteGroupCurl" %}
 
@@ -257,6 +365,32 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% content "deleteGroupPHP" %}
+
+```php
+<?php
+$group_id = 47; // 用户组 ID
+$url = "https://cloud.minapp.com/oserve/v1/user-group/{$group_id}/";
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+// 设置头部
+$header =
+    [
+        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+        'Content-Type: application/json; charset=utf-8',
+    ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+// 要求结果为字符串且输出到屏幕上
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
+$res['response'] = curl_exec ( $ch ); // 反馈结果
+$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close ( $ch );
+```
+
+
 {% endtabs %}
 
 **状态码说明**
@@ -272,7 +406,7 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs patchDeleteGroupCurl="Curl", patchDeleteGroupNode="Node" %}
+{% tabs patchDeleteGroupCurl="Curl", patchDeleteGroupNode="Node", patchDeleteGroupPHP="PHP" %}
 
 {% content "patchDeleteGroupCurl" %}
 
@@ -299,6 +433,33 @@ var opt = {
 request(opt, function(err, res, body) {
   console.log(res.statusCode)
 })
+```
+
+{% content "patchDeleteGroupPHP" %}
+
+```php
+<?php
+// 用户组 ID 集
+$group_id[] = 48;
+$group_id[] = 50; 
+$url = 'https://cloud.minapp.com/oserve/v1/user-group/?'.implode(',',$group_id);
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+// 设置头部
+$header =
+    [
+        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+        'Content-Type: application/json; charset=utf-8',
+    ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+// 要求结果为字符串且输出到屏幕上
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
+$res['response'] = curl_exec ( $ch ); // 反馈结果
+$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close ( $ch );
 ```
 
 {% endtabs %}

@@ -121,7 +121,7 @@ Content-Type: `multipart/form-data`
 
 **代码示例** 
 
-{% tabs first="Node" %}
+{% tabs first="Node",second="PHP" %}
 
 {% content "first" %}
 
@@ -162,6 +162,55 @@ Content-Type: `multipart/form-data`
     })
   }
   ```
+
+{% content "second" %}
+
+```php
+<?php
+$param = array(
+    'client_id' => 'a4d2d62965ddb57fa4xx',
+    'client_secret' => 'e5802b40135baab9b4e84e35bed058a264c37dxx'
+);
+
+// 获取 code
+$code_url = 'https://cloud.minapp.com/api/oauth2/hydrogen/openapi/authorize/';
+$code_data = postData($code_url,json_encode($param));
+
+// 使用 code 获取 Access Token
+$code_data = json_decode($code_data,true);
+
+$access_token_url = 'https://cloud.minapp.com/api/oauth2/access_token/';
+$param['code'] = $code_data['code'];
+$param['grant_type'] = 'authorization_code';
+$access_token = postData($access_token_url,$param,'multipart/form-data'); // 获取到的 Access Token
+// 封装请求函数
+function postData($url, $param, $content_type = 'application/json') {
+
+    $ch = curl_init ();
+    curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+    curl_setopt ( $ch, CURLOPT_URL, $url );
+    curl_setopt ( $ch, CURLOPT_POST, true );
+    curl_setopt ( $ch, CURLOPT_POSTFIELDS, $param );
+
+    // 设置允许重定向
+    curl_setopt ( $ch, CURLOPT_FOLLOWLOCATION, 1 );
+    curl_setopt ( $ch, CURLOPT_AUTOREFERER, 1 );
+    curl_setopt ( $ch, CURLOPT_COOKIEFILE, '');
+
+    // 要求结果为字符串且输出到屏幕上
+    curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+    curl_setopt ( $ch, CURLOPT_COOKIESESSION, true );
+    // 设置 Content-Type，默认 application/json
+    curl_setopt ( $ch, CURLINFO_CONTENT_TYPE,  $content_type);
+
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+    $response = curl_exec ( $ch );
+
+    curl_close ( $ch );
+    return $response;
+}
+```
 
 {% endtabs %}
 

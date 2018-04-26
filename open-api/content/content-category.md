@@ -10,7 +10,7 @@
 
 **代码示例**
 
-{% tabs getContentCategoryCurl="Curl", getContentCategoryNode="Node" %}
+{% tabs getContentCategoryCurl="Curl", getContentCategoryNode="Node", getContentCategoryPHP="PHP" %}
 
 {% content "getContentCategoryCurl" %}
 
@@ -38,6 +38,34 @@ request(options, function (error, response, body) {
   console.log(body);
 });
 ```
+
+{% content "getContentCategoryPHP" %}
+
+```php
+<?php
+$content_group_id = 1; // 内容库的 ID
+$category_id = 1; // 内容分类的 ID
+$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/category/{$category_id}/";
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+
+// 设置头部
+$header =
+    [
+        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+        'Content-Type: application/json; charset=utf-8',
+    ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'GET');
+// 要求结果为字符串且输出到屏幕上
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
+$res = curl_exec ( $ch );
+curl_close ( $ch );
+```
+
 {% endtabs %}
 
 **返回示例**
@@ -95,7 +123,7 @@ request(options, function (error, response, body) {
 
 **代码示例**
 
-{% tabs getContentCategoryListCurl="Curl", getContentCategoryListNode="Node" %}
+{% tabs getContentCategoryListCurl="Curl", getContentCategoryListNode="Node", getContentCategoryListPHP="PHP" %}
 
 {% content "getContentCategoryListCurl" %}
 
@@ -123,6 +151,33 @@ request(options, function (error, response, body) {
   console.log(body);
 });
 ```
+
+{% content "getContentCategoryListPHP" %}
+
+```php
+<?php
+$content_group_id = 1;// 内容库的 ID
+$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/category/";
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+
+// 设置头部
+$header =
+    [
+        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+        'Content-Type: application/json; charset=utf-8',
+    ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'GET');
+// 要求结果为字符串且输出到屏幕上
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
+$res = curl_exec ( $ch );
+curl_close ( $ch );
+```
+
 {% endtabs %}
 
 **返回示例**
@@ -192,7 +247,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs createContentCategoryCurl="Curl", createContentCategoryNode="Node" %}
+{% tabs createContentCategoryCurl="Curl", createContentCategoryNode="Node", createContentCategoryPHP="PHP" %}
 
 {% content "createContentCategoryCurl" %}
 
@@ -227,6 +282,31 @@ request(options, function (error, response, body) {
 });
 ```
 
+{% content "createContentCategoryPHP" %}
+
+```php
+<?php
+$content_group_id = 1;// 内容库的 ID
+$param['name'] = 'CreateCategory';
+$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/category/";
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+$header =
+    [
+        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+        'Content-Type: application/json; charset=utf-8',
+    ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_POST, true );
+curl_setopt ( $ch, CURLOPT_POSTFIELDS, json_encode($param) );
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
+$res['response'] = curl_exec ( $ch ); // 反馈结果
+$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close ( $ch );
+```
+
 {% endtabs %}
 
 **返回示例**
@@ -258,7 +338,7 @@ request(options, function (error, response, body) {
 
 **代码示例**
 
-{% tabs updateContentCategoryCurl="Curl", updateContentCategoryNode="Node" %}
+{% tabs updateContentCategoryCurl="Curl", updateContentCategoryNode="Node", updateContentCategoryPHP="PHP" %}
 
 {% content "updateContentCategoryCurl" %}
 
@@ -292,6 +372,32 @@ request(options, function (error, response, body) {
 });
 ```
 
+{% content "updateContentCategoryPHP" %}
+
+```php
+<?php
+$content_group_id = 1; // 内容库 ID
+$category_id = 1;// 内容分类的 ID
+$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/category/{$category_id}/";
+$param['name'] = 'updateCategory';
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+$header =
+   [
+       'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+       'Content-Type: application/json; charset=utf-8',
+   ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt ( $ch, CURLOPT_POSTFIELDS, json_encode($param) );
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
+$res['response'] = curl_exec ( $ch ); // 反馈结果
+$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close ( $ch );
+```
+
 {% endtabs %}
 
 **返回示例**
@@ -322,7 +428,7 @@ request(options, function (error, response, body) {
 
 **代码示例**
 
-{% tabs deleteContentCategoryCurl="Curl", deleteContentCategoryNode="Node" %}
+{% tabs deleteContentCategoryCurl="Curl", deleteContentCategoryNode="Node", deleteContentCategoryPHP="PHP" %}
 
 {% content "deleteContentCategoryCurl" %}
 
@@ -350,6 +456,32 @@ request(options, function (error, response, body) {
   console.log(body);
 });
 
+```
+
+{% content "deleteContentCategoryPHP" %}
+
+```php
+<?php
+$content_group_id = 1; // 内容库 ID
+$category_id = 1;// 内容分类的 ID
+$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/category/{$category_id}/";
+$ch = curl_init ();
+curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+// 设置头部
+$header =
+    [
+        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+        'Content-Type: application/json; charset=utf-8',
+    ];
+curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+curl_setopt ( $ch, CURLOPT_URL, $url );
+curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+// 要求结果为字符串且输出到屏幕上
+curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
+$res['response'] = curl_exec ( $ch ); // 反馈结果
+$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close ( $ch );
 ```
 
 {% endtabs %}
