@@ -49,24 +49,24 @@ $content_group_id = 1; // 内容库 ID
 $text_id = 1;// 内容 ID
 $url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/text/{$text_id}/";
 $ch = curl_init ();
-curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+curl_setopt ($ch,CURLOPT_TIMEOUT,30);
 
 // 设置头部
 $header =
-    [
-        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
-        'Content-Type: application/json; charset=utf-8',
-    ];
-curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+  [
+    'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+    'Content-Type: application/json; charset=utf-8',
+  ];
+curl_setopt ($ch,CURLOPT_HTTPHEADER,$header);
 
-curl_setopt ( $ch, CURLOPT_URL, $url );
-//curl_setopt ( $ch, CURLOPT_HEADER, true ); // 是否查看请求头部，用于调试
-curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt ($ch,CURLOPT_URL,$url);
+//curl_setopt ($ch,CURLOPT_HEADER,true); // 是否查看请求头部，用于调试
+curl_setopt ($ch,CURLOPT_CUSTOMREQUEST,'GET');
 // 要求结果为字符串且输出到屏幕上
-curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-$res = curl_exec ( $ch );
-curl_close ( $ch );
+curl_setopt ($ch,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,true);
+$res = curl_exec ($ch);
+curl_close ($ch);
 ```
 
 {% endtabs %}
@@ -156,23 +156,23 @@ request(options, function (error, response, body) {
 $content_group_id = 1; // 内容库 ID
 $url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/text/";
 $ch = curl_init ();
-curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+curl_setopt ($ch,CURLOPT_TIMEOUT, 30);
 
 // 设置头部
 $header =
-    [
-        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
-        'Content-Type: application/json; charset=utf-8',
-    ];
-curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+  [
+    'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+    'Content-Type: application/json; charset=utf-8',
+  ];
+curl_setopt ($ch,CURLOPT_HTTPHEADER, $header);
 
-curl_setopt ( $ch, CURLOPT_URL, $url );
-curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt ($ch,CURLOPT_URL, $url);
+curl_setopt ($ch,CURLOPT_CUSTOMREQUEST, 'GET');
 // 要求结果为字符串且输出到屏幕上
-curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-$res = curl_exec ( $ch );
-curl_close ( $ch );
+curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, true);
+$res = curl_exec ($ch);
+curl_close ($ch);
 ```
 
 {% endtabs %}
@@ -281,21 +281,21 @@ $content_group_id = 1;
 $param['title'] = 'TestCreateGroup';
 $url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/text/";
 $ch = curl_init ();
-curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+curl_setopt ($ch,CURLOPT_TIMEOUT, 30);
 $header =
-    [
-        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
-        'Content-Type: application/json; charset=utf-8',
-    ];
-curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
-curl_setopt ( $ch, CURLOPT_URL, $url );
-curl_setopt ( $ch, CURLOPT_POST, true );
-curl_setopt ( $ch, CURLOPT_POSTFIELDS, json_encode($param) );
-curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-$res['response'] = curl_exec ( $ch ); // 反馈结果
-$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close ( $ch );
+  [
+    'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+    'Content-Type: application/json; charset=utf-8',
+  ];
+curl_setopt ($ch,CURLOPT_HTTPHEADER, $header);
+curl_setopt ($ch,CURLOPT_URL, $url);
+curl_setopt ($ch,CURLOPT_POST, true);
+curl_setopt ($ch,CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, true);
+$res['response'] = curl_exec ($ch); // 反馈结果
+$res['status_code'] = curl_getinfo ($ch,CURLINFO_HTTP_CODE); // 请求状态码
+curl_close ($ch);
 ```
 
 {% endtabs %}
@@ -374,21 +374,21 @@ $text_id = 2;// 内容 ID
 $url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/text/{$text_id}/";
 $param['title'] = 'TestUpdate';
 $ch = curl_init ();
-curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+curl_setopt ($ch,CURLOPT_TIMEOUT, 30);
 $header =
-   [
-       'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
-       'Content-Type: application/json; charset=utf-8',
-   ];
-curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
-curl_setopt ( $ch, CURLOPT_URL, $url );
-curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-curl_setopt ( $ch, CURLOPT_POSTFIELDS, json_encode($param) );
-curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-$res['response'] = curl_exec ( $ch ); // 反馈结果
-$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close ( $ch );
+  [
+    'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+    'Content-Type: application/json; charset=utf-8',
+  ];
+curl_setopt ($ch,CURLOPT_HTTPHEADER, $header);
+curl_setopt ($ch,CURLOPT_URL, $url);
+curl_setopt ($ch,CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt ($ch,CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, true);
+$res['response'] = curl_exec ($ch); // 反馈结果
+$res['status_code'] = curl_getinfo ($ch,CURLINFO_HTTP_CODE); // 请求状态码
+curl_close ($ch);
 ```
 
 {% endtabs %}
@@ -459,22 +459,22 @@ $content_group_id = 1; // 内容库 ID
 $text_id = 1;// 内容 ID
 $url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/text/{$text_id}/";
 $ch = curl_init ();
-curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+curl_setopt ($ch,CURLOPT_TIMEOUT, 30);
 // 设置头部
 $header =
-    [
-        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
-        'Content-Type: application/json; charset=utf-8',
-    ];
-curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
-curl_setopt ( $ch, CURLOPT_URL, $url );
-curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+  [
+    'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+    'Content-Type: application/json; charset=utf-8',
+  ];
+curl_setopt ($ch,CURLOPT_HTTPHEADER, $header);
+curl_setopt ($ch,CURLOPT_URL, $url);
+curl_setopt ($ch,CURLOPT_CUSTOMREQUEST, 'DELETE');
 // 要求结果为字符串且输出到屏幕上
-curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-$res['response'] = curl_exec ( $ch ); // 反馈结果
-$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close ( $ch );
+curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, true);
+$res['response'] = curl_exec ($ch); // 反馈结果
+$res['status_code'] = curl_getinfo ($ch,CURLINFO_HTTP_CODE); // 请求状态码
+curl_close ($ch);
 ```
 
 {% endtabs %}

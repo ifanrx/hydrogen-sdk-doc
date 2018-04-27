@@ -54,26 +54,27 @@ request(opt, function(err, res, body) {
 {% content "createCategoryPHP" %}
 ```php
 <?php
-$param = [
+$param = 
+  [
     'name' =>'nickname'
-];
+  ];
 $url = 'https://cloud.minapp.com/oserve/v1/file-category/';
 $ch = curl_init ();
-curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+curl_setopt ($ch,CURLOPT_TIMEOUT, 30);
 $header =
-    [
-        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
-        'Content-Type: application/json; charset=utf-8',
-    ];
-curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
-curl_setopt ( $ch, CURLOPT_URL, $url );
-curl_setopt ( $ch, CURLOPT_POST, true );
-curl_setopt ( $ch, CURLOPT_POSTFIELDS, json_encode($param) );
-curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
-$res['response'] = curl_exec ( $ch ); // 反馈结果
-$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close ( $ch );
+  [
+    'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+    'Content-Type: application/json; charset=utf-8'
+  ];
+curl_setopt ($ch,CURLOPT_HTTPHEADER, $header);
+curl_setopt ($ch,CURLOPT_URL, $url);
+curl_setopt ($ch,CURLOPT_POST, true);
+curl_setopt ($ch,CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
+curl_setopt ($ch,CURLOPT_SSL_VERIFYPEER, true);
+$res['response'] = curl_exec ($ch); // 反馈结果
+$res['status_code'] = curl_getinfo ($ch,CURLINFO_HTTP_CODE); // 请求状态码
+curl_close ($ch);
 
 ```
 
@@ -131,23 +132,23 @@ request(opt, function(err, res, body) {
 $category_id = '5a2fe91508443e3123dbe1xx'; // 文件分类 ID
 $url = "https://cloud.minapp.com/oserve/v1/file-category/{$category_id}/";
 $ch = curl_init ();
-curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+curl_setopt ($ch,CURLOPT_TIMEOUT, 30);
 
 // 设置头部
 $header =
-    [
-        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
-        'Content-Type: application/json; charset=utf-8',
-    ];
-curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+  [
+    'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+    'Content-Type: application/json; charset=utf-8',
+  ];
+curl_setopt ($ch,CURLOPT_HTTPHEADER, $header);
 
-curl_setopt ( $ch, CURLOPT_URL, $url );
-curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt ($ch,CURLOPT_URL, $url);
+curl_setopt ($ch,CURLOPT_CUSTOMREQUEST, 'GET');
 // 要求结果为字符串且输出到屏幕上
-curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
-$res = curl_exec ( $ch );
-curl_close ( $ch );
+curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
+curl_setopt ($ch,CURLOPT_SSL_VERIFYPEER, true);
+$res = curl_exec ($ch);
+curl_close ($ch);
 ```
 {% endtabs %}
 
@@ -225,23 +226,23 @@ request(opt, function(err, res, body) {
 <?php
 $url = "https://cloud.minapp.com/oserve/v1/file-category/";
 $ch = curl_init ();
-curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+curl_setopt ($ch,CURLOPT_TIMEOUT, 30);
 
 // 设置头部
 $header =
-    [
-        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
-        'Content-Type: application/json; charset=utf-8',
-    ];
-curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
+  [
+    'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+    'Content-Type: application/json; charset=utf-8',
+  ];
+curl_setopt ($ch,CURLOPT_HTTPHEADER, $header);
 
-curl_setopt ( $ch, CURLOPT_URL, $url );
-curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt ($ch,CURLOPT_URL, $url);
+curl_setopt ($ch,CURLOPT_CUSTOMREQUEST, 'GET');
 // 要求结果为字符串且输出到屏幕上
-curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
-$res = curl_exec ( $ch );
-curl_close ( $ch );
+curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
+curl_setopt ($ch,CURLOPT_SSL_VERIFYPEER, true);
+$res = curl_exec ($ch);
+curl_close ($ch);
 ```
 
 {% endtabs %}
@@ -324,21 +325,21 @@ $category_id = '5a2fe91508443e3123dbe1xx'; // 文件分类 ID
 $url = "https://cloud.minapp.com/oserve/v1/file-category/{$category_id}/";
 $param['name'] = 'testCreateFiles';
 $ch = curl_init ();
-curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+curl_setopt ($ch,CURLOPT_TIMEOUT, 30);
 $header =
-   [
-       'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
-       'Content-Type: application/json; charset=utf-8',
-   ];
-curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
-curl_setopt ( $ch, CURLOPT_URL, $url );
-curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-curl_setopt ( $ch, CURLOPT_POSTFIELDS, json_encode($param) );
-curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
-$res['response'] = curl_exec ( $ch ); // 反馈结果
-$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close ( $ch );
+  [
+    'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+    'Content-Type: application/json; charset=utf-8',
+  ];
+curl_setopt ($ch,CURLOPT_HTTPHEADER, $header);
+curl_setopt ($ch,CURLOPT_URL, $url);
+curl_setopt ($ch,CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt ($ch,CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
+curl_setopt ($ch,CURLOPT_SSL_VERIFYPEER, true);
+$res['response'] = curl_exec ($ch); // 反馈结果
+$res['status_code'] = curl_getinfo ($ch,CURLINFO_HTTP_CODE); // 请求状态码
+curl_close ($ch);
 ```
 
 {% endtabs %}
@@ -407,22 +408,22 @@ request(opt, function(err, res, body) {
 $category_id = '5a2fe91508443e3123dbe1xx'; // 文件分类 ID
 $url = "https://cloud.minapp.com/oserve/v1/file-category/{$category_id}/";
 $ch = curl_init ();
-curl_setopt ( $ch, CURLOPT_TIMEOUT, 30 );
+curl_setopt ($ch,CURLOPT_TIMEOUT, 30);
 // 设置头部
 $header =
-    [
-        'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
-        'Content-Type: application/json; charset=utf-8',
-    ];
-curl_setopt ( $ch, CURLOPT_HTTPHEADER, $header );
-curl_setopt ( $ch, CURLOPT_URL, $url );
-curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+  [
+    'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+    'Content-Type: application/json; charset=utf-8',
+  ];
+curl_setopt ($ch,CURLOPT_HTTPHEADER, $header);
+curl_setopt ($ch,CURLOPT_URL, $url);
+curl_setopt ($ch,CURLOPT_CUSTOMREQUEST, 'DELETE');
 // 要求结果为字符串且输出到屏幕上
-curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, true );
-$res['response'] = curl_exec ( $ch ); // 反馈结果
-$res['status_code'] = curl_getinfo ( $ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close ( $ch );
+curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
+curl_setopt ($ch,CURLOPT_SSL_VERIFYPEER, true);
+$res['response'] = curl_exec ($ch); // 反馈结果
+$res['status_code'] = curl_getinfo ($ch,CURLINFO_HTTP_CODE); // 请求状态码
+curl_close ($ch);
 ```
 
 {% endtabs %}
