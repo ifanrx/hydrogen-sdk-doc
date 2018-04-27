@@ -28,7 +28,7 @@ var request = require("request");
 
 var options = { method: 'GET',
   url: 'https://cloud.minapp.com/oserve/v1/content/1/category/1/',
-  headers: 
+  headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
 
@@ -141,7 +141,7 @@ var request = require("request");
 
 var options = { method: 'GET',
   url: 'https://cloud.minapp.com/oserve/v1/content/1/category/',
-  headers: 
+  headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
 
@@ -268,7 +268,7 @@ var request = require("request");
 
 var options = { method: 'POST',
   url: 'https://cloud.minapp.com/oserve/v1/content/1/category/',
-  headers: 
+  headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
   body: { name: "分类1" },
@@ -359,7 +359,7 @@ var request = require("request");
 
 var options = { method: 'PUT',
   url: 'https://cloud.minapp.com/oserve/v1/content/1/category/3/',
-  headers: 
+  headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
   body: { name: 'Test Category' },
@@ -419,7 +419,7 @@ curl_close ( $ch );
 
 `400`: 同一父分类下的子分类名不能相同；父分类 ID 不合法
 
-## 删除内容库
+## 删除内容分类
 
 **接口**
 
@@ -446,7 +446,7 @@ var request = require("request");
 
 var options = { method: 'DELETE',
   url: 'https://cloud.minapp.com/oserve/v1/content/1/category/1/',
-  headers: 
+  headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
 

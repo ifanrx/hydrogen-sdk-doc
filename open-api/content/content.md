@@ -30,7 +30,7 @@ var request = require("request");
 
 var options = { method: 'GET',
   url: 'https://cloud.minapp.com/oserve/v1/content/1/text/1/',
-  headers: 
+  headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
 
@@ -138,7 +138,7 @@ var request = require("request");
 
 var options = { method: 'GET',
   url: 'https://cloud.minapp.com/oserve/v1/content/1/text/',
-  headers: 
+  headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
 
@@ -260,7 +260,7 @@ var request = require("request");
 
 var options = { method: 'POST',
   url: 'https://cloud.minapp.com/oserve/v1/content/1/text/',
-  headers: 
+  headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
   body: { title: 'Test Title' },
@@ -325,7 +325,7 @@ curl_close ( $ch );
 `400`: 提交数据为空；提交的数据都不合法
 
 
-## 编辑内容分类
+## 编辑内容
 
 **接口**
 
@@ -352,7 +352,7 @@ var request = require("request");
 
 var options = { method: 'PUT',
   url: 'https://cloud.minapp.com/oserve/v1/content/1/text/2/',
-  headers: 
+  headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
   body: { title: 'Test Category' },
@@ -413,7 +413,7 @@ curl_close ( $ch );
 `400`: 提交数据为空；提交的数据都不合法
 
 
-## 删除内容库
+## 删除内容
 
 **接口**
 
@@ -440,7 +440,7 @@ var request = require("request");
 
 var options = { method: 'DELETE',
   url: 'https://cloud.minapp.com/oserve/v1/content/1/text/1/',
-  headers: 
+  headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
 
