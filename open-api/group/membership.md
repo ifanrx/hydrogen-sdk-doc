@@ -60,37 +60,36 @@ request(opt, function(err, res, body) {
 ```php
 <?php
 $param = array(
-  [
+  array(
     'op' => 'add',
     'path' => '/membership',
     'users' => [5, 6],
-    'groups' => [53,54]
-  ],
-  [
+    'groups' => [53, 54]
+  ),
+  array(
     'op' => 'remove',
     'path' => '/membership',
     'users' => [5, 6],
-    'groups' => [53,54]
-  ]
+    'groups' => [53, 54]
+  )
 );
 $url = "https://cloud.minapp.com/oserve/v1/miniapp/group/membership/";
 $ch = curl_init();
-curl_setopt($ch,CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 
 // 设置头部
-$header =
-  [
-    'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
-    'Content-Type: application/json; charset=utf-8',
-  ];
-curl_setopt($ch,CURLOPT_HTTPHEADER, $header);
+$header = array(
+  'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+  'Content-Type: application/json; charset=utf-8'
+  );
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 
-curl_setopt($ch,CURLOPT_URL, $url);
-curl_setopt($ch,CURLOPT_CUSTOMREQUEST, 'PATCH');
-curl_setopt($ch,CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
 // 要求结果为字符串且输出到屏幕上
-curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 $res = curl_exec($ch);
 curl_close($ch);
 ```
