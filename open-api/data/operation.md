@@ -79,21 +79,21 @@ $param =
     'file_type' => 'csv',
     "mode" => "all"
   ];
-$ch = curl_init ();
-curl_setopt ($ch,CURLOPT_TIMEOUT, 30);
+$ch = curl_init();
+curl_setopt($ch,CURLOPT_TIMEOUT, 30);
 $header =
   [
     'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
     'Content-Type: application/json; charset=utf-8',
   ];
-curl_setopt ($ch,CURLOPT_HTTPHEADER,$header);
-curl_setopt ($ch,CURLOPT_URL,$url);
-curl_setopt ($ch,CURLOPT_POST,true);
-curl_setopt ($ch,CURLOPT_POSTFIELDS,json_encode($param));
-curl_setopt ($ch,CURLOPT_RETURNTRANSFER,true);
-curl_setopt ($ch,CURLOPT_SSL_VERIFYPEER,true);
-$res['response'] = curl_exec ($ch); // 反馈结果
-$res['status_code'] = curl_getinfo ($ch,CURLINFO_HTTP_CODE); // 请求状态码
+curl_setopt($ch,CURLOPT_HTTPHEADER,$header);
+curl_setopt($ch,CURLOPT_URL,$url);
+curl_setopt($ch,CURLOPT_POST,true);
+curl_setopt($ch,CURLOPT_POSTFIELDS,json_encode($param));
+curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,true);
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch,CURLINFO_HTTP_CODE); // 请求状态码
 curl_close ($ch);
 ```
 
@@ -180,21 +180,21 @@ if (class_exists('CURLFile')) {
     'file'=>'@'.realpath( __DIR__.'/demo.csv')
   );
 }
-$ch = curl_init ();
-curl_setopt ($ch,CURLOPT_TIMEOUT, 30);
+$ch = curl_init();
+curl_setopt($ch,CURLOPT_TIMEOUT, 30);
 $header =
   [
     'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
     'Content-Type: multipart/form-data; charset=utf-8',
   ];
-curl_setopt ($ch,CURLOPT_HTTPHEADER, $header);
-curl_setopt ($ch,CURLOPT_URL, $url);
-curl_setopt ($ch,CURLOPT_POST, true);
-curl_setopt ($ch,CURLOPT_POSTFIELDS, $param);
-curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
-curl_setopt ($ch,CURLOPT_SSL_VERIFYPEER, true);
-$res['response'] = curl_exec ($ch); // 反馈结果
-$res['status_code'] = curl_getinfo ($ch,CURLINFO_HTTP_CODE); // 请求状态码
+curl_setopt($ch,CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch,CURLOPT_URL, $url);
+curl_setopt($ch,CURLOPT_POST, true);
+curl_setopt($ch,CURLOPT_POSTFIELDS, $param);
+curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, true);
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch,CURLINFO_HTTP_CODE); // 请求状态码
 curl_close ($ch);
 
 ```

@@ -15,9 +15,9 @@
 
 **代码示例**
 
-{% tabs getDetailCurl="Curl", getDetailNode="Node", getDetailPHP="PHP" %}
+{% tabs getGroupDetailCurl="Curl", getGroupDetailNode="Node", getGroupDetailPHP="PHP" %}
 
-{% content "getDetailCurl" %}
+{% content "getGroupDetailCurl" %}
 
 ```
 curl -X GET \
@@ -26,7 +26,7 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/content/group/:content_group_id/
 ```
 
-{% content "getDetailNode" %}
+{% content "getGroupDetailNode" %}
 
 ```js
 var request = require('request');
@@ -44,7 +44,7 @@ request(opt, function(err, res, body) {
 })
 ```
 
-{% content "getDetailPHP" %}
+{% content "getGroupDetailPHP" %}
 
 ```php
 <?php
@@ -66,8 +66,8 @@ curl_setopt ($ch,CURLOPT_CUSTOMREQUEST, 'GET');
 // 要求结果为字符串且输出到屏幕上
 curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, true);
-$res = curl_exec ($ch);
-curl_close ($ch);
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -152,8 +152,8 @@ curl_setopt ($ch,CURLOPT_CUSTOMREQUEST, 'GET');
 // 要求结果为字符串且输出到屏幕上
 curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, true);
-$res = curl_exec ($ch);
-curl_close ($ch);
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -190,9 +190,9 @@ curl_close ($ch);
 
 **代码示例**
 
-{% tabs getDetailCurl="Curl", getDetailNode="Node", getDetailPHP="PHP" %}
+{% tabs getContentCategoryCurl="Curl", getContentCategoryNode="Node", getContentCategoryPHP="PHP" %}
 
-{% content "getDetailCurl"%}
+{% content "getContentCategoryCurl"%}
 
 ```
 curl -X GET \
@@ -201,7 +201,7 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/content/category/:category_id/
 ```
 
-{% content "getDetailNode" %}
+{% content "getContentCategoryNode" %}
 
 ```js
 var request = require('request');
@@ -219,7 +219,7 @@ request(opt, function(err, res, body) {
 })
 ```
 
-{% content "getDetailPHP"%}
+{% content "getContentCategoryPHP"%}
 
 ```php
 <?php
@@ -241,8 +241,8 @@ curl_setopt ($ch,CURLOPT_CUSTOMREQUEST, 'GET');
 // 要求结果为字符串且输出到屏幕上
 curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, true);
-$res = curl_exec ($ch);
-curl_close ($ch);
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -339,8 +339,8 @@ curl_setopt ($ch,CURLOPT_CUSTOMREQUEST, 'GET');
 // 要求结果为字符串且输出到屏幕上
 curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, true);
-$res = curl_exec ($ch);
-curl_close ($ch);
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -432,8 +432,8 @@ curl_setopt ($ch,CURLOPT_CUSTOMREQUEST, 'GET');
 // 要求结果为字符串且输出到屏幕上
 curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, true);
-$res = curl_exec ($ch);
-curl_close ($ch);
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -548,8 +548,8 @@ curl_setopt ($ch,CURLOPT_CUSTOMREQUEST, 'GET');
 // 要求结果为字符串且输出到屏幕上
 curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, true);
-$res = curl_exec ($ch);
-curl_close ($ch);
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}

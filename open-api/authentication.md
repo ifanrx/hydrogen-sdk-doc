@@ -185,28 +185,28 @@ $param['grant_type'] = 'authorization_code';
 $access_token = postData($access_token_url,$param,'multipart/form-data'); // 获取到的 Access Token
 // 封装请求函数
 function postData($url, $param, $content_type = 'application/json') {
-  $ch = curl_init ();
-  curl_setopt ($ch,CURLOPT_TIMEOUT, 30);
-  curl_setopt ($ch,CURLOPT_URL, $url);
-  curl_setopt ($ch,CURLOPT_POST, true);
-  curl_setopt ($ch,CURLOPT_POSTFIELDS, $param);
+  $ch = curl_init();
+  curl_setopt($ch,CURLOPT_TIMEOUT, 30);
+  curl_setopt($ch,CURLOPT_URL, $url);
+  curl_setopt($ch,CURLOPT_POST, true);
+  curl_setopt($ch,CURLOPT_POSTFIELDS, $param);
 
   // 设置允许重定向
-  curl_setopt ($ch,CURLOPT_FOLLOWLOCATION, 1);
-  curl_setopt ($ch,CURLOPT_AUTOREFERER, 1);
-  curl_setopt ($ch,CURLOPT_COOKIEFILE, '');
+  curl_setopt($ch,CURLOPT_FOLLOWLOCATION, 1);
+  curl_setopt($ch,CURLOPT_AUTOREFERER, 1);
+  curl_setopt($ch,CURLOPT_COOKIEFILE, '');
 
   // 要求结果为字符串且输出到屏幕上
-  curl_setopt ($ch,CURLOPT_RETURNTRANSFER, true);
-  curl_setopt ($ch,CURLOPT_COOKIESESSION, true);
+  curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch,CURLOPT_COOKIESESSION, true);
   // 设置 Content-Type，默认 application/json
-  curl_setopt ($ch,CURLINFO_CONTENT_TYPE,  $content_type);
+  curl_setopt($ch,CURLINFO_CONTENT_TYPE,  $content_type);
   
   curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, true);
 
-  $response = curl_exec ($ch);
+  $response = curl_exec($ch);
 
-  curl_close ($ch);
+  curl_close($ch);
   return $response;
 }
 ```
