@@ -4,9 +4,13 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/miniapp/user-profile/:profile_id/`
+~~`GET https://cloud.minapp.com/oserve/v1/miniapp/user-profile/:profile_id/`~~
 
-其中 `:profile_id` 需替换为用户 ID
+~~其中 `:profile_id` 需替换为用户 ID~~（已废弃）
+
+`GET https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?user_id={{ user_id }}`
+
+其中 `user_id` 需替换为用户 ID
 
 **代码示例**
 
@@ -18,14 +22,14 @@
 curl -X GET \
 -H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/miniapp/user-profile/55019/
+https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?user_id=55019
 ```
 
 {% content "node" %}
 
 ```js
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/miniapp/user-profile/4271xx/',   // 4271xx 对应 :profile_id
+  uri: 'https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?user_id=4271xx/',   // 4271xx 对应 :user_id
   method: 'GET',
   headers: {
     Authorization: `Bearer ${token}`,
