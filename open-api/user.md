@@ -14,7 +14,7 @@
 
 **代码示例**
 
-{% tabs  curl="Curl", node="Node" %}
+{% tabs  curl="Curl", node="Node", php="PHP" %}
 
 {% content "curl"%}
 
@@ -41,26 +41,51 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% content "php"%}
+
+```php
+<?php
+$profile_id = '4271xx'; // 用户 ID
+$url = "https://cloud.minapp.com/oserve/v1/miniapp/user-profile/{$profile_id}/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
+
+```
+
 {% endtabs %}
 
 **返回示例**
 
 ```json
 {
-  "avatar": "https://media.ifanrusercontent.com/media/tavatar/55/c3/55c3dbebcc61891be10d29ded808c84a01dcf864.jpg",
+  "avatar": "https://media.ifanrusercontent.com/media/tavatar/55/c3/55c3dbebcc61891be10d29ded808c84a01dxxxxx.jpg",
   "city": "Guangzhou",
   "country": "China",
   "created_at": 1504504504,
   "gender": 1,
-  "id": 55019,
+  "id": 550xx,
   "nickname": "PCG",
-  "openid": "onzns0KsLKFyg3-VcW0GwTE652_k",
-  "unionid": "onzns0KsLKFyg3-VcW0GwTE652_k",
+  "openid": "onzns0KsLKFyg3-VcW0GwTE6xxxx",
+  "unionid": "onzns0KsLKFyg3-VcW0GwTE6xxxx",
   "province": "Guangdong",
   "user_group": [
       137
   ],
-  "user_id": 36619758
+  "user_id": 366197xx
 }
 ```
 
@@ -88,7 +113,7 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs first="Curl", second="Node" %}
+{% tabs first="Curl", second="Node", third="PHP" %}
 
 {% content "first" %}
 
@@ -129,4 +154,64 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% content "third"%}
+
+```php
+<?php
+$query_data = array(
+  'nickname__contains' => 'Tom',
+  'gender' =>  1,
+  'created_at__gte' => 1483228800,
+  'order_by' => '-created_at'
+);
+$query_string = http_build_query($query_data);
+$url = "https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?".$query_string;
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
+```
 {% endtabs %}
+
+
+**返回示例**
+
+```json
+{
+  "meta": {
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total_count": 1
+  },
+  "objects": [{
+    "avatar": "https://media.ifanrusercontent.com/media/tavatar/55/c3/55c3dbebcc61891be10d29ded808c84a01dxxxxx.jpg",
+    "city": "Guangzhou",
+    "country": "China",
+    "created_at": 1504504504,
+    "gender": 1,
+    "id": 550xx,
+    "nickname": "PCG",
+    "openid": "onzns0KsLKFyg3-VcW0GwTE6xxxx",
+    "unionid": "onzns0KsLKFyg3-VcW0GwTE6xxxx",
+    "province": "Guangdong",
+    "user_group": [
+      137
+    ],
+    "user_id": 366197xx
+  }]
+}
+```

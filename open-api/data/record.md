@@ -94,7 +94,7 @@ https://cloud.minapp.com/oserve/v1/table/:table_id/record/?order_by=-id
 
 **代码示例**
 
-{% tabs first="Node", second="Python" %}
+{% tabs first="Node", second="Python", third="PHP" %}
 
 {% content "first" %}
 
@@ -156,6 +156,37 @@ resp_ = requests.get(API, headers=HEADERS)
 print resp_.content
 ```
 
+{% content "third" %}
+
+```php
+<?php
+$table_id = 1; // 数据表 ID
+$condition = array(
+  'where' => ['price' => ['$gt' => 'test search']],
+  'order_by' => '-id',
+  'limit' => '10',
+  'offset' => '0'
+);
+$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/?";
+$url .= urlencode(json_encode($condition));
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8',
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
+```
+
 {% endtabs %}
 
 
@@ -169,7 +200,7 @@ print resp_.content
 
 **代码示例**
 
-{% tabs itemFirst="Node" %}
+{% tabs itemFirst="Node", itemSecond="PHP" %}
 
 {% content "itemFirst" %}
 
@@ -187,6 +218,31 @@ var opt = {
 request(opt, function(err, res, body) {
   console.log(body)
 })
+```
+
+{% content "itemSecond" %}
+```php
+<?php
+$table_id = 1;
+$recornd_id = '5a2fa9b008443e59e0e678xx';
+$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/{$recornd_id}/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8',
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
+
 ```
 
 {% endtabs %}
@@ -213,7 +269,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs insertNode="Node" %}
+{% tabs insertNode="Node", insertPHP="PHP" %}
 
 {% content "insertNode" %}
 
@@ -239,6 +295,40 @@ request(opt, function(err, res, body) {
   console.log(res.statusCode)
 })
 ```
+
+{% content "insertPHP" %}
+```php
+<?php
+$table_id = 1;
+$param = array(
+  'name' =>'nickname',
+  'desc' => 'description',
+  'price' => 19,
+  'amount' => 19,
+  'code' => '18814098707'
+);
+$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8',
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
+
+```
+
 
 {% endtabs %}
 
@@ -270,7 +360,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs updateNode="Node" %}
+{% tabs updateNode="Node", updatePHP="PHP" %}
 
 {% content "updateNode" %}
 
@@ -293,6 +383,34 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% content "updatePHP" %}
+
+```php
+<?php
+$table_id = 1; // 数据表 ID
+$record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
+$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/{$record_id}/";
+$param['name'] = 'nickname';
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
+```
+
 {% endtabs %}
 
 **状态码说明**
@@ -313,7 +431,7 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs deleteNode="Node" %}
+{% tabs deleteNode="Node", deletePHP="PHP" %}
 
 {% content "deleteNode" %}
 
@@ -331,6 +449,31 @@ var opt = {
 request(opt, function(err, res, body) {
   console.log(res.statusCode)
 })
+```
+
+{% content "deletePHP" %}
+```php
+<?php
+$table_id = 1; // 数据表 ID
+$record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
+$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/{$record_id}/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8',
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -420,7 +563,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs atomicNode="Node" %}
+{% tabs atomicNode="Node", atomicPHP="PHP" %}
 
 {% content "atomicNode" %}
 
@@ -448,6 +591,36 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% content "atomicPHP" %}
+
+```php
+<?php
+$table_id = 1; // 数据表 ID
+$record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
+$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/{$record_id}/";
+$param = array(
+  'desc' => ['$append' => ['atomic data']], 
+  'price' => ['$incr_by' => -1]
+);
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8',
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
+```
 {% endtabs %}
 
 **状态码说明**

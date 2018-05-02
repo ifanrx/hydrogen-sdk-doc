@@ -10,7 +10,7 @@
 
 **代码示例**
 
-{% tabs getDetailCurl="Curl", getDetailNode="Node" %}
+{% tabs getDetailCurl="Curl", getDetailNode="Node", getDetailPHP="PHP" %}
 
 {% content "getDetailCurl" %}
 
@@ -37,6 +37,30 @@ var opt = {
 request(opt, function(err, res, body) {
     console.log(body)
 })
+```
+
+{% content "getDetailPHP"%}
+
+```php
+<?php
+$group_id = 1; // 用户组 ID
+$url = "https://cloud.minapp.com/oserve/v1/user-supergroup/{$group_id}/";
+$ch = curl_init();
+
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -72,7 +96,7 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs getCurl="Curl", getNode="Node" %}
+{% tabs getCurl="Curl", getNode="Node", getPHP="PHP" %}
 
 {% content "getCurl" %}
 
@@ -99,7 +123,30 @@ var opt = {
 
 request(opt, function(err, res, body) {
   console.log(body)
-}
+})
+```
+
+{% content "getPHP"%}
+
+```php
+<?php
+$url = 'https://cloud.minapp.com/oserve/v1/user-supergroup/';
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -122,7 +169,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs createCurl="Curl", createNode="Node" %}
+{% tabs createCurl="Curl", createNode="Node", createPHP="PHP" %}
 
 {% content "createCurl" %}
 
@@ -156,6 +203,35 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% content "createPHP" %}
+```php
+<?php
+$param = array(
+  'name' =>'Super Group',
+  'children' => [51]
+);
+$url = 'https://cloud.minapp.com/oserve/v1/user-supergroup/';
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
+
+```
+
 {% endtabs %}
 
 **状态码说明**
@@ -180,7 +256,7 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs updateCurl="Curl", updateNode="Node" %}
+{% tabs updateCurl="Curl", updateNode="Node", updatePHP="PHP" %}
 
 {% content "updateCurl" %}
 
@@ -214,6 +290,36 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% content "updatePHP" %}
+
+```php
+<?php
+$group_id = 52; // 用户组 ID
+$url = "https://cloud.minapp.com/oserve/v1/user-supergroup/{$group_id}/";
+$param = array(
+  'name' =>'testCreateFiles',
+  'children' => [51]
+);
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
+```
+
 {% endtabs %}
 
 **返回示例**
@@ -239,7 +345,7 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs deleteCurl="Curl", deleteNode="Node" %}
+{% tabs deleteCurl="Curl", deleteNode="Node", deletePHP="PHP" %}
 
 {% content "deleteCurl" %}
 
@@ -268,6 +374,31 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% content "deletePHP" %}
+
+```php
+<?php
+$group_id = 52; // 用户组 ID
+$url = "https://cloud.minapp.com/oserve/v1/user-supergroup/{$group_id}/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
+```
+
 {% endtabs %}
 
 **状态码说明**
@@ -283,7 +414,7 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs patchDeleteCurl="Curl", patchDeleteNode="Node" %}
+{% tabs patchDeleteCurl="Curl", patchDeleteNode="Node", patchDeletePHP="PHP" %}
 
 {% content "patchDeleteCurl" %}
 
@@ -310,6 +441,33 @@ var opt = {
 request(opt, function(err, res, body) {
   console.log(res.statusCode)
 })
+```
+
+{% content "patchDeletePHP" %}
+
+```php
+<?php
+// 用户组 ID 集
+$group_id[] = 56;
+$group_id[] = 58; 
+$url = "https://cloud.minapp.com/oserve/v1/user-supergroup/?id__in=".implode(',',$group_id);
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
 ```
 
 {% endtabs %}

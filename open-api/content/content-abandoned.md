@@ -15,9 +15,9 @@
 
 **代码示例**
 
-{% tabs getDetailCurl="Curl", getDetailNode="Node" %}
+{% tabs getGroupDetailCurl="Curl", getGroupDetailNode="Node", getGroupDetailPHP="PHP" %}
 
-{% content "getDetailCurl" %}
+{% content "getGroupDetailCurl" %}
 
 ```
 curl -X GET \
@@ -26,7 +26,7 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/content/group/:content_group_id/
 ```
 
-{% content "getDetailNode" %}
+{% content "getGroupDetailNode" %}
 
 ```js
 var request = require('request');
@@ -42,6 +42,30 @@ var opt = {
 request(opt, function(err, res, body) {
     console.log(body)
 })
+```
+
+{% content "getGroupDetailPHP" %}
+
+```php
+<?php
+$content_group_id = 1; // 内容库 ID
+$url = "https://cloud.minapp.com/oserve/v1/content/group/{$content_group_id}/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -72,7 +96,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs getLibraryCurl="Curl", getLibraryNode="Node" %}
+{% tabs getLibraryCurl="Curl", getLibraryNode="Node", getLibraryPHP="PHP" %}
 
 {% content "getLibraryCurl"%}
 
@@ -103,6 +127,29 @@ var opt = {
 request(opt, function(err, res, body) {
     console.log(body)
 })
+```
+
+{% content "getLibraryPHP"%}
+
+```php
+<?php
+$url = "https://cloud.minapp.com/oserve/v1/content/group/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -139,9 +186,9 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs getDetailCurl="Curl", getDetailNode="Node" %}
+{% tabs getContentCategoryCurl="Curl", getContentCategoryNode="Node", getContentCategoryPHP="PHP" %}
 
-{% content "getDetailCurl"%}
+{% content "getContentCategoryCurl"%}
 
 ```
 curl -X GET \
@@ -150,7 +197,7 @@ curl -X GET \
 https://cloud.minapp.com/oserve/v1/content/category/:category_id/
 ```
 
-{% content "getDetailNode" %}
+{% content "getContentCategoryNode" %}
 
 ```js
 var request = require('request');
@@ -166,6 +213,30 @@ var opt = {
 request(opt, function(err, res, body) {
     console.log(body)
 })
+```
+
+{% content "getContentCategoryPHP"%}
+
+```php
+<?php
+$category_id = 1; // 对应内容分类 ID 
+$url = "https://cloud.minapp.com/oserve/v1/content/category/{$category_id}/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -205,7 +276,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs getCategoryCurl="Curl", getCategoryNode="Node" %}
+{% tabs getCategoryCurl="Curl", getCategoryNode="Node", getCategoryPHP="PHP" %}
 
 {% content "getCategoryCurl" %}
 
@@ -238,6 +309,30 @@ var opt = {
 request(opt, function(err, res, body) {
   console.log(body)
 })
+```
+
+{% content "getCategoryPHP"%}
+
+```php
+<?php
+$content_group_id = 1; // 内容库的 ID 
+$url = "https://cloud.minapp.com/oserve/v1/content/category/?content_group_id={$content_group_id}";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -278,7 +373,7 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs getDetailCurl="Curl", getDetailNode="Node" %}
+{% tabs getDetailCurl="Curl", getDetailNode="Node", getDetailPHP="PHP" %}
 
 {% content "getDetailCurl"%}
 
@@ -305,6 +400,30 @@ var opt = {
 request(opt, function(err, res, body) {
     console.log(body)
 })
+```
+
+{% content "getDetailPHP"%}
+
+```php
+<?php
+$content_id = 1; // 内容库的 ID 
+$url = "https://cloud.minapp.com/oserve/v1/content/detail/{$content_id}/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -361,7 +480,7 @@ https://cloud.minapp.com/oserve/v1/content/detail/?order_by=-created_at
 
 **代码示例**
 
-{% tabs getContentCurl="Curl", getContentNode="Node" %}
+{% tabs getContentCurl="Curl", getContentNode="Node", getContentPHP="PHP" %}
 
 {% content "getContentCurl" %}
 
@@ -395,6 +514,30 @@ var opt = {
 request(opt, function(err, res, body) {
     console.log(body)
 })
+```
+
+{% content "getContentPHP" %}
+
+```php
+<?php
+$content_group_id = 1; // 内容库的 ID
+$url = "https://cloud.minapp.com/oserve/v1/content/detail/?content_group_id={$content_group_id}";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}
