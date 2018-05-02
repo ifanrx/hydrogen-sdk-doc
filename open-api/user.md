@@ -45,8 +45,8 @@ request(opt, function(err, res, body) {
 
 ```php
 <?php
-$profile_id = '4271xx'; // 用户 ID
-$url = "https://cloud.minapp.com/oserve/v1/miniapp/user-profile/{$profile_id}/";
+$user_id = '4271xx'; // 用户 ID
+$url = "https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?user_id={$user_id}/";
 
 $ch = curl_init();
 $header = array(
