@@ -29,7 +29,7 @@ https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?user_id=55019
 
 ```js
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?user_id=4271xx/',   // 4271xx 对应 :user_id
+  uri: 'https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?user_id=4271xx',   // 4271xx 对应 :user_id
   method: 'GET',
   headers: {
     Authorization: `Bearer ${token}`,
