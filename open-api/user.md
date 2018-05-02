@@ -10,7 +10,7 @@
 
 `GET https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?user_id={{ user_id }}`
 
-其中 `user_id` 需替换为用户 ID
+其中 `user_id` 可从用户列表中获取。
 
 **代码示例**
 
@@ -46,7 +46,7 @@ request(opt, function(err, res, body) {
 ```php
 <?php
 $user_id = '4271xx'; // 用户 ID
-$url = "https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?user_id={$user_id}/";
+$url = "https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?user_id={$user_id}";
 
 $ch = curl_init();
 $header = array(
