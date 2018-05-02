@@ -45,21 +45,20 @@ request(opt, function(err, res, body) {
 <?php
 $file_id = '5a2fe93308443e313a428cxx'; // 文件 ID
 $url = "https://cloud.minapp.com/oserve/v1/file/{$file_id}/";
+
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-
-// 设置头部
 $header = array(
-  'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+  "Authorization: Bearer {$token}",
   'Content-Type: application/json; charset=utf-8'
-  );
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+);
 
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-// 要求结果为字符串且输出到屏幕上
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
 $res = curl_exec($ch);
 curl_close($ch);
 ```
@@ -149,21 +148,20 @@ request(opt, function(err, res, body) {
 ```php
 <?php
 $url = "https://cloud.minapp.com/oserve/v1/file/";
+
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-
-// 设置头部
 $header = array(
-  'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+  "Authorization: Bearer {$token}",
   'Content-Type: application/json; charset=utf-8'
-  );
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+);
 
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-// 要求结果为字符串且输出到屏幕上
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
 $res = curl_exec($ch);
 curl_close($ch);
 ```
@@ -216,19 +214,20 @@ request(opt, function(err, res, body) {
 <?php
 $file_id = '5a45f22bfff1d659681c87xx'; // 文件 ID
 $url = "https://cloud.minapp.com/oserve/v1/file/{$file_id}/";
+
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-// 设置头部
 $header = array(
-  'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+  "Authorization: Bearer {$token}",
   'Content-Type: application/json; charset=utf-8'
-  );
+);
+
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-// 要求结果为字符串且输出到屏幕上
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
 $res['response'] = curl_exec($ch); // 反馈结果
 $res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
 curl_close($ch);
@@ -285,19 +284,20 @@ request(opt, function(err, res, body) {
 $file_id[] = '5a45f22bfff1d659681cxxxx'; // 文件 ID
 $file_id[] = '5a3b673308443e643f1bxxxx'; // 文件 ID
 $url = "https://cloud.minapp.com/oserve/v1/file/?id__in=".implode(',',$file_id);
+
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-// 设置头部
 $header = array(
-  'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+  "Authorization: Bearer {$token}",
   'Content-Type: application/json; charset=utf-8'
-  );
+);
+
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-// 要求结果为字符串且输出到屏幕上
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
 $res['response'] = curl_exec($ch); // 反馈结果
 $res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
 curl_close($ch);

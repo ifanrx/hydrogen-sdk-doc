@@ -166,24 +166,23 @@ $condition = array(
   'order_by' => '-id',
   'limit' => '10',
   'offset' => '0'
-  );
+);
 $url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/?";
 $url .= urlencode(json_encode($condition));
+
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-
-// 设置头部
 $header = array(
-  'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+  "Authorization: Bearer {$token}",
   'Content-Type: application/json; charset=utf-8',
-  );
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+);
 
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-// 要求结果为字符串且输出到屏幕上
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
 $res = curl_exec($ch);
 curl_close($ch);
 ```
@@ -227,21 +226,20 @@ request(opt, function(err, res, body) {
 $table_id = 1;
 $recornd_id = '5a2fa9b008443e59e0e678xx';
 $url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/{$recornd_id}/";
+
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-
-// 设置头部
 $header = array(
-  'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+  "Authorization: Bearer {$token}",
   'Content-Type: application/json; charset=utf-8',
-  );
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+);
 
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-// 要求结果为字符串且输出到屏幕上
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
 $res = curl_exec($ch);
 curl_close($ch);
 
@@ -308,20 +306,23 @@ $param = array(
   'price' => 19,
   'amount' => 19,
   'code' => '18814098707'
-  );
+);
 $url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/";
+
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 $header = array(
-  'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+  "Authorization: Bearer {$token}",
   'Content-Type: application/json; charset=utf-8',
-  );
+);
+
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
 $res['response'] = curl_exec($ch); // 反馈结果
 $res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
 curl_close($ch);
@@ -390,18 +391,21 @@ $table_id = 1; // 数据表 ID
 $record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
 $url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/{$record_id}/";
 $param['name'] = 'nickname';
+
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 $header = array(
-  'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+  "Authorization: Bearer {$token}",
   'Content-Type: application/json; charset=utf-8'
-  );
+);
+
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
 $res['response'] = curl_exec($ch); // 反馈结果
 $res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
 curl_close($ch);
@@ -453,19 +457,20 @@ request(opt, function(err, res, body) {
 $table_id = 1; // 数据表 ID
 $record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
 $url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/{$record_id}/";
+
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-// 设置头部
 $header = array(
-  'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+  "Authorization: Bearer {$token}",
   'Content-Type: application/json; charset=utf-8',
-  );
+);
+
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-// 要求结果为字符串且输出到屏幕上
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
 $res['response'] = curl_exec($ch); // 反馈结果
 $res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
 curl_close($ch);
@@ -596,19 +601,22 @@ $url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/{$record_id}
 $param = array(
   'desc' => ['$append' => ['atomic data']], 
   'price' => ['$incr_by' => -1]
-  );
+);
+
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 $header = array(
-  'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+  "Authorization: Bearer {$token}",
   'Content-Type: application/json; charset=utf-8',
-  );
+);
+
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
 $res['response'] = curl_exec($ch); // 反馈结果
 $res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
 curl_close($ch);

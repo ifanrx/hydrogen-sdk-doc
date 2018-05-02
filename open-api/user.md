@@ -43,23 +43,23 @@ request(opt, function(err, res, body) {
 <?php
 $profile_id = '4271xx'; // 用户 ID
 $url = "https://cloud.minapp.com/oserve/v1/miniapp/user-profile/{$profile_id}/";
+
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-
-// 设置头部
 $header = array(
-  'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+  "Authorization: Bearer {$token}",
   'Content-Type: application/json; charset=utf-8'
-  );
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+);
 
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-// 要求结果为字符串且输出到屏幕上
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
 $res = curl_exec($ch);
 curl_close($ch);
+
 ```
 
 {% endtabs %}
@@ -159,24 +159,23 @@ $query_data = array(
   'gender' =>  1,
   'created_at__gte' => 1483228800,
   'order_by' => '-created_at'
-  );
+);
 $query_string = http_build_query($query_data);
 $url = "https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?".$query_string;
+
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-
-// 设置头部
 $header = array(
-  'Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4',
+  "Authorization: Bearer {$token}",
   'Content-Type: application/json; charset=utf-8'
-  );
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+);
 
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-// 要求结果为字符串且输出到屏幕上
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
 $res = curl_exec($ch);
 curl_close($ch);
 ```
