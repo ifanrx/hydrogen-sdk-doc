@@ -10,7 +10,7 @@
 
 **代码示例**
 
-{% tabs getFileDetailCurl="Curl", getFileDetailNode="Node" %}
+{% tabs getFileDetailCurl="Curl", getFileDetailNode="Node", getFileDetailPHP="PHP" %}
 
 {% content "getFileDetailCurl" %}
 
@@ -37,6 +37,30 @@ var opt = {
 request(opt, function(err, res, body) {
   console.log(body)
 })
+```
+
+{% content "getFileDetailPHP" %}
+
+```php
+<?php
+$file_id = '5a2fe93308443e313a428cxx'; // 文件 ID
+$url = "https://cloud.minapp.com/oserve/v1/file/{$file_id}/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -82,7 +106,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs getFileListCurl="Curl", getFileListNode="Node" %}
+{% tabs getFileListCurl="Curl", getFileListNode="Node", getFileListPHP="PHP" %}
 
 {% content "getFileListCurl" %}
 
@@ -119,6 +143,29 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% content "getFileListPHP" %}
+
+```php
+<?php
+$url = "https://cloud.minapp.com/oserve/v1/file/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
+```
+
 {% endtabs %}
 
 
@@ -132,7 +179,7 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs deleteFileCurl="Curl", deleteFileNode="Node" %}
+{% tabs deleteFileCurl="Curl", deleteFileNode="Node", deleteFilePHP="PHP" %}
 
 {% content "deleteFileCurl" %}
 
@@ -161,6 +208,31 @@ request(opt, function(err, res, body) {
 })
 ```
 
+{% content "deleteFilePHP" %}
+
+```php
+<?php
+$file_id = '5a45f22bfff1d659681c87xx'; // 文件 ID
+$url = "https://cloud.minapp.com/oserve/v1/file/{$file_id}/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
+```
+
 {% endtabs %}
 
 **状态码说明**
@@ -176,7 +248,7 @@ request(opt, function(err, res, body) {
 
 **代码示例**
 
-{% tabs patchDeleteCurl="Curl", patchDeleteNode="Node" %}
+{% tabs patchDeleteCurl="Curl", patchDeleteNode="Node", patchDeletePHP="PHP" %}
 
 {% content "patchDeleteCurl" %}
 
@@ -203,6 +275,32 @@ var opt = {
 request(opt, function(err, res, body) {
   console.log(res.statusCode)
 })
+```
+
+{% content "patchDeletePHP" %}
+
+```php
+<?php
+$file_id[] = '5a45f22bfff1d659681cxxxx'; // 文件 ID
+$file_id[] = '5a3b673308443e643f1bxxxx'; // 文件 ID
+$url = "https://cloud.minapp.com/oserve/v1/file/?id__in=".implode(',',$file_id);
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
 ```
 
 {% endtabs %}

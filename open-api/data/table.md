@@ -108,9 +108,9 @@
 
 **代码示例**
 
-{% tabs getTableListCurl="Curl", getTableListNode="Node" %}
+{% tabs createTableCurl="Curl", createTableNode="Node", createTablePHP="PHP" %}
 
-{% content "getTableListCurl" %}
+{% content "createTableCurl" %}
 
 ```
 curl -X POST \
@@ -132,7 +132,7 @@ curl -X POST \
     }' \
 https://cloud.minapp.com/oserve/v1/table/
 ```
-{% content "getTableListNode" %}
+{% content "createTableNode" %}
 
 ```js
 var request = require("request");
@@ -156,6 +156,38 @@ request(options, function (error, response, body) {
   console.log(body);
 });
 
+```
+{% content "createTablePHP" %}
+```php
+<?php
+$schema['fields'] = [array(
+  'name' => 'String',
+  'type' => 'string'
+)];
+$param['name'] = 'Table199';
+$param['schema'] = $schema;
+$param['row_read_perm'] = ['user:*'];
+$param['row_write_perm'] = ['user:*'];
+$param['write_perm'] = ['user:*'];
+$url = 'https://cloud.minapp.com/oserve/v1/table/';
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -243,7 +275,7 @@ request(options, function (error, response, body) {
 
 **代码示例**
 
-{% tabs getTableCurl="Curl", getTableNode="Node" %}
+{% tabs getTableCurl="Curl", getTableNode="Node", getTablePHP="PHP" %}
 
 {% content "getTableCurl" %}
 
@@ -271,6 +303,31 @@ request(options, function (error, response, body) {
   console.log(body);
 });
 ```
+
+{% content "getTablePHP" %}
+
+```php
+<?php
+$table_id = 1; // 数据表 ID
+$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
+```
+
 {% endtabs %}
 
 **返回示例**
@@ -323,7 +380,7 @@ request(options, function (error, response, body) {
 
 **代码示例**
 
-{% tabs getTableListCurl="Curl", getTableListNode="Node" %}
+{% tabs getTableListCurl="Curl", getTableListNode="Node", getTableListPHP="PHP" %}
 
 {% content "getTableListCurl" %}
 
@@ -352,6 +409,28 @@ request(options, function (error, response, body) {
 });
 ```
 
+{% content "getTableListPHP" %}
+
+```php
+<?php
+$url = "https://cloud.minapp.com/oserve/v1/table/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
+```
 {% endtabs %}
 
 **返回示例**
@@ -412,9 +491,9 @@ request(options, function (error, response, body) {
 
 **代码示例**
 
-{% tabs getTableCurl="Curl", getTableNode="Node" %}
+{% tabs updateTableCurl="Curl", updateTableNode="Node", updateTablePHP="PHP" %}
 
-{% content "getTableCurl" %}
+{% content "updateTableCurl" %}
 
 ```
 curl -X PUT \
@@ -426,7 +505,7 @@ curl -X PUT \
 https://cloud.minapp.com/oserve/v1/table/1/
 ```
 
-{% content "getTableNode" %}
+{% content "updateTableNode" %}
 
 ```js
 var request = require("request");
@@ -444,6 +523,33 @@ request(options, function (error, response, body) {
 
   console.log(body);
 });
+```
+
+{% content "updateTablePHP" %}
+
+```php
+<?php
+$table_id = 1; // 数据表 ID
+$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/";
+$param['name'] = 'table';
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -493,12 +599,42 @@ request(options, function (error, response, body) {
 
 **代码示例**
 
+{% tabs deleteTableCurl="Curl", deleteTablePHP="PHP" %}
+
+{% content "deleteTableCurl" %}
+
 ```
 curl -X DELETE \
 -H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
 https://cloud.minapp.com/oserve/v1/table/1/
 ```
+
+{% content "deleteTablePHP" %}
+
+```php
+<?php
+$table_id = 1; // 表 ID
+$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
+```
+{% endtabs %}
 
 **状态码说明**
 

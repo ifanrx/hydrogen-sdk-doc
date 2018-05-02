@@ -19,7 +19,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs patchCurl="Curl", patchNode="Node" %}
+{% tabs patchCurl="Curl", patchNode="Node", patchPHP="PHP" %}
 
 {% content "patchCurl"%}
 
@@ -53,6 +53,44 @@ var opt = {
 request(opt, function(err, res, body) {
   console.log(res.statusCode)
 })
+```
+
+{% content "patchPHP"%}
+
+```php
+<?php
+$param = array(
+  array(
+    'op' => 'add',
+    'path' => '/membership',
+    'users' => [5, 6],
+    'groups' => [53, 54]
+  ),
+  array(
+    'op' => 'remove',
+    'path' => '/membership',
+    'users' => [5, 6],
+    'groups' => [53, 54]
+  )
+);
+$url = "https://cloud.minapp.com/oserve/v1/miniapp/group/membership/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
 ```
 
 {% endtabs %}

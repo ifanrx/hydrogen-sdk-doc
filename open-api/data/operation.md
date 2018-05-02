@@ -31,7 +31,7 @@
 
 **代码示例**
 
-{% tabs exportCurl="Curl", exportNode="Node" %}
+{% tabs exportCurl="Curl", exportNode="Node", exportPHP="PHP" %}
 
 {% content "exportCurl" %}
 
@@ -66,6 +66,36 @@ var opt = {
 request(opt, function (err, res, body) {
   console.log(res.statusCode)
 })
+```
+
+{% content "exportPHP" %}
+
+```php
+<?php
+$table_id = 1; // 数据表的 ID
+$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/export/";
+$param = array(
+  'file_type' => 'csv',
+  "mode" => "all"
+);
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL,$url);
+curl_setopt($ch, CURLOPT_POST,true);
+curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($param));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
 ```
 
 {% endtabs %}
@@ -104,7 +134,7 @@ Content-Type: `multipart/form-data`
 
 **代码示例**
 
-{% tabs importCurl="Curl", importNode="Node" %}
+{% tabs importCurl="Curl", importNode="Node", importPHP="PHP" %}
 
 {% content "importCurl" %}
 
@@ -136,6 +166,43 @@ var opt = {
 request(opt, function(err, res, body) {
   console.log(res.statusCode, body)
 })
+```
+
+{% content "importPHP" %}
+
+```php
+<?php
+$table_id = 1; // 数据表的 ID
+$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/import/";
+
+if (class_exists('CURLFile')) {
+  $param = array(
+    'file' => new \CURLFile(realpath( __DIR__.'/demo.csv'), 'csv', 'demo.csv')
+  );
+} else {
+  $param = array(
+    'file'=>'@'.realpath( __DIR__.'/demo.csv')
+  );
+}
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: multipart/form-data; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
+
 ```
 
 {% endtabs %}
