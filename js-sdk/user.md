@@ -109,7 +109,7 @@ MyUser.get(userID).then(res => {
 
 ### 更新当前用户信息
 
-更新用户信息与[数据表更新数据项](../schema/update-record.md)方法基本一致。这里只允许更新当前用户的信息，并且只支持对 _userprofile 表中自定义的字段进行更新。
+更新用户信息与[数据表更新数据项](./schema/update-record.md)方法基本一致。这里只允许更新当前用户的信息，并且只支持对 _userprofile 表中自定义的字段进行更新。
 
 **请求示例**
 
@@ -127,7 +127,7 @@ currentUser.set('age', 30).update().then(res => {
 
 ### 查询，获取用户列表
 
-用户查询与[数据表查询](../schema/query.md)方法一致
+用户查询与[数据表查询](./schema/query.md)方法一致
 
 **请求示例**
 
@@ -149,7 +149,7 @@ MyUser.setQuery(query).find().then(res => {
 
 ### 排序
 
-用户查询排序与[数据表排序](../schema/limit-and-order.md)方法一致，不包含在返回数据里的字段不支持排序，如 created_at。
+用户查询排序与[数据表排序](./schema/limit-and-order.md)方法一致，不包含在返回数据里的字段不支持排序，如 created_at。
 
 **请求示例**
 
@@ -161,7 +161,7 @@ MyUser.orderBy('-nickname').find().then()
 
 ### 分页
 
-用户查询分页与[数据表分页](../schema/limit-and-order.md)方法一致。
+用户查询分页与[数据表分页](./schema/limit-and-order.md)方法一致。
 
 **请求示例**
 
