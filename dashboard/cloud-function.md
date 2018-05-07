@@ -71,7 +71,7 @@ exports.main = function functionName(event, callback) {
   }
   ```
 
-  详细的 Node.js SDK 的文档参见：[云函数 Node.js SDK](../cloud-function/node-sdk/)
+  详细的 Node.js SDK 的文档参见：[云函数 Node.js SDK](../cloud-function/node-sdk/README.md)
 
 - 云代码运行环境
 
