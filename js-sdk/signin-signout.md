@@ -4,6 +4,90 @@
 
 SDK 提供了快速登录小程序的接口，省去使用微信登录接口时获取 code, session_key 等辅助操作。
 
+> **danger**
+> 从 2018 年 4 月 30 日开始，在小程序的体验版和开发版调用 wx.getUserInfo 接口，将默认调用失败。为相应微信的调整，我们在 SDK v1.4.0 中增加了对新的登录流程的支持，因此也推荐你使用新的 SDK 接口来完成登录和获取用户信息功能。关于最佳的登录实践，可参考 [微信登录能力优化](https://mp.weixin.qq.com/s?__biz=MjM5NDAxMDg4MA==&mid=2650959412&idx=1&sn=9a140ac9622845b4c362ab686a877197)
+
+{% tabs first="SDK 1.4.0 及以上版本", second="SDK 1.4.0 以下版本" %}
+
+{% content "first" %}
+
+小程序建议的登录流程是，通过 `wx.login` 获取用户 openID, 这时无需弹框授权，开发者拿到 openID 可以建立自身的帐号 ID。当必须要获得用户的头像昵称等信息时，才让用户点击 button（open-type="getUserInfo" ），弹框授权。
+
+### 登录
+
+`wx.BaaS.login(false)`
+
+该方法会进行简单的登录，无需弹框授权。
+
+**返回字段说明**
+
+| 参数     | 类型   | 说明 |
+| :------ | :----- | :-- |
+| id      | Number | 用户在用户表中的 ID |
+| openid  | String | 用户唯一标识，由微信生成 |
+| unionid | String | 用户在开放平台的唯一标识符，由微信生成 |
+
+**请求示例**
+
+```js
+// 微信用户登录小程序
+wx.BaaS.login(false).then(res => {
+  // 登录成功
+}, res => {
+  // 登录失败
+})
+```
+
+### 请求用户授权
+
+开发者需要使用按钮的方式，令用户触发授权操作
+
+```html
+<button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">微信登录</button>
+```
+
+用户点击该按钮时，会返回获取到的用户信息，其中包括加密的敏感信息，开发者需在回调中调用 `wx.BaaS.handleUserInfo` 方法，以获得解密后的全部用户信息。若要使用 SDK 的支付等接口，`wx.BaaS.handleUserInfo` 必须被调用。
+
+**请求示例**
+
+```js
+userInfoHandler(data) {
+  wx.BaaS.handleUserInfo(data).then(res => {
+    // res 包含用户完整信息，详见下方描述
+  }, res => {
+    // **res 有两种情况**：用户拒绝授权，res 包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 Error 对象（详情见下方注解）
+    // *Tips*：如果你的业务需要用户必须授权才可进行，由于微信的限制，10 分钟内不可再次弹出授权窗口，此时可以调用 [`wx.openSetting`](https://mp.weixin.qq.com/debug/wxadoc/dev/api/setting.html) 要求用户提供授权
+  })
+}
+```
+
+**`wx.BaaS.handleUserInfo` 返回字段说明**
+
+当用户拒绝授权时：
+
+| 参数     | 类型   | 说明 |
+| :------ | :----- | :-- |
+| id      | Number | 用户在用户表中的 ID |
+| openid  | String | 用户唯一标识，由微信生成 |
+| unionid | String | 用户在开放平台的唯一标识符，由微信生成 |
+
+当用户允许授权时，在上面返回参数的基础上，加上以下几个参数：
+
+| 参数       | 类型   | 说明 |
+| :-------- | :----- | :-- |
+| avatarUrl | String | 用户头像 |
+| city      | String | 用户所在城市 |
+| country   | String | 用户所在国家 |
+| gender    | Number | 用户的性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知 |
+| language  | String | 用户的语言，简体中文为 zh_CN |
+| nickName  | String | 用户昵称 |
+| province  | String | 用户所在省份 |
+
+> **info**
+> `wx.BaaS.handleUserInfo` 默认会检查用户是否已登录，若未登录会先执行登录操作
+
+{% content "second" %}
+
 ### 登录并请求用户授权
 `wx.BaaS.login()`
 
@@ -137,6 +221,8 @@ wx.BaaS.login(false).then(res => {
 ### 自动登录
 
 对 wx.BaaS 的方法进行调用时，默认会执行登录操作，在 SDK 1.1.0 以下版本，会进行登录并弹出确认授权模态框，而在 SDK 1.10 及以上版本改为只进行静默登录，不要求用户授权。
+
+{% endtabs %}
 
 
 ## 登出
