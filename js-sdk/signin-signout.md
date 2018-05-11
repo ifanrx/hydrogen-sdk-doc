@@ -5,7 +5,7 @@
 SDK 提供了快速登录小程序的接口，省去使用微信登录接口时获取 code, session_key 等辅助操作。
 
 > **danger**
-> 从 2018 年 4 月 30 日开始，在小程序的体验版和开发版调用 wx.getUserInfo 接口，将默认调用失败。为相应微信的调整，我们在 SDK v1.4.0 中增加了对新的登录流程的支持，因此也推荐你使用新的 SDK 接口来完成登录和获取用户信息功能。关于最佳的登录实践，可参考 [微信登录能力优化](https://mp.weixin.qq.com/s?__biz=MjM5NDAxMDg4MA==&mid=2650959412&idx=1&sn=9a140ac9622845b4c362ab686a877197)
+> 从 2018 年 4 月 30 日开始，在小程序的体验版和开发版调用 wx.getUserInfo 接口，将默认调用失败。为应对微信的调整，我们在 SDK v1.4.0 中增加了对新的登录流程的支持，因此也推荐你使用新的 SDK 接口来完成登录和获取用户信息功能。关于最佳的登录实践，可参考 [微信登录能力优化](https://mp.weixin.qq.com/s?__biz=MjM5NDAxMDg4MA==&mid=2650959412&idx=1&sn=9a140ac9622845b4c362ab686a877197)
 
 {% tabs first="SDK 1.4.0 及以上版本", second="SDK 1.4.0 以下版本" %}
 
@@ -17,7 +17,7 @@ SDK 提供了快速登录小程序的接口，省去使用微信登录接口时�
 
 `wx.BaaS.login(false)`
 
-该方法会进行简单的登录，无需弹框授权。
+该方法会进行简单的登录，不需要用户授权，即不会弹出授权框。
 
 **返回字段说明**
 
@@ -40,10 +40,10 @@ wx.BaaS.login(false).then(res => {
 
 ### 请求用户授权
 
-开发者需要使用按钮的方式，令用户触发授权操作
+开发者需要提供按钮的方式，令用户触发授权操作
 
 ```html
-<button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">微信登录</button>
+<button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
 ```
 
 用户点击该按钮时，会返回获取到的用户信息，其中包括加密的敏感信息，开发者需在回调中调用 `wx.BaaS.handleUserInfo` 方法，以获得解密后的全部用户信息。若要使用 SDK 的支付等接口，`wx.BaaS.handleUserInfo` 必须被调用。
@@ -84,7 +84,7 @@ userInfoHandler(data) {
 | province  | String | 用户所在省份 |
 
 > **info**
-> `wx.BaaS.handleUserInfo` 默认会检查用户是否已登录，若未登录会先执行登录操作
+> `wx.BaaS.handleUserInfo` 默认会检查用户是否已登录，若未登录，该接口默认会先执行登录操作
 
 {% content "second" %}
 
