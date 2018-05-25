@@ -44,4 +44,3 @@
 
 * [API 服务](server/README.md)
     * [评论](server/comment.md)
-    * [消息队列](server/mq.md)

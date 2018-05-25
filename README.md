@@ -57,9 +57,7 @@
       <h3><a href="/dashboard/README.md/">后端服务支持</a></h3>
       <ul class="doc-dashboard doc-detail-item">
         <li><a href="/dashboard/schema.md/">Web Socket</a></li>
-        <li><a href="/dashboard/schema.md/">消息队列</a></li>
         <li><a href="/dashboard/schema.md/">API 服务</a></li>
-        <li><a href="/dashboard/schema.md/">存储服务</a></li>
       </ul>
     </li>
   </ul>
