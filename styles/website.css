@@ -19,7 +19,7 @@
 }
 
 .markdown-section a {
-  color: #008cff;
+  color: #273545;
 }
 
 /* reset tabs plugin */
@@ -41,15 +41,15 @@
 .nav-tabs>li.active>a:hover {
   border: none;
   background: #FFF;
-  border-bottom: 2px solid #008cff;
-  color: #008cff;
+  border-bottom: 2px solid #273545;
+  color: #273545;
   font-weight: bold;
 }
 
 /* reset navigation plugin */
 
 .doc-header {
-  background: #008cff;
+  background: #273545;
 }
 
 .doc-title {
@@ -60,6 +60,10 @@
   letter-spacing: 5px;
   font-size: 35px;
   margin: 0 !important;
+}
+
+.doc-title h1 span {
+  opacity: 0;
 }
 
 .doc-desc {
@@ -75,7 +79,7 @@ ul.doc-detail {
 }
 
 .doc-detail h3 {
-  color: #008cff;
+  color: #273545;
 }
 
 .doc-detail li {
@@ -88,7 +92,7 @@ ul.doc-detail {
 }
 
 .doc-detail>li:nth-child(2n) {
-  background: #ebf7fd;
+  background: #eee;
 }
 
 .doc-detail-item {
@@ -109,7 +113,7 @@ ul.doc-detail {
 
 .doc-detail-item li a:hover,
 .doc-detail-item li a:focus {
-  color: #008cff;
+  color: #273545;
   text-decoration: none;
 }
 

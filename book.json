@@ -1,6 +1,6 @@
 {
-  "author": "知晓云开发组 <mincloud@ifanr.com>",
-  "description": "知晓云平台开发文档",
+  "author": "TomWan <wanming@shimo.im>",
+  "description": "石墨文档 SDK",
   "extension": null,
   "generator": "site",
   "links": {
@@ -37,22 +37,22 @@
     "simpletabs",
     "styled-blockquotes"
   ],
-  "title": "知晓云平台开发文档",
+  "title": "石墨文档 SDK",
   "variables": {},
   "pluginsConfig": {
     "algolia": {
-      "index": "prod_minapp_doc",
-      "applicationID": "7TN0U2FL3Q",
-      "publicKey": "b9ab71bfe55a6bcb2e1474e14d79d95a",
+      "index": "aaaaaaa",
+      "applicationID": "aaaaa",
+      "publicKey": "aaaaaaa",
       "freeAccount": "false"
     },
     "favicon": {
-      "shortcut": "/images/minapp@64X64.ico",
-      "bookmark": "/images/minapp@64X64.ico",
-      "appleTouch": "/images/minapp@64X64.ico",
+      "shortcut": "/images/favicon.ico",
+      "bookmark": "/images/favicon.ico",
+      "appleTouch": "/images/favicon.ico",
       "appleTouchMore": {
-        "120x120": "/images/minapp@64X64.ico",
-        "180x180": "/images/minapp@64X64.ico"
+        "120x120": "/images/favicon.ico",
+        "180x180": "/images/favicon.ico"
       }
     },
     "simple-page-toc": {

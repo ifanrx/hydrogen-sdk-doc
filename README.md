@@ -1,192 +1,66 @@
 <div class="doc-wrapper">
   <section class="doc-header">
     <p class="doc-title">
-      知晓云文档中心
+      石墨文档 SDK
     </p>
     <p class="doc-desc">
-      知晓云是个好用、顺手的小程序开发工具。它免去了小程序开发中服务器搭建、域名备案、数据接口实现等繁琐流程。让您专注于业务逻辑的实现，使用知晓云开发小程序，门槛更低，效率更高。
+      石墨文档 SDK 是一系列高度可定制化的协同编辑套件，目前支持文档、表格和演示。
     </p>
   </section>
 
   <ul class="doc-detail">
+    <!-- 快速开始 -->
     <li>
-      <h3>
-        <a href="/newbies/README.md/">新手入门</a>
-      </h3>
-      <ul class="doc-newbie doc-detail-item">
-        <li>
-          <a href="/newbies/README.md#小程序注册指引">小程序注册指引</a>
-        </li>
-        <li>
-          <a href="/newbies/README.md#知晓云账号注册">知晓云账号注册</a>
-        </li>
-        <li>
-          <a href="/newbies/README.md#第一个接入知晓云的小程序">第一个接入知晓云的小程序</a>
-        </li>
-      </ul>
+      <h3><a href="/quick-start.md/">快速开始</a></h3>
     </li>
+    <!-- 文档 -->
     <li>
-      <h3>
-        <a href="/dashboard/README.md/">控制台操作</a>
-      </h3>
+      <h3><a href="/document/README.md/">文档</a></h3>
       <ul class="doc-dashboard doc-detail-item">
-        <li>
-          <a href="/dashboard/schema.md/">数据管理</a>
-        </li>
-        <li>
-          <a href="/dashboard/content.md/">内容管理</a>
-        </li>
-        <li>
-          <a href="/dashboard/file.md/">文件管理</a>
-        </li>
-        <li>
-          <a href="/dashboard/user.md/">用户管理</a>
-        </li>
-        <li>
-          <a href="/dashboard/payment.md/">支付</a>
-        </li>
-        <li>
-          <a href="/dashboard/trigger.md/">触发器</a>
-        </li>
-        <li>
-          <a href="/dashboard/acl.md/">ACL 简介</a>
-        </li>
+        <li><a href="/document/schema.md/">编辑器</a></li>
+        <li><a href="/dashboard/schema.md/">工具栏</a></li>
+        <li><a href="/dashboard/schema.md/">快捷键</a></li>
+        <li><a href="/dashboard/schema.md/">协作者</a></li>
+        <li><a href="/dashboard/schema.md/">目录</a></li>
       </ul>
     </li>
+    <!-- 表格 -->
     <li>
-      <h3>
-        <a href="/js-sdk/">JS SDK</a>
-      </h3>
-      <ul class="doc-js-sdk doc-detail-item">
-        <li>
-          <a href="/js-sdk/signin-signout.md/">登入登出</a>
-        </li>
-        <li>
-          <a href="/js-sdk/user.md/">用户</a>
-        </li>
-        <li>
-          <a href="/js-sdk/schema/README.md/">数据表</a>
-        </li>
-        <li>
-          <a href="/js-sdk/content/README.md/">内容库</a>
-        </li>
-        <li>
-          <a href="/js-sdk/file/README.md/">文件</a>
-        </li>
-        <li>
-          <a href="/js-sdk/payment/README.md/">支付</a>
-        </li>
-        <li>
-          <a href="/js-sdk/request.md/">网络请求</a>
-        </li>
-        <li>
-          <a href="/js-sdk/local-storage.md/">本地存储</a>
-        </li>
-        <li>
-          <a href="/js-sdk/template-message.md/">模板消息</a>
-        </li>
-      </ul>
-      <ul class="doc-js-sdk doc-detail-item">
-        <li>
-          <a href="/js-sdk/wechat-decrypt.md/">微信加密数据解密</a>
-        </li>
-        <li>
-          <a href="/js-sdk/wxacode.md/">获取二维码</a>
-        </li>
-        <li>
-          <a href="/js-sdk/invoke-function.md/">调用云函数</a>
-        </li>
-        <li>
-          <a href="/js-sdk/error-code.md/">错误码详解</a>
-        </li>
-        <li>
-          <a href="/js-sdk/download-sdk.md/">SDK 下载</a>
-        </li>
-        <li>
-          <a href="https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md">更新日志</a>
-        </li>
+      <h3><a href="/dashboard/README.md/">表格</a></h3>
+      <ul class="doc-dashboard doc-detail-item">
+        <li><a href="/dashboard/schema.md/">编辑器</a></li>
+        <li><a href="/dashboard/schema.md/">工具栏</a></li>
+        <li><a href="/dashboard/schema.md/">快捷键</a></li>
+        <li><a href="/dashboard/schema.md/">协作者</a></li>
       </ul>
     </li>
+    <!-- 演示 -->
     <li>
-      <h3>
-        <a href="/open-api/README.md/">知晓云开放 API</a>
-      </h3>
-      <ul class="doc-open-api doc-detail-item">
-        <li>
-          <a href="/open-api/authentication.md/">授权认证</a>
-        </li>
-        <li>
-          <a href="/open-api/data/README.md/">数据表模块</a>
-        </li>
-        <li>
-          <a href="/open-api/content/README.md/">内容模块</a>
-        </li>
-        <li>
-          <a href="/open-api/file/README.md/">文件模块</a>
-        </li>
-        <li>
-          <a href="/open-api/group/README.md/">分组模块</a>
-        </li>
-        <li>
-          <a href="/open-api/user.md/">用户模块</a>
-        </li>
+      <h3><a href="/dashboard/README.md/">演示</a></h3>
+      <ul class="doc-dashboard doc-detail-item">
+        <li><a href="/dashboard/schema.md/">编辑器</a></li>
+        <li><a href="/dashboard/schema.md/">工具栏</a></li>
+        <li><a href="/dashboard/schema.md/">快捷键</a></li>
+        <li><a href="/dashboard/schema.md/">协作者</a></li>
       </ul>
     </li>
+    <!-- 通用模块 -->
     <li>
-      <h3>
-        <a href="/user-dash/README.md/">运营后台 API</a>
-      </h3>
-      <ul class="doc-user-dash doc-detail-item">
-        <li>
-          <a href="/user-dash/authentication.md/">授权认证</a>
-        </li>
-        <li>
-          <a href="/user-dash/data/README.md/">数据表模块</a>
-        </li>
-        <li>
-          <a href="/user-dash/content/README.md/">内容模块</a>
-        </li>
-        <li>
-          <a href="/user-dash/file/README.md/">文件模块</a>
-        </li>
-        <li>
-          <a href="/user-dash/group/README.md/">分组模块</a>
-        </li>
-        <li>
-          <a href="/user-dash/user.md/">用户模块</a>
-        </li>
+      <h3><a href="/dashboard/README.md/">通用模块</a></h3>
+      <ul class="doc-dashboard doc-detail-item">
+        <li><a href="/dashboard/schema.md/">协同编辑</a></li>
+        <li><a href="/dashboard/schema.md/">协作者通信</a></li>
       </ul>
     </li>
+    <!-- 后端服务支持 -->
     <li>
-      <h3>
-        <a href="/cloud-function/README.md/">云函数</a>
-      </h3>
-      <ul class="doc-cloud-function doc-detail-item">
-        <li>
-          <a href="/cloud-function/quick-start.md/">快速入门</a>
-        </li>
-        <li>
-          <a href="/cloud-function/node-sdk/README.md/">云函数 Node SDK</a>
-        </li>
+      <h3><a href="/dashboard/README.md/">后端服务支持</a></h3>
+      <ul class="doc-dashboard doc-detail-item">
+        <li><a href="/dashboard/schema.md/">Web Socket</a></li>
+        <li><a href="/dashboard/schema.md/">消息队列</a></li>
+        <li><a href="/dashboard/schema.md/">API 服务</a></li>
+        <li><a href="/dashboard/schema.md/">存储服务</a></li>
       </ul>
     </li>
-    <li>
-      <h3>
-        <a href="/support/README.md/">管理与支持</a>
-      </h3>
-      <ul class="doc-support doc-detail-item">
-        <li>
-          <a href="/support/qA.md/"> 常见问题</a>
-        </li>
-        <li>
-          <a href="/support/terms.md/">服务协议</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <h3>
-        <a href="/technical-notes.md/">技术细节</a>
-      </h3>
-   </li>
-   </ul>
+  </ul>
 </div>
