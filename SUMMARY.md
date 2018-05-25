@@ -27,7 +27,7 @@
 
 ----
 
-* [演示](slide/readme.md)
+* [幻灯片](slide/readme.md)
     * [编辑器](document/editor.md)
     * [工具栏](document/toolbar.md)
     * [快捷键](document/shortcut.md)

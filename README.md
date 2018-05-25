@@ -4,7 +4,7 @@
       石墨文档 SDK
     </p>
     <p class="doc-desc">
-      石墨文档 SDK 是一系列高度可定制化的协同编辑套件，目前支持文档、表格和演示。
+      石墨文档 SDK 是一系列高度可定制化的协同编辑套件，目前支持文档、表格和幻灯片。
     </p>
   </section>
 
@@ -34,9 +34,9 @@
         <li><a href="/dashboard/schema.md/">协作者</a></li>
       </ul>
     </li>
-    <!-- 演示 -->
+    <!-- 幻灯片 -->
     <li>
-      <h3><a href="/dashboard/readme.md/">演示</a></h3>
+      <h3><a href="/dashboard/readme.md/">幻灯片</a></h3>
       <ul class="doc-dashboard doc-detail-item">
         <li><a href="/dashboard/schema.md/">编辑器</a></li>
         <li><a href="/dashboard/schema.md/">工具栏</a></li>
