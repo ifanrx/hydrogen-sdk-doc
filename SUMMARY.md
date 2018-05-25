@@ -8,7 +8,7 @@
 
 ----
 
-* [文档](document/README.md)
+* [文档](document/readme.md)
     * [编辑器](document/editor.md)
     * [工具栏](document/toolbar.md)
     * [快捷键](document/shortcut.md)
@@ -18,7 +18,7 @@
 
 ----
 
-* [表格](sheet/README.md)
+* [表格](sheet/readme.md)
     * [编辑器](sheet/editor.md)
     * [工具栏](sheet/toolbar.md)
     * [快捷键](sheet/shortcut.md)
@@ -27,7 +27,7 @@
 
 ----
 
-* [演示](slide/README.md)
+* [演示](slide/readme.md)
     * [编辑器](document/editor.md)
     * [工具栏](document/toolbar.md)
     * [快捷键](document/shortcut.md)
@@ -36,11 +36,11 @@
 
 ----
 
-* [通用模块](common/README.md)
+* [通用模块](common/readme.md)
     * [协同编辑](common/collaboration.md)
     * [协作者通信](common/collaborator_connect.md)
 
 ----
 
-* [API 服务](server/README.md)
+* [API 服务](server/readme.md)
     * [评论](server/comment.md)
