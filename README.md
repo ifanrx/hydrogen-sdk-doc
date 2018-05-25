@@ -15,7 +15,7 @@
     </li>
     <!-- 文档 -->
     <li>
-      <h3><a href="/document/README.md/">文档</a></h3>
+      <h3><a href="/document/readme.md/">文档</a></h3>
       <ul class="doc-dashboard doc-detail-item">
         <li><a href="/document/schema.md/">编辑器</a></li>
         <li><a href="/dashboard/schema.md/">工具栏</a></li>
@@ -26,7 +26,7 @@
     </li>
     <!-- 表格 -->
     <li>
-      <h3><a href="/dashboard/README.md/">表格</a></h3>
+      <h3><a href="/dashboard/readme.md/">表格</a></h3>
       <ul class="doc-dashboard doc-detail-item">
         <li><a href="/dashboard/schema.md/">编辑器</a></li>
         <li><a href="/dashboard/schema.md/">工具栏</a></li>
@@ -36,7 +36,7 @@
     </li>
     <!-- 演示 -->
     <li>
-      <h3><a href="/dashboard/README.md/">演示</a></h3>
+      <h3><a href="/dashboard/readme.md/">演示</a></h3>
       <ul class="doc-dashboard doc-detail-item">
         <li><a href="/dashboard/schema.md/">编辑器</a></li>
         <li><a href="/dashboard/schema.md/">工具栏</a></li>
@@ -46,7 +46,7 @@
     </li>
     <!-- 通用模块 -->
     <li>
-      <h3><a href="/dashboard/README.md/">通用模块</a></h3>
+      <h3><a href="/dashboard/readme.md/">通用模块</a></h3>
       <ul class="doc-dashboard doc-detail-item">
         <li><a href="/dashboard/schema.md/">协同编辑</a></li>
         <li><a href="/dashboard/schema.md/">协作者通信</a></li>
@@ -54,7 +54,7 @@
     </li>
     <!-- 后端服务支持 -->
     <li>
-      <h3><a href="/dashboard/README.md/">后端服务支持</a></h3>
+      <h3><a href="/dashboard/readme.md/">后端服务支持</a></h3>
       <ul class="doc-dashboard doc-detail-item">
         <li><a href="/dashboard/schema.md/">Web Socket</a></li>
         <li><a href="/dashboard/schema.md/">API 服务</a></li>
