@@ -67,7 +67,7 @@
 }
 
 .doc-desc {
-  font-size: 12px;
+  font-size: 14px;
   color: #FFF;
   padding: 0px 40px 20px;
   text-align: center;
@@ -99,7 +99,7 @@ ul.doc-detail {
   border: none !important;
   display: flex;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   padding-left: 0 !important;
 }
 
