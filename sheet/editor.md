@@ -1,6 +1,6 @@
 # 编辑器
 
-表格编辑器提供了编辑器类和一系列操作表格的方法。[快速开始入口](/quick-start.html)
+一个表格编辑器类，提供了获取内容、设置内容、操作表格的方法。
 
 ## 构造函数
 
@@ -27,9 +27,9 @@
 ## 方法列表
 
 ### getContent
-  获取表格内容，返回一个 promise。
+  获取表格内容。
 
-  * 返回值：`Promise<string>`
+  * 返回 `Promise (string)`
   * 用法
 
   ```js
@@ -39,15 +39,10 @@
   ```
 
 ### setContent
-  设置表格内容
+  设置表格内容。
 
-  * 返回值：`undefined`
-  * 用法
-
-  ```js
-  setContent(content, activeSheetId)
-  ```
-
+  * 返回 `undefined`
+  * 用法 `setContent(content, activeSheetId)`
   * 参数
 
 |名称|类型|默认值|描述|
