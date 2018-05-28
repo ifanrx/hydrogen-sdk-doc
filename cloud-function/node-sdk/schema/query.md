@@ -12,7 +12,7 @@
 | :-----  | :----- | :-- | :---|
 | tableID | Number |  是 | 数据表 ID |
 
-2.示例化一个 Query 对象，在该对象上添加查询条件
+2.实例化一个 Query 对象，在该对象上添加查询条件
 
 `let query = new BaaS.Query()`
 
