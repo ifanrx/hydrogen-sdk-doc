@@ -17,21 +17,21 @@
     <li>
       <h3><a href="/document/readme.md/">文档</a></h3>
       <ul class="doc-dashboard doc-detail-item">
-        <li><a href="/document/schema.md/">编辑器</a></li>
-        <li><a href="/dashboard/schema.md/">工具栏</a></li>
-        <li><a href="/dashboard/schema.md/">快捷键</a></li>
-        <li><a href="/dashboard/schema.md/">协作者</a></li>
-        <li><a href="/dashboard/schema.md/">目录</a></li>
+        <li><a href="/document/editor.md/">编辑器</a></li>
+        <li><a href="/document/toolbar.md/">工具栏</a></li>
+        <li><a href="/document/shortcut.md/">快捷键</a></li>
+        <li><a href="/document/collaborator.md/">协作者</a></li>
+        <li><a href="/document/mulu.md/">目录</a></li>
       </ul>
     </li>
     <!-- 表格 -->
     <li>
-      <h3><a href="/dashboard/readme.md/">表格</a></h3>
+      <h3><a href="/sheet/readme.md/">表格</a></h3>
       <ul class="doc-dashboard doc-detail-item">
-        <li><a href="/dashboard/schema.md/">编辑器</a></li>
-        <li><a href="/dashboard/schema.md/">工具栏</a></li>
-        <li><a href="/dashboard/schema.md/">快捷键</a></li>
-        <li><a href="/dashboard/schema.md/">协作者</a></li>
+        <li><a href="/sheet/editor.md/">编辑器</a></li>
+        <li><a href="/sheet/toolbar.md/">工具栏</a></li>
+        <li><a href="/sheet/shortcut.md/">快捷键</a></li>
+        <li><a href="/sheet/collaborator.md/">协作者</a></li>
       </ul>
     </li>
     <!-- 幻灯片 -->
