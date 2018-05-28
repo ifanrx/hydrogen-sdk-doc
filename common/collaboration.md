@@ -22,7 +22,7 @@
 
 
 > * 带`*`表示需要后端服务提供数据；
-> * `pullUrl` 和 `composeUrl` 可以提供 `{guid}` 占位符以使用 RESTFUL 方式的 url；如 `/files/{guid}/compose`， `guid` 会被自动替换成 `options.guid`；
+> * `pullUrl` 和 `composeUrl` 可以提供 `{guid}` 占位符以使用 RESTFUL 方式的 url；如 `/files/{guid}/compose`， `{guid}` 会被自动替换成 `options.guid`；
 > * 编辑器内容必须由后端服务指定；
 > * 模块必须在编辑器设置了内容，并且初始化成功后才能开始运行；
 
