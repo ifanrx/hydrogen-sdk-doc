@@ -4,11 +4,11 @@
 
 ## 构造函数
 
-* 构造函数
+* 用法
 
   ```js
-    new shimoSDK.Sheet()
-    new shimoSDK.Sheet(options)
+    new shimo.sdk.sheet.Editor()
+    new shimo.sdk.sheet.Editor(options)
   ```
 
 * 参数

@@ -4,7 +4,7 @@
 
 ## 构造函数
 
-* 构造函数
+* 用法
 
   ```js
     new shimo.sdk.common.Collaboration(options)
