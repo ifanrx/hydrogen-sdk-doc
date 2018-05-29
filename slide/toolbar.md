@@ -17,8 +17,11 @@
 
 |名称|类型|描述|
 | -- | -- | -- |
-| `options.editor` | `Editor` |编辑器的实例|
-| `options.uploader` | `UploaderConfig` |上传插件配置|
+| `options.editor` | `Editor` | 编辑器的实例 |
+| `options.uploader` | `UploaderConfig` | 上传插件配置 |
+| `options.uploader.url` | `string` | 上传URL |
+| `options.uploader.token_url` | `string` | 获取token的URL |
+| `options.uploader.server` | `string` | 上传接口参数 |
 
 
 ## 析构函数
