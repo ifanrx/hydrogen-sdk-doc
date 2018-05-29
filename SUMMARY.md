@@ -19,7 +19,10 @@
 ---
 
 * [表格](sheet/readme.md)
-  * [编辑器](sheet/editor.md)
+  * 编辑器
+    * [编辑器](sheet/editor/editor.md)
+    * [工作簿](sheet/editor/spread.md)
+    * [工作表](sheet/editor/sheet.md)
   * [工具栏](sheet/toolbar.md)
   * [快捷键](sheet/shortcut.md)
   * [协作者](sheet/collaborator.md)
