@@ -40,6 +40,8 @@
       <ul class="doc-dashboard doc-detail-item">
         <li><a href="/slide/editor.md/">编辑器</a></li>
         <li><a href="/slide/toolbar.md/">工具栏</a></li>
+        <li><a href="/slide/sidebar.md/">侧边栏</a></li>
+        <li><a href="/slide/filmstrip.md/">幻灯片列表</a></li>
         <li><a href="/slide/shortcut.md/">快捷键</a></li>
         <li><a href="/slide/collaborators.md/">协作者</a></li>
       </ul>

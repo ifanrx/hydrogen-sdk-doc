@@ -30,6 +30,8 @@
 * [幻灯片](slide/readme.md)
     * [编辑器](slide/editor.md)
     * [工具栏](slide/toolbar.md)
+    * [侧边栏](slide/sidebar.md)
+    * [幻灯片列表](slide/filmstrip.md)
     * [快捷键](slide/shortcut.md)
     * [协作者](slide/collaborators.md)
     * [评论](slide/comment.md)

@@ -27,3 +27,14 @@
 |名称|类型|描述|
 | -- | -- | -- |
 | `options.editor` | `Editor` |编辑器的实例|
+
+
+## 析构函数
+
+* 用法
+
+  ```js
+    collaborator.destroy()
+    collaboratorEditor.destroy()
+    editor.destroy()
+  ```
