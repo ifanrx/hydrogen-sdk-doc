@@ -8,7 +8,7 @@
 
   ```js
     var editor = new shimo.sdk.sheet.Editor()
-    var collaboratorEditor = new shimo.sdk.sheet.plugins.Collaborators(editor)
+    var collaboratorEditor = new shimo.sdk.sheet.plugins.Collaborators({editor})
 
     //使用协作者通用模块，启用协作者渲染功能
 
@@ -24,8 +24,8 @@
 
 * 参数
 
-|名称|类型|描述|
-| -- | -- | -- |
-| `editor` | `Editor` |编辑器的实例|
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `options.editor` | `Editor` | 必选 | 编辑器实例 |
 
 
