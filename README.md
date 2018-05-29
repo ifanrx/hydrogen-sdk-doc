@@ -41,7 +41,7 @@
         <li><a href="/slide/editor.md/">编辑器</a></li>
         <li><a href="/slide/toolbar.md/">工具栏</a></li>
         <li><a href="/slide/shortcut.md/">快捷键</a></li>
-        <li><a href="/slide/collaborator.md/">协作者</a></li>
+        <li><a href="/slide/collaborators.md/">协作者</a></li>
       </ul>
     </li>
     <!-- 通用模块 -->

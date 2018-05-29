@@ -31,7 +31,7 @@
     * [编辑器](slide/editor.md)
     * [工具栏](slide/toolbar.md)
     * [快捷键](slide/shortcut.md)
-    * [协作者](slide/collaborator.md)
+    * [协作者](slide/collaborators.md)
     * [评论](slide/comment.md)
 
 ----
