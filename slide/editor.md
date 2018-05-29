@@ -91,7 +91,7 @@
 | `layoutId` | `string` | 无 |渲染的幻灯片模板 id|
 
 ### destroy
-  回收幻灯片。
+  销毁幻灯片编辑器实例。
 
   * 返回 `undefined`
   * 用法 `destroy()`
