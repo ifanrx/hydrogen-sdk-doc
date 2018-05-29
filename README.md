@@ -49,7 +49,7 @@
       <h3><a href="/common/readme.md/">通用模块</a></h3>
       <ul class="doc-dashboard doc-detail-item">
         <li><a href="/common/collaboration.md/">协同编辑</a></li>
-        <li><a href="/dashboard/schema.md/">协作者通信</a></li>
+        <li><a href="/common/collaborator_connect.md/">协作者通信</a></li>
       </ul>
     </li>
     <!-- 后端服务支持 -->
