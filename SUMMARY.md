@@ -28,11 +28,11 @@
 ----
 
 * [幻灯片](slide/readme.md)
-    * [编辑器](document/editor.md)
-    * [工具栏](document/toolbar.md)
-    * [快捷键](document/shortcut.md)
-    * [协作者](document/collaborator.md)
-    * [评论](document/comment.md)
+    * [编辑器](slide/editor.md)
+    * [工具栏](slide/toolbar.md)
+    * [快捷键](slide/shortcut.md)
+    * [协作者](slide/collaborator.md)
+    * [评论](slide/comment.md)
 
 ----
 

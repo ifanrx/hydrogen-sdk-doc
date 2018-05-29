@@ -36,12 +36,12 @@
     </li>
     <!-- 幻灯片 -->
     <li>
-      <h3><a href="/dashboard/readme.md/">幻灯片</a></h3>
+      <h3><a href="/slide/readme.md/">幻灯片</a></h3>
       <ul class="doc-dashboard doc-detail-item">
-        <li><a href="/dashboard/schema.md/">编辑器</a></li>
-        <li><a href="/dashboard/schema.md/">工具栏</a></li>
-        <li><a href="/dashboard/schema.md/">快捷键</a></li>
-        <li><a href="/dashboard/schema.md/">协作者</a></li>
+        <li><a href="/slide/editor.md/">编辑器</a></li>
+        <li><a href="/slide/toolbar.md/">工具栏</a></li>
+        <li><a href="/slide/shortcut.md/">快捷键</a></li>
+        <li><a href="/slide/collaborator.md/">协作者</a></li>
       </ul>
     </li>
     <!-- 通用模块 -->
