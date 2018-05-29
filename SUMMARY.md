@@ -11,10 +11,9 @@
 * [文档](document/readme.md)
   * [编辑器](document/editor.md)
   * [工具栏](document/toolbar.md)
-  * [快捷键](document/shortcut.md)
   * [协作者](document/collaborator.md)
-  * [目录](document/editor.md)
   * [评论](document/comment.md)
+  * [目录](document/tableofcontent.md)
 
 ---
 
