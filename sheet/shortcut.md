@@ -23,8 +23,8 @@
 * 用法
 
   ```js
-  var editor = new shimo.sdk.sheet.Editor();
-  var shortcut = new shimo.sdk.sheet.plugins.Shortcut({ editor });
+  var editor = new shimo.sdk.sheet.Editor()
+  var shortcut = new shimo.sdk.sheet.plugins.Shortcut({ editor })
   ```
 
 * 参数

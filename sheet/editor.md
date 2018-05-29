@@ -7,8 +7,8 @@
 * 用法
 
   ```js
-  new shimo.sdk.sheet.Editor();
-  new shimo.sdk.sheet.Editor(options);
+  new shimo.sdk.sheet.Editor()
+  new shimo.sdk.sheet.Editor(options)
   ```
 
 * 参数
@@ -47,8 +47,8 @@
 
 ```js
 editor.getContent().then(function(content) {
-  console.log(content);
-});
+  console.log(content)
+})
 ```
 
 ### setContent
@@ -81,8 +81,8 @@ editor.getContent().then(function(content) {
 
 ```js
 editor.undo().then(function() {
-  console.log("undo successed!");
-});
+  console.log("undo successed!")
+})
 ```
 
 * 参数
@@ -96,8 +96,8 @@ editor.undo().then(function() {
 
 ```js
 editor.redo().then(function() {
-  console.log("redo successed!");
-});
+  console.log("redo successed!")
+})
 ```
 
 * 参数

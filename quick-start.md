@@ -20,16 +20,16 @@
   <script>
   document.addEventListener("DOMContentLoaded", function () {
     // 初始化编辑器
-    var editor = new window.shimoSDK.Document();
+    var editor = new window.shimoSDK.Document()
     // 渲染编辑器到 DOM
-    editor.render(document.querySelector('#editor'));
+    editor.render(document.querySelector('#editor'))
     // 设置文档内容
-    editor.setContent('[[20,"tom","26:\"28\""],[10,"\n","line:\"init\""]]');
+    editor.setContent('[[20,"tom","26:\"28\""],[10,"\n","line:\"init\""]]')
     // 获取文档内容
     editor.getContent().then(function (content) {
-      console.log('get content', content);
-    });
-  });
+      console.log('get content', content)
+    })
+  })
   </script>
 </head>
 <body>

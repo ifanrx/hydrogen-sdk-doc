@@ -7,14 +7,14 @@
 * 用法
 
   ```js
-  var editor = new shimo.sdk.sheet.Editor();
+  var editor = new shimo.sdk.sheet.Editor()
   editor.render({
     content: [表格内容],
     container: [表格渲染容器]
-  });
+  })
 
-  var toolbar = new shimo.sdk.sheet.plugins.Toolbar({ editor });
+  var toolbar = new shimo.sdk.sheet.plugins.Toolbar({ editor })
   toolbar.render({
     container: [表格工具栏容器]
-  });
+  })
   ```
