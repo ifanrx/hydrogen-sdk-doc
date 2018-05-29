@@ -29,7 +29,7 @@
 
 渲染表格。
 
-* 返回 `void`
+* 返回 `undefined`
 * 用法 `render(options)`
 * 参数
 
@@ -68,7 +68,7 @@ editor.getContent().then(function(content) {
 
 销毁表格编辑器实例。
 
-* 返回 `void`
+* 返回 `undefined`
 * 用法 `destroy()`
 * 参数
 
@@ -76,7 +76,7 @@ editor.getContent().then(function(content) {
 
 撤销上一步操作。
 
-* 返回 `Promise<void>`
+* 返回 `Promise<undefined>`
 * 用法
 
 ```js
@@ -91,7 +91,7 @@ editor.undo().then(function() {
 
 重新应用上一步操作。
 
-* 返回 `Promise<void>`
+* 返回 `Promise<undefined>`
 * 用法
 
 ```js
