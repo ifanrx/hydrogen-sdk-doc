@@ -3,7 +3,7 @@
 # API 服务
 
 * [授权认证](./authentication.md)
-* [文件评论](./file.md)
+* [文件](./file.md)
 * [文件评论](./comment.md)
 * [文件讨论](./discussion.md)
 
