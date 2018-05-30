@@ -53,13 +53,9 @@ fetch('<SHIMO_API>/files/R308EbDjDwwqJ3Q1/discussions', {
         "user": {
           "avatar": "https://assets-cdn.shimo.im/static/unmd5/default-avatar-moke.png",
           "isVerified": false,
-          "teamId": null,
-          "teamRole": null,
           "id": 10676,
           "name": "墨客",
           "email": "example@shimo.im",
-          "team_role": null,
-          "team_id": null,
           "isOutsider": null
         },
         "content": "Yay",
