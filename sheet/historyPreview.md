@@ -26,7 +26,7 @@
 | `options.container` | `HTMLElement` | 必选 | 历史预览宿主容器 |
 | `options.guid` | `String` | 必选 | file 的 guid |
 | `options.snapshot` | `String` | 必选 | 加载历史快照的 url |
-| `options.currentUserId` | `string` | 必须 | 当前用户 id |
+| `options.currentUserId` | `String` | 必须 | 当前用户 id |
 
 
 ## 方法列表

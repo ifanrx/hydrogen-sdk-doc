@@ -32,7 +32,7 @@
 | `options.loadHistory` | `String` | 必选 | 加载历史条目的 url |
 | `options.loadHistoryDetail` | `String` | 必选 | 加载历史详情的 url |
 | `options.loadSteps` | `String` | 必选 | 加载版本碎片 url |
-| `options.currentUserId` | `string` | 必须 | 当前用户 id |
+| `options.currentUserId` | `String` | 必须 | 当前用户 id |
 
 
 ## 方法列表
