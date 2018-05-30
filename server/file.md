@@ -103,10 +103,7 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
 | name | String | N   | 修改文档标题 |
-| shareMode | String | N   | 文档分享方式 |
 | userId | Number | N   | 将文档转让给指定用户 |
-| passwordProtected   | Number | N   | 是否启用密码保护 |
-| resetPassword   | Number | N   | 是否重置文档密码 |
 | content   | String | N   | 新的文档内容 |
 
 **代码示例**
