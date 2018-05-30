@@ -12,8 +12,9 @@
       editor: editor,
       container: $('#history-preview')
       guid: '',
-      snapshot: `/api/files/${guid}/snapshot`,
+      snapshotUrl: `/api/files/${guid}/snapshot`,
       currentUserId: ''
+      loadStepsUrl: `/smapi/files/${guid}/sheet_histories`
   })
   ```
 
@@ -25,8 +26,9 @@
 | `options.editor` | `Editor` | 必选 | 编辑器实例 |
 | `options.container` | `HTMLElement` | 必选 | 历史预览宿主容器 |
 | `options.guid` | `String` | 必选 | file 的 guid |
-| `options.snapshot` | `String` | 必选 | 加载历史快照的 url |
+| `options.snapshotUrl` | `String` | 必选 | 加载历史快照的 url |
 | `options.currentUserId` | `String` | 必须 | 当前用户 id |
+| `options.loadStepsUrl` | `String` | 必选 | 加载历史碎片的 url |
 
 
 ## 方法列表

@@ -11,11 +11,12 @@
       editor: editor,
       container: $('.sm-sidebar-applist-version')
       guid: '',
-      loadVersionList: `/smapi/files/${guid}/revisions`,
-      revertVersion:  `/history/${guid}/revert`,
-      deleteVersion: `/smapi/files/${guid}/revisions/${id}`,
-      onClose?: () => void
-      onSelectVersion: (opt: VersionItem) => void
+      loadVersionListUrl: `/smapi/files/${guid}/revisions`,
+      revertVersionUrl:  `/history/${guid}/revert`,
+      deleteVersionUrl: `/smapi/files/${guid}/revisions`,
+      updateVersionUrl: ``
+      afterRevert?: () => void
+      onSelectVersion?: (opt: VersionItem) => void
   })
   ```
 
@@ -26,10 +27,11 @@
 | `options.editor` | `Editor` | 必选 | 编辑器实例 |
 | `options.container` | `HTMLElement` | 必选 | 版本列表宿主容器 |
 | `options.guid` | `String` | 必选 | file 的 guid |
-| `options.deleteVersion` | `String` | 必选 | 删除版本 url |
-| `options.revertVersion` | `String` | 必选 | 还原版本 url |
 | `options.loadVersionList` | `String` | 必选 | 加载版本列表 url |
-| `options.onClose` | `Function` | 可选 | 关闭侧边栏响应事件。还原版本时可能需要关闭版本列表宿主容器 |
+| `options.revertVersion` | `String` | 必选 | 还原版本 url |
+| `options.deleteVersion` | `String` | 必选 | 删除版本 url |
+| `options.updateVersionUrl` | `String` | 必选 | 更新版本名称 url |
+| `options.afterRevert` | `Function` | 可选 | 还原版本后的响应事件（可能需要关闭版本列表宿主容器） |
 | `options.onSelectVersion` | `Function` | 可选 | 选择版本条目响应事件|
 
 ## 方法列表

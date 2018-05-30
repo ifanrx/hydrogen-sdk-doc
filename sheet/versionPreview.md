@@ -12,10 +12,9 @@
     editor: editor,
     container: $('#version-preview')
     guid: '',
-    loadHistory: `/api/docsidebarinfo/${guid}`,
-    loadHistoryDetail: `/smapi/files/${guid}/sheet_histories?from=${from}&to=${to}`,
-    snapshot: `/smapi/files/${guid}/snapshot`,
-    loadSteps: `/smapi/files/${guid}/sheet_histories?from=${from}&to=${to}`,
+    loadHistoryUrl: `/api/docsidebarinfo/${guid}`,
+    snapshotUrl: `/smapi/files/${guid}/snapshot`,
+    loadStepsUrl: `/smapi/files/${guid}/sheet_histories`,
     currentUserId: ''   
   })
   ```
@@ -28,10 +27,9 @@
 | `options.editor` | `Editor` | 必选 | 编辑器实例 |
 | `options.container` | `HTMLElement` | 必选 | 版本预览宿主容器 |
 | `options.guid` | `String` | 必选 | file 的 guid |
-| `options.snapshot` | `String` | 必选 | 加载历史快照 url |
-| `options.loadHistory` | `String` | 必选 | 加载历史条目的 url |
-| `options.loadHistoryDetail` | `String` | 必选 | 加载历史详情的 url |
-| `options.loadSteps` | `String` | 必选 | 加载版本碎片 url |
+| `options.loadHistoryUrl` | `String` | 必选 | 加载历史条目的 url |
+| `options.snapshotUrl` | `String` | 必选 | 加载历史快照 url |
+| `options.loadStepsUrl` | `String` | 必选 | 加载版本碎片 url |
 | `options.currentUserId` | `String` | 必须 | 当前用户 id |
 
 
