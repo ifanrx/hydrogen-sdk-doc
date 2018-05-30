@@ -1,6 +1,6 @@
-# 历史侧边栏
+# 历史侧边栏插件
 
-讨论／历史／版本侧边栏
+<!-- 接受插件，显示在 tab 栏。可用[历史列表插件](historyList.md), [版本列表插件](versionList.md) -->
 
 ## 构造函数
 
@@ -15,12 +15,12 @@
       appList: [{
         tag: 'history,
         name: '历史'
-        component: HistoryList
+        component:  shimo.sdk.sheet.plugins.HistoryList
         props: {}
       }, {
         tag: 'version',
         name: '版本'
-        component: VersionList
+        component:  shimo.sdk.sheet.plugins.VersionList
         props: {}
       }] 
       onClose?:  () => void ,
@@ -36,6 +36,10 @@
 | `options.container` | `HTMLElement` | 必选 | 侧边栏宿主容器 |
 | `options.guid` | `String` | 必选 | file的guid |
 | `options.appList` | `AppList` | 必选 | 侧边栏显示的容器类列表 |
+| `options.appList.tag` | `AppList` | 必选 | 插件唯一标识 |
+| `options.appList.name` | `AppList` | 必选 | 插件名称，显示在侧边栏 tab 上 |
+| `options.appList.component` | `AppList` | 必选 | 插件类 |
+| `options.appList.props` | `Object` | 必选 | 插件所需的参数 |
 | `options.onClose` | `Function` | 可选 | 关闭侧边栏响应事件 |
 | `options.onClickTab` | `Function` | 可选 | 点击侧边栏tab|
 
@@ -44,7 +48,7 @@
 
 ### toggle
 
-渲染表格。
+显示／隐藏侧边栏。
 
 * 返回 `void`
 * 用法 `toggle(isShow)`
@@ -52,7 +56,7 @@
 
 | 名称                | 类型          | 默认值 | 描述         |
 | ------------------- | ------------- | ------ | ------------ |
-| `isShow`   | `boolead`      | 无     | 打开／关闭侧边栏     |
+| `isShow`   | `boolead`      | 无     | true 打开，false 隐藏侧边栏    |
 
 ### setActiveTab
 
@@ -64,198 +68,4 @@
 
 | 名称                | 类型          | 默认值 | 描述         |
 | ------------------- | ------------- | ------ | ------------ |
-| `tab`   | `string`      | 无     | 设置当前active的tab    |
-
-
-
-# 历史列表
-
-显示历史列表
-
-## 构造函数
-
-* 用法
-
-  ```js
-  var editor = new shimo.sdk.sheet.Editor()
-  var historyList = new new shimo.sdk.sheet.plugins.HistoryList({
-      editor: editor,
-      container: $('#history-list')
-      guid: '',
-      loadHistory: `/api/docsidebarinfo/${guid}`,
-      loadHistoryDetail: `/smapi/files/${guid}/sheet_histories?from=${from}&to=${to}`,
-      revert: `/history/${guid}/revert`
-      onClose?: () => void 
-      onSelectHistory?: (opt: HistoryItem) => void 
-  })
-  ```
-
-* 参数
-
-| 名称               | 类型      | 默认值  | 描述             |
-| ------------------ | --------- | ------- | ---------------- |
-| `options.editor` | `Editor` | 必选 | 编辑器实例 |
-| `options.container` | `HTMLElement` | 必选 | 历史列表宿主容器 |
-| `options.guid` | `String` | 必选 | file的guid |
-| `options.loadHistory` | `String` | 必选 | 加载历史条目的url |
-| `options.loadHistoryDetail` | `String` | 必选 | 加载历史detail的url |
-| `options.revert` | `string` | 必须 | 还原历史的url |
-| `options.onClose` | `Function` | 可选 | 关闭侧边栏响应事件。还原历史时可能需要关闭历史列表宿主容器 |
-| `options.onSelectHistory` | `Function` | 可选 | 选择历史条目响应事件|
-
-## 方法列表
-
-### toggle
-
-渲染表格。
-
-* 返回 `void`
-* 用法 `toggle(isShow)`
-* 参数
-
-| 名称                | 类型          | 默认值 | 描述         |
-| ------------------- | ------------- | ------ | ------------ |
-| `isShow`   | `boolead`      | 无     | 打开／关闭历史列表    |
-
-# 版本列表
-
-显示版本列表
-
-## 构造函数
-
-* 用法
-
-  ```js
-  var versionList = new new shimo.sdk.sheet.plugins.VersionList({
-      editor: editor,
-      container: $('#version-list')
-      guid: '',
-      loadVersionList: `/smapi/files/${guid}/revisions`,
-      revertVersion:  `/history/${guid}/revert`,
-      deleteVersion: `/smapi/files/${guid}/revisions/${id}`,
-      onClose?: () => void
-      onSelectVersion: (opt: VersionItem) => void
-  })
-  ```
-
-* 参数
-
-| 名称               | 类型      | 默认值  | 描述             |
-| ------------------ | --------- | ------- | ---------------- |
-| `options.editor` | `Editor` | 必选 | 编辑器实例 |
-| `options.container` | `HTMLElement` | 必选 | 版本列表宿主容器 |
-| `options.guid` | `String` | 必选 | file的guid |
-| `options.deleteVersion` | `String` | 必选 | 删除版本url |
-| `options.revertVersion` | `String` | 必选 | 还原版本url |
-| `options.loadVersionList` | `String` | 必选 | 加载版本列表url |
-| `options.onClose` | `Function` | 可选 | 关闭侧边栏响应事件。还原版本时可能需要关闭版本列表宿主容器 |
-| `options.onSelectVersion` | `Function` | 可选 | 选择版本条目响应事件|
-
-## 方法列表
-
-### toggle
-
-渲染表格。
-
-* 返回 `void`
-* 用法 `toggle(isShow)`
-* 参数
-
-| 名称                | 类型          | 默认值 | 描述         |
-| ------------------- | ------------- | ------ | ------------ |
-| `isShow`   | `boolead`      | 无     | 打开／关闭版本列表    |
-
-# 历史预览
-  显示/关闭历史预览
-
-
-## 构造函数
-
-* 用法
-
-  ```js
-  var editor = new shimo.sdk.sheet.Editor()
-  var historyPreview = new new shimo.sdk.sheet.plugins.HistoryPreview({
-      editor: editor,
-      container: $('#history-preview')
-      guid: '',
-      snapshot: `/api/files/${guid}/snapshot`,
-      currentUserId: ''
-  })
-  ```
-
-
-* 参数
-
-| 名称               | 类型      | 默认值  | 描述             |
-| ------------------ | --------- | ------- | ---------------- |
-| `options.editor` | `Editor` | 必选 | 编辑器实例 |
-| `options.container` | `HTMLElement` | 必选 | 历史预览宿主容器 |
-| `options.guid` | `String` | 必选 | file的guid |
-| `options.snapshot` | `String` | 必选 | 加载历史快照的url |
-| `options.currentUserId` | `string` | 必须 | 当前用户id |
-
-
-## 方法列表
-
-### toggle
-
-渲染表格。
-
-* 返回 `void`
-* 用法 `togglePreview(isShow, item)`
-* 参数
-
-| 名称                | 类型          | 默认值 | 描述         |
-| ------------------- | ------------- | ------ | ------------ |
-| `isShow`   | `boolead`      | 必选     | 打开／关闭历史预览    |
-| `item`   | `HistoryItem`      | 可选     | 预览的历史条目。打开历史预览时，必传    |
-
-
-# 版本预览
-  显示/关闭版本预览
-
-
-## 构造函数
-
-* 用法
-
-  ```js
-  var editor = new shimo.sdk.sheet.Editor()
-  var versionPreview = new new shimo.sdk.sheet.plugins.VersionPreview({
-    editor: editor,
-    container: $('#version-preview')
-    guid: '',
-    snapshot: `/smapi/files/${guid}/snapshot`,
-    loadSteps: `/smapi/files/${guid}/sheet_histories?from=${from}&to=${to}`,
-    currentUserId: ''   
-  })
-  ```
-
-
-* 参数
-
-| 名称               | 类型      | 默认值  | 描述             |
-| ------------------ | --------- | ------- | ---------------- |
-| `options.editor` | `Editor` | 必选 | 编辑器实例 |
-| `options.container` | `HTMLElement` | 必选 | 版本预览宿主容器 |
-| `options.guid` | `String` | 必选 | file的guid |
-| `options.snapshot` | `String` | 必选 | 加载历史快照url |
-| `options.loadSteps` | `String` | 必选 | 加载版本碎片url |
-| `options.currentUserId` | `string` | 必须 | 当前用户id |
-
-
-## 方法列表
-
-### toggle
-
-渲染表格。
-
-* 返回 `void`
-* 用法 `togglePreview(isShow, item)`
-* 参数
-
-| 名称                | 类型          | 默认值 | 描述         |
-| ------------------- | ------------- | ------ | ------------ |
-| `isShow`   | `boolead`      | 必选     | 打开／关闭版本预览    |
-| `item`   | `VersionItem`      | 可选     | 预览的版本条目。打开版本预览时，必传    |
+| `tab`   | `string`      | 无     | 设置当前激活的 tab    |
