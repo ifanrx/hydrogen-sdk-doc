@@ -46,23 +46,7 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments', {
     "updatedAt": "2018-05-29T09:07:51.000Z",
     "createdAt": "2018-05-29T09:07:51.000Z",
     "id": 17683794,
-    "comment_guid": "43apeltp1CATJF6f",
     "content": "hello world",
-    "is_delete": 0,
-    "selection_guid": "comment-a2aCRQBPheIVIHhe",
-    "selection_title": "",
-    "target_guid": "JyRX1679PL86rbTk",
-    "target_id": 32347865,
-    "target_type": 1,
-    "user_id": 4069620,
-    "updated_at": "2018-05-29T09:07:51.000Z",
-    "created_at": "2018-05-29T09:07:51.000Z",
-    "User": {
-      "avatar": "https://assets-cdn.shimo.im/static/unmd5/default-avatar-moke.png",
-      "isVerified": false,
-      "id": 4069620,
-      "name": "墨客"
-    },
     "hasRead": true
   }],
   "code": 0
@@ -112,23 +96,7 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments/comment-a2aCRQBPheIVIHhe', {
     "updatedAt": "2018-05-29T09:07:51.000Z",
     "createdAt": "2018-05-29T09:07:51.000Z",
     "id": 17683794,
-    "comment_guid": "43apeltp1CATJF6f",
     "content": "hello world",
-    "is_delete": 0,
-    "selection_guid": "comment-a2aCRQBPheIVIHhe",
-    "selection_title": "",
-    "target_guid": "JyRX1679PL86rbTk",
-    "target_id": 32347865,
-    "target_type": 1,
-    "user_id": 4069620,
-    "updated_at": "2018-05-29T09:07:51.000Z",
-    "created_at": "2018-05-29T09:07:51.000Z",
-    "User": {
-      "avatar": "https://assets-cdn.shimo.im/static/unmd5/default-avatar-moke.png",
-      "isVerified": false,
-      "id": 4069620,
-      "name": "墨客"
-    },
     "hasRead": true
   }],
   "code": 0
@@ -192,18 +160,8 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments', {
     "userId": 4069620,
     "updatedAt": "2018-05-29T09:40:01.000Z",
     "createdAt": "2018-05-29T09:40:01.000Z",
-    "is_delete": 0,
     "id": 17684337,
-    "target_id": 32347865,
-    "target_guid": "JyRX1679PL86rbTk",
-    "comment_guid": "3YqYN0QJFFRTss3J",
-    "target_type": 1,
-    "user_id": 4069620,
     "content": "Yay",
-    "selection_title": "",
-    "selection_guid": "comment-a2aCRQBPheIVIHhe",
-    "updated_at": "2018-05-29T09:40:01.000Z",
-    "created_at": "2018-05-29T09:40:01.000Z"
   },
   "code": 0
 }
@@ -251,18 +209,8 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments/3YqYN0QJFFRTss3J', {
     "userId": 4069620,
     "updatedAt": "2018-05-29T09:40:01.000Z",
     "createdAt": "2018-05-29T09:40:01.000Z",
-    "is_delete": 0,
     "id": 17684337,
-    "target_id": 32347865,
-    "target_guid": "JyRX1679PL86rbTk",
-    "comment_guid": "3YqYN0QJFFRTss3J",
-    "target_type": 1,
-    "user_id": 4069620,
-    "content": "Yay",
-    "selection_title": "",
-    "selection_guid": "comment-a2aCRQBPheIVIHhe",
-    "updated_at": "2018-05-29T09:40:01.000Z",
-    "created_at": "2018-05-29T09:40:01.000Z"
+    "content": "Yay"
   },
   "code": 0
 }
