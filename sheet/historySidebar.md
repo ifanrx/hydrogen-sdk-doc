@@ -39,6 +39,7 @@
 | `options.appList.tag` | `String` | 必选 | 插件唯一标识, 在tab栏上添加类名 `sm-sidebar-applist-${tag}` |
 | `options.appList.name` | `String` | 必选 | 插件名称，显示在侧边栏 tab 上 |
 | `options.appList.component` | `Class` | 必选 | 插件类 |
+| `options.appList.component.toggle` | `Funcion` | 必选 | 插件类提供显示 ／ 隐藏 接口 |
 | `options.appList.props` | `Object` | 可选 | 插件所需的参数 |
 | `options.onClose` | `Function` | 可选 | 关闭侧边栏响应事件 |
 | `options.onClickTab` | `Function` | 可选 | 点击侧边栏tab|

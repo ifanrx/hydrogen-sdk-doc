@@ -50,7 +50,7 @@
 | `item.create_at`   | `String`      | 必选     | 版本创建时间  |
 | `item.history_type`   | `Number`      | 必选     | 版本类型, 2（可编辑版本). |
 | `item.id`   | `Number`      | 必选     | 版本 id  |
-| `item.update_at`   | `String`      | 必选     | 版本更新事件  |
+| `item.update_at`   | `String`      | 必选     | 版本更新时间  |
 | `item.user_id`   | `String`      | 必选     | 编辑版本用户的 id  |
 
 ### hide
