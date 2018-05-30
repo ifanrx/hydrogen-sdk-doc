@@ -8,7 +8,7 @@
 
   ```js
     var editor = new shimo.sdk.sheet.Editor()
-    var collaboratorEditor = new shimo.sdk.sheet.plugins.Collaborators({editor})
+    var collaboratorEditor = new shimo.sdk.sheet.plugins.Collaborators({ editor })
 
     //使用协作者通用模块，启用协作者渲染功能
 

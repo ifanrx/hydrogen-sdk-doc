@@ -4,7 +4,7 @@
       石墨文档 SDK
     </p>
     <p class="doc-desc">
-      石墨文档 SDK 是一系列高度可定制化的协同编辑套件，目前支持文档、表格和幻灯片。
+      石墨文档 SDK 是高度可定制化的协同编辑套件，目前支持文档、表格和幻灯片。
     </p>
   </section>
 
@@ -28,7 +28,7 @@
     <li>
       <h3><a href="/sheet/readme.md/">表格</a></h3>
       <ul class="doc-dashboard doc-detail-item">
-        <li><a href="/sheet/editor.md/">编辑器</a></li>
+        <li><a href="/sheet/editor/editor.md/">编辑器</a></li>
         <li><a href="/sheet/toolbar.md/">工具栏</a></li>
         <li><a href="/sheet/shortcut.md/">快捷键</a></li>
         <li><a href="/sheet/collaborator.md/">协作者</a></li>
@@ -36,12 +36,14 @@
     </li>
     <!-- 幻灯片 -->
     <li>
-      <h3><a href="/dashboard/readme.md/">幻灯片</a></h3>
+      <h3><a href="/slide/readme.md/">幻灯片</a></h3>
       <ul class="doc-dashboard doc-detail-item">
-        <li><a href="/dashboard/schema.md/">编辑器</a></li>
-        <li><a href="/dashboard/schema.md/">工具栏</a></li>
-        <li><a href="/dashboard/schema.md/">快捷键</a></li>
-        <li><a href="/dashboard/schema.md/">协作者</a></li>
+        <li><a href="/slide/editor.md/">编辑器</a></li>
+        <li><a href="/slide/toolbar.md/">工具栏</a></li>
+        <li><a href="/slide/sidebar.md/">侧边栏</a></li>
+        <li><a href="/slide/filmstrip.md/">幻灯片列表</a></li>
+        <li><a href="/slide/shortcut.md/">快捷键</a></li>
+        <li><a href="/slide/collaborators.md/">协作者</a></li>
       </ul>
     </li>
     <!-- 通用模块 -->
