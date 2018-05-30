@@ -12,15 +12,15 @@
       editor: editor,
       container: $('#sidebar-container'),
       guid: '',
-      appList?: [{
+      appList: [{
         tag: 'history,
         name: '历史'
-        component: [class]
+        component: HistoryList
         props: {}
       }, {
         tag: 'version',
         name: '版本'
-        component: [class]
+        component: VersionList
         props: {}
       }] 
       onClose?:  () => void ,
@@ -35,7 +35,7 @@
 | `options.editor` | `Editor` | 必选 | 编辑器实例 |
 | `options.container` | `HTMLElement` | 必选 | 侧边栏宿主容器 |
 | `options.guid` | `String` | 必选 | file的guid |
-| `options.appList` | `AppList` | 可选 | 侧边栏显示的容器类列表 |
+| `options.appList` | `AppList` | 必选 | 侧边栏显示的容器类列表 |
 | `options.onClose` | `Function` | 可选 | 关闭侧边栏响应事件 |
 | `options.onClickTab` | `Function` | 可选 | 点击侧边栏tab|
 
@@ -81,8 +81,10 @@
   var historyList = new new shimo.sdk.sheet.plugins.HistoryList({
       editor: editor,
       container: $('#history-list')
-      isShow: true 
       guid: '',
+      loadHistory: `/api/docsidebarinfo/${guid}`,
+      loadHistoryDetail: `/smapi/files/${guid}/sheet_histories?from=${from}&to=${to}`,
+      revert: `/history/${guid}/revert`
       onClose?: () => void 
       onSelectHistory?: (opt: HistoryItem) => void 
   })
@@ -95,11 +97,25 @@
 | `options.editor` | `Editor` | 必选 | 编辑器实例 |
 | `options.container` | `HTMLElement` | 必选 | 历史列表宿主容器 |
 | `options.guid` | `String` | 必选 | file的guid |
-| `options.isShow` | `boolean` | 必须 | 是否显示历史列表 |
+| `options.loadHistory` | `String` | 必选 | 加载历史条目的url |
+| `options.loadHistoryDetail` | `String` | 必选 | 加载历史detail的url |
+| `options.revert` | `string` | 必须 | 还原历史的url |
 | `options.onClose` | `Function` | 可选 | 关闭侧边栏响应事件。还原历史时可能需要关闭历史列表宿主容器 |
 | `options.onSelectHistory` | `Function` | 可选 | 选择历史条目响应事件|
 
+## 方法列表
 
+### toggle
+
+渲染表格。
+
+* 返回 `void`
+* 用法 `toggle(isShow)`
+* 参数
+
+| 名称                | 类型          | 默认值 | 描述         |
+| ------------------- | ------------- | ------ | ------------ |
+| `isShow`   | `boolead`      | 无     | 打开／关闭历史列表    |
 
 # 版本列表
 
@@ -113,8 +129,10 @@
   var versionList = new new shimo.sdk.sheet.plugins.VersionList({
       editor: editor,
       container: $('#version-list')
-      isShow: true
       guid: '',
+      loadVersionList: `/smapi/files/${guid}/revisions`,
+      revertVersion:  `/history/${guid}/revert`,
+      deleteVersion: `/smapi/files/${guid}/revisions/${id}`,
       onClose?: () => void
       onSelectVersion: (opt: VersionItem) => void
   })
@@ -127,10 +145,25 @@
 | `options.editor` | `Editor` | 必选 | 编辑器实例 |
 | `options.container` | `HTMLElement` | 必选 | 版本列表宿主容器 |
 | `options.guid` | `String` | 必选 | file的guid |
-| `options.isShow` | `boolean` | 必须 | 是否显示版本列表 |
+| `options.deleteVersion` | `String` | 必选 | 删除版本url |
+| `options.revertVersion` | `String` | 必选 | 还原版本url |
+| `options.loadVersionList` | `String` | 必选 | 加载版本列表url |
 | `options.onClose` | `Function` | 可选 | 关闭侧边栏响应事件。还原版本时可能需要关闭版本列表宿主容器 |
 | `options.onSelectVersion` | `Function` | 可选 | 选择版本条目响应事件|
 
+## 方法列表
+
+### toggle
+
+渲染表格。
+
+* 返回 `void`
+* 用法 `toggle(isShow)`
+* 参数
+
+| 名称                | 类型          | 默认值 | 描述         |
+| ------------------- | ------------- | ------ | ------------ |
+| `isShow`   | `boolead`      | 无     | 打开／关闭版本列表    |
 
 # 历史预览
   显示/关闭历史预览
@@ -146,6 +179,7 @@
       editor: editor,
       container: $('#history-preview')
       guid: '',
+      snapshot: `/api/files/${guid}/snapshot`,
       currentUserId: ''
   })
   ```
@@ -158,6 +192,7 @@
 | `options.editor` | `Editor` | 必选 | 编辑器实例 |
 | `options.container` | `HTMLElement` | 必选 | 历史预览宿主容器 |
 | `options.guid` | `String` | 必选 | file的guid |
+| `options.snapshot` | `String` | 必选 | 加载历史快照的url |
 | `options.currentUserId` | `string` | 必须 | 当前用户id |
 
 
@@ -191,6 +226,8 @@
     editor: editor,
     container: $('#version-preview')
     guid: '',
+    snapshot: `/smapi/files/${guid}/snapshot`,
+    loadSteps: `/smapi/files/${guid}/sheet_histories?from=${from}&to=${to}`,
     currentUserId: ''   
   })
   ```
@@ -203,6 +240,8 @@
 | `options.editor` | `Editor` | 必选 | 编辑器实例 |
 | `options.container` | `HTMLElement` | 必选 | 版本预览宿主容器 |
 | `options.guid` | `String` | 必选 | file的guid |
+| `options.snapshot` | `String` | 必选 | 加载历史快照url |
+| `options.loadSteps` | `String` | 必选 | 加载版本碎片url |
 | `options.currentUserId` | `string` | 必须 | 当前用户id |
 
 
