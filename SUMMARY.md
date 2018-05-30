@@ -52,4 +52,7 @@
 ---
 
 * [API 服务](server/readme.md)
-  * [评论](server/comment.md)
+    * [授权认证](server/authentication.md)
+    * [文件](server/file.md)
+    * [文件评论](server/comment.md)
+    * [文件讨论](server/discussion.md)
