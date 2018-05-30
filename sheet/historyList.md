@@ -10,7 +10,7 @@
   var editor = new shimo.sdk.sheet.Editor()
   var historyList = new new shimo.sdk.sheet.plugins.HistoryList({
       editor: editor,
-      container: $('#history-list')
+      container: $('.sm-sidebar-applist-history')
       guid: '',
       loadHistory: `/api/docsidebarinfo/${guid}`,
       loadHistoryDetail: `/smapi/files/${guid}/sheet_histories?from=${from}&to=${to}`,

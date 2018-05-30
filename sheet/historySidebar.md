@@ -36,7 +36,7 @@
 | `options.container` | `HTMLElement` | 必选 | 侧边栏宿主容器 |
 | `options.guid` | `String` | 必选 | file 的 guid |
 | `options.appList` | `AppList` | 必选 | 侧边栏显示的容器类列表 |
-| `options.appList.tag` | `String` | 必选 | 插件唯一标识 |
+| `options.appList.tag` | `String` | 必选 | 插件唯一标识, 在tab栏上添加类名 `sm-sidebar-applist-${tag}` |
 | `options.appList.name` | `String` | 必选 | 插件名称，显示在侧边栏 tab 上 |
 | `options.appList.component` | `Class` | 必选 | 插件类 |
 | `options.appList.props` | `Object` | 可选 | 插件所需的参数 |

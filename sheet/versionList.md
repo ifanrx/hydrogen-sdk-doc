@@ -9,7 +9,7 @@
   ```js
   var versionList = new new shimo.sdk.sheet.plugins.VersionList({
       editor: editor,
-      container: $('#version-list')
+      container: $('.sm-sidebar-applist-version')
       guid: '',
       loadVersionList: `/smapi/files/${guid}/revisions`,
       revertVersion:  `/history/${guid}/revert`,
