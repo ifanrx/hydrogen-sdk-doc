@@ -1,6 +1,6 @@
 # 历史侧边栏插件
 
-<!-- 接受插件，显示在 tab 栏。可用[历史列表插件](historyList.md), [版本列表插件](versionList.md) -->
+接受插件，显示在 tab 栏。可用[历史列表](historyList.md)插件, [版本列表](versionList.md)插件
 
 ## 构造函数
 
@@ -34,12 +34,12 @@
 | ------------------ | --------- | ------- | ---------------- |
 | `options.editor` | `Editor` | 必选 | 编辑器实例 |
 | `options.container` | `HTMLElement` | 必选 | 侧边栏宿主容器 |
-| `options.guid` | `String` | 必选 | file的guid |
+| `options.guid` | `String` | 必选 | file 的 guid |
 | `options.appList` | `AppList` | 必选 | 侧边栏显示的容器类列表 |
-| `options.appList.tag` | `AppList` | 必选 | 插件唯一标识 |
-| `options.appList.name` | `AppList` | 必选 | 插件名称，显示在侧边栏 tab 上 |
-| `options.appList.component` | `AppList` | 必选 | 插件类 |
-| `options.appList.props` | `Object` | 必选 | 插件所需的参数 |
+| `options.appList.tag` | `String` | 必选 | 插件唯一标识 |
+| `options.appList.name` | `String` | 必选 | 插件名称，显示在侧边栏 tab 上 |
+| `options.appList.component` | `Class` | 必选 | 插件类 |
+| `options.appList.props` | `Object` | 可选 | 插件所需的参数 |
 | `options.onClose` | `Function` | 可选 | 关闭侧边栏响应事件 |
 | `options.onClickTab` | `Function` | 可选 | 点击侧边栏tab|
 

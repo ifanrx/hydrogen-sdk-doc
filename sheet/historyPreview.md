@@ -1,5 +1,5 @@
 # 历史预览插件
-  显示/关闭历史预览
+  显示/隐藏历史预览
 
 
 ## 构造函数
@@ -31,16 +31,29 @@
 
 ## 方法列表
 
-### toggle
+### show
 
-显示／隐藏历史预览。
+显示历史预览。
 
 * 返回 `void`
-* 用法 `togglePreview(isShow, item)`
+* 用法 `show(item)`
 * 参数
 
 | 名称                | 类型          | 默认值 | 描述         |
 | ------------------- | ------------- | ------ | ------------ |
-| `isShow`   | `boolead`      | 必选     | true 显示，false 隐藏历史预览    |
-| `item`   | `HistoryItem`      | 可选     | 预览的历史条目。打开历史预览时，必传    |
+| `item`   | `HistoryItem`      | 必选     | 预览的历史条目  |
+| `item.content`   | `String`      | 必选     | 预览的历史数据  |
+| `item.create_at`   | `String`      | 必选     | 历史创建时间  |
+| `item.history_type`   | `Number`      | 必选     | 历史类型 1(不可编辑历史); 2（可编辑历史）.   |
+| `item.id`   | `Number`      | 必选     | 历史 id  |
+| `item.update_at`   | `String`      | 必选     | 历史更新时间  |
+| `item.user_id`   | `String`      | 必选     | 编辑历史用户的 id  |
+
+
+### hide
+
+隐藏历史预览。
+
+* 返回 `void`
+* 用法 `hide()`
 

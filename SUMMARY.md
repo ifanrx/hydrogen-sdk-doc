@@ -25,7 +25,7 @@
   * [工具栏](sheet/toolbar.md)
   * [快捷键](sheet/shortcut.md)
   * [协作者](sheet/collaborator.md)
-  <!-- * [历史侧边栏](sheet/historySidebar.md) -->
+  * [历史侧边栏](sheet/historySidebar.md)
   * [历史列表](sheet/historyList.md)
   * [历史预览](sheet/historyPreview.md)
   * [版本列表](sheet/versionList.md)
