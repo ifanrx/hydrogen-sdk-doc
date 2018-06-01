@@ -40,7 +40,7 @@ Content-Type: `application/json`
 | 参数           | 类型   | 必填 | 说明 |
 | :------------ | :----- | :-- | :-- |
 | filename      | String | N   | 上传的文件名 |
-| categories    | String | N   | 上传文件的所属分类，格式为文件分类的 ID 数组 |
+| category_id   | String | N   | 上传文件的所属分类，格式为文件分类的 ID 数组 |
 
 **返回参数**
 
@@ -64,7 +64,7 @@ curl -X POST \
 -H "Content-Type: application/json" \
 -d '{
       "filename":"crop.gif",
-      "categories":["5a1ba7b708443e7fc5f2fb18"]
+      "category_id":"5a1ba7b708443e7fc5f2fb18"
     }' \
 https://cloud.minapp.com/oserve/v1/upload/
 ```
@@ -82,7 +82,7 @@ var opt = {
   },
   json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
     filename: 'aTest.xlsm',
-    categories: '5a3b569109a80579061d63xx'
+    category_id: '5a3b569109a80579061d63xx'
   }
 }
 
@@ -97,7 +97,7 @@ request(opt, function(err, res, body) {
 <?php
 $param = array(
   'filename' =>'aTest.xlsm',
-  'categories'=> '5a3b569109a80579061d63xx'
+  'category_id'=> '5a3b569109a80579061d63xx'
 );
 $url = 'https://cloud.minapp.com/oserve/v1/upload/';
 
