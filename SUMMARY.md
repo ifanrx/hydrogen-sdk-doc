@@ -56,3 +56,4 @@
     * [文件](server/file.md)
     * [文件评论](server/comment.md)
     * [文件讨论](server/discussion.md)
+    * [文件历史](server/history.md)

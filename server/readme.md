@@ -6,6 +6,7 @@
 * [文件](./file.md)
 * [文件评论](./comment.md)
 * [文件讨论](./discussion.md)
+* [文件历史](./history.md)
 
 约定事项：
 
