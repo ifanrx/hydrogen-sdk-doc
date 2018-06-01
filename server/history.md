@@ -39,9 +39,9 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories', {
 ```json
 {
   "data": {
-    guid: "JyRX1679PL86rbTk",
-    type: "document",
-    histories: [{
+    "guid": "JyRX1679PL86rbTk",
+    "type": "document",
+    "histories": [{
       "fileGuid": "JyRX1679PL86rbTk",
       "historyType": 1,
       "userId": "10676",
@@ -50,8 +50,8 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories', {
       "id": 434594,
       "content": "{\"action\":\"create\"}"
     }],
-    isLastPage: false,
-    limit: null
+    "isLastPage": false,
+    "limit": null
   },
   "code": 0
 }
