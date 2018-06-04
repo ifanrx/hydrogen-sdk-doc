@@ -106,7 +106,7 @@ wx.chooseImage({
 
 |  参数  |  类型   | 必填 | 说明 |
 | :----- | :-- -- | :-- | :-- |
-| fileID | Number |  Y  | 文件 id |
+| fileID | String |  Y  | 文件 id |
 
 **返回参数说明**
 
@@ -166,7 +166,7 @@ MyFile.get('5a2fe93308443e313a428c4f').then((res) => {
 
 | 参数    | 类型                   | 必填 | 说明 |
 | :----- | :--------------------- | :-- | :-- |
-| fileID | Number or Number Array | Y   | 文件 id (可为数组) |
+| fileID | String or String Array | Y   | 文件 id (可为数组) |
 
 **示例代码**
 
