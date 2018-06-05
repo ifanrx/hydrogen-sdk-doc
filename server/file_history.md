@@ -1,5 +1,8 @@
 # 历史
 
+> **info**
+> 此历史包含的是对文档操作的历史，比如创建、重命名、内容修改和分享等。
+
 ## 获取历史列表
 
 **接口**
@@ -37,24 +40,15 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories', {
 **返回示例**
 
 ```json
-{
-  "data": {
-    "guid": "JyRX1679PL86rbTk",
-    "type": "document",
-    "histories": [{
-      "fileGuid": "JyRX1679PL86rbTk",
-      "historyType": 1,
-      "userId": "10676",
-      "updatedAt": "2018-05-29T09:07:51.000Z",
-      "createdAt": "2018-05-29T09:07:51.000Z",
-      "id": 434594,
-      "content": "{\"action\":\"create\"}"
-    }],
-    "isLastPage": false,
-    "limit": null
-  },
-  "code": 0
-}
+[{
+  "fileGuid": "JyRX1679PL86rbTk",
+  "historyType": 1,
+  "userId": "10676",
+  "updatedAt": "2018-05-29T09:07:51.000Z",
+  "createdAt": "2018-05-29T09:07:51.000Z",
+  "id": 434594,
+  "content": "{\"action\":\"create\"}"
+}]
 ```
 
 ## 获取历史
@@ -88,16 +82,13 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories/434594', {
 
 ```json
 {
-  "data": {
-    "fileGuid": "JyRX1679PL86rbTk",
-    "historyType": 1,
-    "userId": "10676",
-    "updatedAt": "2018-05-29T09:07:51.000Z",
-    "createdAt": "2018-05-29T09:07:51.000Z",
-    "id": 434594,
-    "content": "{\"action\":\"create\"}"
-  },
-  "code": 0
+  "fileGuid": "JyRX1679PL86rbTk",
+  "historyType": 1,
+  "userId": "10676",
+  "updatedAt": "2018-05-29T09:07:51.000Z",
+  "createdAt": "2018-05-29T09:07:51.000Z",
+  "id": 434594,
+  "content": "{\"action\":\"create\"}"
 }
 ```
 
@@ -143,16 +134,13 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories', {
 
 ```json
 {
-  "data": {
-    "fileGuid": "JyRX1679PL86rbTk",
-    "historyType": 1,
-    "userId": "10676",
-    "updatedAt": "2018-05-29T09:07:51.000Z",
-    "createdAt": "2018-05-29T09:07:51.000Z",
-    "id": 434594,
-    "content": "{\"action\":\"create\"}"
-  },
-  "code": 0
+  "fileGuid": "JyRX1679PL86rbTk",
+  "historyType": 1,
+  "userId": "10676",
+  "updatedAt": "2018-05-29T09:07:51.000Z",
+  "createdAt": "2018-05-29T09:07:51.000Z",
+  "id": 434594,
+  "content": "{\"action\":\"create\"}"
 }
 ```
 
@@ -186,8 +174,5 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories/434594', {
 **返回示例**
 
 ```json
-{
-  "data": "无标题",
-  "code": 0
-}
+"无标题"
 ```

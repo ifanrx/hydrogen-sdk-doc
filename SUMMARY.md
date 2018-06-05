@@ -53,7 +53,9 @@
 
 * [API 服务](server/readme.md)
     * [授权认证](server/authentication.md)
-    * [文件](server/file.md)
-    * [文件评论](server/comment.md)
-    * [文件讨论](server/discussion.md)
-    * [文件历史](server/history.md)
+    * [文档](server/file.md)
+    * [文档评论](server/comment.md)
+    * [文档讨论](server/discussion.md)
+    * [文档内容历史](server/file_change.md)
+    * [文档历史](server/file_history.md)
+    * [用户](server/user.md)
