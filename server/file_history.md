@@ -15,6 +15,8 @@
 | :------- | :----- | :-- | :-- |
 | size | Number | N   | 返回的历史条数，默认 `10` |
 | from | Number | N   | 从第几条历史开始查找，默认 `0` |
+| order | String | N   | 排序方式，默认 `asc` |
+| sort | String | N   | 排序字段，默认 `createdAt` |
 
 **代码示例**
 

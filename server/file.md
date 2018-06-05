@@ -58,6 +58,52 @@ fetch('<SHIMO_API>/files', {
 }
 ```
 
+## 获取文档
+
+**接口**
+
+`GET <SHIMO_API>/files/:guid`
+
+**代码示例**
+
+{% tabs nodeDemo="Node.js" %}
+
+{% content "nodeDemo" %}
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+  }
+})
+  .then(res => res.json())
+  .then(body => console.log(body.data))
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```json
+{
+  "isDelete": 0,
+  "isFolder": 0,
+  "parentId": 0,
+  "userId": 4069620,
+  "updatedAt": "2018-05-29T09:40:01.000Z",
+  "updatedBy": 4069620,
+  "createdAt": "2018-05-29T09:06:25.000Z",
+  "id": 32347865,
+  "guid": "JyRX1679PL86rbTk",
+  "name": "无标题",
+  "type": "newdoc",
+  "sortName": ["wu", "biao", "ti"]
+}
+```
+
 ## 删除文档
 
 **接口**
@@ -134,21 +180,18 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
 
 ```json
 {
-  "data": {
-    "isDelete": 0,
-    "isFolder": 0,
-    "parentId": 0,
-    "userId": 4069620,
-    "updatedAt": "2018-05-29T09:40:01.000Z",
-    "updatedBy": 4069620,
-    "createdAt": "2018-05-29T09:06:25.000Z",
-    "id": 32347865,
-    "guid": "JyRX1679PL86rbTk",
-    "name": "无标题2",
-    "type": "newdoc",
-    "sortName": ["wu", "biao", "ti", "2"]
-  },
-  "code": 0
+  "isDelete": 0,
+  "isFolder": 0,
+  "parentId": 0,
+  "userId": 4069620,
+  "updatedAt": "2018-05-29T09:40:01.000Z",
+  "updatedBy": 4069620,
+  "createdAt": "2018-05-29T09:06:25.000Z",
+  "id": 32347865,
+  "guid": "JyRX1679PL86rbTk",
+  "name": "无标题2",
+  "type": "newdoc",
+  "sortName": ["wu", "biao", "ti", "2"]
 }
 ```
 

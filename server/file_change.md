@@ -42,6 +42,7 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes', {
 ```json
 [{
   "baseRev": 0,
+  "rev": 1,
   "clientId": null,
   "fileGuid": "JyRX1679PL86rbTk",
   "fileId": 33339005,
@@ -86,6 +87,59 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes/1626314426', {
 ```json
 {
   "baseRev": 0,
+  "rev": 1,
+  "clientId": null,
+  "fileGuid": "JyRX1679PL86rbTk",
+  "fileId": 33339005,
+  "userId": 4069620,
+  "deletedAt": null,
+  "updatedAt": "2018-06-04T07:57:01.000Z",
+  "createdAt": "2018-06-04T07:57:01.000Z",
+  "id": 1626314426,
+  "delta": "[[10, \"\\n\", \"line:\\\"init\\\"\"]]"
+}
+```
+
+## 根据指定版本获取历史
+
+**接口**
+
+`GET <SHIMO_API>/files/:guid/changes/rev`
+
+**参数说明**
+
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :-- |
+| rev | Number | Y   | |
+| baseRev | Number | N   | |
+
+**代码示例**
+
+{% tabs nodeDemo="Node.js" %}
+
+{% content "nodeDemo" %}
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes/rev?rev=1&baseRev=0', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+  }
+})
+  .then(res => res.json())
+  .then(body => console.log(body.data))
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```json
+{
+  "baseRev": 0,
+  "rev": 1,
   "clientId": null,
   "fileGuid": "JyRX1679PL86rbTk",
   "fileId": 33339005,
