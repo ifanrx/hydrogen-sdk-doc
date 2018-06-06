@@ -14,7 +14,7 @@ data 是 Object 类型，它包括以下几个属性
 | `<recipient_params>` | Array、Integer、String、Object | 是   | 根据recipient_type来填写不同的参数名， 详见下方表格说明 |
 | template_id     | String | 是   | 模板 ID |
 | submission_type | String | 是   | 模板消息触发条件，`form_id` 或者 `prepay_id` |
-| keywords        | Object | 是   | 关键字（在微信小程序后台配置）|
+| keywords        | Object | 是   | 关键字（可在 [知晓云-模板消息](https://cloud.minapp.com/dashboard/#/app/template-message/template) 配置）|
 | page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
 
 
@@ -38,11 +38,9 @@ let data = {
   keywords: {
     keyword1: {
       value: "书籍",
-      color: "#173177"  // 可为空
     },
     keyword2: {
       value: "50.5",
-      color: "#173177"  // 可为空
     }
   }
 }
@@ -66,6 +64,9 @@ let data = {
 
 BaaS.sendTemplateMessage(data)
 ```
+
+> **info**
+> user_list 的长度不能超过 1000
 
 **请求示例 - user_group**
 
@@ -131,8 +132,8 @@ BaaS.sendTemplateMessage(data)
 | not in     	| { a: { $nin: [123, 456] } }                                                                                	| a 不在 [123, 456] 中, eg: 888 不在 [123， 456] 中    	|
 | contains   	| { a: { $contains: '123'} }                                                                                 	| a 包含 '123', eg: 'abc123' 包含 ‘123’         	|
 | regex      	| { a: { $regex: '123', $options: 'g'} }                                                                     	| a.match(/123/g)             	|
-| all        	| { a: { $all: [1, 2, 3] } }                                                                                 	| a 包含在 [1, 2, 3] 中, eg: [1, 2] 包含在 [1, 2, 3]  	|
+| all        	| { a: { $all: [1, 2, 3] } }                                                                                 	| a 包含了 [1, 2, 3] , eg: [1, 2, 3] 包含了  [1, 2]  	|
 | is null    	| { a: { $isnull: true} } }                                                                                  	| a 是否为空                  	|
-| center     	| { a: { $center: {"radius": 123, "coordinates": [1, 2]} } }                                                 	| 请参考[withincircle](../js-sdk/schema/geo.md)          	|
-| intersects 	| { a: { $intersects: {"type": `GEOJSON`, "coordinates": [1, 2]} }}                                          	| 请参考[include](../js-sdk/schema/geo.md)                	|
-| nearsphere 	| { a: {"$nearsphere":{"geometry":{"type":"Point","coordinates":[1,2]},"min_distance":3,"max_distance":4}} } 	| 请参考[withinRegion](../js-sdk/schema/geo.md)           	|
+| center     	| { a: { $center: {"radius": 123, "coordinates": [1, 2]} } }                                                 	| 请参考[withincircle](../../js-sdk/schema/geo.md)          	|
+| intersects 	| { a: { $intersects: {"type": `GEOJSON`, "coordinates": [1, 2]} }}                                          	| 请参考[include](../../js-sdk/schema/geo.md)                	|
+| nearsphere 	| { a: {"$nearsphere":{"geometry":{"type":"Point","coordinates":[1,2]},"min_distance":3,"max_distance":4}} } 	| 请参考[withinRegion](../../js-sdk/schema/geo.md)           	|
