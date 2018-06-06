@@ -146,6 +146,57 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories', {
 }
 ```
 
+## 创建历史
+
+**接口**
+
+`PATCH <SHIMO_API>/files/:guid/histories/:id`
+
+**参数说明**
+
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :-- |
+| content | String | N   | 历史内容 |
+| historyType | Number | N   | 历史类型<br>`1`：和文档**信息**有关的改动，如创建、重命名、分享<br>`2`：和文档**内容**有关的改动，如内容更改 |
+
+**代码示例**
+
+{% tabs nodeDemo="Node.js" %}
+
+{% content "nodeDemo" %}
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories/434594', {
+  method: 'PATCH',
+  headers: {
+    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+  },
+  body: JSON.stringify({
+    content: '{\"action\":\"rename\",\"before\":\"无标题\",\"after\":\"无标题2\"}'
+  })
+})
+  .then(res => res.json())
+  .then(body => console.log(body.data))
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```json
+{
+  "fileGuid": "JyRX1679PL86rbTk",
+  "historyType": 1,
+  "userId": "10676",
+  "updatedAt": "2018-05-29T09:07:51.000Z",
+  "createdAt": "2018-05-29T09:07:51.000Z",
+  "id": 434594,
+  "content": "{\"action\":\"rename\",\"before\":\"无标题\",\"after\":\"无标题2\"}"
+}
+```
+
 ## 获取指定历史的文档名
 
 **接口**
