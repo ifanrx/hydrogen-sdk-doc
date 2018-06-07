@@ -19,7 +19,6 @@
 | 参数        | 类型   | 必填 | 说明 |
 | :--------- | :----- | :-- | :-- |
 | created_at | Number | Y   | 分类创建时间 |
-| files      | Number | Y   | 分类下的文件数 |
 | id         | String | Y   | 分类 ID |
 | name       | String | Y   | 分类名 |
 | updated_at | Number | Y   | 分裂更新时间 |
@@ -46,3 +45,38 @@ MyFileCategory.get('5a2fe91508443e3123dbe1cb').then(res => {
   updated_at: 1513089306
 }
 ```
+
+## 查询，获取分类列表
+
+文件分类查询与[数据表查询](./schema/query.md)方法一致，但只支持以下指定字段的筛选：
+
+| 支持字段 | 类型   | 说明 |
+| :----- | :----- | :-- |
+| id     | String | 文件分类 ID |
+| name   | String | 文件分类名 |
+
+**示例代码**
+
+```js
+let MyFileCategory = new BaaS.FileCategory()
+
+// 查找所有文件分类
+MyFileCategory.find()
+
+// 设置查询条件
+let query = new BaaS.Query()
+query.contains('name', substr)
+File.setQuery(query).find()
+```
+
+## 排序
+
+文件分类查询排序与[数据表排序](./schema/limit-and-order.md)方法一致，但只支持对以下指定字段进行排序：
+
+| 支持字段    | 描述        |
+| :--------- | :--------- |
+| name       | 文件名      |
+| created_at | 文件创建时间 |
+
+## 分页
+文件分类查询排序与[数据表分页](./schema/limit-and-order.md)方法一致。

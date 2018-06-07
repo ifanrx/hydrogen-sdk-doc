@@ -42,3 +42,44 @@ Product.delete(recordID).then(res => {
   // err
 })
 ```
+
+## 批量删除数据项
+
+通过设置查询条件，将符合条件的数据进行批量删除操作。
+
+其中：
+ - `Query` 对象的使用请查看 [查询数据项](./query.md) 章节
+
+ - `limit` 和 `offset` 的使用请查看 [分页和排序](./limit-and-order.md) 章节
+
+**请求示例**
+
+```js
+let MyTableObject = new BaaS.TableObject(tableID)
+
+let query = new BaaS.Query()
+
+// 设置查询条件（比较、字符串包含、组合等）
+...
+
+MyTableObject.limit(10).offset(0).delete(query).then(res => {}, err => {})
+```
+
+**返回示例**
+
+res.data:
+```js
+{
+  "succeed": 8, // 成功删除记录数
+  "total_count": 10, // where 匹配的记录数，包括无权限操作记录
+  "offset": 0,
+  "limit": 10,
+  "next": null // 下一次删除 url，若为 null 则表示全部删除完毕
+}
+```
+
+**状态码说明**
+
+200 删除成功，400 请求数据非法
+
+<span class="attention">注：</span> 由于对数据表的增删改均会触发 trigger 动作，为了防止出现严重消耗系统资源的情况，对数据表进行批量操作的数据条目最多不能超过 1000 条。

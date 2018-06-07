@@ -184,3 +184,52 @@ order.set('amount', 10)
 order.set('date', 'abc')
 order.update()
 ```
+
+<!-- 目前后端接口暂不支持，待支持后取消注释即可 -->
+<!-- ## 批量更新数据项
+
+通过设置查询条件，将符合条件的数据进行批量更新操作。
+
+其中：
+ - `Query` 对象的使用请查看 [查询数据项](./query.md) 章节
+
+ - `limit` 和 `offset` 的使用请查看 [分页和排序](./limit-and-order.md) 章节
+
+**请求示例**
+
+```js
+let MyTableObject = new BaaS.TableObject(tableID)
+
+let query = new BaaS.Query()
+
+// 设置查询条件（比较、字符串包含、组合等）
+...
+
+let records = MyTableObject.limit(10).offset(0).getWithoutData(query)
+
+// 与更新特定记录一致
+records.set(key1, value1)
+records.incrementBy(key2, value2)
+records.append(key3, value3)
+
+records.update().then(res => {}, err => {})
+```
+
+**返回示例**
+
+res.data:
+```js
+{
+  "succeed": 8, // 成功更新记录数
+  "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
+  "offset": 0,
+  "limit": 1000,
+  "next": null // 下一次更新 url，若为 null 则表示全部更新完毕
+}
+```
+
+**状态码说明**
+
+200 更新成功，400 请求数据非法
+
+<span class="attention">注：</span> 由于对数据表的增删改均会触发 trigger 动作，为了防止出现严重消耗系统资源的情况，对数据表进行批量操作的数据条目最多不能超过 1000 条。 -->
