@@ -131,19 +131,17 @@ MyFile.upload(params).then(res => {
 ```js
 let MyTableObject = new BaaS.TableObject(tableID)
 
-const records = [
-  {
-    name: 'apple',
-    price: 1,
-    desc: ['good'],
-    amount: 0
-  }, {
-    name: 'banana',
-    price: 2,
-    desc: ['good'],
-    amount: 1
-  }
-]
+const records = [{
+  name: 'apple',
+  price: 1,
+  desc: ['good'],
+  amount: 0
+}, {
+  name: 'banana',
+  price: 2,
+  desc: ['good'],
+  amount: 1
+}]
 
 MyTableObject.createMany(records).then(res => {}, err => {})
 ```

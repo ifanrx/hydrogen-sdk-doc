@@ -66,7 +66,7 @@ MyFileCategory.find()
 // 设置查询条件
 let query = new BaaS.Query()
 query.contains('name', substr)
-File.setQuery(query).find()
+MyFileCategory.setQuery(query).find()
 ```
 
 ## 排序

@@ -68,7 +68,7 @@ category 参数说明：
 
 | 参数  | 类型   | 说明 |
 | :--- | :----- | :-- |
-| id   | Number | 分类 ID |
+| id   | String | 分类 ID |
 | name | String | 分类名 |
 
 **示例代码**
@@ -84,18 +84,18 @@ MyFile.get('5a2fe93308443e313a428c4f').then(res => {
 
 **返回示例**
 
-```js
+```json
 {
-  category: {
-    id: '5a2fe91508443e3123dbe1cb',
-    name: '科技'
+  "category": {
+    id: "5a2fe91508443e3123dbe1cb",
+    name: "科技"
   },
-  cdn_path: "1e2fVFaWoaoAZPyr.svg",
-  created_at: 1507822469,
-  id: "5a2fe93308443e313a428c4f",
-  mime_type: "text/plain; charset=utf-8",
-  name: "tmp_262601706o6zAJs-pmaywKzqHIvzwU97rtiGIe4dd39171563993cf10b12bae2ac30ec.svg",
-  size: 3879
+  "created_at": 1507822469,
+  "id": "5a2fe93308443e313a428c4f",
+  "mime_type": "text/plain; charset=utf-8",
+  "name": "tmp_262601706o6zAJs-pmaywKzqHIvzwU97rtiGIe4dd39171563993cf10b12bae2ac30ec.svg",
+  "path": "https://baas-hello-world.cloud.ifanrusercontent.com/1fQTn8UCwQYlGFrv.txt",
+  "size": 3879
 }
 ```
 
