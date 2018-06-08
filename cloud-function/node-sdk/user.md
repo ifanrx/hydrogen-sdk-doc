@@ -17,14 +17,10 @@
 | 参数      | 类型   | 说明 |
 | :------- | :----- | :-- |
 | avatar   | String | 用户头像 |
-| city     | String | 用户所在城市 |
-| country  | String | 用户所在国家 |
-| gender   | Number | 用户的性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知 |
 | id       | Number | 用户 ID |
-| language | String | 用户的语言，简体中文为 zh_CN |
 | nickname | String | 用户昵称 |
-| openid   | String | 用户唯一标识，由微信提供 |
-| province | String | 用户所在省份 |
+| openid   | String | 用户唯一标识，由微信生成 |
+| unionid  | String | 用户在开放平台的唯一标识符，由微信生成 |
 
 > **info**
 > 如果有自定义字段，则一并返回（以上两种情况皆是如此）。
@@ -45,15 +41,12 @@ MyUser.get(userID).then(res => {
 
 ```json
 {
-  "avatar": "https://media.ifanrusercontent.com/media/tavatar/9a/1d/9a1db7592d6a325a845548f2fecbfb4516e138d0.jpg",
-  "city": "Guangzhou",
-  "country": "China",
-  "gender": 1,
-  "id": 36395394,
-  "language": "en",
-  "nickname": "hip hop man",
-  "openid": "oXUfx0HKez4qLqgX-XSwLCpiBYS9",
-  "province": "Guangdong"
+  "avatar": "https://xxx.jpg",
+  "id": 36395395,
+  "is_authorized": true,
+  "nickname": "姚凯伦",
+  "openid": "xxx",
+  "unionid": null,
 }
 ```
 
