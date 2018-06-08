@@ -14,6 +14,10 @@
   * [协作者](document/collaborator.md)
   * [评论](document/comment.md)
   * [目录](document/tableofcontent.md)
+  * [mention](document/mention.md)
+  * [上传](document/uploader.md)
+  * [历史](document/history.md)
+  * [版本](document/revision.md)
 
 ---
 

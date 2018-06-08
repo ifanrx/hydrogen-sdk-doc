@@ -7,8 +7,8 @@
 * 用法
 
   ```js
-  new shimo.sdk.document.Editor()
-  new shimo.sdk.document.Editor(options)
+  const Editor = shimo.sdk.document.Editor
+  const editor = new Editor(options)
   ```
 
 * 参数
@@ -24,12 +24,14 @@
 渲染文档。
 
 * 返回 `undefined`
-* 用法 `render(container, [options])`
+* 用法 `editor.render(container, [options])`
 * 参数
 
 | 名称                | 类型          | 默认值 | 描述         |
 | ------------------- | ------------- | ------ | ------------ |
 | `container`         | `HTMLElement`      | 无     | 文档渲染容器     |
+| `options.scrollingContainer`| `HTMLElement`      | 无     | 文档滚动区     |
+| `options.modules.toolbar`| `Boolean`      | true     | 是否启用工具栏     |
 
 ### getContent
 
@@ -48,7 +50,7 @@ console.log(content)
 设置文档内容。
 
 * 返回 `undefined`
-* 用法 `setContent(content)`
+* 用法 `editor.setContent(content)`
 * 参数
 
 | 名称            | 类型     | 默认值 | 描述                      |
@@ -60,7 +62,7 @@ console.log(content)
 给文档更新内容。
 
 * 返回 `undefined`
-* 用法 `applyChange(change)`
+* 用法 `editor.applyChange(change)`
 * 参数
 
 | 名称            | 类型     | 默认值 | 描述                      |
@@ -73,7 +75,7 @@ console.log(content)
 * 用法
 
   ```js
-    const events = editor.Events
+    const events = Editor.Events
     editor.on(events.CHANGE, handler)
   ```
 
@@ -97,7 +99,7 @@ console.log(content)
 | -- | -- | -- | -- |
 | `change` | `String` | 无 | 数据 |
 
-### SELECTION_CHANGE
+### SELECTION
   用户的光标、选区发生变化时触发。
 
   * 回调方法签名 `handler( range )`

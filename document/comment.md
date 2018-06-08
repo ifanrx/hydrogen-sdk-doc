@@ -7,8 +7,10 @@
 * 用法
 
   ```js
-  const editor = new shimo.sdk.document.Editor()
-  const comment = new shimo.sdk.document.plugins.Comment({
+  const Editor = shimo.sdk.document.Editor
+  const Comment = shimo.sdk.document.plugins.Comment
+  const editor = new Editor()
+  const comment = new Comment({
     editor,
     ...options
   })
@@ -22,6 +24,16 @@
 |名称|类型|默认值|描述|
 | -- | -- | -- | -- |
 | `editor` | `Editor` | 必选 | 编辑器实例 |
+| `updateDuration` | `number` | 10000(ms) | 更新时间间隔 |
+| `delay` | `number` | 2000(ms) | 延迟 |
+| `zIndex` | `number` | 100 | 设置层级 |
+| `mentionable` | `boolean` | 可选 | 是否开启 @ 功能 |
+| `service` | `object` | 可选 | 接口配置 |
+| `service.fetch` | `string` | 可选 | 获取评论列表的接口 |
+| `service.create` | `string` | 可选 | 创建评论的接口 |
+| `service.delete` | `string` | 可选 | 删除评论的接口 |
+| `service.close` | `string` | 可选 | 关闭评论的接口 |
+| `data` | `{ fileId:string, teamId:number }` | 可选 | 关闭评论的接口 |
 
 ## 方法列表
 
@@ -35,7 +47,7 @@
 
 | 名称                | 类型             | 默认值 | 描述                |
 | ------------------- | --------------- | ----- | ------------------ |
-| `container`         | `HTMLElement`   | 无     | 评论组件渲染容器     |
+| `container`         | `HTMLElement`   | 无     | 渲染容器     |
 
 ## refresh
 
@@ -43,55 +55,6 @@
 
 * 返回 `undefined`
 * 用法 `comment.refresh()`
-
-## addComment
-
-添加评论。
-
-* 返回 `undefined`
-* 用法 `comment.addComment(comment)`
-* 参数
-
-| 名称               | 类型         | 默认值 | 描述                |
-| ----------------- | ------------ | ----- | ------------------ |
-| `comment`         | `IComment`   | 无     | 评论内容     |
-
-### IComment 类型声明
-```js
-interface Icomment {
-  commentGuid: string
-  selectionGuid: string
-  content: string
-  createdAt: string
-  User: IUser
-}
-```
-** 注：commentGuid => 一条评论，selectionGuid => 一块评论区**
-
-## closeComment
-
-结束一段评论区。
-
-* 返回 `undefined`
-* 用法 `comment.closeComment(selectionGuid)`
-* 参数
-
-| 名称            | 类型       | 默认值 | 描述            |
-| -------------- | ---------- | ----- | -------------- |
-| `selectionGuid`         | `string`   | 无     | 评论区的 guid     |
-
-## deleteComment
-
-删除一条评论。
-
-* 返回 `undefined`
-* 用法 `comment.closeComment(commentGuid)`
-* 参数
-
-| 名称            | 类型       | 默认值 | 描述            |
-| -------------- | ---------- | ----- | -------------- |
-| `commentGuid`         | `string`   | 无     | 评论条目的 guid     |
-
 
 ## 事件列表
 

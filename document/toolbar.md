@@ -9,9 +9,9 @@
 
 工具栏接口和使用工具栏的情景类似，都是对用户当前在编辑器内的选区内容进行操作。
   ```js
-  ...
+  const editor = new shimo.sdk.document.Editor()
   // 加粗选取的内容
-  sdkEditor.editorActions.setBold()
+  editor.editorActions.setBold()
   ```
 
 ## 支持的工具栏功能接口
@@ -20,20 +20,20 @@
 
 撤销改动。
 
-* 用法 `sdkEditor.editorActions.setUndo()`
+* 用法 `editor.editorActions.setUndo()`
 
 
 ### setRedo
 
 重做撤销的改动。
 
-* 用法 `sdkEditor.editorActions.setRedo()`
+* 用法 `editor.editorActions.setRedo()`
 
 ### setFormatPainter
 
 格式刷。
 
-* 用法 `sdkEditor.editorActions.setFormatPainter(value)`
+* 用法 `editor.editorActions.setFormatPainter(value)`
 * 参数
 
 | 名称             | 建议可选值             | 描述         |
@@ -44,13 +44,13 @@
 
 清除格式。
 
-* 用法 `sdkEditor.editorActions.setClean()`
+* 用法 `editor.editorActions.setClean()`
 
 ### setHeader
 
 设置标题格式。
 
-* 用法 `sdkEditor.editorActions.setHeader(value)`
+* 用法 `editor.editorActions.setHeader(value)`
 * 参数
 
 | 名称             | 建议可选值             | 描述         |
@@ -61,7 +61,7 @@
 
 设置字体。
 
-* 用法 `sdkEditor.editorActions.setFont(value)`
+* 用法 `editor.editorActions.setFont(value)`
 * 参数
 
 | 名称             | 建议可选值             | 描述         |
@@ -72,7 +72,7 @@
 
 设置字号大小。
 
-* 用法 `sdkEditor.editorActions.setSize(value)`
+* 用法 `editor.editorActions.setSize(value)`
 * 参数
 
 | 名称             | 建议可选值             | 描述         |
@@ -83,7 +83,7 @@
 
 设置字体加粗。
 
-* 用法 `sdkEditor.editorActions.setBold(?value)`
+* 用法 `editor.editorActions.setBold(?value)`
 * 参数
 
 | 名称             | 类型             | 描述         |
@@ -94,7 +94,7 @@
 
 设置斜体。
 
-* 用法 `sdkEditor.editorActions.setItalic(?value)`
+* 用法 `editor.editorActions.setItalic(?value)`
 * 参数
 
 | 名称             | 类型             | 描述         |
@@ -106,7 +106,7 @@
 
 设置下划线。
 
-* 用法 `sdkEditor.editorActions.setUnderline(?value)`
+* 用法 `editor.editorActions.setUnderline(?value)`
 * 参数
 
 | 名称             | 类型             | 描述         |
@@ -118,7 +118,7 @@
 
 设置字体删除线。
 
-* 用法 `sdkEditor.editorActions.setStrike(?value)`
+* 用法 `editor.editorActions.setStrike(?value)`
 * 参数
 
 | 名称             | 类型             | 描述         |
@@ -130,7 +130,7 @@
 
 设置字体颜色。
 
-* 用法 `sdkEditor.editorActions.setColor(value)`
+* 用法 `editor.editorActions.setColor(value)`
 * 参数
 
 | 名称             | 可选值             | 描述         |
@@ -141,7 +141,7 @@
 
 设置背景颜色。
 
-* 用法 `sdkEditor.editorActions.setBackground(value)`
+* 用法 `editor.editorActions.setBackground(value)`
 * 参数
 
 | 名称             | 可选值             | 描述         |
@@ -153,7 +153,7 @@
 
 设置有序列表。
 
-* 用法 `sdkEditor.editorActions.setBold(?value)`
+* 用法 `editor.editorActions.setBold(?value)`
 * 参数
 
 | 名称             | 可选值           | 描述         |
@@ -164,7 +164,7 @@
 
 设置无序列表。
 
-* 用法 `sdkEditor.editorActions.setBullet(?value)`
+* 用法 `editor.editorActions.setBullet(?value)`
 * 参数
 
 | 名称             | 可选值           | 描述         |
@@ -176,7 +176,7 @@
 
 列表重新编号。
 
-* 用法 `sdkEditor.editorActions.resetOrder(value)`
+* 用法 `editor.editorActions.resetOrder(value)`
 * 参数
 
 | 名称             | 类型              | 描述         |
@@ -187,7 +187,7 @@
 
 设置任务列表。
 
-* 用法 `sdkEditor.editorActions.setTask(?value)`
+* 用法 `editor.editorActions.setTask(?value)`
 * 参数
 
 | 名称             | 可选值           | 描述         |
@@ -199,7 +199,7 @@
 
 设置缩进。
 
-* 用法 `sdkEditor.editorActions.setIndent(value)`
+* 用法 `editor.editorActions.setIndent(value)`
 * 参数
 
 | 名称             | 可选值           | 描述         |
@@ -211,7 +211,7 @@
 
 设置对齐方式。
 
-* 用法 `sdkEditor.editorActions.setAlign(value)`
+* 用法 `editor.editorActions.setAlign(value)`
 * 参数
 
 | 名称             | 可选值           | 描述         |
@@ -222,7 +222,7 @@
 
 设置对齐方式。
 
-* 用法 `sdkEditor.editorActions.setLinespace(value)`
+* 用法 `editor.editorActions.setLinespace(value)`
 * 参数
 
 | 名称             | 可选值           | 描述         |

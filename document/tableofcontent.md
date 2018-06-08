@@ -7,14 +7,13 @@
 * 用法
 
   ```js
-  const editor = new shimo.sdk.document.Editor()
-  const tableofcontent = new shimo.sdk.document.plugins.TableOfContent({
+  const Editor = shimo.sdk.document.Editor
+  const TableOfContent = shimo.sdk.document.plugins.TableOfContent
+  const editor = new Editor()
+  const tableofcontent = new TableOfContent({
     editor,
     ...options
   })
-
-  editor.render(...)
-  tableofcontent.render()
   ```
 
 * 参数
@@ -22,3 +21,17 @@
 |名称|类型|默认值|描述|
 | -- | -- | -- | -- |
 | `editor` | `Editor` | 必选 | 编辑器实例 |
+
+## 方法列表
+
+## render
+
+渲染初始化。
+
+* 返回 `undefined`
+* 用法 `tableofcontent.render(container)`
+* 参数
+
+| 名称                | 类型             | 默认值 | 描述                |
+| ------------------- | --------------- | ----- | ------------------ |
+| `container`         | `HTMLElement`   | 无     | 渲染容器     |
