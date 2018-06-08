@@ -29,10 +29,7 @@ exports.main = function helloWorld(event, callback) {
 | memoryLimitInMB | Number         | 当前函数的内存资源限制 |
 | miniappId       | Number         | 云函数所属小程序 id |
 | request         | Object         | 若云函数请求来自 BaaS SDK, 此处存储请求用户及其他客户端信息 |
-| ssl_cert        | String         | 容器用于外部网络请求的 certificate |
-| ssl_key         | String         | 容器用于外部网络请求的 key |
 | timeLimitInMS   | Number         | 当前函数的 timeout 时间 |
-| token           | String         | 云函数所属小程序的 token，用于在云函数中处理 BaaS 数据时的验证 |
 
 
 **callback**

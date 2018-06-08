@@ -126,7 +126,7 @@ category 参数说明：
 
 | 参数  | 类型   | 说明 |
 | :--- | :----- | :-- |
-| id   | Number | 分类 ID |
+| id   | String | 分类 ID |
 | name | String | 分类名 |
 
 **示例代码**

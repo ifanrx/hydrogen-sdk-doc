@@ -122,3 +122,42 @@ MyFile.upload(params).then(res => {
 ## 添加 geojson 类型数据
 
 查看 [地理位置操作](./geo.md) 章节
+
+
+## 批量新增数据项
+
+**请求示例**
+
+```js
+let MyTableObject = new BaaS.TableObject(tableID)
+
+const records = [{
+  name: 'apple',
+  price: 1,
+  desc: ['good'],
+  amount: 0
+}, {
+  name: 'banana',
+  price: 2,
+  desc: ['good'],
+  amount: 1
+}]
+
+MyTableObject.createMany(records).then(res => {}, err => {})
+```
+
+**返回示例**
+
+res.data:
+```js
+{
+  "succeed": 10, // 成功插入记录数
+  "total_count": 10, // 总的待插入记录数
+}
+```
+
+**状态码说明**
+
+201 创建成功，400 请求数据非法或超过最大操作条目数上限
+
+<span class="attention">注：</span> 由于对数据表的增删改均会触发 trigger 动作，为了防止出现严重消耗系统资源的情况，对数据表进行批量操作的数据条目最多不能超过 1000 条。
