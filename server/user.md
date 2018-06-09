@@ -72,13 +72,16 @@ fetch('<SHIMO_API>/users', {
 
 `GET <SHIMO_API>/users/:id`
 
-`GET <SHIMO_API>/users/email/:email`
+`GET <SHIMO_API>/users/email?email=`
+
+`GET <SHIMO_API>/users/client_user_id?client_user_id=`
 
 **参数说明**
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
 | email | String | Y   | 用户邮箱 |
+| client_user_id | String | Y   | 客户系统的用户标识 |
 
 **代码示例**
 
@@ -89,7 +92,7 @@ fetch('<SHIMO_API>/users', {
 ```js
 const request = require('node-fetch')
 
-fetch('<SHIMO_API>/users/email?example@shimo.im', {
+fetch('<SHIMO_API>/users/email?email=example@shimo.im', {
   method: 'DELETE',
   headers: {
     'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'

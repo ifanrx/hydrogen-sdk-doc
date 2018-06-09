@@ -15,6 +15,7 @@
 | :------- | :----- | :-- | :-- |
 | size | Number | N   | 返回的历史条数，默认 `10` |
 | from | Number | N   | 从第几条历史开始查找，默认 `0` |
+| historyType | Number | N   | history type 类型 |
 | order | String | N   | 排序方式，默认 `asc` |
 | sort | String | N   | 排序字段，默认 `createdAt` |
 
@@ -146,7 +147,7 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories', {
 }
 ```
 
-## 创建历史
+## 更新历史
 
 **接口**
 
