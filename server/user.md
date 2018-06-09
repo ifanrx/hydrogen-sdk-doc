@@ -77,7 +77,6 @@ fetch('<SHIMO_API>/users', {
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
 | ids | Number[] | N   | 用户 ID |
-| limit | Number | N   | 用户 ID |
 | size | Number | N   | 用户 ID |
 
 **代码示例**
