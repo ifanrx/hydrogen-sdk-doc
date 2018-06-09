@@ -159,6 +159,7 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories', {
 | :------- | :----- | :-- | :-- |
 | content | String | N   | 历史内容 |
 | historyType | Number | N   | 历史类型<br>`1`：和文档**信息**有关的改动，如创建、重命名、分享<br>`2`：和文档**内容**有关的改动，如内容更改 |
+| userId | Number | N   | 用户标识 |
 
 **代码示例**
 
