@@ -244,6 +244,17 @@
 | `styles` | `Object` | 无 | 样式选项 |必选|
 | `applyToAll` | `Boolean` | false | 是否应用到整个文本框 |可选|
 
+### setCurrentTextAutoResize
+  设置当前选中文本内文字自适应。
+
+  * 返回 `undefined`
+  * 用法 `setCurrentTextAutoResize(autoResize)`
+  * 参数
+
+|名称|类型|默认值|描述|必选/可选|
+| -- | -- | -- | -- | -- |
+| `autoResize` | `Boolean` | 无 | 是否使文本自适应 |必选|
+
 ## 事件列表
 
 * 用法
