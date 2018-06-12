@@ -354,8 +354,4 @@
 | `element.elementType` | `string` | 无 |元素类型|
 | `element.data` | `string` | 无 |元素数据|
 | `element.attributes` | `string` | 无 |元素属性|
-
-
-
-
-
+| `element.focusState` | `string` | 无 |元素选中状态，可选值有 Editor.focusState.UNFOCUSED (未选中) Editor.focusState.FOCUSED (选中边框) Editor.focusState.CONTENT_FOCUSED (选中文本)|
