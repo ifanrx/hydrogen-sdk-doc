@@ -13,14 +13,21 @@
       container: $('#sidebar-container'),
       guid: '',
       currentUserId: ''
-      loadHistoryUrl: `/api/docsidebarinfo/${guid}`,
-      revertUrl: `/history/${guid}/revert`,
-      loadVersionListUrl: `/api/files/${guid}/revisions`,
-      revertVersionUrl: `/history/${guid}/revert`,
-      deleteVersionUrl: `/smapi/files/${guid}/revisions`,
-      updateVersionUrl: `/smapi/files/${guid}/revisions`,
-      snapshotUrl: `/api/files/${guid}/snapshot`,
-      loadStepsUrl: `/api/files/${guid}/sheet_histories`,
+      history: {
+        loadHistoryUrl: `/api/docsidebarinfo/${guid}`,
+        revertUrl: `/history/${guid}/revert`,
+        snapshotUrl: `/api/files/${guid}/snapshot`,
+        loadStepsUrl: `/api/files/${guid}/sheet_histories`,
+      },
+      version: {
+        loadHistoryUrl: `/api/docsidebarinfo/${guid}`,
+        loadVersionListUrl: `/api/files/${guid}/revisions`,
+        revertVersionUrl: `/history/${guid}/revert`,
+        deleteVersionUrl: `/smapi/files/${guid}/revisions`,
+        updateVersionUrl: `/smapi/files/${guid}/revisions`,
+        snapshotUrl: `/api/files/${guid}/snapshot`,
+        loadStepsUrl: `/api/files/${guid}/sheet_histories`
+      }
   })
   ```
 
@@ -32,14 +39,20 @@
 | `options.container` | `HTMLElement` | 必选 | 侧边栏宿主容器 |
 | `options.guid` | `String` | 必选 | file 的 guid |
 | `options.currentUserId` | `AppList` | 必选 | 当前用户 id |
-| `options.loadHistoryUrl` | `AppList` | 必选 | 加载历史列表 url |
-| `options.revertUrl` | `AppList` | 必选 | 还原历史记录 url |
-| `options.loadVersionListUrl` | `AppList` | 必选 | 加载版本列表 url |
-| `options.revertVersionUrl` | `AppList` | 必选 | 还原版本记录 url |
-| `options.deleteVersionUrl` | `AppList` | 必选 | 删除版本记录 url |
-| `options.updateVersionUrl` | `AppList` | 必选 | 更新版本记录 url |
-| `options.snapshotUrl` | `AppList` | 必选 | 加载历史／版本快照 url |
-| `options.loadStepsUrl` | `AppList` | 必选 | 加载历史／版本碎片 url |
+| `options.history` | `Object` | 可选 | 历史列表和预览配置 |
+| `options.history.loadHistoryUrl` | `string` | 必选 | 加载历史列表 url |
+| `options.history.revertUrl` | `string` | 必选 | 还原历史记录 url |
+| `options.history.snapshotUrl` | `string` | 必选 | 加载历史快照 url |
+| `options.history.loadStepsUrl` | `string` | 必选 | 加载历史碎片 url |
+| `options.version` | `Object` | 可选 | 版本列表和预览配置 |
+| `options.version.loadHistoryUrl` | `string` | 必选 | 加载历史列表 url |
+| `options.version.loadVersionListUrl` | `string` | 必选 | 加载版本列表 url |
+| `options.version.revertVersionUrl` | `string` | 必选 | 还原版本记录 url |
+| `options.version.deleteVersionUrl` | `string` | 必选 | 删除版本记录 url |
+| `options.version.updateVersionUrl` | `string` | 必选 | 更新版本记录 url |
+| `options.version.snapshotUrl` | `string` | 必选 | 加载版本快照 url |
+| `options.version.loadStepsUrl` | `string` | 必选 | 还原版本记录 url |
+
 
 
 ## 方法列表
