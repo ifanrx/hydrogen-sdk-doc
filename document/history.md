@@ -22,6 +22,10 @@
 | `editor` | `Editor` | 必选 | 编辑器实例 |
 | `guid` | `String`  | 必选 | 文档guid |
 | `height` | `String` | 必选 | 高度 |
+| `service` | `object` | 可选 | 接口配置 |
+| `service.fetch` | `string` | 可选 | 获取历史列表的接口 |
+| `service.revert` | `string` | 可选 | 还原某一历史接口 |
+| `service.user` | `string` | 可选 | 根据用户ID，获取用户信息接口 |
 
 ## 方法列表
 

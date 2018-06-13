@@ -18,6 +18,7 @@
   * [上传](document/uploader.md)
   * [历史](document/history.md)
   * [版本](document/revision.md)
+  * [相册](document/gallery.md)
 
 ---
 
