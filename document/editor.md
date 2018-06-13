@@ -37,12 +37,13 @@
 
 获取文档内容。
 
-* 返回 `String`
+* 返回 `Promise<String>`
 * 用法
 
 ```js
-const content = editor.getContent()
-console.log(content)
+editor.getContent().then(content => {
+  console.log(content)
+})
 ```
 
 ### setContent
