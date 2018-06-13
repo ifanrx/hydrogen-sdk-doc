@@ -5,7 +5,7 @@
 > **danger**
 > 以下操作仅适用于 SDK version >= 1.3.0a，该版本还在内测阶段，仅面向受邀用户开放，详情请咨询客服
 
-`BaaS.invokeFunction(functionName, params, sync)`
+`wx.BaaS.invokeFunction(functionName, params, sync)`
 
 **参数说明**
 
@@ -28,7 +28,7 @@
 假设已经创建了一个云函数 helloWorld，其接受一个 name 作为参数，返回 hello ${name}，可通过以下方式在云函数中进行调用
 
 ```js
-BaaS.invokeFunction('helloWorld', {name: 'allen'}).then(res => {
+wx.BaaS.invokeFunction('helloWorld', {name: 'allen'}).then(res => {
   if (res.code === 0) {
     // success
     console.log(res.data)
