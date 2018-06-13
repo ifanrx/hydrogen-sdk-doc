@@ -8,7 +8,6 @@
 
   ```js
     new shimo.sdk.slide.Editor(params)
-    new shimo.sdk.slide.Editor(params, options)
   ```
 
 * 参数
@@ -16,7 +15,6 @@
 |名称|类型|默认值|描述|
 | -- | -- | -- | -- |
 | `params.file` | `string` | `9:8!5@P0$0$` |设置幻灯片初始化渲染数据|
-| `options.slideId` | `string` | 无 |展示的幻灯片|
 
 ## 属性列表
 
@@ -24,13 +22,53 @@
 | -- | -- | -- |
 | `slides` | `Array` |幻灯片列表|
 | `layouts` | `Array` |幻灯片模板列表|
-| `currentSlide` | `string` |当前选中幻灯片 id|
-| `currentElements` | `Array` |当前选中元素列表|
-| `canUndo` | `Boolean` |能否撤销|
-| `canRedo` | `Boolean` |能否重做|
+| `currentSlide` | `Object` |当前选中幻灯片信息|
+| `currentSlide.id` | `string` |当前选中幻灯片的 id|
+| `currentSlide.attributes` | `Object` |当前选中幻灯片的属性|
+| `currentElements` | `currentElement[]` |当前选中元素列表|
+| `currentElement.elementId` | `string` |元素 id|
+| `currentElement.type` | `'text' | 'image' | 'shape'` |元素类型|
+| `currentElement.focusState` | `'unfocused' | 'focused' | 'content_focused'` |元素选中状态(未选中|选中边框|选中内容)|
+| `currentElement.isPlaceholder` | `boolean` |元素是否是占位符|
+| `currentElement.data` | `Object` |元素数据|
+| `currentElement.attributes` | `Object` |元素属性|
+| `currentElement.order` | `Object` |元素层级|
+| `currentElement.order.isTop` | `boolean` |元素是否处于顶层|
+| `currentElement.order.isBottom` | `boolean` |元素是否处于底层|
+| `currentElement.state` | `Object` |(文本)元素中被选中部分的属性|
+| `canUndo` | `boolean` |能否撤销|
+| `canRedo` | `boolean` |能否重做|
 | `Events` | `Enum` |幻灯片事件|
 
 ## 方法列表
+
+### render
+  渲染幻灯片内容。
+
+  * 返回 `undefined`
+  * 用法 `render(container, options)`
+  * 参数
+
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `container` | `HTMLElement` | 无 |幻灯片渲染容器|
+| `options` | `Object` | 无 |渲染配置项|
+| `options.editable` | `boolean` | true |是否可编辑|
+| `options.scope` | `'slides' | 'layouts'` | `'slides'` |渲染范围|
+| `options.slide` | `string | number` | 0 |渲染的幻灯片 id 或序号|
+| `options.scalable` | `boolean` | true |是否支持双指缩放|
+| `options.reactive` | `boolean` | true |是否支持实时更新|
+| `options.placeholder` | `boolean` | false |占位符内容是否显示|
+| `options.canvas` | `Object` | 无 |画布渲染配置项|
+| `options.canvas.withPadding` | `boolean` | false |是否显示超出画布内容区域的内容|
+| `options.canvas.fitContainer` | `boolean` | true |初始缩放比例是否适应容器|
+
+### destroy
+  销毁幻灯片编辑器实例。
+
+  * 返回 `undefined`
+  * 用法 `destroy()`
+  * 参数 `undefined`
 
 ### getContent
   获取幻灯片内容。
@@ -55,48 +93,6 @@
 | -- | -- | -- | -- |
 | `content` | `String` | 无 |幻灯片内容|
 
-### render
-  渲染幻灯片内容。
-
-  * 返回 `undefined`
-  * 用法 `render(container)`
-  * 参数
-
-|名称|类型|默认值|描述|
-| -- | -- | -- | -- |
-| `container` | `HTMLElement` | 无 |幻灯片渲染容器|
-
-### renderPreview
-  渲染幻灯片预览内容。
-
-  * 返回 `undefined`
-  * 用法 `renderPreview(container, slideId, mode)`
-  * 参数
-
-|名称|类型|默认值|描述|
-| -- | -- | -- | -- |
-| `container` | `HTMLElement` | 无 |幻灯片预览渲染容器|
-| `slideId` | `string` | 无 |渲染的幻灯片 id|
-
-### renderLayout
-  渲染幻灯片模板内容。
-
-  * 返回 `undefined`
-  * 用法 `renderLayout(container, layoutId, mode)`
-  * 参数
-
-|名称|类型|默认值|描述|
-| -- | -- | -- | -- |
-| `container` | `HTMLElement` | 无 |幻灯片模板渲染容器|
-| `layoutId` | `string` | 无 |渲染的幻灯片模板 id|
-
-### destroy
-  销毁幻灯片编辑器实例。
-
-  * 返回 `undefined`
-  * 用法 `destroy()`
-  * 参数 `undefined`
-
 ### setLayout
   设置幻灯片模板。
 
@@ -106,18 +102,43 @@
 
 |名称|类型|默认值|描述|
 | -- | -- | -- | -- |
-| `content` | `string` | 无 |幻灯片模板数据|
+| `content` | `string | 无 | PresentationPlainObjects` | 无 |幻灯片模板数据|
+
+### registerPlugin
+  注册插件。
+
+  * 返回 `{ editorLayers, previewLayers }`
+
+|名称|类型|描述|
+| -- | -- | -- |
+| `editorLayers` | `Object` |画布插件层|
+| `editorLayers.viewport` | `HTMLElement` |可视区域 dom|
+| `editorLayers.canvas` | `HTMLElement` |画布 dom|
+| `previewLayers` | `Object` |预览插件层|
+| `previewLayers.viewport` | `HTMLElement` |可视区域 dom|
+| `previewLayers..canvas` | `HTMLElement` |画布 dom|
+
+  * 用法 `registerPlugin(name, plugin)`
+  * 参数
+
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `name` | `string` | 无 |插件名称|
+| `plugin` | `Plugin` | 无 |实例化的插件|
+
 
 ### updateLayout
   更新模板。
 
   * 返回 `Delta`
-  * 用法 `setLayout(content)`
+  * 用法 `updateLayout({ layoutId, attributes, updateAll })`
   * 参数
 
-|名称|类型|默认值|描述|
-| -- | -- | -- | -- |
-| `content` | `string` | 无 |幻灯片模板数据|
+|名称|类型|默认值|描述|必选/可选|
+| -- | -- | -- | -- | -- |
+| `layoutId` | `string` | 无 |幻灯片模板 id|可选|
+| `attributes` | `Object` | 无 |用于更新模板的属性|必选|
+| `updateAll` | `boolean` | false |是否更新整套模板|可选|
 
 ### deleteLayout
   删除模板。
@@ -147,13 +168,14 @@
   更新幻灯片。
 
   * 返回 `Delta`
-  * 用法 `updateSlide({ slideId, attributes })`
+  * 用法 `updateSlide({ slideId, attributes, updateAll })`
   * 参数
 
 |名称|类型|默认值|描述|必选/可选|
 | -- | -- | -- | -- | -- |
 | `slideId` | `string` | 当前幻灯片 id |幻灯片 id|可选|
 | `attributes` | `Object` | 无 |幻灯片的属性（如背景颜色等）|必选|
+| `updateAll` | `boolean` | 无 |是否更新全部幻灯片|可选|
 
 ### deleteSlide
   删除幻灯片。
@@ -187,7 +209,7 @@
 |名称|类型|默认值|描述|必选/可选|
 | -- | -- | -- | -- | -- |
 | `elements` | `element[]` | 无 | 批量新建的元素信息|必选|
-| `element.elementType` | `string` | `text` |幻灯片元素类型|可选|
+| `element.elementType` | `'text' | 'image' | 'shape'` | `text` |幻灯片元素类型|可选|
 | `element.data` | `string` | 无 |新建元素的数据（如文字内容、图片地址等）|可选|
 | `element.attributes` | `Object` | 无 |新建元素的属性（如长度、宽度等）|可选|
 
@@ -242,7 +264,7 @@
 |名称|类型|默认值|描述|必选/可选|
 | -- | -- | -- | -- | -- |
 | `styles` | `Object` | 无 | 样式选项 |必选|
-| `applyToAll` | `Boolean` | false | 是否应用到整个文本框 |可选|
+| `applyToAll` | `boolean` | false | 是否应用到整个文本框 |可选|
 
 ### setCurrentTextAutoResize
   设置当前选中文本内文字自适应。
@@ -253,7 +275,32 @@
 
 |名称|类型|默认值|描述|必选/可选|
 | -- | -- | -- | -- | -- |
-| `autoResize` | `Boolean` | 无 | 是否使文本自适应 |必选|
+| `autoResize` | `boolean` | 无 | 是否使文本自适应 |必选|
+
+### moveElementsUpOneLevel
+  设置当前选中文本内文字自适应。
+
+  * 返回 `undefined`
+  * 用法 `moveElementsUpOneLevel()`
+
+### moveElementsDownOneLevel
+  设置当前选中文本内文字自适应。
+
+  * 返回 `undefined`
+  * 用法 `moveElementsDownOneLevel()`
+
+### moveElementsUpToTopLevel
+  设置当前选中文本内文字自适应。
+
+  * 返回 `undefined`
+  * 用法 `moveElementsUpToTopLevel()`
+  * 参数
+
+### moveElementsDownToBottomLevel
+  设置当前选中文本内文字自适应。
+
+  * 返回 `undefined`
+  * 用法 `moveElementsDownToBottomLevel()`
 
 ## 事件列表
 
@@ -267,7 +314,7 @@
 ### CHANGE
   数据变化。
 
-  * 回调方法签名 `handler( delta, options )`
+  * 回调方法签名 `handler(delta, options)`
   * 参数
 
 |名称|类型|默认值|描述|
@@ -279,7 +326,7 @@
 ### SLIDES_CHANGE
   幻灯片数据变化。
 
-  * 回调方法签名 `handler( action, slides, all )`
+  * 回调方法签名 `handler(action, slides, all)`
   * 参数
 
 |名称|类型|默认值|描述|
@@ -294,21 +341,28 @@
 ### ELEMENTS_CHANGE
   元素数据变化。
 
-  * 回调方法签名 `handler( action, elements )`
+  * 回调方法签名 `handler(action, elements)`
   * 参数
 
 |名称|类型|默认值|描述|
 | -- | -- | -- | -- |
 | `action` | `string` | 无 | 引起变化的动作类型（如新增、修改和删除） |
-| `elements` | `Array` | 无 | 变化的元素信息 |
-| `element.elementId` | `string` | 无 | 元素 id |
-| `element.elementType` | `string` | 无 | 元素类型 |
-| `element.attributes` | `Object` | 无 | 元素属性 |
+| `elements` | `element[]` | 无 | 变化的元素信息 |
+| `element.elementId` | `string` |元素 id|
+| `element.type` | `'text' | 'image' | 'shape'` |元素类型|
+| `element.focusState` | `'unfocused' | 'focused' | 'content_focused'` |元素选中状态|
+| `element.isPlaceholder` | `boolean` |元素是否是占位符|
+| `element.data` | `Object` |元素数据|
+| `element.attributes` | `Object` |元素属性|
+| `element.order` | `Object` |元素层级|
+| `element.order.isTop` | `boolean` |元素是否处于顶层|
+| `element.order.isBottom` | `boolean` |元素是否处于底层|
+| `element.state` | `Object` |(文本)元素中被选中部分的属性|
 
 ### EDITOR_CHANGE
   编辑器属性变化。
 
-  * 回调方法签名 `handler( attributes )`
+  * 回调方法签名 `handler(attributes)`
   * 参数
 
 |名称|类型|默认值|描述|
@@ -316,21 +370,10 @@
 | `attributes` | `Object` | 无 | 变化的属性 |
 | `attributes.ratio` | `number` | 无 | 编辑器画布的缩放比例 |
 
-### SELECT
-  选中状态变化。
-
-  * 回调方法签名 `handler( slideId, elementIds )`
-  * 参数
-
-|名称|类型|默认值|描述|
-| -- | -- | -- | -- |
-| `slideId` | `string` | 无 | 选中的幻灯片 id |
-| `elementIds` | `Array` | 无 | 选中的元素 id 数组 |
-
 ### SLIDES_SELECT
   幻灯片选中状态变化。
 
-  * 回调方法签名 `handler( prev, current )`
+  * 回调方法签名 `handler(prev, current)`
   * 参数
 
 |名称|类型|默认值|描述|
@@ -344,14 +387,133 @@
 ### ELEMENTS_SELECT
   元素选中状态变化。
 
-  * 回调方法签名 `handler( elements )`
+  * 回调方法签名 `handler(selectedElements)`
   * 参数
 
 |名称|类型|默认值|描述|
 | -- | -- | -- | -- |
+| `selectedElements` | `element[]` | 无 | 选中的元素信息 |
+| `element.elementId` | `string` |元素 id|
+| `element.type` | `'text' | 'image' | 'shape'` |元素类型|
+| `element.focusState` | `'unfocused' | 'focused' | 'content_focused'` |元素选中状态|
+| `element.isPlaceholder` | `boolean` |元素是否是占位符|
+| `element.data` | `Object` |元素数据|
+| `element.attributes` | `Object` |元素属性|
+| `element.order` | `Object` |元素层级|
+| `element.order.isTop` | `boolean` |元素是否处于顶层|
+| `element.order.isBottom` | `boolean` |元素是否处于底层|
+| `element.state` | `Object` |(文本)元素中被选中部分的属性|
+
+### TEXT_CHANGE
+  文本元素状态变化。
+
+  * 回调方法签名 `handler(selectedElements)`
+  * 参数
+
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `selectedElements` | `element[]` | 无 | 选中的元素信息 |
+| `element.elementId` | `string` |元素 id|
+| `element.type` | `'text' | 'image' | 'shape'` |元素类型|
+| `element.focusState` | `'unfocused' | 'focused' | 'content_focused'` |元素选中状态|
+| `element.isPlaceholder` | `boolean` |元素是否是占位符|
+| `element.data` | `Object` |元素数据|
+| `element.attributes` | `Object` |元素属性|
+| `element.order` | `Object` |元素层级|
+| `element.order.isTop` | `boolean` |元素是否处于顶层|
+| `element.order.isBottom` | `boolean` |元素是否处于底层|
+| `element.state` | `Object` |(文本)元素中被选中部分的属性|
+
+### IMAGE_PLACEHOLDER_SELECT
+  图片占位符选中。
+
+  * 回调方法签名 `handler(selectedElements)`
+  * 参数
+
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `selectedElements` | `element[]` | 无 | 选中的元素信息 |
+| `element.elementId` | `string` |元素 id|
+| `element.type` | `'text' | 'image' | 'shape'` |元素类型|
+| `element.focusState` | `'unfocused' | 'focused' | 'content_focused'` |元素选中状态|
+| `element.isPlaceholder` | `boolean` |元素是否是占位符|
+| `element.data` | `Object` |元素数据|
+| `element.attributes` | `Object` |元素属性|
+| `element.order` | `Object` |元素层级|
+| `element.order.isTop` | `boolean` |元素是否处于顶层|
+| `element.order.isBottom` | `boolean` |元素是否处于底层|
+| `element.state` | `Object` |(文本)元素中被选中部分的属性|
+
+### VIEWPORT_MOUSE_ENTER
+  鼠标进入幻灯片可视区域。
+
+  * 回调方法签名 `handler({ slideId })`
+  * 参数
+
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `slideId` | `string` | 无 | 幻灯片 id |
+
+### VIEWPORT_MOUSE_LEAVE
+  鼠标离开幻灯片可视区域。
+
+  * 回调方法签名 `handler({ slideId })`
+  * 参数
+
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `slideId` | `string` | 无 | 幻灯片 id |
+
+### ELEMENT_FRAME_MOUSE_ENTER
+  鼠标进入元素边框区域。
+
+  * 回调方法签名 `handler({ elementId })`
+  * 参数
+
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `elementId` | `string` | 无 | 元素 id |
+
+### ELEMENT_FRAME_MOUSE_LEAVE
+  鼠标离开元素边框区域。
+
+  * 回调方法签名 `handler({ elementId })`
+  * 参数
+
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `elementId` | `string` | 无 | 元素 id |
+
+### ELEMENT_DRAGGING
+  元素被拖拽。
+
+  * 回调方法签名 `handler({ offsetX, offsetY, elements })`
+  * 参数
+
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `offsetX` | `number` | 无 | 横轴方向的鼠标偏移量 |
+| `offsetY` | `number` | 无 | 横轴方向的鼠标偏移量 |
+| `elements` | `Set<Slot>` | 无 | 选中的元素信息 |
+
+### ELEMENT_DRAG_END
+  元素拖拽结束。
+
+  * 回调方法签名 `handler({ offsetX, offsetY, elements })`
+  * 参数
+
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `offsetX` | `number` | 无 | 横轴方向的鼠标偏移量 |
+| `offsetY` | `number` | 无 | 横轴方向的鼠标偏移量 |
 | `elements` | `element[]` | 无 | 选中的元素信息 |
-| `element.elementId` | `string` | 无 |元素 id|
-| `element.elementType` | `string` | 无 |元素类型|
-| `element.data` | `string` | 无 |元素数据|
-| `element.attributes` | `string` | 无 |元素属性|
-| `element.focusState` | `string` | 无 |元素选中状态，可选值有 Editor.focusState.UNFOCUSED (未选中) Editor.focusState.FOCUSED (选中边框) Editor.focusState.CONTENT_FOCUSED (选中文本)|
+| `element.elementId` | `string` |元素 id|
+| `element.type` | `'text' | 'image' | 'shape'` |元素类型|
+| `element.focusState` | `'unfocused' | 'focused' | 'content_focused'` |元素选中状态|
+| `element.isPlaceholder` | `boolean` |元素是否是占位符|
+| `element.data` | `Object` |元素数据|
+| `element.attributes` | `Object` |元素属性|
+| `element.order` | `Object` |元素层级|
+| `element.order.isTop` | `boolean` |元素是否处于顶层|
+| `element.order.isBottom` | `boolean` |元素是否处于底层|
+| `element.state` | `Object` |(文本)元素中被选中部分的属性|
