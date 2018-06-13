@@ -3,9 +3,11 @@
 # API 服务
 
 * [授权认证](./authentication.md)
-* [文件](./file.md)
-* [文件评论](./comment.md)
-* [文件讨论](./discussion.md)
+* [文档](./file.md)
+* [文档评论](./comment.md)
+* [文档讨论](./discussion.md)
+* [文档历史](./history.md)
+* [用户](./user.md)
 
 约定事项：
 
