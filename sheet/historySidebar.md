@@ -38,7 +38,7 @@
 | `options.editor` | `Editor` | 必选 | 编辑器实例 |
 | `options.container` | `HTMLElement` | 必选 | 侧边栏宿主容器 |
 | `options.guid` | `String` | 必选 | file 的 guid |
-| `options.currentUserId` | `AppList` | 必选 | 当前用户 id |
+| `options.currentUserId` | `String` | 必选 | 当前用户 id |
 | `options.history` | `Object` | 可选 | 历史列表和预览配置 |
 | `options.history.loadHistoryUrl` | `string` | 必选 | 加载历史列表 url |
 | `options.history.revertUrl` | `string` | 必选 | 还原历史记录 url |
