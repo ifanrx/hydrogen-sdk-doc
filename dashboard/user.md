@@ -10,4 +10,4 @@
 
 该面板允许用户创建并修改分组
 
-![分组管理](/images/dashboard/user-user-list.png)
+![分组管理](/images/dashboard/user-user-group.png)
