@@ -222,6 +222,31 @@ http://192.168.11.11:8088/?jwt=mehXaWyZXhnzsyWYeUPhWTCOgfjGgdwN
 添加成功后，检查数据表 B，发现触发器成功地为我们添加了一行记录
 ![测试触发器](../../images/practice/trigger/52759154.jpg)
 
+#### 云函数
+
+##### 创建云函数
+我们先创建一个云函数，如下图所示：
+![创建云函数](../../images/practice/trigger/WX20180614-165740.png)
+
+代码如下：
+```js
+exports.main = function functionName(event, callback) {
+  console.log(event.data)
+  callback(null, "hello world")
+}
+```
+
+##### 创建触发器
+我们创建一个触发器，如下图所示
+![创建触发器](../../images/practice/trigger/5736585.png)
+
+##### 测试触发器
+我们在数据表 A 新增一条 name='123' 的记录，稍等几秒后，我们查看下 `firstFunction` 的任务日志
+![查看日志](../../images/practice/trigger/WX20180614-170727.png)
+
+可以看到我们的云函数被成功执行了，event.data 的内容为数据表记录
+![查看日志](../../images/practice/trigger/WX20180614-170833.png)
+
 ## 触发类型：微信支付回调
 ### 准备工作
 1. [认证小程序，接入微信支付][4]
@@ -232,7 +257,7 @@ http://192.168.11.11:8088/?jwt=mehXaWyZXhnzsyWYeUPhWTCOgfjGgdwN
 ```javascript
 App({
   onLaunch: function () {
-    require('./vendor/sdk-v1.1.6.js')
+    require('./vendor/sdk-v1.4.0.js')
     let clientID = '此处填写clientID'
     wx.BaaS.init(clientID)
 
@@ -296,6 +321,21 @@ Page({
 
 ### 数据表操作-支付回调
 动作创建参照上文创建数据表操作小节。**注意这里可选的模板变量有所不同**。
+
+### 云函数-支付回调
+
+#### 创建云函数
+我们创建一个云函数`verifyPayment`，函数内容如下
+```js
+exports.main = function functionName(event, callback) {
+  console.log(event.data)
+  callback(null, '')
+}
+```
+
+#### 触发云函数
+支付成功后，我们查看 `verifyPayment` 的任务日志如下：
+![云函数-支付回调](../../images/practice/trigger/WX20180614-173124.png)
 
 ## 触发类型：定时任务
 
