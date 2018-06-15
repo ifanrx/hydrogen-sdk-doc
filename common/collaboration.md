@@ -47,3 +47,31 @@
   * 返回 `undefined`
   * 用法 `instance.destroy()`
 
+
+## 事件列表
+
+### error
+  保存失败
+
+  事件触发后，此时用户继续编辑的内容可能会无法保存。
+
+
+### `saveStatusChange`
+  保存状态
+
+  用法
+
+  ```js
+    collaboration.on('saveStatusChange', status => { /* TODO */ })
+  ```
+
+  status 值：
+  0. `offline`：离线状态
+  0. `offlineSaving`：正在离线保存
+  0. `offlineSaved`：离线保存成功
+  0. `offlineSaveFailed`：离线保存失败
+  0. `online`：在线状态，文档将实时保存
+  0. `onlineSaving`：保存中
+  0. `onlineSaved`：保存成功
+  0. `onlineSaveFailed`：保存失败，此时用户继续编辑的内容可能会无法保存
+  0. `serverChangeApplied`：文档已更新，表示收到了来自其他人的改动
