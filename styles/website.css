@@ -50,6 +50,7 @@
 
 .doc-header {
   background: #273545;
+  padding: 20px;
 }
 
 .doc-title {
@@ -69,8 +70,8 @@
 .doc-desc {
   font-size: 14px;
   color: #FFF;
-  padding: 0px 40px 20px;
-  text-align: center;
+  text-align: left;
+  text-indent: 2em;
 }
 
 ul.doc-detail {
