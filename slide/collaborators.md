@@ -8,7 +8,10 @@
 
   ```js
     var editor = new shimo.sdk.slide.Editor()
-    var collaboratorEditor = new shimo.sdk.slide.plugins.Collaborators({ editor })
+    var collaboratorEditor = new shimo.sdk.slide.plugins.Collaborators({
+      editor,
+      currentUserId: <当前编辑文档的用户id>
+    })
 
     //使用协作者通用模块，启用协作者渲染功能
 
@@ -26,7 +29,8 @@
 
 |名称|类型|描述|
 | -- | -- | -- |
-| `options.editor` | `Editor` |编辑器的实例|
+| `options.editor` | `Editor` | 编辑器的实例 |
+| `options.currentUserId` | `string` | 当前用户id |
 
 
 ## 析构函数
