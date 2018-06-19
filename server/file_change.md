@@ -28,7 +28,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes', {
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
 })
   .then(res => res.json())
@@ -73,7 +73,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes/1626314426', {
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
 })
   .then(res => res.json())
@@ -125,7 +125,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes/rev?rev=1&baseRev=0', {
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
 })
   .then(res => res.json())
@@ -165,7 +165,7 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes/rev?rev=1&baseRev=0', {
 | baseRev | Number | Y   | 基础版本号 |
 | rev | Number | Y   | 待写入的版本号 |
 | delta | String | Y   | 待写入的内容 |
-| userId | Number | Y   | 用户 ID |
+| userId | Number | N   | 用户 ID |
 | clientId | String | N   | 发起请求的客户端 ID |
 
 **代码示例**
@@ -180,7 +180,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   },
   body: JSON.stringify({
     baseRev: 0,
@@ -194,20 +194,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes', {
 
 {% endtabs %}
 
-**返回示例**
+**状态码说明**
 
-```json
-{
-  "baseRev": 0,
-  "rev": 1,
-  "clientId": null,
-  "fileGuid": "JyRX1679PL86rbTk",
-  "fileId": 33339005,
-  "userId": 4069620,
-  "deletedAt": null,
-  "updatedAt": "2018-06-04T07:57:01.000Z",
-  "createdAt": "2018-06-04T07:57:01.000Z",
-  "id": 1626314426,
-  "delta": "[[10, \"\\n\", \"line:\\\"init\\\"\"]]"
-}
-```
+`201` 创建成功

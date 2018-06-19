@@ -21,7 +21,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments', {
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
 })
   .then(res => res.json())
@@ -71,7 +71,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments/comment-a2aCRQBPheIVIHhe', {
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
 })
   .then(res => res.json())
@@ -130,7 +130,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   },
   body: JSON.stringify({
     commentGuid: '3YqYN0QJFFRTss3J',
@@ -185,7 +185,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments/3YqYN0QJFFRTss3J', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
 })
   .then(res => res.json())
@@ -237,7 +237,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments/close/comment-a2aCRQBPheIVIHhe', {
   method: 'DELETE',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
 })
   .then(res => res.json())
