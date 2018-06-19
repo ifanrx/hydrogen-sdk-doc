@@ -28,7 +28,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/users', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   },
   body: JSON.stringify({
     name: '墨客',
@@ -76,8 +76,9 @@ fetch('<SHIMO_API>/users', {
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
-| ids | Number[] | N   | 用户 ID |
-| size | Number | N   | 用户 ID |
+| ids | Number[] | N   | 用户 ID 数组 |
+| size | Number | N   | 单次获取的数量 |
+| page | Number | N | 从第几页 |
 
 **代码示例**
 
@@ -91,7 +92,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/users', {
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
 })
   .then(res => res.json())
@@ -154,7 +155,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/users/email?email=example@shimo.im', {
   method: 'DELETE',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
 })
   .then(res => res.json())
@@ -215,7 +216,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/users/1', {
   method: 'PATCH',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   },
   body: JSON.stringify({
     name: '石墨文档'

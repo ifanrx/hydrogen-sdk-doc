@@ -8,6 +8,7 @@
   Authorization: Bearer <Access Token>
 ```
 
+**一个 Access Token 对应一个文档，即页面刷新、关闭重新打开或打开其他文档均需要重新生成 Access Token。**
 
 ## 授权流程
 
@@ -43,18 +44,79 @@ Content-Type: `application/json`
 | :------------ | :----- | :-- | :---                  |
 | clientId     | String | Y   | 石墨提供的 ClientID     |
 | clientSecret | String | Y   | 石墨提供的 ClientSecret |
-| grantType    | String | Y   | `client_credentials`  |
-| userId       | Number | Y   | 请求授权的用户标识       |
+| clientUserId | String | Y   | 请求授权的用户标识       |
+| grantType    | String | Y   | 授权模式  |
+| scope    | String | Y   | 授权范围，默认为 `write`  |
+| teamId | Number | N   | 请求授权的用户的团队标识       |
+| info | String | N   | 额外附加信息，JSON 数据需序列化为字符串  |
 
-**返回参数**
+#### 什么是 `clientUserId`
 
-| 参数          | 类型   | 说明                            |
-| :----------- | :----- | :--                            |
-| accessToken | String | 授权码                          |
-| refreshToken | String | 用于刷新授权码                    |
-| scope        | String | access token 授权的范围          |
-| expiresIn  | String | access token 的过期时间          |
-| tokenType   | String | access token 类型，默认 `bearer` |
+`clientUserId` 意为所请求授权的用户的身份标识，可以用户 ID、用户名或用户邮箱等。
+
+用于在用户和文档数据不储存在石墨数据库时，和石墨所存储的数据进行用户关联用。
+
+如果是使用石墨数据库的场合，则 `clientUserId` 等于石墨的 `userId`。
+
+#### 什么时候该使用 `info`？
+
+在用户和文档数据不储存在石墨数据库的场合，就需要使用 `info`，其所包含的信息用于判断该用户是否有相应的文档权限，如：
+
+```json
+{
+  "fileGuid": "JyRX1679PL86rbTk",
+  "filePermissions": {
+    "editable": true,
+    "writeable": true,
+    "readonly": true
+  }
+}
+```
+
+**代码示例**
+
+{% tabs nodeDemo="Node.js" %}
+
+{% content "nodeDemo" %}
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/oauth2/token', {
+  method: 'POST',
+  body: JSON.stringify({
+    clientId: 'shimo',
+    clientSecret: 'shimo',
+    grantType: 'client_credentials',
+    clientUserId: '1',
+    scope: 'write',
+    info: JSON.stringify({
+      fileGuid: 'JyRX1679PL86rbTk',
+      filePermissions: {
+        editable: true,
+        writeable: true,
+        readonly: true
+      }
+    })
+  })
+})
+  .then(res => res.json())
+  .then(body => console.log(body.data))
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```json
+{
+  "scope": "write",
+  "tokenType": "bearer",
+  "accessToken": "70615e7c1e08fc7805c0df0e4dbc595600814f70b2b916c0e737e6ca2f914e7d",
+  "refreshToken": "70615e7c1e08fc7805c0df0e4dbc595600814f70b2b916c0e737e6ca2f914e7d",
+  "expireTime": "2018-06-12T09:50:23.000Z"
+}
+```
 
 ### 使用 Refresh Token 获取新的 Access Token
 
@@ -68,11 +130,33 @@ Content-Type: `application/json`
 
 | 参数           | 类型   | 必填 | 说明                   |
 | :------------ | :----- | :-- | :---                  |
-| clientId     | String | Y   | 石墨提供的 ClientID     |
-| clientSecret | String | Y   | 石墨提供的 ClientSecret |
 | grantType    | String | Y   | `refresh_token` |
-| userId       | Number | Y   | 请求授权的用户标识       |
+| clientUserId       | Number | Y   | 请求授权的用户标识       |
 | refreshToken | String | N   | 用于刷新授权码 |
+
+
+**代码示例**
+
+{% tabs nodeDemo="Node.js" %}
+
+{% content "nodeDemo" %}
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/oauth2/token', {
+  method: 'POST',
+  body: JSON.stringify({
+    grantType: 'refresh_token',
+    clientUserId: 'shimo',
+    refreshToken: '70615e7c1e08fc7805c0df0e4dbc595600814f70b2b916c0e737e6ca2f914e7d'
+  })
+})
+  .then(res => res.json())
+  .then(body => console.log(body.data))
+```
+
+{% endtabs %}
 
 **返回参数**
 
@@ -83,3 +167,43 @@ Content-Type: `application/json`
 | scope        | String | access token 授权的范围          |
 | expiresIn  | String | access token 的过期时间          |
 | tokenType   | String | access token 类型，默认 `bearer` |
+
+## 吊销 Access Token
+
+**接口**
+
+`POST <SHIMO_API>/oauth2/revoke/`
+
+**参数说明**
+
+Content-Type: `application/json`
+
+| 参数           | 类型   | 必填 | 说明                   |
+| :------------ | :----- | :-- | :---                  |
+| accessToken    | String | Y   | 需要吊销的 Access Token |
+
+
+**代码示例**
+
+{% tabs nodeDemo="Node.js" %}
+
+{% content "nodeDemo" %}
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/oauth2/revoke', {
+  method: 'POST',
+  body: JSON.stringify({
+    accessToken: '70615e7c1e08fc7805c0df0e4dbc595600814f70b2b916c0e737e6ca2f914e7d'
+  })
+})
+  .then(res => res.json())
+  .then(body => console.log(body.data))
+```
+
+{% endtabs %}
+
+**状态码说明**
+
+`204` 删除成功

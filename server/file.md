@@ -2,10 +2,11 @@
 
 ## 基本数据结构
 
-1. `type`(string)：分为 document、sheet、slide 三种类型；
-2. `content`(string)：文档的内容，格式为专用格式，修改此内容可能会造成文档无法打开；
-3. `head`(number)：文档的当前版本号，协同编辑场景下，此版本号会随着每次编辑递增。
-
+| 字段名      | 类型   | 说明 |
+| :------- | :----- | :-- |
+| type   | String | 分为 document、sheet、slide 三种类型 |
+| head   | Number | 文档的当前版本号，协同编辑场景下，此版本号会随着每次编辑递增 |
+| content   | String | 文档的内容，格式为专用格式，若客户自行保管文档数据，请通过石墨提供的方式生成合法内容，直接修改可能会造成文档内容加载失败 |
 
 ## 创建文档
 
@@ -19,6 +20,8 @@
 | :------- | :----- | :-- | :-- |
 | type | String | N   | 文档类型，默认`document` |
 | content   | String | N   | 文档内容 |
+| id   | Number | Y   | 文档 ID |
+| copy   | Boolean | N   | 不为空时代表该文档是拷贝自其他文档 |
 
 **代码示例**
 
@@ -32,7 +35,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
 })
   .then(res => res.json())
@@ -70,86 +73,8 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
-})
-  .then(res => res.json())
-  .then(body => console.log(body.data))
-```
-
-{% endtabs %}
-
-**返回示例**
-
-```json
-{
-  "head": 1,
-  "guid": "JyRX1679PL86rbTk",
-  "type": "document",
-  "content": "shimo content"
-}
-```
-
-## 删除文档
-
-**接口**
-
-`DELETE <SHIMO_API>/files/:guid`
-
-**代码示例**
-
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
-```js
-const request = require('node-fetch')
-
-fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
-  method: 'DELETE',
-  headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
-  }
-})
-  .then(res => res.json())
-  .then(body => console.log(body.data))
-```
-
-{% endtabs %}
-
-**状态码说明**
-
-`204` 删除成功
-
-## 修改文档信息
-
-**接口**
-
-`PATCH <SHIMO_API>/files/:guid`
-
-**参数说明**
-
-| 参数      | 类型   | 必填 | 说明 |
-| :------- | :----- | :-- | :-- |
-| content   | String | N   | 新的文档内容 |
-
-**代码示例**
-
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
-```js
-const request = require('node-fetch')
-
-fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
-  method: 'PATCH',
-  headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
-  },
-  body: JSON.stringify({
-    name: '无标题2'
-  })
 })
   .then(res => res.json())
   .then(body => console.log(body.data))
@@ -170,7 +95,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
 
 ## 撰写文档
 
-
 **接口**
 
 `POST <SHIMO_API>/files/:guid/compose`
@@ -180,10 +104,12 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
 | clientId | String | Y   | 当前客户端的唯一 ID |
-| rev | String | Y   | 该次改动的版本号 |
+| rev | Number | Y   | 该次改动的版本号 |
 | changeset | String | Y   | 对文档的改动 |
 | apool   | String | N   | |
 | uuid   | String | N   | 该次改动的唯一 ID，用于同步文档改动信息 |
+| startTimestamp   | Number | N   | 该次改动发生的时间 |
+| responseChannel   | String | N   | 该次改动发布的目标频道，如无必要请留空 |
 
 **代码示例**
 
@@ -197,7 +123,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   },
   body: JSON.stringify({
   "clientId": "03caa56f-c900-4e79-b80f-fd050d68be3e",
@@ -225,8 +151,9 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
-| docHistoryId | Numbber | Y   |  |
+| docHistoryId | Numbber | Y   | 待还原的历史 ID |
 | before | String | N   | 值为 `true` / `false` |
+| startTimestamp   | Number | N   | 该次改动发生的时间 |
 
 **代码示例**
 
@@ -240,7 +167,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/revert', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   },
   body: JSON.stringify({
     "docHistoryId": 478035
@@ -250,16 +177,11 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/revert', {
 
 {% endtabs %}
 
-**返回示例**
+**状态码说明**
 
-```json
-{
-  "data": null,
-  "code": 0
-}
-```
+`204` 操作成功
 
-## 获取文档历史
+## 获取文档最新历史流
 
 **接口**
 
@@ -273,8 +195,8 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/revert', {
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
 | clientId | String | Y   | 当前客户端的唯一 ID |
+| rev | Number | Y   | 该接口以此版本号为基础查询新的历史 |
 | timeout | Numbber | N   | 请求中止的时间，单位为毫秒，默认是 12000 |
-| rev | Number | N   | 该接口以此版本号为基础查询新的历史 |
 
 **代码示例**
 
@@ -288,7 +210,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/pull?clientId=03caa56f-c900-4e79-b80f-fd050d68be3e&rev=11', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
 })
 ```
@@ -318,11 +240,13 @@ data: "pong"
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
 | clientId | String | Y   | 当前客户端的唯一 ID |
-| rev | Number | N   | 基础版本号 |
-| committingCS | String | N   | 待同步的内容 |
+| rev | Number | Y   | 基础版本号 |
+| committingCS | String | N   | |
 | committingApool | String | N   | |
 | uuid | String | N   | 该次改动的唯一 ID，用于同步文档改动信息 |
-| userCS | String | N   | 用户的 changeset |
+| userCS | String | Y   | |
+| userApool | String | N   | |
+| startTimestamp   | Number | N   | 该次改动发生的时间 |
 
 **代码示例**
 
@@ -336,7 +260,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/sync', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   },
   body: JSON.stringify({
 

@@ -4,9 +4,11 @@
 
 * [授权认证](./authentication.md)
 * [文档](./file.md)
-* [文档评论](./comment.md)
-* [文档讨论](./discussion.md)
-* [文档历史](./history.md)
+<!-- * [文档评论](./comment.md) -->
+<!-- * [文档讨论](./discussion.md) -->
+* [文档 AText](./file_atext.md)
+* [文档内容历史](./file_change.md)
+* [文档历史](./file_history.md)
 * [用户](./user.md)
 
 约定事项：

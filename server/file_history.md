@@ -18,6 +18,8 @@
 | historyType | Number | N   | history type 类型 |
 | order | String | N   | 排序方式，默认 `asc` |
 | sort | String | N   | 排序字段，默认 `createdAt` |
+| page | Number | N   | 查询的页码，别名为 `count`，默认 `0` |
+| size | Number | N   | 返回多少结果，别名为 `pageSize`，默认 `30` |
 
 **代码示例**
 
@@ -31,7 +33,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories', {
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
 })
   .then(res => res.json())
@@ -72,7 +74,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories/434594', {
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
 })
   .then(res => res.json())
@@ -120,7 +122,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   },
   body: JSON.stringify({
     thistoryTypeype: 1,
@@ -173,7 +175,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories/434594', {
   method: 'PATCH',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   },
   body: JSON.stringify({
     content: '{\"action\":\"rename\",\"before\":\"无标题\",\"after\":\"无标题2\"}'
@@ -217,7 +219,7 @@ const request = require('node-fetch')
 fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories/434594', {
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer 716570ab11db4b349051e570ac2dff13'
+    'Authorization': 'Bearer <Access Token>'
   }
 })
   .then(res => res.json())
