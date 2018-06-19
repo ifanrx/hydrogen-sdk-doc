@@ -247,7 +247,7 @@ let orQuery =  wx.BaaS.Query.or(query1, query2, ...)
 let query1 = new wx.BaaS.Query()
 query1.isNull('name')
 let query2 = new wx.BaaS.Query()
-query1.compare('price', '>', 10)
+query2.compare('price', '>', 10)
 ...
 
 // and 查询

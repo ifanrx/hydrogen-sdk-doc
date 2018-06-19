@@ -215,7 +215,7 @@ query.notExists(['name', 'price'])
 let query1 = new BaaS.Query()
 query1.isNull('name')
 let query2 = new BaaS.Query()
-query1.compare('price', '>', 10)
+query2.compare('price', '>', 10)
 ...
 
 // and 查询
@@ -232,7 +232,7 @@ let orQuery =  BaaS.Query.or(query1, query2, ...)
 let query1 = new BaaS.Query()
 query1.isNull('name')
 let query2 = new BaaS.Query()
-query1.compare('price', '>', 10)
+query2.compare('price', '>', 10)
 ...
 
 // and 查询
