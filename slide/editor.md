@@ -62,6 +62,8 @@
 | `options.canvas` | `Object` | 无 |画布渲染配置项|
 | `options.canvas.withPadding` | `boolean` | false |是否显示超出画布内容区域的内容|
 | `options.canvas.fitContainer` | `boolean` | true |初始缩放比例是否适应容器|
+| `options.canvas.minRatio` | `number` | 0.25 |画布缩放比例下限，默认 25%|
+| `options.canvas.maxRatio` | `number` | 4 |画布缩放比例上限，默认 400%|
 
 ### destroy
   销毁幻灯片编辑器实例。
@@ -276,6 +278,19 @@
 |名称|类型|默认值|描述|必选/可选|
 | -- | -- | -- | -- | -- |
 | `autoResize` | `boolean` | 无 | 是否使文本自适应 |必选|
+
+### setRatio
+  设置画布缩放比例。
+
+  * 返回 `undefined`
+  * 用法 `setRatio({ container, ratio, slideId })`
+  * 参数
+
+|名称|类型|默认值|描述|必选/可选|
+| -- | -- | -- | -- | -- |
+| `container` | `HTMLElement` | 无 | 画布容器 |必选|
+| `ratio` | `number` | 无 | 缩放比例 |必选|
+| `slideId` | `string` | 无 | 画布 slideId |必选|
 
 ### moveElementsUpOneLevel
   设置当前选中文本内文字自适应。
