@@ -25,15 +25,14 @@
 | -- | -- | -- | -- |
 | `editor` | `Editor` | 必选 | 编辑器实例 |
 | `updateDuration` | `number` | 10000(ms) | 更新时间间隔 |
-| `delay` | `number` | 2000(ms) | 延迟 |
 | `zIndex` | `number` | 100 | 设置层级 |
-| `mentionable` | `boolean` | 可选 | 是否开启 @ 功能 |
 | `service` | `object` | 可选 | 接口配置 |
 | `service.fetch` | `string` | 可选 | 获取评论列表的接口 |
 | `service.create` | `string` | 可选 | 创建评论的接口 |
 | `service.delete` | `string` | 可选 | 删除评论的接口 |
 | `service.close` | `string` | 可选 | 关闭评论的接口 |
-| `data` | `{ fileId:string, teamId:number }` | 可选 | 关闭评论的接口 |
+| `mentionable` | `boolean` | 可选 | 是否开启 @ 功能 |
+| `mentionData` | `{ fileId:string, teamId:number }` | 可选 | 开启 @ 功能之后, 该功能所需的参数数据 |
 
 ## 方法列表
 
