@@ -48,7 +48,6 @@
 
 * [通用模块](common/readme.md)
   * [协同编辑](common/collaboration.md)
-  * [协作者通信](common/collaborator_connect.md)
 
 ---
 

@@ -4,5 +4,4 @@
 
 <ul>
   <li><a href="/common/collaboration.md/">协同编辑模块</a></li>
-  <li><a href="/common/collaborator_connect.md/">协作者通信模块</a></li>
 </ul>
