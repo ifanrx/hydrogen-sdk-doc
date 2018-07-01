@@ -80,7 +80,7 @@
 * 返回 `undefined`
 * 用法 `mention.prev()`
 
-## 确认
+## confirm
 
 确认@项。
 

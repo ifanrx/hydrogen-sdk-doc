@@ -19,6 +19,7 @@
   * [历史](document/history.md)
   * [版本](document/revision.md)
   * [相册](document/gallery.md)
+  * [演示模式](document/demoscreen.md)
 
 ---
 

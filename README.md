@@ -25,6 +25,7 @@
         <li><a href="/document/history.md/">历史</a></li>
         <li><a href="/document/revision.md/">版本</a></li>
         <li><a href="/document/gallery.md/">相册</a></li>
+        <li><a href="/document/demoscreen.md/">演示模式</a></li>
       </ul>
     </li>
     <!-- 表格 -->

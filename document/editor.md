@@ -33,6 +33,26 @@
 | `options.scrollingContainer`| `HTMLElement`      | 无     | 文档滚动区     |
 | `options.modules.toolbar`| `Boolean`      | true     | 是否启用工具栏     |
 
+### updateOptions
+
+更新配置。
+
+* 返回 `undefined`
+* 用法 `editor.updateOptions(options)`
+* 参数
+
+| 名称                | 类型          | 默认值 | 描述         |
+| ------------------- | ------------- | ------ | ------------ |
+| `readOnly`        | `boolean`       | 无     | 设置文档是否只读 |
+
+
+### destroy
+
+销毁文档。
+
+* 返回 `undefined`
+* 用法 `editor.destroy()`
+
 ### getContent
 
 获取文档内容。

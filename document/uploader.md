@@ -21,8 +21,13 @@
 | -- | -- | -- | -- |
 | `editor` | `Editor` | 必选 | 编辑器实例 |
 | `container` | `Element / String`  | 必选 | 拖拽容器 |
-| `url` | `String` | 必选 | 上传URL |
+| `type` | `'default' / 'qiniu'`  | 可选 | 默认为'default' |
+| `url` | `String` | 可选 | 上传URL |
 | `token_url` | `String` | 可选 | 获取token的URL |
+| `accessToken` | `String` | 可选 | token |
+| `paramName` | `String` | 可选 | 上传文件参数名，默认为'file' |
+
+注意：type为'qiniu'时，token_url与accessToken必须要传入一个
 
 ## 方法列表
 
@@ -35,12 +40,25 @@
 
 ## 事件列表
 
+### on
+
+事件监听
+
+* 返回 undefined
+* 用法 uploader.on(type, handler)
+* 参数
+
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `type` | `String` | 必选 | 类型 |
+| `handler` | `Function`  | 必选 | 回调函数 |
+
 ```js
 // 开始上传
 uploader.on(Uploader.events.START, (file: File) => {})
 // 取消上传
 uploader.on(Uploader.events.CANCEL, (file: File) => {})
-// 上传文件前
+// 上传文件前，type为‘qiniu’时不会触发此事件
 uploader.on(Uploader.events.SENDING, (
   file: File,
   xhr: XMLHttpRequest,
@@ -53,3 +71,16 @@ uploader.on(Uploader.events.SUCCESS, (file: File) => {})
 // 上传失败
 uploader.on(Uploader.events.FAIL, (error: Error | string) => {})
 ```
+
+### off
+
+事件取消
+
+* 返回 undefined
+* 用法 uploader.off(type, handler)
+* 参数
+
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `type` | `String` | 必选 | 类型 |
+| `handler` | `Function`  | 必选 | 回调函数 |

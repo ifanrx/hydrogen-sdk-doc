@@ -31,8 +31,7 @@
 | `id` | `any` | 必选 | 用户唯一标识 |
 | `name` | `string` | 必选 | 用户昵称 |
 | `avatar` | `sditor` | 必选 | 用户头像路径 |
-| `getUsers` | `function` | 必选 | 通过 [id...] 批量获取用户信息的接口，返回 Promise |
-| `getColor` | `function` | 必选 | 通过 id 获取对应显示颜色的接口，返回颜色十六进制字符串 |
+| `user_url` | `string` | 必选 | 通过 [id...] 批量获取用户信息的接口 |
 | `avatarTrack` | `boolean` | false | 是否显示左侧协作者头像追踪 |
 | `cursorTrack` | `boolean` | false | 是否显示协作者光标位置追踪 |
 

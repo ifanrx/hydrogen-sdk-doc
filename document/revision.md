@@ -22,6 +22,16 @@
 | `editor` | `Editor` | 必选 | 编辑器实例 |
 | `guid` | `String`  | 必选 | 文档guid |
 | `highlight` | `Boolean` | 必选 | 是否高亮 |
+| `service` | `object` | 可选 | 接口配置 |
+| `service.length` | `string` | 可选 | 获取版本列表长度接口 |
+| `service.fetch` | `string` | 可选 | 获取版本列表接口 |
+| `service.fetchTitle` | `string` | 可选 | 获取版本标题接口 |
+| `service.fetchContent` | `string` | 可选 | 获取版本内容接口 |
+| `service.generate` | `string` | 可选 | 保存版本接口 |
+| `service.revert` | `string` | 可选 | 恢复到版本接口 |
+| `service.postRename` | `string` | 可选 | 重命名版本接口 |
+| `service.delete` | `string` | 可选 | 删除版本接口 |
+| `service.user` | `string` | 可选 | 根据id列表获取用户详细信息接口 |
 
 ## 方法列表
 
