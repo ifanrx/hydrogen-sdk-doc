@@ -67,11 +67,23 @@ Content-Type: `application/json`
   "fileGuid": "JyRX1679PL86rbTk",
   "filePermissions": {
     "editable": true,
-    "writeable": true,
     "readonly": true
   }
 }
 ```
+
+- `editable` 对该文档有编辑权限，如文档拥有者，被邀请且有写权限的用户
+- `readonly` 对该文档只有可读权限，如匿名用户访问仅开放读取的文档
+
+#### `scope`
+
+不同 API 需要的权限不一样，`scope` 用于判断该 access token 能否请求对应 API。
+
+常用值：
+
+- `public` 只可访问公开数据，常用匿名用户
+- `read` 只可访问公开和需验证用户权限的数据
+- `write` 可读取和写入数据
 
 **代码示例**
 
