@@ -26,6 +26,7 @@
 | `token_url` | `String` | 可选 | 获取token的URL |
 | `accessToken` | `String` | 可选 | token |
 | `paramName` | `String` | 可选 | 上传文件参数名，默认为'file' |
+| `params` | `Object` | 可选 | 上传文件时，接口需要的额外参数 |
 
 注意：type为'qiniu'时，token_url与accessToken必须要传入一个
 

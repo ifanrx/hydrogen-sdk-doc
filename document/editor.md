@@ -30,6 +30,7 @@
 | 名称                | 类型          | 默认值 | 描述         |
 | ------------------- | ------------- | ------ | ------------ |
 | `container`         | `HTMLElement`      | 无     | 文档渲染容器     |
+| `options.id`| `number`      | 必选     | 用户ID     |
 | `options.scrollingContainer`| `HTMLElement`      | 无     | 文档滚动区     |
 | `options.modules.toolbar`| `Boolean`      | true     | 是否启用工具栏     |
 
