@@ -46,7 +46,7 @@ wx.BaaS.pay(params).then(res => {
 })
 ```
 
-调用该接口前 **必须完成用户授权**（），因此最好在调用 `wx.BaaS.pay` 接口前，先确定一下用户是否已经授权了，如果没有授权，则需要[调用 `wx.BaaS.login()` 接口](../user/sign-in.md)，如下：
+调用该接口前 **必须完成用户授权**，因此最好在调用 `wx.BaaS.pay` 接口前，先确定一下用户是否已经授权了，如果没有授权，则需要[调用 `wx.BaaS.login()` 接口](../user/sign-in.md)，如下：
 
 ```
 wx.getSetting({
@@ -57,6 +57,14 @@ wx.getSetting({
       wx.BaaS.login()
     }
   }
+})
+```
+
+<span class="attention">注：</span>1.5.0 版本之后，调用支付接口前，不再必须需要完成用户授权，静默登录亦可，可以先调用 [`wx.BaaS.login(false)` 接口](../user/sign-in.md)，其在用户登录状态下，不会重新登录，直接执行成功回调函数，如下：
+
+```
+wx.BaaS.login(false).then(res => {
+  wx.BaaS.pay(params)
 })
 ```
 
