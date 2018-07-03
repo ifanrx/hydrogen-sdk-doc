@@ -56,7 +56,7 @@
 
 ```js
 // 开始上传
-uploader.on(Uploader.events.START, (file: File) => {})
+uploader.on(Uploader.events.START, (files: File[]) => {})
 // 取消上传
 uploader.on(Uploader.events.CANCEL, (file: File) => {})
 // 上传文件前，type为‘qiniu’时不会触发此事件
