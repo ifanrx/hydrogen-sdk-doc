@@ -14,10 +14,15 @@
 
 `POST <SHIMO_API>/files`
 
+**鉴权信息**
+
+`scope`: `write`。
+
 **参数说明**
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
+| name | String | N   | 文档标题，默认`无标题` |
 | type | String | N   | 文档类型，默认`document` |
 | content   | String | N   | 文档内容 |
 | id   | Number | Y   | 文档 ID |
@@ -61,6 +66,10 @@ fetch('<SHIMO_API>/files', {
 
 `GET <SHIMO_API>/files/:guid`
 
+**鉴权信息**
+
+`scope`: `read`。
+
 **代码示例**
 
 {% tabs nodeDemo="Node.js" %}
@@ -93,11 +102,61 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
 }
 ```
 
+## 更改文档标题
+
+**接口**
+
+`PATCH <SHIMO_API>/files/:guid/title`
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
+
+**参数说明**
+
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :-- |
+| name | String | Y   | 新的文档标题 |
+
+**代码示例**
+
+{% tabs nodeDemo="Node.js" %}
+
+{% content "nodeDemo" %}
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/title', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer <Access Token>'
+  },
+  body: JSON.stringify({ name: 'new document name' })
+})
+  .then(res => res.json())
+  .then(body => console.log(body.data))
+```
+
+{% endtabs %}
+
+**状态码说明**
+
+`204` 操作成功
+
 ## 撰写文档
 
 **接口**
 
 `POST <SHIMO_API>/files/:guid/compose`
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
 
 **参数说明**
 
@@ -142,10 +201,15 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
 
 ## 还原文档
 
-
 **接口**
 
 `POST <SHIMO_API>/files/:guid/revert`
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
 
 **参数说明**
 
@@ -189,6 +253,12 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/revert', {
 
 > **info**
 > 该接口采用长轮询方式持续返回最新的文档历史
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.readonly`: `true` or `info.filePermissions.editable`: `true`。
 
 **参数说明**
 
@@ -234,6 +304,12 @@ data: "pong"
 **接口**
 
 `POST <SHIMO_API>/files/:guid/sync`
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
 
 **参数说明**
 
