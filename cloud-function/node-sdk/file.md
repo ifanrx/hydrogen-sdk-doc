@@ -87,8 +87,8 @@ MyFile.get('5a2fe93308443e313a428c4f').then(res => {
 ```json
 {
   "category": {
-    id: "5a2fe91508443e3123dbe1cb",
-    name: "科技"
+    "id": "5a2fe91508443e3123dbe1cb",
+    "name": "科技"
   },
   "created_at": 1507822469,
   "id": "5a2fe93308443e313a428c4f",
@@ -128,12 +128,13 @@ MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 
 文件查询与[数据表查询](./schema/query.md)方法一致，但只支持以下指定字段的筛选
 
-| 支持字段   |  类型  | 说明 |
-| :------- | :----- | :--- |
-| id       | String | 文件 id |
-| name     | String | 文件名 |
-| size     | Number | 文件大小，以字节为单位 |
-| category | String | 文件分类 id |
+| 支持字段       |  类型  | 说明 |
+| :------------ | :----- | :--- |
+| id            | String | 文件 id |
+| name          | String | 文件名 |
+| size          | Number | 文件大小，以字节为单位 |
+| category_id   | String | 文件分类 id |
+| category_name | String | 文件分类名 |
 
 **示例代码**
 
