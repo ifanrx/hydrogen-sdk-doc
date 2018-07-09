@@ -115,11 +115,11 @@ res.data:
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | category   | Object | 包含文件分类信息，详见以下 |
-| cdn_path   | String | 文件在 cdn 上的路径 |
 | created_at | String | 文件上传时间 |
 | id         | Object | 文件 ID |
 | mime_type  | String | 文件媒体类型 |
 | name       | String | 文件名 |
+| path       | String | 文件在 cdn 上的路径 |
 | size       | Number | 以字节为单位 |
 
 category 参数说明：
@@ -148,11 +148,11 @@ MyFile.get('5a2fe93308443e313a428c4f').then((res) => {
     id: '5a2fe91508443e3123dbe1cb',
     name: '科技'
   },
-  cdn_path: "1e2fVFaWoaoAZPyr.svg",
   created_at: 1507822469,
   id: "5a2fe93308443e313a428c4f",
-  mime_type: "text/plain; charset=utf-8",
-  name: "tmp_262601706o6zAJs-pmaywKzqHIvzwU97rtiGIe4dd39171563993cf10b12bae2ac30ec.svg",
+  mime_type: "image/png",
+  name: "sdk-test-minapp2.png",
+  path: "https://cloud-minapp-7894.cloud.ifanrusercontent.com/1eOledhCbvjgaCSE.png",
   size: 3879
 }
 ```
