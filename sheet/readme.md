@@ -9,4 +9,5 @@
   <li><a href="/sheet/collaborator.md/">协作者</a></li>
   <li><a href="/sheet/tableofcontent.md/">目录</a></li>
   <li><a href="/sheet/historySidebar.md/">历史侧边栏</a></li>
+  <li><a href="/sheet/comment.md/">评论</a></li>
 </ul>

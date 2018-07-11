@@ -32,6 +32,7 @@
   * [快捷键](sheet/shortcut.md)
   * [协作者](sheet/collaborator.md)
   * [历史侧边栏](sheet/historySidebar.md)
+  * [评论](sheet/comment.md)
 
 
 ---
