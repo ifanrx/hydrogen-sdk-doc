@@ -185,10 +185,57 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
     'Authorization': 'Bearer <Access Token>'
   },
   body: JSON.stringify({
-  "clientId": "03caa56f-c900-4e79-b80f-fd050d68be3e",
-  "rev": 11,
-  "changeset": "[[20,\"H\",\"26:\\\"10676\\\"\"]]",
-  "uuid": "888e62a71284483db9c306ae8383b3aa"
+    "clientId": "03caa56f-c900-4e79-b80f-fd050d68be3e",
+    "rev": 11,
+    "changeset": "[[20,\"H\",\"26:\\\"10676\\\"\"]]",
+    "uuid": "888e62a71284483db9c306ae8383b3aa"
+  })
+})
+```
+
+{% endtabs %}
+
+**状态码说明**
+
+`204` 操作成功
+
+## 更新文档内容
+
+**接口**
+
+`PATCH <SHIMO_API>/files/:guid`
+
+> **info**
+> 该接口用于以新内容替换文档现有内容
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
+
+**参数说明**
+
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :-- |
+| content | String | N   | 新的内容 |
+
+**代码示例**
+
+{% tabs nodeDemo="Node.js" %}
+
+{% content "nodeDemo" %}
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
+  method: 'PATCH',
+  headers: {
+    'Authorization': 'Bearer <Access Token>'
+  },
+  body: JSON.stringify({
+    "content": "new content"
   })
 })
 ```
@@ -341,6 +388,44 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/sync', {
   body: JSON.stringify({
 
   })
+})
+```
+
+{% endtabs %}
+
+**状态码说明**
+
+`204` 操作成功
+
+## 删除文档和相关内容
+
+**接口**
+
+`POST <SHIMO_API>/files/:guid`
+
+> **info**
+> 删除文档会连同历史等记录一起删除，不可恢复
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
+
+**代码示例**
+
+{% tabs nodeDemo="Node.js" %}
+
+{% content "nodeDemo" %}
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/sync', {
+  method: 'DELETE',
+  headers: {
+    'Authorization': 'Bearer <Access Token>'
+  }
 })
 ```
 

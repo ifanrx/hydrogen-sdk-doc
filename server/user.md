@@ -76,7 +76,7 @@ fetch('<SHIMO_API>/users', {
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
-| ids | Number[] | N   | 用户 ID 数组 |
+| ids | Number[] | Y   | 用户 ID 数组 |
 | size | Number | N   | 单次获取的数量 |
 | page | Number | N | 从第几页 |
 
