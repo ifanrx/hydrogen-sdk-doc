@@ -434,3 +434,112 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/sync', {
 **状态码说明**
 
 `204` 操作成功
+
+## 广播
+
+**接口**
+
+`POST <SHIMO_API>/files/:guid/broadcast`
+
+> **info**
+> 只会向在文档中的用户发送信息，信息保留时间半小时；
+> 需要结合前端的[协同编辑](/common/collaboration.md#broadcast)使用。
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
+
+**代码示例**
+
+{% tabs nodeDemo="Node.js" %}
+
+{% content "nodeDemo" %}
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/broadcast', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer <Access Token>'
+  },
+  body: JSON.stringify({
+    text: 'this is a broadcast text'
+  })
+})
+```
+
+{% endtabs %}
+
+**状态码说明**
+
+`204` 操作成功
+
+## 在线用户列表
+
+**接口**
+
+`GET <SHIMO_API>/files/:guid/online`
+
+> **info**
+> clients 对应同一个用户打开的多个 tab 页
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
+
+**代码示例**
+
+{% tabs nodeDemo="Node.js" %}
+
+{% content "nodeDemo" %}
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/online', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer <Access Token>'
+  }
+})
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```json
+[
+  {
+    "user":
+      {
+        "id":13249,
+        "avatar":"https://avatars3.githubusercontent.com/u/13383310?s=70&v=4",
+        "name":"tom"
+      },
+      "clients":[
+        {
+          "clientId":"6b310abfe3ab43d8977342de9f6f870f"
+        }
+      ]
+  },
+  {
+    "user":
+    {
+      "id":13250,
+      "avatar":"https://avatars0.githubusercontent.com/u/1641516?s=96&v=4",
+      "name":"lucy"
+    },
+    "clients":[
+      {
+        "clientId":"67d30248feaa4d73871299aad149e2ce"
+      }
+    ]
+  }
+]
+```

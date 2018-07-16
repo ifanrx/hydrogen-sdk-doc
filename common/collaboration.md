@@ -47,6 +47,12 @@
   * 返回 `undefined`
   * 用法 `instance.destroy()`
 
+### getCollaborators
+  获取当前协作者列表。
+
+  * 返回 `[{ user: { id, name, avatar } }]`
+  * 用法 `instance.getCollaborators()`
+
 
 ## 事件列表
 
@@ -78,3 +84,56 @@ collaboration.on('saveStatusChange', status => { /* TODO */ })
 |`onlineSaved`|保存成功|
 |`onlineSaveFailed`|保存失败，此时用户继续编辑的内容可能会无法保存|
 |`serverChangeApplied`|文档已更新，表示收到了来自其他人的改动|
+
+### `broadcast`
+  广播
+
+  用法
+
+```js
+collaboration.on('broadcast', messages => { /* TODO */ })
+```
+
+messages 为数组格式，内容为通过 `POST files/:file/broadcast 发送的表单对象或 json 对象，[API 文档](/server/file.md#广播)
+
+### `enter`
+  协作者加入
+
+  用法
+
+```js
+collaboration.on('enter', data => { /* TODO */ })
+```
+
+data 格式：
+
+```json
+{
+  user: {
+    id: 1,
+    name: 'tom',
+    avatar: 'https://avatar.com/avatar'
+  }
+}
+```
+
+### `leave`
+  协作者离开
+
+  用法
+
+```js
+collaboration.on('leave', data => { /* TODO */ })
+```
+
+data 格式：
+
+```json
+{
+  user: {
+    id: 1,
+    name: 'tom',
+    avatar: 'https://avatar.com/avatar'
+  }
+}
+```
