@@ -94,7 +94,7 @@ collaboration.on('saveStatusChange', status => { /* TODO */ })
 collaboration.on('broadcast', messages => { /* TODO */ })
 ```
 
-messages 为数组格式，内容为通过 `POST files/:file/broadcast 发送的表单对象或 json 对象，[API 文档](/server/file.md#广播)
+messages 为数组格式，内容为通过 `POST files/:file/broadcast 发送的表单对象或 json 对象，[API 文档](/server/file.md#guang-bo)
 
 ### `enter`
   协作者加入
