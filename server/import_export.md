@@ -24,10 +24,6 @@
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -45,8 +41,6 @@ fetch('<SHIMO_API>/files/import', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -78,10 +72,6 @@ fetch('<SHIMO_API>/files/import', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -94,8 +84,6 @@ fetch('<SHIMO_API>/files/:guid/export?toType=docx', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 

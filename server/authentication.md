@@ -90,10 +90,6 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -118,8 +114,6 @@ fetch('<SHIMO_API>/oauth2/token', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -152,10 +146,6 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -170,8 +160,6 @@ fetch('<SHIMO_API>/oauth2/token', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回参数**
 
@@ -200,10 +188,6 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -216,8 +200,6 @@ fetch('<SHIMO_API>/oauth2/revoke', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **状态码说明**
 

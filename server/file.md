@@ -30,10 +30,6 @@
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -46,8 +42,6 @@ fetch('<SHIMO_API>/files', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -72,10 +66,6 @@ fetch('<SHIMO_API>/files', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -88,8 +78,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -122,10 +110,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -139,8 +123,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/title', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -172,10 +154,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/title', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -192,8 +170,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
   })
 })
 ```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -222,10 +198,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -239,8 +211,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
   })
 })
 ```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -268,10 +238,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -285,8 +251,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/revert', {
   })
 })
 ```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -317,10 +281,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/revert', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -331,8 +291,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/pull?clientId=03caa56f-c900-4e79-b80f-
   }
 })
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -373,10 +331,6 @@ data: "pong"
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -390,8 +344,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/sync', {
   })
 })
 ```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -414,10 +366,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/sync', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -428,8 +376,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/sync', {
   }
 })
 ```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -453,10 +399,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/sync', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -470,8 +412,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/broadcast', {
   })
 })
 ```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -494,10 +434,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/broadcast', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -508,8 +444,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/online', {
   }
 })
 ```
-
-{% endtabs %}
 
 **返回示例**
 

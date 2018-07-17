@@ -18,10 +18,6 @@
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -38,8 +34,6 @@ fetch('<SHIMO_API>/users', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -82,9 +76,6 @@ fetch('<SHIMO_API>/users', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
 
 ```js
 const request = require('node-fetch')
@@ -98,8 +89,6 @@ fetch('<SHIMO_API>/users', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -145,10 +134,6 @@ fetch('<SHIMO_API>/users', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -161,8 +146,6 @@ fetch('<SHIMO_API>/users/email?email=example@shimo.im', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -214,10 +197,6 @@ fetch('<SHIMO_API>/users/email?email=example@shimo.im', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -233,8 +212,6 @@ fetch('<SHIMO_API>/users/me', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 

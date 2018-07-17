@@ -8,10 +8,6 @@
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -24,8 +20,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/atexts', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -55,10 +49,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/atexts', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -74,8 +64,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/atexts', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -105,10 +93,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/atexts', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -124,8 +108,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/atexts', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
