@@ -12,7 +12,7 @@
 
 **鉴权信息**
 
-`scope`: `write`。
+`scope`: `write`
 
 **参数说明**
 
@@ -65,16 +65,16 @@ fetch('<SHIMO_API>/files/import', {
 
 `GET <SHIMO_API>/files/:guid/export`
 
+**鉴权信息**
+
+`scope`: `read`
+
 **参数说明**
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
 | name | String | N   | 导出的文件名，默认`无标题` |
 | toType | String | Y  | 导出类型，文档为 `docx`，表格为 `xlsx` |
-
-**鉴权信息**
-
-`scope`: `read`。
 
 **代码示例**
 
@@ -89,11 +89,6 @@ fetch('<SHIMO_API>/files/:guid/export?toType=docx', {
   method: 'GET',
   headers: {
     'Authorization': 'Bearer <Access Token>'
-  },
-  body: {
-    type,
-    fileBase64: fs.readFileSync(file.path).toString('base64'),
-    name: file.name
   }
 })
   .then(res => res.json())
