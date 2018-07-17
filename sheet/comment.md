@@ -43,8 +43,8 @@
 | `options.guid` | `String` | 必选 | file 的 guid |
 | `options.container` | `HTMLElement` | 必选 | 评论插件宿主容器 |
 | `options.currentUser` | `Object` | 必选 | 当前用户信息 |
-| `options.currentFileId` | `number` | 必选 | 当前 file id |
-| `options.mentionUrl` | `string` | 必选 | 搜索文件／协作者等 api url |
+| `options.currentFileId` | `number` | 可选 | 当前 file id ,用于 mention 模块 |
+| `options.mentionUrl` | `string` | 可选 | mention 模块搜索文件／协作者等 api url |
 | `options.usePollingInsteadOfSocket` | `Object` | 可选 | 使用轮询而不是 socket 来更新评论列表 |
 | `options.usePollingInsteadOfSocket.interval` | `Number` | 必选 | 轮询更新评论列表时间间隔 |
 | `options.queryCommentOptions` | `Object` | 必选 | 加载评论列表配置  |
