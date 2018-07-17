@@ -214,7 +214,11 @@ fetch('<SHIMO_API>/users/email?email=example@shimo.im', {
 
 **代码示例**
 
-{% codetabs name="node.js", type="js" %}
+{% tabs nodeDemo="Node.js" %}
+
+{% content "nodeDemo" %}
+
+```js
 const request = require('node-fetch')
 
 fetch('<SHIMO_API>/users/me', {
@@ -228,7 +232,9 @@ fetch('<SHIMO_API>/users/me', {
 })
   .then(res => res.json())
   .then(body => console.log(body.data))
-{% endcodetabs %}
+```
+
+{% endtabs %}
 
 **返回示例**
 

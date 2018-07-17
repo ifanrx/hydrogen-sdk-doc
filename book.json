@@ -30,7 +30,6 @@
   "plugins": [
     "algolia",
     "anchor-nav-x",
-    "codetabs",
     "editlink",
     "expandable-chapters-small",
     "favicon",
