@@ -193,7 +193,15 @@ fetch('<SHIMO_API>/users/email?email=example@shimo.im', {
 
 **接口**
 
+`PATCH <SHIMO_API>/users/me`
+
+`PATCH <SHIMO_API>/users/client_user_id?clientUserId=`
+
 `PATCH <SHIMO_API>/users/:id`
+
+使用 `me` 时等同于当前登录用户的 `id`。
+
+使用 `client_user_id` 则以 `clientUserId` 查找登录用户，用于第三方集成时使用。
 
 **参数说明**
 
@@ -206,14 +214,10 @@ fetch('<SHIMO_API>/users/email?email=example@shimo.im', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
-```js
+{% codetabs name="node.js", type="js" %}
 const request = require('node-fetch')
 
-fetch('<SHIMO_API>/users/1', {
+fetch('<SHIMO_API>/users/me', {
   method: 'PATCH',
   headers: {
     'Authorization': 'Bearer <Access Token>'
@@ -224,9 +228,7 @@ fetch('<SHIMO_API>/users/1', {
 })
   .then(res => res.json())
   .then(body => console.log(body.data))
-```
-
-{% endtabs %}
+{% endcodetabs %}
 
 **返回示例**
 
