@@ -1,7 +1,7 @@
 # 导入导出
 
 > **info**
-> 文档导入目前仅支持 docx 文件格式，导出仅支持 docx 和 pdf 文件格式
+> 文档导入导出目前仅支持 docx 文件格式
 > 表格导入导出目前仅支持 xlsx 文件格式
 
 ## 导入
@@ -29,41 +29,21 @@
 {% content "nodeDemo" %}
 
 ```js
-static async importFile ({ userId, type, file}) {
-    const { data: { accessToken } } = await axios({
-        url: `${config.shimo.url}/oauth2/token/`,
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        data: {
-            clientId: config.shimo.clientId,
-            clientSecret: config.shimo.clientSecret,
-            clientUserId: userId,
-            grantType: 'client_credentials',
-            userId: userId,
-            info: JSON.stringify({
-                filePermissions: {
-                    editable: true,
-                    readonly: true,
-                    writable: true
-                }
-            })
-        }
-    })
+const request = require('node-fetch')
 
-    const { data } = await axios({
-        url: `${config.shimo.url}/files/import`,
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        data: {
-            accessToken,
-            type,
-            fileBase64: fs.readFileSync(file.path).toString('base64'),
-            name: file.name
-        }
-    })
-
-    return data
-}
+fetch('<SHIMO_API>/files/import', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer <Access Token>'
+  },
+  body: {
+    type,
+    fileBase64: fs.readFileSync(file.path).toString('base64'),
+    name: file.name
+  }
+})
+  .then(res => res.json())
+  .then(body => console.log(body.data))
 ```
 
 {% endtabs %}
@@ -90,7 +70,7 @@ static async importFile ({ userId, type, file}) {
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
 | name | String | N   | 导出的文件名，默认`无标题` |
-| toType | String | Y  | 导出类型，文档可以为 `docx` 和 `pdf`，表格为 `xlsx` |
+| toType | String | Y  | 导出类型，文档为 `docx`，表格为 `xlsx` |
 
 **鉴权信息**
 
@@ -103,27 +83,21 @@ static async importFile ({ userId, type, file}) {
 {% content "nodeDemo" %}
 
 ```js
-static async exportFile (file, userId, toType) {
-    // 获取 accessToken
-    const accessToken = await this.getToken({
-        user: { id: userId },
-        fileGuid: file.guid,
-        permission: { editable: true, readonly: true }
-    })
+const request = require('node-fetch')
 
-    const { data } = await axios({
-        url: `${config.shimo.url}/files/${file.guid}/export`,
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-        params: {
-            accessToken,
-            name: file.title,
-            toType
-        }
-    })
-
-    return data
-}
+fetch('<SHIMO_API>/files/:guid/export?toType=docx', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer <Access Token>'
+  },
+  body: {
+    type,
+    fileBase64: fs.readFileSync(file.path).toString('base64'),
+    name: file.name
+  }
+})
+  .then(res => res.json())
+  .then(body => console.log(body.data))
 ```
 
 {% endtabs %}
