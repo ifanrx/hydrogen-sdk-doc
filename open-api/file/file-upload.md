@@ -162,7 +162,7 @@ Content-Type: `multipart/form-data`
 
 **代码示例**
 
-{% tabs uploadFileCurl="Curl", uploadFileNode="Node", uploadFilePHP="Node" %}
+{% tabs uploadFileCurl="Curl", uploadFileNode="Node", uploadFilePHP="PHP" %}
 
 {% content "uploadFileCurl" %}
 
