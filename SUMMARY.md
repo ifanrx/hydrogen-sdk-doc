@@ -113,6 +113,7 @@
         * [内容库](cloud-function/node-sdk/content.md)
         * [文件](cloud-function/node-sdk/file.md)
         * [文件分类](cloud-function/node-sdk/file-category.md)
+        * [订单操作](cloud-function/node-sdk/file-category.md)
         * [调用云函数](cloud-function/node-sdk/cloud-function.md)
         * [发送邮件](cloud-function/node-sdk/email.md)
         * [发送模板消息](cloud-function/node-sdk/template-message.md)
