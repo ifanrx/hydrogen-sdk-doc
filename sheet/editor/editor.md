@@ -15,8 +15,13 @@
 
 | 名称               | 类型      | 默认值  | 描述             |
 | ------------------ | --------- | ------- | ---------------- |
-| `options.editable` | `Boolean` | `false` | 设置表格是否只读 |
-| `options.trackUrl` | `String` | 可选 | track url 配置 |
+| `options.editable` | `Boolean` | `true` | 设置表格是否只读 |
+| `options.commentable` | `Boolean` | `true` | 是否允许单元格评论 |
+| `options.trackUrl` | `String` | 可选 | track 日志配置 |
+| `options.uploadConfig` | `Object` | 可选 | 上传图片配置 |
+| `options.uploadConfig.origin` | `String` | 必选 | 上传服务的地址 |
+| `options.uploadConfig.server` | `String` | 必选 | 存储服务类型, eg, 'qinniu', 'aws' |
+| `options.uploadConfig.token` | `String` | 必选 | 上传服务鉴权秘钥 |
 
 ## 属性列表
 
