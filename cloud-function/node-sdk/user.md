@@ -17,10 +17,16 @@
 | 参数      | 类型   | 说明 |
 | :------- | :----- | :-- |
 | avatar   | String | 用户头像 |
+| city     | String | 用户所在城市 |
+| country  | String | 用户所在国家 |
+| gender   | String | 用户的性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知 |
 | id       | Number | 用户 ID |
+| language | String | 用户的语言，简体中文为 zh_CN |
 | nickname | String | 用户昵称 |
 | openid   | String | 用户唯一标识，由微信生成 |
+| province  | String | 用户所在省份 |
 | unionid  | String | 用户在开放平台的唯一标识符，由微信生成 |
+
 
 > **info**
 > 如果有自定义字段，则一并返回
