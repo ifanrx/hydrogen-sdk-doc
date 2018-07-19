@@ -16,6 +16,7 @@
 | 名称               | 类型      | 默认值  | 描述             |
 | ------------------ | --------- | ------- | ---------------- |
 | `options.editable` | `Boolean` | `false` | 设置表格是否只读 |
+| `options.trackUrl` | `String` | 可选 | track url 配置 |
 
 ## 属性列表
 
