@@ -195,10 +195,11 @@ skip、limit、sort 不能直接使用在 pipeline 中，而是通过 TableObjec
 - divide
 
 ### match( queryInstance )
+
 可以用于筛选数据
 
 #### 参数说明
-
+- queryInstance：wx.BaaS.Query 的实例 
 
 #### 示例
 
@@ -265,7 +266,6 @@ Product.setAggregation(aggregation).find().then(res => {
 ### group( expression )
 将集合中的文档分组，可用于统计结果。
 
-
 #### 可用操作符
 
 - sum
@@ -329,8 +329,8 @@ Product.setAggregation(aggregation).find().then(res => {
   "status": "A",
   "updated_at": 1532067362,
 }]
-
 ```
+
 ```javascript
 
 let Product = new wx.BaaS.TableObject(tableID)
@@ -348,6 +348,9 @@ aggregation.project({
     },
     add: {
       $add: ['$amount', '$amount_2']           // 加法
+    },
+    sum: {
+      $sum: "$items"                           // 计算数组元素总和
     },
     subtract: {
       $subtract: ['$amount', '$amount_2']     // 减法
@@ -370,32 +373,41 @@ Product.setAggregation(aggregation).find().then(res => {
     newFields: [ 3, 1531979520 ],
     size: 3,
     status: 'A',
-    subtract: -19900 },
+    subtract: -19900,
+    sum: 666 },
   { add: 30200,
     divide: 66.66666666666667,
     newFields: [ 3, 1531979520 ],
     size: 3,
     status: 'B',
-    subtract: -29800 },
+    subtract: -29800,
+    sum: 1665 },
   { add: 10150,
     divide: 50,
     newFields: [ 3, 1531979520 ],
     size: 3,
     status: 'A',
-    subtract: -9850 } ]
+    subtract: -9850,
+    sum: 1368 } ]
 ```
 
 [MongoDB 文档参考](https://docs.mongodb.com/manual/reference/operator/aggregation/project/)
 
-#### sample ( size )
-对数据进行抽样
+### sample ( size )
+随机抽取 size 条数据
+
+#### 参数说明
+
+- size：数量
 
 [MongoDB 文档参考](https://docs.mongodb.com/manual/reference/operator/aggregation/sample/)
 
 ### count( outputFieldName )
 统计数据的数量
 
+#### 参数说明
 
+- outputFieldName：输出的字段名
 
 [MongoDB 文档参考](https://docs.mongodb.com/manual/reference/operator/aggregation/count/)
 
