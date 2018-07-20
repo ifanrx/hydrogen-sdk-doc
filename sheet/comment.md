@@ -26,6 +26,7 @@
       },
       closeCommentOptions: {
         url: `/api/comment/closeComments`,
+        method: 'POST'
       },
       createCommentOptions: {
         url: `/api/comment/create?target_type=file&guid=${guid}`,
@@ -49,10 +50,14 @@
 | `options.usePollingInsteadOfSocket.interval` | `Number` | 必选 | 轮询更新评论列表时间间隔 |
 | `options.queryCommentOptions` | `Object` | 必选 | 加载评论列表配置  |
 | `options.queryCommentOptions.url` | `Object` | 必选 | 加载评论列表 api url  |
+| `options.queryCommentOptions.method` | `GET` | 可选 | 加载评论列表 api method |
 | `options.deleteCommentOptions` | `Object` | 必选 | 删除评论配置。{comment-id} 会被替换成评论的 id |
 | `options.deleteCommentOptions.url` | `String` | 必选 | 删除评论 api url |
+| `options.deleteCommentOptions.method` | `POST` | 可选 | 删除评论 api method |
 | `options.closeCommentOptions` | `Object` | 必选 | 结束评论配置 |
 | `options.closeCommentOptions.url` | `String` | 必选 | 结束评论 api url |
+| `options.closeCommentOptions.method` | `POST` | 可选 | 结束评论 api method |
 | `options.createCommentOptions` | `Object` | 必选 | 新建评论配置 |
 | `options.createCommentOptions.url` | `String` | 必选 | 新建评论 api url |
+| `options.createCommentOptions.method` | `POST` | 可选 | 新建评论 api method |
 
