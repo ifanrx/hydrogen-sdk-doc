@@ -22,7 +22,7 @@
         url: `/api/comment/${guid}`,
       },
       deleteCommentOptions: {
-        url: `/api/comment/delete`,
+        url: `/api/comment/delete/{comment-id}/`,
       },
       closeCommentOptions: {
         url: `/api/comment/closeComments`,
@@ -49,7 +49,7 @@
 | `options.usePollingInsteadOfSocket.interval` | `Number` | 必选 | 轮询更新评论列表时间间隔 |
 | `options.queryCommentOptions` | `Object` | 必选 | 加载评论列表配置  |
 | `options.queryCommentOptions.url` | `Object` | 必选 | 加载评论列表 api url  |
-| `options.deleteCommentOptions` | `Object` | 必选 | 删除评论配置 |
+| `options.deleteCommentOptions` | `Object` | 必选 | 删除评论配置。{comment-id} 会被替换成评论的 id |
 | `options.deleteCommentOptions.url` | `String` | 必选 | 删除评论 api url |
 | `options.closeCommentOptions` | `Object` | 必选 | 结束评论配置 |
 | `options.closeCommentOptions.url` | `String` | 必选 | 结束评论 api url |
