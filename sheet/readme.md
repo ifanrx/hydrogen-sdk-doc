@@ -10,4 +10,5 @@
   <li><a href="/sheet/tableofcontent.md/">目录</a></li>
   <li><a href="/sheet/historySidebar.md/">历史侧边栏</a></li>
   <li><a href="/sheet/comment.md/">评论</a></li>
+  <li><a href="/sheet/contextMenu.md/">右键菜单</a></li>
 </ul>
