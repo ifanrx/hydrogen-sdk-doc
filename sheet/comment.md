@@ -22,7 +22,7 @@
         url: `/api/comment/${guid}`,
       },
       deleteCommentOptions: {
-        url: `/api/comment/delete/{comment-id}/`,
+        url: `/api/comment/delete/{comment-id}`,
       },
       closeCommentOptions: {
         url: `/api/comment/closeComments`,
