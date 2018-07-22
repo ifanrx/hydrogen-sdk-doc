@@ -14,20 +14,21 @@
 
 `POST <SHIMO_API>/files`
 
+**鉴权信息**
+
+`scope`: `write`。
+
 **参数说明**
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
+| name | String | N   | 文档标题，默认`无标题` |
 | type | String | N   | 文档类型，默认`document` |
 | content   | String | N   | 文档内容 |
 | id   | Number | Y   | 文档 ID |
 | copy   | Boolean | N   | 不为空时代表该文档是拷贝自其他文档 |
 
 **代码示例**
-
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
 
 ```js
 const request = require('node-fetch')
@@ -41,8 +42,6 @@ fetch('<SHIMO_API>/files', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -61,11 +60,11 @@ fetch('<SHIMO_API>/files', {
 
 `GET <SHIMO_API>/files/:guid`
 
+**鉴权信息**
+
+`scope`: `read`。
+
 **代码示例**
-
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
 
 ```js
 const request = require('node-fetch')
@@ -80,8 +79,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
   .then(body => console.log(body.data))
 ```
 
-{% endtabs %}
-
 **返回示例**
 
 ```json
@@ -93,11 +90,55 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
 }
 ```
 
+## 更改文档标题
+
+**接口**
+
+`PATCH <SHIMO_API>/files/:guid/title`
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
+
+**参数说明**
+
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :-- |
+| name | String | Y   | 新的文档标题 |
+
+**代码示例**
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/title', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer <Access Token>'
+  },
+  body: JSON.stringify({ name: 'new document name' })
+})
+  .then(res => res.json())
+  .then(body => console.log(body.data))
+```
+
+**状态码说明**
+
+`204` 操作成功
+
 ## 撰写文档
 
 **接口**
 
 `POST <SHIMO_API>/files/:guid/compose`
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
 
 **参数说明**
 
@@ -113,10 +154,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -126,15 +163,54 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
     'Authorization': 'Bearer <Access Token>'
   },
   body: JSON.stringify({
-  "clientId": "03caa56f-c900-4e79-b80f-fd050d68be3e",
-  "rev": 11,
-  "changeset": "[[20,\"H\",\"26:\\\"10676\\\"\"]]",
-  "uuid": "888e62a71284483db9c306ae8383b3aa"
+    "clientId": "03caa56f-c900-4e79-b80f-fd050d68be3e",
+    "rev": 11,
+    "changeset": "[[20,\"H\",\"26:\\\"10676\\\"\"]]",
+    "uuid": "888e62a71284483db9c306ae8383b3aa"
   })
 })
 ```
 
-{% endtabs %}
+**状态码说明**
+
+`204` 操作成功
+
+## 更新文档内容
+
+**接口**
+
+`PATCH <SHIMO_API>/files/:guid`
+
+> **info**
+> 该接口用于以新内容替换文档现有内容
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
+
+**参数说明**
+
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :-- |
+| content | String | N   | 新的内容 |
+
+**代码示例**
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
+  method: 'PATCH',
+  headers: {
+    'Authorization': 'Bearer <Access Token>'
+  },
+  body: JSON.stringify({
+    "content": "new content"
+  })
+})
+```
 
 **状态码说明**
 
@@ -142,10 +218,15 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
 
 ## 还原文档
 
-
 **接口**
 
 `POST <SHIMO_API>/files/:guid/revert`
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
 
 **参数说明**
 
@@ -156,10 +237,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk', {
 | startTimestamp   | Number | N   | 该次改动发生的时间 |
 
 **代码示例**
-
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
 
 ```js
 const request = require('node-fetch')
@@ -175,8 +252,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/revert', {
 })
 ```
 
-{% endtabs %}
-
 **状态码说明**
 
 `204` 操作成功
@@ -190,6 +265,12 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/revert', {
 > **info**
 > 该接口采用长轮询方式持续返回最新的文档历史
 
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.readonly`: `true` or `info.filePermissions.editable`: `true`。
+
 **参数说明**
 
 | 参数      | 类型   | 必填 | 说明 |
@@ -199,10 +280,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/revert', {
 | timeout | Numbber | N   | 请求中止的时间，单位为毫秒，默认是 12000 |
 
 **代码示例**
-
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
 
 ```js
 const request = require('node-fetch')
@@ -214,8 +291,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/pull?clientId=03caa56f-c900-4e79-b80f-
   }
 })
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -235,6 +310,12 @@ data: "pong"
 
 `POST <SHIMO_API>/files/:guid/sync`
 
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
+
 **参数说明**
 
 | 参数      | 类型   | 必填 | 说明 |
@@ -250,10 +331,6 @@ data: "pong"
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -268,8 +345,135 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/sync', {
 })
 ```
 
-{% endtabs %}
+**状态码说明**
+
+`204` 操作成功
+
+## 删除文档和相关内容
+
+**接口**
+
+`POST <SHIMO_API>/files/:guid`
+
+> **info**
+> 删除文档会连同历史等记录一起删除，不可恢复
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
+
+**代码示例**
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/sync', {
+  method: 'DELETE',
+  headers: {
+    'Authorization': 'Bearer <Access Token>'
+  }
+})
+```
 
 **状态码说明**
 
 `204` 操作成功
+
+## 广播
+
+**接口**
+
+`POST <SHIMO_API>/files/:guid/broadcast`
+
+> **info**
+> 只会向在文档中的用户发送信息，信息保留时间半小时；
+> 需要结合前端的[协同编辑](/common/collaboration.md#broadcast)使用。
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
+
+**代码示例**
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/broadcast', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer <Access Token>'
+  },
+  body: JSON.stringify({
+    text: 'this is a broadcast text'
+  })
+})
+```
+
+**状态码说明**
+
+`204` 操作成功
+
+## 在线用户列表
+
+**接口**
+
+`GET <SHIMO_API>/files/:guid/online`
+
+> **info**
+> clients 对应同一个用户打开的多个 tab 页
+
+**鉴权信息**
+
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
+
+**代码示例**
+
+```js
+const request = require('node-fetch')
+
+fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/online', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer <Access Token>'
+  }
+})
+```
+
+**返回示例**
+
+```json
+[
+  {
+    "user":
+      {
+        "id":13249,
+        "avatar":"https://avatars3.githubusercontent.com/u/13383310?s=70&v=4",
+        "name":"tom"
+      },
+      "clients":[
+        {
+          "clientId":"6b310abfe3ab43d8977342de9f6f870f"
+        }
+      ]
+  },
+  {
+    "user":
+    {
+      "id":13250,
+      "avatar":"https://avatars0.githubusercontent.com/u/1641516?s=96&v=4",
+      "name":"lucy"
+    },
+    "clients":[
+      {
+        "clientId":"67d30248feaa4d73871299aad149e2ce"
+      }
+    ]
+  }
+]
+```

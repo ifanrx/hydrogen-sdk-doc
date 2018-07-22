@@ -37,6 +37,8 @@
         <li><a href="/sheet/shortcut.md/">快捷键</a></li>
         <li><a href="/sheet/collaborator.md/">协作者</a></li>
         <li><a href="/sheet/historySidebar.md/">历史侧边栏</a></li>
+        <li><a href="/sheet/comment.md/">评论</a></li>
+        <li><a href="/sheet/contextMenu.md/">右键菜单</a></li>
       </ul>
     </li>
     <!-- 幻灯片 -->

@@ -18,6 +18,7 @@
         revertUrl: `/history/${guid}/revert`,
         snapshotUrl: `/api/files/${guid}/snapshot`,
         loadStepsUrl: `/api/files/${guid}/sheet_histories`,
+        contactUrl: `/api/${guid}/contacts`
       },
       version: {
         loadHistoryUrl: `/api/docsidebarinfo/${guid}`,
@@ -38,12 +39,13 @@
 | `options.editor` | `Editor` | 必选 | 编辑器实例 |
 | `options.container` | `HTMLElement` | 必选 | 侧边栏宿主容器 |
 | `options.guid` | `String` | 必选 | file 的 guid |
-| `options.currentUserId` | `String` | 必选 | 当前用户 id |
+| `options.currentUserId` | `Number` | 必选 | 当前用户 id |
 | `options.history` | `Object` | 可选 | 历史列表和预览配置 |
 | `options.history.loadHistoryUrl` | `string` | 必选 | 加载历史列表 url |
 | `options.history.revertUrl` | `string` | 必选 | 还原历史记录 url |
 | `options.history.snapshotUrl` | `string` | 必选 | 加载历史快照 url |
 | `options.history.loadStepsUrl` | `string` | 必选 | 加载历史碎片 url |
+| `options.history.contactUrl` | `string` | 必选 | 加载联系人 url |
 | `options.version` | `Object` | 可选 | 版本列表和预览配置 |
 | `options.version.loadHistoryUrl` | `string` | 必选 | 加载历史列表 url |
 | `options.version.loadVersionListUrl` | `string` | 必选 | 加载版本列表 url |

@@ -18,10 +18,6 @@
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -38,8 +34,6 @@ fetch('<SHIMO_API>/users', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -76,15 +70,12 @@ fetch('<SHIMO_API>/users', {
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
-| ids | Number[] | N   | 用户 ID 数组 |
+| ids | Number[] | Y   | 用户 ID 数组 |
 | size | Number | N   | 单次获取的数量 |
 | page | Number | N | 从第几页 |
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
 
 ```js
 const request = require('node-fetch')
@@ -98,8 +89,6 @@ fetch('<SHIMO_API>/users', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -145,10 +134,6 @@ fetch('<SHIMO_API>/users', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -161,8 +146,6 @@ fetch('<SHIMO_API>/users/email?email=example@shimo.im', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -193,7 +176,15 @@ fetch('<SHIMO_API>/users/email?email=example@shimo.im', {
 
 **接口**
 
+`PATCH <SHIMO_API>/users/me`
+
+`PATCH <SHIMO_API>/users/client_user_id?clientUserId=`
+
 `PATCH <SHIMO_API>/users/:id`
+
+使用 `me` 时等同于当前登录用户的 `id`。
+
+使用 `client_user_id` 则以 `clientUserId` 查找登录用户，用于第三方集成时使用。
 
 **参数说明**
 
@@ -206,14 +197,10 @@ fetch('<SHIMO_API>/users/email?email=example@shimo.im', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
-fetch('<SHIMO_API>/users/1', {
+fetch('<SHIMO_API>/users/me', {
   method: 'PATCH',
   headers: {
     'Authorization': 'Bearer <Access Token>'
@@ -225,8 +212,6 @@ fetch('<SHIMO_API>/users/1', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 

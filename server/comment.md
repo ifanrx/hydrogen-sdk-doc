@@ -11,10 +11,6 @@
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -27,8 +23,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -61,10 +55,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -77,8 +67,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments/comment-a2aCRQBPheIVIHhe', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -120,10 +108,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments/comment-a2aCRQBPheIVIHhe', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -142,8 +126,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -175,10 +157,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -191,8 +169,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments/3YqYN0QJFFRTss3J', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -227,10 +203,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments/3YqYN0QJFFRTss3J', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -243,8 +215,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/comments/close/comment-a2aCRQBPheIVIHh
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 

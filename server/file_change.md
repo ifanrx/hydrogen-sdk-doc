@@ -18,10 +18,6 @@
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -34,8 +30,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -63,10 +57,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -79,8 +69,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes/1626314426', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -115,10 +103,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes/1626314426', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -131,8 +115,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes/rev?rev=1&baseRev=0', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -170,10 +152,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes/rev?rev=1&baseRev=0', {
 
 **代码示例**
 
-{% tabs nodeDemo="Node.js" %}
-
-{% content "nodeDemo" %}
-
 ```js
 const request = require('node-fetch')
 
@@ -191,8 +169,6 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/changes', {
   .then(res => res.json())
   .then(body => console.log(body.data))
 ```
-
-{% endtabs %}
 
 **状态码说明**
 
