@@ -12,7 +12,12 @@
   const editor = new Editor()
   const comment = new Comment({
     editor,
-    ...options
+    service: {
+      fetch: `/files/{guid}/comments`,
+      create: `/files/{guid}/comments`,
+      delete: `/files/{guid}/comments/{commentGuid}`,
+      close: `/files/{guid}/comments/close/{selectionGuid}`
+    }
   })
 
   editor.render(...)
@@ -26,6 +31,10 @@
 | `editor` | `Editor` | 必选 | 编辑器实例 |
 | `updateDuration` | `number` | 10000(ms) | 更新时间间隔 |
 | `zIndex` | `number` | 100 | 设置层级 |
+| `currentUser` | `object` | 必选 | 用户信息 |
+| `currentUser.id` | `number` | 必选 | 用户id |
+| `currentUser.name` | `string` | 必选 | 用户名 |
+| `currentUser.avatar` | `string` | 必选 | 用户头像 |
 | `service` | `object` | 可选 | 接口配置 |
 | `service.fetch` | `string` | 可选 | 获取评论列表的接口 |
 | `service.create` | `string` | 可选 | 创建评论的接口 |

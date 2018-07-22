@@ -16,6 +16,7 @@
 | 名称               | 类型      | 默认值  | 描述             |
 | ------------------ | --------- | ------- | ---------------- |
 | `options.readOnly` | `Boolean` | `false` | 设置文档是否只读 |
+| `options.id`| `number`      | 必选     | 用户ID     |
 
 ## 方法列表
 
@@ -29,10 +30,10 @@
 
 | 名称                | 类型          | 默认值 | 描述         |
 | ------------------- | ------------- | ------ | ------------ |
-| `container`         | `HTMLElement`      | 无     | 文档渲染容器     |
-| `options.id`| `number`      | 必选     | 用户ID     |
+| `container`         | `HTMLElement`      | 必选     | 文档渲染容器     |
 | `options.scrollingContainer`| `HTMLElement`      | 无     | 文档滚动区     |
-| `options.modules.toolbar`| `Boolean`      | true     | 是否启用工具栏     |
+| `options.modules.toolbar`| `Boolean / Object`      | true     | 是否启用工具栏     |
+| `options.modules.toolbar.parent`| `HTMLElement`      | 可选     | 工具栏父容器     |
 
 ### updateOptions
 
