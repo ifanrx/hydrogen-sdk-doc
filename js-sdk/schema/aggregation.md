@@ -176,7 +176,8 @@ skip、limit、sort 不能直接使用在 pipeline 中，而是通过 TableObjec
 | order_by           | sort  |
 | offset             | skip  |
 
-它们在 pipeline 中的顺序为 order_by → offset → limit
+它们在 pipeline 中的顺序为 order_by → offset → limit。
+offset 的默认值为 0，limit 默认值为 20
 
 > **info**
 > 目前限制 stage 数量最多为 2 个。（skip、sort、limit 不计入总数）
@@ -261,6 +262,9 @@ Product.setAggregation(aggregation).find().then(res => {
 }]
 ```
 
+> **info**
+> 当TableObject 设置了 aggregation 时，将会忽略 setQuery 设置的查询参数。
+
 [MongoDB 文档参考](https://docs.mongodb.com/manual/reference/operator/aggregation/match/)
 
 ### group( expression )
@@ -275,7 +279,7 @@ Product.setAggregation(aggregation).find().then(res => {
 
 #### 示例
 
-参考基础用法的示例 [分组 （group）](#分组（group）)
+参考基础用法的示例 [分组（group）](#分组（group）)
 
 [MongoDB 文档参考](https://docs.mongodb.com/manual/reference/operator/aggregation/group/)
 
@@ -400,14 +404,352 @@ Product.setAggregation(aggregation).find().then(res => {
 
 - size：数量
 
+#### 示例
+
+数据源
+
+```javascript
+[{
+  "amount": 150,
+  "created_at": 1531979539,
+  "status": "A",
+  "updated_at": 1531979539,
+}, {
+  "amount": 200,
+  "created_at": 1531979532,
+  "status": "B",
+  "updated_at": 1531979532,
+}, {
+  "amount": 100,
+  "created_at": 1531979523,
+  "status": "A",
+  "updated_at": 1531979523,
+}, {
+    "amount": 101,
+    "created_at": 1531979523,
+    "status": "A",
+    "updated_at": 1531979523,
+}, {
+     "amount": 102,
+     "created_at": 1531979523,
+     "status": "A",
+     "updated_at": 1531979523,
+}]
+```
+
+查找 status 为 A 的数据行，再随机抽取 2 条记录
+
+```javascript
+let Product = new wx.BaaS.TableObject(tableID)
+
+// 实例化 aggregation 对象
+var aggregation = new wx.BaaS.Aggregation()
+// 实例化查询对象
+var query = new wx.BaaS.Query()
+
+// 设置查询条件
+query.compare('status', '=', 'A')
+aggregation.match(query).sample(2)
+
+// 应用聚合查询对象
+Product.setAggregation(aggregation).find().then(res => {
+    // success
+}, err => {
+    // err
+})
+```
+
+结果
+
+```javascript
+[{
+    "amount": 101,
+    "created_at": 1531979523,
+    "status": "A",
+    "updated_at": 1531979523,
+}, {
+     "amount": 102,
+     "created_at": 1531979523,
+     "status": "A",
+     "updated_at": 1531979523,
+}]
+```
+
 [MongoDB 文档参考](https://docs.mongodb.com/manual/reference/operator/aggregation/sample/)
 
 ### count( outputFieldName )
+
 统计数据的数量
 
 #### 参数说明
 
 - outputFieldName：输出的字段名
 
+数据源
+
+```javascript
+[{
+  "amount": 150,
+  "created_at": 1531979539,
+  "status": "A",
+  "updated_at": 1531979539,
+}, {
+  "amount": 200,
+  "created_at": 1531979532,
+  "status": "B",
+  "updated_at": 1531979532,
+}, {
+  "amount": 100,
+  "created_at": 1531979523,
+  "status": "A",
+  "updated_at": 1531979523,
+}, {
+    "amount": 101,
+    "created_at": 1531979523,
+    "status": "A",
+    "updated_at": 1531979523,
+}, {
+     "amount": 102,
+     "created_at": 1531979523,
+     "status": "A",
+     "updated_at": 1531979523,
+}]
+```
+
+查找 status 为 A 的数据行，并统计数据量
+```javascript
+let Product = new wx.BaaS.TableObject(tableID)
+
+// 实例化 aggregation 对象
+var aggregation = new wx.BaaS.Aggregation()
+// 实例化查询对象
+var query = new wx.BaaS.Query()
+
+// 设置查询条件
+query.compare('status', '=', 'A')
+aggregation.match(query).count('count')
+
+// 应用聚合查询对象
+Product.setAggregation(aggregation).find().then(res => {
+    // success
+}, err => {
+    // err
+})
+```
+
+结果
+
+```javascript
+{ count: 4 }
+```
+
 [MongoDB 文档参考](https://docs.mongodb.com/manual/reference/operator/aggregation/count/)
+
+
+### skip
+
+使用 TableObject 的 offset 方法
+
+数据源
+
+```javascript
+[{
+  "amount": 150,
+  "created_at": 1531979539,
+  "status": "A",
+  "updated_at": 1531979539,
+}, {
+  "amount": 200,
+  "created_at": 1531979532,
+  "status": "B",
+  "updated_at": 1531979532,
+}, {
+  "amount": 100,
+  "created_at": 1531979523,
+  "status": "A",
+  "updated_at": 1531979523,
+}]
+```
+
+```javascript
+let Product = new wx.BaaS.TableObject(tableID)
+
+// 实例化 aggregation 对象
+var aggregation = new wx.BaaS.Aggregation()
+// 实例化查询对象
+var query = new wx.BaaS.Query()
+
+// 设置查询条件
+query.compare('status', '=', 'A')
+aggregation.match(query)
+
+// 应用聚合查询对象
+Product.setAggregation(aggregation)
+.offset(1)  // skip 1
+.find().then(res => {
+    // success
+}, err => {
+    // err
+})
+```
+结果
+
+```javascript
+[{
+  "amount": 100,
+  "created_at": 1531979523,
+  "status": "A",
+  "updated_at": 1531979523,
+}]
+```
+
+[MongoDB 文档参考](https://docs.mongodb.com/manual/reference/operator/aggregation/skip/)
+
+### sort
+
+使用 TableObject 的 orderBy 方法
+
+数据源
+
+```javascript
+[ { _id: '5b50270c1c597b00179e9f69',
+    amount: 200,
+    amount_2: 30000,
+    created_at: 1531979520,
+    created_by: 3,
+    id: '5b50270c1c597b00179e9f69',
+    items: [ 444, 555, 666 ],
+    read_perm: [ 'user:*' ],
+    status: 'B',
+    updated_at: 1532067386,
+    write_perm: [ 'user:*' ] },
+  { _id: '5b5027041c597b00179e9f68',
+    amount: 100,
+    amount_2: 20000,
+    created_at: 1531979520,
+    created_by: 3,
+    id: '5b5027041c597b00179e9f68',
+    items: [ 111, 222, 333 ],
+    read_perm: [ 'user:*' ],
+    status: 'A',
+    updated_at: 1532067374,
+    write_perm: [ 'user:*' ] },
+  { _id: '5b5027131c597b00179e9f6a',
+    amount: 150,
+    amount_2: 10000,
+    created_at: 1531979520,
+    created_by: 3,
+    id: '5b5027131c597b00179e9f6a',
+    items: [ 123, 456, 789 ],
+    read_perm: [ 'user:*' ],
+    status: 'A',
+    updated_at: 1532067362,
+    write_perm: [ 'user:*' ] } ]
+```
+
+
+```javascript
+let Product = new wx.BaaS.TableObject(tableID)
+
+// 实例化 aggregation 对象
+var aggregation = new wx.BaaS.Aggregation()
+// 实例化查询对象
+var query = new wx.BaaS.Query()
+
+// 设置查询条件
+query.compare('status', '=', 'A')
+aggregation.match(query).count('count')
+
+// 应用聚合查询对象
+Product.setAggregation(aggregation)
+.orderBy('-updated_at') // 根据更新时间升序排列，越早更新的排的越前
+.find()
+.then(res => {
+    // success
+}, err => {
+    // err
+})
+```
+结果
+
+```javascript
+[ { _id: '5b5027041c597b00179e9f68',
+    amount: 100,
+    amount_2: 20000,
+    created_at: 1531979520,
+    created_by: 3,
+    id: '5b5027041c597b00179e9f68',
+    items: [ 111, 222, 333 ],
+    status: 'A',
+    updated_at: 1532067374 },
+  { _id: '5b5027131c597b00179e9f6a',
+    amount: 150,
+    amount_2: 10000,
+    created_at: 1531979520,
+    created_by: 3,
+    id: '5b5027131c597b00179e9f6a',
+    items: [ 123, 456, 789 ],
+    status: 'A',
+    updated_at: 1532067362 } ]
+```
+[MongoDB 文档参考](https://docs.mongodb.com/manual/reference/operator/aggregation/sort/)
+
+### limit
+
+使用 TableObject 的 limit 方法
+
+数据源
+
+```javascript
+[{
+  "amount": 150,
+  "created_at": 1531979539,
+  "status": "A",
+  "updated_at": 1531979539,
+}, {
+  "amount": 200,
+  "created_at": 1531979532,
+  "status": "B",
+  "updated_at": 1531979532,
+}, {
+  "amount": 100,
+  "created_at": 1531979523,
+  "status": "A",
+  "updated_at": 1531979523,
+}]
+```
+
+```javascript
+let Product = new wx.BaaS.TableObject(tableID)
+
+// 实例化 aggregation 对象
+var aggregation = new wx.BaaS.Aggregation()
+// 实例化查询对象
+var query = new wx.BaaS.Query()
+
+// 设置查询条件
+query.compare('status', '=', 'A')
+aggregation.match(query)
+
+// 应用聚合查询对象
+Product.setAggregation(aggregation)
+.limit(1)  // limit 1 限制返回数只有一个
+.find().then(res => {
+    // success
+}, err => {
+    // err
+})
+```
+结果
+
+```javascript
+[{
+   "amount": 150,
+   "created_at": 1531979539,
+   "status": "A",
+   "updated_at": 1531979539,
+}]
+```
+
+[MongoDB 文档参考](https://docs.mongodb.com/manual/reference/operator/aggregation/limit/)
 
