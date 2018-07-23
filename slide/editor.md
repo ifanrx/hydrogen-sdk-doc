@@ -292,30 +292,16 @@
 | `ratio` | `number` | 无 | 缩放比例 |必选|
 | `slideId` | `string` | 无 | 画布 slideId |必选|
 
-### moveElementsUpOneLevel
-  设置当前选中文本内文字自适应。
+### setElementsLevel
+  设置当前选中元素的层级。
 
   * 返回 `undefined`
-  * 用法 `moveElementsUpOneLevel()`
-
-### moveElementsDownOneLevel
-  设置当前选中文本内文字自适应。
-
-  * 返回 `undefined`
-  * 用法 `moveElementsDownOneLevel()`
-
-### moveElementsUpToTopLevel
-  设置当前选中文本内文字自适应。
-
-  * 返回 `undefined`
-  * 用法 `moveElementsUpToTopLevel()`
+  * 用法 `setElementsLevel(level)`
   * 参数
 
-### moveElementsDownToBottomLevel
-  设置当前选中文本内文字自适应。
-
-  * 返回 `undefined`
-  * 用法 `moveElementsDownToBottomLevel()`
+|名称|类型|默认值|描述|必选/可选|
+| -- | -- | -- | -- | -- |
+| `level` | `Editor.levelDirection` | 无 | 层级 |必选|
 
 ## 事件列表
 
