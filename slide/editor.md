@@ -303,6 +303,17 @@
 | -- | -- | -- | -- | -- |
 | `level` | `Editor.levelDirection` | 无 | 层级 |必选|
 
+### setSlidesTransition
+  设置播放转场效果（暂时为全局设置）。
+
+  * 返回 `undefined`
+  * 用法 `setSlidesTransition(slideTransition)`
+  * 参数
+
+|名称|类型|默认值|描述|必选/可选|
+| -- | -- | -- | -- | -- |
+| `slideTransition` | `Editor.slideTransition` | 无 | 转场效果常量 |必选|
+
 ## 事件列表
 
 * 用法
