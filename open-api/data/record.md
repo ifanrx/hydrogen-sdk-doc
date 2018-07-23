@@ -162,13 +162,13 @@ print resp_.content
 <?php
 $table_id = 1; // 数据表 ID
 $condition = array(
-  'where' => ['price' => ['$gt' => 'test search']],
   'order_by' => '-id',
+  'where' => json_encode(['price' => ['$gt' => 'test search']]),
   'limit' => '10',
   'offset' => '0'
 );
 $url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/?";
-$url .= urlencode(json_encode($condition));
+$url .= http_build_query($condition);
 
 $ch = curl_init();
 $header = array(
