@@ -156,6 +156,7 @@ Product.setAggregation(aggregation).find().then(res => {
 ```
 
 ## 进阶
+**知晓云 JSSDK Aggregation 的语法基本和 MongoDB 原生的 Aggregation 语法保持一致，当你发现此文档没有覆盖到你的需求时，可以查看给出的对应 MongoDB 文档**
 
 目前开放了如下 stage
 
