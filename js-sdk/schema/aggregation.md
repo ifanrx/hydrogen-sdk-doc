@@ -1,12 +1,17 @@
 # 聚合查询 （Aggregation）
 
 > **info**
-> 注意 sdk 1.6 及之后的版本才支持聚合查询功能
+> sdk 1.6 开始支持，目前仅内测用户可以使用，该功能可能 ——
+> - 不稳定
+> - 被移除
+> - 在未来配套不同的计费策略
+> - 请勿在生产上大规模使用。
 
 
 ## 基本概念
 聚合操作主要用于对数据的批量处理，往往将记录按条件分组以后，然后再进行一系列操作，例如，求最大值、最小值、平均值，求和等操作。聚合操作还能够对记录进行复杂的操作，可以用于数理统计和数据挖掘。
 
+该功能对数据库资源耗占比普通查询高出几个数量级，建议在做数据分析等离线计算场景下使用，配合云函数输出统计报表等。
 ### 管道 pipeline
 管道在Unix和Linux中一般用于将当前命令的输出结果作为下一个命令的参数。
 数据集在一个管道处理完毕后将结果传递给下一个管道处理。管道操作是可以重复的。
@@ -51,7 +56,7 @@
 
 根据 status 分组，并计算 总和，平均数，最大值，最小值，数量
 ```javascript
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 
 // 实例化 aggregation 对象
 var aggregation = new wx.BaaS.Aggregation()
@@ -101,7 +106,7 @@ Product.setAggregation(aggregation).find().then(res => {
 
 在数据表中随机抽取 2 条数据
 ```javascript
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 
 // 实例化 aggregation 对象
 var aggregation = new wx.BaaS.Aggregation()
@@ -135,12 +140,12 @@ Product.setAggregation(aggregation).find().then(res => {
 
 统计数据表中一共有多少条数据
 ```javascript
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 
 // 实例化 aggregation 对象
 var aggregation = new wx.BaaS.Aggregation()
 
-aggregation.count('count')
+aggregation.count('count') // 定义返回对象中的字段名，这里我们设为 'count' 
 
 // 应用聚合查询对象
 Product.setAggregation(aggregation).find().then(res => {
@@ -152,11 +157,11 @@ Product.setAggregation(aggregation).find().then(res => {
 ```
 结果
 ```javascript
-{count: 3}
+{ count: 3 }
 ```
 
 ## 进阶
-**知晓云 JSSDK Aggregation 的语法基本和 MongoDB 原生的 Aggregation 语法保持一致，当你发现此文档没有覆盖到你的需求时，可以查看给出的对应 MongoDB 文档**
+**知晓云 JSSDK Aggregation 的语法系 MongoDB 原生的 Aggregation 语法的子集，当你发现此文档没有覆盖到你的需求时，可以查阅给出的对应 MongoDB 文档**
 
 目前开放了如下 stage
 
@@ -228,7 +233,7 @@ offset 的默认值为 0，limit 默认值为 20
 查询 status == "A" 的数据行
 
 ```javascript
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 
 // 实例化 aggregation 对象
 var aggregation = new wx.BaaS.Aggregation()
@@ -264,7 +269,7 @@ Product.setAggregation(aggregation).find().then(res => {
 ```
 
 > **info**
-> 当TableObject 设置了 aggregation 时，将会忽略 setQuery 设置的查询参数。
+> 当 TableObject 设置了 aggregation 时，将会忽略 setQuery 设置的查询参数。
 
 [MongoDB 文档参考](https://docs.mongodb.com/manual/reference/operator/aggregation/match/)
 
@@ -338,7 +343,7 @@ Product.setAggregation(aggregation).find().then(res => {
 
 ```javascript
 
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 
 // 实例化 aggregation 对象
 var aggregation = new wx.BaaS.Aggregation()
@@ -441,7 +446,7 @@ Product.setAggregation(aggregation).find().then(res => {
 查找 status 为 A 的数据行，再随机抽取 2 条记录
 
 ```javascript
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 
 // 实例化 aggregation 对象
 var aggregation = new wx.BaaS.Aggregation()
@@ -480,7 +485,7 @@ Product.setAggregation(aggregation).find().then(res => {
 
 ### count( outputFieldName )
 
-统计数据的数量
+统计数据的行数
 
 #### 参数说明
 
@@ -519,7 +524,7 @@ Product.setAggregation(aggregation).find().then(res => {
 
 查找 status 为 A 的数据行，并统计数据量
 ```javascript
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 
 // 实例化 aggregation 对象
 var aggregation = new wx.BaaS.Aggregation()
@@ -573,7 +578,7 @@ Product.setAggregation(aggregation).find().then(res => {
 ```
 
 ```javascript
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 
 // 实例化 aggregation 对象
 var aggregation = new wx.BaaS.Aggregation()
@@ -650,7 +655,7 @@ Product.setAggregation(aggregation)
 
 
 ```javascript
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 
 // 实例化 aggregation 对象
 var aggregation = new wx.BaaS.Aggregation()
@@ -721,7 +726,7 @@ Product.setAggregation(aggregation)
 ```
 
 ```javascript
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 
 // 实例化 aggregation 对象
 var aggregation = new wx.BaaS.Aggregation()
