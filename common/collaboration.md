@@ -18,6 +18,7 @@
 | *`options.guid` | `string` | 必选 | 文档唯一标示符 |
 | *`options.pullUrl` | `string` | 必选 | 获取改动 url |
 | *`options.composeUrl` | `string` | 必选 | 发送改动 url |
+| *`options.selectUrl` | `string` | 可选 | 选取状态 url |
 | `options.editor` | `Editor` | 必选 | 编辑器实例 |
 
 
@@ -136,4 +137,35 @@ data 格式：
     avatar: 'https://avatar.com/avatar'
   }
 }
+```
+
+## 示例
+
+
+### 表格的选取展示
+
+表格的选取展示可以在当前表格显示出其他协作者目前在哪个单元格上操作。需要配置了`selectUrl`后使用。`selectUrl`仅为表格和幻灯片提供，使用时需要赋给编辑器实例`collaborators`属性再传递给`Collaboration`构造函数，如：
+
+```js
+const editor = window.sheetEditor = new window.shimo.sdk.sheet.Editor({
+  uploadConfig: {
+    origin: shimo.uploadOrigin,
+    server: 'aws',
+    token: shimo.uploadToken
+  }
+})
+
+// 在这里赋值
+editor.collaborators = new shimo.sdk.sheet.plugins.Collaborators({ editor })
+
+const collaboration = new shimo.sdk.common.Collaboration({
+  editor,
+  rev: data.head,
+  guid: data.guid,
+  pullUrl: `${shimo.entrypoint}/files/${data.guid}/pull?accessToken=${shimo.token}`,
+  storage: { set () {} },
+  composeUrl: `${shimo.entrypoint}/files/${data.guid}/compose?accessToken=${shimo.token}`,
+  selectUrl: `${shimo.entrypoint}/files/${data.guid}/select?accessToken=${shimo.token}`,
+})
+collaboration.start()
 ```
