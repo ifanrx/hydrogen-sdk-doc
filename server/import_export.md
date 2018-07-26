@@ -12,7 +12,9 @@
 
 **鉴权信息**
 
-`scope`: `write`
+`scope`: `write`。
+
+`info.filePermissions.editable`: `true`。
 
 **参数说明**
 
@@ -61,7 +63,9 @@ fetch('<SHIMO_API>/files/import', {
 
 **鉴权信息**
 
-`scope`: `read`
+`scope`: `read`。
+
+`info.filePermissions.readonly`: `true`。
 
 **参数说明**
 
