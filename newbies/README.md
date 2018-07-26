@@ -37,7 +37,117 @@
 
 ![一键授权](/images/newbies/one-key-authorization.jpeg)
 
-完成授权后，接下来用户需要进行服务器域名配置，以解锁小程序 [SDK](https://doc.minapp.com/downloadSDK/) 服务（ 使用**知晓云 SDK 小程序插件**可以跳过此步骤 ）。
+{% tabs SDKPluginConfig="SDK 插件版接入", SDKFileConfig="SDK 文件版接入" %}
+
+{% content "SDKPluginConfig" %}
+## 在微信后台添加知晓云插件
+设置 ---> 第三方服务 ---> 添加插件  
+![添加插件](/images/newbies/add-plugin.jpg)
+
+
+## 第一个接入知晓云的小程序
+
+下面，我们以**我的书架**小程序 demo 为例，创建第一个接入知晓云的小程序。
+
+### 1、 知晓云的初始化配置
+
+首先，打开[微信开发者工具](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=201822)，将先前下载好的[演示 demo](https://github.com/ifanrx/hydrogen-demo.git) 的 `hello-world` 文件夹添加入小程序项目中。
+
+![创建小程序项目](/images/newbies/minapp-creation.jpeg)
+
+其中 `AppID` 为小程序的 ID，在微信小程序后台**设置 >> 开发设置** 中可获取，知晓云也在[**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)提供了快速通道获取小程序 ID。
+
+![开发者 ID](/images/newbies/developer-id.jpg)
+
+#### 在 app.json 中加入插件的引用声明
+
+```js
+"plugins": {
+    "sdkPlugin": {
+      "version": "0.1.0",
+      "provider": "wxc6b86e382a1e3294"
+ }
+}  
+```
+![添加插件引用](/images/newbies/import-plugin.jpg)
+
+##### 在 app.js 文件中完成 SDK 的初始化
+
+通过初始化 [SDK](https://doc.minapp.com/downloadSDK/)，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 [SDK](https://doc.minapp.com/downloadSDK/) 提供的全部功能。
+
+在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](https://doc.minapp.com/downloadSDK/) 初始化:
+
+```js
+// app.js
+App({
+  onLaunch: function() {
+    wx.BaaS = requirePlugin('sdkPlugin')
+    //让插件帮助完成登录、支付等功能
+    wx.BaaS.wxExtend(wx.login,
+     wx.getUserInfo,
+     wx.requestPayment)
+
+    let clientID = '知晓云管理后台获取到的 ClientID'
+    wx.BaaS.init(clientID)
+  }
+})
+    
+```
+
+### 2、创建数据表
+
+完成知晓云的初始化配置后，开发者就可以根据自身应用的业务逻辑，确定所需的数据表，确定好后即可在**知晓云后台 >> 数据管理模块**开始数据表的创建工作。
+
+以**我的书架**为例，在数据管理模块，创建一张名为 `bookshelf` 的数据表，并添加一个名为 `bookName` 的数据列。
+
+![创建表](/images/newbies/table-creation.jpeg)
+
+![添加列](/images/newbies/column-addition.jpeg)
+
+### 3、SDK 数据操作接口使用示例
+
+完成数据表的创建后，我们现在就可以使用知晓云的数据管理模块的功能，对数据进行 CRUD 操作。
+
+**创建第一本书**
+
+```js
+// pages/index.js
+Page({
+  data: {
+    creatingBookName: '',
+  },
+
+  // 绑定添加书目的提交按钮点击事件，向服务器发送数据
+  createBook(e) {
+    let bookName = this.data.creatingBookName // 缓存在 data 对象中的输入框输入的书名
+    let tableID = '1' // 从知晓云后台的数据表中获取到的对应数据表的 ID
+    let Books = new wx.BaaS.TableObject(tableID) //实例化对应 tableID 的数据表对象
+    let book = Books.create() // 创建一条记录
+
+  // 调用创建数据项接口，进行数据的持久化存储，详见：https://doc.minapp.com/js-sdk/schema/create-record.html
+    book.set({bookName})
+      .save()
+      .then(() => {
+        //...
+      })
+  }
+})
+```
+
+> **info**
+> 注意，上述代码可能和 `hello-world` 源码有一定的差异，但是代码的逻辑和接口的调用方式基本上是一样。
+
+同时，我们可以在数据管理模块看到新增的数据项。
+
+![bookshelf 数据表](/images/newbies/bookshelf-schema.jpeg)
+
+至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo.git)的源码。
+
+
+
+{% content "SDKFileConfig" %}
+
+完成授权后，接下来用户需要进行服务器域名配置，以解锁小程序 [SDK](https://doc.minapp.com/downloadSDK/) 服务。
 
 ![知晓云服务器域名](/images/newbies/hydrogen-domain-name.jpeg)
 
@@ -141,6 +251,10 @@ Page({
 ![bookshelf 数据表](/images/newbies/bookshelf-schema.jpeg)
 
 至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo.git)的源码。
+
+
+{% endtabs %}
+
 
 ## 更多
 
