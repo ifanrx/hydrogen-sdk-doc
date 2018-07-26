@@ -313,6 +313,7 @@
 |名称|类型|默认值|描述|必选/可选|
 | -- | -- | -- | -- | -- |
 | `slideTransition` | `Editor.slideTransition` | 无 | 转场效果常量 |必选|
+| `slideIds` | `Array<string>` | 无 | 如果提供此参数，则改变特定的 slide 的转场效果；如果不提供此参数，则全局应用转场效果 |可选|
 
 ## 事件列表
 
