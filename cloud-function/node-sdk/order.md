@@ -6,11 +6,7 @@
 
 **参数说明**
 
-data 是 Object 类型，为订单过滤条件，目前支持通过transactionID 进行过滤
-
-| 参数      | 类型   | 必填 | 描述 |
-| :------- | :----- | :-- | :-- |
-| trade_no | String | 是  | 订单号 |
+data 是 Object 类型，为订单过滤条件，你可以参考后面的返回参数说明，进行筛选。
 
 **返回参数说明**
 
@@ -32,10 +28,33 @@ data 是 Object 类型，为订单过滤条件，目前支持通过transactionID
 | refund_status           | String | 退款状态 |
 | status                  | String | 订单状态 |
 | total_cost              | Number | 发起交易请求时的支付金额 |
-| trade_no                | String | 真正的交易 ID, 业务方在微信后台对账时可看到此字段 |
-| transaction_no          | String | 知晓云平台所记录的 transactionID |
+| trade_no                | String | 知晓云平台所记录的订单号 |
+| transaction_no          | String | 对应微信支付成功后返回的 transaction_no |
 | updated_at              | Number | 订单更新时间 |
 
+| 参数      | 类型   | 必填 | 描述 |
+| :------- | :----- | :-- | :-- |
+| trade_no | String | 是  | 订单号 |
+
+**示例代码**
+
+根据订单号查找
+```js
+BaaS.getOrderList({
+  trade_no: '1fjy6ZBaaSbJeNESnnAQpQjVVGPxZpuv'
+}).then(res => {
+  // success
+})
+```
+
+根据支付成功后返回的 transaction_no 查找
+```js
+BaaS.getOrderList({
+  transaction_no: 'gwqUzWKAMWAgMeZZnhVFnWrkFZYuFGje'
+}).then(res => {
+  // success
+})
+```
 
 ### 退款
 
@@ -64,3 +83,16 @@ data 是 Object 类型，它包括以下几个属性
 | refund_amount | String | 退款金额 |
 | refund_no     | String | 退款单号 |
 | status        | String | 订单支付状态 |
+
+**示例代码**
+
+调用退款接口，需要先通过 `BaaS.getOrderList` 接口，拿取返回数据中的 id 字段作为 order_id 的值
+
+```js
+BaaS.refund({
+  order_id: 29973,
+  memo: '测试退款'
+}).then(res => {
+  // success
+})
+```
