@@ -39,7 +39,8 @@
 ---
 
 * [幻灯片](slide/readme.md)
-  * [编辑器](slide/editor.md)
+  * [编辑器](slide/editor/editor.md)
+  * [播放](slide/editor/player.md)
   * [工具栏](slide/toolbar.md)
   * [侧边栏](slide/sidebar.md)
   * [幻灯片列表](slide/filmstrip.md)

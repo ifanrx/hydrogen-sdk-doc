@@ -292,30 +292,28 @@
 | `ratio` | `number` | 无 | 缩放比例 |必选|
 | `slideId` | `string` | 无 | 画布 slideId |必选|
 
-### moveElementsUpOneLevel
-  设置当前选中文本内文字自适应。
+### setElementsLevel
+  设置当前选中元素的层级。
 
   * 返回 `undefined`
-  * 用法 `moveElementsUpOneLevel()`
-
-### moveElementsDownOneLevel
-  设置当前选中文本内文字自适应。
-
-  * 返回 `undefined`
-  * 用法 `moveElementsDownOneLevel()`
-
-### moveElementsUpToTopLevel
-  设置当前选中文本内文字自适应。
-
-  * 返回 `undefined`
-  * 用法 `moveElementsUpToTopLevel()`
+  * 用法 `setElementsLevel(level)`
   * 参数
 
-### moveElementsDownToBottomLevel
-  设置当前选中文本内文字自适应。
+|名称|类型|默认值|描述|必选/可选|
+| -- | -- | -- | -- | -- |
+| `level` | `Editor.levelDirection` | 无 | 层级 |必选|
+
+### setSlidesTransition
+  设置播放转场效果（暂时为全局设置）。
 
   * 返回 `undefined`
-  * 用法 `moveElementsDownToBottomLevel()`
+  * 用法 `setSlidesTransition(slideTransition)`
+  * 参数
+
+|名称|类型|默认值|描述|必选/可选|
+| -- | -- | -- | -- | -- |
+| `slideTransition` | `Editor.slideTransition` | 无 | 转场效果常量 |必选|
+| `slideIds` | `Array<string>` | 无 | 如果提供此参数，则改变特定的 slide 的转场效果；如果不提供此参数，则全局应用转场效果 |可选|
 
 ## 事件列表
 

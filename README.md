@@ -45,7 +45,8 @@
     <li>
       <h3><a href="/slide/readme.md/">幻灯片</a></h3>
       <ul class="doc-dashboard doc-detail-item">
-        <li><a href="/slide/editor.md/">编辑器</a></li>
+        <li><a href="/slide/editor/editor.md/">编辑器</a></li>
+        <li><a href="/slide/editor/player.md/">播放</a></li>
         <li><a href="/slide/toolbar.md/">工具栏</a></li>
         <li><a href="/slide/sidebar.md/">侧边栏</a></li>
         <li><a href="/slide/filmstrip.md/">幻灯片列表</a></li>

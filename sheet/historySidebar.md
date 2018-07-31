@@ -17,17 +17,17 @@
         loadHistoryUrl: `/api/docsidebarinfo/${guid}`,
         revertUrl: `/history/${guid}/revert`,
         snapshotUrl: `/api/files/${guid}/snapshot`,
-        loadStepsUrl: `/api/files/${guid}/sheet_histories`,
+        loadStepsUrl: `/api/files/${guid}/sheet_histories?from={from}&to={to}`,
         contactUrl: `/api/${guid}/contacts`
       },
       version: {
         loadHistoryUrl: `/api/docsidebarinfo/${guid}`,
         loadVersionListUrl: `/api/files/${guid}/revisions`,
         revertVersionUrl: `/history/${guid}/revert`,
-        deleteVersionUrl: `/smapi/files/${guid}/revisions`,
-        updateVersionUrl: `/smapi/files/${guid}/revisions`,
+        deleteVersionUrl: `/smapi/files/${guid}/revisions/{id}`,
+        updateVersionUrl: `/smapi/files/${guid}/revisions/{id}`,
         snapshotUrl: `/api/files/${guid}/snapshot`,
-        loadStepsUrl: `/api/files/${guid}/sheet_histories`
+        loadStepsUrl: `/api/files/${guid}/sheet_histories?from={from}&to={to}`
       }
   })
   ```
@@ -44,16 +44,16 @@
 | `options.history.loadHistoryUrl` | `string` | 必选 | 加载历史列表 url |
 | `options.history.revertUrl` | `string` | 必选 | 还原历史记录 url |
 | `options.history.snapshotUrl` | `string` | 必选 | 加载历史快照 url |
-| `options.history.loadStepsUrl` | `string` | 必选 | 加载历史碎片 url |
+| `options.history.loadStepsUrl` | `string` | 必选 | 加载历史碎片 url。from:起始碎片 id，to: 结束碎片 id |
 | `options.history.contactUrl` | `string` | 必选 | 加载联系人 url |
 | `options.version` | `Object` | 可选 | 版本列表和预览配置 |
 | `options.version.loadHistoryUrl` | `string` | 必选 | 加载历史列表 url |
 | `options.version.loadVersionListUrl` | `string` | 必选 | 加载版本列表 url |
 | `options.version.revertVersionUrl` | `string` | 必选 | 还原版本记录 url |
-| `options.version.deleteVersionUrl` | `string` | 必选 | 删除版本记录 url |
-| `options.version.updateVersionUrl` | `string` | 必选 | 更新版本记录 url |
+| `options.version.deleteVersionUrl` | `string` | 必选 | 删除版本记录 url。 id: 当前版本 id |
+| `options.version.updateVersionUrl` | `string` | 必选 | 更新版本记录 url。 id: 当前版本 id  |
 | `options.version.snapshotUrl` | `string` | 必选 | 加载版本快照 url |
-| `options.version.loadStepsUrl` | `string` | 必选 | 还原版本记录 url |
+| `options.version.loadStepsUrl` | `string` | 必选 | 还原版本记录 url。from:起始碎片 id，to: 结束碎片 id |
 
 
 
