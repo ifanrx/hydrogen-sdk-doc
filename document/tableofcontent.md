@@ -10,7 +10,7 @@
   const Editor = shimo.sdk.document.Editor
   const TableOfContent = shimo.sdk.document.plugins.TableOfContent
   const editor = new Editor()
-  const tableofcontent = new TableOfContent({
+  const tableOfContent = new TableOfContent({
     editor,
     ...options
   })
@@ -29,16 +29,9 @@
 渲染初始化。
 
 * 返回 `undefined`
-* 用法 `tableofcontent.render(container)`
+* 用法 `tableOfContent.render(container)`
 * 参数
 
 | 名称                | 类型             | 默认值 | 描述                |
 | ------------------- | --------------- | ----- | ------------------ |
 | `container`         | `HTMLElement`   | 无     | 渲染容器     |
-
-## update
-
-更新目录。
-
-* 返回 `undefined`
-* 用法 `tableofcontent.update()`

@@ -41,7 +41,10 @@
 | `service.delete` | `string` | 可选 | 删除评论的接口 |
 | `service.close` | `string` | 可选 | 关闭评论的接口 |
 | `mentionable` | `boolean` | 可选 | 是否开启 @ 功能 |
-| `mentionData` | `{ fileId:string, teamId:number }` | 可选 | 开启 @ 功能之后, 该功能所需的参数数据 |
+| `mentionData` | `object` | 可选 | 开启 @ 功能之后, 该功能所需的参数数据 |
+| `mentionData.fileId` | `number` | 可选 | 文件id |
+| `mentionData.fileTeamId` | `number` | 可选 | 文件所在组id |
+| `mentionData.teamId` | `number` | 可选 | 用户所在组id |
 
 ## 方法列表
 
@@ -73,6 +76,6 @@ comment.on(Comment.events.ERROR, (err) => void)
 comment.on(Comment.events.CLOSE_GROUP, (selectionGuid:string) => void)
 // 创建一个评论
 comment.on(Comment.events.CREATED, (comment) => void)
-// 功能关闭后
+// 评论功能关闭后
 comment.on(Comment.events.CLOSE, () => void)
 ```

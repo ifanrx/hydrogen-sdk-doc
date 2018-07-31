@@ -220,7 +220,7 @@
 
 ### setLinespace
 
-设置对齐方式。
+设置行高。
 
 * 用法 `editor.editorActions.setLinespace(value)`
 * 参数

@@ -98,7 +98,7 @@ editor.getContent().then(content => {
 * 用法
 
   ```js
-    const events = Editor.Events
+    const events = Editor.events
     editor.on(events.CHANGE, handler)
   ```
 

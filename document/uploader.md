@@ -11,6 +11,8 @@
   const Uploader = shimo.sdk.document.plugins.Uploader
   const editor = new Editor()
   const uploader = new Uploader({
+    editor,
+    container: '#uploader',
     ...options
   })
   ```
