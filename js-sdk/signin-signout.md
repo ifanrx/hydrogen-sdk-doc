@@ -46,7 +46,7 @@ wx.BaaS.login(false).then(res => {
 <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
 ```
 
-用户点击该按钮时，会返回获取到的用户信息，其中包括加密的敏感信息，开发者需在回调中调用 `wx.BaaS.handleUserInfo` 方法，以获得解密后的全部用户信息。若要使用 SDK 的支付等接口，`wx.BaaS.handleUserInfo` 必须被调用。
+用户点击该按钮时，会返回获取到的用户信息，其中包括加密的敏感信息，开发者需在回调中调用 `wx.BaaS.handleUserInfo` 方法，以获得解密后的全部用户信息。
 
 **请求示例**
 
@@ -56,7 +56,6 @@ userInfoHandler(data) {
     // res 包含用户完整信息，详见下方描述
   }, res => {
     // **res 有两种情况**：用户拒绝授权，res 包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 Error 对象（详情见下方注解）
-    // *Tips*：如果你的业务需要用户必须授权才可进行，由于微信的限制，10 分钟内不可再次弹出授权窗口，此时可以调用 [`wx.openSetting`](https://mp.weixin.qq.com/debug/wxadoc/dev/api/setting.html) 要求用户提供授权
   })
 }
 ```
