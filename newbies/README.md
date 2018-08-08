@@ -64,7 +64,7 @@
 ```js
 "plugins": {
     "sdkPlugin": {
-      "version": "0.1.0",
+      "version": "1.5.0",
       "provider": "wxc6b86e382a1e3294"
  }
 }  
@@ -73,9 +73,9 @@
 
 ##### 在 app.js 文件中完成 SDK 的初始化
 
-通过初始化 [SDK](https://doc.minapp.com/downloadSDK/)，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 [SDK](https://doc.minapp.com/downloadSDK/) 提供的全部功能。
+通过初始化 [SDK](/js-sdk/download-sdk.md)，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 [SDK](/js-sdk/download-sdk.md) 提供的全部功能。
 
-在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](https://doc.minapp.com/downloadSDK/) 初始化:
+在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
 
 ```js
 // app.js
@@ -147,7 +147,7 @@ Page({
 
 {% content "SDKFileConfig" %}
 
-完成授权后，接下来用户需要进行服务器域名配置，以解锁小程序 [SDK](https://doc.minapp.com/downloadSDK/) 服务。
+完成授权后，接下来用户需要进行服务器域名配置，以解锁小程序 [SDK](/js-sdk/download-sdk.md) 服务。
 
 ![知晓云服务器域名](/images/newbies/hydrogen-domain-name.jpeg)
 
@@ -169,7 +169,7 @@ Page({
 
 ![开发者 ID](/images/newbies/developer-id.jpg)
 
-接下来，在 `app.js` 中引入 [SDK js 文件](https://doc.minapp.com/downloadSDK/)（ 如果使用**知晓云 SDK 小程序插件**则参考插件的[使用文档](/js-sdk/README.md#引入 SDK 并初始化) ）。
+接下来，在 `app.js` 中引入 [SDK js 文件](/js-sdk/download-sdk.md)（ 如果使用**知晓云 SDK 小程序插件**则参考插件的[使用文档](/js-sdk/README.md#引入 SDK 并初始化) ）。
 
 ```js
 // app.js
@@ -183,11 +183,11 @@ App({
 ```
 
 > **info**
-> 注意，请将下载到的 [SDK](https://doc.minapp.com/downloadSDK/) 对应的版本替换上述代码片段里的 `sdk-version`。
+> 注意，请将下载到的 [SDK](/js-sdk/download-sdk.md) 对应的版本替换上述代码片段里的 `sdk-version`。
 
-最后，通过初始化 [SDK](https://doc.minapp.com/downloadSDK/)，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 [SDK](https://doc.minapp.com/downloadSDK/) 提供的全部功能。
+最后，通过初始化 [SDK](/js-sdk/download-sdk.md)，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 [SDK](/js-sdk/download-sdk.md) 提供的全部功能。
 
-在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](https://doc.minapp.com/downloadSDK/) 初始化:
+在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
 
 ```js
 // app.js
