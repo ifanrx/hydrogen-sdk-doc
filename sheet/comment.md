@@ -61,3 +61,164 @@
 | `options.createCommentOptions.url` | `String` | 必选 | 新建评论 api url |
 | `options.createCommentOptions.method` | `POST` | 可选 | 新建评论 api method |
 
+## 方法列表
+
+### init
+
+初始化评论数据处理和列表实例
+
+* 返回 无
+* 用法 `comment.init()`
+* 参数 无
+
+## initModel
+
+初始化评论数据处理实例
+
+* 返回 `CommentModel`
+* 用法 `comment.initModel()`
+* 参数 无
+
+### 方法列表
+### query
+
+获取表格内评论列表
+
+* 返回 `Promise`
+* 用法 `comment.commentModel.query()`
+* 参数 无
+
+### start
+
+开始单元格评论，给单元格添加评论框
+
+* 返回 
+
+```
+result: {
+  message: 'message'
+  type: 'success' | 'error'
+}
+```
+
+* 用法 
+```
+comment.commentModel.start({
+  sheet: editor.spread.getActiveSheet().gcSheet,
+  row: 0, 
+  col: 0
+  })
+```
+* 参数
+
+|名称|类型|默认值|描述|
+| ------------------- | ------------- | ------ | ------------ |
+| `sheet`   | `gcSheet`      | 必选     | 开始评论的表格 |
+| `row`   | `Number`      | 必选     | 单元格所在行|
+| `col`   | `Number`      | 必选     | 单元格所在列 |
+
+### create
+
+添加单元格评论
+
+* 返回 `Promise`
+* 用法 
+```
+const commentId = comment.commentModel.genCommentId()
+comment.commentModel.create({
+  comment: {
+    selection_guid: 'comment-8aQPn06tRflVNoMR',
+    selectionGuid: 'comment-8aQPn06tRflVNoMR',
+    comment_guid: commentId,
+    commentGuid: commentId,
+    content: '这是一条评论',
+    created_at: new Date().toISOString(),
+    createdAt: new Date().toISOString(),
+    selection_title: editor.spread.getActiveSheet().gcSheet.guid() || '',
+    selectionTitle: editor.spread.getActiveSheet().gcSheet.guid() || '',
+    user_id: window.cow.currentUser.id,
+    userId:  window.cow.currentUser.id,
+  },
+  row: 0,
+  col: 0,
+  user: window.cow.currentUser
+})
+```
+* 参数
+
+|名称|类型|默认值|描述|
+| ------------------- | ------------- | ------ | ------------ |
+| `comment`   | `CommentItem`      | 必选     | 添加的单元格评论 |
+| `comment.selection_guid`   | `String`      | 可选     | 单元格评论列表 id |
+| `comment.comment_guid`   | `String`      | 可选     | 单元格评论 id |
+| `comment.content`   | `String`      | 必选     | 单元格评论内容 |
+| `comment.created_at`   | `String`      | 必选     | 单元格评论创建时间 |
+| `comment.selection_title`   | `String`      | 必选     | 当前表格 sheet id |
+| `comment.user_id`   | `String`      | 必选     | 当前用户 id |
+| `row`   | `Number`      | 必选     | 当前行 |
+| `col`   | `Number`      | 必选     | 当前列 |
+| `user`   | `Number`      | 必选     | 当前用户信息 |
+
+### delete
+
+删除单元格评论
+
+* 返回 `Promise`
+* 用法 `comment.commentModel.delete('eziY3FgYc2DUVouu')`
+* 参数
+
+|名称|类型|默认值|描述|
+| ------------------- | ------------- | ------ | ------------ |
+| `commentId`   | `String`      | 必选     | 删除单元格评论 id |
+
+### close
+
+结束单元格评论
+
+* 返回 `Promise`
+* 用法 
+```
+comment.commentModel.close({
+  sheet: editor.spread.getActiveSheet(),
+  row: 0,
+  col: 0
+})
+```
+
+* 参数
+
+|名称|类型|默认值|描述|
+| ------------------- | ------------- | ------ | ------------ |
+| `sheet`   | `Sheet`      | 必选     | 删除单元格评论 id |
+| `row`   | `Number`      | 必选     | 当前行 |
+| `col`   | `Number`      | 必选     | 当前列 |
+
+### cancel
+
+取消单元格评论，删除单元格评论样式
+
+* 返回 `void`
+* 用法 
+```
+comment.commentModel.cancel({
+  sheet: editor.spread.getActiveSheet(),
+  row: 0,
+  col: 0
+})
+```
+
+* 参数
+
+|名称|类型|默认值|描述|
+| ------------------- | ------------- | ------ | ------------ |
+| `sheet`   | `Sheet`      | 必选     | 当前表格 |
+| `row`   | `Number`      | 必选     | 当前行 |
+| `col`   | `Number`      | 必选     | 当前列 |
+
+### initList
+
+初始化评论列表实例
+
+* 返回 `CommentList`
+* 用法 `commentList = comment.initList()`
+* 参数 无
