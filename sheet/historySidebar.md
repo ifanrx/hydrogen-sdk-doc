@@ -21,6 +21,7 @@
         contactUrl: `/api/${guid}/contacts`
       },
       version: {
+        canManageVersionItem:  (window.cow.currentFile.permissions || {}).manageable,
         loadHistoryUrl: `/api/docsidebarinfo/${guid}`,
         loadVersionListUrl: `/api/files/${guid}/revisions`,
         revertVersionUrl: `/history/${guid}/revert`,
@@ -39,7 +40,7 @@
 | `options.editor` | `Editor` | 必选 | 编辑器实例 |
 | `options.container` | `HTMLElement` | 必选 | 侧边栏宿主容器 |
 | `options.guid` | `String` | 必选 | file 的 guid |
-| `options.currentUserId` | `Number` | 必选 | 当前用户 id |
+| `options.currentUserId` | `String` | 必选 | 当前用户 id |
 | `options.history` | `Object` | 可选 | 历史列表和预览配置 |
 | `options.history.loadHistoryUrl` | `string` | 必选 | 加载历史列表 url |
 | `options.history.revertUrl` | `string` | 必选 | 还原历史记录 url |
@@ -54,6 +55,7 @@
 | `options.version.updateVersionUrl` | `string` | 必选 | 更新版本记录 url。 id: 当前版本 id  |
 | `options.version.snapshotUrl` | `string` | 必选 | 加载版本快照 url |
 | `options.version.loadStepsUrl` | `string` | 必选 | 还原版本记录 url。from:起始碎片 id，to: 结束碎片 id |
+| `options.version.canManageVersionItem` | `boolean` | 可选 | 是否能编辑版本条目 |
 
 
 

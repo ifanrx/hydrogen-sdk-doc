@@ -73,7 +73,7 @@
 
 ### initModel
 
-初始化评论数据处理实例
+初始化评论数据处理实例, 该实例可操作评论 changeset, 请求评论数据，修改评论框样式，绑定／触发自定义事件
 
 * 返回 `CommentModel`
 * 用法 `comment.initModel()`
@@ -81,15 +81,19 @@
 
 #### query
 
-获取表格内评论列表
+获取表格内评论列表. 将触发 loadComments 事件
 
 * 返回 `Promise`
-* 用法 `comment.commentModel.query()`
+* 用法 
+```
+  comment.commentModel.query()
+  comment.commentModel.on('loadComments', (commentList) => {})
+```
 * 参数 无
 
 #### start
 
-开始单元格评论，给单元格添加评论框
+开始单元格评论，给单元格添加评论框, 将触发 startComment 事件
 
 * 返回 
 
@@ -107,6 +111,11 @@ comment.commentModel.start({
   row: 0, 
   col: 0
   })
+comment.commentModel.on('startComment', ({
+  cell: {row, col},
+  commentList, // 当前评论列表
+  cellComment // 当前单元格评论
+}) => {})
 ```
 * 参数
 
@@ -143,6 +152,7 @@ comment.commentModel.create({
   user: window.cow.currentUser
 })
 ```
+
 * 参数
 
 |名称|类型|默认值|描述|
@@ -213,6 +223,14 @@ comment.commentModel.cancel({
 | `sheet`   | `Sheet`      | 必选     | 当前表格 |
 | `row`   | `Number`      | 必选     | 当前行 |
 | `col`   | `Number`      | 必选     | 当前列 |
+
+#### 自定义事件 updateComment
+
+当评论列表发生变化时发生此事件，可监听此事件获取最新评论列表
+* 用法
+```
+comment.commentModel.on('updateComment', (commentList) => {})
+```
 
 ### initList
 
