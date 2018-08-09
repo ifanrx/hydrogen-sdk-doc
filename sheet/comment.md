@@ -71,7 +71,7 @@
 * 用法 `comment.init()`
 * 参数 无
 
-## initModel
+### initModel
 
 初始化评论数据处理实例
 
@@ -79,8 +79,7 @@
 * 用法 `comment.initModel()`
 * 参数 无
 
-### 方法列表
-### query
+#### query
 
 获取表格内评论列表
 
@@ -88,7 +87,7 @@
 * 用法 `comment.commentModel.query()`
 * 参数 无
 
-### start
+#### start
 
 开始单元格评论，给单元格添加评论框
 
@@ -117,7 +116,7 @@ comment.commentModel.start({
 | `row`   | `Number`      | 必选     | 单元格所在行|
 | `col`   | `Number`      | 必选     | 单元格所在列 |
 
-### create
+#### create
 
 添加单元格评论
 
@@ -150,7 +149,7 @@ comment.commentModel.create({
 | ------------------- | ------------- | ------ | ------------ |
 | `comment`   | `CommentItem`      | 必选     | 添加的单元格评论 |
 | `comment.selection_guid`   | `String`      | 可选     | 单元格评论列表 id |
-| `comment.comment_guid`   | `String`      | 可选     | 单元格评论 id |
+| `comment.comment_guid`   | `String`      | 必选     | 单元格评论 id |
 | `comment.content`   | `String`      | 必选     | 单元格评论内容 |
 | `comment.created_at`   | `String`      | 必选     | 单元格评论创建时间 |
 | `comment.selection_title`   | `String`      | 必选     | 当前表格 sheet id |
@@ -159,7 +158,7 @@ comment.commentModel.create({
 | `col`   | `Number`      | 必选     | 当前列 |
 | `user`   | `Number`      | 必选     | 当前用户信息 |
 
-### delete
+#### delete
 
 删除单元格评论
 
@@ -171,7 +170,7 @@ comment.commentModel.create({
 | ------------------- | ------------- | ------ | ------------ |
 | `commentId`   | `String`      | 必选     | 删除单元格评论 id |
 
-### close
+#### close
 
 结束单元格评论
 
@@ -189,11 +188,11 @@ comment.commentModel.close({
 
 |名称|类型|默认值|描述|
 | ------------------- | ------------- | ------ | ------------ |
-| `sheet`   | `Sheet`      | 必选     | 删除单元格评论 id |
+| `sheet`   | `Sheet`      | 必选     | 当前表格 |
 | `row`   | `Number`      | 必选     | 当前行 |
 | `col`   | `Number`      | 必选     | 当前列 |
 
-### cancel
+#### cancel
 
 取消单元格评论，删除单元格评论样式
 
