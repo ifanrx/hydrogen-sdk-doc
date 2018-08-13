@@ -195,6 +195,46 @@ order.set('date', 'abc')
 order.update()
 ```
 
+#### 更新 object 类型内的字段
+```javascript
+product.patchObject('obj1', {name: '123'})
+```
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-  | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Object |
+| value | Object              | 是  | 更新的对象 |
+
+> **info**
+> 该操作的效果类似 Object.assign(), 是浅合并，也就是只合并第一层，嵌套的字段仍然是被替换。
+
+**请求示例**
+假设数据表 Product 中有数据行如下
+```javascript
+{
+  id: "7",
+  obj1: {a: [1, 2, 3], b: 666, c: {age: 100}}
+}
+```
+
+```javascript
+let record = Product.getWithoutData('7')
+
+let patch = {a: [222], b: 555, d: 888}
+record.patchObject('obj1', patch)
+
+```
+执行结果
+
+```javascript
+{
+  id: '7',
+  obj1: {a: [222], b: 555, c: {age: 100}, d: 888}
+}
+```
+
 ### 批量更新数据项
 
 SDK 1.4.0 及以上版本支持批量更新数据项。可以通过设置查询条件，将符合条件的数据进行批量更新操作。

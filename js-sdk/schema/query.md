@@ -6,6 +6,20 @@
 
 ## SDK 1.1.0 及以上版本
 
+### 数据类型对应查询操作符表
+
+| 数据类型 |                            可使用的查询操作                                                | 说明 |
+|:---------|:--------------------------------------------------------------------------------------- |:------|
+| string   | =, in, notIn, !=, isNull, isNotNull, matches, exists, notExists                       |      |
+| integer  | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                        |      |
+| number   | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                        |      |
+| array    | =, in, notIn, isNull, isNotNull, arrayContains, exists, notExists                                  |      |
+| boolean  | =, exists, notExists, isNull, isNotNull                                                                    |      |
+| date     | =, >, >=, <, <=,  exists, notExists, isNull, isNotNull                                               |      |
+| file     | isNull, isNotNull, exists, notExists                                                               |      |
+| geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                                        | [请参考地理位置查询](geo.md)      |
+| object   | =, hasKey, isNull, isNotNull, exists, notExists                                                    |      |
+
 ### 操作步骤
 
 1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
@@ -225,6 +239,57 @@ query.exists(['name', 'price'])
 
 query.notExists('name')
 query.notExists(['name', 'price'])
+```
+
+### hasKey 查询 （仅限 object 类型）
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-  | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Object |
+| value | String              | 是  | 需要检测的字段 |
+
+**示例代码**
+
+假设数据表有如下数据行，我们
+```javascript
+[
+  {
+    'id': '59a3c2b5afb7766a5ec6e84e',
+    name: '战争与和平',
+    publisherInfo: {
+      name: 'abc出版社',
+    },
+  },
+  {
+    'id': '59a3c2b5afb7766a5ec6e84g',
+    name: '西游记',
+    publisherInfo: {
+      name: 'efg出版社',
+      location: '广东省广州市天河区五山路 100 号'
+    },
+  },
+]
+```
+
+查询 publisherInfo 中存在 location 字段的数据行
+```js
+query.hasKey('publisherInfo', 'location')
+```
+
+查询结果
+```javascript
+[
+  {
+      'id': '59a3c2b5afb7766a5ec6e84g',
+      name: '西游记',
+      publisherInfo: {
+        name: 'efg出版社',
+        location: '广东省广州市天河区五山路 100 号'
+      },
+  }
+]
 ```
 
 ### 组合查询
