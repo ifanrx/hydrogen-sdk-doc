@@ -14,7 +14,7 @@ const player = editor.player
 
   传入 slideId 表示从特定的幻灯片开始播放，不传表示从第一张幻灯片开始播；
   传入 controllable 表示可以控制播放行为；
-  传入 fullscreenPlay 表示全屏播放，否则全页面播放。
+  传入 fullScreenPlay 表示全屏播放，否则全页面播放。
 
   * 参数
 
@@ -22,12 +22,12 @@ const player = editor.player
   | -- | -- | -- | -- | -- |
   |`slideId`|`string`|-|slide的Id|可选|
   | `controllable`|`boolean`|true|是否受控|可选|
-  | `fullscreenPlay`|`boolean`|true|是否全屏播放|可选|
+  | `fullScreenPlay`|`boolean`|true|是否全屏播放|可选|
 
   * 返回值 void
-  * 用法 play(slideId?, controllable?, fullscreenPlay?)
+  * 用法 play(slideId?, controllable?, fullScreenPlay?)
 
-### fullscreenPlay
+### fullScreenPlay
   全屏播放幻灯片。
 
   传入 slideId 表示从特定的幻灯片开始播放，不传表示从第一张幻灯片开始播，
@@ -41,9 +41,9 @@ const player = editor.player
   | `controllable`|`boolean`|true|是否受控|可选|
 
   * 返回值 void
-  * 用法 fullscreenPlay(slideId?, controllable?)
+  * 用法 fullScreenPlay(slideId?, controllable?)
 
-### fullpagePlay
+### fullPagePlay
   全页面播放幻灯片。
 
   传入 slideId 表示从特定的幻灯片开始播放，不传表示从第一张幻灯片开始播，
@@ -84,50 +84,65 @@ const player = editor.player
   跳转至第 `index` 张幻灯片，以开始播放时的幻灯片顺序为准，跳转过程中无动画切换效
 
   * 参数 `index`
-  * 返回值 void
+  * 返回值 `void`
   * 用法 jumpTo()
 
 ### isPlaying
   获取当前是否在播
 
   * 参数
-  * 返回值 boolean
+  * 返回值 `boolean`
   * 用法 isPlaying()
 
-### destroy
-  播放器销毁
+### isFullScreen
+  获取当前是否为全屏状态
 
   * 参数
-  * 返回值 void
+  * 返回值 `boolean`
+  * 用法 isFullScreen()
+
+### hasNext
+  获取是否还有未播放的 slide
+
+  * 参数
+  * 返回值 `boolean`
+  * 用法 hasNext()
+
+### destroy
+  销毁播放器实例
+
+  * 参数
+  * 返回值 `void`
   * 用法 destroy()
 
 ### requestFullScreen
   请求浏览器全屏
 
   * 参数
-  * 返回值 void
+  * 返回值 `void`
   * 用法 requestFullScreen()
 
 ### quitFullScreen
   退出浏览器全屏
 
   * 参数
-  * 返回值 void
+  * 返回值 `void`
   * 用法 quitFullScreen()
 
 ### setFullPage
   设置为全页面播放效果
 
   * 参数
-  * 返回值 void
+  * 返回值 `void`
   * 用法 setFullPage()
 
 ### quitFullPage
   退出全页面播放效果
 
   * 参数
-  * 返回值 void
+  * 返回值 `void`
   * 用法 quitFullPage()
+
 
 ### 示例
 ```javascript
