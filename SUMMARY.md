@@ -24,7 +24,7 @@
 ---
 
 * [表格](sheet/readme.md)
-  - 编辑器
+  * 编辑器
     * [编辑器](sheet/editor/editor.md)
     * [工作簿](sheet/editor/spread.md)
     * [工作表](sheet/editor/sheet.md)
