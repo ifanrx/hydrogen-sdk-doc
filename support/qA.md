@@ -7,4 +7,5 @@
 * [通过 URL 对图片进行裁剪缩放等操作](http://support.minapp.com/hc/kb/article/1082737/) 
 * [ Date 格式参数设置](http://support.minapp.com/hc/kb/article/1085622/?from=draft) 
 * [ ACL 权限管理](http://support.minapp.com/hc/kb/article/1057870/) 
+* [ 更多 ](http://support.minapp.com/hc/kb/section/1021239/) 
 

@@ -175,6 +175,19 @@
     </li>
     <li>
       <h3>
+        <a href="/support/practice/README.md/">实战教程</a>
+      </h3>
+      <ul class="doc-support doc-detail-item">
+        <li>
+          <a href="/support/practice/trigger.md/"> 触发器实战教程</a>
+        </li>
+        <li>
+          <a href="https://minapp.com/article/?category=cloud"> 更多实战教程</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <h3>
         <a href="/support/README.md/">管理与支持</a>
       </h3>
       <ul class="doc-support doc-detail-item">
@@ -184,12 +197,10 @@
         <li>
           <a href="/support/terms.md/">服务协议</a>
         </li>
+        <li>
+          <a href="/support/technical-notes.md/">技术细节</a>
+        </li>
       </ul>
     </li>
-    <li>
-      <h3>
-        <a href="/technical-notes.md/">技术细节</a>
-      </h3>
-   </li>
    </ul>
 </div>

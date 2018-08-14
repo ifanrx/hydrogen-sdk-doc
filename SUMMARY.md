@@ -124,7 +124,6 @@
 * [管理与支持](support/README.md)
     * [常见问题](support/qA.md)
     * [服务协议](support/terms.md)
-    * [实战教程](support/practice/README.md)
-        * [触发器实战教程](support/practice/trigger.md)
-
+* [实战教程](support/practice/README.md)
+    * [触发器实战教程](support/practice/trigger.md)
 * [技术细节](technical-notes.md)
