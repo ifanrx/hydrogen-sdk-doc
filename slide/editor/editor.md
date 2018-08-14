@@ -7,14 +7,14 @@
 * 用法
 
   ```js
-    new shimo.sdk.slide.Editor(params)
+    new shimo.sdk.slide.Editor(options)
   ```
 
 * 参数
 
 |名称|类型|默认值|描述|
 | -- | -- | -- | -- |
-| `params.file` | `string` | `9:8!5@P0$0$` |设置幻灯片初始化渲染数据|
+| `options.file` | `string` | `9:8!5@P0$0$` |设置幻灯片初始化渲染数据|
 
 ## 属性列表
 
@@ -27,8 +27,8 @@
 | `currentSlide.attributes` | `Object` |当前选中幻灯片的属性|
 | `currentElements` | `currentElement[]` |当前选中元素列表|
 | `currentElement.elementId` | `string` |元素 id|
-| `currentElement.type` | `'text' | 'image' | 'shape'` |元素类型|
-| `currentElement.focusState` | `'unfocused' | 'focused' | 'content_focused'` |元素选中状态(未选中|选中边框|选中内容)|
+| `currentElement.type` | `'text'`,`'image'`,`'shape'` |元素类型|
+| `currentElement.focusState` | `'unfocused'`,`'focused'`,`'content_focused'` |元素选中状态(未选中|选中边框|选中内容)|
 | `currentElement.isPlaceholder` | `boolean` |元素是否是占位符|
 | `currentElement.data` | `Object` |元素数据|
 | `currentElement.attributes` | `Object` |元素属性|
@@ -54,8 +54,8 @@
 | `container` | `HTMLElement` | 无 |幻灯片渲染容器|
 | `options` | `Object` | 无 |渲染配置项|
 | `options.editable` | `boolean` | true |是否可编辑|
-| `options.scope` | `'slides' | 'layouts'` | `'slides'` |渲染范围|
-| `options.slide` | `string | number` | 0 |渲染的幻灯片 id 或序号|
+| `options.scope` | `'slides'`,`'layouts'` | `'slides'` |渲染范围|
+| `options.slide` | `string / number` | 0 |渲染的幻灯片 id 或序号|
 | `options.scalable` | `boolean` | true |是否支持双指缩放|
 | `options.reactive` | `boolean` | true |是否支持实时更新|
 | `options.placeholder` | `boolean` | false |占位符内容是否显示|
@@ -94,17 +94,6 @@
 |名称|类型|默认值|描述|
 | -- | -- | -- | -- |
 | `content` | `String` | 无 |幻灯片内容|
-
-### setLayout
-  设置幻灯片模板。
-
-  * 返回 `Delta`
-  * 用法 `setLayout(content)`
-  * 参数
-
-|名称|类型|默认值|描述|
-| -- | -- | -- | -- |
-| `content` | `string | 无 | PresentationPlainObjects` | 无 |幻灯片模板数据|
 
 ### registerPlugin
   注册插件。
@@ -154,15 +143,16 @@
 | `layoutId` | `string` | 无 |幻灯片模板 id|
 
 ### addSlide
-  新建幻灯片。
+  新建或复制粘贴幻灯片。
 
   * 返回 `Delta`
-  * 用法 `addSlide({ layoutId, slide: { attributes }, order })`
+  * 用法 `addSlide({ layoutId, slideId, slide: { attributes }, order })`
   * 参数
 
 |名称|类型|默认值|描述|必选/可选|
 | -- | -- | -- | -- | -- |
 | `layoutId` | `string` | 无 |幻灯片模板 id|可选|
+| `slideId` | `string` | 无 |被粘贴的 slide 的 id|可选|
 | `slide.attributes` | `Object` | 无 |新建幻灯片的属性（如背景颜色等）|可选|
 | `order` | `number` | 幻灯片个数 - 1 |新建幻灯片的位置|可选|
 
@@ -211,7 +201,7 @@
 |名称|类型|默认值|描述|必选/可选|
 | -- | -- | -- | -- | -- |
 | `elements` | `element[]` | 无 | 批量新建的元素信息|必选|
-| `element.elementType` | `'text' | 'image' | 'shape'` | `text` |幻灯片元素类型|可选|
+| `element.elementType` | `'text'`,`'image'`,`'shape'` | `'text'` |幻灯片元素类型|可选|
 | `element.data` | `string` | 无 |新建元素的数据（如文字内容、图片地址等）|可选|
 | `element.attributes` | `Object` | 无 |新建元素的属性（如长度、宽度等）|可选|
 
@@ -313,7 +303,7 @@
 |名称|类型|默认值|描述|必选/可选|
 | -- | -- | -- | -- | -- |
 | `slideTransition` | `Editor.slideTransition` | 无 | 转场效果常量 |必选|
-| `slideIds` | `Array<string>` | 无 | 如果提供此参数，则改变特定的 slide 的转场效果；如果不提供此参数，则全局应用转场效果 |可选|
+| `slideIds` | `string[]` | 无 | 如果提供此参数，则改变特定的 slide 的转场效果；如果不提供此参数，则全局应用转场效果 |可选|
 
 ## 事件列表
 
@@ -339,14 +329,14 @@
 ### SLIDES_CHANGE
   幻灯片数据变化。
 
-  * 回调方法签名 `handler(action, slides, all)`
+  * 回调方法签名 `handler(slides, all)`
   * 参数
 
 |名称|类型|默认值|描述|
 | -- | -- | -- | -- |
-| `action` | `string` | 无 | 引起变化的动作类型（如新增、修改和删除） |
 | `slides` | `slideInfo[]` | 无 | 变化的幻灯片信息 |
 | `slideInfo.id` | `string` | 无 | 变化的幻灯片 id |
+| `slideInfo.action` | `'insert'`,`'update'`,`'delete'` | 无 | 幻灯片增加/更新/删除动作 |
 | `all` | `item[]` | 无 | 变化后所有幻灯片信息 |
 | `item.id` | `string` | 无 | 变化后的幻灯片 id |
 | `item.order` | `number` | 无 | 变化后的幻灯片显示顺序 |
@@ -362,8 +352,8 @@
 | `action` | `string` | 无 | 引起变化的动作类型（如新增、修改和删除） |
 | `elements` | `element[]` | 无 | 变化的元素信息 |
 | `element.elementId` | `string` |元素 id|
-| `element.type` | `'text' | 'image' | 'shape'` |元素类型|
-| `element.focusState` | `'unfocused' | 'focused' | 'content_focused'` |元素选中状态|
+| `element.type` | `'text'`,`'image'`,`'shape'` |元素类型|
+| `element.focusState` | `'unfocused'`, `'focused'`, `'content_focused'` |元素选中状态|
 | `element.isPlaceholder` | `boolean` |元素是否是占位符|
 | `element.data` | `Object` |元素数据|
 | `element.attributes` | `Object` |元素属性|
@@ -407,8 +397,8 @@
 | -- | -- | -- | -- |
 | `selectedElements` | `element[]` | 无 | 选中的元素信息 |
 | `element.elementId` | `string` |元素 id|
-| `element.type` | `'text' | 'image' | 'shape'` |元素类型|
-| `element.focusState` | `'unfocused' | 'focused' | 'content_focused'` |元素选中状态|
+| `element.type` | `'text'`,`'image'`,`'shape'` |元素类型|
+| `element.focusState` | `'unfocused'`,`'focused'`,`'content_focused'` |元素选中状态|
 | `element.isPlaceholder` | `boolean` |元素是否是占位符|
 | `element.data` | `Object` |元素数据|
 | `element.attributes` | `Object` |元素属性|
@@ -427,8 +417,8 @@
 | -- | -- | -- | -- |
 | `selectedElements` | `element[]` | 无 | 选中的元素信息 |
 | `element.elementId` | `string` |元素 id|
-| `element.type` | `'text' | 'image' | 'shape'` |元素类型|
-| `element.focusState` | `'unfocused' | 'focused' | 'content_focused'` |元素选中状态|
+| `element.type` | `'text'`,`'image'`,`'shape'` |元素类型|
+| `element.focusState` | `'unfocused'`,`'focused'`,`'content_focused'` |元素选中状态|
 | `element.isPlaceholder` | `boolean` |元素是否是占位符|
 | `element.data` | `Object` |元素数据|
 | `element.attributes` | `Object` |元素属性|
@@ -447,8 +437,8 @@
 | -- | -- | -- | -- |
 | `selectedElements` | `element[]` | 无 | 选中的元素信息 |
 | `element.elementId` | `string` |元素 id|
-| `element.type` | `'text' | 'image' | 'shape'` |元素类型|
-| `element.focusState` | `'unfocused' | 'focused' | 'content_focused'` |元素选中状态|
+| `element.type` | `'text'`,`'image'`,`'shape'` |元素类型|
+| `element.focusState` | `'unfocused'`,`'focused'`,`'content_focused'` |元素选中状态|
 | `element.isPlaceholder` | `boolean` |元素是否是占位符|
 | `element.data` | `Object` |元素数据|
 | `element.attributes` | `Object` |元素属性|
@@ -521,8 +511,8 @@
 | `offsetY` | `number` | 无 | 横轴方向的鼠标偏移量 |
 | `elements` | `element[]` | 无 | 选中的元素信息 |
 | `element.elementId` | `string` |元素 id|
-| `element.type` | `'text' | 'image' | 'shape'` |元素类型|
-| `element.focusState` | `'unfocused' | 'focused' | 'content_focused'` |元素选中状态|
+| `element.type` | `'text'`,`'image'`,`'shape'` |元素类型|
+| `element.focusState` | `'unfocused'`,`'focused'`,`'content_focused'` |元素选中状态|
 | `element.isPlaceholder` | `boolean` |元素是否是占位符|
 | `element.data` | `Object` |元素数据|
 | `element.attributes` | `Object` |元素属性|
