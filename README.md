@@ -58,7 +58,7 @@
     </li>
     <li>
       <h3>
-        <a href="/js-sdk/">JS SDK</a>
+        <a href="/js-sdk/README.md">JS SDK</a>
       </h3>
       <ul class="doc-js-sdk doc-detail-item">
         <li>
