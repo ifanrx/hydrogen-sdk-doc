@@ -273,7 +273,7 @@ query.notExists(['name', 'price'])
 ]
 ```
 
-查询字段 publisherInfo 中存在 location 字段的数据行
+查询字段 publisherInfo 中存在 location 属性的数据行
 ```js
 query.hasKey('publisherInfo', 'location')
 ```
