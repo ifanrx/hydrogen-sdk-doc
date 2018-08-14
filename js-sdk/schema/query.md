@@ -252,7 +252,7 @@ query.notExists(['name', 'price'])
 
 **示例代码**
 
-假设数据表有如下数据行，我们
+假设数据表有如下数据行
 ```javascript
 [
   {
@@ -273,7 +273,7 @@ query.notExists(['name', 'price'])
 ]
 ```
 
-查询 publisherInfo 中存在 location 字段的数据行
+查询字段 publisherInfo 中存在 location 字段的数据行
 ```js
 query.hasKey('publisherInfo', 'location')
 ```
