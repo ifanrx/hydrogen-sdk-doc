@@ -80,7 +80,7 @@ const player = editor.player
 ### jumpTo
   跳转至第 `index` 张幻灯片，以开始播放时的幻灯片顺序为准，跳转过程中无动画切换效
 
-  * 参数 `index
+  * 参数 `index`
   * 返回值 void
   * 用法 jumpTo()
 
@@ -98,19 +98,19 @@ const player = editor.player
   * 返回值 void
   * 用法 destroy()
 
-### requestFullscreen
+### requestFullScreen
   请求浏览器全屏
 
   * 参数
   * 返回值 void
-  * 用法 requestFullscreen()
+  * 用法 requestFullScreen()
 
-### quitFullscreen
+### quitFullScreen
   退出浏览器全屏
 
   * 参数
   * 返回值 void
-  * 用法 quitFullscreen()
+  * 用法 quitFullScreen()
 
 ### setFullPage
   设置为全页面播放效果
@@ -119,12 +119,12 @@ const player = editor.player
   * 返回值 void
   * 用法 setFullPage()
 
-### quitFullpage
+### quitFullPage
   退出全页面播放效果
 
   * 参数
   * 返回值 void
-  * 用法 quitFullpage()
+  * 用法 quitFullPage()
 
 ### 示例
 ```javascript
