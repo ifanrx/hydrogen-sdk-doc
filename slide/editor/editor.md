@@ -327,7 +327,8 @@
 | `options.isExternal` | `Boolean` | 无 | 数据变化是否来自后端 |
 
 ### SLIDES_CHANGE
-  幻灯片数据变化。
+  幻灯片页数据变化。
+  注意：幻灯片页上的元素增加/更新/删除时，该事件不会被触发。
 
   * 回调方法签名 `handler(slides, all)`
   * 参数
