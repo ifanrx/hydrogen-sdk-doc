@@ -28,7 +28,7 @@
 | `currentElements` | `currentElement[]` |当前选中元素列表|
 | `currentElement.elementId` | `string` |元素 id|
 | `currentElement.type` | `'text'`,`'image'`,`'shape'` |元素类型|
-| `currentElement.focusState` | `'unfocused'`,`'focused'`,`'content_focused'` |元素选中状态(未选中|选中边框|选中内容)|
+| `currentElement.focusState` | `'unfocused'`,`'focused'`,`'content_focused'` |元素选中状态(未选中/选中边框/选中内容)|
 | `currentElement.isPlaceholder` | `boolean` |元素是否是占位符|
 | `currentElement.data` | `Object` |元素数据|
 | `currentElement.attributes` | `Object` |元素属性|
