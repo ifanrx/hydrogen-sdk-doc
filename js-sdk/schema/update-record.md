@@ -195,7 +195,7 @@ order.set('date', 'abc')
 order.update()
 ```
 
-#### 更新 object 类型内的字段
+#### 更新 object 类型内的属性
 ```javascript
 product.patchObject('obj1', {name: '123'})
 ```
@@ -208,15 +208,15 @@ product.patchObject('obj1', {name: '123'})
 | value | Object              | 是  | 更新的对象 |
 
 > **info**
-> 该操作的效果类似 Object.assign(), 是浅合并，也就是只合并第一层，嵌套的字段仍然是被替换。
+> 该操作的效果类似 Object.assign(), 是浅合并，也就是只合并第一层，嵌套的属性仍然是被替换。
 
 **请求示例**
 假设数据表 Product 中有数据行如下
 ```javascript
-{
-  id: "7",
-  obj1: {a: [1, 2, 3], b: 666, c: {age: 100}}
-}
+[{
+   id: "7",
+   obj1: {a: [1, 2, 3], b: 666, c: {age: 100}}
+}]
 ```
 
 ```javascript
@@ -229,10 +229,12 @@ record.patchObject('obj1', patch)
 执行结果
 
 ```javascript
-{
-  id: '7',
-  obj1: {a: [222], b: 555, c: {age: 100}, d: 888}
-}
+[
+  {
+    id: '7',
+    obj1: {a: [222], b: 555, c: {age: 100}, d: 888}
+  }
+]
 ```
 
 ### 批量更新数据项

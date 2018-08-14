@@ -248,7 +248,7 @@ query.notExists(['name', 'price'])
 | 参数   | 类型                | 必填 | 说明 |
 | :---- | :------------------ | :-  | :-- |
 | key   | String              | 是  | 在数据表中的类型必须是 Object |
-| value | String              | 是  | 需要检测的字段 |
+| value | String              | 是  | 需要检测的属性 |
 
 **示例代码**
 
