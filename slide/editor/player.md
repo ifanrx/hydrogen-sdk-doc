@@ -11,8 +11,9 @@ const player = editor.player
 
 ### play
   播放幻灯片。
-  传入 slideId 表示从特定的幻灯片开始播放，不传表示从第一张幻灯片开始播。
-  传入 controllable 表示可以控制播放行为。
+
+  传入 slideId 表示从特定的幻灯片开始播放，不传表示从第一张幻灯片开始播；
+  传入 controllable 表示可以控制播放行为；
   传入 fullscreenPlay 表示全屏播放，否则全页面播放。
 
   * 参数
@@ -28,7 +29,8 @@ const player = editor.player
 
 ### fullscreenPlay
   全屏播放幻灯片。
-  传入 slideId 表示从特定的幻灯片开始播放，不传表示从第一张幻灯片开始播
+
+  传入 slideId 表示从特定的幻灯片开始播放，不传表示从第一张幻灯片开始播，
   传入 controllable 表示可以控制播放行为。
 
   * 参数
@@ -43,7 +45,8 @@ const player = editor.player
 
 ### fullpagePlay
   全页面播放幻灯片。
-  传入 slideId 表示从特定的幻灯片开始播放，不传表示从第一张幻灯片开始播
+
+  传入 slideId 表示从特定的幻灯片开始播放，不传表示从第一张幻灯片开始播，
   传入 controllable 表示可以控制播放行为。
 
   * 参数
