@@ -248,7 +248,7 @@ query.notExists(['name', 'price'])
 | 参数   | 类型                | 必填 | 说明 |
 | :---- | :------------------ | :-  | :-- |
 | key   | String              | 是  | 在数据表中的类型必须是 Object |
-| value | String              | 是  | 需要检测的属性 |
+| value | String              | 是  | 需要检测的属性名, 只能包含字母、数字和下划线，必须以字母开头 |
 
 **示例代码**
 
@@ -290,6 +290,30 @@ query.hasKey('publisherInfo', 'location')
       },
   }
 ]
+```
+
+注意：目前暂不支持查询内嵌属性
+
+假设数据行如下
+```javascript
+[
+  {
+      'id': '59a3c2b5afb7766a5ec6e84g',
+      name: '西游记',
+      publisherInfo: {
+        abc: {
+          name: 'efg出版社',
+          location: '广东省广州市天河区五山路 100 号'
+        }
+      },
+  }
+]
+```
+
+则下面的查询语句是非法的
+
+```js
+query.hasKey('publisherInfo', 'abc.location')
 ```
 
 ### 组合查询
