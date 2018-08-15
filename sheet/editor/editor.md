@@ -4,25 +4,26 @@
 
 ## 构造函数
 
-* 用法
+- 用法
 
   ```js
-  new shimo.sdk.sheet.Editor()
-  new shimo.sdk.sheet.Editor(options)
+  new shimo.sdk.sheet.Editor();
+  new shimo.sdk.sheet.Editor(options);
   ```
 
-* 参数
+- 参数
 
-| 名称               | 类型      | 默认值  | 描述             |
-| ------------------ | --------- | ------- | ---------------- |
-| `options.editable` | `Boolean` | `true` | 设置表格是否只读 |
-| `options.commentable` | `Boolean` | `true` | 是否允许单元格评论 |
-| `options.uploadConfig` | `Object` | 可选 | 上传图片配置 |
-| `options.uploadConfig.origin` | `String` | 必选 | 上传服务的地址 |
-| `options.uploadConfig.server` | `String` | 必选 | 存储服务类型, eg, 'qinniu', 'aws' |
-| `options.uploadConfig.token` | `String` | 必选 | 上传服务鉴权秘钥 |
-| `options.downloadConfig` | `Object` | 可选 | 下载图片配置 |
-| `options.downloadConfig.origin` | `String` | 必选 | 下载服务的地址 |
+| 名称                                | 类型      | 默认值 | 描述                              |
+| ----------------------------------- | --------- | ------ | --------------------------------- |
+| `options.editable`                  | `Boolean` | `true` | 设置表格是否只读                  |
+| `options.commentable`               | `Boolean` | `true` | 是否允许单元格评论                |
+| `options.disableRenderOptimization` | `Boolean` | `true` | 是否禁用表格渲染优化              |
+| `options.uploadConfig`              | `Object`  | 可选   | 上传图片配置                      |
+| `options.uploadConfig.origin`       | `String`  | 必选   | 上传服务的地址                    |
+| `options.uploadConfig.server`       | `String`  | 必选   | 存储服务类型, eg, 'qinniu', 'aws' |
+| `options.uploadConfig.token`        | `String`  | 必选   | 上传服务鉴权秘钥                  |
+| `options.downloadConfig`            | `Object`  | 可选   | 下载图片配置                      |
+| `options.downloadConfig.origin`     | `String`  | 必选   | 下载服务的地址                    |
 
 ## 属性列表
 
@@ -37,9 +38,9 @@
 
 渲染表格。
 
-* 返回 `undefined`
-* 用法 `render(options)`
-* 参数
+- 返回 `undefined`
+- 用法 `render(options)`
+- 参数
 
 | 名称                | 类型          | 默认值 | 描述         |
 | ------------------- | ------------- | ------ | ------------ |
@@ -50,22 +51,22 @@
 
 获取表格内容。
 
-* 返回 `Promise<string>`
-* 用法
+- 返回 `Promise<string>`
+- 用法
 
 ```js
 editor.getContent().then(function(content) {
-  console.log(content)
-})
+  console.log(content);
+});
 ```
 
 ### setContent
 
 设置表格内容。
 
-* 返回 `undefined`
-* 用法 `setContent(content, activeSheetId)`
-* 参数
+- 返回 `undefined`
+- 用法 `setContent(content, activeSheetId)`
+- 参数
 
 | 名称            | 类型     | 默认值 | 描述                      |
 | --------------- | -------- | ------ | ------------------------- |
@@ -76,36 +77,36 @@ editor.getContent().then(function(content) {
 
 销毁表格编辑器实例。
 
-* 返回 `undefined`
-* 用法 `destroy()`
-* 参数
+- 返回 `undefined`
+- 用法 `destroy()`
+- 参数
 
 ### undo
 
 撤销上一步操作。
 
-* 返回 `Promise<undefined>`
-* 用法
+- 返回 `Promise<undefined>`
+- 用法
 
 ```js
 editor.undo().then(function() {
-  console.log("undo successed!")
-})
+  console.log("undo successed!");
+});
 ```
 
-* 参数
+- 参数
 
 ### redo
 
 重新应用上一步操作。
 
-* 返回 `Promise<undefined>`
-* 用法
+- 返回 `Promise<undefined>`
+- 用法
 
 ```js
 editor.redo().then(function() {
-  console.log("redo successed!")
-})
+  console.log("redo successed!");
+});
 ```
 
-* 参数
+- 参数
