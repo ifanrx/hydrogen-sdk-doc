@@ -178,7 +178,9 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIn0.FGhYH5IF-PkNV8b4SNh-1WK
 当操作为**更新**或者**删除**时，需要配置查询条件，筛选出指定的数据行。数据表查询条件相关文档请[参考这里](schema.md)
 
 > **info**
->注：此处的查询条件中也可以输入模板变量
+> 注：此处的查询条件中也可以输入模板变量
+
+> 若使用类型为 object 的模板变量来进行赋值，则被赋值的字段必须为 string 类型。例如：在动作中将 {{obj.field}} 赋值给 _userprofile 表的 gender 字段是错误的，只能赋值给 nickname 等 string 类型的字段 
 
 目前**赋值操作**支持的数据类型及其对应的操作符如下：
 
@@ -235,6 +237,8 @@ event.data 参数内容：
     例：尊敬的{{created_by.nickname}}，您购买的产品{{product}}已经发货，请注意查收。
 
 对于 date 类型的变量，可以自定义输出的格式，格式为 `{{created_at | date:"format"}}`，其中 format 为输出的格式，例如需要 2017-09-20 16:05:14 这样的输出格式，变量的格式为 `{{created_at | date:"Y-m-d  H:i:s"}}`，具体 format 的意义可参考「[date 格式参数说明][2]」
+
+对于 object 类型，可以输入 {{<OBJECT_FIELD>.<PROP_NAME>[.<PROP_NAME>]}} 格式，例如 {{obj.name}} 或 {{obj.foo.bar}}
 
 ## 实战教程
 [触发器实战教程请移步这里](../support/practice/trigger.md)
