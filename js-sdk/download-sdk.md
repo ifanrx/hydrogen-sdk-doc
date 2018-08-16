@@ -4,7 +4,7 @@
 
 ### 选择版本下载
 
-- [最新稳定版 v1.5.0（推荐）](https://dl.ifanr.cn/hydrogen/sdk/sdk-latest.zip)
+- [最新稳定版 v1.6.0（推荐）](https://dl.ifanr.cn/hydrogen/sdk/sdk-latest.zip)
 
 ### 更新注意事项
 
