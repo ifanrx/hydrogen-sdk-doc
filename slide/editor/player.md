@@ -109,7 +109,7 @@ const player = editor.player
   | -- | -- | -- | -- | -- |
   | fromIndex| `string` | - | 动画过渡后消失的幻灯片的 index|必选|
   | toIndex| `string` | - | 动画过渡后出现的幻灯片的 index|必选|
-  | reverse| `boolean` | ``string`` | 是否是回退过渡|可选|
+  | reverse| `boolean` | `false` | 是否是回退过渡|可选|
   | animationDuration| `number` | 0.6 | 动画过渡时长，单位`秒`|可选|
 
   * 返回值 `void`
