@@ -10,15 +10,15 @@
 
 | 数据类型 |                            可使用的查询操作                                                | 说明 |
 |:---------|:--------------------------------------------------------------------------------------- |:------|
-| string   | =, in, notIn, !=, isNull, isNotNull, matches, exists, notExists                       |      |
-| integer  | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                        |      |
-| number   | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                        |      |
-| array    | =, in, notIn, isNull, isNotNull, arrayContains, exists, notExists                                  |      |
-| boolean  | =, exists, notExists, isNull, isNotNull                                                                    |      |
-| date     | =, >, >=, <, <=,  exists, notExists, isNull, isNotNull                                               |      |
-| file     | isNull, isNotNull, exists, notExists                                                               |      |
-| geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                                        | [请参考地理位置查询](geo.md)      |
-| object   | =, hasKey, isNull, isNotNull, exists, notExists                                                    |      |
+| string   | =, in, notIn, !=, isNull, isNotNull, matches, exists, notExists                         |      |
+| integer  | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                    |      |
+| number   | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                    |      |
+| array    | =, in, notIn, isNull, isNotNull, arrayContains, exists, notExists                       |      |
+| boolean  | =, exists, notExists, isNull, isNotNull                                                 |      |
+| date     | =, >, >=, <, <=,  exists, notExists, isNull, isNotNull                                  |      |
+| file     | isNull, isNotNull, exists, notExists                                                    |      |
+| geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     | 请参考地理位置操作章节 |
+| object   | =, hasKey, isNull, isNotNull, exists, notExists                                         |      |
 
 ### 操作步骤
 
