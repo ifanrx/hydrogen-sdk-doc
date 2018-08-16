@@ -38,7 +38,7 @@ const player = editor.player
   | `fullScreenPlay`|`boolean`|true|是否全屏播放|可选|
 
   * 返回值 void
-  * 用法 play(slideId?, controllable?, fullScreenPlay?)
+  * 用法 `play(slideId?, controllable?, fullScreenPlay?)`
 
 ### fullScreenPlay
   全屏播放幻灯片。
@@ -54,7 +54,7 @@ const player = editor.player
   | `controllable`|`boolean`|true|是否受控|可选|
 
   * 返回值 void
-  * 用法 fullScreenPlay(slideId?, controllable?)
+  * 用法 `fullScreenPlay(slideId?, controllable?)`
 
 ### fullPagePlay
   全页面播放幻灯片。
@@ -70,96 +70,112 @@ const player = editor.player
   | `controllable`|`boolean`|true|是否受控|可选|
 
   * 返回值 void
-  * 用法 fullpagePlay(slideId?, controllable?)
+  * 用法 `fullpagePlay(slideId?, controllable?)`
 
 ### stop
   退出播放幻灯
 
   * 参数
   * 返回值 void
-  * 用法 stop()
+  * 用法 `stop()`
 
 ### next
   播放下一张幻灯
 
   * 参数 index?: number 传 index 会跳到相应序列的slide
   * 返回值 void
-  * 用法 next(index?)
+  * 用法 `next(index?)`
 
 ### prev
   播放上一张幻灯
 
   * 参数
   * 返回值 void
-  * 用法 prev()
+  * 用法 `prev()`
 
 ### jumpTo
   跳转至第 `index` 张幻灯片，以开始播放时的幻灯片顺序为准，跳转过程中无动画切换效
 
   * 参数 `index`
   * 返回值 `void`
-  * 用法 jumpTo()
+  * 用法 `jumpTo(index)`
+
+### animateTo
+  动画过渡到某一张幻灯片
+
+  * 参数 `index`
+
+  |名称|类型|默认值|描述|必选/可选|
+  | -- | -- | -- | -- | -- |
+  | fromIndex| `string` | - | 动画过渡后消失的幻灯片的 index|必选|
+  | toIndex| `string` | - | 动画过渡后出现的幻灯片的 index|必选|
+  | reverse| `boolean` | ``string`` | 是否是回退过渡|可选|
+  | animationDuration| `number` | 0.6 | 动画过渡时长，单位`秒`|可选|
+
+  * 返回值 `void`
+  * 用法 `animateTo(fromIndex, toIndex, reverse?, animationDuration?)`
 
 ### isPlaying
   获取当前是否在播
 
   * 参数
   * 返回值 `boolean`
-  * 用法 isPlaying()
+  * 用法 `isPlaying()`
 
 ### isFullScreen
   获取当前是否为全屏状态
 
   * 参数
   * 返回值 `boolean`
-  * 用法 isFullScreen()
+  * 用法 `isFullScreen()`
 
 ### hasNext
   获取是否还有未播放的 slide
 
   * 参数
   * 返回值 `boolean`
-  * 用法 hasNext()
+  * 用法 `hasNext()`
 
 ### destroy
   销毁播放器实例
 
   * 参数
   * 返回值 `void`
-  * 用法 destroy()
+  * 用法 `destroy()`
 
 ### requestFullScreen
   请求浏览器全屏
 
   * 参数
   * 返回值 `void`
-  * 用法 requestFullScreen()
+  * 用法 `requestFullScreen()`
 
 ### quitFullScreen
   退出浏览器全屏
 
   * 参数
   * 返回值 `void`
-  * 用法 quitFullScreen()
+  * 用法 `quitFullScreen()`
 
 ### setFullPage
   设置为全页面播放效果
 
   * 参数
   * 返回值 `void`
-  * 用法 setFullPage()
+  * 用法 `setFullPage()`
 
 ### quitFullPage
   退出全页面播放效果
 
   * 参数
   * 返回值 `void`
-  * 用法 quitFullPage()
+  * 用法 `quitFullPage()`
 
 ### showFinishPage
   配置播放结束提示
 
   * 参数
+
   |名称|类型|默认值|描述|必选/可选|
   | -- | -- | -- | -- | -- |
   |`message`|`string`|-|提示内容|可选|
