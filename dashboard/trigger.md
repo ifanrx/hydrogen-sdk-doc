@@ -238,7 +238,7 @@ event.data 参数内容：
 
 对于 date 类型的变量，可以自定义输出的格式，格式为 `{{created_at | date:"format"}}`，其中 format 为输出的格式，例如需要 2017-09-20 16:05:14 这样的输出格式，变量的格式为 `{{created_at | date:"Y-m-d  H:i:s"}}`，具体 format 的意义可参考「[date 格式参数说明][2]」
 
-对于 object 类型，可以输入 {{<OBJECT_FIELD>.<PROP_NAME>[.<PROP_NAME>]}} 格式，例如 {{obj.name}} 或 {{obj.foo.bar}}
+对于 object 类型，可以输入 `{{<OBJECT_FIELD>.<PROP_NAME>[.<PROP_NAME>]}}` 格式，例如 `{{obj.name}}` 或 `{{obj.foo.bar}}`
 
 ## 实战教程
 [触发器实战教程请移步这里](../support/practice/trigger.md)
