@@ -110,7 +110,6 @@ const player = editor.player
   | fromIndex| `string` | - | 动画过渡后消失的幻灯片的 index|必选|
   | toIndex| `string` | - | 动画过渡后出现的幻灯片的 index|必选|
   | reverse| `boolean` | `false` | 是否是回退过渡|可选|
-  | animationDuration| `number` | 0.6 | 动画过渡时长，单位`秒`|可选|
 
   * 返回值 `void`
   * 用法 `animateTo(fromIndex, toIndex, reverse?, animationDuration?)`
@@ -188,7 +187,7 @@ const player = editor.player
 
   ```js
     const events = Editor.PlayerEvents
-    editor.on(events.PLAY, handler)
+    editor.player.on(events.PLAY, handler)
   ```
 
 ### PLAY
@@ -274,6 +273,9 @@ const player = editor.player
 
 ### overlay: `JQuery`
   获取播放器交互操作层的 JQuery 实例
+
+### customLayer: `JQuery`
+  获取播放器用户自定义层的 JQuery 实例。可以通过此层，自定义添加一些 DOM 结构，例如，实现一个全局的 TopBar 工具栏。
 
 ### isFullScreen: `boolean`
   获取浏览器是否处于全屏状态
