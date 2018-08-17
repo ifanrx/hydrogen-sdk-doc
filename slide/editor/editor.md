@@ -121,7 +121,7 @@
 ### updateLayout
   更新模板。
 
-  * 返回 `Delta`
+  * 返回 `void`
   * 用法 `updateLayout({ layoutId, attributes, updateAll })`
   * 参数
 
@@ -131,35 +131,30 @@
 | `attributes` | `Object` | 无 |用于更新模板的属性|必选|
 | `updateAll` | `boolean` | false |是否更新整套模板|可选|
 
-### deleteLayout
-  删除模板。
-
-  * 返回 `Delta`
-  * 用法 `deleteLayout(layoutId)`
-  * 参数
-
-|名称|类型|默认值|描述|
-| -- | -- | -- | -- |
-| `layoutId` | `string` | 无 |幻灯片模板 id|
-
 ### addSlide
-  新建或复制粘贴幻灯片。
+  新建、复制粘贴或剪切粘贴幻灯片。
 
-  * 返回 `Delta`
-  * 用法 `addSlide({ layoutId, slideId, slide: { attributes }, order })`
+  只传 slide 信息时根据 slide 信息新建幻灯片；
+  传入 layoutId 时从对应模板新建幻灯片；
+  传入 slideId 时是复制粘贴幻灯片；
+  配合 deleteSlide, 传入 operator 时可以实现剪切复制幻灯片；
+
+  * 返回 `void`
+  * 用法 `addSlide({ layoutId, slideId, slide: { attributes }, operator, order })`
   * 参数
 
 |名称|类型|默认值|描述|必选/可选|
 | -- | -- | -- | -- | -- |
 | `layoutId` | `string` | 无 |幻灯片模板 id|可选|
 | `slideId` | `string` | 无 |被粘贴的 slide 的 id|可选|
-| `slide.attributes` | `Object` | 无 |新建幻灯片的属性（如背景颜色等）|可选|
+| `slide.attributes` | `Object` | 无 |新建幻灯片的信息（如背景颜色等）|可选|
+| `operator` | `string` | 无 |幻灯片数据|可选|
 | `order` | `number` | 幻灯片个数 - 1 |新建幻灯片的位置|可选|
 
 ### updateSlide
   更新幻灯片。
 
-  * 返回 `Delta`
+  * 返回 `void`
   * 用法 `updateSlide({ slideId, attributes, updateAll })`
   * 参数
 
@@ -172,7 +167,15 @@
 ### deleteSlide
   删除幻灯片。
 
-  * 返回 `Delta`
+  * 返回 `removedSlides`
+
+|名称|类型|描述
+| -- | -- | -- |
+| `removedSlides` | `slide[]` |被删除的幻灯片页信息
+| `slide.slideId` | `string` |幻灯片 id
+| `slide.order` | `number` |幻灯片排序
+| `slide.operator` | `string` |幻灯片数据
+
   * 用法 `deleteSlide({ slideId })`
   * 参数
 
