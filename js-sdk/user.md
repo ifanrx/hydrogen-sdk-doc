@@ -20,7 +20,7 @@
 | city      | String | 用户所在城市 |
 | country   | String | 用户所在国家 |
 | gender    | String | 用户的性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知 |
-| id        | String | 用户在用户表中的 ID |
+| id        | Number | 用户在用户表中的 ID |
 | language  | String | 用户的语言，简体中文为 zh_CN |
 | nickName  | String | 用户昵称 (这里的 nickName 由微信登录接口直接返回，注意与 MyUser.get 方法返回的 nickname 字段拼写上的不同) |
 | openid    | String | 用户唯一标识，由微信生成 |
