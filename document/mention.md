@@ -45,18 +45,6 @@ const mention = new Mention({
 
 ## 方法列表
 
-## render
-
-渲染初始化。
-
-* 返回 `undefined`
-* 用法 `mention.render(container)`
-* 参数
-
-| 名称                | 类型             | 默认值 | 描述                |
-| ------------------- | --------------- | ----- | ------------------ |
-| `container`         | `HTMLElement`   | 可选     | 渲染容器     |
-
 ## destroy
 
 销毁实例。
@@ -156,13 +144,15 @@ mention.on(Mention.events.HIDE, () => {})
   "code": 0,
   "data": {
     "file": {
-      "children": {
-        "id": 0,
-        "guid": "string",
-        "name": "string",
-        "type": "string",
-        "updated_at": "2018-08-20T12:56:14.519Z"
-      }
+      "children": [
+        {
+          "id": 0,
+          "guid": "string",
+          "name": "string",
+          "type": "string",
+          "updated_at": "2018-08-20T12:56:14.519Z"
+        }
+      ]
     }
   }
 }

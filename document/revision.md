@@ -86,16 +86,16 @@ const revision = new Revision({
 | ------------------- | --------------- | ----- | ------------------ |
 | `index`         | `Number`   | 0     | 类型     |
 
-## show
+### show
 
-显示评论
+显示版本
 
 * 返回 `undefined`
 * 用法 `revision.show()`
 
-## hide
+### hide
 
-隐藏评论
+隐藏版本
 
 * 返回 `undefined`
 * 用法 `revision.hide()`
