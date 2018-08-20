@@ -108,9 +108,10 @@ Content-Type: `multipart/form-data`
 **代码示例**
 
 ```js
-var axios = require('axios').create({
-  withCredentials: true
-})
+// 注意这里不能使用 withCredentials: true
+// var axios = require('axios').create({
+//  withCredentials: true
+// })
 
 let formData = new FormData()
 formData.append('file', fileObj)
