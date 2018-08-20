@@ -6,14 +6,14 @@
 
 * 用法
 
-  ```js
-  const Editor = shimo.sdk.document.Editor
-  const DemoScreen = shimo.sdk.document.plugins.DemoScreen
-  const editor = new Editor()
-  const demoScreen = new DemoScreen({
-    editor
-  })
-  ```
+```js
+const Editor = shimo.sdk.document.Editor
+const DemoScreen = shimo.sdk.document.plugins.DemoScreen
+const editor = new Editor()
+const demoScreen = new DemoScreen({
+  editor
+})
+```
 
 * 参数
 
@@ -37,9 +37,18 @@
 * 返回 `undefined`
 * 用法 `demoScreen.hide()`
 
-## destory
+## destroy
 
 使用完销毁。
 
 * 返回 `undefined`
-* 用法 `demoScreen.destory()`
+* 用法 `demoScreen.destroy()`
+
+## 事件列表
+
+```js
+// 进入演示
+demoScreen.on(DemoScreen.events.SHOW, () => {})
+// 退出演示
+demoScreen.on(DemoScreen.events.HIDE, () => {})
+```

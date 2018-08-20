@@ -6,17 +6,17 @@
 
 * 用法
 
-  ```js
-  const Editor = shimo.sdk.document.Editor
-  const editor = new Editor(options)
-  ```
+```js
+const Editor = shimo.sdk.document.Editor
+const editor = new Editor(options)
+```
 
 * 参数
 
 | 名称               | 类型      | 默认值  | 描述             |
 | ------------------ | --------- | ------- | ---------------- |
-| `options.readOnly` | `Boolean` | `false` | 设置文档是否只读 |
-| `options.id`| `number`      | 必选     | 用户ID     |
+| `readOnly` | `Boolean` | `false` | 设置文档是否只读 |
+| `id`| `number`      | 必选     | 用户ID     |
 
 ## 方法列表
 
@@ -31,9 +31,18 @@
 | 名称                | 类型          | 默认值 | 描述         |
 | ------------------- | ------------- | ------ | ------------ |
 | `container`         | `HTMLElement`      | 必选     | 文档渲染容器     |
-| `options.scrollingContainer`| `HTMLElement`      | 无     | 文档滚动区     |
-| `options.modules.toolbar`| `Boolean / Object`      | true     | 是否启用工具栏     |
-| `options.modules.toolbar.parent`| `HTMLElement`      | 可选     | 工具栏父容器     |
+| `options`         | `Options`      | 可选     | 文档渲染配置     |
+
+* Options
+
+| 名称                | 类型          | 默认值 | 描述         |
+| ------------------- | ------------- | ------ | ------------ |
+| `readOnly` | `Boolean` | `false` | 设置文档是否只读 |
+| `id`| `number`      | 必选     | 用户ID     |
+| `scrollingContainer`| `HTMLElement`      | 可选     | 文档滚动区     |
+| `modules`| `Object`      | 可选     | 是否启用工具栏     |
+| `modules.toolbar`| `Boolean / Object`      | 可选     | 是否启用工具栏     |
+| `modules.toolbar.parent`| `HTMLElement`      | 可选     | 工具栏父容器     |
 
 ### updateOptions
 
@@ -46,14 +55,7 @@
 | 名称                | 类型          | 默认值 | 描述         |
 | ------------------- | ------------- | ------ | ------------ |
 | `readOnly`        | `boolean`       | 无     | 设置文档是否只读 |
-
-
-### destroy
-
-销毁文档。
-
-* 返回 `undefined`
-* 用法 `editor.destroy()`
+| `id`| `number`      | 可选     | 用户ID     |
 
 ### getContent
 
@@ -92,41 +94,50 @@ editor.getContent().then(content => {
 | --------------- | -------- | ------ | ------------------------- |
 | `change`       | `String` | 无     | 修改文档的内容                  |
 
+### destroy
+
+销毁实例。
+
+* 返回 `undefined`
+* 用法 `editor.destroy()`
 
 ## 事件列表
 
 * 用法
 
-  ```js
-    const events = Editor.events
-    editor.on(events.CHANGE, handler)
-  ```
+```js
+const events = Editor.events
+editor.on(events.CHANGE, handler)
+```
 
 ### PLUGIN_LOADED
-  插件加载完成。
 
-  * 回调方法签名 `handler( name )`
-  * 参数
+插件加载完成。
+
+* 回调方法签名 `handler( name )`
+* 参数
 
 |名称|类型|默认值|描述|
 | -- | -- | -- | -- |
 | `name` | `String` | 无 | 插件名称 |
 
 ### CHANGE
-  当前用户产生的数据变化。
 
-  * 回调方法签名 `handler( change )`
-  * 参数
+当前用户产生的数据变化。
+
+* 回调方法签名 `handler( change )`
+* 参数
 
 |名称|类型|默认值|描述|
 | -- | -- | -- | -- |
 | `change` | `String` | 无 | 数据 |
 
 ### SELECTION
-  用户的光标、选区发生变化时触发。
 
-  * 回调方法签名 `handler( range )`
-  * 参数
+用户的光标、选区发生变化时触发。
+
+* 回调方法签名 `handler( range )`
+* 参数
 
 |名称|类型|默认值|描述|
 | -- | -- | -- | -- |
@@ -134,5 +145,5 @@ editor.getContent().then(content => {
 | `range.length` | `Number` | 无 | 选区长度（无选区就是 0） |
 
 ### CONTAINER_SCROLL
-  编辑器滚动时触发这个事件。
 
+编辑器滚动时触发这个事件。

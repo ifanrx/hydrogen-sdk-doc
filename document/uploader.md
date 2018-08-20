@@ -6,16 +6,15 @@
 
 * 用法
 
-  ```js
-  const Editor = shimo.sdk.document.Editor
-  const Uploader = shimo.sdk.document.plugins.Uploader
-  const editor = new Editor()
-  const uploader = new Uploader({
-    editor,
-    container: '#uploader',
-    ...options
-  })
-  ```
+```js
+const Editor = shimo.sdk.document.Editor
+const Uploader = shimo.sdk.document.plugins.Uploader
+const editor = new Editor()
+const uploader = new Uploader({
+  editor,
+  ...options
+})
+```
 
 * 参数
 
@@ -25,21 +24,21 @@
 | `container` | `Element / String`  | 必选 | 拖拽容器 |
 | `type` | `'default' / 'qiniu'`  | 可选 | 默认为'default' |
 | `url` | `String` | 可选 | 上传URL |
-| `token_url` | `String` | 可选 | 获取token的URL |
+| `tokenUrl` | `String` | 可选 | 获取token的URL |
 | `accessToken` | `String` | 可选 | token |
 | `paramName` | `String` | 可选 | 上传文件参数名，默认为'file' |
 | `params` | `Object` | 可选 | 上传文件时，接口需要的额外参数 |
 
-注意：type为'qiniu'时，token_url与accessToken必须要传入一个
+* 注意：type为'qiniu'时，tokenUrl与accessToken必须要传入一个
 
 ## 方法列表
 
-### destory
+### destroy
 
-销毁uploader。
+销毁实例。
 
 * 返回 `undefined`
-* 用法 `uploader.destory()`
+* 用法 `uploader.destroy()`
 
 ## 事件列表
 

@@ -11,15 +11,15 @@
 * [文档](document/readme.md)
   * [编辑器](document/editor.md)
   * [工具栏](document/toolbar.md)
-  * [协作者](document/collaborator.md)
-  * [评论](document/comment.md)
   * [目录](document/tableofcontent.md)
-  * [mention](document/mention.md)
-  * [上传](document/uploader.md)
-  * [历史](document/history.md)
-  * [版本](document/revision.md)
   * [相册](document/gallery.md)
   * [演示模式](document/demoscreen.md)
+  * [历史](document/history.md)
+  * [版本](document/revision.md)
+  * [协作者](document/collaborator.md)
+  * [评论](document/comment.md)
+  * [mention](document/mention.md)
+  * [上传](document/uploader.md)
 
 ---
 

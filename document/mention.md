@@ -6,15 +6,15 @@
 
 * 用法
 
-  ```js
-  const Editor = shimo.sdk.document.Editor
-  const Mention = shimo.sdk.document.plugins.Mention
-  const editor = new Editor()
-  const mention = new Mention({
-    editor,
-    ...options
-  })
-  ```
+```js
+const Editor = shimo.sdk.document.Editor
+const Mention = shimo.sdk.document.plugins.Mention
+const editor = new Editor()
+const mention = new Mention({
+  editor,
+  ...options
+})
+```
 
 * 参数
 
@@ -24,14 +24,24 @@
 | `id` | `string` | 可选 | 容器id |
 | `scrollContainer` | `Element` | 可选 | 滚动容器 |
 | `docType` | `['richdoc', 'modoc']` | 可选 | 编辑器实例 |
-| `service` | `object` | 可选 | 接口配置 |
-| `service.recentConcats` | `string` | 可选 | 最近联系人 |
-| `service.recentFiles` | `string` | 可选 | 最近文件 |
-| `service.searchApi` | `string` | 可选 | 最近搜索 |
-| `data` | `object` | 可选 | 数据配置 |
-| `data.fileId` | `string` | 可选 | 文件id |
-| `data.fileTeamId` | `string` | 可选 | 文件组id |
-| `data.teamId` | `string` | 可选 | 用户组id |
+| `service` | `Service` | 可选 | 接口配置 |
+| `data` | `Data` | 可选 | 数据配置 |
+
+* Service
+
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `recentConcats` | `string` | 必选 | 最近联系人 |
+| `recentFiles` | `string` | 必选 | 最近使用文件 |
+| `searchApi` | `string` | 必选 | 搜索接口 |
+
+* Data
+
+|名称|类型|默认值|描述|
+| -- | -- | -- | -- |
+| `fileId` | `string` | 必选 | 文件id |
+| `fileTeamId` | `string` | 必选 | 文件组id |
+| `teamId` | `string` | 必选 | 用户组id |
 
 ## 方法列表
 
@@ -45,47 +55,14 @@
 
 | 名称                | 类型             | 默认值 | 描述                |
 | ------------------- | --------------- | ----- | ------------------ |
-| `container`         | `HTMLElement`   | 无     | 渲染容器     |
+| `container`         | `HTMLElement`   | 可选     | 渲染容器     |
 
-## dispatch
+## destroy
 
-触发器。
-
-* 返回 `undefined`
-* 用法 `mention.dispatch(type, data)`
-* 参数
-
-| 名称                | 类型             | 默认值 | 描述                |
-| ------------------- | --------------- | ----- | ------------------ |
-| `type`         | `['show' , 'hide']`   | 必选     | 类型     |
-| `data`         | `object`   | 无     | 数据     |
-| `data.keyword`         | `string`   | 必选     | @字符后，用户输入的文本     |
-| `data.x`         | `number`   | 必选     | 相对文档的横坐标     |
-| `data.y`         | `number`   | 必选     | 相对文档的纵坐标     |
-| `data.triggerDom`  | `HTMLElement`   | 可选     | dom节点     |
-| `data.direction`  | `['top', 'bottom']`   | 可选     | 弹层位置     |
-
-
-## next
-
-选中下一个搜索项。
+销毁实例。
 
 * 返回 `undefined`
-* 用法 `mention.next()`
-
-## prev
-
-选中上一个搜索项。
-
-* 返回 `undefined`
-* 用法 `mention.prev()`
-
-## confirm
-
-确认@项。
-
-* 返回 `string`
-* 用法 `mention.confirm()`
+* 用法 `mention.destroy()`
 
 ## 事件列表
 
