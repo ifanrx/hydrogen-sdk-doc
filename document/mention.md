@@ -23,9 +23,8 @@ const mention = new Mention({
 | `editor` | `Editor` | 必选 | 编辑器实例 |
 | `id` | `string` | 可选 | 容器id |
 | `scrollContainer` | `Element` | 可选 | 滚动容器 |
-| `docType` | `['richdoc', 'modoc']` | 可选 | 编辑器实例 |
-| `service` | `Service` | 可选 | 接口配置 |
-| `data` | `Data` | 可选 | 数据配置 |
+| `service` | `Service` | 必选 | 接口配置 |
+| `data` | `Data` | 必选 | 数据配置 |
 
 * Service
 

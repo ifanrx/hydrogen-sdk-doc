@@ -82,3 +82,14 @@ collaborator.render(collab)
 
 * 返回 `undefined`
 * 用法 `collaborator.destroy()`
+
+## 事件列表
+
+```js
+// 协作者信息显示
+collaborator.on(Collaborator.events.SHOW, () => {})
+// 协作者信息隐藏
+collaborator.on(Collaborator.events.HIDE, () => {})
+// 协作者信息更新
+collaborator.on(Collaborator.events.UPDATE, () => {})
+```
