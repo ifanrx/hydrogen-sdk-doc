@@ -46,6 +46,7 @@
 | ------------------- | ------------- | ------ | ------------ |
 | `options.content`   | `string`      | 无     | 表格内容     |
 | `options.container` | `HTMLElement` | 无     | 表格渲染容器 |
+| `options.activeSheetId` | `string` | 无     | 需激活的工作表 ID |
 
 ### getContent
 
