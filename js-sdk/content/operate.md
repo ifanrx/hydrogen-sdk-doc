@@ -96,6 +96,52 @@ MyContentGroup.setQuery(query).find().then(res => {
 })
 ```
 
+#### 筛选返回字段
+
+select 使用方法可以参考[数据表 - 字段过滤]小节(/js-sdk/schema/select-and-expand.md)
+
+**请求示例 1**
+```js
+MyContentGroup.select(['title','content']).find().then(res => {
+  // success
+}, err => {
+  // err
+})
+```
+
+**请求结果 1**
+
+```javascript
+[{
+   content: "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
+   title: "iphone X",
+}]
+```
+
+**请求示例 2**
+```js
+MyContentGroup.select(['-title','-content']).find().then(res => {
+  // success
+}, err => {
+  // err
+})
+```
+
+**请求结果 2**
+
+```javascript
+[{
+   categories: [1513076252710475],
+   cover: "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1donykIpnuvcRiAX.jpg",
+   created_at: 1513076305,
+   created_by: 16042162,
+   description: "iphoneX 发布",
+   group_id: 1513076211190694,
+   id: 1513076305938456,
+   updated_at: 1513076364
+ }]
+```
+
 ### 获取分类详情
 
 `MyContentGroup.getCategory(categoryID)`
