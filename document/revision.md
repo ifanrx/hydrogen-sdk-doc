@@ -60,12 +60,12 @@ const revision = new Revision({
 * 返回 `Promise`
 * 用法 `revision.save()`
 
-### total
+### getCount
 
 获取版本数。
 
 * 返回 `Number`
-* 用法 `revision.total()`
+* 用法 `revision.getCount()`
 
 ### quit
 
