@@ -88,6 +88,9 @@
         <li>
           <a href="/js-sdk/template-message.md/">模板消息</a>
         </li>
+        <li>
+          <a href="/js-sdk/censor.md/">检测违规图片、文本</a>
+        </li>
       </ul>
       <ul class="doc-js-sdk doc-detail-item">
         <li>

@@ -351,6 +351,21 @@ query3.compare('amount', '>', 3)
 let orQuery = wx.BaaS.Query.or(andQuery, query3)
 ```
 
+### 获取符合筛选条件的数据总数
+```javascript
+let Product = new wx.BaaS.TableObject(tableID)
+let query = new wx.BaaS.Query()
+
+// 设置查询条件
+// ...
+
+Product.setQuery(query).count().then(num => {
+  // success
+}, err => {
+  // err
+})
+```
+
 {% content "second" %}
 
 ## SDK 1.1.0 以下版本
