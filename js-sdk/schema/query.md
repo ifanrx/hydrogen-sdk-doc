@@ -10,7 +10,7 @@
 
 | 数据类型 |                            可使用的查询操作                                                | 说明 |
 |:---------|:--------------------------------------------------------------------------------------- |:------|
-| string   | =, in, notIn, !=, isNull, isNotNull, matches, exists, notExists                         |      |
+| string   | =, in, notIn, !=, isNull, isNotNull, contains, matches, exists, notExists                         |      |
 | integer  | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                    |      |
 | number   | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                    |      |
 | array    | =, in, notIn, isNull, isNotNull, arrayContains, exists, notExists                       |      |
