@@ -1,5 +1,8 @@
 # 检测违规图片、文本
 
+> **info**
+> 使用此 API 前需要配置 AppSecret，请前往 设置 - 小程序 中配置 AppSecret
+
 ## 检测违规图片
 
 `wx.BaaS.wxCensorImage(filePath)`
