@@ -13,8 +13,13 @@
 |----------|--------|----------|
 | filePath | string | 文件路径 |
 
-### 返回值 
-Promise
+### 返回示例 
+
+```javascript
+{
+  risky: true
+}
+```
 
 ### 示例代码
 ```javascript
@@ -39,9 +44,13 @@ wx.chooseImage({
 |----------|--------|----------|
 | text | string | 要检测的文本 |
 
-### 返回值 
-Promise 
+### 返回示例 
 
+```javascript
+{
+  risky: true
+}
+```
 ### 示例代码
 
 ```javascript
