@@ -38,7 +38,9 @@
     "styled-blockquotes"
   ],
   "title": "知晓云平台开发文档",
-  "variables": {},
+  "variables": {
+    "latestVersion": "1.7.0"
+  },
   "pluginsConfig": {
     "algolia": {
       "index": "prod_minapp_doc",
