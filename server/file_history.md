@@ -14,9 +14,8 @@
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
 | size | Number | N   | 返回的历史条数，默认 `10` |
-| from | Number | N   | 从第几条历史开始查找，默认 `0` |
 | historyType | Number | N   | history type 类型 |
-| order | String | N   | 排序方式，默认 `asc` |
+| order | String | N   | 排序方式，默认 `desc` |
 | sort | String | N   | 排序字段，默认 `createdAt` |
 | page | Number | N   | 查询的页码，别名为 `count`，默认 `0` |
 | size | Number | N   | 返回多少结果，别名为 `pageSize`，默认 `30` |
@@ -39,15 +38,21 @@ fetch('<SHIMO_API>/files/JyRX1679PL86rbTk/histories', {
 **返回示例**
 
 ```json
-[{
-  "fileGuid": "JyRX1679PL86rbTk",
-  "historyType": 1,
-  "userId": "10676",
-  "updatedAt": "2018-05-29T09:07:51.000Z",
-  "createdAt": "2018-05-29T09:07:51.000Z",
-  "id": 434594,
-  "content": "{\"action\":\"create\"}"
-}]
+{
+  "histories": [{
+    "fileGuid": "JyRX1679PL86rbTk",
+    "historyType": 1,
+    "userId": "10676",
+    "updatedAt": "2018-05-29T09:07:51.000Z",
+    "createdAt": "2018-05-29T09:07:51.000Z",
+    "id": 434594,
+    "content": "{\"action\":\"create\"}"
+  }],
+  "isLastPage": false,
+  "guid": "JyRX1679PL86rbTk",
+  "users": { "1": "shimo" },
+  "limit": null
+}
 ```
 
 ## 获取历史

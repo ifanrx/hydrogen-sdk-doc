@@ -43,7 +43,7 @@ Content-Type: `application/json`
 | 参数           | 类型   | 必填 | 说明                   |
 | :------------ | :----- | :-- | :---                  |
 | clientId     | String | Y   | 石墨提供的 ClientID     |
-| ClientSecret | String | Y   | 石墨提供的 ClientSecret |
+| clientSecret | String | Y   | 石墨提供的 ClientSecret |
 | clientUserId | String | Y   | 请求授权的用户标识       |
 | grantType    | String | Y   | 授权模式  |
 | scope    | String | Y   | 授权范围，默认为 `write`  |
