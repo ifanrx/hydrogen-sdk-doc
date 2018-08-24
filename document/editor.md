@@ -144,6 +144,10 @@ editor.on(events.CHANGE, handler)
 | `range.index` | `Number` | 无 | 光标位置处于文档流中的序号 |
 | `range.length` | `Number` | 无 | 选区长度（无选区就是 0） |
 
+### READY
+
+文件内容渲染完成。
+
 ### CONTAINER_SCROLL
 
 编辑器滚动时触发这个事件。
