@@ -16,17 +16,18 @@ a. [下载最新版 SDK 到本地](./download-sdk.md)
 
 b. 将下载解压后得到的 SDK js 文件放在小程序项目目录中
 
-c. 在 `app.js` 中引入 SDK js 文件，注意，请使用下载的 SDK 对应的版本替换下面代码片段里的 `sdk-v<version>`
-
-```js
+<pre>
+<code class="lang-js">
 // app.js
+
 App({
   onLaunch() {
     // require SDK
-    require('./sdk-v<version>')
+    require('./sdk-v{{ book.latestVersion }}')
   }
 })
-```
+</code>
+</pre>
 
 #### 初始化 SDK
 
@@ -34,18 +35,20 @@ App({
 
 在[知晓云后台 - 我的应用](https://cloud.minapp.com/admin/profile/)页面获取要接入知晓云服务的小程序 ClientID, 按照如下方式进行 SDK 初始化:
 
-```js
+<pre>
+<code class="lang-js">
 // app.js
+
 App({
   onLaunch() {
-    require('./sdk-v<version>')
-
-    // 初始化 SDK
-    let clientID = '知晓云管理后台获取到的 ClientID'
-    wx.BaaS.init(clientID)
+    // 引入 SDK
+    require('./sdk-v{{ book.latestVersion }}')
+     let clientID = '知晓云管理后台获取到的 ClientID'
+     wx.BaaS.init(clientID)
   }
 })
-```
+</code>
+</pre>
 
 #### 完成服务器域名配置
 
@@ -63,14 +66,17 @@ App({
 
 在项目的配置文件 `app.json` 中对插件进行引入声明：
 
-```json
-"plugins": {
+
+<pre>
+<code class="lang-js">
+{"plugins": {
   "sdkPlugin": {
-    "version": "0.1.0",
+    "version": "{{ book.latestVersion }}",
     "provider": "wxc6b86e382a1e3294"
   }
-}
-```
+}}
+</code>
+</pre>
 
 目前知晓云 SDK 小程序插件提供如下版本：
 
@@ -79,7 +85,9 @@ App({
 | 0.1.0         | v1.2.0 |
 | 1.3.0         | v1.3.0 |
 | 1.4.0         | v1.4.0 |
-
+| 1.5.0         | v1.5.0 |
+| 1.6.0         | v1.6.0 |
+| 1.7.0         | v1.7.0 |
 
 #### 初始化 SDK
 

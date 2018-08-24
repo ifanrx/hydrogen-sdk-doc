@@ -61,14 +61,17 @@
 
 #### 在 app.json 中加入插件的引用声明
 
-```js
+<pre>
+<code class="lang-js">
 "plugins": {
     "sdkPlugin": {
-      "version": "1.5.0",
+      "version": "{{ book.latestVersion }}",
       "provider": "wxc6b86e382a1e3294"
  }
-}  
-```
+} 
+</code>
+</pre>
+
 ![添加插件引用](/images/newbies/import-plugin.jpg)
 
 ##### 在 app.js 文件中完成 SDK 的初始化
@@ -171,38 +174,39 @@ Page({
 
 接下来，在 `app.js` 中引入 [SDK js 文件](/js-sdk/download-sdk.md)（ 如果使用**知晓云 SDK 小程序插件**则参考插件的[使用文档](/js-sdk/README.md#引入 SDK 并初始化) ）。
 
-```js
+<pre>
+<code class="lang-js">
 // app.js
 
 App({
   onLaunch() {
     // 引入 SDK
-    require('./utils/sdk-<version>')
+    require('./sdk-v{{ book.latestVersion }}')
   }
 })
-```
+</code>
+</pre>
 
-> **info**
-> 注意，请将下载到的 [SDK](/js-sdk/download-sdk.md) 对应的版本替换上述代码片段里的 `sdk-version`。
 
 最后，通过初始化 [SDK](/js-sdk/download-sdk.md)，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 [SDK](/js-sdk/download-sdk.md) 提供的全部功能。
 
 在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
 
-```js
+<pre>
+<code class="lang-js">
 // app.js
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-v<version>')
+    require('./sdk-v{{ book.latestVersion }}')
 
     // 初始化 SDK
     let clientID = '知晓云管理后台获取到的 ClientID'
     wx.BaaS.init(clientID)
   }
 })
-```
-
+</code>
+</pre>
 ### 2、创建数据表
 
 完成知晓云的初始化配置后，开发者就可以根据自身应用的业务逻辑，确定所需的数据表，确定好后即可在**知晓云后台 >> 数据管理模块**开始数据表的创建工作。

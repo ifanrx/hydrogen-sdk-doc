@@ -194,6 +194,9 @@
         <a href="/support/README.md/">管理与支持</a>
       </h3>
       <ul class="doc-support doc-detail-item">
+       <li>
+          <a href="/support/plugin.md/">插件</a>
+        </li>
         <li>
           <a href="/support/qA.md/"> 常见问题</a>
         </li>
