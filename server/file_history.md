@@ -17,7 +17,8 @@
 | historyType | Number | N   | history type 类型 |
 | order | String | N   | 排序方式，默认 `desc` |
 | sort | String | N   | 排序字段，默认 `createdAt` |
-| page | Number | N   | 查询的页码，别名为 `count`，默认 `0` |
+| page | Number | N   | 查询的页码，默认 `0` |
+| count | Number | N   | 跳过多少个记录，默认 `0`，`count: 30` 等同于 `page: 1, size: 30`。`count` 存在时 `page` 将被忽略。_**deprecated**_ |
 | size | Number | N   | 返回多少结果，别名为 `pageSize`，默认 `30` |
 
 **代码示例**
