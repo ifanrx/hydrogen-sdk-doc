@@ -30,7 +30,7 @@ const mention = new Mention({
 
 |名称|类型|默认值|描述|
 | -- | -- | -- | -- |
-| `recentConcats` | `string` | 必选 | 最近联系人 |
+| `recentContacts` | `string` | 必选 | 最近联系人 |
 | `recentFiles` | `string` | 必选 | 最近使用文件 |
 | `searchApi` | `string` | 必选 | 搜索接口 |
 
@@ -70,11 +70,11 @@ mention.on(Mention.events.HIDE, () => {})
 
 | 接口                | 描述                |
 | ------------------- | ------------------ |
-| recentConcats                | 返回用户最近联系人列表               |
+| recentContacts                | 返回用户最近联系人列表               |
 | recentFiles                | 返回用户最近使用文件列表                |
 | searchApi                | 返回搜索结果                |
 
-### recentConcats
+### recentContacts
 
 * type: `GET`
 * 参数: 无

@@ -59,7 +59,7 @@ comment.render()
 
 |名称|类型|默认值|描述|
 | -- | -- | -- | -- |
-| `recentConcats` | `string` | 必选 | 最近联系人 |
+| `recentContacts` | `string` | 必选 | 最近联系人 |
 | `recentFiles` | `string` | 必选 | 最近使用文件 |
 | `searchApi` | `string` | 必选 | 搜索接口 |
 
