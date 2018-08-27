@@ -25,7 +25,7 @@ const player = editor.player
 ### play
   播放幻灯片。
 
-  传入 slideId 表示从特定的幻灯片开始播放，不传表示从第一张幻灯片开始播；
+  传入 id 表示从特定的幻灯片开始播放，不传表示从第一张幻灯片开始播；
   传入 controllable 表示可以控制播放行为；
   传入 fullScreenPlay 表示全屏播放，否则全页面播放。
 
@@ -33,44 +33,14 @@ const player = editor.player
 
   |名称|类型|默认值|描述|必选/可选|
   | -- | -- | -- | -- | -- |
-  |`slideId`|`string`|-|slide的Id|可选|
-  | `controllable`|`boolean`|true|是否受控|可选|
-  | `fullScreenPlay`|`boolean`|true|是否全屏播放|可选|
+  |`id`|`string|number`|-|slide 的 id 或者 player 中 slideList 对应的 index |可选|
+  |`fileData`|`string`|原 editor 中的 fileDelta|特定版本的file数据，可被初始化为 Delta|可选|
+  |`options`|`object`|见下|播放参数选项，包括是否受控和播放模式|可选|
+  |`options.controllable`|`boolean`|true|是否受控|可选|
+  |`options.mode`|Editor.PlayMode|PlayMode.FULLSCREEN|播放模式|可选|
 
   * 返回值 void
-  * 用法 `play(slideId?, controllable?, fullScreenPlay?)`
-
-### fullScreenPlay
-  全屏播放幻灯片。
-
-  传入 slideId 表示从特定的幻灯片开始播放，不传表示从第一张幻灯片开始播，
-  传入 controllable 表示可以控制播放行为。
-
-  * 参数
-
-  |名称|类型|默认值|描述|必选/可选|
-  | -- | -- | -- | -- | -- |
-  |`slideId`|`string`|-|slide的Id|可选|
-  | `controllable`|`boolean`|true|是否受控|可选|
-
-  * 返回值 void
-  * 用法 `fullScreenPlay(slideId?, controllable?)`
-
-### fullPagePlay
-  全页面播放幻灯片。
-
-  传入 slideId 表示从特定的幻灯片开始播放，不传表示从第一张幻灯片开始播，
-  传入 controllable 表示可以控制播放行为。
-
-  * 参数
-
-  |名称|类型|默认值|描述|必选/可选|
-  | -- | -- | -- | -- | -- |
-  |`slideId`|`string`|-|slide的Id|可选|
-  | `controllable`|`boolean`|true|是否受控|可选|
-
-  * 返回值 void
-  * 用法 `fullpagePlay(slideId?, controllable?)`
+  * 用法 `play(id?, fileData?, { controllable: true, mode: Editor.PlayMode.FULLSCREEN }?)`
 
 ### stop
   退出播放幻灯
@@ -82,9 +52,9 @@ const player = editor.player
 ### next
   播放下一张幻灯
 
-  * 参数 index?: number 传 index 会跳到相应序列的slide
+  * 参数：无
   * 返回值 void
-  * 用法 `next(index?)`
+  * 用法 `next()`
 
 ### prev
   播放上一张幻灯
@@ -94,83 +64,38 @@ const player = editor.player
   * 用法 `prev()`
 
 ### jumpTo
-  跳转至第 `index` 张幻灯片，以开始播放时的幻灯片顺序为准，跳转过程中无动画切换效
-
-  * 参数 `index`
-  * 返回值 `void`
-  * 用法 `jumpTo(index)`
-
-### animateTo
-  动画过渡到某一张幻灯片
-
-  * 参数 `index`
-
+  跳转至特定幻灯片，以开始播放时的幻灯片顺序为准，跳转过程中无动画切换效
   |名称|类型|默认值|描述|必选/可选|
   | -- | -- | -- | -- | -- |
-  | fromIndex| `string` | - | 动画过渡后消失的幻灯片的 index|必选|
-  | toIndex| `string` | - | 动画过渡后出现的幻灯片的 index|必选|
-  | reverse| `boolean` | `false` | 是否是回退过渡|可选|
+  |`id`|`string|number`|-|slide的id或者player中slideList对应的index|必选|
+  |`withAnimation`|`boolean`|false|是否有过渡效果|可选|
 
+  * 参数 `id`
   * 返回值 `void`
-  * 用法 `animateTo(fromIndex, toIndex, reverse?, animationDuration?)`
+  * 用法 `jumpTo(id)`
 
 ### isPlaying
   获取当前是否在播
 
-  * 参数
+  * 参数：无
   * 返回值 `boolean`
   * 用法 `isPlaying()`
 
 ### isFullScreen
   获取当前是否为全屏状态
 
-  * 参数
+  * 参数：无
   * 返回值 `boolean`
   * 用法 `isFullScreen()`
-
-### hasNext
-  获取是否还有未播放的 slide
-
-  * 参数
-  * 返回值 `boolean`
-  * 用法 `hasNext()`
 
 ### destroy
   销毁播放器实例
 
-  * 参数
+  * 参数：无
   * 返回值 `void`
   * 用法 `destroy()`
 
-### requestFullScreen
-  请求浏览器全屏
-
-  * 参数
-  * 返回值 `void`
-  * 用法 `requestFullScreen()`
-
-### quitFullScreen
-  退出浏览器全屏
-
-  * 参数
-  * 返回值 `void`
-  * 用法 `quitFullScreen()`
-
-### setFullPage
-  设置为全页面播放效果
-
-  * 参数
-  * 返回值 `void`
-  * 用法 `setFullPage()`
-
-### quitFullPage
-  退出全页面播放效果
-
-  * 参数
-  * 返回值 `void`
-  * 用法 `quitFullPage()`
-
-### showFinishPage
+### setFinishPage
   配置播放结束提示
 
   * 参数
@@ -200,7 +125,7 @@ const player = editor.player
   * 回调方法签名 `handler()`
 
 ### NEXT
-  以动画或未动画形式，播放了下一张幻灯片
+  以动画或无动画形式，播放了下一张幻灯片
 
   * 回调方法签名 `handler(event)`
 
@@ -223,17 +148,6 @@ const player = editor.player
 
 ### JUMP_TO
   无动画效果跳到了某一张幻灯片
-
-  * 回调方法签名 `handler(event)`
-
-  |名称|类型|默认值|描述|
-  | -- | -- | -- | -- |
-  | `event` | `Object` | 无 | 描述 |
-  | `event.from` | `string` | 无 | 上一张幻灯片的 SlideId，可能为空 |
-  | `event.to` | `string` | 无 | 当前幻灯片的 SlideId |
-
-### ANIMATE_TO
-  动画效果跳到了某一张幻灯片
 
   * 回调方法签名 `handler(event)`
 
@@ -279,3 +193,6 @@ const player = editor.player
 
 ### isFullScreen: `boolean`
   获取浏览器是否处于全屏状态
+
+### slideList: `Array<{slideId, index}>`
+  获取到 Player 中对应的列表数据，包含对应 slide 的 id 和在列表中的 index
