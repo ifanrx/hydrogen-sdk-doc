@@ -25,10 +25,6 @@ const player = editor.player
 ### play
   播放幻灯片。
 
-  传入 id 表示从特定的幻灯片开始播放，不传表示从第一张幻灯片开始播；
-  传入 controllable 表示可以控制播放行为；
-  传入 fullScreenPlay 表示全屏播放，否则全页面播放。
-
   * 参数
 
   |名称|类型|默认值|描述|必选/可选|
@@ -38,9 +34,10 @@ const player = editor.player
   |`options`|`object`|见下|播放参数选项，包括是否受控和播放模式|可选|
   |`options.controllable`|`boolean`|true|是否受控|可选|
   |`options.mode`|Editor.PlayMode|PlayMode.FULLSCREEN|播放模式|可选|
+  |`options.container`|HTMLElement|document.body|播放区域可以选定mount到特定的节点上|可选|
 
   * 返回值 void
-  * 用法 `play(id?, fileData?, { controllable: true, mode: Editor.PlayMode.FULLSCREEN }?)`
+  * 用法 `play(id?, fileData?, { controllable: true, mode: Editor.PlayMode.FULLSCREEN, container: someDIVContainer }?)`
 
 ### stop
   退出播放幻灯
@@ -187,9 +184,6 @@ const player = editor.player
 
 ### overlay: `JQuery`
   获取播放器交互操作层的 JQuery 实例
-
-### customLayer: `JQuery`
-  获取播放器用户自定义层的 JQuery 实例。可以通过此层，自定义添加一些 DOM 结构，例如，实现一个全局的 TopBar 工具栏。
 
 ### isFullScreen: `boolean`
   获取浏览器是否处于全屏状态
