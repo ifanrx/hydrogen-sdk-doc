@@ -74,6 +74,7 @@
         * [用户组与用户的操作](open-api/group/membership.md)
         * [组集操作](open-api/group/super-group.md)
     * [用户模块](open-api/user.md)
+    * [云函数](open-api/cloud-function.md)
 
 ----
 

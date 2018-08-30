@@ -2,9 +2,6 @@
 
 # 调用云函数
 
-> **danger**
-> 以下操作仅适用于 SDK version >= 1.3.0a，该版本还在内测阶段，仅面向受邀用户开放，详情请咨询客服
-
 `wx.BaaS.invokeFunction(functionName, params, sync)`
 
 **参数说明**
@@ -13,7 +10,7 @@
 | :----------- | :----- | :-- | :-- |
 | functionName | String | 是  | 云函数名 |
 | params       | Object | 否  | 传递给云函数的参数 |
-| sync         | Bool   | 否  | 是否等待返回函数执行结果，默认为 true |
+| sync         | Bool   | 否  | 是否等待返回函数执行结果，默认为 true。同步与异步云函数有不同的超时时间，同步云函数为 5 秒，而异步云函数为 5 分钟（300 秒）|
 
 **返回参数说明**
 

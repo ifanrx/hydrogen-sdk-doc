@@ -136,6 +136,9 @@
         <li>
           <a href="/open-api/user.md/">用户模块</a>
         </li>
+        <li>
+          <a href="/open-api/cloud-function.md/">云函数</a>
+        </li>
       </ul>
     </li>
     <li>
