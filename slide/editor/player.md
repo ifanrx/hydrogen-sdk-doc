@@ -29,7 +29,7 @@ const player = editor.player
 
   |名称|类型|默认值|描述|必选/可选|
   | -- | -- | -- | -- | -- |
-  |`id`|`string|number`|-|slide 的 id 或者 player 中 slideList 对应的 index |可选|
+  |`id`|`string\|number`|-|slide 的 id 或者 player 中 slideList 对应的 index |可选|
   |`fileData`|`string`|原 editor 中的 fileDelta|特定版本的file数据，可被初始化为 Delta|可选|
   |`options`|`object`|见下|播放参数选项，包括是否受控和播放模式|可选|
   |`options.controllable`|`boolean`|true|是否受控|可选|
@@ -62,9 +62,10 @@ const player = editor.player
 
 ### jumpTo
   跳转至特定幻灯片，以开始播放时的幻灯片顺序为准，跳转过程中无动画切换效
+
   |名称|类型|默认值|描述|必选/可选|
   | -- | -- | -- | -- | -- |
-  |`id`|`string|number`|-|slide的id或者player中slideList对应的index|必选|
+  |`id`|`string\|number`|-|slide的id或者player中slideList对应的index|必选|
   |`withAnimation`|`boolean`|false|是否有过渡效果|可选|
 
   * 参数 `id`
