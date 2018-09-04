@@ -33,6 +33,10 @@ wx.chooseImage({
   }})
 ```
 
+**配置 upload 合法域名**
+
+如果你是使用文件版 sdk，请在微信后台将您的 request 合法域名中知晓云域名（形如 xxx.xiaoapp.io）添加到 uploadFile 合法域名中
+![配置 uploadFile 域名](https://s3.cn-north-1.amazonaws.com.cn/sso-media/baas/request-domain.png)
 
 ## 检测违规文本
 
