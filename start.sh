@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-gitbook serve
+gitbook serve --lrport 60032
