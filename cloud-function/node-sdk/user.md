@@ -53,13 +53,34 @@ MyUser.get(userID).then(res => {
   "nickname": "姚凯伦",
   "openid": "xxx",
   "unionid": null,
+  ...
 }
+```
+
+### 筛选返回字段
+
+select 使用方法可以参考[数据表 - 字段过滤]小节(/js-sdk/schema/select-and-expand.md)
+
+**请求示例**
+
+```javascript
+let MyUser = new wx.BaaS.User()
+MyUser.select('nickname').find().then((res) => {
+// success
+}, (err) => {
+// err
+})
+
+```
+**请求结果**
+```javascript
+[{"nickname": "ifanrx"}]
 ```
 
 微信目前对小程序获取用户信息有两个小时的缓存设定，因此，如果一个用户修改了个人信息如头像、昵称等，需两个小时才能重新授权拿到最新的信息。
 
-<!-- 目前后端接口暂不支持，待支持后取消注释即可 -->
-<!-- ### 更新用户信息
+
+### 更新用户信息
 
 更新用户信息与[数据表更新数据项](./schema/update-record.md)方法基本一致。这里只支持对 _userprofile 表中自定义的字段进行更新。
 
@@ -76,7 +97,7 @@ user.set('age', 30).update().then(res => {
 }, err => {
   // err
 })
-``` -->
+``` 
 
 ## 查询，获取用户列表
 
