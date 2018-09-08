@@ -1,7 +1,7 @@
 # 检测违规图片、文本
 
 > **info**
-> 以下操作仅适用于 SDK version >= 1.1.0
+> 以下操作仅适用于 SDK version >= 1.7.0
 
 > 使用此 API 前需要配置 AppSecret，请前往 设置 - 小程序 中配置 AppSecret。
 
