@@ -114,7 +114,7 @@ BaaS.sendTemplateMessage(data)
 
 
 > **info**
-> 如果 `submission_type = 'form_id'`，请确保在调用 `BaaS.sendTemplateMessage` 前，已在小程序端调用 `wx.BaaS.wxReportTicker`上报模版消息所需的 `formid`
+> 如果 `submission_type = 'form_id'`，请确保在调用 `BaaS.sendTemplateMessage` 前，已在小程序端调用 `wx.BaaS.wxReportTicket`上报模版消息所需的 `formid`
 
 
 ## user_profile_filters 语法
