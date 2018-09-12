@@ -120,6 +120,7 @@
         * [发送邮件](cloud-function/node-sdk/email.md)
         * [发送模板消息](cloud-function/node-sdk/template-message.md)
         * [网络请求](cloud-function/node-sdk/request.md)
+        * [检测违规图片、文本](cloud-function/node-sdk/censor.md)
 
 ----
 
