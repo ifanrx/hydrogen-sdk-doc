@@ -329,6 +329,7 @@ let query = new BaaS.Query()
 
 Product.setQuery(query).count().then(num => {
   // success
+  console.log(num)  // 10
 }, err => {
   // err
 })

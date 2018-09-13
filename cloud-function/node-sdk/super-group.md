@@ -14,9 +14,9 @@
 **示例代码**
 
 ```javascript
-exports.main = async function (e, cb) {
-  let g = new BaaS.UserSuperGroup()
-  cb(null, await g.create({name: 'aa2', children: [8]}))
+exports.main = async function (event, callback) {
+  let userSuperGroup = new BaaS.UserSuperGroup()
+  callback(null, await userSuperGroup.create({name: 'aa2', children: [8]}))
 }
 ```
 
@@ -32,10 +32,15 @@ exports.main = async function (e, cb) {
 **示例代码**
 
 ```javascript
-exports.main = async function (e, cb) {
-  let g = new BaaS.UserSuperGroup()
-  cb(null, await g.get(11))
+exports.main = async function (event, callback) {
+  let userSuperGroup = new BaaS.UserSuperGroup()
+  callback(null, await userSuperGroup.get(11))
 }
+```
+**返回示例**
+
+```json
+{"children": 1, "id": 16, "name": "a2222", "user_group": [{"id": 17, "name": "vvv"}]}
 ```
 
 ## 修改组集
@@ -54,9 +59,9 @@ exports.main = async function (e, cb) {
 **示例代码**
 
 ```javascript
-exports.main = async function (e, cb) {
-  let g = new BaaS.UserSuperGroup()
-  cb(null, await g.update(16, {name: 'a2222', children: [17]}))
+exports.main = async function (event, callback) {
+  let userSuperGroup = new BaaS.UserSuperGroup()
+  callback(null, await userSuperGroup.update(16, {name: 'a2222', children: [17]}))
 }
 ```
 
@@ -66,10 +71,15 @@ exports.main = async function (e, cb) {
 **示例代码**
 
 ```javascript
-exports.main = async function (e, cb) {
-  let g = new BaaS.UserSuperGroup()
-  cb(null, await g.getUserSuperGroupList())
+exports.main = async function (event, callback) {
+  let userSuperGroup = new BaaS.UserSuperGroup()
+  callback(null, await userSuperGroup.getUserSuperGroupList())
 }
+```
+**返回示例**
+
+```json
+{"meta": {"limit": 20, "next": null, "offset": 0, "previous": null, "total_count": 2}, "objects": [{"children": 1, "id": 16, "name": "a2222", "user_group": [{"id": 17, "name": "vvv"}]}, {"children": 3, "id": 11, "name": "sup", "user_group": [{"id": 9, "name": "产品经理"}, {"id": 10, "name": "总经理"}, {"id": 13, "name": "测试"}]}]}
 ```
 
 ## 删除组集
@@ -84,8 +94,8 @@ exports.main = async function (e, cb) {
 **示例代码**
 
 ```javascript
-exports.main = async function (e, cb) {
-  let g = new BaaS.UserSuperGroup()
-  cb(null, await g.delete([15, 16]))
+exports.main = async function (event, callback) {
+  let userSuperGroup = new BaaS.UserSuperGroup()
+  callback(null, await userSuperGroup.delete([15, 16]))
 }
 ```

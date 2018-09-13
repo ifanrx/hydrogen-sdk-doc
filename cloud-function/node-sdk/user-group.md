@@ -11,9 +11,9 @@
 
 **示例代码**
 ```javascript
-exports.main = async function (e, cb) {
-  let g = new BaaS.UserGroup()
-  cb(null, await g.get(123))
+exports.main = async function (event, callback) {
+  let userGroup = new BaaS.UserGroup()
+  callback(null, await userGroup.get(123))
 }
 ```
 
@@ -44,12 +44,16 @@ exports.main = async function (e, cb) {
 **示例代码**
 
 ```javascript
-exports.main = async function (e, cb) {
-  let g = new BaaS.UserGroup()
-  cb(null, await g.offset(10).limit(20).getUserGroupList({parentID: '11'}))
+exports.main = async function (event, callback) {
+  let userGroup = new BaaS.UserGroup()
+  callback(null, await userGroup.offset(10).limit(20).getUserGroupList({parentID: '11'}))
 }
 ```
 
+**返回示例**
+```json
+{"meta": {"limit": 20, "next": null, "offset": 0, "previous": null, "total_count": 5}, "objects": [{"id": 17, "members": 0, "name": "vvv", "parent_id": 16, "super_group": {"id": 16, "name": "a2222"}}, {"id": 13, "members": 0, "name": "测试", "parent_id": 11, "super_group": {"id": 11, "name": "sup"}}, {"id": 10, "members": 19, "name": "总经理", "parent_id": 11, "super_group": {"id": 11, "name": "sup"}}, {"id": 9, "members": 2, "name": "产品经理", "parent_id": 11, "super_group": {"id": 11, "name": "sup"}}, {"id": 8, "members": 6, "name": "程序员", "parent_id": null, "super_group": {"id": null, "name": null}}]}
+```
 
 ## 创建用户组
 `userGroup.create({name,parent})`
@@ -63,10 +67,10 @@ exports.main = async function (e, cb) {
 
 **示例代码**
 ```javascript
-exports.main = async function (e, cb) {
-  let g = new BaaS.UserGroup()
-  console.log(await g.create({name: '测试',parent:'11'}))
-  cb(null)
+exports.main = async function (event, callback) {
+  let userGroup = new BaaS.UserGroup()
+  console.log(await userGroup.create({name: '测试',parent:'11'}))
+  callback(null)
 }
 ```
 
@@ -82,10 +86,10 @@ exports.main = async function (e, cb) {
 
 **示例代码**
 ```javascript
-exports.main = async function (e, cb) {
-  let g = new BaaS.UserGroup()
-  await g.update(12, {name: '888'})
-  cb(null)
+exports.main = async function (event, callback) {
+  let userGroup = new BaaS.UserGroup()
+  await userGroup.update(12, {name: '888'})
+  callback(null)
 }
 ```
 
@@ -100,10 +104,10 @@ exports.main = async function (e, cb) {
 
 **示例代码**
 ```javascript
-exports.main = async function (e, cb) {
-  let g = new BaaS.UserGroup()
-  await g.delete([12, 13])
-  cb(null)
+exports.main = async function (event, callback) {
+  let userGroup = new BaaS.UserGroup()
+  await userGroup.delete([12, 13])
+  callback(null)
 }
 ```
 
@@ -119,10 +123,10 @@ exports.main = async function (e, cb) {
 
 **示例代码**
 ```javascript
-exports.main = async function (e, cb) {
-  let g = new BaaS.UserGroup()
-  await g.addUserIntoGroup([1092612, 1092601], [8, 9])
-  cb(null)
+exports.main = async function (event, callback) {
+  let userGroup = new BaaS.UserGroup()
+  await userGroup.addUserIntoGroup([1092612, 1092601], [8, 9])
+  callback(null)
 }
 ```
 
@@ -137,9 +141,9 @@ exports.main = async function (e, cb) {
 | groups | integer Array | Y   | 用户组 ID 数组|
 
 ```javascript
-exports.main = async function (e, cb) {
-  let g = new BaaS.UserGroup()
-  await g.removeUserFromGroup([1092612], [8, 9])
-  cb(null)
+exports.main = async function (event, callback) {
+  let userGroup = new BaaS.UserGroup()
+  await userGroup.removeUserFromGroup([1092612], [8, 9])
+  callback(null)
 }
 ```
