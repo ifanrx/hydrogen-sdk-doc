@@ -69,11 +69,10 @@
         * [文件上传](open-api/file/file-upload.md)
         * [文件操作](open-api/file/file.md)
         * [文件分类操作](open-api/file/file-category.md)
-    * [分组模块](open-api/group/README.md)
+    * [用户模块](open-api/user.md)
         * [用户组操作](open-api/group/user-group.md)
         * [用户组与用户的操作](open-api/group/membership.md)
         * [组集操作](open-api/group/super-group.md)
-    * [用户模块](open-api/user.md)
     * [云函数](open-api/cloud-function.md)
 
 ----
@@ -92,18 +91,16 @@
         * [文件上传](user-dash/file/file-upload.md)
         * [文件操作](user-dash/file/file.md)
         * [文件分类操作](user-dash/file/file-category.md)
-    * [分组模块](user-dash/group/README.md)
+    * [用户模块](user-dash/user.md)
         * [用户组操作](user-dash/group/user-group.md)
         * [用户组与用户的操作](user-dash/group/membership.md)
         * [组集操作](user-dash/group/super-group.md)
-    * [用户模块](user-dash/user.md)
 
 ----
 
 * [云函数](cloud-function/README.md)
     * [快速入门](cloud-function/quick-start.md)
     * [云函数 Node.js SDK](cloud-function/node-sdk/README.md)
-        * [用户](cloud-function/node-sdk/user.md)
         * [数据表](cloud-function/node-sdk/schema/README.md)
             * [新增数据项](cloud-function/node-sdk/schema/create-record.md)
             * [更新数据项](cloud-function/node-sdk/schema/update-record.md)
@@ -125,8 +122,9 @@
         * [发送模板消息](cloud-function/node-sdk/template-message.md)
         * [网络请求](cloud-function/node-sdk/request.md)
         * [检测违规图片、文本](cloud-function/node-sdk/censor.md)
-        * [用户组操作](cloud-function/node-sdk/user-group.md)
-        * [组集操作](cloud-function/node-sdk/super-group.md)
+        * [用户](cloud-function/node-sdk/user.md)
+            * [用户组操作](cloud-function/node-sdk/user-group.md)
+            * [组集操作](cloud-function/node-sdk/super-group.md)
 
 ----
 
