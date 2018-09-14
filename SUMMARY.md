@@ -112,7 +112,11 @@
             * [查询数据项](cloud-function/node-sdk/schema/query.md)
             * [分页和排序](cloud-function/node-sdk/schema/limit-and-order.md)
             * [地理位置操作](cloud-function/node-sdk/schema/geo.md)
-        * [内容库](cloud-function/node-sdk/content.md)
+            * [数据导入导出操作](cloud-function/node-sdk/schema/operation.md)
+        * [内容](cloud-function/node-sdk/content/readme.md)
+            * [内容库](cloud-function/node-sdk/content/content-group.md)
+            * [内容](cloud-function/node-sdk/content/content.md)
+            * [内容分类](cloud-function/node-sdk/content/content-category.md)
         * [文件](cloud-function/node-sdk/file.md)
         * [文件分类](cloud-function/node-sdk/file-category.md)
         * [微信支付订单操作](cloud-function/node-sdk/order.md)
@@ -120,6 +124,9 @@
         * [发送邮件](cloud-function/node-sdk/email.md)
         * [发送模板消息](cloud-function/node-sdk/template-message.md)
         * [网络请求](cloud-function/node-sdk/request.md)
+        * [检测违规图片、文本](cloud-function/node-sdk/censor.md)
+        * [用户组操作](cloud-function/node-sdk/user-group.md)
+        * [组集操作](cloud-function/node-sdk/super-group.md)
 
 ----
 

@@ -209,6 +209,81 @@ query.notExists('name')
 query.notExists(['name', 'price'])
 ```
 
+## hasKey 查询 （仅限 object 类型）
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-  | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Object |
+| value | String              | 是  | 需要检测的属性名, 只能包含字母、数字和下划线，必须以字母开头 |
+
+**示例代码**
+
+假设数据表有如下数据行
+```javascript
+[
+  {
+    'id': '59a3c2b5afb7766a5ec6e84e',
+    name: '战争与和平',
+    publisherInfo: {
+      name: 'abc出版社',
+    },
+  },
+  {
+    'id': '59a3c2b5afb7766a5ec6e84g',
+    name: '西游记',
+    publisherInfo: {
+      name: 'efg出版社',
+      location: '广东省广州市天河区五山路 100 号'
+    },
+  },
+]
+```
+
+查询字段 publisherInfo 中存在 location 属性的数据行
+```js
+query.hasKey('publisherInfo', 'location')
+```
+
+查询结果
+```javascript
+[
+  {
+      'id': '59a3c2b5afb7766a5ec6e84g',
+      name: '西游记',
+      publisherInfo: {
+        name: 'efg出版社',
+        location: '广东省广州市天河区五山路 100 号'
+      },
+  }
+]
+```
+
+注意：目前暂不支持查询内嵌属性
+
+假设数据行如下
+```javascript
+[
+  {
+      'id': '59a3c2b5afb7766a5ec6e84g',
+      name: '西游记',
+      publisherInfo: {
+        abc: {
+          name: 'efg出版社',
+          location: '广东省广州市天河区五山路 100 号'
+        }
+      },
+  }
+]
+```
+
+则下面的查询语句是非法的
+
+```js
+query.hasKey('publisherInfo', 'abc.location')
+```
+
 ## 组合查询
 
 ```js
@@ -242,4 +317,20 @@ let andQuery = BaaS.Query.and(query1, query2)
 let query3 = new BaaS.Query()
 query3.compare('amount', '>', 3)
 let orQuery = BaaS.Query.or(andQuery, query3)
+```
+
+## 获取符合筛选条件的数据总数
+```javascript
+let Product = new BaaS.TableObject(tableID)
+let query = new BaaS.Query()
+
+// 设置查询条件
+// ...
+
+Product.setQuery(query).count().then(num => {
+  // success
+  console.log(num)  // 10
+}, err => {
+  // err
+})
 ```

@@ -1,4 +1,4 @@
-# 内容操作
+# 内容库操作
 
 以下操作都需指明操作的内容库，方法如下：
 
@@ -10,7 +10,7 @@
 | :------------- | :----- | :-- | :-- |
 | contentGroupID | Number | 是  | 内容库 ID |
 
-## 获取内容详情
+## 获取内容详情（已废弃，请查看[内容操作](./content.md)）
 
 `MyContentGroup.getContent(richTextID)`
 
@@ -67,7 +67,7 @@ res.data:
 }
 ```
 
-## 查询，获取内容列表
+## 查询，获取内容列表（已废弃，请查看[内容操作](./content.md)）
 
 内容查询与[数据表查询](../schema/query.md)方法一致
 
@@ -87,7 +87,7 @@ MyContentGroup.setQuery(query).find().then(res => {
 })
 ```
 
-## 获取分类详情
+## 获取分类详情（已废弃，请查看[内容分类操作](./content-category.md)）
 
 `MyContentGroup.getCategory(categoryID)`
 
@@ -136,7 +136,7 @@ res.data:
 ```
 
 
-## 获取内容库分类列表
+## 获取内容库分类列表（已废弃，请查看[内容分类操作](./content-category.md)）
 
 `MyContentGroup.getCategoryList()`
 
