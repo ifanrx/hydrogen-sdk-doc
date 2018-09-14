@@ -20,7 +20,6 @@
 | :--------- | :----- | :-- | :-- |
 | created_at | Number | Y   | 分类创建时间 |
 | files      | Number | Y   | 分类下的文件数 |
-| parent     | Number | Y   | 父分类 ID |
 | id         | String | Y   | 分类 ID |
 | name       | String | Y   | 分类名 |
 | subcategories | Array | Y   | 子分类列表 |

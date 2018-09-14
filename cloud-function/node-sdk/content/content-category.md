@@ -26,10 +26,10 @@
 | 参数         | 类型         | 说明 |
 | :---------- | :----------- | :-- |
 | subcategories  | Number Array | 子内容分类 |
-| created_at  | Number       | 创建时间 |
 | parent    | Object       | 父分类对象 |
 | id          | Number       | 内容分类 ID |
 | name       | String       | 内容分类名称 |
+| created_at  | Number       | 创建时间 |
 | update_at   | Number       | 更新时间 |
 
 
@@ -114,22 +114,22 @@ res.data:
 
 **排序**
 
-文件分类查询排序与[数据表排序](./schema/limit-and-order.md)方法一致，但只支持对以下指定字段进行排序：
+内容分类查询排序与[数据表排序](./schema/limit-and-order.md)方法一致，但只支持对以下指定字段进行排序：
 
 | 支持字段    | 描述        |
 | :--------- | :--------- |
-| created_at | 文件创建时间 |
-| updated_at | 文件更新时间 |
+| created_at | 内容分类创建时间 |
+| updated_at | 内容分类更新时间 |
 
 **分页**
 
-文件分类查询排序与[数据表分页](./schema/limit-and-order.md)方法一致。
+内容分类查询排序与[数据表分页](./schema/limit-and-order.md)方法一致。
 
 
 **请求示例**
 
 ```js
-MyContentCategory.offset(1).limit(10).orderBy('-created_at').find().then(res => {
+MyContentCategory.offset(0).limit(10).orderBy('-created_at').find().then(res => {
   // success
 }, err => {
   // err
@@ -153,10 +153,10 @@ MyContentCategory.offset(1).limit(10).orderBy('-created_at').find().then(res => 
 | 参数         | 类型         | 说明 |
 | :---------- | :----------- | :-- |
 | subcategories  | Number Array | 子内容分类 |
-| created_at  | Number       | 创建时间 |
 | parent    | Object       | 父分类对象 |
 | id          | Number       | 内容分类 ID |
 | name       | String       | 内容分类名称 |
+| created_at  | Number       | 创建时间 |
 | update_at   | Number       | 更新时间 |
 
 
