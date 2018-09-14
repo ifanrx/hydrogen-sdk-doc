@@ -50,6 +50,11 @@ exports.main = async function (event, callback) {
 }
 ```
 
+```javascript
+// 查询所有用户组
+userGroup.offset(10).limit(20).getUserGroupList({})
+```
+
 **返回示例**
 ```json
 {"meta": {"limit": 20, "next": null, "offset": 0, "previous": null, "total_count": 5}, "objects": [{"id": 17, "members": 0, "name": "vvv", "parent_id": 16, "super_group": {"id": 16, "name": "a2222"}}, {"id": 13, "members": 0, "name": "测试", "parent_id": 11, "super_group": {"id": 11, "name": "sup"}}, {"id": 10, "members": 19, "name": "总经理", "parent_id": 11, "super_group": {"id": 11, "name": "sup"}}, {"id": 9, "members": 2, "name": "产品经理", "parent_id": 11, "super_group": {"id": 11, "name": "sup"}}, {"id": 8, "members": 6, "name": "程序员", "parent_id": null, "super_group": {"id": null, "name": null}}]}
