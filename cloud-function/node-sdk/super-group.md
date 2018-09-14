@@ -79,7 +79,18 @@ exports.main = async function (event, callback) {
 **返回示例**
 
 ```json
-{"meta": {"limit": 20, "next": null, "offset": 0, "previous": null, "total_count": 2}, "objects": [{"children": 1, "id": 16, "name": "a2222", "user_group": [{"id": 17, "name": "vvv"}]}, {"children": 3, "id": 11, "name": "sup", "user_group": [{"id": 9, "name": "产品经理"}, {"id": 10, "name": "总经理"}, {"id": 13, "name": "测试"}]}]}
+{
+  "meta": {"limit": 20, "next": null, "offset": 0, "previous": null, "total_count": 1},
+  "objects": [{
+    "children": 3,
+    "id": 11,
+    "name": "sup",
+    "user_group": [
+      {"id": 9, "name": "产品经理"},
+      {"id": 10, "name": "总经理"},
+      {"id": 13, "name": "测试"}]
+  }]
+}
 ```
 
 ## 删除组集
