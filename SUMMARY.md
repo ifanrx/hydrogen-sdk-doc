@@ -113,7 +113,7 @@
             * [分页和排序](cloud-function/node-sdk/schema/limit-and-order.md)
             * [地理位置操作](cloud-function/node-sdk/schema/geo.md)
             * [数据导入导出操作](cloud-function/node-sdk/schema/operation.md)
-        * [内容](cloud-function/node-sdk/content/readme.md)
+        * [内容](cloud-function/node-sdk/content/README.md)
             * [内容库](cloud-function/node-sdk/content/content-group.md)
             * [内容](cloud-function/node-sdk/content/content.md)
             * [内容分类](cloud-function/node-sdk/content/content-category.md)
