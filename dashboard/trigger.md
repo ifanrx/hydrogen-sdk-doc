@@ -113,6 +113,7 @@ formId 使用限制说明：
 - formId 仅供其提交者使用，即你无法使用 A 提交的 formId 给 B 发送模板消息
 - formId 自提交日 7 天内有效
 - 表单提交场景的 formId 可使用发送 1 次，支付场景的 formId 可使用发送 3 次
+- 跳转路径请按照“pages/...“格式填写，“/pages/....“可能会导致发送错误
 
 ### WebHook
 执行结果：向指定 URL 发送一个 POST 请求。
