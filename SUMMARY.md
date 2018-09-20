@@ -127,6 +127,7 @@
         * [检测违规图片、文本](cloud-function/node-sdk/censor.md)
         * [用户组操作](cloud-function/node-sdk/user-group.md)
         * [组集操作](cloud-function/node-sdk/super-group.md)
+        * [短信验证码](cloud-function/node-sdk/sms.md)
 
 ----
 
