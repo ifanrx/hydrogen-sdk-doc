@@ -17,7 +17,7 @@
 ### 示例代码
 ```javascript
 BaaS.wechatPayTransfer({
-  userId: "xxxx",
+  userID: "xxxx",
   amount: 0.3,
   description: "test",
   checkName: true,
