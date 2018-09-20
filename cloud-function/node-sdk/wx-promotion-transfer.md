@@ -29,7 +29,9 @@ BaaS.wechatPayTransfer({
 })
 ```
 
-### 返回示例 
+### 返回示例
+
+调用结果会直接将微信的结果进行返回，开发者可根据返回的信息做处理。(请参考[微信企业付款文档](https://pay.weixin.qq.com/wiki/doc/api/tools/mch_pay.php?chapter=14_2))
 
 成功：HTTP:1.1 OK
 ```javascript
