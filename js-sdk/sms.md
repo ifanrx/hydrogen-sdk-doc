@@ -1,18 +1,17 @@
 # 短信验证码
 
 ## 发送短信验证码
-`wx.BaaS.sendSmsCode(phone, userID)`
+`wx.BaaS.sendSmsCode({phone})`
 
 ### 参数说明
 
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
 | phone | string | 手机号 |
-| userID | number | 用户 ID |
 
 ### 示例代码
 ```js
-wx.BaaS.sendSmsCode('15000000000', 66879698).then(res => {
+wx.BaaS.sendSmsCode({phone: '1328888888'}).then(res => {
   // success
   if (res.statusCode == 200) {
     console.log(res.data) // { "status": "ok" }
@@ -34,18 +33,18 @@ wx.BaaS.sendSmsCode('15000000000', 66879698).then(res => {
 
 
 ## 校验短信验证码
-`BaaS.verifySmsCode(phone, code)`
+`BaaS.verifySmsCode({phone, code})`
 
 ### 参数说明
 
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
-| phone | string | 手机号 |
-| code | number | 验证码 |
+| phone   | string   | 手机号 |
+| code    | number   | 验证码 |
 
 ### 示例代码
 ```js
-wx.BaaS.verifySmsCode('15000000000', 123456).then(res => {
+wx.BaaS.verifySmsCode({phone: '132888888', code: 123456}).then(res => {
     // success
     if (res.statusCode == 200) {
       console.log(res.data) // { "status": "ok" }
