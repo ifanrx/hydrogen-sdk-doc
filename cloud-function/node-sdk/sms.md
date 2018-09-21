@@ -1,7 +1,7 @@
 # 短信验证码
 
 ## 发送短信验证码
-`BaaS.sendSmsCode(phone, userID)`
+`BaaS.sendSmsCode({phone, userID})`
 
 ### 参数说明
 
@@ -13,14 +13,17 @@
 
 ### 示例代码
 ```javascript
-BaaS.sendSmsCode('15000000000', 66879698).then(res => {
+BaaS.sendSmsCode({
+  phone: '15000000000',
+  userID: 66879698,
+}).then(res => {
   // success
 }).catch(e => {
   // err
 })
 ```
 
-### 返回示例 
+### 返回示例
 
 成功：HTTP:1.1 OK
 ```javascript
@@ -29,7 +32,7 @@ BaaS.sendSmsCode('15000000000', 66879698).then(res => {
 
 
 ## 验证短信验证码
-`BaaS.verifySmsCode(phone, code, userID)`
+`BaaS.verifySmsCode({phone, code, userID})`
 
 ### 参数说明
 
@@ -42,14 +45,18 @@ BaaS.sendSmsCode('15000000000', 66879698).then(res => {
 
 ### 示例代码
 ```javascript
-BaaS.verifySmsCode('15000000000', 123456, 66879698).then(res => {
+BaaS.verifySmsCode({
+  phone: '15000000000',
+  code: 123456,
+  userID: 66879698,
+}).then(res => {
   // success
 }).catch(e => {
   // err
 })
 ```
 
-### 返回示例 
+### 返回示例
 
 成功：HTTP:1.1 OK
 ```javascript
