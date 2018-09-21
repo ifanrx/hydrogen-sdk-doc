@@ -91,6 +91,9 @@
         <li>
           <a href="/js-sdk/censor.md/">检测违规图片、文本</a>
         </li>
+        <li>
+           <a href="/js-sdk/sms.md/">短信验证码</a>
+        </li>
       </ul>
       <ul class="doc-js-sdk doc-detail-item">
         <li>
