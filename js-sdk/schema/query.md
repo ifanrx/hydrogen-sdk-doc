@@ -26,6 +26,9 @@
 
 `let MyTableObject = new wx.BaaS.TableObject(tableID)`
 
+> **info**
+> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new wx.BaaS.TableObject('product')
+
 **参数说明**
 
 | 参数     | 类型   | 必填 | 说明 |

@@ -13,7 +13,7 @@ let params = {
 }
 
 wx.BaaS.pay(params).then(res => {
-  console.log('订单号', res.transaction_no)
+  console.log('微信支付流水号', res.transaction_no)
 }, err => {
   if (err.code === 607) {
     console.log('用户取消支付')

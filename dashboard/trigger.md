@@ -107,6 +107,14 @@
 微信模板消息需要配合小程序来触发，无法单独在后台触发。具体触发方法为：在小程序页面中添加 form 组件，在提交表单的回调中取得 formId，调用 [BaaS.wxReportTicket](../js-sdk/template-message.md) 保存 formId，保存成功后，当触发器被触发后，这时用户就可以在手机收到通知。
 注意这里 form 组件需要添加 **report-submit** 属性，否则在回调事件对象中无法获取 formId。
 
+formId 使用限制说明：
+
+- 发送前必须已有真机提交 formId （开发者工具无效）或已支付成功
+- formId 仅供其提交者使用，即你无法使用 A 提交的 formId 给 B 发送模板消息
+- formId 自提交日 7 天内有效
+- 表单提交场景的 formId 可使用发送 1 次，支付场景的 formId 可使用发送 3 次
+- 跳转路径请按照“pages/...“格式填写，“/pages/....“可能会导致发送错误
+
 ### WebHook
 执行结果：向指定 URL 发送一个 POST 请求。
 

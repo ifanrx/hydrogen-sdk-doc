@@ -29,7 +29,7 @@ data 是 Object 类型，为订单过滤条件，你可以参考后面的返回�
 | status                  | String | 订单状态 |
 | total_cost              | Number | 发起交易请求时的支付金额 |
 | trade_no                | String | 知晓云平台所记录的订单号 |
-| transaction_no          | String | 对应微信支付成功后返回的 transaction_no |
+| transaction_no          | String | 对应微信支付成功后返回的 transaction_no，支付流水号 |
 | updated_at              | Number | 订单更新时间 |
 
 **示例代码**
