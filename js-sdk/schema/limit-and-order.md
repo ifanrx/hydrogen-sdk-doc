@@ -47,6 +47,10 @@ Product.setQuery(query).orderBy(['created_at']).find()
 Product.setQuery(query).orderBy('-created_at').find()
 // or
 Product.setQuery(query).orderBy(['-created_at']).find()
+
+// 多重排序
+Product.setQuery(query).orderBy(['-created_at', 'created_by']).find()
+// 👆先按照 created_at 降序，再按照 created_by 升序排列
 ```
 
 {% content "second" %}
