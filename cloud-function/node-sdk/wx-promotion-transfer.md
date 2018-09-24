@@ -1,7 +1,7 @@
 # 企业付款
 
 
-`BaaS.wechatPayTransfer({userID, amount, description, checkName, reUserName})`
+`BaaS.wxPromotionTransfer({userID, amount, description, checkName, reUserName})`
 
 ### 参数说明
 
@@ -16,7 +16,7 @@
 
 ### 示例代码
 ```javascript
-BaaS.wechatPayTransfer({
+BaaS.wxPromotionTransfer({
   userID: "xxxx",
   amount: 0.3,
   description: "test",
