@@ -437,7 +437,6 @@ sync 为 false:
 | 参数          | 类型 | 必填 | 说明 |
 | :----------   | :--- | :--- | :--- |
 | name | String | Y | 云函数名 |
-| plan_circle | String | Y | 付费套餐 |
 | function_code | String | Y | 云函数代码 |
 | remark | String | N | 备注 |
 
@@ -467,7 +466,6 @@ curl -X POST \
   -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b'
   -d '{
   "name": "come_from_open_API",
-  "plan_circle": "P_FREE",
   "function_code": "exports.main = function functionName(event, callback) {\n  callback(null, \"hello world\")\n}",
   "remark": "你好啊，云函数"
 }'
@@ -485,7 +483,6 @@ var options = { method: 'POST',
      Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
   body:
    { name: 'come_from_open_API',
-     plan_circle: 'P_FREE',
      function_code: 'exports.main = function functionName(event, callback) {\n  callback(null, "hello world")\n}',
      remark: '你好啊，云函数' },
   json: true };
@@ -514,7 +511,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n\t\"name\": \"come_from_open_API\",\n     \"plan_circle\": \"P_FREE\",\n    \"function_code\": \"exports.main = function functionName(event, callback) {\\n  callback(null, \\\"hello world\\\")\\n}\",\n    \"remark\": \"你好啊，云函数\"\n}",)
+curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n\t\"name\": \"come_from_open_API\",\n    \"function_code\": \"exports.main = function functionName(event, callback) {\\n  callback(null, \\\"hello world\\\")\\n}\",\n    \"remark\": \"你好啊，云函数\"\n}",)
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
@@ -679,7 +676,6 @@ if ($err) {
 | name | String | N | 云函数名 |
 | function_code | String | N | 云函数代码 |
 | remark | String | N | 备注 |
-| plan_circle | String | N | 套餐类型，可选值有：P_FREE, P_PERSONAL, P_ENTERPRISE |
 
 **返回参数说明**
 
@@ -707,7 +703,6 @@ curl -X PATCH \
   -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b'
   -d '{
   "name": "modify_from_open_API",
-  "plan_circle": "P_FREE",
   "function_code": "exports.main = function functionName(event, callback) {\n  callback(null, \"hello world\")\n}",
   "remark": "你好啊，云函数"
 }'
@@ -725,7 +720,6 @@ var options = { method: 'PATCH',
      Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
   body:
    { name: 'modify_from_open_API',
-     plan_circle: 'P_FREE',
      function_code: 'exports.main = function functionName(event, callback) {\n  callback(null, "hello world")\n}',
      remark: '你好啊，云函数' },
   json: true };
@@ -755,7 +749,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
-curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n\t\"name\": \"modify_from_open_API\",\n     \"plan_circle\": \"P_FREE\",\n    \"function_code\": \"exports.main = function functionName(event, callback) {\\n  callback(null, \\\"hello world\\\")\\n}\",\n    \"remark\": \"你好啊，云函数\"\n}",)
+curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n\t\"name\": \"modify_from_open_API\",\n   \"function_code\": \"exports.main = function functionName(event, callback) {\\n  callback(null, \\\"hello world\\\")\\n}\",\n    \"remark\": \"你好啊，云函数\"\n}",)
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
