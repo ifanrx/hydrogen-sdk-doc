@@ -48,6 +48,7 @@
     * [获取二维码](js-sdk/wxacode.md)
     * [调用云函数](js-sdk/invoke-function.md)
     * [检测违规图片、文本](js-sdk/censor.md)
+    * [短信验证码](js-sdk/sms.md)
     * [错误码详解](js-sdk/error-code.md)
     * [SDK 下载](js-sdk/download-sdk.md)
     * [更新日志](https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md)
@@ -119,12 +120,14 @@
         * [微信支付订单操作](cloud-function/node-sdk/order.md)
         * [调用云函数](cloud-function/node-sdk/cloud-function.md)
         * [发送邮件](cloud-function/node-sdk/email.md)
-        * [发送模板消息](cloud-function/node-sdk/template-message.md)
+        * [发送模板消息](cloud-function/node-sdk/template-message.md)
         * [网络请求](cloud-function/node-sdk/request.md)
         * [检测违规图片、文本](cloud-function/node-sdk/censor.md)
         * [用户](cloud-function/node-sdk/user.md)
             * [用户组操作](cloud-function/node-sdk/user-group.md)
             * [组集操作](cloud-function/node-sdk/super-group.md)
+        * [企业付款](cloud-function/node-sdk/wx-promotion-transfer.md)
+        * [短信验证码](cloud-function/node-sdk/sms.md)
 
 ----
 
