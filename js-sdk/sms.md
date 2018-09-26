@@ -13,7 +13,7 @@
 ```js
 wx.BaaS.sendSmsCode({phone: '1328888888'}).then(res => {
   // success
-  if (res.statusCode == 200) {
+  if (res.statusCode == 201) {
     console.log(res.data) // { "status": "ok" }
   } else {
     console.log(res.statusCode) // 错误状态码
@@ -46,7 +46,7 @@ wx.BaaS.sendSmsCode({phone: '1328888888'}).then(res => {
 ```js
 wx.BaaS.verifySmsCode({phone: '132888888', code: 123456}).then(res => {
     // success
-    if (res.statusCode == 200) {
+    if (res.statusCode == 201) {
       console.log(res.data) // { "status": "ok" }
     } else {
       console.log(res.statusCode) // 错误状态码
