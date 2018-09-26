@@ -4,6 +4,9 @@
 
 `POST https://cloud.minapp.com/oserve/v1/cloud-function/job/`
 
+> **info**
+> 推荐使用[发起一个云函数请求](#发起一个云函数请求)触发云函数。
+
 **参数说明**
 
 Content-Type: `Content-Type: application/json`
