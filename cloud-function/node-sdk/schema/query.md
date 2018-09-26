@@ -1,5 +1,20 @@
 # 查询
 
+## 数据类型对应查询操作符表
+
+| 数据类型 |                            可使用的查询操作                                             | 说明 |
+|:---------|:--------------------------------------------------------------------------------------- |:-----|
+| string   | =, in, notIn, !=, isNull, isNotNull, contains, matches, exists, notExists               |      |
+| integer  | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                    |      |
+| number   | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                    |      |
+| array    | =, in, notIn, isNull, isNotNull, arrayContains, exists, notExists                       |      |
+| boolean  | =, exists, notExists, isNull, isNotNull                                                 |      |
+| date     | =, >, >=, <, <=,  exists, notExists, isNull, isNotNull                                  |      |
+| file     | isNull, isNotNull, exists, notExists                                                    |      |
+| geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     | 请参考[地理位置操作](./geo.md)章节 |
+| object   | =, hasKey, isNull, isNotNull, exists, notExists                                         |      ||
+
+
 ## 操作步骤
 
 1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
@@ -105,7 +120,7 @@ query.compare('amount', '<', 10)
 query.contains('name', 'apple')
 ```
 
-也支持正则匹配 ( <span style='color:red'>* sdk version >= v1.1.1</span> )
+也支持正则匹配
 
 ```js
 query.matches('name', regExp)
@@ -155,7 +170,7 @@ field 的类型不限制，field 的 value 不含有 array 中的任何一个
 query.notIn(fieldName, array)
 ```
 
-field 的类型必须为数组, field 的 value 包含 array 中的每一个  ( <span style='color:red'>* sdk version >= v1.1.1</span> )
+field 的类型必须为数组, field 的 value 包含 array 中的每一个
 ```js
 query.arrayContains(fieldName, array)
 ```
@@ -199,7 +214,6 @@ query.isNotNull(['name', 'price'])
 ```
 
 ## 查询字段值为空或非空记录
-<span style='color:red'>* sdk version >= v1.1.1</span>
 
 ```js
 query.exists('name')
