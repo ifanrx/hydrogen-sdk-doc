@@ -28,12 +28,12 @@ Content-Type: `Content-Type: application/json`
 
 **接口地址**
 
-`POST https://cloud.minapp.com/oserve/v1/cloud-function/:cloud_function_id/debug/`
+`POST https://cloud.minapp.com/oserve/v1.3/cloud-function/:cloud_function_name/debug/`
 
-其中 `:cloud_function_id` 是云函数的 ID。
+其中 `:cloud_function_name` 是云函数的名字。
 
 **参数说明**
-
+ 
 Content-Type: `Content-Type: application/json`
 
 | 参数           | 类型   | 必填 | 说明 |
@@ -63,7 +63,7 @@ Content-Type: `Content-Type: application/json`
 
 ```
 curl -X POST \
-  https://cloud.minapp.com/oserve/v1/cloud-function/847/debug/ \
+  https://cloud.minapp.com/oserve/v1.3/cloud-function/test/debug/ \
   -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
   -H 'Content-Type: application/json' \
   -d '{
@@ -76,8 +76,9 @@ curl -X POST \
 ```js
 var request = require("request");
 
+var cloudFunctionName = '';
 var options = { method: 'POST',
-  url: 'https://cloud.minapp.com/oserve/v1/cloud-function/847/debug/',
+  url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/' + cloudFunctionName + '/debug/',
   headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
@@ -96,8 +97,8 @@ request(options, function (error, response, body) {
 ```php
 <?php
 $token = '';
-$cloud_function_id = 847; // 云函数的 ID
-$url = "https://cloud.minapp.com/oserve/v1/cloud-function/{$cloud_function_id}/debug/";
+$cloud_function_name = ''; // 云函数的名字
+$url = "https://cloud.minapp.com/oserve/v1.3/cloud-function/{$cloud_function_name}/debug/";
 
 $ch = curl_init();
 $header = array(
@@ -215,8 +216,9 @@ curl -X GET \
 ```js
 var request = require("request");
 
+var cloudFunctionName = '';
 var options = { method: 'GET',
-  url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/test/job/',
+  url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/' + cloudFunctionName + '/job/',
   headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
@@ -348,8 +350,9 @@ curl -X POST \
 ```js
 var request = require("request");
 
+var cloudFunctionName = '';
 var options = { method: 'POST',
-  url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/test/job/',
+  url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/' + cloudFunctionName + '/job/',
   headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
@@ -430,7 +433,7 @@ sync 为 false:
 
 **接口地址**
 
-` POST https://cloud.minapp.com/oserve/v1/cloud-function/`
+` POST https://cloud.minapp.com/oserve/v1.3/cloud-function/`
 
 **请求参数说明**
 
@@ -462,7 +465,7 @@ sync 为 false:
 
 ```
 curl -X POST \
-  https://cloud.minapp.com/oserve/v1/cloud-function/ \
+  https://cloud.minapp.com/oserve/v1.3/cloud-function/ \
   -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b'
   -d '{
   "name": "come_from_open_API",
@@ -477,7 +480,7 @@ curl -X POST \
 var request = require("request");
 
 var options = { method: 'POST',
-  url: 'https://cloud.minapp.com/oserve/v1/cloud-function/',
+  url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/',
   headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
@@ -499,7 +502,7 @@ request(options, function (error, response, body) {
 ```php
 <?php
 $token = '';
-$url = "https://cloud.minapp.com/oserve/v1/cloud-function/";
+$url = "https://cloud.minapp.com/oserve/v1.3/cloud-function/";
 
 $ch = curl_init();
 $header = array(
@@ -554,9 +557,9 @@ if ($err) {
 
 **接口地址**
 
-`GET https://cloud.minapp.com/oserve/v1/cloud-function/:cloud-function-id/`
+`GET https://cloud.minapp.com/oserve/v1.3/cloud-function/:cloud-function-name/`
 
-其中 `:cloud-function-id` 为云函数 ID。
+其中 `:cloud-function-name` 为云函数的名字。
 
 **返回参数说明**
 
@@ -580,7 +583,7 @@ if ($err) {
 
 ```
 curl -X POST \
-  https://cloud.minapp.com/oserve/v1/cloud-function/1314/ \
+  https://cloud.minapp.com/oserve/v1.3/cloud-function/test/ \
   -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b'
 ```
 
@@ -589,8 +592,9 @@ curl -X POST \
 ```javascript
 var request = require("request");
 
+var cloudFunctionName = '';
 var options = { method: 'GET',
-  url: 'https://cloud.minapp.com/oserve/v1/cloud-function/1314/',
+  url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/' + cloudFunctionName + '/',
   headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
@@ -608,8 +612,8 @@ request(options, function (error, response, body) {
 ```php
 <?php
 $token = '';
-$cloud_function_id = 1314;
-$url = "https://cloud.minapp.com/oserve/v1/cloud-function/{$cloud_function_id}/";
+$cloud_function_name = '';
+$url = "https://cloud.minapp.com/oserve/v1.3/cloud-function/{$cloud_function_name}/";
 
 $ch = curl_init();
 $header = array(
@@ -665,9 +669,9 @@ if ($err) {
 
 **接口地址**
 
-`PATCH https://cloud.minapp.com/oserve/v1/cloud-function/:cloud-function-id/`
+`PATCH https://cloud.minapp.com/oserve/v1.3/cloud-function/:cloud-function-name/`
 
-其中 `:cloud-function-id` 为云函数 ID。
+其中 `:cloud-function-name` 为云函数名字。
 
 **请求参数说明**
 
@@ -699,7 +703,7 @@ if ($err) {
 
 ```
 curl -X PATCH \
-  https://cloud.minapp.com/oserve/v1/cloud-function/1314/ \
+  https://cloud.minapp.com/oserve/v1.3/cloud-function/test/ \
   -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b'
   -d '{
   "name": "modify_from_open_API",
@@ -713,8 +717,9 @@ curl -X PATCH \
 ```javascript
 var request = require("request");
 
+var cloudFunctionName = '';
 var options = { method: 'PATCH',
-  url: 'https://cloud.minapp.com/oserve/v1/cloud-function/1314/',
+  url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/' + cloudFunctionName + '/',
   headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
@@ -736,8 +741,8 @@ request(options, function (error, response, body) {
 ```php
 <?php
 $token = '';
-$cloud_function_id = 1314;
-$url = "https://cloud.minapp.com/oserve/v1/cloud-function/{$cloud_function_id}/";
+$cloud_function_name = '';
+$url = "https://cloud.minapp.com/oserve/v1.3/cloud-function/{$cloud_function_name}/";
 
 $ch = curl_init();
 $header = array(
@@ -792,9 +797,9 @@ if ($err) {
 
 **接口地址**
 
-`DELETE https://cloud.minapp.com/oserve/v1/cloud-function/:cloud-function-id/`
+`DELETE https://cloud.minapp.com/oserve/v1.3/cloud-function/:cloud-function-name/`
 
-其中 `:cloud-function-id` 是云函数的 ID。
+其中 `:cloud-function-name` 是云函数的名字。
 
 **代码示例**
 
@@ -804,7 +809,7 @@ if ($err) {
 
 ```
 curl -X POST \
-  https://cloud.minapp.com/oserve/v1/cloud-function/1314/ \
+  https://cloud.minapp.com/oserve/v1.3/cloud-function/test/ \
   -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b'
 ```
 
@@ -813,8 +818,9 @@ curl -X POST \
 ```js
 var request = require("request");
 
+var cloudFunctionName = '';
 var options = { method: 'DELETE',
-  url: 'https://cloud.minapp.com/oserve/v1/cloud-function/1314/',
+  url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/' + cloudFunctionName + '/',
   headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
@@ -832,8 +838,8 @@ request(options, function (error, response, body) {
 ```php
 <?php
 $token = '';
-$cloud_function_id = '1314'; // 云函数的 ID
-$url = "https://cloud.minapp.com/oserve/v1/cloud-function/{$cloud_function_id}/";
+$cloud_function_name = ''; // 云函数的名字
+$url = "https://cloud.minapp.com/oserve/v1.3/cloud-function/{$cloud_function_name}/";
 
 $ch = curl_init();
 $header = array(
