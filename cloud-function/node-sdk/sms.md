@@ -25,7 +25,7 @@ BaaS.sendSmsCode({
 
 ### 返回示例
 
-成功：HTTP:1.1 OK
+成功：HTTP:1.1 Created
 ```javascript
 { "status": "ok" }
 ```
@@ -58,7 +58,7 @@ BaaS.verifySmsCode({
 
 ### 返回示例
 
-成功：HTTP:1.1 OK
+成功：HTTP:1.1 Created
 ```javascript
 { "status": "ok" }
 ```
