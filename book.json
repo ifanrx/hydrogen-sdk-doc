@@ -39,7 +39,7 @@
   ],
   "title": "知晓云平台开发文档",
   "variables": {
-    "latestVersion": "1.7.0"
+    "latestVersion": "1.8.0"
   },
   "pluginsConfig": {
     "algolia": {
