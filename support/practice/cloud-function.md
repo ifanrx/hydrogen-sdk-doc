@@ -17,6 +17,8 @@
 
 #### 创建云函数 setHash
 
+![创建云函数](../../images/practice/cloud-function/WX20180927-110011.png)
+
 ```javascript
 // 数据表 id
 const TABLE_ID = 111111
@@ -70,7 +72,7 @@ exports.main = async function setHash(event, callback) {
 
 #### 测试云函数
 
-在 table 数据表中新建一条数据，hash 字段不用赋值。之后触发器就会被你的 create 操作触发，从而调用 setHash 云函数，最后 hash 字段的值就被更新了。如下：
+在 table 数据表中新增一行数据，hash 字段不用赋值。之后触发器就会被你的 create 操作触发，从而调用 setHash 云函数，最后 hash 字段的值就被更新了。如下：
 
 ![数据表：新增一行](../../images/practice/cloud-function/WechatIMG3.png)
 
