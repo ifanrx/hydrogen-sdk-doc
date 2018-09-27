@@ -50,6 +50,7 @@ Product.setQuery(query).find().then(res => {
 
 阅读以下章节，了解更多数据表操作接口：
 
+* [数据类型](./data-type.md)
 * [新增数据项](./create-record.md)
 * [更新数据项](./update-record.md)
 * [删除数据项](./delete-record.md)

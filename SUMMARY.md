@@ -102,6 +102,7 @@
 * [云函数 Node.js SDK](cloud-function/node-sdk/README.md)
     * [快速入门](cloud-function/quick-start.md)
     * [数据表](cloud-function/node-sdk/schema/README.md)
+        * [数据类型](cloud-function/node-sdk/schema/data-type.md)
         * [新增数据项](cloud-function/node-sdk/schema/create-record.md)
         * [更新数据项](cloud-function/node-sdk/schema/update-record.md)
         * [删除数据项](cloud-function/node-sdk/schema/delete-record.md)
