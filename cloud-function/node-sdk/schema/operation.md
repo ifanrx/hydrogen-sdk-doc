@@ -2,9 +2,15 @@
 
 数据的导入、导出任务一旦成功建立，结果将以邮件的形式发送到创建任务的用户邮箱里。
 
-通过 `tableID` 实例化一个 `TableObject` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
+通过 `数据表 ID` 或 `数据表名` 实例化一个 `TableObject` 对象，以下操作都是在该对象上进行操作：
 
-`let MyTableObject = new BaaS.TableObject(tableID)`
+`let MyTableObject = new BaaS.TableObject(param)`
+
+**参数说明**
+
+| 参数  | 类型   | 必填 | 说明 |
+| :---- | :----- | :-- | :---|
+| param | Number / String |  是 | 数据表 ID / 数据表名 |
 
 ## 数据导出
 

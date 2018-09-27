@@ -2,15 +2,15 @@
 
 ## 操作步骤
 
-1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
+1.通过 `数据表 ID` 或 `数据表名` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表 
 
-`let MyTableObject = new BaaS.TableObject(tableID)`
+`let MyTableObject = new BaaS.TableObject(param)`
 
 **参数说明**
 
-| 参数     | 类型   | 必填 | 说明 |
-| :-----  | :----- | :-- | :---|
-| tableID | Number |  是 | 数据表 ID |
+| 参数  | 类型   | 必填 | 说明 |
+| :---- | :----- | :-- | :---|
+| param | Number / String |  是 | 数据表 ID / 数据表名 |
 
 2.通过 `recordID` 设置指定记录
 
@@ -18,7 +18,7 @@
 
 **参数说明**
 
-| 参数      | 类型   | 必填 | 说明 |
+| 参数     | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :---|
 | recordID | String | 是  | 记录 ID |
 
