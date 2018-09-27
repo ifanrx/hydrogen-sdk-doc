@@ -191,6 +191,9 @@
           <a href="/support/practice/trigger.md/"> 触发器实战教程</a>
         </li>
         <li>
+          <a href="/support/practice/cloud-function.md/"> 云函数实战教程</a>
+        </li>
+        <li>
           <a href="https://minapp.com/article/?category=cloud"> 更多实战教程</a>
         </li>
       </ul>

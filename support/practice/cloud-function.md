@@ -34,7 +34,6 @@ const getUniqueID = (len = 5) => {
 }
 
 exports.main = async function setHash(event, callback) {
-  // 实例化 table 对象
   let MyTableObject = new BaaS.TableObject(TABLE_ID)
 
   while (true) {
