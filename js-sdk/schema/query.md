@@ -130,12 +130,15 @@ query.compare('amount', '<', 10)
 
 
 ### 字符串查询
-
+查询返回满足包含相应字符串的记录，如下示例：
 ```js
-query.contains('name', 'apple')
+// 例：{"name": "apple"}
+query.contains('name', 'apple')  // 查询name字段包含'apple'的记录，能正确匹配
+query.contains('name', 'app')  // 查询name字段包含'app'的记录，能正确匹配
+query.contains('name', 'apple123')  // 查询name字段包含'apple123'的记录，不能正确匹配
 ```
 
-也支持正则匹配 ( <span style='color:red'>* sdk version >= v1.1.1</span> )：
+也支持正则匹配 ( <span style='color:red'>* sdk version >= v1.1.1，</span> [正则表达式相关知识](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions) )：
 
 ```js
 query.matches('name', regExp)
@@ -156,12 +159,22 @@ const regExp = new RegExp('^abc', 'i')
 ### 正则匹配示例
 
 ```js
-/* 以查找手机号码为例，phoneNumber 字段必须为 string 类型 */
+/* 以查找名字为例，name 字段必须为 string 类型 */
 
 let regExp
 
+// 查找 以 foo 开头的名字，并且对大小写不敏感
+regExp = /^foo/i
+
+query.matches('name', regExp)
+
+
+/* 以查找手机号码为例，phoneNumber 字段必须为 string 类型 */
+
+let regx
+
 // 查找 以 188 开头的手机号码
-regExp = /^188/
+regx = /^188/
 
 // 查找 以 708 结尾的手机号码
 regx = /708$/
