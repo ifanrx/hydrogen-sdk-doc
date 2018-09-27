@@ -442,8 +442,8 @@ sync 为 false:
 
 | 参数          | 类型 | 必填 | 说明 |
 | :----------   | :--- | :--- | :--- |
-| name | String | Y | 云函数名 |
-| function_code | String | Y | 云函数代码 |
+| name | String | Y | 云函数名，不能为空字符串 |
+| function_code | String | Y | 云函数代码，不能为空字符串 |
 | remark | String | N | 备注 |
 
 **返回参数说明**
@@ -556,6 +556,138 @@ if ($err) {
 
 `201`: 创建成功
 
+`401`: 参数不合法：云函数名或代码为字段为空
+
+## 获取当前小程序的所有云函数
+
+**接口地址**
+
+`GET https://cloud.minapp.com/oserve/v1.3/cloud-function/`
+
+**返回参数说明**
+
+| 参数          | 类型 | 说明 |
+| :----------   | :--- | :--- |
+| audit_status | String | 可能的值： approved, rejected, waiting |
+| created_by | String | 创建者昵称 |
+| function_code | String | 云函数代码 |
+| id | Integer | 云函数 ID |
+| name | String | 云函数名 |
+| plan_circle | String | 套餐类型 |
+| remark | String | 备注 |
+| updated_at | Integer | 最近一次更新时间 |
+| updated_by | String | 更新者昵称 |
+
+**代码示例**
+
+{% tabs getAllCloudFunctionCurl="Curl", getAllCloudFunctionNode="Node", getAllCloudFunctionPHP="PHP" %}
+
+{% content "getAllCloudFunctionCurl" %}
+
+```
+curl -X GET \
+  https://cloud.minapp.com/oserve/v1.3/cloud-function/ \
+  -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b'
+```
+
+{% content "getAllCloudFunctionNode" %}
+
+```javascript
+var request = require("request");
+
+var cloudFunctionName = '';
+var options = { method: 'GET',
+  url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/' + cloudFunctionName + '/',
+  headers:
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+{% content "getAllCloudFunctionHP" %}
+
+```php
+<?php
+$token = '';
+$url = "https://cloud.minapp.com/oserve/v1.3/cloud-function/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```javascript
+{
+    "meta": {
+        "limit": 20,
+        "next": null,
+        "offset": 0,
+        "previous": null,
+        "total_count": 2
+    },
+    "objects": [
+        {
+            "audit_status": "approved",
+            "created_at": 1537924886,
+            "created_by": "somebody",
+            "function_code": "exports.main = function functionName(event, callback) {\n  callback(null, \"hello world\")\n}",
+            "id": 1121,
+            "name": "come_from_open_API_v1.3",
+            "plan_circle": "P_FREE",
+            "remark": "你好啊，云函数",
+            "updated_at": 1537924886,
+            "updated_by": ""
+        },
+        {
+            "audit_status": "approved",
+            "created_at": 1537704269,
+            "created_by": "somebody",
+            "function_code": "exports.main = function functionName(event, callback) {\n  callback(null, \"hello world\")\n}",
+            "id": 1102,
+            "name": "测试",
+            "plan_circle": "P_FREE",
+            "remark": "你好啊，云函数",
+            "updated_at": 1537704426,
+            "updated_by": "somebody"
+        },
+    ]
+}
+```
+
+**状态码说明**
+
+`200`:  成功
+
 ## 获取云函数详细信息
 
 **接口地址**
@@ -585,7 +717,7 @@ if ($err) {
 {% content "getCloudFunctionInfoCurl" %}
 
 ```
-curl -X POST \
+curl -X GET \
   https://cloud.minapp.com/oserve/v1.3/cloud-function/test/ \
   -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b'
 ```
@@ -680,8 +812,8 @@ if ($err) {
 
 | 参数          | 类型 | 必填 | 说明 |
 | :----------   | :--- | :--- | :--- |
-| name | String | N | 云函数名 |
-| function_code | String | N | 云函数代码 |
+| name | String | N | 云函数名，不能为空字符串 |
+| function_code | String | N | 云函数代码，不能为空字符串 |
 | remark | String | N | 备注 |
 
 **返回参数说明**
@@ -795,6 +927,8 @@ if ($err) {
 **状态码说明**
 
 `202`: 修改成功
+
+`401`: 参数不合法：云函数名或代码为空
 
 ## 删除一个云函数
 
