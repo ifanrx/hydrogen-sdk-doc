@@ -72,7 +72,7 @@
   })
 
   // 获取二维码的下载链接（知晓云会先自动上传到文件存储，返回 CDN 链接）
-  wx.BaaS.getWXACode('wxacode', params).then(res => {
+  wx.BaaS.getWXACode('wxacode', params, true).then(res => {
     this.setData({
       imageBase64: res.image,
       imageURL: res.download_url
