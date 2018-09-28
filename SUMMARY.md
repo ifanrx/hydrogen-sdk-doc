@@ -32,6 +32,7 @@
         * [分页和排序](js-sdk/schema/limit-and-order.md)
         * [地理位置操作](js-sdk/schema/geo.md)
         * [字段过滤与扩展](js-sdk/schema/select-and-expand.md)
+        * [API REFRENCE](js-sdk/schema/api-refrence.md)
     * [内容库](js-sdk/content/README.md)
         * [内容操作](js-sdk/content/operate.md)
         * [渲染内容](js-sdk/content/render.md)

@@ -40,10 +40,6 @@
 {% tabs SDKPluginConfig="SDK 插件版接入", SDKFileConfig="SDK 文件版接入" %}
 
 {% content "SDKPluginConfig" %}
-## 在微信后台添加知晓云插件
-设置 ---> 第三方服务 ---> 添加插件  
-![添加插件](/images/newbies/add-plugin.jpg)
-
 
 ## 第一个接入知晓云的小程序
 
@@ -79,6 +75,8 @@
 通过初始化 [SDK](/js-sdk/download-sdk.md)，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 [SDK](/js-sdk/download-sdk.md) 提供的全部功能。
 
 在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
+
+[复制 clientID](/images/newbies/get-client-id.png)
 
 ```js
 // app.js
