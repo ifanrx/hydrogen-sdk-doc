@@ -60,7 +60,7 @@
 let query = new wx.BaaS.Query()
 
 // 设置查询条件（比较、字符串包含、组合等）
-...
+//...
 
 // 应用查询对象
 let Product = new wx.BaaS.TableObject(tableID)
@@ -144,7 +144,7 @@ query.contains('name', 'apple123')  // 查询name字段包含'apple123'的记录
 query.matches('name', regExp)
 ```
 
-构建一个 regExp 可通过以下两种方法之一:
+构建一个 regExp 可通过以下两种方法之一，`i` 表示对大小写不敏感:
 
 - 使用正则表达式字面量
 ```js
