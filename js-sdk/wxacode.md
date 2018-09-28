@@ -1,6 +1,6 @@
 # 获取二维码
 
-> **danger**
+> **info**
 > 以下操作仅适用于 SDK version >= 1.2.0
 
 `wx.BaaS.getWXACode(type, params)`
@@ -17,24 +17,18 @@
 | :----- | :------ | :-- | :-- |
 | type   | String  | Y   | 支持 'wxacode', 'wxacodeunlimit', 'wxaqrcode' 三种类型，详情查看以下「[选择二维码类型](#选择二维码类型)」|
 | params | Object  | Y   | 小程序码或小程序二维码的配置参数，详情查看以下「[选择二维码类型](#选择二维码类型)」|
-
-<span class="attention">注：</span> 在 SDK v1.3.0 后该接口增加了上传二维码到 CDN 的支持，因此，在以上参数的基础上，增加了下面两个参数：
-
-| 参数          | 类型   | 必填 | 说明 |
-| :----------- | :----- | :-- | :-- |
-| cdn          | Bool   | N   | 是否上传到 CDN，默认为 false |
-| categoryName | String | N   | 指定上传文件分类名，cdn 为 true 时有效，不指定该参数或分类名不存在，则默认上传到根目录 |
+| cdn          | Bool   | N   | 是否上传二维码到文件存储并返回图片链接，默认为 false，sdk v1.3.0 开始支持 |
+| categoryName | String | N   | 指定上传文件分类名，cdn 为 true 时有效，不指定该参数或分类名不存在，则默认上传到根目录，sdk v1.3.0 开始支持 |
 
 
 ## 接口返回
 
 **返回字段说明**
 
-| 参数    | 类型    | 必填 | 说明 |
-| :----- | :------ | :-- | :-- |
-| image  | String  | Y   | 二维码的 base64 编码 |
-
-<span class="attention">注：</span> 在 SDK v1.3.0 后该接口增加了上传二维码到 CDN 的支持，当选择上传 CDN 时，返回相应增加 `download_url` 字段，其为上传到 CDN 后的路径。
+| 参数    | 类型    | 说明 |
+| :----- | :------ | :-- |
+| image  | String  | 二维码的 base64 编码 | 
+| download_url  | String  | 请求参数 cdn=true 时返回，二维码的下载链接 | 
 
 以下几种情况会返回 400 错误：
 
@@ -70,8 +64,19 @@
     width: 250
   }
 
+  // 获取二维码的 base64
   wx.BaaS.getWXACode('wxacode', params).then(res => {
     this.setData({imageBase64: res.image})
+  }).catch(err => {
+    console.log(err)
+  })
+
+  // 获取二维码的下载链接（知晓云会先自动上传到文件存储，返回 CDN 链接）
+  wx.BaaS.getWXACode('wxacode', params).then(res => {
+    this.setData({
+      imageBase64: res.image,
+      imageURL: res.download_url
+      })
   }).catch(err => {
     console.log(err)
   })
