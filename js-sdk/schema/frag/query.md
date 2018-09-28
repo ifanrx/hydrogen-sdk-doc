@@ -1,12 +1,12 @@
-# wx.BaaS.Query
+# {{apiPrefix}}BaaS.Query
 
 ### 初始化
 
-`new wx.BaaS.Query()`
+new {{apiPrefix}}BaaS.Query()
 
 ### 静态方法
 
-#### wx.BaaS.Query.and(query, ...)
+#### {{apiPrefix}}BaaS.Query.and(query, ...)
 
 and 组合查询, 查询所有 query 条件都满足的数据行
 
@@ -20,7 +20,7 @@ and 组合查询, 查询所有 query 条件都满足的数据行
 
 Query 实例
 
-#### wx.BaaS.Query.or(query, ...)
+#### {{apiPrefix}}BaaS.Query.or(query, ...)
 
 or  组合查询，查询满足任一 query 条件的数据行
 
@@ -204,7 +204,7 @@ this, 即当前 Query 实例
 | 参数名     |  类型     | 说明                                       |
 |---------- |-----------|-------------------------------------------|
 | fieldName | string    | 数据行中的字段名 , 该字段为 GeoPolygon 格式的 geojson   |
-| point     |  GeoPoint | 坐标点， eg: `new wx.BaaS.GeoPoint(10, 10)`|
+| point     |  GeoPoint | 坐标点， eg: new {{apiPrefix}}BaaS.GeoPoint(10, 10)|
 
 **返回值**
 
@@ -220,7 +220,7 @@ this, 即当前 Query 实例
 | 参数名     |  类型     | 说明                                       |
 |---------- |-----------|-------------------------------------------|
 | fieldName | string    | 数据行中的字段名 ，该字段为 GeoPoint 格式的 geojson         |
-| point     |  GeoPoint | 坐标点， eg: `new wx.BaaS.GeoPoint(10, 10)`|
+| point     |  GeoPoint | 坐标点， eg: new {{apiPrefix}}BaaS.GeoPoint(10, 10) |
 | radius    |  number   | 半径                                       |
 
 
@@ -238,7 +238,7 @@ this, 即当前 Query 实例
 | 参数名        |  类型     | 说明                                       |
 |--------------|-----------|-------------------------------------------|
 | fieldName    | string    | 数据行中的字段名 ，该字段为 GeoPoint 格式的 geojson   |
-| polygon      |  GeoPolygon | 多边形区域， eg: `new wx.BaaS.GeoPolygon(...)`|
+| polygon      |  GeoPolygon | 多边形区域， eg: new {{apiPrefix}}BaaS.GeoPolygon(...)|
 
 **返回值**
 
@@ -254,7 +254,7 @@ this, 即当前 Query 实例
 | 参数名        |  类型     | 说明                                       |
 |--------------|-----------|-------------------------------------------|
 | fieldName    | string    | 数据行中的字段名 ，该字段为 GeoPoint 格式的 geojson   |
-| point        |  GeoPoint | 坐标点， eg: `new wx.BaaS.GeoPoint(10, 10)`|
+| point        |  GeoPoint | 坐标点， eg: new {{apiPrefix}}BaaS.GeoPoint(10, 10)|
 | maxDistance  |  number   | 最大距离                                       |
 | maxDistance  |  number   | 最小距离                                       |
 

@@ -1,4 +1,4 @@
-## wx.BaaS.TableObject 类
+## {{apiPrefix}}BaaS.TableObject 类
 
 每个 TableObject 实例对应一张数据表，通过 TableObject 实例，你可以对数据表进行增删改查的操作。
 
@@ -26,7 +26,7 @@ tableID 和 tableName 二选一，不能同时存在
 
 **返回值**
 
-wx.BaaS.TableRecord 类实例
+{{apiPrefix}}BaaS.TableRecord 类实例
 
 #### createMany ([item, ...])
 批量新增数据项
@@ -51,7 +51,7 @@ query 和 recordID 二选一，不能同时存在
 
 | 参数名   | 类型   | 说明                                               |
 |----------|--------|----------------------------------------------------|
-| query    | object | wx.BaaS.Query 实例，符合查询条件的数据行将会被删除   |
+| query    | object | {{apiPrefix}}BaaS.Query 实例，符合查询条件的数据行将会被删除   |
 | recordID | string / integer | 数据行 ID，指定的数据行将会被删除           |
 
 **返回值**
@@ -67,12 +67,12 @@ query 和 recordID 二选一，不能同时存在
 
 | 参数名   | 类型   | 说明                                                  |
 |----------|--------|-------------------------------------------------------|
-| query    | object | wx.BaaS.Query 实例，返回的 TableRecord 指向多个数据行 |
+| query    | object | {{apiPrefix}}BaaS.Query 实例，返回的 TableRecord 指向多个数据行 |
 | recordID | string / number | 数据行 ID，返回的 TableRecord 对象指向指定的数据行    |
 
 **返回值**
 
-wx.BaaS.TableRecord 类实例
+{{apiPrefix}}BaaS.TableRecord 类实例
 
 #### get(recordID)
 
@@ -142,7 +142,7 @@ ResObject.data 结构说明
 
 | 参数名   | 类型   | 说明                 |
 |----------|--------|--------------------|
-| query    | object | wx.BaaS.Query 实例 |
+| query    | object | {{apiPrefix}}BaaS.Query 实例 |
 
 **返回值**
 

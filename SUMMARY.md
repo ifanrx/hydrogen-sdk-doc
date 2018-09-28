@@ -113,6 +113,7 @@
         * [地理位置操作](cloud-function/node-sdk/schema/geo.md)
         * [字段过滤与扩展](cloud-function/node-sdk/schema/select-and-expand.md)
         * [数据导入导出操作](cloud-function/node-sdk/schema/operation.md)
+        * [API REFRENCE](cloud-function/node-sdk/schema/api-refrence.md)
     * [内容库](cloud-function/node-sdk/content/README.md)
         * [内容库](cloud-function/node-sdk/content/content-group.md)
         * [内容](cloud-function/node-sdk/content/content.md)

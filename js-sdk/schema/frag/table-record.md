@@ -1,10 +1,10 @@
-## wx.BaaS.TableRecord 类
+## {{apiPrefix}}BaaS.TableRecord 类
 
 每个 TableRecord 实例对应一个或多个数据行，通过 TableRecord 实例，你可以创建 / 更新数据行。
 
 ### 初始化
 
-TableRecord 实例由 wx.BaaS.TableObject 创建，开发者不应该自通过 new 操作自己创建实例。
+TableRecord 实例由 {{apiPrefix}}BaaS.TableObject 创建，开发者不应该自通过 new 操作自己创建实例。
 
 ### 方法
 
