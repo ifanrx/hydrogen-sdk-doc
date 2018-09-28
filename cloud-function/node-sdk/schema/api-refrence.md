@@ -1,9 +1,5 @@
-<!-- ex_nonav -->
+# Schema 相关 API 参考
 
-{% set apiPrefix = "" %}
-
-{% include "/js-sdk/schema/frag/table-object.md" %}
-
-{% include "/js-sdk/schema/frag/table-record.md" %}
-
-{% include "/js-sdk/schema/frag/query.md" %}
+- [TableObject](/cloud-function/node-sdk/schema/frag/table-object.md)
+- [TableRecord](/cloud-function/node-sdk/schema/frag/table-record.md)
+- [Query](/cloud-function/node-sdk/schema/frag/query.md)

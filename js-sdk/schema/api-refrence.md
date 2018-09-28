@@ -1,9 +1,5 @@
-<!-- ex_nonav -->
+# Schema 相关 API 参考
 
-{% set apiPrefix = "wx." %}
-
-{% include "./frag/table-object.md" %}
-
-{% include "./frag/table-record.md" %}
-
-{% include "./frag/query.md" %}
+- [TableObject](/js-sdk/schema/frag/table-object.md)
+- [TableRecord](/js-sdk/schema/frag/table-record.md)
+- [Query](/js-sdk/schema/frag/query.md)
