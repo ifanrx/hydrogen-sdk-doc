@@ -1,4 +1,4 @@
-# 短信验证码
+# 短信验证码 （ SDK >= 1.8.0 ）
 
 该接口支持向特定手机号码发送验证码，并校验验证码是否正确的功能，以此来完成一些需要确认用户身份的操作，比如：
 
@@ -19,13 +19,10 @@
 ```js
 wx.BaaS.sendSmsCode({phone: '1328888888'}).then(res => {
   // success
-  if (res.statusCode == 201) {
-    console.log(res.data) // { "status": "ok" }
-  } else {
-    console.log(res.statusCode) // 错误状态码
-  }
+  console.log(res.data) // { "status": "ok" }
 }).catch(e => {
   // err
+  console.log(e.code) // 错误状态码
 })
 ```
 
@@ -52,13 +49,10 @@ wx.BaaS.sendSmsCode({phone: '1328888888'}).then(res => {
 ```js
 wx.BaaS.verifySmsCode({phone: '132888888', code: 123456}).then(res => {
     // success
-    if (res.statusCode == 201) {
-      console.log(res.data) // { "status": "ok" }
-    } else {
-      console.log(res.statusCode) // 错误状态码
-    }
+    console.log(res.data) // { "status": "ok" }
 }).catch(e => {
     // err
+    console.log(e.code) // 错误状态码
 })
 ```
 
