@@ -54,7 +54,7 @@
     * [调用云函数](js-sdk/invoke-function.md)
     * [检测违规图片、文本](js-sdk/censor.md)
     * [短信验证码](js-sdk/sms.md)
-    * [错误码详解](js-sdk/error-code.md)
+    * [错误对象和错误码详解](js-sdk/error-code.md)
     * [SDK 下载](js-sdk/download-sdk.md)
     * [更新日志](https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md)
 
@@ -139,7 +139,7 @@
         * [组集操作](cloud-function/node-sdk/super-group.md)
     * [企业付款](cloud-function/node-sdk/wx-promotion-transfer.md)
     * [短信验证码](cloud-function/node-sdk/sms.md)
-
+    * [云函数技术细节](cloud-function/technical-notes.md)
 ----
 
 * [实战教程](support/practice/README.md)
