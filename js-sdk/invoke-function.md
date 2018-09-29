@@ -4,6 +4,8 @@
 
 该模块允许用户创建、编写运行于知晓云云引擎上的代码。适用于一些对安全性有要求，功能复杂、需求个性化的业务场景。配合触发器可以帮助开发者实现功能复杂的小程序。
 
+`wx.BaaS.invokeFunction(functionName, params, sync)`
+
 {% block tips1 %}
 
 > **info**
@@ -11,8 +13,6 @@
 > ![新建云函数](/images/dashboard/cloud-function-add.jpg)
 
 {% endblock tips1 %}
-
-`wx.BaaS.invokeFunction(functionName, params, sync)`
 
 **参数说明**
 
