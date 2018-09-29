@@ -6,7 +6,7 @@
 | :------ | :----- |
 | string  | 字符串 |
 | integer | 整数   |
-| number  | 数字，JavaScript 中的 Number 类型一致 |
+| number  | 数字，与 JavaScript 中的 Number 类型一致 |
 | boolean | 布尔值, `true` 或者 `false` |
 | array   | 数组, 数组元素支持 `string`、`integer`、`number`、`boolean` 4 种类型 |
 | object  | 对象，必须是`{...}`格式，即对象的字面量形式 |
