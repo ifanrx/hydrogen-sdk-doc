@@ -24,6 +24,7 @@
     * [登入登出](js-sdk/signin-signout.md)
     * [用户](js-sdk/user.md)
     * [数据表](js-sdk/schema/README.md)
+        * [数据类型](js-sdk/schema/data-type.md)
         * [新增数据项](js-sdk/schema/create-record.md)
         * [更新数据项](js-sdk/schema/update-record.md)
         * [删除数据项](js-sdk/schema/delete-record.md)

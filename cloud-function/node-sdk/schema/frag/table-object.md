@@ -16,7 +16,7 @@ tableID 和 tableName 二选一，不能同时存在
 | 参数名     | 类型    | 说明                                 |
 |-----------|---------|-------------------------------------|
 | tableID   | integer | 数据表的 ID                          |
-| tableName | string  | 数据表名 ( SDK >= 1.2.0  )           |
+| tableName | string  | 数据表名 {% if apiPrefix == "wx." %}( SDK >= 1.2.0  ){% endif %}           |
 
 
 ## 实例方法

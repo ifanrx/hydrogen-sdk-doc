@@ -4,13 +4,16 @@
 
 通过 `数据表 ID` 或 `数据表名` 实例化一个 `TableObject` 对象，以下操作都是在该对象上进行操作：
 
-`let MyTableObject = new BaaS.TableObject(param)`
+`let MyTableObject = new BaaS.TableObject(tableID | tableName)`
 
 **参数说明**
 
-| 参数  | 类型   | 必填 | 说明 |
-| :---- | :----- | :-- | :---|
-| param | Number / String |  是 | 数据表 ID / 数据表名 |
+tableID 和 tableName 二选一，不能同时存在
+
+| 参数名    | 类型    | 说明                                 |
+|-----------|---------|--------------------------------------|
+| tableID   | integer | 数据表的 ID                          |
+| tableName | string  | 数据表名                             |
 
 ## 数据导出
 
