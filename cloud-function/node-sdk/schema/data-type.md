@@ -4,15 +4,15 @@
 
 | 类型    | 说明   |
 | :------ | :----- |
-| string  | 字符串 |
-| integer | 整数   |
-| number  | 数字，与 JavaScript 中的 Number 类型一致 |
-| boolean | 布尔值, `true` 或者 `false` |
-| array   | 数组, 数组元素支持 `string`、`integer`、`number`、`boolean` 4 种类型 |
+| string  | 字符串，如 `"a"` `"b"` |
+| integer | 整数， 如 `2` `3`   |
+| number  | 数字，可以是整数，也可以是浮点数，如 `5` `6.2` `3.1415926` |
+| boolean | 布尔值， `true` 或者 `false` |
+| array   | 数组， 数组元素支持 `string`、`integer`、`number`、`boolean` 4 种类型 |
 | object  | 对象，必须是`{...}`格式，即对象的字面量形式 |
-| geojson | 地理位置，支持 GeoPoint、GeoPloygon 两种类型，请参考[地理位置操作](./geo.md)章节。GeoJSON 具体介绍，请参考 mongoDB 的 [GeoJSON Object](https://docs.mongodb.com/manual/reference/geojson/)  |
-| date    | 日期，ISO8601 格式的日期字符串，例如：`"2018-09-01T18:31:02.631000+08:00"` |
-| file    | 文件，记录文件信息的对象 |
+| geojson | 地理位置，支持 GeoPoint、GeoPloygon（点与多边形）两种类型，请参考[地理位置操作](./geo.md)章节。GeoJSON 具体介绍，请参考 mongoDB 的 [GeoJSON Object](https://docs.mongodb.com/manual/reference/geojson/)  |
+| date    | 日期，[ISO8601](https://zh.wikipedia.org/wiki/ISO_8601) 格式的日期字符串，例如：`"2018-09-01T18:31:02.631000+08:00"` |
+| file    | 文件，记录文件信息的对象（数据结构详见下表） |
 
 file 类型的数据结构
 
@@ -25,6 +25,9 @@ file 类型的数据结构
 | name       | 文件名称 |
 | path       | 文件完整 url |
 | size       | 文件尺寸，单位 `byte` |
+
+> **info**
+> 数据表内置字段 `created_at`、`updated_at` 的数据是 integer 类型的 [unix 时间戳](https://zh.wikipedia.org/wiki/UNIX%E6%97%B6%E9%97%B4)，而非 date 类型。
 
 ## 数据类型示例
 这是一条包含了所有数据类型的记录：
@@ -73,5 +76,3 @@ file 类型的数据结构
 }
 ```
 
-> **info**
-> 数据表内置字段 `created_at`、`updated_at` 的数据类型是 integer，而非 date。
