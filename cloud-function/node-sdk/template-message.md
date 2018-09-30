@@ -4,6 +4,9 @@
 
 如果用户在执行了某一特定的操作的时候，例如用户进行了支付操作，需要给用户发送一个关于订单的相关的信息的消息的时候，可以调用该接口给特定的用户群体发送一个特定的模板消息，
 
+![模板消息示例](../../images/template-message/template-message.png)
+
+
 `BaaS.sendTemplateMessage(data)`
 
 **参数说明**
