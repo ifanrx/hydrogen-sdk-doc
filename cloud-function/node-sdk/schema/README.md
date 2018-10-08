@@ -60,4 +60,4 @@ Product.setQuery(query).find().then(res => {
 * [地理位置操作](./geo.md)
 * [字段过滤与扩展](./select-and-expand.md)
 * [数据导入导出操作](./operation.md)
-* [API 参考](./api-refrence.md)
+* [API 参考](./api-reference.md)

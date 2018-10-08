@@ -80,4 +80,4 @@ Product.setQuery(query).find().then(res => { // find 方法返回值为一个 Pr
 * [查询数据项](./query.md)
 * [分页和排序](./limit-and-order.md)
 * [地理位置操作](./geo.md)
-* [API 参考](./api-refrence.md)
+* [API 参考](./api-reference.md)

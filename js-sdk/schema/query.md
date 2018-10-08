@@ -74,36 +74,43 @@ Product.setQuery(query).find().then(res => {
 Product.find().then()
 ```
 
-**返回示例** (res.statusCode === 200)
+**返回示例** 
 
-res.data:
+res 结构如下
+
 ```js
 {
-  "meta": {
-    "limit": 20,
-    "next": null,
-    "offset": 0,
-    "previous": null,
-    "total_count": 3
-  },
-  "objects": [
-    {
-      "_id": "59a3c2b5afb7766a5ec6e84e",
-      "amount": 0,
-      "created_at": 1503904437,
-      "created_by": 36395395,
-      "desc": ["good", 'great'],
-      "id": "59a3c2b5afb7766a5ec6e84e",
-      "name": "apple",
-      "price": 1.0,
-      "read_perm": ["user:*"],
-      "updated_at": 1503904437,
-      "write_perm": ["user:*"]
+  statusCode: 200,
+  data: {
+    "meta": {
+      "limit": 20,
+      "next": null,
+      "offset": 0,
+      "previous": null,
+      "total_count": 3
     },
-    ...
-  ]
+    "objects": [
+      {
+        "_id": "59a3c2b5afb7766a5ec6e84e",
+        "amount": 0,
+        "created_at": 1503904437,
+        "created_by": 36395395,
+        "desc": ["good", 'great'],
+        "id": "59a3c2b5afb7766a5ec6e84e",
+        "name": "apple",
+        "price": 1.0,
+        "read_perm": ["user:*"],
+        "updated_at": 1503904437,
+        "write_perm": ["user:*"]
+      },
+      //...
+    ]
+  }
 }
 ```
+catch 回调中的 err 对象:
+
+请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 
 ### 比较查询

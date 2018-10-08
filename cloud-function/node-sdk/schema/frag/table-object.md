@@ -113,25 +113,26 @@ query 和 recordID 二选一，不能同时存在
 
 `Promise<ResObject>`
 
-在 ResObject 的 `data` 字段中可以取得查询结果
+ResObject 结构说明
 
-ResObject.data 结构说明
-
-```json
+```js
 {
-  "meta": {
-    "limit": 20,       // 当前查询的 limit
-    "next": null,
-    "offset": 0,       // 当前查询的 offset
-    "previous": null,
-    "total_count": 3   // 符合查询条件的数据行数量
-  },
-  "objects": [         // 数据行数组
-    {                  // 单个数据行内容
-      "_id": "59a3c2b5afb7766a5ec6e84e",
-      // ... 数据行的其他字段
+  statusCode: 200,
+  data: {
+    "meta": {
+      "limit": 20,       // 当前查询的 limit
+      "next": null,
+      "offset": 0,       // 当前查询的 offset
+      "previous": null,
+      "total_count": 3   // 符合查询条件的数据行数量
     },
-  ]
+    "objects": [         // 数据行数组
+      {                  // 单个数据行内容
+        "_id": "59a3c2b5afb7766a5ec6e84e",
+        // ... 数据行的其他字段
+      },
+    ]
+  }
 }
 ```
 

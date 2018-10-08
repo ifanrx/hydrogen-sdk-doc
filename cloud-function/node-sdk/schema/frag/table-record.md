@@ -125,6 +125,6 @@ ResObject 结构如下:
 
 ```json
 {
-  "statusCode": 201,
+  "statusCode": 200,
   "data": {}
 }
