@@ -100,7 +100,16 @@ this，即当前 TableRecord 实例
 
 **返回值**
 
-`Promise<Object>`
+`Promise<ResObject>`
+
+ResObject 结构如下:
+
+```json
+{
+  "statusCode": 201,
+  "data": {}
+}
+```
 
 ### update()
 执行更新动作
@@ -110,4 +119,12 @@ this，即当前 TableRecord 实例
 
 **返回值**
 
-`Promise<Object>`
+`Promise<ResObject>`
+
+ResObject 结构如下:
+
+```json
+{
+  "statusCode": 201,
+  "data": {}
+}

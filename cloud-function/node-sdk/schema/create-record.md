@@ -69,8 +69,9 @@ let apple = {
 }
 product.set(apple).save().then(res => {
   // success
+  console.log(res)  
 }, err => {
-  // err
+  //err 为 HError 对象
 })
 
 // 设置方式二
@@ -79,27 +80,45 @@ product.set('price', 1)
 product.set('desc', ['good'])
 product.set('amount', 0)
 
-product.save().then(res => {}, (err) => {})
+product.save().then(res => {
+  // success
+  console.log(res)  
+}, (err) => {
+  // HError 对象
+})
 ```
 
-**返回示例** （res.statusCode === 201）
+**返回示例** 
 
-res.data:
+then 回调中的 res 对象结构如下，其中 res.data 为新增的数据行：
+
 ```json
 {
-  "_id": "59a3c2b5afb7766a5ec6e84e",
-  "amount": 0,
-  "created_at": 1503904437,
-  "created_by": 36395395,
-  "desc": ["good"],
-  "id": "59a3c2b5afb7766a5ec6e84e",
-  "name": "apple",
-  "price": 1.0,
-  "read_perm": ["user:*"],
-  "updated_at": 1503904437,
-  "write_perm": ["user:*"]
+  "statusCode": 201,
+  "data": {
+    "_id": "59a3c2b5afb7766a5ec6e84e",
+    "amount": 0,
+    "created_at": 1503904437,
+    "created_by": 36395395,
+    "desc": ["good"],
+    "id": "59a3c2b5afb7766a5ec6e84e",
+    "name": "apple",
+    "price": 1.0,
+    "read_perm": ["user:*"],
+    "updated_at": 1503904437,
+    "write_perm": ["user:*"]
+  }
 }
 ```
+
+> **info**
+> 对于不合法的数据，知晓云会进行过滤，比如开发者尝试在 integer 类型的字段写入文本类型的数据，该操作不会报错而是会忽略对该字段的修改。
+> 因此可以检查 res.data 中对应的字段来判断某些字段是否添加成功。
+
+catch 回调中的 err 对象:
+
+请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
 
 ## 添加时间类型的数据
 
@@ -118,8 +137,39 @@ product.set('expiration_time', isoStr)
 let MyFile = new BaaS.File()
 MyFile.upload(params).then(res => {
   product.set('manual', res.data.file)
-  product.save()
+  product.save().then(res=>{
+    console.log(res)
+  })
 })
+```
+
+**返回示例**
+
+res 结构如下
+
+```js
+{
+  statusCode: 201,
+  data: {
+    "_id": "5bbac6e7bd66033df7fd0aac",
+    "created_at": 1538967271,
+    "created_by": 61736923,
+    "file": {
+      "cdn_path": "1g9LgkbXEdbXwAJT.jpg",
+      "created_at": 1538967271,
+      "id": "5bbac6e6bd66033efcfd0a95",
+      "mime_type": "image/jpeg",
+      "name": "wxc6b86e382a1e3294.o6zAJs5dCuYRqqJOq0MwNPlGiFVM.UxdrZqves41D1cd738e01dc1c7417c03d046e96408cc.jpg",
+      "path": "https://cloud-minapp-11033.cloud.ifanrusercontent.com/1g9LgkbXEdbXwAJT.jpg",
+      "size": 6151
+    },
+    "id": "5bbac6e7bd66033df7fd0aac",
+    "name": "new",
+    "read_perm": ["user:*"],
+    "updated_at": 1538967271,
+    "write_perm": ["user:*"]
+  }
+}
 ```
 
 ## 添加 geojson 类型数据
@@ -150,18 +200,29 @@ const records = [{
   amount: 1
 }]
 
-MyTableObject.createMany(records).then(res => {}, err => {})
+MyTableObject.createMany(records).then(res => {
+   console.log(res.data.succeed)
+}, err => {
+  //err 为 HError 对象
+})
 ```
 
 **返回示例**
 
-res.data:
+then 回调中 res 结构如下:
 ```js
 {
-  "succeed": 10, // 成功插入记录数
-  "total_count": 10, // 总的待插入记录数
+  statusCode: 201, // 状态码
+  data: {
+    "succeed": 10, // 成功插入记录数
+    "total_count": 10 // 总的待插入记录数
+  }
 }
 ```
+
+catch 回调中的 err 对象:
+
+请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **状态码说明**
 

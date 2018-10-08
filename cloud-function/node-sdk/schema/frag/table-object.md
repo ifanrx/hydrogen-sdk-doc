@@ -40,7 +40,19 @@ tableID 和 tableName 二选一，不能同时存在
 
 **返回值**
 
-`Promise<Object>`
+`Promise<ResObject>`
+
+ResObject 结构如下:
+
+```js
+{
+  statusCode: 201, // 状态码
+  data: {
+    "succeed": 10, // 成功插入记录数
+    "total_count": 10 // 总的待插入记录数
+  }
+}
+```
 
 ### delete(query|recordID)
 
