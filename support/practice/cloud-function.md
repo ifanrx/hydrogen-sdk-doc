@@ -17,29 +17,25 @@
 
 #### 创建云函数 setHash
 
-![创建云函数](../../images/practice/cloud-function/WX20180927-110011.png)
+![创建云函数](../../images/practice/cloud-function/WX20181008-112705.png)
 
 ```javascript
 // 数据表 id
 const TABLE_ID = 111111
 
-const getUniqueID = (len = 5) => {
+const genUniqueID = (len = 5) => {
   const LENGTH = len
   let number = Math.floor(Math.random() * Math.pow(10, LENGTH))
-  const fn = (num) => {
-    let length = num.toString().length
-    let tmp = (0).toFixed(LENGTH).split('.')[1]
-    return tmp.slice(0, LENGTH - length) + num
-  }
-
-  return fn(number)
+  let length = number.toString().length
+  let tmp = (0).toFixed(LENGTH).split('.')[1]
+  return tmp.slice(0, LENGTH - length) + number
 }
 
 exports.main = async function setHash(event, callback) {
   let MyTableObject = new BaaS.TableObject(TABLE_ID)
 
   while (true) {
-    let hash = 'c' + getUniqueID()
+    let hash = 'c' + genUniqueID()
 
     // 设定查询条件
     let query = new BaaS.Query()
