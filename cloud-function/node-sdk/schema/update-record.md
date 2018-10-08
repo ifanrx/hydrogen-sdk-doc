@@ -2,7 +2,7 @@
 
 ## 操作步骤
 
-1.通过 `数据表 ID` 或 `数据表名` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表 
+1.通过 `数据表 ID` 或 `数据表名` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
 
 `let MyTableObject = new BaaS.TableObject(tableID | tableName)`
 
@@ -79,14 +79,19 @@ product.update().then(res => {
 
 **返回示例**
 
-```js
+res:
+```json
 {
-  "created_at": 1487053095,
-  "id": "7",
-  "name": "fushi",
-  "price": 11,
-  "desc": ["sweet", "red"],
-  amount: 2
+  "status": 200,
+  "statusText": "OK",
+  "data": {
+    "created_at": 1487053095,
+    "id": "7",
+    "name": "fushi",
+    "price": 11,
+    "desc": ["sweet", "red"],
+    "amount": 2
+  }
 }
 ```
 
@@ -219,14 +224,18 @@ records.update().then(res => {}, err => {})
 
 **返回示例**
 
-res.data:
+res:
 ```json
 {
-  "succeed": 8, // 成功更新记录数
-  "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
-  "offset": 0,
-  "limit": 1000,
-  "next": null // 下一次更新 url，若为 null 则表示全部更新完毕
+  "status": 200,
+  "statusText": "OK",
+  "data": {
+    "succeed": 8, // 成功更新记录数
+    "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
+    "offset": 0,
+    "limit": 1000,
+    "next": null // 下一次更新 url，若为 null 则表示全部更新完毕
+  }
 }
 ```
 

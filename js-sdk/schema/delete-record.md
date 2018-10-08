@@ -51,6 +51,15 @@ Product.delete(recordID).then(res => {
   // err
 })
 ```
+**返回示例**
+
+res:
+```json
+{
+  "statusCode": 204,
+  "data": ""
+}
+```
 
 
 ### 批量删除数据项
@@ -77,14 +86,17 @@ MyTableObject.limit(10).offset(0).delete(query).then(res => {}, err => {})
 
 **返回示例**
 
-res.data:
-```js
+res:
+```json
 {
-  "succeed": 8, // 成功删除记录数
-  "total_count": 10, // where 匹配的记录数，包括无权限操作记录
-  "offset": 0,
-  "limit": 10,
-  "next": null // 下一次删除 url，若为 null 则表示全部删除完毕
+  "statusCode": 200,
+  "data": {
+    "succeed": 8, // 成功删除记录数
+    "total_count": 10, // where 匹配的记录数，包括无权限操作记录
+    "offset": 0,
+    "limit": 10,
+    "next": null // 下一次删除 url，若为 null 则表示全部删除完毕
+  }
 }
 ```
 

@@ -85,15 +85,18 @@ product.update().then(res => {
 
 **返回示例**
 
-res.data
-```js
+res:
+```json
 {
-  "created_at": 1487053095,
-  "id": "7",
-  "name": "fushi",
-  "price": 11,
-  "desc": ["sweet", "red"],
-  amount: 2
+  "statusCode": 200,
+  "data": {
+    "created_at": 1487053095,
+    "id": "7",
+    "name": "fushi",
+    "price": 11,
+    "desc": ["sweet", "red"],
+    "amount": 2
+  }
 }
 ```
 
@@ -137,7 +140,7 @@ product.update().then(res => {}, err => {})
 ```js
 product.append('desc', ['big'])
 // or
-product.append('desc, 'big')
+product.append('desc', 'big')
 ```
 
 #### 将 _待插入的数组_ 中不包含在原数组的数据加到原数组末尾
@@ -156,7 +159,7 @@ product.append('desc, 'big')
 ```js
 product.uAppend('desc', ['sweet'])
 // or
-product.uAppend('desc, 'sweet')
+product.uAppend('desc', 'sweet')
 ```
 
 #### 从原数组中删除指定的值
@@ -269,14 +272,17 @@ records.update().then(res => {}, err => {})
 
 **返回示例**
 
-res.data:
-```js
+res:
+```json
 {
-  "succeed": 8, // 成功更新记录数
-  "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
-  "offset": 0,
-  "limit": 1000,
-  "next": null // 下一次更新 url，若为 null 则表示全部更新完毕
+  "statusCode": 200,
+  "data": {
+    "succeed": 8, // 成功更新记录数
+    "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
+    "offset": 0,
+    "limit": 1000,
+    "next": null // 下一次更新 url，若为 null 则表示全部更新完毕
+  }
 }
 ```
 
@@ -339,7 +345,7 @@ wx.BaaS.updateRecord(objects).then(res => {
 **返回示例**
 
 res.data:
-```js
+```json
 {
   "created_at": 1487055951,
   "id": "59897882ff650c0477f00485",
