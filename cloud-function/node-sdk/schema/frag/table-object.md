@@ -16,7 +16,7 @@ tableID 和 tableName 二选一，不能同时存在
 | 参数名     | 类型    | 说明                                 |
 |-----------|---------|-------------------------------------|
 | tableID   | integer | 数据表的 ID                          |
-| tableName | string  | 数据表名 {% if apiPrefix == "wx." %}( SDK >= 1.2.0  ){% endif %}           |
+| tableName | string  | 数据表名 {% if apiPrefix == "wx." %}( SDK >= 1.2.0 ){% endif %} |
 
 
 ## 实例方法
@@ -36,23 +36,36 @@ tableID 和 tableName 二选一，不能同时存在
 
 | 参数名    | 类型    | 说明              |
 |-----------|---------|-------------------|
-| item   | object     |   符合表结构的对象      |
+| item      | object  | 符合表结构的对象  |
 
 **返回值**
 
 `Promise<ResObject>`
 
 ResObject 结构如下:
-
+{% if apiPrefix == "wx." %}
 ```js
 {
   statusCode: 201, // 状态码
   data: {
-    "succeed": 10, // 成功插入记录数
-    "total_count": 10 // 总的待插入记录数
+    succeed: 10, // 成功插入记录数
+    total_count: 10 // 总的待插入记录数
   }
 }
 ```
+{% else %}
+```js
+{
+  status: 201, // 状态码
+  statusText: "Created",
+  data: {
+    succeed: 10, // 成功插入记录数
+    total_count: 10 // 总的待插入记录数
+  }
+}
+```
+{% endif %}
+
 
 ### delete(query|recordID)
 
@@ -69,7 +82,25 @@ query 和 recordID 二选一，不能同时存在
 
 **返回值**
 
-`Promise<Object>`
+`Promise<ResObject>`
+
+ResObject 结构如下:
+{% if apiPrefix == "wx." %}
+```js
+{
+  statusCode: 204,
+  data: ""
+}
+```
+{% else %}
+```js
+{
+  status: 204,
+  statusText: "No Content",
+  data: ""
+}
+```
+{% endif %}
 
 
 ### getWithoutData( query | recordID )
@@ -113,28 +144,51 @@ query 和 recordID 二选一，不能同时存在
 
 `Promise<ResObject>`
 
-ResObject 结构说明
-
+ResObject 结构如下:
+{% if apiPrefix == "wx." %}
 ```js
 {
   statusCode: 200,
   data: {
-    "meta": {
-      "limit": 20,       // 当前查询的 limit
-      "next": null,
-      "offset": 0,       // 当前查询的 offset
-      "previous": null,
-      "total_count": 3   // 符合查询条件的数据行数量
+    meta: {
+      limit: 20,       // 当前查询的 limit
+      next: null,
+      offset: 0,       // 当前查询的 offset
+      previous: null,
+      total_count: 3   // 符合查询条件的数据行数量
     },
-    "objects": [         // 数据行数组
+    objects: [         // 数据行数组
       {                  // 单个数据行内容
-        "_id": "59a3c2b5afb7766a5ec6e84e",
+        _id: "59a3c2b5afb7766a5ec6e84e",
         // ... 数据行的其他字段
       },
     ]
   }
 }
 ```
+{% else %}
+```js
+{
+  status: 200,
+  statusText: "OK",
+  data: {
+    meta: {
+      limit: 20,       // 当前查询的 limit
+      next: null,
+      offset: 0,       // 当前查询的 offset
+      previous: null,
+      total_count: 3   // 符合查询条件的数据行数量
+    },
+    objects: [         // 数据行数组
+      {                  // 单个数据行内容
+        _id: "59a3c2b5afb7766a5ec6e84e",
+        // ... 数据行的其他字段
+      },
+    ]
+  }
+}
+```
+{% endif %}
 
 ### count()
 
