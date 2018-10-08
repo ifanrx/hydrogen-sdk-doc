@@ -43,21 +43,24 @@ Product.get(recordID).then(res => {
 })
 ```
 
-**返回示例** (res.statusCode === 200)
+**返回示例** 
 
-res.data:
+res 结构如下:
 ```js
 {
-  "_id": "59a3c2b5afb7766a5ec6e84e",
-  "amount": 0,
-  "created_at": 1503904437,
-  "created_by": 36395395,
-  "desc": ["good"],
-  "id": "59a3c2b5afb7766a5ec6e84e",
-  "name": "apple",
-  "price": 1.0,
-  "read_perm": ["user:*"],
-  "updated_at": 1503904437,
-  "write_perm": ["user:*"]
+  status: 200,
+  data: {
+    "_id": "59a3c2b5afb7766a5ec6e84e",
+    "amount": 0,
+    "created_at": 1503904437,
+    "created_by": 36395395,
+    "desc": ["good"],
+    "id": "59a3c2b5afb7766a5ec6e84e",
+    "name": "apple",
+    "price": 1.0,
+    "read_perm": ["user:*"],
+    "updated_at": 1503904437,
+    "write_perm": ["user:*"]
+  }
 }
 ```

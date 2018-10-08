@@ -94,7 +94,7 @@ then 回调中的 res 对象结构如下，其中 res.data 为新增的数据行
 
 ```json
 {
-  "statusCode": 201,
+  "status": 201,
   "data": {
     "_id": "59a3c2b5afb7766a5ec6e84e",
     "amount": 0,
@@ -149,7 +149,7 @@ res 结构如下
 
 ```js
 {
-  statusCode: 201,
+  status: 201,
   data: {
     "_id": "5bbac6e7bd66033df7fd0aac",
     "created_at": 1538967271,
@@ -212,7 +212,7 @@ MyTableObject.createMany(records).then(res => {
 then 回调中 res 结构如下:
 ```js
 {
-  statusCode: 201, // 状态码
+  status: 201, // 状态码
   data: {
     "succeed": 10, // 成功插入记录数
     "total_count": 10 // 总的待插入记录数

@@ -73,7 +73,7 @@ res 结构如下
 
 ```js
 {
-  statusCode: 200,
+  status: 200,
   data: {
     "meta": {
       "limit": 20,

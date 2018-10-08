@@ -1,3 +1,3 @@
 {% set apiPrefix = "wx." %}
 
-{% include "/cloud-function/node-sdk/schema/frag/query.md" %}
+{% include "/cloud-function/node-sdk/schema/frag/_query.md" %}
