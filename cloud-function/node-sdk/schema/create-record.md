@@ -71,7 +71,7 @@ product.set(apple).save().then(res => {
   // success
   console.log(res)  
 }, err => {
-  //err 为 HError 对象
+  // error
 })
 
 // 设置方式二
@@ -84,7 +84,7 @@ product.save().then(res => {
   // success
   console.log(res)  
 }, (err) => {
-  // HError 对象
+  // error
 })
 ```
 
@@ -114,10 +114,6 @@ then 回调中的 res 对象结构如下，其中 res.data 为新增的数据行
 > **info**
 > 对于不合法的数据，知晓云会进行过滤，比如开发者尝试在 integer 类型的字段写入文本类型的数据，该操作不会报错而是会忽略对该字段的修改。
 > 因此可以检查 res.data 中对应的字段来判断某些字段是否添加成功。
-
-catch 回调中的 err 对象:
-
-请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 
 ## 添加时间类型的数据
@@ -203,7 +199,7 @@ const records = [{
 MyTableObject.createMany(records).then(res => {
    console.log(res.data.succeed)
 }, err => {
-  //err 为 HError 对象
+  //error
 })
 ```
 
@@ -219,10 +215,6 @@ then 回调中 res 结构如下:
   }
 }
 ```
-
-catch 回调中的 err 对象:
-
-请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **状态码说明**
 

@@ -101,6 +101,24 @@ query 和 recordID 二选一，不能同时存在
 
 `Promise<RecordObject>`
 
+RecordObject 结构如下：
+
+```js
+{
+  {% if apiPrefix %}"statusCode": 200,{% else %}"status": 200,{% endif %}   // 状态码  
+  data: {
+    "_id": "59a3c2b5afb7766a5ec6e84e",
+    "amount": 0,
+    "created_at": 1503904437,
+    "created_by": 36395395,
+    "id": "59a3c2b5afb7766a5ec6e84e",
+    "write_perm": ["user:*"]
+    // ...
+  }
+}
+```
+
+
 ### find()
 
 执行查询动作

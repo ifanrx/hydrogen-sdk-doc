@@ -61,7 +61,7 @@ try {
 
 `404`  Not Found 服务器找不到给定的资源
 
-`50x`  服务器错误
+`500`  Internal Server Error 内部服务器错误
 
 `600`  network disconnected  网络已断开
 
