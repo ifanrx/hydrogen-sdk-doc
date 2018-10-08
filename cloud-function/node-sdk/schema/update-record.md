@@ -79,7 +79,8 @@ product.update().then(res => {
 
 **返回示例**
 
-res:
+then 回调中的 res 对象结构如下：
+
 ```json
 {
   "status": 200,
@@ -94,7 +95,6 @@ res:
   }
 }
 ```
-
 
 ## 计数器原子性更新
 
@@ -224,7 +224,8 @@ records.update().then(res => {}, err => {})
 
 **返回示例**
 
-res:
+then 回调中的 res 对象结构如下：
+
 ```json
 {
   "status": 200,

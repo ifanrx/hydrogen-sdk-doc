@@ -44,7 +44,8 @@ Product.delete(recordID).then(res => {
 
 **返回示例**
 
-res:
+then 回调中的 res 对象结构如下：
+
 ```json
 {
   "status": 204,
@@ -77,7 +78,8 @@ MyTableObject.limit(10).offset(0).delete(query).then(res => {}, err => {})
 
 **返回示例**
 
-res:
+then 回调中的 res 对象结构如下：
+
 ```json
 {
   "status": 200,
