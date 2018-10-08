@@ -73,7 +73,7 @@ res 结构如下
 
 ```js
 {
-  statusCode: 200,
+  status: 200,
   data: {
     "meta": {
       "limit": 20,
@@ -101,9 +101,6 @@ res 结构如下
   }
 }
 ```
-catch 回调中的 err 对象:
-
-请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## 比较查询
 
