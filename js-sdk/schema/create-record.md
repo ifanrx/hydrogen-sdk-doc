@@ -131,7 +131,7 @@ catch 回调中的 err 对象:
 
 ### 添加日期时间 Date 类型的数据
 
-数据表允许添加时间类型的列，为该类型的记录赋值，需要使用 ISO Date 格式的字符串，如 Product 表定义一个时间类型的列 expiration_time，创建一条记录时，该字段的赋值操作如下：
+数据表允许添加时间日期类型的列，为该类型的记录赋值，需要使用 ISO Date 格式的字符串，如 Product 表定义一个时间日期类型的列 expiration_time，创建一条记录时，该字段的赋值操作如下：
 
 ```js
 let isoStr = ((new Date()).toISOString()).toString()

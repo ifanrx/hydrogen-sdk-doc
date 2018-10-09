@@ -5,18 +5,37 @@
 
 ## 初始化
 
+ {% if apiPrefix %}
 初始化 TableObject 的参数可以用 tableID 或 tableName，这里推荐使用 tableName ( SDK >= 1.2.0 )。
 
 `new TableObject( tableID | tableName )`
 
+ {% else %}
+ 使用 数据表名来初始化 TableObject。
+ 
+`new TableObject( tableName )`
+
+ {% endif %}
+
 **参数说明**
 
-tableID 和 tableName 二选一，不能同时存在
+ {% if apiPrefix %}
+ 
+  tableID 和 tableName 二选一，不能同时存在
+  
+  | 参数名     | 类型    | 说明                                 |
+  |-----------|---------|-------------------------------------|
+  | tableID   | integer | 数据表的 ID                          |
+  | tableName | string  | 数据表名 ( SDK >= 1.2.0  )           |
+ 
+ {% else %}
 
-| 参数名     | 类型    | 说明                                 |
-|-----------|---------|-------------------------------------|
-| tableID   | integer | 数据表的 ID                          |
-| tableName | string  | 数据表名 {% if apiPrefix %}( SDK >= 1.2.0  ){% endif %}           |
+ | 参数名     | 类型    | 说明                                 |
+ |-----------|---------|-------------------------------------|
+ | tableName | string  | 数据表名                             |
+ 
+ {% endif %}
+
 
 
 ## 实例方法
