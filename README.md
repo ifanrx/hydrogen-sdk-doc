@@ -180,6 +180,9 @@
         <li>
           <a href="/cloud-function/node-sdk/README.md/">云函数 Node SDK</a>
         </li>
+        <li>
+          <a href="/cloud-function/cli.md/">命令行工具</a>
+        </li>
       </ul>
     </li>
     <li>
