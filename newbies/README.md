@@ -276,7 +276,7 @@ Page({
 
 js sdk 可以覆盖绝大部分小程序开发的使用场景：开发者把知晓云 js sdk 集成到小程序中，方便快捷地完成用户注册，信息提交，支付等业务逻辑。
 
-### Node SDK
+### 云函数 Node SDK
 
 ![使用 Node JS SDK](/images/newbies/using-node-sdk.png)
 

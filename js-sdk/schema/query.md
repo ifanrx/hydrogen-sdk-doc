@@ -384,6 +384,7 @@ let query = new wx.BaaS.Query()
 
 Product.setQuery(query).count().then(num => {
   // success
+  console.log(num) // 10
 }, err => {
   // err
 })

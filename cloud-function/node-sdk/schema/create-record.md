@@ -2,17 +2,15 @@
 
 ## 操作步骤
 
-1.通过 `数据表 ID` 或 `数据表名` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表 
+1.通过 `数据表名` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表 
 
-`let MyTableObject = new BaaS.TableObject(tableID | tableName)`
+`let MyTableObject = new BaaS.TableObject(tableName)`
 
 **参数说明**
 
-tableID 和 tableName 二选一，不能同时存在
 
 | 参数名    | 类型    | 说明                                 |
 |-----------|---------|--------------------------------------|
-| tableID   | integer | 数据表的 ID                          |
 | tableName | string  | 数据表名                             |
 
 2.本地创建一条空记录
@@ -55,9 +53,9 @@ MyRecord.set(key2, value2)
 **请求示例**
 
 ```js
-// 向 tableID 为 10 的数据表插入一条记录
-let tableID = 10
-let Product = new BaaS.TableObject(tableID)
+// 向 tableName 为 product 的数据表插入一条记录
+let tableName = 'product'
+let Product = new BaaS.TableObject(tableName)
 let product = Product.create()
 
 // 设置方式一
@@ -112,13 +110,13 @@ then 回调中的 res 对象结构如下，其中 res.data 为新增的数据行
 ```
 
 > **info**
-> 对于不合法的数据，知晓云会进行过滤，比如开发者尝试在 integer 类型的字段写入文本类型的数据，该操作不会报错而是会忽略对该字段的修改。
+> 对于不合法的数据，知晓云会进行过滤，比如开发者尝试在 integer 类型的字段写入 string 类型的数据，该操作不会报错而是会忽略对该字段的修改。
 > 因此可以检查 res.data 中对应的字段来判断某些字段是否添加成功。
 
 
-## 添加时间类型的数据
+## 添加日期时间 Date 类型的数据
 
-数据表允许添加时间类型的列，为该类型的记录赋值，需要使用 ISO 格式的字符串，如 Product 表定义一个时间类型的列 expiration_time，创建一条记录时，该字段的赋值操作如下：
+数据表允许添加时间类型的列，为该类型的记录赋值，需要使用 ISO Date 格式的字符串，如 Product 表定义一个时间类型的列 expiration_time，创建一条记录时，该字段的赋值操作如下：
 
 ```js
 let isoStr = ((new Date()).toISOString()).toString()
@@ -174,15 +172,23 @@ res 结构如下
 
 ## 添加 object 类型数据
 
-对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 {$ifanr.x: 123} 和 {知晓云: "test"} 是错误的。
+对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的。
 
 
 ## 批量新增数据项
 
+`MyTableObject.createMany([item,...])`
+
+**参数说明**
+
+| 参数名    | 类型    | 说明              |
+|-----------|---------|-------------------|
+| item   | object     |   符合表结构的对象   |
+
 **请求示例**
 
 ```js
-let MyTableObject = new BaaS.TableObject(tableID)
+let MyTableObject = new BaaS.TableObject(tableName)
 
 const records = [{
   name: 'apple',

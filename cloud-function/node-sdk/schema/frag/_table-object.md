@@ -110,7 +110,7 @@ ResObject 结构如下:
 | 参数名   | 类型   | 说明                                                  |
 |----------|--------|-------------------------------------------------------|
 | query    | object | {{apiPrefix}}BaaS.Query 实例，返回的 TableRecord 指向多个数据行 |
-| recordID | string / number | 数据行 ID，返回的 TableRecord 对象指向指定的数据行    |
+| recordID | string / integer | 数据行 ID，返回的 TableRecord 对象指向指定的数据行    |
 
 **返回值**
 
@@ -124,7 +124,7 @@ ResObject 结构如下:
 
 | 参数名   | 类型   | 说明                                                  |
 |----------|--------|-------------------------------------------------------|
-| recordID | string / number | 数据行 ID                                 |
+| recordID | string / integer | 数据行 ID                                 |
 
 **返回值**
 
@@ -275,7 +275,7 @@ this，即当前 TableObject 实例
 
 | 参数名   | 类型   | 说明                   |
 |----------|--------|--------------------   |
-| num    | number | 数量      |
+| num    | integer | 数量      |
 
 **返回值**
 
@@ -285,7 +285,7 @@ this，即当前 TableObject 实例
 
 | 参数名   | 类型   | 说明                   |
 |----------|--------|--------------------   |
-| num    | number | 数量         |
+| num    | integer | 数量         |
 
 **返回值**
 

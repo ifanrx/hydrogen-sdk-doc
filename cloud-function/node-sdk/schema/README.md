@@ -5,9 +5,9 @@
 数据存储是知晓云提供的核心功能之一，借助它，你可以省去自己搭建数据库，维护数据库及优化数据库查询等麻烦操作。通过以下操作，便可以向在控制台创建的数据表添加一条记录：
 
 ```js
-let tableID = 10
-// 通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
-let Product = new BaaS.TableObject(tableID)
+let tableName = 'product'
+// 通过 `tableName` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
+let Product = new BaaS.TableObject(tableName)
 // 本地创建一条空记录
 let product = Product.create()
 
@@ -36,13 +36,13 @@ product.update().then(res => {
 同时，SDK 提供了多种复杂查询操作，包括正则匹配查询，数组查询，甚至是与或的组合查询，如下是正则匹配查询的使用：
 
 ```js
-let Product = new BaaS.TableObject(tableID)
+let Product = new BaaS.TableObject(tableName)
 var query = new BaaS.Query()
 
 // 查找产品 ID 以 11 开头，以 33 结尾的产品
 regx = /^11\d+33$/
 
-query.matches('pid', regx)
+query.matches('product_id', regx)
 Product.setQuery(query).find().then(res => {
   console.log(res.data)
 })

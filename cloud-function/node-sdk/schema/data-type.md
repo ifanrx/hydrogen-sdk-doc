@@ -11,7 +11,7 @@
 | array   | 数组， 数组元素支持 `string`、`integer`、`number`、`boolean` 4 种类型 |
 | object  | 对象，必须是`{...}`格式，即对象的字面量形式 |
 | geojson | 地理位置，支持 GeoPoint、GeoPloygon（点与多边形）两种类型，请参考[地理位置操作](./geo.md)章节。GeoJSON 具体介绍，请参考 mongoDB 的 [GeoJSON Object](https://docs.mongodb.com/manual/reference/geojson/)  |
-| date    | 日期，[ISO8601](https://zh.wikipedia.org/wiki/ISO_8601) 格式的日期字符串，例如：`"2018-09-01T18:31:02.631000+08:00"` |
+| date    | 日期时间，[ISO8601](https://zh.wikipedia.org/wiki/ISO_8601) 格式的日期字符串，例如：`"2018-09-01T18:31:02.631000+08:00"` |
 | file    | 文件，记录文件信息的对象（数据结构详见下表） |
 
 file 类型的数据结构

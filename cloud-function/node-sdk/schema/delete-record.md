@@ -2,17 +2,16 @@
 
 ## 操作步骤
 
-1.通过 `数据表 ID` 或 `数据表名` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
+1.通过 `数据表名` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
 
-`let MyTableObject = new BaaS.TableObject(tableID | tableName)`
+`let MyTableObject = new BaaS.TableObject(tableName)`
 
 **参数说明**
 
-tableID 和 tableName 二选一，不能同时存在
+tableName 二选一，不能同时存在
 
 | 参数名    | 类型    | 说明                                 |
 |-----------|---------|--------------------------------------|
-| tableID   | integer | 数据表的 ID                          |
 | tableName | string  | 数据表名                             |
 
 2.指定 `recordID` 执行删除操作
@@ -30,11 +29,11 @@ tableID 和 tableName 二选一，不能同时存在
 
 **请求示例**
 ```js
-// 删除 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项
-let tableID = 10
+// 删除 tableName 为 product 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项
+let tableName = 'product'
 let recordID = '59897882ff650c0477f00485'
 
-let Product = new BaaS.TableObject(tableID)
+let Product = new BaaS.TableObject(tableName)
 Product.delete(recordID).then(res => {
   // success
 }, err => {
@@ -66,12 +65,12 @@ then 回调中的 res 对象结构如下：
 **请求示例**
 
 ```js
-let MyTableObject = new BaaS.TableObject(tableID)
+let MyTableObject = new BaaS.TableObject(tableName)
 
 let query = new BaaS.Query()
 
 // 设置查询条件（比较、字符串包含、组合等）
-...
+//...
 
 MyTableObject.limit(10).offset(0).delete(query).then(res => {}, err => {})
 ```
