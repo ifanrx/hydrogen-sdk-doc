@@ -61,10 +61,14 @@ then 回调中的 res 对象结构如下：
   "data": ""
 }
 ```
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
-catch 回调中的 err 对象:
+常见错误：
 
-请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+| 错误码 err.code | 可能的原因       |
+|----------------|-----------------|
+| 404            | 数据行不存在      |
+| 403            | 没有权限删除数据   |
 
 ### 批量删除数据项
 
@@ -83,9 +87,13 @@ let MyTableObject = new wx.BaaS.TableObject(tableID)
 let query = new wx.BaaS.Query()
 
 // 设置查询条件（比较、字符串包含、组合等）
-...
+//...
 
-MyTableObject.limit(10).offset(0).delete(query).then(res => {}, err => {})
+MyTableObject.limit(10).offset(0).delete(query).then(res => {
+  console.log(res)
+}, err => {
+  console.log(err)  
+})
 ```
 
 **返回示例**
@@ -105,13 +113,16 @@ then 回调中的 res 对象结构如下：
 }
 ```
 
-catch 回调中的 err 对象:
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
-请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+常见错误：
+
+| 错误码 err.code | 可能的原因       |
+|----------------|-----------------|
+| 404            | 数据行不存在      |
+| 403            | 没有权限删除数据   |
 
 **状态码说明**
-
-200 删除成功，400 请求数据非法
 
 <span class="attention">注：</span> 由于对数据表的增删改均会触发 trigger 动作，为了防止出现严重消耗系统资源的情况，对数据表进行批量操作的数据条目最多不能超过 1000 条。
 

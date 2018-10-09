@@ -92,7 +92,7 @@ product.set('amount', 0)
 product.save().then(res => {
   // success
   console.log(res)  
-}, (err) => {
+}, err => {
   // HError 对象
 })
 ```
@@ -119,14 +119,20 @@ then 回调中的 res 对象结构如下，其中 res.data 为新增的数据行
   }
 }
 ```
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+常见错误：
+
+| 错误码 err.code | 可能的原因       |
+|----------------|------------------|
+| 400            | 1. 提交的 ACL 权限不合法 、2. 提交的数据的字段类型不匹配、 3. 提交的数据中没有包含必填项 4. 重复创建数据（设置了唯一索引） |
+| 403            | 没有权限写入数据    |
+| 404            | 写入的数据表不存在   |
+
 
 > **info**
 > 对于不合法的数据，知晓云会进行过滤。比如开发者尝试在 integer 类型的字段写入 string 类型的数据，该操作不会报错而是会忽略对该字段的修改。
 > 因此可以检查 res.data 中对应的字段来判断某些字段是否添加成功。
-
-catch 回调中的 err 对象:
-
-请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 
 ### 添加日期时间 Date 类型的数据
@@ -148,6 +154,8 @@ MyFile.upload(params).then(res => {
   product.set('manual', res.data.file)
   product.save().then(res => {
     console.log(res)
+  }).catch(err=>{
+    console.log(err)
   })
 })
 ```
@@ -156,10 +164,10 @@ MyFile.upload(params).then(res => {
 
 res 结构如下
 
-```js
+```json
 {
-  statusCode: 201,
-  data: {
+  "statusCode": 201,
+  "data": {
     "_id": "5bbac6e7bd66033df7fd0aac",
     "created_at": 1538967271,
     "created_by": 61736923,
@@ -255,23 +263,28 @@ MyTableObject.createMany(records).then(res => {
 **返回示例**
 
 then 回调中 res 结构如下:
-```js
+```json
 {
-  statusCode: 201, // 状态码
-  data: {
+  "statusCode": 201, // 状态码 201 表示成功
+  "data": {
     "succeed": 10, // 成功插入记录数
     "total_count": 10 // 总的待插入记录数
   }
 }
 ```
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
-catch 回调中的 err 对象:
+常见错误：
 
-请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+| 错误码 err.code | 可能的原因        |
+|----------------|------------------|
+| 400            | 1. 提交的 ACL 权限不合法 、2. 提交的数据的字段类型不匹配、 3. 提交的数据中没有包含必填项 4. 重复创建数据（设置了唯一索引） |
+| 403            | 没有权限写入数据    |
+| 404            | 写入的数据表不存在  |
+
+
 
 **状态码说明**
-
-201 创建成功，400 请求数据非法或超过最大操作条目数上限
 
 <span class="attention">注：</span> 由于对数据表的增删改均会触发 trigger 动作，为了防止出现严重消耗系统资源的情况，对数据表进行批量操作的数据条目最多不能超过 1000 条。
 
@@ -326,7 +339,7 @@ wx.BaaS.createRecord(objects).then(res => {
 
 **返回示例**
 
-```js
+```json
 {
   "created_at": 1487053095,
   "id": "7",

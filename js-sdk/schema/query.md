@@ -71,17 +71,21 @@ Product.setQuery(query).find().then(res => {
 })
 
 // 不设置查询条件
-Product.find().then()
+Product.find().then(res => {
+  // success
+}, err => {
+  // err
+})
 ```
 
 **返回示例** 
 
 res 结构如下
 
-```js
+```json
 {
-  statusCode: 200,
-  data: {
+  "statusCode": 200,
+  "data": {
     "meta": {
       "limit": 20,
       "next": null,
@@ -95,22 +99,29 @@ res 结构如下
         "amount": 0,
         "created_at": 1503904437,
         "created_by": 36395395,
-        "desc": ["good", 'great'],
+        "desc": ["good", "great"],
         "id": "59a3c2b5afb7766a5ec6e84e",
         "name": "apple",
         "price": 1.0,
         "read_perm": ["user:*"],
         "updated_at": 1503904437,
         "write_perm": ["user:*"]
-      },
+      }
       //...
     ]
   }
 }
 ```
-catch 回调中的 err 对象:
 
-请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+
+常见错误：
+
+| 错误码 err.code | 可能的原因        |
+|----------------|------------------|
+| 400            | 1. 指定/过滤输出字段的字段名有误、2. GEO 查询参数有误、3. 查询语法错误 |
+| 404            | 数据表不存在  |
 
 
 ### 比较查询
@@ -343,10 +354,13 @@ query.hasKey('publisherInfo', 'abc.location')
 
 ```js
 let query1 = new wx.BaaS.Query()
+
 query1.isNull('name')
+
 let query2 = new wx.BaaS.Query()
+
 query2.compare('price', '>', 10)
-...
+//...
 
 // and 查询
 let andQuery = wx.BaaS.Query.and(query1, query2, ...)
@@ -438,7 +452,7 @@ wx.BaaS.getRecordList(objects).then(res => {
 
 **返回示例**
 
-```js
+```json
 {
   "meta": {
     "limit": 20,

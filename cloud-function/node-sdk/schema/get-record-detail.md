@@ -46,10 +46,10 @@ Product.get(recordID).then(res => {
 **返回示例** 
 
 res 结构如下:
-```js
+```json
 {
-  status: 200,
-  data: {
+  "status": 200,
+  "data": {
     "_id": "59a3c2b5afb7766a5ec6e84e",
     "amount": 0,
     "created_at": 1503904437,
@@ -64,3 +64,11 @@ res 结构如下:
   }
 }
 ```
+
+err 对象结构请参考[错误码和 HError 对象](../error.md)
+
+常见错误：
+
+| 错误码 err.code | 可能的原因       |
+|----------------|-----------------|
+| 404            | 数据行不存在      |
