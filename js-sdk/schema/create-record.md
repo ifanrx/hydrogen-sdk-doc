@@ -218,7 +218,7 @@ order.save()
 
 SDK **1.4.0** 及以上版本支持批量新增数据项。
 
-`MyTableObject.createMany([item,...])`
+`TableObject.createMany([item,...])`
 
 **参数说明**
 

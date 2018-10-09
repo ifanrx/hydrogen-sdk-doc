@@ -125,25 +125,28 @@ res 结构如下
 
 ```json
 {
-  "meta": {
-    "limit": 20,
-    "next": null,
-    "offset": 0,
-    "previous": null,
-    "total_count": 1
-  },
-  "objects": [
-    {
-      "created_at": 1487053098,
-      "id": "59a3c2b5afb7766a5ec6e84f",
-      "product_id": "112233"
+  "statusCode": 200,
+  "data": {
+    "meta": {
+      "limit": 20,
+      "next": null,
+      "offset": 0,
+      "previous": null,
+      "total_count": 2
     },
-    {
-      "created_at": 1487053095,
-      "id": "59a3c2b5afb7766a5ec6e84e",
-      "product_id": "112333"
-    }
-  ]
+    "objects": [
+      {
+        "created_at": 1487053098,
+        "id": "59a3c2b5afb7766a5ec6e84f",
+        "product_id": "112233"
+      },
+      {
+        "created_at": 1487053095,
+        "id": "59a3c2b5afb7766a5ec6e84e",
+        "product_id": "112333"
+      }
+    ]
+  }
 }
 ```
 

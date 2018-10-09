@@ -47,7 +47,7 @@ MyTableObject.exportData('json', 'all').then(res => {
 })
 ```
 
-**返回示例** (res.statusCode === 200)
+**返回示例** (res.status === 200)
 
 res.data:
 ```js
@@ -105,7 +105,7 @@ BaaS.request.get(dataUrl).then(res => {
 })
 ```
 
-**返回示例** (res.statusCode === 200)
+**返回示例** (res.status === 200)
 
 res.data:
 ```js

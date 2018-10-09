@@ -177,7 +177,7 @@ res 结构如下
 
 ## 批量新增数据项
 
-`MyTableObject.createMany([item,...])`
+`TableObject.createMany([item,...])`
 
 **参数说明**
 
