@@ -128,6 +128,7 @@
             * [组集操作](cloud-function/node-sdk/super-group.md)
         * [企业付款](cloud-function/node-sdk/wx-promotion-transfer.md)
         * [短信验证码](cloud-function/node-sdk/sms.md)
+    * [命令行工具](cloud-function/cli.md)
 
 ----
 
