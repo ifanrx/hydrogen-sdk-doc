@@ -145,6 +145,7 @@
 
 * [实战教程](support/practice/README.md)
     * [触发器实战教程](support/practice/trigger.md)
+    * [云函数实战教程](support/practice/cloud-function.md)
 * [管理与支持](support/README.md)
     * [插件](support/plugin.md)
     * [常见问题](support/qA.md)
