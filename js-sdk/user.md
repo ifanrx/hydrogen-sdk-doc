@@ -109,7 +109,7 @@ MyUser.get(userID).then(res => {
 
 ### 筛选返回字段
 
-select 使用方法可以参考[数据表 - 字段过滤]小节(/js-sdk/schema/select-and-expand.md)
+select 使用方法可以参考[数据表 - 字段过滤](/js-sdk/schema/select-and-expand.md)小节
 
 **请求示例**
 

@@ -2,19 +2,17 @@
 
 ## 操作步骤
 
-1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
+1.通过 `数据表名` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
 
-`let MyTableObject = new BaaS.TableObject(tableID)`
+`let MyTableObject = new BaaS.TableObject(tableName)`
 
 **参数说明**
 
-| 参数     | 类型   | 必填 | 说明 |
-| :-----  | :----- | :-- | :---|
-| tableID | Number |  是 | 数据表 ID |
+tableName 二选一，不能同时存在
 
-**返回参数说明**
-
-无数据返回
+| 参数名    | 类型    | 说明                                 |
+|-----------|---------|--------------------------------------|
+| tableName | string  | 数据表名                             |
 
 2.指定 `recordID` 执行删除操作
 
@@ -31,17 +29,38 @@
 
 **请求示例**
 ```js
-// 删除 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项
-let tableID = 10
+// 删除 tableName 为 product 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项
+let tableName = 'product'
 let recordID = '59897882ff650c0477f00485'
 
-let Product = new BaaS.TableObject(tableID)
+let Product = new BaaS.TableObject(tableName)
 Product.delete(recordID).then(res => {
   // success
 }, err => {
   // err
 })
 ```
+
+**返回示例**
+
+then 回调中的 res 对象结构如下：
+
+```json
+{
+  "status": 204,
+  "statusText": "No Content",
+  "data": ""
+}
+```
+
+err 对象结构请参考[错误码和 HError 对象](../error.md)
+
+常见错误：
+
+| 错误码 err.code | 可能的原因       |
+|----------------|-----------------|
+| 404            | 数据行不存在      |
+| 403            | 没有权限删除数据   |
 
 ## 批量删除数据项
 
@@ -55,31 +74,47 @@ Product.delete(recordID).then(res => {
 **请求示例**
 
 ```js
-let MyTableObject = new BaaS.TableObject(tableID)
+let MyTableObject = new BaaS.TableObject(tableName)
 
 let query = new BaaS.Query()
 
 // 设置查询条件（比较、字符串包含、组合等）
-...
+//...
 
-MyTableObject.limit(10).offset(0).delete(query).then(res => {}, err => {})
+MyTableObject.limit(10).offset(0).delete(query).then(res => {
+  // success
+}, err => {
+  // error
+})
 ```
 
 **返回示例**
 
-res.data:
-```js
+then 回调中的 res 对象结构如下：
+
+```json
 {
-  "succeed": 8, // 成功删除记录数
-  "total_count": 10, // where 匹配的记录数，包括无权限操作记录
-  "offset": 0,
-  "limit": 10,
-  "next": null // 下一次删除 url，若为 null 则表示全部删除完毕
+  "status": 200,
+  "statusText": "OK",
+  "data": {
+    "succeed": 8, // 成功删除记录数
+    "total_count": 10, // where 匹配的记录数，包括无权限操作记录
+    "offset": 0,
+    "limit": 10,
+    "next": null // 下一次删除 url，若为 null 则表示全部删除完毕
+  }
 }
 ```
 
-**状态码说明**
+err 对象结构请参考[错误码和 HError 对象](../error.md)
 
-200 删除成功，400 请求数据非法
+常见错误：
+
+| 错误码 err.code | 可能的原因       |
+|----------------|-----------------|
+| 404            | 数据行不存在      |
+| 403            | 没有权限删除数据   |
+
+**状态码说明**
 
 <span class="attention">注：</span> 由于对数据表的增删改均会触发 trigger 动作，为了防止出现严重消耗系统资源的情况，对数据表进行批量操作的数据条目最多不能超过 1000 条。

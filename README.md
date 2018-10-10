@@ -171,14 +171,49 @@
     </li>
     <li>
       <h3>
-        <a href="/cloud-function/README.md/">云函数</a>
+        <a href="/cloud-function/node-sdk/README.md/">云函数 Node.js SDK</a>
       </h3>
       <ul class="doc-cloud-function doc-detail-item">
         <li>
           <a href="/cloud-function/quick-start.md/">快速入门</a>
         </li>
         <li>
-          <a href="/cloud-function/node-sdk/README.md/">云函数 Node SDK</a>
+          <a href="/cloud-function/node-sdk/schema/README.md">数据表</a>
+        </li>
+        <li>
+          <a href="/cloud-function/node-sdk/content/README.md">内容</a>
+        </li>
+        <li>
+          <a href="/cloud-function/node-sdk/file/README.md">文件</a>
+        </li>
+        <li>
+          <a href="/cloud-function/node-sdk/order.md">微信支付订单操作</a>
+        </li>
+        <li>
+          <a href="/cloud-function/node-sdk/cloud-function.md">调用云函数</a>
+        </li>
+        <li>
+          <a href="/cloud-function/node-sdk/email.md">发送邮件</a>
+        </li>
+      </ul>
+      <ul class="doc-cloud-function doc-detail-item">
+        <li>
+          <a href="/cloud-function/node-sdk/template-message.md">发送模板消息</a>
+        </li>
+        <li>
+          <a href="/cloud-function/node-sdk/request.md">网络请求</a>
+        </li>
+        <li>
+          <a href="/cloud-function/node-sdk/censor.md">检测违规图片、文本</a>
+        </li>
+        <li>
+          <a href="/cloud-function/node-sdk/user.md">用户</a>
+        </li>
+        <li>
+          <a href="/cloud-function/node-sdk/wx-promotion-transfer.md">企业付款</a>
+        </li>
+        <li>
+          <a href="/cloud-function/node-sdk/sms.md">短信验证码</a>
         </li>
       </ul>
     </li>

@@ -1,5 +1,6 @@
 # 企业付款
 
+企业付款为企业提供付款至用户零钱的能力，支持通过API接口付款，具体的场景介绍参考[微信企业付款场景介绍](https://pay.weixin.qq.com/wiki/doc/api/tools/mch_pay.php?chapter=14_1)
 
 `BaaS.wxPromotionTransfer({userID, amount, description, checkName, reUserName})`
 

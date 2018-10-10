@@ -40,7 +40,7 @@ Content-Type: `application/json`
 | 参数           | 类型   | 必填 | 说明 |
 | :------------ | :----- | :-- | :-- |
 | filename      | String | N   | 上传的文件名 |
-| categories    | String | N   | 上传文件的所属分类，格式为文件分类的 ID 数组 |
+| category_id    | String | N   | 文件分类 ID |
 
 **返回参数**
 

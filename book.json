@@ -39,7 +39,8 @@
   ],
   "title": "知晓云平台开发文档",
   "variables": {
-    "latestVersion": "1.8.0"
+    "latestVersion": "1.8.1",
+    "imgURLClipDemo": "https://cloud-minapp-6.cloud.ifanrusercontent.com/1fco21YvWNpWfukk.png!/both/400x400"
   },
   "pluginsConfig": {
     "algolia": {
@@ -82,13 +83,13 @@
       "type": "branches",
       "options": [
         {
-            "value": "https://rackt.github.io/history/v1.3.0/",
-            "text": "Version 1.3.0"
+          "value": "https://rackt.github.io/history/v1.3.0/",
+          "text": "Version 1.3.0"
         },
         {
-            "value": "https://rackt.github.io/history/v1.4.0/",
-            "text": "Version 1.4.0",
-            "selected": true
+          "value": "https://rackt.github.io/history/v1.4.0/",
+          "text": "Version 1.4.0",
+          "selected": true
         }
       ]
     }

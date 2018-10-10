@@ -16,3 +16,4 @@
 
 * [快速入门](./quick-start.md)
 * [Node.js SDK 使用](./node-sdk/README.md)
+* [技术细节](/cloud-function/technical-notes.md)

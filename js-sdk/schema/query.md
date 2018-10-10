@@ -60,7 +60,7 @@
 let query = new wx.BaaS.Query()
 
 // 设置查询条件（比较、字符串包含、组合等）
-...
+//...
 
 // 应用查询对象
 let Product = new wx.BaaS.TableObject(tableID)
@@ -71,39 +71,57 @@ Product.setQuery(query).find().then(res => {
 })
 
 // 不设置查询条件
-Product.find().then()
+Product.find().then(res => {
+  // success
+}, err => {
+  // err
+})
 ```
 
-**返回示例** (res.statusCode === 200)
+**返回示例** 
 
-res.data:
-```js
+res 结构如下
+
+```json
 {
-  "meta": {
-    "limit": 20,
-    "next": null,
-    "offset": 0,
-    "previous": null,
-    "total_count": 3
-  },
-  "objects": [
-    {
-      "_id": "59a3c2b5afb7766a5ec6e84e",
-      "amount": 0,
-      "created_at": 1503904437,
-      "created_by": 36395395,
-      "desc": ["good", 'great'],
-      "id": "59a3c2b5afb7766a5ec6e84e",
-      "name": "apple",
-      "price": 1.0,
-      "read_perm": ["user:*"],
-      "updated_at": 1503904437,
-      "write_perm": ["user:*"]
+  "statusCode": 200,
+  "data": {
+    "meta": {
+      "limit": 20,
+      "next": null,
+      "offset": 0,
+      "previous": null,
+      "total_count": 3
     },
-    ...
-  ]
+    "objects": [
+      {
+        "_id": "59a3c2b5afb7766a5ec6e84e",
+        "amount": 0,
+        "created_at": 1503904437,
+        "created_by": 36395395,
+        "desc": ["good", "great"],
+        "id": "59a3c2b5afb7766a5ec6e84e",
+        "name": "apple",
+        "price": 1.0,
+        "read_perm": ["user:*"],
+        "updated_at": 1503904437,
+        "write_perm": ["user:*"]
+      }
+      //...
+    ]
+  }
 }
 ```
+
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+
+常见错误：
+
+| 错误码 err.code | 可能的原因        |
+|----------------|------------------|
+| 400            | 1. 指定/过滤输出字段的字段名有误、2. GEO 查询参数有误、3. 查询语法错误 |
+| 404            | 数据表不存在  |
 
 
 ### 比较查询
@@ -130,18 +148,21 @@ query.compare('amount', '<', 10)
 
 
 ### 字符串查询
-
+查询返回满足包含相应字符串的记录，如下示例：
 ```js
-query.contains('name', 'apple')
+// 例：{"name": "apple"}
+query.contains('name', 'apple')  // 查询name字段包含'apple'的记录，能正确匹配
+query.contains('name', 'app')  // 查询name字段包含'app'的记录，能正确匹配
+query.contains('name', 'apple123')  // 查询name字段包含'apple123'的记录，不能正确匹配
 ```
 
-也支持正则匹配 ( <span style='color:red'>* sdk version >= v1.1.1</span> )：
+也支持正则匹配 ( <span style='color:red'>* sdk version >= v1.1.1，</span> [正则表达式相关知识](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions) )：
 
 ```js
 query.matches('name', regExp)
 ```
 
-构建一个 regExp 可通过以下两种方法之一:
+构建一个 regExp 可通过以下两种方法之一，`i` 表示对大小写不敏感:
 
 - 使用正则表达式字面量
 ```js
@@ -156,12 +177,22 @@ const regExp = new RegExp('^abc', 'i')
 ### 正则匹配示例
 
 ```js
-/* 以查找手机号码为例，phoneNumber 字段必须为 string 类型 */
+/* 以查找名字为例，name 字段必须为 string 类型 */
 
 let regExp
 
+// 查找 以 foo 开头的名字，并且对大小写不敏感
+regExp = /^foo/i
+
+query.matches('name', regExp)
+
+
+/* 以查找手机号码为例，phoneNumber 字段必须为 string 类型 */
+
+let regx
+
 // 查找 以 188 开头的手机号码
-regExp = /^188/
+regx = /^188/
 
 // 查找 以 708 结尾的手机号码
 regx = /708$/
@@ -323,10 +354,13 @@ query.hasKey('publisherInfo', 'abc.location')
 
 ```js
 let query1 = new wx.BaaS.Query()
+
 query1.isNull('name')
+
 let query2 = new wx.BaaS.Query()
+
 query2.compare('price', '>', 10)
-...
+//...
 
 // and 查询
 let andQuery = wx.BaaS.Query.and(query1, query2, ...)
@@ -364,6 +398,7 @@ let query = new wx.BaaS.Query()
 
 Product.setQuery(query).count().then(num => {
   // success
+  console.log(num) // 10
 }, err => {
   // err
 })
@@ -417,7 +452,7 @@ wx.BaaS.getRecordList(objects).then(res => {
 
 **返回示例**
 
-```js
+```json
 {
   "meta": {
     "limit": 20,

@@ -1,16 +1,34 @@
 # 查询
 
+## 数据类型对应查询操作符表
+
+| 数据类型 |                            可使用的查询操作                                             | 说明 |
+|:---------|:--------------------------------------------------------------------------------------- |:-----|
+| string   | =, in, notIn, !=, isNull, isNotNull, contains, matches, exists, notExists               |      |
+| integer  | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                    |      |
+| number   | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                    |      |
+| array    | =, in, notIn, isNull, isNotNull, arrayContains, exists, notExists                       |      |
+| boolean  | =, exists, notExists, isNull, isNotNull                                                 |      |
+| date     | =, >, >=, <, <=,  exists, notExists, isNull, isNotNull                                  |      |
+| file     | isNull, isNotNull, exists, notExists                                                    |      |
+| geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     | 请参考[地理位置操作](./geo.md)章节 |
+| object   | =, hasKey, isNull, isNotNull, exists, notExists                                         |      ||
+
+
 ## 操作步骤
 
-1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
+1.通过 `数据表 ID` 或 `数据表名` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表，
 
-`let MyTableObject = new BaaS.TableObject(tableID)`
+`let MyTableObject = new BaaS.TableObject(tableID | tableName)`
 
 **参数说明**
 
-| 参数     | 类型   | 必填 | 说明 |
-| :-----  | :----- | :-- | :---|
-| tableID | Number |  是 | 数据表 ID |
+tableID 和 tableName 二选一，不能同时存在
+
+| 参数名    | 类型    | 说明                                 |
+|-----------|---------|--------------------------------------|
+| tableID   | integer | 数据表的 ID                          |
+| tableName | string  | 数据表名                             |
 
 2.实例化一个 Query 对象，在该对象上添加查询条件
 
@@ -31,7 +49,7 @@
 let query = new BaaS.Query()
 
 // 设置查询条件（比较、字符串包含、组合等）
-...
+//...
 
 // 应用查询对象
 let Product = new BaaS.TableObject(tableID)
@@ -42,40 +60,56 @@ Product.setQuery(query).find().then(res => {
 })
 
 // 不设置查询条件
-Product.find().then()
+Product.find().then(res => {
+  // success
+}, err => {
+  // err
+})
 ```
 
-**返回示例** (res.statusCode === 200)
+**返回示例** 
 
-res.data:
+res 结构如下
+
 ```js
 {
-  "meta": {
-    "limit": 20,
-    "next": null,
-    "offset": 0,
-    "previous": null,
-    "total_count": 3
-  },
-  "objects": [
-    {
-      "_id": "59a3c2b5afb7766a5ec6e84e",
-      "amount": 0,
-      "created_at": 1503904437,
-      "created_by": 36395395,
-      "desc": ["good", 'great'],
-      "id": "59a3c2b5afb7766a5ec6e84e",
-      "name": "apple",
-      "price": 1.0,
-      "read_perm": ["user:*"],
-      "updated_at": 1503904437,
-      "write_perm": ["user:*"]
+  status: 200,
+  data: {
+    "meta": {
+      "limit": 20,
+      "next": null,
+      "offset": 0,
+      "previous": null,
+      "total_count": 3
     },
-    ...
-  ]
+    "objects": [
+      {
+        "_id": "59a3c2b5afb7766a5ec6e84e",
+        "amount": 0,
+        "created_at": 1503904437,
+        "created_by": 36395395,
+        "desc": ["good", 'great'],
+        "id": "59a3c2b5afb7766a5ec6e84e",
+        "name": "apple",
+        "price": 1.0,
+        "read_perm": ["user:*"],
+        "updated_at": 1503904437,
+        "write_perm": ["user:*"]
+      },
+      //...
+    ]
+  }
 }
 ```
 
+err 对象结构请参考[错误码和 HError 对象](../error.md)
+
+常见错误：
+
+| 错误码 err.code | 可能的原因        |
+|----------------|------------------|
+| 400            | 1. 指定/过滤输出字段的字段名有误、2. GEO 查询参数有误、3. 查询语法错误 |
+| 404            | 数据表不存在  |
 
 ## 比较查询
 
@@ -105,7 +139,7 @@ query.compare('amount', '<', 10)
 query.contains('name', 'apple')
 ```
 
-也支持正则匹配 ( <span style='color:red'>* sdk version >= v1.1.1</span> )
+也支持正则匹配
 
 ```js
 query.matches('name', regExp)
@@ -155,7 +189,7 @@ field 的类型不限制，field 的 value 不含有 array 中的任何一个
 query.notIn(fieldName, array)
 ```
 
-field 的类型必须为数组, field 的 value 包含 array 中的每一个  ( <span style='color:red'>* sdk version >= v1.1.1</span> )
+field 的类型必须为数组, field 的 value 包含 array 中的每一个
 ```js
 query.arrayContains(fieldName, array)
 ```
@@ -199,7 +233,6 @@ query.isNotNull(['name', 'price'])
 ```
 
 ## 查询字段值为空或非空记录
-<span style='color:red'>* sdk version >= v1.1.1</span>
 
 ```js
 query.exists('name')
