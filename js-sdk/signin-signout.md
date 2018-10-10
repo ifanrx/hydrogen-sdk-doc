@@ -65,10 +65,16 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 **请求示例**
 
 ```js
-wx.BaaS.handleUserInfo(data).then(res => {
-    // res 包含用户完整信息，详见下方描述
-  }, res => {
-    // **res 有两种情况**：用户拒绝授权，res 包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 Error 对象（详情见下方注解）
+Page({
+  // ...
+  userInfoHandler(data) {
+    wx.BaaS.handleUserInfo(data).then(res => {
+        // res 包含用户完整信息，详见下方描述
+      }, res => {
+        // **res 有两种情况**：用户拒绝授权，res 包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 Error 对象（详情见下方注解）
+    })
+  },
+  // ...
 })
 ```
 
