@@ -6,7 +6,7 @@
 
 ## 引入 SDK 并初始化
 
-{% tabs sdkfile="js 文件版", sdkplugin="小程序插件版" %}
+{% tabs sdkfile="js 文件版", sdkplugin="小程序插件版", npm="npm 包" %}
 
 {% content "sdkfile" %}
 
@@ -108,6 +108,49 @@ App({
   }
 })
 ```
+{% content "npm" %}
+
+#### 从 npm 上安装并使用 SDK 包
+a. 安装
+```sh
+npm install minapp-sdk  // npm
+yarn add minapp-sdk  // yarn
+```
+b. [构建 npm](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
+
+c. 引入
+```js
+// app.js
+
+App({
+  onLaunch() {
+    // require SDK
+    require('minapp-sdk')
+  }
+})
+```
+
+#### 初始化 SDK
+
+通过初始化 SDK ，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 SDK 提供的全部功能。
+
+在[知晓云后台 - 我的应用](https://cloud.minapp.com/admin/profile/)页面获取要接入知晓云服务的小程序 ClientID, 按照如下方式进行 SDK 初始化:
+```js
+// app.js
+
+App({
+  onLaunch() {
+    // 引入 SDK
+    require('minapp-sdk')
+    let clientID = '知晓云管理后台获取到的 ClientID'
+    wx.BaaS.init(clientID)
+  }
+})
+```
+
+#### 完成服务器域名配置
+
+在[这里](/newbies/README.md#小程序第三方授权以及服务器域名配置)可查看详细的配置方法。
 
 {% endtabs %}
 
