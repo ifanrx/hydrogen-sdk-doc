@@ -2,10 +2,11 @@
 
 云函数命令行工具。
 
-## 快速开始
+## 安装命令行工具
 
-1. 安装运行时 [node.js](https://nodejs.org/)
-2. 安装本命令行工具
+1. 安装 [node.js](https://nodejs.org/) 环境
+
+2. 安装命令行工具 ifxc
 
    通过 npm 安装：
 
@@ -13,7 +14,7 @@
    $ npm install -g ifxc
    ```
 
-   通过 yarn 安装：
+   通过 [yarn](https://yarnpkg.com/en/docs/install) 安装：
 
    ```
    $ yarn global add ifxc
@@ -33,7 +34,118 @@
    - node: v8.10.0
    ```
 
-## 命令的使用
+## 使用示例
+
+### 创建第一个云函数
+
+1. 打开终端，进入云函数工作目录
+
+   ```
+   $ cd /Users/ifanr/demo
+   ```
+
+2. 登录
+
+   ```
+   $ ifxc login d2****************83 6a************************************22
+
+   登录成功
+   ```
+
+   请到
+   [知晓云控制台](https://cloud.minapp.com/dashboard/#/app/settings/app/)
+   查看 `client_id` 和 `client_secret`；如果登录失败，请检查
+   `client_id` 和 `client_secret` 是否已经改变。
+
+3. 创建本地文件
+
+   ```
+   $ ifxc new greet
+   创建成功
+
+   /Users/ifanr/demo/greet
+   /Users/ifanr/demo/greet/index.js
+
+   - 函数名：greet
+   - 函数根目录: ./
+   ```
+
+   默认会创建以下代码：
+
+   ```
+   exports.main = function functionName(event, callback) {
+     callback(null, "hello world")
+   }
+   ```
+
+4. 写代码
+
+   这里创建一个简单的云函数，输入名字，返回一句问候。
+
+   ```
+   exports.main = function functionName(event, callback) {
+     const {
+       username
+     } = event.data
+     callback(null, `您好，${username}！`)
+   }
+   ```
+
+5. 部署云函数
+
+   ```
+   $ ifxc deploy greet
+
+   audit_status:  approved
+   created_at:    1539585381
+   created_by:
+   function_code:
+     """
+       exports.main = function functionName(event, callback) {
+         const {
+           username
+         } = event.data
+         callback(null, `您好，${username}！`)
+       }
+
+     """
+   id:            1310
+   name:          greet
+   plan_circle:   P_FREE
+   remark:
+   updated_at:    1539585381
+   updated_by:
+   ```
+
+6. 列出云函数状态
+
+   ```
+   $ ifxc list
+
+   函数名     状态
+   greet approved
+   ```
+
+7. 调用云函数
+
+   ```
+   $ ifxc invoke greet -d '{"username": "爱范儿"}'
+   测试结果：成功
+     返回结果：
+     您好，爱范儿！
+
+   摘要：
+     任务 ID：71b1ee3844364f7585f62753cc2207b4
+     运行时间：11.97
+     计费时间：100
+     占用内存：74.84MB
+
+   日志：
+     2018-10-15T06:37:40.517Z LOG event.data:  { username: '爱范儿' }
+     2018-10-15T06:37:40.520Z LOG return:  您好，爱范儿！
+   ```
+
+## 命令的 API
 
 flag       | 说明
 -----------|-------------------------------------
