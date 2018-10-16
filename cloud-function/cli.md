@@ -1,4 +1,4 @@
-# ifxc
+# 云函数命令行工具使用指南
 
 云函数命令行工具，通过它你可以更方便地在本地进行云函数管理：增删查改；
 还可以通过写 shell script，集成到已有的自动化工具中。
@@ -7,31 +7,31 @@
 
 1. 安装 [node.js](https://nodejs.org/) 环境
 
-2. 安装命令行工具 ifxc
+2. 安装命令行工具 mincloud
 
    通过 npm 安装：
 
    ```
-   $ npm install -g ifxc
+   $ npm install -g mincloud
    ```
 
    通过 [yarn](https://yarnpkg.com/en/docs/install) 安装：
 
    ```
-   $ yarn global add ifxc
+   $ yarn global add mincloud
    ```
 
 3. 调用
 
    ```
-   $ ifxc
+   $ mincloud
    用法：
-    ifxc <command>
+    mincloud <command>
 
    支持的 command 有：
       delete, deploy, invoke, list, login, logout, new
 
-   - ifxc: v1.1.0
+   - mincloud: v1.1.0
    - node: v8.10.0
    ```
 
@@ -48,7 +48,7 @@
 2. 登录
 
    ```
-   $ ifxc login d2****************83 6a************************************22
+   $ mincloud login d2****************83 6a************************************22
 
    登录成功
    ```
@@ -61,7 +61,7 @@
 3. 创建本地文件
 
    ```
-   $ ifxc new greet
+   $ mincloud new greet
    创建成功
 
    /Users/ifanr/demo/greet
@@ -95,7 +95,7 @@
 5. 部署云函数
 
    ```
-   $ ifxc deploy greet
+   $ mincloud deploy greet
 
    audit_status:  approved
    created_at:    1539585381
@@ -121,7 +121,7 @@
 6. 列出云函数状态
 
    ```
-   $ ifxc list
+   $ mincloud list
 
    函数名     状态
    greet approved
@@ -130,7 +130,7 @@
 7. 调用云函数
 
    ```
-   $ ifxc invoke greet -d '{"username": "爱范儿"}'
+   $ mincloud invoke greet -d '{"username": "爱范儿"}'
    测试结果：成功
      返回结果：
      您好，爱范儿！
@@ -154,10 +154,10 @@ flag       | 说明
 
 ### 删除云函数
 
-必须先登录，请参考 `ifxc login`。谨慎操作，此操作会将服务器上的云函数删除。
+必须先登录，请参考 `mincloud login`。谨慎操作，此操作会将服务器上的云函数删除。
 
 ```
-$ ifxc delete <funciton_name>
+$ mincloud delete <funciton_name>
 ```
 
 参数          | 必填  | 默认值 |  说明
@@ -166,10 +166,10 @@ function_name | 是    | 无     | 已经存在的云函数
 
 ### 部署云函数
 
-必须先登录，请参考 `ifxc login`。
+必须先登录，请参考 `mincloud login`。
 
 ```
-$ ifxc deploy <function_name> [cloud_function_root] [-m remark]
+$ mincloud deploy <function_name> [cloud_function_root] [-m remark]
 ```
 
 参数                | 必填  | 默认值        |  说明
@@ -184,10 +184,10 @@ flag          | 说明
 
 ### 调用云函数
 
-必须先登录，请参考 `ifxc login`。
+必须先登录，请参考 `mincloud login`。
 
 ```
-$ ifxc invoke <funciton_name> [data]
+$ mincloud invoke <funciton_name> [data]
 ```
 
 参数          | 必填  | 默认值      |  说明
@@ -197,18 +197,18 @@ data          | 否    | 空对象 `{}` | JSON 数据
 
 ### 列出云函数
 
-必须先登录，请参考 `ifxc login`。
+必须先登录，请参考 `mincloud login`。
 
 ```
-$ ifxc list
+$ mincloud list
 ```
 
 ### 登录
 
-使用知晓云[客户端凭证](https://cloud.minapp.com/dashboard/#/app/settings/app/)登录，令牌将保存在本地文件 `.ifxcrc` 中；若过期，请重新登录。
+使用知晓云[客户端凭证](https://cloud.minapp.com/dashboard/#/app/settings/app/)登录，令牌将保存在本地文件 `.mincloudrc` 中；若过期，请重新登录。
 
 ```
-$ ifxc login <client_id> <client_secret>
+$ mincloud login <client_id> <client_secret>
 ```
 
 参数          | 必填  | 默认值 |  说明
@@ -219,7 +219,7 @@ client_secret | 是    | 无     | 知晓云的客户端密钥
 ### 注销
 
 ```
-$ ifxc logout
+$ mincloud logout
 ```
 
 ### 本地创建一个云函数文件
@@ -227,7 +227,7 @@ $ ifxc logout
 此命令将创建一个简单的云函数，文件夹即函数名，入口文件即 `<function_name>/index.js`。
 
 ```
-$ ifxc new <function_name> [cloud_function_root]
+$ mincloud new <function_name> [cloud_function_root]
 ```
 
 参数                | 必填  | 默认值        |  说明
