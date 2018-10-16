@@ -198,7 +198,7 @@
       </ul>
       <ul class="doc-cloud-function doc-detail-item">
         <li>
-          <a href="/cloud-function/node-sdk/template-message.md">发送模板消息</a>
+          <a href="/cloud-function/node-sdk/template-message/README.md">模板消息</a>
         </li>
         <li>
           <a href="/cloud-function/node-sdk/request.md">网络请求</a>

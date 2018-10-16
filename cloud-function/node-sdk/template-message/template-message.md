@@ -4,7 +4,7 @@
 
 如果用户在执行了某一特定的操作的时候，例如用户进行了支付操作，需要给用户发送一个关于订单的相关的信息的消息的时候，可以调用该接口给特定的用户群体发送一个特定的模板消息，
 
-![模板消息示例](../../images/template-message/template-message.png)
+![模板消息示例](../../../images/template-message/template-message.png)
 
 
 `BaaS.sendTemplateMessage(data)`
@@ -139,6 +139,6 @@ BaaS.sendTemplateMessage(data)
 | regex      	| { a: { $regex: '123', $options: 'g'} }                                                                     	| a.match(/123/g)             	|
 | all        	| { a: { $all: [1, 2, 3] } }                                                                                 	| a 包含了 [1, 2, 3] , eg: [1, 2, 3] 包含了  [1, 2]  	|
 | is null    	| { a: { $isnull: true} } }                                                                                  	| a 是否为空                  	|
-| center     	| { a: { $center: {"radius": 123, "coordinates": [1, 2]} } }                                                 	| 请参考[withincircle](../../js-sdk/schema/geo.md)          	|
-| intersects 	| { a: { $intersects: {"type": `GEOJSON`, "coordinates": [1, 2]} }}                                          	| 请参考[include](../../js-sdk/schema/geo.md)                	|
-| nearsphere 	| { a: {"$nearsphere":{"geometry":{"type":"Point","coordinates":[1,2]},"min_distance":3,"max_distance":4}} } 	| 请参考[withinRegion](../../js-sdk/schema/geo.md)           	|
+| center     	| { a: { $center: {"radius": 123, "coordinates": [1, 2]} } }                                                 	| 请参考[withincircle](../../../js-sdk/schema/geo.md)          	|
+| intersects 	| { a: { $intersects: {"type": `GEOJSON`, "coordinates": [1, 2]} }}                                          	| 请参考[include](../../../js-sdk/schema/geo.md)                	|
+| nearsphere 	| { a: {"$nearsphere":{"geometry":{"type":"Point","coordinates":[1,2]},"min_distance":3,"max_distance":4}} } 	| 请参考[withinRegion](../../../js-sdk/schema/geo.md)           	|
