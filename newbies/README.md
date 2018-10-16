@@ -40,10 +40,6 @@
 {% tabs SDKPluginConfig="SDK 插件版接入", SDKFileConfig="SDK 文件版接入" %}
 
 {% content "SDKPluginConfig" %}
-## 在微信后台添加知晓云插件
-设置 ---> 第三方服务 ---> 添加插件  
-![添加插件](/images/newbies/add-plugin.jpg)
-
 
 ## 第一个接入知晓云的小程序
 
@@ -60,6 +56,9 @@
 ![开发者 ID](/images/newbies/developer-id.jpg)
 
 #### 在 app.json 中加入插件的引用声明
+
+> **info**
+> 插件版 sdk 1.5.1 以上需小程序基础库 2.1.0 及以上。
 
 <pre>
 <code class="lang-js">
@@ -79,6 +78,8 @@
 通过初始化 [SDK](/js-sdk/download-sdk.md)，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 [SDK](/js-sdk/download-sdk.md) 提供的全部功能。
 
 在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
+
+[复制 clientID](/images/newbies/get-client-id.png)
 
 ```js
 // app.js
@@ -268,3 +269,60 @@ Page({
 
 至此，我们就可以基于以上的基本概念，在接下来的小程序开发中实现开发效率的显著提升。
 
+## 使用场景介绍
+
+知晓云提供了丰富的 sdk 和 api 支持，每个都有其适用的使用场景，结合不同的 sdk 和 api，可以覆盖绝大部分的日常使用场景。
+
+### JS SDK
+
+![使用知晓云 JS SDK](/images/newbies/using-js-sdk-demo.png)
+
+js sdk 可以覆盖绝大部分小程序开发的使用场景：开发者把知晓云 js sdk 集成到小程序中，方便快捷地完成用户注册，信息提交，支付等业务逻辑。
+
+### 云函数 Node SDK
+
+![使用 Node JS SDK](/images/newbies/using-node-sdk.png)
+
+Node SDK 在云函数中使用，可以完成某些在小程序端不方便完成的操作，比如计算密钥，修改不对外公开的数据表等敏感操作。
+
+#### 例子
+
+现在有一张 `product` 表，表中有名为 `hash`，`name`, `price` 三个字段，`hash` 字段是根据该数据行的 `name`, `price` 计算出来的，计算方式为 md5(`name` + `price` + `'pwd'`)
+
+|name|price|hash           |
+|----|---- |---------------|
+|abc |123  | md5(abc123pwd)| 
+
+如果我们在小程序端计算 `hash` 的话，`hash` 的计算方法和密钥 `'pwd'` 被破译的几率较大，不安全。
+更好的方法是我们在云函数中编写计算 hash 的逻辑，然后小程序调用对应的云函数来获取 hash。最后提交到 product 表中。
+
+更多关于云函数，nodejs sdk 的文档，请[移步这里](/cloud-function/README.md)
+
+### OPEN API
+
+![使用 OPEN API](/images/newbies/using-open-api.png)
+
+通过 OPEN API，你可以在自己的服务器上，使用 php、nodejs、python 等编程语言或 curl 等工具来操作在知晓云上的数据。
+
+#### 例子
+
+假设有这样的需求: 每天 0 点在服务器上遍历知晓云上的 `product` 数据表, 生成 excel 报表。
+那么我们可以在服务器上添加一个 `cron` 任务，定时调用 OPEN API 来获取 `product` 表的数据以便生成报表。
+
+更多请参考 [OPEN API 文档](/open-api/README.md)
+
+### 运营后台 API
+
+![自定义运营后台](/images/newbies/using-user-dashboard.png)
+
+知晓云控制台现有的功能复杂且强大，对开发人员友好，但对于运营人员来说，上手使用的难度较大，
+因此如果你希望针对业务需求开发出一个定制版本的控制台，那么使用运营后台 API 是你最好的选择。
+目前开发者可以选择自动生成运营后台或者上传运营后台代码，如果你需要自己编写运营后台，可以参考这个 [demo](https://github.com/ifanrx/user-dashboard-antd-demo) 
+
+#### 例子
+
+公司的运营同事希望查看知晓云上某张表的数据，但是为了安全起见，
+不能给予其编辑和删除表的权限，以防误操作导致生产事故，但是目前知晓云的权限限制的粒度没有这么细，无法做到上面的权限控制。
+这时候我们可以结合运营后台 API ，搭建一个页面来展示表数据，同时页面上不提供编辑功能，这样既可以满足运营同事的需求，又可以保证数据安全。
+
+更多请参考[运营后台 API 文档](/user-dash/README.md)

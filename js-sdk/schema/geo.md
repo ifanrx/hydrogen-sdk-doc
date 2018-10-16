@@ -45,7 +45,7 @@ product.set('origin', point).save()
 var polygon = new wx.BaaS.GeoPolygon([[10, 10], [20, 10], [30, 20], [10, 10]]) // 前后两点相同，即需构成一个闭环
 // or
 var point1 = new wx.BaaS.GeoPoint(10, 10)
-...
+//...
 polygon = new wx.BaaS.GeoPolygon([point1, point2, point3, point1])
 
 product.set('origin', polygon).save()

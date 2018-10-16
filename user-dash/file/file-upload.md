@@ -40,7 +40,7 @@ Content-Type: `application/json`
 | 参数           | 类型   | 必填 | 说明 |
 | :------------ | :----- | :-- | :-- |
 | filename      | String | N   | 上传的文件名 |
-| categories    | String | N   | 上传文件的所属分类，格式为文件分类的 ID 数组 |
+| category_id    | String | N   | 文件分类 ID |
 
 **返回参数**
 
@@ -61,7 +61,7 @@ var axios = require('axios').create({
 
 axios.post('https://cloud.minapp.com/userve/v1/upload/', {
   filename: 'crop.gif',
-  categories: ['5a1ba7b708443e7fc5f2fb18']
+  category_id: '5a1ba7b708443e7fc5f2fb18'
 }).then(res => {
   console.log(res.data)
 })

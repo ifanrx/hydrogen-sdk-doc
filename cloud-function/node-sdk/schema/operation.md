@@ -2,9 +2,18 @@
 
 数据的导入、导出任务一旦成功建立，结果将以邮件的形式发送到创建任务的用户邮箱里。
 
-通过 `tableID` 实例化一个 `TableObject` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
+通过 `数据表 ID` 或 `数据表名` 实例化一个 `TableObject` 对象，以下操作都是在该对象上进行操作：
 
-`let MyTableObject = new BaaS.TableObject(tableID)`
+`let MyTableObject = new BaaS.TableObject(tableID | tableName)`
+
+**参数说明**
+
+tableID 和 tableName 二选一，不能同时存在
+
+| 参数名    | 类型    | 说明                                 |
+|-----------|---------|--------------------------------------|
+| tableID   | integer | 数据表的 ID                          |
+| tableName | string  | 数据表名                             |
 
 ## 数据导出
 
@@ -38,7 +47,7 @@ MyTableObject.exportData('json', 'all').then(res => {
 })
 ```
 
-**返回示例** (res.statusCode === 200)
+**返回示例** (res.status === 200)
 
 res.data:
 ```js
@@ -96,7 +105,7 @@ BaaS.request.get(dataUrl).then(res => {
 })
 ```
 
-**返回示例** (res.statusCode === 200)
+**返回示例** (res.status === 200)
 
 res.data:
 ```js
