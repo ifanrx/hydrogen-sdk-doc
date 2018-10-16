@@ -141,6 +141,8 @@
     * [企业付款](cloud-function/node-sdk/wx-promotion-transfer.md)
     * [短信验证码](cloud-function/node-sdk/sms.md)
     * [云函数技术细节](cloud-function/technical-notes.md)
+* [命令行工具](cloud-function/cli.md)
+
 ----
 
 * [实战教程](support/practice/README.md)

@@ -215,6 +215,9 @@
         <li>
           <a href="/cloud-function/node-sdk/sms.md">短信验证码</a>
         </li>
+        <li>
+          <a href="/cloud-function/cli.md/">命令行工具</a>
+        </li>
       </ul>
     </li>
     <li>
