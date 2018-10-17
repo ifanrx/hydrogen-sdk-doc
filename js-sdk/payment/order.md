@@ -9,6 +9,10 @@
 
 通过 BaaS SDK 提供的 `Order.getOrderList(params)` 方法, 可查询到交易的详细信息。典型的使用场景为: 调用 `wx.BaaS.pay(object)` 发起支付, 在成功回调中获取到 transaction_id 或 trade_no, 在要路由到新的页面时带上此 ID, 在新页面的 onLoad 方法中获取到该 ID, 从而使用此 ID 获取交易的详细信息。
 
+**函数签名**
+
+`Order.getOrderList(params)`
+
 **参数说明**
 
 | 参数                           | 类型    | 说明 |
