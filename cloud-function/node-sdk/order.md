@@ -2,54 +2,91 @@
 
 ### 获取订单
 
-`BaaS.getOrderList(data)`
+`Order.getOrderList(params)`
 
 **参数说明**
 
-data 是 Object 类型，为订单过滤条件，你可以参考后面的返回参数说明，进行筛选。
+params 是 Object 类型，为订单过滤条件，你可以参考后面的返回参数说明，进行筛选。
 
 **返回参数说明**
 
 部分关键字段：
 
-| 参数                    | 类型    | 说明 |
-| :---------------------- | :----- | :-- |
-| created_at              | Number | 调用 wx.BaaS.pay(object) 的时刻 |
-| created_by_id           | Number | 订单创建者 id |
-| created_by_name         | String | 订单创建者姓名 |
-| id                      | Number | 订单 id，用于退款的 order_id |
-| ip_address              | Number | - |
-| merchandise_description | String | 微信支付-微信支付凭证-商品详情上的文字描述 |
-| merchandise_record_id   | Number | - |
-| merchandise_schema_id   | Number | - |
-| merchandise_snapshot    | String | - |
-| paid_at                 | Number | 付款时间, 未支付的话为 null |
-| refund_amount           | Number | 退款金额 |
-| refund_status           | String | 退款状态 |
-| status                  | String | 订单状态 |
-| total_cost              | Number | 发起交易请求时的支付金额 |
-| trade_no                | String | 知晓云平台所记录的订单号 |
-| transaction_no          | String | 对应微信支付成功后返回的 transaction_no，支付流水号 |
-| updated_at              | Number | 订单更新时间 |
+| 参数                            | 类型    | 说明 |
+| :----------------------------- | :----- | :-- |
+| params.created_at              | Number | 调用 wx.BaaS.pay(object) 的时刻 |
+| params.created_by_id           | Number | 订单创建者 id |
+| params.created_by_name         | String | 订单创建者姓名 |
+| params.id                      | Number | 订单 id，用于退款的 order_id |
+| params.ip_address              | Number | - |
+| params.merchandise_description | String | 微信支付-微信支付凭证-商品详情上的文字描述 |
+| params.merchandise_record_id   | String | 商品记录 ID，可用于定位用户购买的物品 |
+| params.merchandise_schema_id   | Number | 商品表 ID，可用于定位用户购买的物品 |
+| params.merchandise_snapshot    | String | - |
+| params.paid_at                 | Number | 付款时间, 未支付的话为 null |
+| params.refund_amount           | Number | 退款金额 |
+| params.refund_status           | String | 退款状态 |
+| params.status                  | String | 订单状态, 可能的值有：complete（退款成功）、pending（待支付）、success（支付成功）、partial（部分退款） |
+| params.total_cost              | Number | 发起交易请求时的支付金额 |
+| params.trade_no                | String | 知晓云平台所记录的订单号 |
+| params.transaction_no          | String | 对应微信支付成功后返回的 transaction_no，支付流水号 |
+| params.updated_at              | Number | 订单更新时间 |
 
 **示例代码**
 
 根据订单号查找
 ```js
-BaaS.getOrderList({
-  trade_no: '1fjy6ZBaaSbJeNESnnAQpQjVVGPxZpuv'
-}).then(res => {
+var order = new BaaS.Order()
+// 通过 trade_no 查询订单
+order.getOrderList({trade_no: '1gCeU9ZKQQAA8iQgUM0lWhEbnqr89Qtxxx'}).then(res => {
   // success
+}).catch(e=>{
+  // error
+})
+
+// 通过 transaction_no 查询订单
+order.getOrderList({transaction_no: 'v4WoZ7aNyZPaZbNlFffOZLvagUKqDcOw'}).then(res => {
+  // success
+}).catch(e=>{
+  // error
+})
+
+// 分页查询所有订单
+order.offset(20).limit(20).getOrderList().then(res => {
+  // success
+}).catch(e=>{
+  // error
 })
 ```
 
-根据支付成功后返回的 transaction_no 查找
-```js
-BaaS.getOrderList({
-  transaction_no: 'gwqUzWKAMWAgMeZZnhVFnWrkFZYuFGje'
-}).then(res => {
-  // success
-})
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    "meta": {"limit": 20, "next": null, "offset": 0, "previous": null, "total_count": 1},
+    "objects": [{
+      "created_at": "2018-10-12T17:18:10.992125",
+      "gateway_extra_info": "{'payment_parameters': {'nonceStr': '1gAtaFdVpelLBqH1iNu6Drny159aN7CL', 'timeStamp': '1539335891', 'appId': 'xxxxxxxxx', 'signType': 'MD5', 'paySign': '9A9277CEDBE9A47B5A0E4CD664E3A6E9', 'package': 'prepay_id=wx121718113084277cb388281e2112421151'}}",
+      "id": 47963,
+      "ip_address": "183.61.109.211",
+      "merchandise_description": "一条支付描述",
+      "merchandise_record_id": null,
+      "merchandise_schema_id": null,
+      "merchandise_snapshot": "{}",
+      "paid_at": null,
+      "refund_status": null,
+      "status": "pending",
+      "total_cost": "398.00",
+      "trade_no": "1gAtaEFcmu6DyHm5b0ycBSmNO302NGzA",
+      "transaction_no": "XDiXbfLFyd8DpxSWqBUcb2jW1AvhVORC",
+      "updated_at": "2018-10-12T17:18:11.317089"
+    }]
+  },
+  "status": 200
+}
 ```
 
 ### 退款

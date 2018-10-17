@@ -18,7 +18,7 @@
 | 参数                           | 类型    | 说明 |
 | :------------------------------| :----- | :-- |
 | params.merchandise_record_id   | String | 商品记录 ID，可用于定位用户购买的物品 |
-| params.merchandise_schema_id   | String | 商品表 ID，可用于定位用户购买的物品 |
+| params.merchandise_schema_id   | Number | 商品表 ID，可用于定位用户购买的物品 |
 | params.status                  | String | 订单支付状态,可选值有：complete（退款成功）、pending（待支付）、success（支付成功）、partial（部分退款） |
 | params.trade_no                | String | 真正的交易 ID, 业务方在微信后台对账时可看到此字段 |
 | params.transaction_no          | String | 知晓云平台所记录的 transactionID |
@@ -41,8 +41,8 @@ order.getOrderList({transaction_no: 'v4WoZ7aNyZPaZbNlFffOZLvagUKqDcOw'}).then(re
   // error
 })
 
-// 查询所有订单
-order.getOrderList().then(res => {
+// 分页查询所有订单
+order.offset(20).limit(20).getOrderList().then(res => {
   // success
 }).catch(e=>{
   // error
