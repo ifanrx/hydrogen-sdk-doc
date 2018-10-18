@@ -134,7 +134,7 @@
     * [发送邮件](cloud-function/node-sdk/email.md)
     * [模板消息](cloud-function/node-sdk/template-message/README.md)
         * [发送模板消息](cloud-function/node-sdk/template-message/template-message.md)
-        * [获取 formId](cloud-function/node-sdk/template-message/template-message-ticket.md)
+        * [获取可用 formId 数量](cloud-function/node-sdk/template-message/template-message-ticket.md)
     * [网络请求](cloud-function/node-sdk/request.md)
     * [检测违规图片、文本](cloud-function/node-sdk/censor.md)
     * [获取 ACCESS_TOKEN](cloud-function/node-sdk/access-token.md)

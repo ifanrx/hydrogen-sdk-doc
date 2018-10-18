@@ -26,6 +26,10 @@
 
 ![如何创建内容](/images/dashboard/content-add-content.jpg)
 
+内容编辑器会过滤掉多余的空格，如果需要保留空格的部分内容，可以使用插入代码的方法来插入。如下图所示：
+
+![插入代码](/images/dashboard/insert-code.png)
+
 2.成功创建内容后, 会在"所有分类"下看到新创建的内容
 
 ![新增的内容](/images/dashboard/content-add-content-succeed.jpg)
