@@ -23,7 +23,7 @@
 ## 示例代码
 ```javascript
 exports.main = function (event, callback) {
-  BaaS.wxAccessToken(event.signkey).then(res => {
+  BaaS.wxAccessToken(event.signKey).then(res => {
     console.log(res)
     callback(null, res)
   }).catch(e => {
