@@ -7,7 +7,7 @@
 
 {% content "first" %}
 
-通过 BaaS SDK 提供的 `Order.getOrderList(params)` 方法, 可查询到交易的详细信息。典型的使用场景为: 调用 `wx.BaaS.pay(object)` 发起支付, 在成功回调中获取到 transaction_id 或 trade_no, 在要路由到新的页面时带上此 ID, 在新页面的 onLoad 方法中获取到该 ID, 从而使用此 ID 获取交易的详细信息。
+通过 BaaS SDK 提供的 `Order.getOrderList(params)` 方法, 可查询到交易的详细信息。典型的使用场景为: 调用 `wx.BaaS.pay(object)` 发起支付, 在成功回调中获取到 transaction_no 或 trade_no, 在要路由到新的页面时带上此 ID, 在新页面的 onLoad 方法中获取到该 ID, 从而使用此 ID 获取交易的详细信息。
 
 **函数签名**
 
@@ -21,7 +21,7 @@
 | params.merchandise_schema_id   | Number | 商品表 ID，可用于定位用户购买的物品 |
 | params.status                  | String | 订单支付状态,可选值有：complete（退款成功）、pending（待支付）、success（支付成功）、partial（部分退款） |
 | params.trade_no                | String | 真正的交易 ID, 业务方在微信后台对账时可看到此字段 |
-| params.transaction_no          | String | 知晓云平台所记录的 transactionID |
+| params.transaction_no          | String | 知晓云平台所记录的流水号 |
 
 **示例代码**
 ```js
@@ -107,20 +107,20 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | status                  | String | 订单支付状态 |
 | total_cost              | Number | 发起交易请求时的支付金额 |
 | trade_no                | String | 真正的交易 ID, 业务方在微信后台对账时可看到此字段 |
-| transaction_no          | String | 知晓云平台所记录的 transactionID |
+| transaction_no          | String | 知晓云平台所记录的流水号 |
 
 {% content "second" %}
 
 > **info**
 > wx.BaaS.order(OBJECT) API 已不推荐使用，后期 JS SDK 可能会移除此 API
 
-通过 BaaS SDK 提供的 `wx.BaaS.order(OBJECT)` 方法, 可查询到交易的详细信息。典型的使用场景为: 调用 `wx.BaaS.pay(object)` 发起支付, 在成功回调中获取到 transactionID, 在要路由到新的页面时带上此 ID, 在新页面的 onLoad 方法中获取到该 ID, 从而使用此 ID 获取交易的详细信息。
+通过 BaaS SDK 提供的 `wx.BaaS.order(OBJECT)` 方法, 可查询到交易的详细信息。典型的使用场景为: 调用 `wx.BaaS.pay(object)` 发起支付, 在成功回调中获取到 流水号, 在要路由到新的页面时带上此 ID, 在新页面的 onLoad 方法中获取到该 ID, 从而使用此 ID 获取交易的详细信息。
 
 **OBJECT 参数说明**
 
 | 参数          | 类型    | 必填 | 说明 |
 | :------------ | :----- | :-- | :-- |
-| transactionID | String |  Y  | BaaS 平台所记录的 transactionID |
+| transactionID | String |  Y  | BaaS 平台所记录的流水号 |
 
 **返回参数说明**
 
@@ -134,7 +134,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | status                  | String | 订单支付状态 |
 | total_cost              | Number | 发起交易请求时的支付金额 |
 | trade_no                | String | 真正的交易 ID, 业务方在微信后台对账时可看到此字段 |
-| transaction_no          | String | 知晓云平台所记录的 transactionID |
+| transaction_no          | String | 知晓云平台所记录的流水号 |
 
 **示例代码**
 

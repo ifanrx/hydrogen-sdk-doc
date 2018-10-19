@@ -101,6 +101,8 @@ data 是 Object 类型，它包括以下几个属性
 | :------------ | :----- | :-- | :-- |
 | refund_amount | Number | 否  | 默认为退还剩余所有款项  |
 | order_id      | Number | 是  | 订单 id |
+| trade_no      | String | 是  | - |
+| transaction_no| String | 是  | - |
 | memo          | String | 否  | 备注信息 |
 
 **返回参数说明**
@@ -122,10 +124,33 @@ data 是 Object 类型，它包括以下几个属性
 调用退款接口，需要先通过 `BaaS.getOrderList` 接口，拿取返回数据中的 id 字段作为 order_id 的值
 
 ```js
+// 通过订单 ID 退款
 BaaS.refund({
   order_id: 29973,
   memo: '测试退款'
 }).then(res => {
   // success
+}).catch(e=>{
+  // error
+})
+
+// 通过 trade_no 退款
+BaaS.refund({
+  trade_no: '1gAtaEFcmu6DyHm5b0ycBSmNO302NGzA',
+  memo: '测试退款'
+}).then(res => {
+  // success
+}).catch(e=>{
+  // error
+})
+
+// 通过 transaction_no 退款
+BaaS.refund({
+  transaction_no: '1gAtaEFcmu6DyHm5b0ycBSmNO302NGzA',
+  memo: '测试退款'
+}).then(res => {
+  // success
+}).catch(e=>{
+  // error
 })
 ```
