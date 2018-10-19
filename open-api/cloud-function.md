@@ -115,15 +115,15 @@ curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, "{\"data\": {}}")
+curl_setopt($ch, CURLOPT_POSTFIELDS, "{\"data\": {}}");
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$response = curl_exec($ch);
+$err = curl_error($ch);
 
-curl_close($curl);
+curl_close($ch);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  echo "CURL Error #:" . $err;
 } else {
   echo $response;
 }
@@ -255,13 +255,13 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$response = curl_exec($ch);
+$err = curl_error($ch);
 
-curl_close($curl);
+curl_close($ch);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  echo "CURL Error #:" . $err;
 } else {
   echo $response;
 }
@@ -389,13 +389,13 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$response = curl_exec($ch);
+$err = curl_error($ch);
 
-curl_close($curl);
+curl_close($ch);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  echo "CURL Error #:" . $err;
 } else {
   echo $response;
 }
@@ -513,21 +513,29 @@ $header = array(
   'Content-Type: application/json; charset=utf-8'
 );
 
+$payload = json_encode(
+  array(
+    'name'=> 'come_from_open_API',
+    'function_code'=> "exports.main = function functionName(event, callback) {\n  callback(null, \"hello world\")\n}",
+    'remark'=> '你好啊，云函数'
+  )
+);
+
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n\t\"name\": \"come_from_open_API\",\n    \"function_code\": \"exports.main = function functionName(event, callback) {\\n  callback(null, \\\"hello world\\\")\\n}\",\n    \"remark\": \"你好啊，云函数\"\n}",)
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$response = curl_exec($ch);
+$err = curl_error($ch);
 
-curl_close($curl);
+curl_close($ch);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  echo "CURL Error #:" . $err;
 } else {
   echo $response;
 }
@@ -630,13 +638,13 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$response = curl_exec($ch);
+$err = curl_error($ch);
 
-curl_close($curl);
+curl_close($ch);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  echo "CURL Error #:" . $err;
 } else {
   echo $response;
 }
@@ -763,13 +771,13 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$response = curl_exec($ch);
+$err = curl_error($ch);
 
-curl_close($curl);
+curl_close($ch);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  echo "CURL Error #:" . $err;
 } else {
   echo $response;
 }
@@ -885,21 +893,29 @@ $header = array(
   'Content-Type: application/json; charset=utf-8'
 );
 
+$payload = json_encode(
+  array(
+    'name'=> 'modify_from_open_API',
+    'function_code'=> "exports.main = function functionName(event, callback) {\n  callback(null, \"hello world\")\n}",
+    'remark'=> '你好啊，云函数'
+  )
+);
+
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
-curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n\t\"name\": \"modify_from_open_API\",\n   \"function_code\": \"exports.main = function functionName(event, callback) {\\n  callback(null, \\\"hello world\\\")\\n}\",\n    \"remark\": \"你好啊，云函数\"\n}",)
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$response = curl_exec($ch);
+$err = curl_error($ch);
 
-curl_close($curl);
+curl_close($ch);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  echo "CURL Error #:" . $err;
 } else {
   echo $response;
 }
@@ -991,13 +1007,13 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$response = curl_exec($ch);
+$err = curl_error($ch);
 
-curl_close($curl);
+curl_close($ch);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  echo "CURL Error #:" . $err;
 } else {
   echo $response;
 }
