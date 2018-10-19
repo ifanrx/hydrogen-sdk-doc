@@ -121,7 +121,8 @@ data 是 Object 类型，它包括以下几个属性
 
 **示例代码**
 
-调用退款接口，需要先通过 `BaaS.getOrderList` 接口，拿取返回数据中的 id 字段作为 order_id 的值
+调用退款接口，需要先通过上文的 `Order.getOrderList` API，拿取返回数据中的 id 字段作为 order_id 的值，来进行退款操作
+也可以通过 `trade_no` 和 `transaction_no` 来退款。
 
 ```js
 // 通过订单 ID 退款
