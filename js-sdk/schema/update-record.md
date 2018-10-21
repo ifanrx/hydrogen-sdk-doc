@@ -21,7 +21,7 @@
 > **info**
 > SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new wx.BaaS.TableObject('product')
 
-2.通过 `recordID` 设置指定记录
+2.通过数据行 id（以下用 `recordID` 参数名表示） 设置指定数据行
 
 `let MyRecord = MyTableObject.getWithoutData(recordID)`
 
@@ -29,7 +29,7 @@
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :---|
-| recordID | String | 是  | 记录 ID |
+| recordID | String | 是  | 数据行 id |
 
 3.修改指定记录的数据
 
@@ -68,9 +68,9 @@ MyRecord.set(key2, value2)
 **请求示例**
 
 ```js
-// 更新 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项的 price 字段
+// 更新 tableID 为 10 的数据表中 id 为 59897882ff650c0477f00485 的数据行的 price 字段
 let tableID = 10
-let recordID = '59897882ff650c0477f00485'
+let recordID = '59897882ff650c0477f00485' // 数据行 id
 
 let Product = new wx.BaaS.TableObject(tableID)
 let product = Product.getWithoutData(recordID)
@@ -328,7 +328,7 @@ catch 回调中的 err 对象:
 **请求示例**
 
 ```js
-// 更新 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项的 name 字段
+// 更新 tableID 为 10 的数据表中 id 为 59897882ff650c0477f00485 的数据项的 name 字段
 let tableID = 10
 let recordID = '59897882ff650c0477f00485'
 let data = {

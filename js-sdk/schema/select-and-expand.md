@@ -11,6 +11,7 @@
 
 ```js
 var Product = new wx.BaaS.TableObject(tableID)
+var recordID = 'xxxxxxxx' // 数据行 id
 
 // 规定返回特定字段
 Product.select('created_at').get(recordID)

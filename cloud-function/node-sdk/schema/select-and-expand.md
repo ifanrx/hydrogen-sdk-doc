@@ -8,6 +8,7 @@
 
 ```js
 var Product = new BaaS.TableObject(tableID)
+var recordID = 'xxxxxxxxx' // 指定数据行 id
 
 // 规定返回特定字段
 Product.select('created_at').get(recordID)

@@ -65,6 +65,7 @@ res 结构如下：
 
 
 ```js
+let recordID = 'xxxxxxxxxx' // 数据行 id
 let product = Product.getWithoutData(recordID)  // product 为 TableRecord 实例，指向了线上 id 为 recordID 的数据行
 // 执行原子性减 1
 product.incrementBy('amount', -1)  // 调用 TableRecord 实例的 incrementBy 方法

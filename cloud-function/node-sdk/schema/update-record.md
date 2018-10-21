@@ -15,7 +15,7 @@ tableID 和 tableName 二选一，不能同时存在
 | tableID   | integer | 数据表的 ID                          |
 | tableName | string  | 数据表名                             |
 
-2.通过 `recordID` 设置指定记录
+2.通过数据行 id（以下用 `recordID` 参数名表示）设置指定记录
 
 `let MyRecord = MyTableObject.getWithoutData(recordID)`
 
@@ -23,7 +23,7 @@ tableID 和 tableName 二选一，不能同时存在
 
 | 参数     | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :---|
-| recordID | String | 是  | 记录 ID |
+| recordID | String | 是  | 数据行 id |
 
 3.修改指定记录的数据
 

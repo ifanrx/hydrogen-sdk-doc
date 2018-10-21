@@ -14,7 +14,7 @@ tableName 二选一，不能同时存在
 |-----------|---------|--------------------------------------|
 | tableName | string  | 数据表名                             |
 
-2.指定 `recordID` 执行删除操作
+2.指定数据行 id（以下用 `recordID` 参数名表示） 执行删除操作
 
 `MyTableObject.delete(recordID)`
 
@@ -22,14 +22,14 @@ tableName 二选一，不能同时存在
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :---|
-| recordID | String | 是  | 记录 ID |
+| recordID | String | 是  | 数据行 id |
 
 
 ## 示例
 
 **请求示例**
 ```js
-// 删除 tableName 为 product 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项
+// 删除 tableName 为 product 的数据表中数据行 id 为 '59897882ff650c0477f00485' 的数据项
 let tableName = 'product'
 let recordID = '59897882ff650c0477f00485'
 
