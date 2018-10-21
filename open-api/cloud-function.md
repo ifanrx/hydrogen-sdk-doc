@@ -320,6 +320,9 @@ Content-Type: `Content-Type: application/json`
 | data          | Object | 否  | 传递给云函数的参数 |
 | sync          | Bool   | 否  | 是否等待返回函数执行结果，默认为 true。同步与异步云函数有不同的超时时间，同步云函数为 5 秒，而异步云函数为 5 分钟（300 秒）|
 
+> **info**
+> 当 data 和 sync 字段都不提供时，需要提供一个空的对象。
+
 **返回参数说明**
 
 sync 为 true 时：
@@ -345,7 +348,9 @@ sync 为 false 时：
 ```
 curl -X POST \
   https://cloud.minapp.com/oserve/v1.3/cloud-function/test/job/ \
-  -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b'
+  -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b' \
+  -H "Content-Type: application/json" \
+  -d '{}'
 ```
 
 {% content "invokeCloudFunctionNode" %}
@@ -359,6 +364,8 @@ var options = { method: 'POST',
   headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
+  body:
+   {},
   json: true };
 
 request(options, function (error, response, body) {
@@ -386,6 +393,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+curl_setopt($ch, CURLOPT_POSTFIELDS, "{}",)
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
@@ -469,7 +477,8 @@ sync 为 false:
 ```
 curl -X POST \
   https://cloud.minapp.com/oserve/v1.3/cloud-function/ \
-  -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b'
+  -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b' \
+  -H "Content-Type: application/json" \
   -d '{
   "name": "come_from_open_API",
   "function_code": "exports.main = function functionName(event, callback) {\n  callback(null, \"hello world\")\n}",
@@ -839,7 +848,8 @@ if ($err) {
 ```
 curl -X PATCH \
   https://cloud.minapp.com/oserve/v1.3/cloud-function/test/ \
-  -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b'
+  -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b' \
+  -H "Content-Type: application/json" \
   -d '{
   "name": "modify_from_open_API",
   "function_code": "exports.main = function functionName(event, callback) {\n  callback(null, \"hello world\")\n}",
@@ -945,7 +955,7 @@ if ($err) {
 {% content "deleteCloudFunctionCurl" %}
 
 ```
-curl -X POST \
+curl -X DELETE \
   https://cloud.minapp.com/oserve/v1.3/cloud-function/test/ \
   -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b'
 ```
