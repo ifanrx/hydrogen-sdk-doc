@@ -218,6 +218,9 @@
         <li>
           <a href="/cloud-function/cli.md/">命令行工具</a>
         </li>
+        <li>
+          <a href="/cloud-function/webpack.md/">代码打包</a>
+        </li>
       </ul>
     </li>
     <li>
