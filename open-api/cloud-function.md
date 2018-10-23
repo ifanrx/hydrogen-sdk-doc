@@ -41,9 +41,9 @@ Content-Type: `Content-Type: application/json`
 
 | 参数           | 类型   | 必填 | 说明 |
 | :------------ | :----- | :-- | :-- |
-|  data         | Object | N   | 自定义数据 |
-|  subject      | String | N   | 触发类型，若不提供默认为 sdk, 可选值有：sdk, open_api, cloud_function, flex_schema, wechat_pay_success, timer, file_operation |
-|  schema_id    | Integer| N   | 表 ID，如果 subject 为 FlexSchema 则必填 |
+|  data         | Object | 是   | 自定义数据，没有则需要提供一个空对象 |
+|  subject      | String | 否   | 触发类型，若不提供默认为 sdk, 可选值有：sdk, open_api, cloud_function, flex_schema, wechat_pay_success, timer, file_operation |
+|  schema_id    | Integer| 否   | 表 ID，如果 subject 为 FlexSchema 则必填 |
 
 **返回参数**
 
@@ -80,17 +80,20 @@ curl -X POST \
 var request = require("request");
 
 var cloudFunctionName = '';
-var options = { method: 'POST',
+var options = {
+  method: 'POST',
   url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/' + cloudFunctionName + '/debug/',
   headers:
-   { 'Content-Type': 'application/json',
-     Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
+  {
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer 2323d124881bd3d63c9bb7845454f80a676b'
+  },
   body: { data: {} },
-  json: true };
+  json: true
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-
   console.log(body);
 });
 ```
@@ -167,9 +170,11 @@ if ($err) {
 
 **状态码说明**
 
-`200`: 成功
+`200`: 成功。
 
 `400`: 参数校验失败，任务调度失败。
+
+`401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
 
 ## 获取某云函数的任务记录
 
@@ -183,11 +188,11 @@ if ($err) {
 
 | 参数          | 类型 | 必填 | 说明 |
 | :----------   | :--- | :--- | :--- |
-| source | String | N |云函数任务来源，可选值：sdk, open_api, cloud_function, flex_schema, wechat_pay_success, timer, file_operation |
-| status | String | N | 云函数任务状态，可选值：waiting, executing, fulfilled, schedule_failed, execution_rejected, deadline_exceeded, execution_failed |
-| service_type | String | N | 云函数同步类型，可选值：time_sensitive, batch |
-| created_at__gte | Integer | N | 创建时间大于，unix 时间戳 |
-| created_at__lte | Integer | N | 创建时间小于，unix 时间戳 |
+| source | String | 否 |云函数任务来源，可选值：sdk, open_api, cloud_function, flex_schema, wechat_pay_success, timer, file_operation |
+| status | String | 否 | 云函数任务状态，可选值：waiting, executing, fulfilled, schedule_failed, execution_rejected, deadline_exceeded, execution_failed |
+| service_type | String | 否 | 云函数同步类型，可选值：time_sensitive, batch |
+| created_at__gte | Integer | 否 | 创建时间大于，unix 时间戳 |
+| created_at__lte | Integer | 否 | 创建时间小于，unix 时间戳 |
 
 **返回参数**
 
@@ -220,16 +225,19 @@ curl -X GET \
 var request = require("request");
 
 var cloudFunctionName = '';
-var options = { method: 'GET',
+var options = {
+  method: 'GET',
   url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/' + cloudFunctionName + '/job/',
   headers:
-   { 'Content-Type': 'application/json',
-     Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
-  json: true };
+  {
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer 2323d124881bd3d63c9bb78458252454f80ab'
+  },
+  json: true
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-
   console.log(body);
 });
 ```
@@ -239,7 +247,7 @@ request(options, function (error, response, body) {
 ```php
 <?php
 $token = '';
-$cloud_function_name = 'test'; // 云函数的名字
+$cloud_function_name = ''; // 云函数的名字
 $url = "https://cloud.minapp.com/oserve/v1.3/cloud-function/{$cloud_function_name}/job/";
 
 $ch = curl_init();
@@ -299,9 +307,11 @@ if ($err) {
 
 **状态码说明**
 
-`200`: 成功
+`200`: 成功。
 
-`400`: 参数错误
+`400`: 参数错误。
+
+`401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
 
 ## 发起一个云函数请求
 
@@ -317,11 +327,8 @@ Content-Type: `Content-Type: application/json`
 
 | 参数          | 类型 | 必填 | 说明 |
 | :----------   | :--- | :--- | :--- |
-| data          | Object | 否  | 传递给云函数的参数 |
+| data          | Object | 是  | 传递给云函数的参数，如果没有需要提供一个空对象 |
 | sync          | Bool   | 否  | 是否等待返回函数执行结果，默认为 true。同步与异步云函数有不同的超时时间，同步云函数为 5 秒，而异步云函数为 5 分钟（300 秒）|
-
-> **info**
-> 当 data 和 sync 字段都不提供时，需要提供一个空的对象。
 
 **返回参数说明**
 
@@ -350,7 +357,9 @@ curl -X POST \
   https://cloud.minapp.com/oserve/v1.3/cloud-function/test/job/ \
   -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b' \
   -H "Content-Type: application/json" \
-  -d '{}'
+  -d '{
+        "data": {}
+      }'
 ```
 
 {% content "invokeCloudFunctionNode" %}
@@ -358,19 +367,22 @@ curl -X POST \
 ```js
 var request = require("request");
 
-var cloudFunctionName = '';
-var options = { method: 'POST',
+var cloudFunctionName = 'come_from_hahah';
+var options = {
+  method: 'POST',
   url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/' + cloudFunctionName + '/job/',
   headers:
-   { 'Content-Type': 'application/json',
-     Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
+  {
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer 2323d124881bd3d63c9bb78458252454f80a676b'
+  },
   body:
-   {},
-  json: true };
+    { data: {} },
+  json: true
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-
   console.log(body);
 });
 ```
@@ -380,7 +392,7 @@ request(options, function (error, response, body) {
 ```php
 <?php
 $token = '';
-$cloud_function_name = 'test'; // 云函数的名字
+$cloud_function_name = ''; // 云函数的名字
 $url = "https://cloud.minapp.com/oserve/v1.3/cloud-function/{$cloud_function_name}/job/";
 
 $ch = curl_init();
@@ -393,17 +405,17 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-curl_setopt($ch, CURLOPT_POSTFIELDS, "{}",)
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, "{\"data\": {}}");
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$response = curl_exec($ch);
+$err = curl_error($ch);
 
-curl_close($curl);
+curl_close($ch);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  echo "CURL Error #:" . $err;
 } else {
   echo $response;
 }
@@ -436,9 +448,11 @@ sync 为 false:
 
 **状态码说明**
 
-`200`: 成功
+`200`: 成功。
 
-`404`: 没有找到对应的云函数
+`401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
+
+`404`: 没有找到对应的云函数。
 
 ## 新建云函数
 
@@ -450,9 +464,9 @@ sync 为 false:
 
 | 参数          | 类型 | 必填 | 说明 |
 | :----------   | :--- | :--- | :--- |
-| name | String | Y | 云函数名，不能为空字符串 |
-| function_code | String | Y | 云函数代码，不能为空字符串 |
-| remark | String | N | 备注 |
+| name | String | 是 | 云函数名，不能为空字符串 |
+| function_code | String | 是 | 云函数代码，不能为空字符串 |
+| remark | String | 否 | 备注 |
 
 **返回参数说明**
 
@@ -480,9 +494,8 @@ curl -X POST \
   -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b' \
   -H "Content-Type: application/json" \
   -d '{
-  "name": "come_from_open_API",
   "function_code": "exports.main = function functionName(event, callback) {\n  callback(null, \"hello world\")\n}",
-  "remark": "你好啊，云函数"
+  "remark": "你好，云函数"
 }'
 ```
 
@@ -491,20 +504,24 @@ curl -X POST \
 ```js
 var request = require("request");
 
-var options = { method: 'POST',
+var options = {
+  method: 'POST',
   url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/',
   headers:
-   { 'Content-Type': 'application/json',
-     Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
+  {
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer 2323d124881bd3d63c9bb78458252454f80a676b'
+  },
   body:
-   { name: 'come_from_open_API',
-     function_code: 'exports.main = function functionName(event, callback) {\n  callback(null, "hello world")\n}',
-     remark: '你好啊，云函数' },
-  json: true };
+  {
+    function_code: 'exports.main = function functionName(event, callback) {\n  callback(null, "hello world")\n}',
+    remark: '你好，云函数'
+  },
+  json: true
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-
   console.log(body);
 });
 ```
@@ -522,21 +539,28 @@ $header = array(
   'Content-Type: application/json; charset=utf-8'
 );
 
+$payload = json_encode(
+  array(
+    'function_code'=> "exports.main = function functionName(event, callback) {\n  callback(null, \"hello world\")\n}",
+    'remark'=> '你好，云函数'
+  )
+);
+
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n\t\"name\": \"come_from_open_API\",\n    \"function_code\": \"exports.main = function functionName(event, callback) {\\n  callback(null, \\\"hello world\\\")\\n}\",\n    \"remark\": \"你好啊，云函数\"\n}",)
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$response = curl_exec($ch);
+$err = curl_error($ch);
 
-curl_close($curl);
+curl_close($ch);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  echo "CURL Error #:" . $err;
 } else {
   echo $response;
 }
@@ -555,7 +579,7 @@ if ($err) {
     "id": 1105,
     "name": "come_from_open_api",
     "plan_circle": "P_FREE",
-    "remark": "你好啊，云函数",
+    "remark": "你好，云函数",
     "updated_at": 1537704381,
     "updated_by": ""
 }
@@ -563,9 +587,11 @@ if ($err) {
 
 **状态码说明**
 
-`201`: 创建成功
+`201`: 创建成功。
 
-`401`: 参数不合法：云函数名或代码为字段为空
+`400`: 参数不合法：云函数名或代码为字段为空。
+
+`401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
 
 ## 获取当前小程序的所有云函数
 
@@ -604,22 +630,23 @@ curl -X GET \
 ```javascript
 var request = require("request");
 
-var cloudFunctionName = '';
-var options = { method: 'GET',
-  url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/' + cloudFunctionName + '/',
+var options = {
+  method: 'GET',
+  url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/',
   headers:
-   { 'Content-Type': 'application/json',
-     Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
-  json: true };
+  {
+    Authorization: 'Bearer 2323d124881bd3d6bb78458252454f80a676b'
+  },
+  json: true
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-
   console.log(body);
 });
 ```
 
-{% content "getAllCloudFunctionHP" %}
+{% content "getAllCloudFunctionPHP" %}
 
 ```php
 <?php
@@ -639,10 +666,10 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$response = curl_exec($ch);
+$err = curl_error($ch);
 
-curl_close($curl);
+curl_close($ch);
 
 if ($err) {
   echo "cURL Error #:" . $err;
@@ -673,7 +700,7 @@ if ($err) {
             "id": 1121,
             "name": "come_from_open_API_v1.3",
             "plan_circle": "P_FREE",
-            "remark": "你好啊，云函数",
+            "remark": "你好，云函数",
             "updated_at": 1537924886,
             "updated_by": ""
         },
@@ -685,7 +712,7 @@ if ($err) {
             "id": 1102,
             "name": "测试",
             "plan_circle": "P_FREE",
-            "remark": "你好啊，云函数",
+            "remark": "你好，云函数",
             "updated_at": 1537704426,
             "updated_by": "somebody"
         },
@@ -695,7 +722,9 @@ if ($err) {
 
 **状态码说明**
 
-`200`:  成功
+`200`:  成功。
+
+`401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
 
 ## 获取云函数详细信息
 
@@ -737,16 +766,18 @@ curl -X GET \
 var request = require("request");
 
 var cloudFunctionName = '';
-var options = { method: 'GET',
+var options = {
+  method: 'GET',
   url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/' + cloudFunctionName + '/',
   headers:
-   { 'Content-Type': 'application/json',
-     Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
-  json: true };
+  {
+    Authorization: 'Bearer 2323d124881bd3d63c9bb78458252454f80a676b'
+  },
+  json: true
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-
   console.log(body);
 });
 ```
@@ -772,13 +803,13 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$response = curl_exec($ch);
+$err = curl_error($ch);
 
-curl_close($curl);
+curl_close($ch);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  echo "CURL Error #:" . $err;
 } else {
   echo $response;
 }
@@ -805,9 +836,11 @@ if ($err) {
 
 **状态码说明**
 
-`200`: 成功
+`200`: 成功。
 
-`404`: 云函数不存在
+`401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
+
+`404`: 云函数不存在。
 
 ## 修改云函数
 
@@ -821,9 +854,9 @@ if ($err) {
 
 | 参数          | 类型 | 必填 | 说明 |
 | :----------   | :--- | :--- | :--- |
-| name | String | N | 云函数名，不能为空字符串 |
-| function_code | String | N | 云函数代码，不能为空字符串 |
-| remark | String | N | 备注 |
+| name | String | 否 | 云函数名，不能为空字符串 |
+| function_code | String | 否 | 云函数代码，不能为空字符串 |
+| remark | String | 否 | 备注 |
 
 **返回参数说明**
 
@@ -851,9 +884,8 @@ curl -X PATCH \
   -H 'Authorization: Bearer 2323d124881bd3d63c9bb78458252454f676b' \
   -H "Content-Type: application/json" \
   -d '{
-  "name": "modify_from_open_API",
   "function_code": "exports.main = function functionName(event, callback) {\n  callback(null, \"hello world\")\n}",
-  "remark": "你好啊，云函数"
+  "remark": "你好，云函数"
 }'
 ```
 
@@ -863,20 +895,23 @@ curl -X PATCH \
 var request = require("request");
 
 var cloudFunctionName = '';
-var options = { method: 'PATCH',
+var options = {
+  method: 'PATCH',
   url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/' + cloudFunctionName + '/',
   headers:
-   { 'Content-Type': 'application/json',
-     Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
+  {
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer 2323d124881bd3d63c9bb784582554f80a676b'
+  },
   body:
-   { name: 'modify_from_open_API',
-     function_code: 'exports.main = function functionName(event, callback) {\n  callback(null, "hello world")\n}',
-     remark: '你好啊，云函数' },
-  json: true };
+  {
+    remark: '你好，云函数',
+  },
+  json: true
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-
   console.log(body);
 });
 ```
@@ -895,21 +930,28 @@ $header = array(
   'Content-Type: application/json; charset=utf-8'
 );
 
+$payload = json_encode(
+  array(
+    'function_code'=> "exports.main = function functionName(event, callback) {\n  callback(null, \"hello world\")\n}",
+    'remark'=> '你好，云函数'
+  )
+);
+
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
-curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n\t\"name\": \"modify_from_open_API\",\n   \"function_code\": \"exports.main = function functionName(event, callback) {\\n  callback(null, \\\"hello world\\\")\\n}\",\n    \"remark\": \"你好啊，云函数\"\n}",)
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$response = curl_exec($ch);
+$err = curl_error($ch);
 
-curl_close($curl);
+curl_close($ch);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  echo "CURL Error #:" . $err;
 } else {
   echo $response;
 }
@@ -936,9 +978,11 @@ if ($err) {
 
 **状态码说明**
 
-`202`: 修改成功
+`202`: 修改成功。
 
-`401`: 参数不合法：云函数名或代码为空
+`400`: 参数不合法：云函数名或代码为空。
+
+`401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
 
 ## 删除一个云函数
 
@@ -966,17 +1010,19 @@ curl -X DELETE \
 var request = require("request");
 
 var cloudFunctionName = '';
-var options = { method: 'DELETE',
+var options = {
+  method: 'DELETE',
   url: 'https://cloud.minapp.com/oserve/v1.3/cloud-function/' + cloudFunctionName + '/',
   headers:
-   { 'Content-Type': 'application/json',
-     Authorization: 'Bearer 2323d124881bd3d63c9bb78452454f80a676b' },
-  json: true };
+  {
+    Authorization: 'Bearer 2323d124881bd3d63c9bb784582524540a676b'
+  },
+  json: true
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-
-  console.log(body);
+  console.log(response.statusCode);
 });
 ```
 
@@ -1001,15 +1047,16 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$err = curl_error($ch);
 
-curl_close($curl);
+curl_close($ch);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  echo "CURL Error #:" . $err;
 } else {
-  echo $response;
+  echo $httpCode;
 }
 ```
 
@@ -1021,6 +1068,8 @@ if ($err) {
 
 **状态码说明**
 
-`204`: 删除成功
+`204`: 删除成功。
 
-`404`: 没有找到对应的云函数
+`401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
+
+`404`: 没有找到对应的云函数。
