@@ -21,7 +21,7 @@
 > **info**
 > SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new wx.BaaS.TableObject('product')
 
-2.通过 `recordID` 设置指定记录
+2.通过数据行 id（以下用 `recordID` 参数名表示） 设置指定数据行
 
 `let MyRecord = MyTableObject.getWithoutData(recordID)`
 
@@ -29,7 +29,7 @@
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :---|
-| recordID | String | 是  | 记录 ID |
+| recordID | String | 是  | 数据行 id |
 
 3.修改指定记录的数据
 
@@ -68,9 +68,9 @@ MyRecord.set(key2, value2)
 **请求示例**
 
 ```js
-// 更新 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项的 price 字段
+// 更新 tableID 为 10 的数据表中 id 为 59897882ff650c0477f00485 的数据行的 price 字段
 let tableID = 10
-let recordID = '59897882ff650c0477f00485'
+let recordID = '59897882ff650c0477f00485' // 数据行 id
 
 let Product = new wx.BaaS.TableObject(tableID)
 let product = Product.getWithoutData(recordID)
@@ -85,17 +85,31 @@ product.update().then(res => {
 
 **返回示例**
 
-res.data
-```js
+then 回调中的 res 对象结构如下：
+
+```json
 {
-  "created_at": 1487053095,
-  "id": "7",
-  "name": "fushi",
-  "price": 11,
-  "desc": ["sweet", "red"],
-  amount: 2
+  "statusCode": 200,
+  "data": {
+    "created_at": 1487053095,
+    "id": "7",
+    "name": "fushi",
+    "price": 11,
+    "desc": ["sweet", "red"],
+    "amount": 2
+  }
 }
 ```
+
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+常见错误：
+
+| 错误码 err.code | 可能的原因       |
+|----------------|-----------------|
+| 400            | 1. 提交的数据不合法、2. 重复创建数据（设置了唯一索引）    |
+| 403            | 没有权限更新数据    |
+| 404            | 数据行不存在    |
 
 
 ### 计数器原子性更新
@@ -137,7 +151,7 @@ product.update().then(res => {}, err => {})
 ```js
 product.append('desc', ['big'])
 // or
-product.append('desc, 'big')
+product.append('desc', 'big')
 ```
 
 #### 将 _待插入的数组_ 中不包含在原数组的数据加到原数组末尾
@@ -156,7 +170,7 @@ product.append('desc, 'big')
 ```js
 product.uAppend('desc', ['sweet'])
 // or
-product.uAppend('desc, 'sweet')
+product.uAppend('desc', 'sweet')
 ```
 
 #### 从原数组中删除指定的值
@@ -209,7 +223,7 @@ product.patchObject('obj1', {name: '123'})
 
 > **info**
 > 该操作的效果类似 Object.assign(), 是浅合并，也就是只合并第一层，嵌套的属性仍然是被替换。
-> 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 {$ifanr.x: 123} 和 {知晓云: "test"} 是错误的
+> 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的
 
 **请求示例**
 假设数据表 Product 中有数据行如下
@@ -269,16 +283,24 @@ records.update().then(res => {}, err => {})
 
 **返回示例**
 
-res.data:
-```js
+then 回调中的 res 对象结构如下：
+
+```json
 {
-  "succeed": 8, // 成功更新记录数
-  "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
-  "offset": 0,
-  "limit": 1000,
-  "next": null // 下一次更新 url，若为 null 则表示全部更新完毕
+  "statusCode": 200,
+  "data": {
+    "succeed": 8, // 成功更新记录数
+    "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
+    "offset": 0,
+    "limit": 1000,
+    "next": null // 下一次更新 url，若为 null 则表示全部更新完毕
+  }
 }
 ```
+
+catch 回调中的 err 对象:
+
+请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **状态码说明**
 
@@ -306,7 +328,7 @@ res.data:
 **请求示例**
 
 ```js
-// 更新 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项的 name 字段
+// 更新 tableID 为 10 的数据表中 id 为 59897882ff650c0477f00485 的数据项的 name 字段
 let tableID = 10
 let recordID = '59897882ff650c0477f00485'
 let data = {
@@ -339,7 +361,7 @@ wx.BaaS.updateRecord(objects).then(res => {
 **返回示例**
 
 res.data:
-```js
+```json
 {
   "created_at": 1487055951,
   "id": "59897882ff650c0477f00485",

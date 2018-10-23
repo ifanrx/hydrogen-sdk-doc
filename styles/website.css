@@ -83,7 +83,8 @@ ul.doc-detail {
   list-style: none;
 }
 
-.doc-js-sdk li {
+.doc-js-sdk li,
+.doc-cloud-function li {
   padding: 5px 0;
 }
 

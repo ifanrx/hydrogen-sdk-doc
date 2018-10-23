@@ -2,25 +2,28 @@
 
 ## 操作步骤
 
-1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
+1.通过 `数据表 ID` 或 `数据表名` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
 
-`let MyTableObject = new BaaS.TableObject(tableID)`
+`let MyTableObject = new BaaS.TableObject(tableID | tableName)`
 
 **参数说明**
 
-| 参数     | 类型   | 必填 | 说明 |
-| :-----  | :----- | :-- | :---|
-| tableID | Number |  是 | 数据表 ID |
+tableID 和 tableName 二选一，不能同时存在
 
-2.通过 `recordID` 设置指定记录
+| 参数名    | 类型    | 说明                                 |
+|-----------|---------|--------------------------------------|
+| tableID   | integer | 数据表的 ID                          |
+| tableName | string  | 数据表名                             |
+
+2.通过数据行 id（以下用 `recordID` 参数名表示）设置指定记录
 
 `let MyRecord = MyTableObject.getWithoutData(recordID)`
 
 **参数说明**
 
-| 参数      | 类型   | 必填 | 说明 |
+| 参数     | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :---|
-| recordID | String | 是  | 记录 ID |
+| recordID | String | 是  | 数据行 id |
 
 3.修改指定记录的数据
 
@@ -76,16 +79,34 @@ product.update().then(res => {
 
 **返回示例**
 
-```js
+then 回调中的 res 对象结构如下：
+
+```json
 {
-  "created_at": 1487053095,
-  "id": "7",
-  "name": "fushi",
-  "price": 11,
-  "desc": ["sweet", "red"],
-  amount: 2
+  "status": 200,
+  "statusText": "OK",
+  "data": {
+    "created_at": 1487053095,
+    "id": "7",
+    "name": "fushi",
+    "price": 11,
+    "desc": ["sweet", "red"],
+    "amount": 2
+  }
 }
 ```
+
+
+err 对象结构请参考[错误码和 HError 对象](../error.md)
+
+常见错误：
+
+| 错误码 err.code | 可能的原因       |
+|----------------|-----------------|
+| 400            | 1. 提交的数据不合法、2. 重复创建数据（设置了唯一索引）    |
+| 403            | 没有权限更新数据    |
+| 404            | 数据行不存在    |
+
 
 
 ## 计数器原子性更新
@@ -216,14 +237,19 @@ records.update().then(res => {}, err => {})
 
 **返回示例**
 
-res.data:
+then 回调中的 res 对象结构如下：
+
 ```json
 {
-  "succeed": 8, // 成功更新记录数
-  "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
-  "offset": 0,
-  "limit": 1000,
-  "next": null // 下一次更新 url，若为 null 则表示全部更新完毕
+  "status": 200,
+  "statusText": "OK",
+  "data": {
+    "succeed": 8, // 成功更新记录数
+    "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
+    "offset": 0,
+    "limit": 1000,
+    "next": null // 下一次更新 url，若为 null 则表示全部更新完毕
+  }
 }
 ```
 
@@ -248,7 +274,7 @@ product.patchObject('obj1', {name: '123'})
 
 > **info**
 > 该操作的效果类似 Object.assign(), 是浅合并，也就是只合并第一层，嵌套的属性仍然是被替换。
-> 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 {$ifanr.x: 123} 和 {知晓云: "test"} 是错误的
+> 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的
 
 **请求示例**
 假设数据表 Product 中有数据行如下

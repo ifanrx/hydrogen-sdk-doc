@@ -51,22 +51,33 @@ Product.get(recordID).then(res => {
 
 **返回示例**
 
-res.data:
-```js
+res 结构如下:
+```json
 {
-  "_id": "59a3c2b5afb7766a5ec6e84e",
-  "amount": 0,
-  "created_at": 1503904437,
-  "created_by": 36395395,
-  "desc": ["good"],
-  "id": "59a3c2b5afb7766a5ec6e84e",
-  "name": "apple",
-  "price": 1.0,
-  "read_perm": ["user:*"],
-  "updated_at": 1503904437,
-  "write_perm": ["user:*"]
+  "statusCode": 200,
+  "data": {
+    "_id": "59a3c2b5afb7766a5ec6e84e",
+    "amount": 0,
+    "created_at": 1503904437,
+    "created_by": 36395395,
+    "desc": ["good"],
+    "id": "59a3c2b5afb7766a5ec6e84e",
+    "name": "apple",
+    "price": 1.0,
+    "read_perm": ["user:*"],
+    "updated_at": 1503904437,
+    "write_perm": ["user:*"]
+  }
 }
 ```
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+常见错误：
+
+| 错误码 err.code | 可能的原因       |
+|----------------|-----------------|
+| 404            | 数据行不存在      |
+
 
 {% content "second" %}
 
@@ -82,7 +93,7 @@ res.data:
 | 参数      | 类型   | 必填 | 说明 |
 | :------  | :----- | :-- | :-- |
 | tableID  | Number | 是  | 数据表 ID |
-| recordID | String | 是  | 数据项 ID |
+| recordID | String | 是  | 数据行 id |
 
 **请求示例**
 
@@ -107,7 +118,7 @@ res.data:
 
 | 参数        | 类型    | 说明 |
 | :--------- | :------ | :-- |
-| id         | String  | 数据项 ID |
+| id         | String  | 数据行 id |
 | created_at | Integer | 创建时间 |
 | is_admin   | Boolean | 自定义字段 |
 | name       | String  | 自定义字段 |
@@ -117,7 +128,7 @@ res.data:
 **返回示例**
 
 res.data:
-```js
+```json
 {
   "created_at": 1487053095,
   "id": "59897882ff650c0477f00485",

@@ -15,9 +15,7 @@ wx.chooseImage({
 
 同时，知晓云提供能一个功能强大，但操作简单的图片处理功能，方便你对图片进行缩放、裁切、打水印等功能。如下，通过在图片 url 后面加上 `!/both/400x400` 即可缩放图片至 400x400 大小
 
-```
-https://cloud-minapp-7894.cloud.ifanrusercontent.com/1eRuaPvwdleauqyZ.jpg!/both/400x400
-```
+![{{book.imgURLClipDemo}}]({{book.imgURLClipDemo}})
 
 阅读以下章节，了解更多文件操作接口：
 
