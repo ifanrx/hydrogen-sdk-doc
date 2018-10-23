@@ -186,7 +186,7 @@ $access_token = postData($access_token_url, $param, 'multipart/form-data'); // �
 // 封装请求函数
 function postData($url, $param, $content_type = 'application/json') {
   $ch = curl_init();
-  
+
   curl_setopt($ch, CURLOPT_TIMEOUT, 30);
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_POST, true);
@@ -198,13 +198,107 @@ function postData($url, $param, $content_type = 'application/json') {
   curl_setopt($ch, CURLOPT_COOKIESESSION, true);
   curl_setopt($ch, CURLINFO_CONTENT_TYPE,  $content_type);  // 设置 Content-Type，默认 application/json
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-  
+
   $response = curl_exec($ch);
   curl_close($ch);
   return $response;
 }
 ```
+{% endtabs %}
 
+
+### 使用 Refresh Token 刷新 Access Token
+
+> **danger**
+> 调用此接口会将之前申请的 Access Token（包括 Refresh Token）强制失效，请开发者谨慎操作。
+
+**接口地址**
+
+`POST https://cloud.minapp.com/api/oauth2/access_token/`
+
+**参数说明**
+
+Content-Type: `multipart/form-data`
+
+| 参数           | 类型   | 必填 | 说明 |
+| :------------ | :----- | :-- | :-- |
+| client_id     | String | Y   | 知晓云应用的 ClientID |
+| client_secret | String | Y   | 知晓云应用的 ClientSecret |
+| refresh_token | String | Y   | 刷新凭证，从申请 Access Token 接口获得 |
+| grant_type    | String | Y   | 授权类型，这里需指定为 "refresh_token" |
+
+**返回参数**
+
+| 参数           | 类型   | 说明 |
+| :----------   | :----- | :-- |
+| access_token  | String | 用户授权的唯一票据 |
+| token_type    | String | token 类型 |
+| expires_in    | Number | access_token 过期时间 |
+| refresh_token | String | 用于刷新授权有效期 |
+| scope         | String | 权限范围 |
+
+**代码示例** 
+
+{% tabs first="Node",second="PHP" %}
+
+{% content "first" %}
+
+  ```js
+  var request = require('request');
+
+  // 刷新 Access Token
+  function refreshAccessToken(refreshToken) {
+    var opt = {
+      uri: 'https://cloud.minapp.com/api/oauth2/access_token/',
+      method: 'POST',
+      formData: {   // 指定 data 以 "Content-Type": "multipart/form-data" 传送
+        client_id: 'a4d2d62965ddb57fa4xx',
+        client_secret: 'e5802b40135baab9b4e84e35bed058a264c37dxx',
+        grant_type: 'refresh_token',
+        refresh_token: refreshToken,
+      }
+    }
+    request(opt, function(err, res, body) {
+      let token = JSON.parse(body).access_token
+    })
+  }
+  ```
+
+{% content "second" %}
+
+```php
+<?php
+$param = array(
+  'client_id' => "{$client_id}",
+  'client_secret' => "{$client_secret}",
+  'grant_type' => "refresh_token",
+  'refresh_token' => "{$refresh_token}"
+);
+
+$access_token_url = 'https://cloud.minapp.com/api/oauth2/access_token/';
+$access_token = postData($access_token_url, $param, 'multipart/form-data'); // 获取到的 Access Token
+
+// 封装请求函数
+function postData($url, $param, $content_type = 'multipart/form-data') {
+  $ch = curl_init();
+
+  curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);  // 设置允许重定向
+  curl_setopt($ch, CURLOPT_AUTOREFERER, 1);
+  curl_setopt($ch, CURLOPT_COOKIEFILE, '');
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_COOKIESESSION, true);
+  curl_setopt($ch, CURLINFO_CONTENT_TYPE,  $content_type);  // 设置 Content-Type
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+  $response = curl_exec($ch);
+  curl_close($ch);
+  return $response;
+}
+```
 {% endtabs %}
 
 > **danger**
