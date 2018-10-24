@@ -8,15 +8,13 @@
 ## webpack 配置（版本：webpack@4）
 
 由于 webpack 4 提供了默认配置，所以必要的配置只有以下这几个。
-&lt;func_name&gt; 是云函数名，可以自行配置。
 如果需要其他配置，请参照 [webpack 官方文档](https://webpack.js.org/concepts/)。
 
 ```js
 // webpack.config.js
-var path = require('path')
 module.exports = {
   output: {
-    path: path.resolve(__dirname, '<func_name>')
+    path: __dirname,
     filename: 'index.js',
     library: 'exports.main',
     libraryTarget: 'assign',
@@ -25,21 +23,13 @@ module.exports = {
 }
 ```
 webpack 默认会以 `./src/index.js` 为入口文件，
-并将打包后的文件默认保存到指定的目录中。
+并将打包后的文件默认保存到指定的目录中，这里我们把打包好的文件保存到项目的根目录。
 
 ## 项目示例
 
-本示例会在本地创建一个名为 `func_name` 的云函数，并打包、部署到知晓云。
+本示例会在本地创建一个名为 `func_test` 的云函数，并打包、部署到知晓云。
 
 ### 项目初始化
-
-以下操作都是在项目根目录下进行的。
-
-1. 初始化 package，生成 `package.json` 文件。
-
-  ```
-  npm init
-  ```
 
 1. 在本地创建一个云函数。
 
@@ -47,12 +37,24 @@ webpack 默认会以 `./src/index.js` 为入口文件，
   mincloud new func_test
   ```
 
-2. 新建 `src` 文件夹，用来存放源码。
-接下来会使用 webpack 将 `src` 里的代码，打包并保存到 `func_text` 目录下。
+  接下来，我们以生成的 `func_test` 作为项目根目录。执行：
 
-3. 新建 `webpack.config.js` 文件。
+  ```
+  cd func_test
+  ```
 
-4. 安装 webpack
+2. 初始化 package，生成 `package.json` 文件。
+
+  ```
+  npm init
+  ```
+
+3. 新建 `src` 文件夹，用来存放源码。
+接下来会使用 webpack 将 `src` 里的代码，打包并保存到根目录下。
+
+4. 新建 `webpack.config.js` 文件。
+
+5. 安装 webpack
 
   使用 npm 安装：
 
@@ -68,13 +70,12 @@ webpack 默认会以 `./src/index.js` 为入口文件，
 按上述步骤做完之后，项目文件结构应该是这样子：
 
 ```
-project_root
-├── func_test  // 运行`mincloud new func_test` 生成的云函数目录。
-│   └── index.js    // 运行`mincloud deploy func_test`时，会将该文件部署到知晓云。
+func_test    // 运行`mincloud new func_test` 生成的云函数目录。
+├── index.js    // 运行`mincloud deploy func_test ../`时，会将该文件部署到知晓云。
 ├── node_modules
 ├── package.json
-├── src  // 源码目录
-│   └── index.js      // 入口文件
+├── src    // 源码目录
+│   └── index.js     // 入口文件
 └── webpack.config.js    // webpack 配置文件
 ```
 
@@ -82,10 +83,9 @@ project_root
 
 ```js
 // webpack.config.js
-var path = require('path')
 module.exports = {
   output: {
-    path: path.resolve(__dirname, 'func_test')
+    path: __dirname,
     filename: 'index.js',
     library: 'exports.main',
     libraryTarget: 'assign',
@@ -101,7 +101,7 @@ module.exports = {
 ...
   "scripts": {
     "build": "webpack --mode production",
-    "deploy": "mincloud deploy func_test"
+    "deploy": "mincloud deploy func_test ../"
   },
 ...
 ```
