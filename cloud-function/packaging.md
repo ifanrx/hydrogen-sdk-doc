@@ -22,8 +22,12 @@ module.exports = {
   target: 'node',
 }
 ```
-webpack 默认会以 `./src/index.js` 为入口文件，
-并将打包后的文件默认保存到指定的目录中，这里我们把打包好的文件保存到项目的根目录。
+
+target 设置为 `'node'`，webpack 会打包生成一个可以运行在 node 环境下的文件（使用 Node.js 自带的 `require` 来引入模块，
+并且内置模块不会被打包）。
+
+函数目录下的 `./src/index.js` 为入口文件，
+并将打包后的文件默认保存到指定的目录中，这里我们把打包好的文件保存到函数目录下的 `index.js`。
 
 ## 项目示例
 
@@ -37,7 +41,7 @@ webpack 默认会以 `./src/index.js` 为入口文件，
   mincloud new func_test
   ```
 
-  接下来，我们以生成的 `func_test` 作为项目根目录。执行：
+  接下来，我们进入 `func_test` 目录。
 
   ```
   cd func_test
@@ -50,7 +54,7 @@ webpack 默认会以 `./src/index.js` 为入口文件，
   ```
 
 3. 新建 `src` 文件夹，用来存放源码。
-接下来会使用 webpack 将 `src` 里的代码，打包并保存到根目录下。
+接下来会使用 webpack 将 `src` 里的代码，打包并保存到 `func_test` 目录下。
 
 4. 新建 `webpack.config.js` 文件。
 
@@ -107,10 +111,12 @@ module.exports = {
 ```
 
 ### 入口文件
+
 默认的入口文件，是 `src/index.js` 文件。
 入口文件必须暴露出一个函数，签名为`function (event, callback)`。
 打包后，该函数就是云函数的入口函数 `main`。
 参数 event、callback 的说明，请参照[云函数文档](./node-sdk/README.md)。
+
 ```js
 // src/index.js
 ...   // 可以在这里引入其他模块
@@ -127,6 +133,7 @@ module.exports = function (event, callback) {
 ### 部署
 
 在项目根目录下运行：
+
 ```
 npm run deploy
 ```
