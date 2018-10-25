@@ -68,7 +68,7 @@ target 设置为 `'node'`，webpack 会打包生成一个可以运行在 node �
   或者使用 yarn 安装：
 
   ```
-  yarn add webpack webpack-cli
+  yarn add -D webpack webpack-cli
   ```
 
 按上述步骤做完之后，项目文件结构应该是这样子：
