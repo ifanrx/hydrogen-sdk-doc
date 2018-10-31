@@ -241,6 +241,13 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
 | 403            | 没有权限写入数据    |
 | 404            | 写入的数据表不存在   |
 
-**状态码说明**
+### 批量创建时不触发触发器
 
-<span class="attention">注：</span> 由于对数据表的增删改均会触发 trigger 动作，为了防止出现严重消耗系统资源的情况，对数据表进行批量操作的数据条目最多不能超过 1000 条。
+```js
+// 知晓云后台设置的触发器将不会被触发
+MyTableObject.createMany(records, {enableTrigger: false}).then(res => {
+   console.log(res.data.succeed)
+}, err => {
+  //err 为 HError 对象
+})
+```
