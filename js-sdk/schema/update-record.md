@@ -306,7 +306,27 @@ catch 回调中的 err 对象:
 
 200 更新成功，400 请求数据非法
 
-<span class="attention">注：</span> 由于对数据表的增删改均会触发 trigger 动作，为了防止出现严重消耗系统资源的情况，对数据表进行批量操作的数据条目最多不能超过 1000 条。
+#### 批量更新时不触发触发器
+
+> **info**
+> SDK 版本需 >= 1.9.1
+
+```js
+let MyTableObject = new wx.BaaS.TableObject(tableID)
+
+let query = new wx.BaaS.Query()
+
+// 设置查询条件（比较、字符串包含、组合等）
+//...
+
+let records = MyTableObject.getWithoutData(query)
+
+// 与更新特定记录一致
+// 设置更新内容 ...
+
+// 知晓云后台设置的触发器将不会被触发
+records.update({enableTrigger: false}).then(res => {}, err => {})
+```
 
 {% content "second" %}
 
