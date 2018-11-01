@@ -4,7 +4,7 @@
 
 如果用户在执行了某一特定的操作的时候，例如用户进行了支付操作，需要给用户发送一个关于订单的相关的信息的消息的时候，可以调用该接口给特定的用户群体发送一个特定的模板消息，
 
-![模板消息示例](../../images/template-message/template-message.png)
+![模板消息示例](../../../images/template-message/template-message.png)
 
 
 `BaaS.sendTemplateMessage(data)`
@@ -15,11 +15,12 @@ data 是 Object 类型，它包括以下几个属性
 
 | 参数             | 类型   | 必填  | 说明 |
 | :-------------- | :----- | :--- | :-- |
-| recipient_type  | String | 是   | 推送类型，可选值： user_id、user_list、user_group、user_profile  |
+| recipient_type  | String | 是   | 推送类型，可选值： user_id、user_list、user_group、user_profile、schema_user  |
 | `<recipient_params>` | Array、Integer、String、Object | 是   | 根据recipient_type来填写不同的参数名， 详见下方表格说明 |
 | template_id     | String | 是   | 模板 ID |
 | submission_type | String | 是   | 模板消息触发条件，`form_id` 或者 `prepay_id` |
 | keywords        | Object | 是   | 关键字（可在 [知晓云-模板消息](https://cloud.minapp.com/dashboard/#/app/template-message/template) 配置）|
+| schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 | page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
 
 
@@ -29,6 +30,7 @@ data 是 Object 类型，它包括以下几个属性
 | user_list         | user_list            | Integer Array | 推送批量用户，传入用户 id 列表           |
 | user_group        | user_group_name      | String        | 用户组名，注意这里是提交用户组名称，而不是用户组 id |
 | user_profile      | user_profile_filters | String        | _userprofile 表的查询条件         |
+| schema_user       | user_profile_filters | String        | 对指定数据表的查询条件，用于筛选用户        |
 
 
 
@@ -139,6 +141,6 @@ BaaS.sendTemplateMessage(data)
 | regex      	| { a: { $regex: '123', $options: 'g'} }                                                                     	| a.match(/123/g)             	|
 | all        	| { a: { $all: [1, 2, 3] } }                                                                                 	| a 包含了 [1, 2, 3] , eg: [1, 2, 3] 包含了  [1, 2]  	|
 | is null    	| { a: { $isnull: true} } }                                                                                  	| a 是否为空                  	|
-| center     	| { a: { $center: {"radius": 123, "coordinates": [1, 2]} } }                                                 	| 请参考[withincircle](../../js-sdk/schema/geo.md)          	|
-| intersects 	| { a: { $intersects: {"type": `GEOJSON`, "coordinates": [1, 2]} }}                                          	| 请参考[include](../../js-sdk/schema/geo.md)                	|
-| nearsphere 	| { a: {"$nearsphere":{"geometry":{"type":"Point","coordinates":[1,2]},"min_distance":3,"max_distance":4}} } 	| 请参考[withinRegion](../../js-sdk/schema/geo.md)           	|
+| center     	| { a: { $center: {"radius": 123, "coordinates": [1, 2]} } }                                                 	| 请参考[withincircle](../../../js-sdk/schema/geo.md)          	|
+| intersects 	| { a: { $intersects: {"type": `GEOJSON`, "coordinates": [1, 2]} }}                                          	| 请参考[include](../../../js-sdk/schema/geo.md)                	|
+| nearsphere 	| { a: {"$nearsphere":{"geometry":{"type":"Point","coordinates":[1,2]},"min_distance":3,"max_distance":4}} } 	| 请参考[withinRegion](../../../js-sdk/schema/geo.md)           	|

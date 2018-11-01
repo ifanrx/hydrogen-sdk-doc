@@ -98,7 +98,7 @@ query 和 recordID 二选一，不能同时存在
 | 参数名   | 类型   | 说明                                               |
 |----------|--------|----------------------------------------------------|
 | query    | object | {{apiPrefix}}BaaS.Query 实例，符合查询条件的数据行将会被删除   |
-| recordID | string / integer | 数据行 ID，指定的数据行将会被删除           |
+| recordID | string / integer | 数据行 id，指定的数据行将会被删除           |
 | opts.enableTrigger | boolean | 是否触发触发器，默认为 true。  {% if apiPrefix %}（ SDK >= 1.9.1 ）{% endif %}          |
 
 **返回值**
@@ -132,7 +132,7 @@ ResObject 结构如下:
 | 参数名   | 类型   | 说明                                                  |
 |----------|--------|-------------------------------------------------------|
 | query    | object | {{apiPrefix}}BaaS.Query 实例，返回的 TableRecord 指向多个数据行 |
-| recordID | string / integer | 数据行 ID，返回的 TableRecord 对象指向指定的数据行    |
+| recordID | string / integer | 数据行 id，返回的 TableRecord 对象指向指定的数据行    |
 
 **返回值**
 
@@ -146,7 +146,7 @@ ResObject 结构如下:
 
 | 参数名   | 类型   | 说明                                                  |
 |----------|--------|-------------------------------------------------------|
-| recordID | string / integer | 数据行 ID                                 |
+| recordID | string / integer | 数据行 id                                 |
 
 **返回值**
 

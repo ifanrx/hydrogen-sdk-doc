@@ -93,7 +93,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | 参数      | 类型   | 必填 | 说明 |
 | :------  | :----- | :-- | :-- |
 | tableID  | Number | 是  | 数据表 ID |
-| recordID | String | 是  | 数据项 ID |
+| recordID | String | 是  | 数据行 id |
 
 **请求示例**
 
@@ -118,7 +118,7 @@ res.data:
 
 | 参数        | 类型    | 说明 |
 | :--------- | :------ | :-- |
-| id         | String  | 数据项 ID |
+| id         | String  | 数据行 id |
 | created_at | Integer | 创建时间 |
 | is_admin   | Boolean | 自定义字段 |
 | name       | String  | 自定义字段 |
