@@ -111,11 +111,14 @@ ResObject 结构如下:
 }
 ```
 
-### update()
+### update(opts)
 执行更新动作
 
 **参数说明**
-无
+
+| 参数名    | 类型    | 说明              |
+|-----------|---------|-------------------|
+| opts.enableTrigger | boolean | 是否触发触发器，默认为 true。  {% if apiPrefix %}（ SDK >= 1.9.1 ）{% endif %}          |
 
 **返回值**
 

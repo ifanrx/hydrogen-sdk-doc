@@ -190,9 +190,10 @@ MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 | :-----------  | :----- | :--- |
 | id            | String | 文件 id |
 | name          | String | 文件名 |
-| size          | Number | 文件大小，以字节为单位 |
+| size          | Integer| 文件大小，以字节为单位 |
 | category_id   | String | 文件分类 id |
 | category_name | String | 文件分类名 |
+| created_at    | Integer| 创建时间 （格式为 unix 时间戳） |
 
 **示例代码**
 
@@ -207,8 +208,24 @@ let query = new wx.BaaS.Query()
 query.compare('category_name', '=', categoryName)
 // 查询文件名包含指定字符串的文件
 query.contains('name', substr)
+
+
 MyFile.setQuery(query).find()
 ```
+
+
+```js
+let MyFile = new wx.BaaS.File()
+
+// 查找所有文件
+MyFile.find()
+
+// 按创建时间范围查询: 2018年10月24日17时10分57秒 至今上传的文件
+let query = wx.BaaS.Query.and(new wx.BaaS.Query().compare('created_at', '<=', Math.ceil(Date.now() / 1000)), new wx.BaaS.Query().compare('created_at', '>=', 1540372257)),
+
+MyFile.setQuery(query).find()
+```
+
 
 ### 排序
 文件查询排序与[数据表排序](../schema/limit-and-order.md)方法一致，但只支持对以下指定字段进行排序
@@ -236,6 +253,28 @@ let MyFile = new wx.BaaS.File()
 MyFile.limit(10).offset(5).find().then()
 ```
 
+**返回示例**
+成功时 res 结构如下
+```json
+ {
+  "meta": {
+    "limit": 20,
+    "next": "/dserve/v1.3/uploaded-file/?limit=20&offset=20&where=%7B%22%24and%22%3A%5B%7B%22category_name%22%3A%7B%22%24eq%22%3A%22%E5%9B%BE%E7%89%87%22%7D%7D%5D%7D",
+    "offset": 0,
+    "previous": null,
+    "total_count": 36
+  },
+  "objects": [{
+    "category": {"id": "5b73f36f2a4f56246e76b7b3", "name": "图片"},
+    "created_at": 1534823603,
+    "id": "5b7b8cb3839c611ab4eb2599",
+    "mime_type": "image/jpeg",
+    "name": "wxc6b86e382a1e3294.o6zAJs5dCuYRqqJOq0MwNPlGiFVM.CGLDGRT03IsI7fa51717abe74ed34e0c9cc77dbe7079.jpg",
+    "path": "https://cloud-minapp-11033.cloud.ifanrusercontent.com/1frxjPBNFAOrQtOS.jpg",
+    "size": 11189
+  }]
+}
+```
 
 ### 图片云处理
 

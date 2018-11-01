@@ -135,6 +135,7 @@ MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 | size          | Number | 文件大小，以字节为单位 |
 | category_id   | String | 文件分类 id |
 | category_name | String | 文件分类名 |
+| created_at    | Integer| 创建时间 （格式为 unix 时间戳） |
 
 **示例代码**
 
@@ -149,6 +150,18 @@ let query = new BaaS.Query()
 query.compare('category_name', '=', categoryName)
 // 查询文件名包含指定字符串的文件
 query.contains('name', substr)
+MyFile.setQuery(query).find()
+```
+
+```js
+let MyFile = new BaaS.File()
+
+// 查找所有文件
+MyFile.find()
+
+// 按创建时间范围查询: 2018年10月24日17时10分57秒 至今上传的文件
+let query = BaaS.Query.and(new BaaS.Query().compare('created_at', '<=', Math.ceil(Date.now() / 1000)), new BaaS.Query().compare('created_at', '>=', 1540372257)),
+
 MyFile.setQuery(query).find()
 ```
 
