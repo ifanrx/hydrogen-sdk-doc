@@ -221,6 +221,43 @@ order.save()
 
 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的
 
+### 添加 pointer 类型数据
+
+```js
+// 获取一个 tableRecord 实例
+let User = new wx.BaaS.TableObject('user')
+// 5bad87ab0769797b4fb27a1b 为 User 表中某行数据的 id
+let user = User.getWithoutData('5bad87ab0769797b4fb27a1b')
+
+// 在 product 表中创建一行数据
+let Product = new wx.BaaS.TableObject('product')
+let product = Product.create()
+
+// 给 pointer 字段赋值
+product.set('user', user)
+
+product.save().then(res=>{
+  // success
+})
+```
+
+**返回示例**
+
+res 结构如下
+```json
+{
+  "statusCode": 201,
+  "data": {
+    "_id": "5be5283240507206d6938ba8",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "5be5283240507206d6938ba8",
+    "user": "5bad87ab0769797b4fb27a1b",
+    "read_perm": [ "user:*" ],
+    "updated_at": 1541744690,
+    "write_perm": [ "user:*" ] }
+}
+```
 
 ### 批量新增数据项
 

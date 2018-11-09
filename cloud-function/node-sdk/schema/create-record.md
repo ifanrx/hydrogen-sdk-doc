@@ -163,7 +163,7 @@ res 结构如下
       "created_at": 1538967271,
       "id": "5bbac6e6bd66033efcfd0a95",
       "mime_type": "image/jpeg",
-      "name": "wxc6b86e382a1e3294.o6zAJs5dCuYRqqJOq0MwNPlGiFVM.UxdrZqves41D1cd738e01dc1c7417c03d046e96408cc.jpg",
+      "name": "6b86e382a1e3294.o6zAJs5dCuYRqqJOq0MwNPlGiFVM.UxdrZqves41D1cd738e01dc1c7417c03d046e96408cc.jpg",
       "path": "https://cloud-minapp-11033.cloud.ifanrusercontent.com/1g9LgkbXEdbXwAJT.jpg",
       "size": 6151
     },
@@ -183,6 +183,45 @@ res 结构如下
 ## 添加 object 类型数据
 
 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的。
+
+## 添加 pointer 类型数据
+
+```js
+// 获取一个 tableRecord 实例
+let User = new BaaS.TableObject('user')
+// 5bad87ab0769797b4fb27a1b 为 User 表中某行数据的 id
+let user = User.getWithoutData('5bad87ab0769797b4fb27a1b')
+
+// 在 product 表中创建一行数据
+let Product = new BaaS.TableObject('product')
+let product = Product.create()
+
+// 给 pointer 字段赋值
+product.set('user', user)
+
+product.save().then(res=>{
+  // success
+})
+```
+
+**返回示例**
+
+res 结构如下
+```json
+{
+  "statusCode": 201,
+  "data": {
+    "_id": "5be5283240507206d6938ba8",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "5be5283240507206d6938ba8",
+    "user": "5bad87ab0769797b4fb27a1b",
+    "read_perm": [ "user:*" ],
+    "updated_at": 1541744690,
+    "write_perm": [ "user:*" ] }
+}
+```
+
 
 
 ## 批量新增数据项
