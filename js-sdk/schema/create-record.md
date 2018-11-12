@@ -223,20 +223,22 @@ order.save()
 
 ### 添加 pointer 类型数据
 
+假设现在有一张 city 表，表中的的 province 字段为 pointer 类型，指向了 province 表。现在在 city 表中新增一条数据，其中 province 字段指向了 province 表中 id 为 5bad87ab0769797b4fb27a1b 的数据行：
+
 ```js
 // 获取一个 tableRecord 实例
-let User = new wx.BaaS.TableObject('user')
-// 5bad87ab0769797b4fb27a1b 为 User 表中某行数据的 id
-let user = User.getWithoutData('5bad87ab0769797b4fb27a1b')
+let Province = new wx.BaaS.TableObject('province')
+// 5bad87ab0769797b4fb27a1b 为 province 表中某行数据的 id
+let province = Province.getWithoutData('5bad87ab0769797b4fb27a1b')
 
-// 在 product 表中创建一行数据
-let Product = new wx.BaaS.TableObject('product')
-let product = Product.create()
+// 在 city 表中创建一行数据
+let City = new wx.BaaS.TableObject('city')
+let city = City.create()
 
 // 给 pointer 字段赋值
-product.set('user', user)
+city.set('province', province)
 
-product.save().then(res=>{
+city.save().then(res=>{
   // success
 })
 ```
@@ -252,7 +254,7 @@ res 结构如下
     "created_at": 1541744690,
     "created_by": 3,
     "id": "5be5283240507206d6938ba8",
-    "user": "5bad87ab0769797b4fb27a1b",
+    "province": "5bad87ab0769797b4fb27a1b",
     "read_perm": [ "user:*" ],
     "updated_at": 1541744690,
     "write_perm": [ "user:*" ] }

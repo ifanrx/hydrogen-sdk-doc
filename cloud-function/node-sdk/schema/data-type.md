@@ -13,6 +13,7 @@
 | geojson | 地理位置，支持 GeoPoint、GeoPloygon（点与多边形）两种类型，请参考[地理位置操作](./geo.md)章节。GeoJSON 具体介绍，请参考 mongoDB 的 [GeoJSON Object](https://docs.mongodb.com/manual/reference/geojson/)  |
 | date    | 日期时间，[ISO8601](https://zh.wikipedia.org/wiki/ISO_8601) 格式的日期字符串，例如：`"2018-09-01T18:31:02.631000+08:00"` |
 | file    | 文件，记录文件信息的对象（数据结构详见下表） |
+| pointer | pointer，指向了其他数据表的某一数据行 |
 
 file 类型的数据结构
 
@@ -68,6 +69,12 @@ file 类型的数据结构
     coordinates: [[[10.123, 10], [20.12453, 10], [30.564654, 20], [20.654, 30], [10.123, 10]]],
     type: "Polygon"
   },
+  pointer_default: "5baafb9061235656789",  // 默认 pointer 不展开时为一个 id 字符串
+  pointer_expanded: {                      // 在查询中使用 expand('pointer_expanded') 操作后，将会展开为一个 object 对象
+    id: "5baafb9061235656789",
+    name: "我是其他表的字段"
+    // 该行的其他字段...
+  }, 
   created_at: 1537932120,
   created_by: 67566799,
   updated_at: 1538031640,

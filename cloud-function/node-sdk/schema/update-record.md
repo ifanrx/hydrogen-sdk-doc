@@ -133,7 +133,7 @@ product.update().then(res => {}, err => {})
 
 ## 更新 pointer 类型字段
 
-假设有 product 表，其中的 `user`  字段为一个指向 user_table 表的 pointer 类型字段。
+假设有 product 表，其中的 `customer`  字段为一个指向 customer 表的 pointer 类型字段。
 
 现在需要更新 product 表中 id 为 `5bdfaf068asd123123asd` 的数据行
 
@@ -141,15 +141,15 @@ product.update().then(res => {}, err => {})
 
 ```js
 // 获取一个 tableRecord 实例
-let User = new BaaS.TableObject('user_table')
-let user = User.getWithoutData('5bdfaf068b155c0891d064ad')
+let Customer = new BaaS.TableObject('customer')
+let customer = User.getWithoutData('5bdfaf068b155c0891d064ad')
 
 // 获取要修改的数据行的实例
 let Product = new BaaS.TableObject('product')
 let product = Product.getWithoutData('5bdfaf068asd123123asd')
 
 // 给 pointer 字段赋值
-product.set('user', user)
+product.set('customer', customer)
 
 product.update().then(res=>{
   // success
@@ -165,7 +165,7 @@ product.update().then(res=>{
     "created_at": 1541744690,
     "created_by": 3,
     "id": "5bdfaf068asd123123asd",
-    "user": "5bdfaf068b155c0891d064ad",
+    "customer": "5bdfaf068b155c0891d064ad",
     "read_perm": [ "user:*" ],
     "updated_at": 1541744690,
     "write_perm": [ "user:*" ] }
