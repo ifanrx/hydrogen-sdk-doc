@@ -69,10 +69,16 @@ file 类型的数据结构
     coordinates: [[[10.123, 10], [20.12453, 10], [30.564654, 20], [20.654, 30], [10.123, 10]]],
     type: "Polygon"
   },
-  pointer_default: "5baafb9061235656789",  // 默认 pointer 不展开时为一个 id 字符串
-  pointer_expanded: {                      // 在查询中使用 expand('pointer_expanded') 操作后，将会展开为一个 object 对象
+  pointer_default: {                       // 没有使用 expand 展开时的 pointer 数据格式，为一个 object 对象，包含 id 和 _table 字段
+    _table: "schema_name",                 // pointer 指向的表名
+    id: "5baafb9061235656789"
+  },  
+  pointer_expanded: {                      // 在查询中使用 expand('pointer_expanded') 操作后，将会展开为一个数据行对象
     id: "5baafb9061235656789",
-    name: "我是其他表的字段"
+    _table: "schema_name",                 // pointer 指向的表名
+    created_at: 1537933123,
+    created_by: 1,
+    updated_at: 1537933123
     // 该行的其他字段...
   }, 
   created_at: 1537932120,

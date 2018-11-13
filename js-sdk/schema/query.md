@@ -394,6 +394,7 @@ res 结构如下:
       "created_by": 3,
       "id": "5be3f57840507204ce725fc7",
       "customer": {
+        "_table": "customer",
         "avatar": "https://gravatar.ifanrx.com/avatar/3510eef2166f5015e5b5c744739f5b82?d=https%3A%2F%2Fcdn.ifanr.cn%2Fifanr%2Fdefault_avatar.png",
         "gender": 0,
         "id": "5bad87ab0769797b4fb27a1b",

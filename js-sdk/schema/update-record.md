@@ -167,7 +167,7 @@ record.patchObject('obj1', patch)
 ```js
 // 获取一个 tableRecord 实例
 let Customer = new wx.BaaS.TableObject('customer')
-let customer = User.getWithoutData('5bdfaf068b155c0891d064ad')
+let customer = Customer.getWithoutData('5bdfaf068b155c0891d064ad')
 
 // 获取要修改的数据行的实例
 let Product = new wx.BaaS.TableObject('product')
@@ -190,7 +190,10 @@ product.update().then(res=>{
     "created_at": 1541744690,
     "created_by": 3,
     "id": "5bdfaf068asd123123asd",
-    "customer": "5bdfaf068b155c0891d064ad",
+    "customer": {
+      "id": "5bdfaf068b155c0891d064ad",
+      "_table": "customer"
+    },
     "read_perm": [ "user:*" ],
     "updated_at": 1541744690,
     "write_perm": [ "user:*" ] }

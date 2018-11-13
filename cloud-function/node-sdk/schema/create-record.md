@@ -217,7 +217,10 @@ res 结构如下
     "created_at": 1541744690,
     "created_by": 3,
     "id": "5be5283240507206d6938ba8",
-    "province": "5bad87ab0769797b4fb27a1b",
+    "province": {
+      "id": "5bad87ab0769797b4fb27a1b",
+      "_table": "province"
+    },
     "read_perm": [ "user:*" ],
     "updated_at": 1541744690,
     "write_perm": [ "user:*" ] }
