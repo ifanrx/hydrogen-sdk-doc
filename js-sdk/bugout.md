@@ -1,7 +1,9 @@
-# 上报 Bug 信息
+# 错误上报
 
 > **info**
 > 阅读本小节前请确保你已经知道如何[初始化知晓云 SDK](/newbies/README.md)
+
+通过 wx.BaaS.ErrorTracker 对象，开发者可以对小程序运行中产生的错误进行上报分析，并在知晓云控制台观察特定错误影响的范围和设备数量，以便快速定位代码中的 bug，及时修复。
 
 {% tabs pluginConf="plugin", fileConf="file" %}
 
@@ -20,7 +22,7 @@ App({
     wx.requestPayment)
    wx.BaaS.init('你的 client id')
  
-   wx.BaaS.ErrorTracker.init()  // 开启 bugout 功能
+   wx.BaaS.ErrorTracker.init()  // 初始化 ErrorTracker
  },
  onError: function(res) {
    // 当小程序产生错误时，会进行上报
@@ -46,7 +48,7 @@ App({
  
    let usePlugins = true // 若开发者没有使用小程序插件，可以将其设置为 false，这样即可支持其他页面自动捕获错误
  
-   wx.BaaS.ErrorTracker.init({usePlugins})  // 开启 bugout 功能
+   wx.BaaS.ErrorTracker.init({usePlugins})  // 初始化 ErrorTracker
  },
  onError: function(res) {
    // 当小程序产生错误时，会进行上报
@@ -56,9 +58,9 @@ App({
 ```
 {% endtabs %}
 
-## 更细粒度的上报 Bug
+## 更细粒度的上报错误
 
-有时候我们需要更细粒度的上报 bug 信息，这时可以在 promise 的 catch 回调或者 try-catch 块中进行 bug 上报操作。
+有时候我们需要更细粒度的上报错误信息，这时可以在 promise 的 catch 回调或者 try-catch 块中进行 bug 上报操作。
 
 **示例代码**
 
