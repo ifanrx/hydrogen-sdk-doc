@@ -5,7 +5,12 @@
 
 通过 wx.BaaS.ErrorTracker 对象，开发者可以对小程序运行中产生的错误进行上报分析，并在知晓云控制台观察特定错误影响的范围和设备数量，以便快速定位代码中的 bug，及时修复。
 
-{% tabs pluginConf="plugin", fileConf="file" %}
+## 配置 ErrorTracker
+
+初始化 ErrorTracker 的方式很简单，只需要在 app.js 中，调用 `wx.BaaS.ErrorTracker.init()` 即可，
+然后在 onError 生命周期中添加 `wx.BaaS.ErrorTracker.track(res)`, 这样页面产生错误时，就可以自动上报了。
+
+{% tabs pluginConf="插件版", fileConf="文件版" %}
 
 {% content "pluginConf" %}
 
@@ -60,7 +65,7 @@ App({
 
 ## 更细粒度的上报错误
 
-有时候我们需要更细粒度的上报错误信息，这时可以在 promise 的 catch 回调或者 try-catch 块中进行 bug 上报操作。
+有时候我们需要更细粒度的上报错误信息，这时可以在 promise 的 catch 回调或者 try-catch 块中进行上报操作。
 
 **示例代码**
 
