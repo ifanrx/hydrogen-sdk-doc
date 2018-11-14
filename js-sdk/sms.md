@@ -78,4 +78,4 @@ wx.BaaS.verifySmsCode({phone: '132888888', code: 123456}).then(res => {
 
 {% endblock tips1 %}
 
-{% include '/js-sdk/frag/_enable_sms.md' %}
+{% include "/js-sdk/frag/_enable_sms.md" %}
