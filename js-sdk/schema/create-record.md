@@ -227,22 +227,22 @@ order.save()
 > 每张表最多能建立 3 个 pointer 类型的字段，如需建立更多的 pointer 字段，请发工单给我们
 > pointer 指向的数据表，不能改名或删除
 
-假设现在有一张 city 表，表中的的 province 字段为 pointer 类型，指向了 province 表。现在在 city 表中新增一条数据，其中 province 字段指向了 province 表中 id 为 5bad87ab0769797b4fb27a1b 的数据行：
+假设现在有一张 Article 表，表中的的 comment 字段为 pointer 类型，指向了 Comment 表。现在在 Article 表中新增一条数据，其中 comment 字段指向了 Comment 表中 id 为 5bad87ab0769797b4fb27a1b 的数据行：
 
 ```js
 // 获取一个 tableRecord 实例
-let Province = new wx.BaaS.TableObject('province')
+let Comment = new wx.BaaS.TableObject('Comment')
 // 5bad87ab0769797b4fb27a1b 为 province 表中某行数据的 id
-let province = Province.getWithoutData('5bad87ab0769797b4fb27a1b')
+let comment = Comment.getWithoutData('5bad87ab0769797b4fb27a1b')
 
 // 在 city 表中创建一行数据
-let City = new wx.BaaS.TableObject('city')
-let city = City.create()
+let Article = new wx.BaaS.TableObject('Article')
+let article = Article.create()
 
 // 给 pointer 字段赋值
-city.set('province', province)
+Article.set('comment', comment)
 
-city.save().then(res=>{
+article.save().then(res=>{
   // success
 })
 ```
@@ -258,7 +258,7 @@ res 结构如下
     "created_at": 1541744690,
     "created_by": 3,
     "id": "5be5283240507206d6938ba8",
-    "province": {
+    "comment": {
       "id": "5bad87ab0769797b4fb27a1b",
       "_table": "province"
     },

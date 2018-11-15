@@ -73,7 +73,7 @@ file 类型的数据结构
     _table: "schema_name",                 // pointer 指向的表名
     id: "5baafb9061235656789"
   },  
-  pointer_expanded: {                      // 在查询中使用 expand('pointer_expanded') 操作后，将会展开为一个数据行对象
+  pointer_expanded: {                      // 在查询中使用 expand('pointer_expanded') 操作后，将会展开为一个数据行对象，注意使用 expand 方法会增加一次数据表查询，api call 计费 +1
     id: "5baafb9061235656789",
     _table: "schema_name",                 // pointer 指向的表名
     created_at: 1537933123,

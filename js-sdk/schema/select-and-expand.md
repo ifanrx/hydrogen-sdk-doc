@@ -54,6 +54,7 @@ Product.setQuery(query).select(['-created_at', '-created_by']).find()
 > **info**
 > created_by 字段是一个特殊的 pointer，开发者无需配置，默认指向了 _userpofile 表。需 SDK >= v1.3.0 
 > 用户自定义 pointer 需 SDK >= 1.10.0
+> 使用 expand 方法会增加一次数据表查询，api call 计费 +1
 
 ### expand 返回结果示例
 

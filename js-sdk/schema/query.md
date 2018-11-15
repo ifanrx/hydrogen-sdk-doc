@@ -408,7 +408,44 @@ res 结构如下:
     }]
   }
 }
+```
 
+**不使用 expand 方法的示例**
+```js
+// 不使用 expand() 方法， customer 字段不会扩展
+Order.setQuery(query).find().then(res => {
+  
+})
+```
+
+返回示例：
+
+```json
+{
+  "statusCode": 200,
+  "data": {
+    "meta": {
+      "limit": 20,
+      "next": null,
+      "offset": 0,
+      "previous": null,
+      "total_count": 1
+    },
+    "objects": [{
+      "_id": "5be3f57840507204ce725fc7",
+      "created_at": 1541666168,
+      "created_by": 3,
+      "id": "5be3f57840507204ce725fc7",
+      "customer": {
+        "_table": "customer",
+        "id": "5bad87ab0769797b4fb27a1b"
+      },
+      "read_perm": ["user:*"],
+      "updated_at": 1541666168,
+      "write_perm": ["user:*"]
+    }]
+  }
+}
 ```
 
 **其他查询 pointer 示例**
