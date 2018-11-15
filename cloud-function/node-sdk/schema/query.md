@@ -12,7 +12,8 @@
 | date     | =, >, >=, <, <=,  exists, notExists, isNull, isNotNull                                  |      |
 | file     | isNull, isNotNull, exists, notExists                                                    |      |
 | geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     | 请参考[地理位置操作](./geo.md)章节 |
-| object   | =, hasKey, isNull, isNotNull, exists, notExists                                         |      ||
+| object   | =, hasKey, isNull, isNotNull, exists, notExists                                         |      |
+| pointer  | =, in, notIn, !=, isNull, isNotNull, exists, notExists                                  |      |
 
 
 ## 操作步骤
@@ -316,6 +317,117 @@ query.hasKey('publisherInfo', 'location')
 ```js
 query.hasKey('publisherInfo', 'abc.location')
 ```
+
+
+## pointer 查询 
+
+> **info**
+> 目前 pointer 仅支持针对 pointer 本身的查询，不支持嵌套查询（即查询 pointer 指向的数据行的字段）
+
+**示例代码**
+
+假设现在有两张表： order 表和 customer 表，order 表中有一个类型为 pointer，名称为 customer 的字段，指向了 customer 表的数据行。
+现在需要查询 order 表中，customer 字段指向 customer 表中 id 为 `5bad87ab0769797b4fb27a1b` 的数据行。
+
+```js
+var query = new BaaS.Query()
+var Customer = new BaaS.TableObject('customer')
+var Order = new BaaS.TableObject('order')
+
+// 查询 customer 字段指向 customer 表中 id 为 5bad87ab0769797b4fb27a1b 的数据行
+query.compare('customer', Customer.getWithoutData('5bad87ab0769797b4fb27a1b'))
+
+Order.setQuery(query).expand(['customer']).find().then(res => {
+  
+})
+```
+**返回示例**
+
+res 结构如下:
+
+```json
+{
+  "status": 200,
+  "data": {
+    "meta": {
+      "limit": 20,
+      "next": null,
+      "offset": 0,
+      "previous": null,
+      "total_count": 1
+    },
+    "objects": [{
+      "_id": "5be3f57840507204ce725fc7",
+      "created_at": 1541666168,
+      "created_by": 3,
+      "id": "5be3f57840507204ce725fc7",
+      "customer": {
+        "_table": "customer",
+        "avatar": "https://gravatar.ifanrx.com/avatar/3510eef2166f5015e5b5c744739f5b82?d=https%3A%2F%2Fcdn.ifanr.cn%2Fifanr%2Fdefault_avatar.png",
+        "gender": 0,
+        "id": "5bad87ab0769797b4fb27a1b",
+        "is_authorized": true,
+        "nickname": "qwESIbpm",
+        "updated_at": 1535438854
+      },
+      "read_perm": ["user:*"],
+      "updated_at": 1541666168,
+      "write_perm": ["user:*"]
+    }]
+  }
+}
+
+```
+
+**不使用 expand 方法的示例**
+```js
+// 不使用 expand() 方法， customer 字段不会扩展
+Order.setQuery(query).find().then(res => {
+  
+})
+```
+
+返回示例：
+
+```json
+{
+  "status": 200,
+  "data": {
+    "meta": {
+      "limit": 20,
+      "next": null,
+      "offset": 0,
+      "previous": null,
+      "total_count": 1
+    },
+    "objects": [{
+      "_id": "5be3f57840507204ce725fc7",
+      "created_at": 1541666168,
+      "created_by": 3,
+      "id": "5be3f57840507204ce725fc7",
+      "customer": {
+        "_table": "customer",
+        "id": "5bad87ab0769797b4fb27a1b"
+      },
+      "read_perm": ["user:*"],
+      "updated_at": 1541666168,
+      "write_perm": ["user:*"]
+    }]
+  }
+}
+```
+
+**其他查询 pointer 示例**
+
+```js
+// in 查询
+query.in('customer', [Customer.getWithoutData('5bad87ab0769797b4fb27a1b'), Customer.getWithoutData('5bad87ab0769797b4fb27a1f'), Customer.getWithoutData('5bad87ab0769797b4fb27a11')])
+
+// 查询 user 字段是否存在
+query.exist('customer')
+```
+
+pointer 类型支持的查询操作符请参考 [数据类型对应查询操作符表](#数据类型对应查询操作符表)
 
 ## 组合查询
 

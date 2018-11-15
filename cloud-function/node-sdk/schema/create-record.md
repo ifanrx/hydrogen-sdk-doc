@@ -163,7 +163,7 @@ res 结构如下
       "created_at": 1538967271,
       "id": "5bbac6e6bd66033efcfd0a95",
       "mime_type": "image/jpeg",
-      "name": "wxc6b86e382a1e3294.o6zAJs5dCuYRqqJOq0MwNPlGiFVM.UxdrZqves41D1cd738e01dc1c7417c03d046e96408cc.jpg",
+      "name": "6b86e382a1e3294.o6zAJs5dCuYRqqJOq0MwNPlGiFVM.UxdrZqves41D1cd738e01dc1c7417c03d046e96408cc.jpg",
       "path": "https://cloud-minapp-11033.cloud.ifanrusercontent.com/1g9LgkbXEdbXwAJT.jpg",
       "size": 6151
     },
@@ -183,6 +183,54 @@ res 结构如下
 ## 添加 object 类型数据
 
 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的。
+
+## 添加 pointer 类型数据
+
+> **info**
+> 每张表最多能建立 3 个 pointer 类型的字段，如有更多需求，请提交工单说明
+> pointer 指向的数据表，不能改名或删除
+ 
+
+假设现在有一张 Article 表，表中的的 comment 字段为 pointer 类型，指向了 Comment 表。现在在 Article 表中新增一条数据，其中 comment 字段指向了 Comment 表中 id 为 5bad87ab0769797b4fb27a1b 的数据行：
+
+```js
+// 获取一个 tableRecord 实例
+let Comment = new BaaS.TableObject('Comment')
+// 5bad87ab0769797b4fb27a1b 为 province 表中某行数据的 id
+let comment = Comment.getWithoutData('5bad87ab0769797b4fb27a1b')
+
+// 在 city 表中创建一行数据
+let Article = new BaaS.TableObject('Article')
+let article = Article.create()
+
+// 给 pointer 字段赋值
+Article.set('comment', comment)
+
+article.save().then(res=>{
+  // success
+})
+```
+
+**返回示例**
+
+res 结构如下
+```json
+{
+  "status": 201,
+  "data": {
+    "_id": "5be5283240507206d6938ba8",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "5be5283240507206d6938ba8",
+    "comment": {
+      "id": "5bad87ab0769797b4fb27a1b",
+      "_table": "province"
+    },
+    "read_perm": [ "user:*" ],
+    "updated_at": 1541744690,
+    "write_perm": [ "user:*" ] }
+}
+```
 
 
 ## 批量新增数据项

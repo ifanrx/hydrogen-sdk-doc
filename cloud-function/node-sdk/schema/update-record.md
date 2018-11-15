@@ -130,6 +130,53 @@ product.update().then(res => {}, err => {})
 ```
 
 
+
+## 更新 pointer 类型字段
+
+假设有 product 表，其中的 `customer`  字段为一个指向 customer 表的 pointer 类型字段。
+
+现在需要更新 product 表中 id 为 `5bdfaf068asd123123asd` 的数据行
+
+**示例代码**
+
+```js
+// 获取一个 tableRecord 实例
+let Customer = new BaaS.TableObject('customer')
+let customer = Customer.getWithoutData('5bdfaf068b155c0891d064ad')
+
+// 获取要修改的数据行的实例
+let Product = new BaaS.TableObject('product')
+let product = Product.getWithoutData('5bdfaf068asd123123asd')
+
+// 给 pointer 字段赋值
+product.set('customer', customer)
+
+product.update().then(res=>{
+  // success
+})
+```
+
+**返回示例**
+```json
+{
+  "statusCode": 200,
+  "data": {
+    "_id": "5bdfaf068asd123123asd",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "5bdfaf068asd123123asd",
+    "customer": {
+      "id": "5bdfaf068b155c0891d064ad",
+      "_table": "customer"
+    },
+    "read_perm": [ "user:*" ],
+    "updated_at": 1541744690,
+    "write_perm": [ "user:*" ] }
+}
+```
+
+
+
 ## 数组原子性更新
 
 #### 将 _待插入的数组_ 加到原数组末尾
@@ -262,7 +309,7 @@ then 回调中的 res 对象结构如下：
 ```js
 let MyTableObject = new BaaS.TableObject(tableID)
 
-let query = new wx.BaaS.Query()
+let query = new BaaS.Query()
 
 // 设置查询条件（比较、字符串包含、组合等）
 //...
