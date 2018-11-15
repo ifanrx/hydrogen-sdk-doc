@@ -27,7 +27,7 @@ App({
     wx.requestPayment)
    wx.BaaS.init('你的 client id')
  
-   wx.BaaS.ErrorTracker.init()  // 初始化 ErrorTracker
+   wx.BaaS.ErrorTracker.enable()  // 初始化 ErrorTracker
  },
  onError: function(res) {
    // 当小程序产生错误时，会进行上报
@@ -53,7 +53,7 @@ App({
  
    let usePlugins = true // 若开发者没有使用小程序插件，可以将其设置为 false，这样即可支持其他页面自动捕获错误
  
-   wx.BaaS.ErrorTracker.init({usePlugins})  // 初始化 ErrorTracker
+   wx.BaaS.ErrorTracker.enable({usePlugins})  // 初始化 ErrorTracker
  },
  onError: function(res) {
    // 当小程序产生错误时，会进行上报
@@ -97,7 +97,7 @@ Page({
 
 ## API REFERENCE
 
-### `wx.BaaS.ErrorTracker.init(opts)`
+### `wx.BaaS.ErrorTracker.enable(opts)`
  
  初始化 ErrorTacker，注意这里必须先调用 `wx.BaaS.init('你的 client id')`。
  
