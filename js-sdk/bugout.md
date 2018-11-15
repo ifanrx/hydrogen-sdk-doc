@@ -1,4 +1,4 @@
-# 错误上报
+# 错误上报 (SDK >= 1.10.0)
 
 > **info**
 > 阅读本小节前请确保你已经知道如何[初始化知晓云 SDK](/newbies/README.md)
@@ -39,7 +39,7 @@ App({
 {% content "fileConf" %}
 
 ## 配置 request 合法域名
-![](https://s3.cn-north-1.amazonaws.com.cn/sso-media/baas/add-request-bugout-domain.png)
+![](/images/dashboard/add-request-bugout-domain.png)
 
 ## 配置 ErrorTracker -- 文件版
 
