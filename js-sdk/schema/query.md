@@ -351,7 +351,7 @@ query.hasKey('publisherInfo', 'location')
 query.hasKey('publisherInfo', 'abc.location')
 ```
 
-### pointer 查询
+### pointer 查询 (SDK >= 1.10.0)
 
 > **info**
 > 目前 pointer 仅支持针对 pointer 本身的查询，不支持嵌套查询（即查询 pointer 指向的数据行的字段）

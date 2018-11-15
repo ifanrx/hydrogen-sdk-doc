@@ -156,7 +156,7 @@ record.patchObject('obj1', patch)
 ```
 
 
-### 更新 pointer 类型字段
+### 更新 pointer 类型字段 (SDK >= 1.10.0)
 
 假设有 product 表，其中的 `customer`  字段为一个指向 customer 表的 pointer 类型字段。
 

@@ -187,8 +187,9 @@ res 结构如下
 ## 添加 pointer 类型数据
 
 > **info**
-> 每张表最多能建立 3 个 pointer 类型的字段
-
+> 每张表最多能建立 3 个 pointer 类型的字段，如需建立更多的 pointer 字段，请发工单给我们
+> pointer 指向的数据表，不能改名或删除
+ 
 假设现在有一张 city 表，表中的的 province 字段为 pointer 类型，指向了 province 表。现在在 city 表中新增一条数据，其中 province 字段指向了 province 表中 id 为 5bad87ab0769797b4fb27a1b 的数据行：
 
 ```js
