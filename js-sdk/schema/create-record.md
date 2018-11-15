@@ -224,7 +224,7 @@ order.save()
 ### 添加 pointer 类型数据 (SDK >= 1.10.0)
 
 > **info**
-> 每张表最多能建立 3 个 pointer 类型的字段，如需建立更多的 pointer 字段，请发工单给我们
+> 每张表最多能建立 3 个 pointer 类型的字段。如有更多需求，请提交工单说明
 > pointer 指向的数据表，不能改名或删除
 
 假设现在有一张 Article 表，表中的的 comment 字段为 pointer 类型，指向了 Comment 表。现在在 Article 表中新增一条数据，其中 comment 字段指向了 Comment 表中 id 为 5bad87ab0769797b4fb27a1b 的数据行：
