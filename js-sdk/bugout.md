@@ -7,7 +7,7 @@
 
 ## 配置 ErrorTracker
 
-初始化 ErrorTracker 的方式很简单，只需要在 app.js 中，调用 `wx.BaaS.ErrorTracker.init()` 即可，
+初始化 ErrorTracker 的方式很简单，只需要在 app.js 中，调用 `wx.BaaS.ErrorTracker.enable()` 即可，
 然后在 onError 生命周期中添加 `wx.BaaS.ErrorTracker.track(res)`, 这样页面产生错误时，就可以自动上报了。
 
 {% tabs pluginConf="插件版", fileConf="文件版" %}
