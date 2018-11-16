@@ -55,7 +55,7 @@
     * [检测违规图片、文本](js-sdk/censor.md)
     * [短信验证码](js-sdk/sms.md)
     * [错误码和 HError 对象](js-sdk/error-code.md)
-    * [错误上报](js-sdk/bugout.md)
+    * [异常上报](js-sdk/bugout.md)
     * [SDK 下载](js-sdk/download-sdk.md)
     * [更新日志](https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md)
 
