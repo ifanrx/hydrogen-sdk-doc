@@ -345,7 +345,7 @@ exports.main = function functionName(event, callback) {
 ![](../../images/practice/trigger/83745285.jpg)
 
 ### 创建触发器
-我们创建一个触发类型为定时任务的云函数，触发周期为每小时，动作内容选择我们上面创建的云函数。
+我们创建一个触发类型为定时任务的触发器，触发周期为每小时，动作内容选择我们上面创建的云函数。
 
 ![](../../images/practice/trigger/4236952.jpg)
 ![](../../images/practice/trigger/80231555.jpg)
@@ -354,6 +354,56 @@ exports.main = function functionName(event, callback) {
 ### 测试触发器
 过几个小时后，我们查看云函数的任务日志，可以看到云函数被成功执行了
 ![](../../images/practice/trigger/99831218.jpg)
+
+## 触发类型：文件操作
+
+### 准备工作
+
+我们首先创建一个云函数，如下图所示：
+![](../../images/practice/trigger/83745285.jpg)
+
+### 创建触发器
+我们创建一个触发类型为文件操作的触发器，触发条件为上传文件且上传成功，动作内容选择我们上面创建的云函数。
+
+![](../../images/practice/trigger/161626.png)
+![](../../images/practice/trigger/161656.png)
+![](../../images/practice/trigger/96971365.jpg)
+
+### 测试触发器
+我们在控制台中上传一个文件：
+
+![](../../images/practice/trigger/162203.png)
+
+文件上传操作相关文档请[移步这里](../../js-sdk/file/file.md)
+
+之后，我们查看云函数的任务日志，可以看到云函数被成功执行了
+![](../../images/practice/trigger/162046.png)
+
+## 触发类型：IncomingWebhook
+
+### 准备工作
+
+我们首先创建一个云函数，如下图所示：
+![](../../images/practice/trigger/83745285.jpg)
+
+### 创建触发器
+我们创建一个触发类型为IncomingWebhook的触发器，动作内容选择我们上面创建的云函数。
+
+![](../../images/practice/trigger/163837.png)
+![](../../images/practice/trigger/163901.png)
+![](../../images/practice/trigger/96971365.jpg)
+
+### 测试触发器
+
+在创建好触发器之后，在这里会有一个特定的 URL：
+![](../../images/practice/trigger/164507.png)
+
+点击复制，然后在新浏览器窗口访问这个 URL：
+![](../../images/practice/trigger/164720.png)
+
+上面返回了 status: 'ok'; 说明执行成功了。我们查看云函数的任务日志，如下：
+![](../../images/practice/trigger/164956.png)
+
 
   [1]: https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html
   [2]: https://github.com/ifanrx/hydrogen-js-sdk
