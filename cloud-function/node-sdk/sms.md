@@ -17,7 +17,7 @@
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
 | phone | String | 手机号码 |
-| userID | Number | 用户 ID |
+| userID | Number | 用户 ID (对应 _userprofile 表中的 id 字段) |
 
 
 ### 示例代码
@@ -49,7 +49,7 @@ BaaS.sendSmsCode({
 |----------|--------|----------|
 | phone | String | 手机号码 |
 | code | Number | 验证码 |
-| userID | Number | 用户 ID |
+| userID | Number | 用户 ID (对应 _userprofile 表中的 id 字段) |
 
 
 ### 示例代码

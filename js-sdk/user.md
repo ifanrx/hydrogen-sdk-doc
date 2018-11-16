@@ -40,7 +40,7 @@
 
 | 参数    | 类型   | 必填 | 说明 |
 | :----- | :----- | :-- | :---- |
-| userID | Number | 是  | 用户 ID |
+| userID | Number | 是  | 用户 ID (对应 _userprofile 表中的 id 字段) |
 
 **返回字段说明**
 
@@ -49,7 +49,7 @@
 | 参数      | 类型   | 说明 |
 | :------- | :----- | :-- |
 | avatar   | String | 用户头像 |
-| id       | Number | 用户 ID |
+| id       | Number | 用户 ID (对应 _userprofile 表中的 id 字段) |
 | nickname | String | 用户昵称 |
 
 当查询的用户为当前用户时：
@@ -60,7 +60,7 @@
 | city     | String | 用户所在城市 |
 | country  | String | 用户所在国家 |
 | gender   | Number | 用户的性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知 |
-| id       | Number | 用户 ID |
+| id       | Number | 用户 ID (对应 _userprofile 表中的 id 字段) |
 | language | String | 用户的语言，简体中文为 zh_CN |
 | nickname | String | 用户昵称 |
 | openid   | String | 用户唯一标识，由微信提供 |
@@ -230,7 +230,7 @@ MyUser.limit(5).offset(10).find().then()
 
 | 参数         | 类型   | 必填 | 说明 |
 | :---------- | :----- | :-- | :-- |
-| userID      | Number | 否  | 用户 ID |
+| userID      | Number | 否  | 用户 ID (对应 _userprofile 表中的 id 字段) |
 | user_id__in | String | 否  | 多个用户 ID，用逗号分隔 |
 
 **返回字段说明**

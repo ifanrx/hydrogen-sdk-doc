@@ -10,7 +10,7 @@
 
 | 参数            | 类型   | 必填  | 说明 |
 | :-------------- | :----- | :--- | :-- |
-| userID  | Integer | 否   | 用户 ID  |
+| userID  | Integer | 否   | 用户 ID (对应 _userprofile 表中的 id 字段)  |
 | submissionType | String | 否   | 提交场景 `form_id` 或者 `prepay_id` |
 
 

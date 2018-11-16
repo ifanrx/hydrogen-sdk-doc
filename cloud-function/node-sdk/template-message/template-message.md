@@ -26,7 +26,7 @@ data 是 Object 类型，它包括以下几个属性
 
 | recipient_type 类型 | recipient_params     | 类型            | 说明                          |
 |:------------------|:---------------------|:--------------|:----------------------------|
-| user_id           | user_id              | Integer       | 推送单个用户，传入用户 id              |
+| user_id           | user_id              | Integer       | 推送单个用户，传入用户 ID (对应 _userprofile 表中的 id 字段)              |
 | user_list         | user_list            | Integer Array | 推送批量用户，传入用户 id 列表           |
 | user_group        | user_group_name      | String        | 用户组名，注意这里是提交用户组名称，而不是用户组 id |
 | user_profile      | user_profile_filters | String        | _userprofile 表的查询条件         |

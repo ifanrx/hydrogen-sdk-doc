@@ -109,7 +109,7 @@ curl_close($ch);
 | openid     | String | N   | 用户的 OpenID |
 | order_by   | String | N   | 排序（支持 `created_at` 进行排序） |
 | unionid    | String | N   | 用户的 UnionID |
-| user_id    | String | N   | 用户 ID |
+| user_id    | String | N   | 用户 ID (对应 _userprofile 表中的 id 字段) |
 
 **代码示例**
 

@@ -8,7 +8,7 @@
 
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
-| userID | Number | 用户 ID |
+| userID | Number | 用户 ID (对应 _userprofile 表中的 id 字段) |
 | amount | Number | 付款金额 |
 | description | String | 付款描述 |
 | checkName | Boolean | 是否检测真实名字 |

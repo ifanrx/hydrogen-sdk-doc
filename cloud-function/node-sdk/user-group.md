@@ -133,7 +133,7 @@ exports.main = async function (event, callback) {
 
 | 参数    | 类型   | 必填 | 说明 |
 | :-----  | :----- | :-- | :-- |
-| users | integer Array | Y   | 用户 ID 数组|
+| users | integer Array | Y   | 用户 ID (对应 _userprofile 表中的 id 字段) 数组|
 | groups | integer Array | Y   | 用户组 ID 数组|
 
 **示例代码**
@@ -152,7 +152,7 @@ exports.main = async function (event, callback) {
 
 | 参数    | 类型   | 必填 | 说明 |
 | :-----  | :----- | :-- | :-- |
-| users | integer Array | Y   | 用户 ID 数组|
+| users | integer Array | Y   | 用户 ID (对应 _userprofile 表中的 id 字段) 数组|
 | groups | integer Array | Y   | 用户组 ID 数组|
 
 ```javascript
