@@ -196,7 +196,7 @@ res 结构如下
 ```js
 // 获取一个 tableRecord 实例
 let Comment = new BaaS.TableObject('Comment')
-// 5bad87ab0769797b4fb27a1b 为 province 表中某行数据的 id
+// 5bad87ab0769797b4fb27a1b 为 Comment 表中某行数据的 id
 let comment = Comment.getWithoutData('5bad87ab0769797b4fb27a1b')
 
 // 在 city 表中创建一行数据
@@ -224,7 +224,7 @@ res 结构如下
     "id": "5be5283240507206d6938ba8",
     "comment": {
       "id": "5bad87ab0769797b4fb27a1b",
-      "_table": "province"
+      "_table": "Comment"
     },
     "read_perm": [ "user:*" ],
     "updated_at": 1541744690,
