@@ -105,7 +105,54 @@
 > created_by.id, created_by.nickname, created_by.gender, created_by.country, created_by.province, created_by.city, created_by.language, created_by.openid, created_by.unionid, created_by.avatar, created_by.is_authorized, created_by.hello, created_by.type, created_by.test, created_by.has_seen_demand, created_by.latest_seen_time, created_by.created_at, created_by.updated_at
 
 ### IncomingWebhook
-触发条件：用户访问特定的 URL
+触发条件：用户直接访问特定的 URL，也可以通过 Ajax 方式发起一个请求。
+
+详细说明：支持的 HTTP 方法有 GET, POST, PUT, PATCH, DELETE；请求体只支持 JSON 数据，支持自定义 http header, 但是必须以 `X_HYDROGEN_` 开头，全部会被转换为大写，此外如自定义 HTTP 头中包含 `-` 会被转换为 `_`。
+
+速率限制： 每个小程序 5 QPS。
+
+提交示例：
+```javascript
+    POST /oserve/v1/incoming-webhook/7YnQmaClzc/ HTTP/1.1
+    Host: cloud.minapp.com
+    Content-Type: application/json
+    Customize-Header: hello
+
+    {
+      "hello": "incoming-webhook"
+    }
+```
+
+返回示例：
+
+```javascript
+    HTTP/1.1 200 OK
+    Content-Type: application/json;charset:utf-8
+
+    {
+      "status": "ok"
+    }
+```
+
+对应触发器日志：
+```javascript
+    {
+      "_id": 0,
+      "meta": {
+        "headers": {
+          "CONTENT_LENGTH": 3,
+          "CONTENT_TYPE": "application/json",
+          "HOST": "cloud.minapp.com",
+          "X_HYDROGEN_CUSTOMIZE_HEADER": "hello"
+        },
+        "remote_address": "1.1.1.1",
+        "request_method": "POST",
+      },
+      "payload": {
+        "hello": "incoming-webhook"
+      }
+    }
+```
 
 使用场景：当用户访问特定的 URL 时，执行指定的云函数。
 
