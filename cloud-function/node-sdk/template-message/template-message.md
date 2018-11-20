@@ -22,6 +22,7 @@ data 是 Object 类型，它包括以下几个属性
 | keywords        | Object | 是   | 关键字（可在 [知晓云-模板消息](https://cloud.minapp.com/dashboard/#/app/template-message/template) 配置）|
 | schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 | page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
+| emphasis_keyword| String | 否   | 模板需要放大的关键词，不填则默认无放大，例：keyword1.DATA|
 
 
 | recipient_type 类型 | recipient_params     | 类型            | 说明                          |
@@ -38,7 +39,7 @@ data 是 Object 类型，它包括以下几个属性
 
 ```js
 let data = {
-  recipient_type：'user_id',
+  recipient_type: 'user_id',
   user_id: 23425,
   template_id: "tadfDf23asdi8dfd",
   submission_type: "form_id",
@@ -63,7 +64,7 @@ BaaS.sendTemplateMessage(data).then(res => {
 
 ```js
 let data = {
-  recipient_type：'user_list',
+  recipient_type: 'user_list',
   user_list: [123, 456, 789],
   template_id: "tadfDf23asdi8dfd",
   // 其他参数
@@ -79,7 +80,7 @@ BaaS.sendTemplateMessage(data)
 
 ```js
 let data = {
-  recipient_type：'user_group',
+  recipient_type: 'user_group',
   user_group_name: '运营人员',
   template_id: "tadfDf23asdi8dfd",
   // 其他参数
@@ -92,7 +93,7 @@ BaaS.sendTemplateMessage(data)
 
 ```js
 let data = {
-  recipient_type：'user_profile',
+  recipient_type: 'user_profile',
   user_profile_filters: {
     "$and": [
       {
@@ -108,6 +109,36 @@ let data = {
       }
     ]
   },
+  template_id: "tadfDf23asdi8dfd",
+  // 其他参数
+}
+
+BaaS.sendTemplateMessage(data)
+```
+
+**请求示例 - schema_user**
+
+schema_user 允许同时存在 user_profile_filters 和 user_group_name 参数
+
+```js
+let data = {
+  recipient_type: 'schema_user',
+  user_profile_filters: {
+    "$and": [
+      {
+        "is_authorize": true
+      },
+      {
+        "array_field": {
+          "$in": [
+            "value_1",
+            "value_2"
+          ]
+        }
+      }
+    ]
+  },
+  user_group_name: ['运营人员', '技术人员'],
   template_id: "tadfDf23asdi8dfd",
   // 其他参数
 }
