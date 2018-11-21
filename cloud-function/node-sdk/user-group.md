@@ -37,6 +37,7 @@ exports.main = async function (event, callback) {
 `userGroup.getUserGroupList({parentID})`
 
 **参数说明**
+
 | 参数       | 类型   | 必填 | 说明 |
 | :---------| :----- | :-- | :-- |
 | parentID | integer | N   | 用户组的组集 ID |
@@ -64,7 +65,7 @@ userGroup.offset(0).limit(20).getUserGroupList({})
     "members": 6,
     "name": "程序员",
     "parent_id": null,
-    "super_group": {"id": null, "name": null},
+    "super_group": {"id": null, "name": null}
   }]
 }
 

@@ -44,7 +44,7 @@ exports.main = async function (event, callback) {
 ```
 
 ## 修改组集
-`userSuperGroup.get(superGroupID)`
+`userSuperGroup.put(superGroupID)`
 
 > **danger**
 > 该操作会清除掉旧有的组集和用户组的关系，重新与传入的用户组建立关系
