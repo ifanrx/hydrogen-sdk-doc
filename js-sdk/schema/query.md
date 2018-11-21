@@ -367,7 +367,7 @@ var Customer = new wx.BaaS.TableObject('customer')
 var Order = new wx.BaaS.TableObject('order')
 
 // 查询 customer 字段指向 customer 表中 id 为 5bad87ab0769797b4fb27a1b 的数据行
-query.compare('customer', Customer.getWithoutData('5bad87ab0769797b4fb27a1b'))
+query.compare('customer', '=', Customer.getWithoutData('5bad87ab0769797b4fb27a1b'))
 
 Order.setQuery(query).expand(['customer']).find().then(res => {
   
