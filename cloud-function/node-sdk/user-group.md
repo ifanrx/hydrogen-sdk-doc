@@ -85,8 +85,7 @@ userGroup.offset(0).limit(20).getUserGroupList({})
 ```javascript
 exports.main = async function (event, callback) {
   let userGroup = new BaaS.UserGroup()
-  console.log(await userGroup.create({name: '测试',parent:'11'}))
-  callback(null)
+  callback(null, await userGroup.create({name: '测试',parent:'11'}))
 }
 ```
 
