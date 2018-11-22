@@ -52,8 +52,7 @@ MyUser.get(userID).then(res => {
   "is_authorized": true,
   "nickname": "姚凯伦",
   "openid": "xxx",
-  "unionid": null,
-  ...
+  "unionid": null
 }
 ```
 
@@ -119,6 +118,68 @@ MyUser.setQuery(query).find().then(res => {
 }, err => {
   // err
 })
+```
+
+### 查询用户组下的用户
+
+> **info**
+> _group 是一个系统定义的特殊字段，可以通过 _group 来查询指定用户组下的用户，目前只支持 in 查询。
+> 该字段仅支持查询，不支持删除和修改。
+
+```js
+let MyUser = new BaaS.User()
+let query = new BaaS.Query()
+
+// 查询用户组 [123, 456, 789] 下的用户
+query.in('_group', [123, 456, 789])
+
+MyUser.setQuery(query).find().then(res => {
+  // success
+}, err => {
+  // err
+})
+```
+
+**返回示例**
+
+成功时 res 结构如下
+
+```json
+{
+  "status": 200,
+  "data": {
+    "meta": {
+      "limit": 20,
+      "next": null,
+      "offset": 0,
+      "previous": null,
+      "total_count": 3
+    },
+    "objects": [
+      {
+        "age": 40,
+        "avatar": "https://media.ifanrusercontent.com/tavatar/f1/e8/f1e8da860635ec7386102a4a9bb5e45857c9369e.jpg",
+        "city": "Guangzhou",
+        "country": "China",
+        "created_at": 1513326300,
+        "created_by": 36476036,
+        "gender": 1,
+        "id": 36476036,
+        "is_authorized": true,
+        "language": "zh_CN",
+        "nickname": "yuky123123",
+        "openid": "xxxxxxx",
+        "province": "Guangdong",
+        "unionid": null,
+        "updated_at": 1524146181,
+        "user_group": [
+          2279
+        ],
+        "user_id": 36476036
+      }
+    ]
+  }
+}
 ```
 
 ## 排序
