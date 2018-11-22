@@ -68,8 +68,9 @@
 | default         | 跟字段类型一样  | 否 | 字段的默认值 |
 | acl             | Object        | 否 | 字段权限相关的属性 |
 | coordinate_type | String        | 否 | geojson 字段类型必填|
+| schema_id       | String        | 否 | pointer 字段类型必填，表示关联的数据表 ID|
 
-- `type` 目前支持 string、integer、number、boolean、array、geojson、file、date 等
+- `type` 目前支持 string、integer、number、boolean、array、geojson、file、date、reference(pointer 类型字段)等
 
 - `items` 目前支持 string、integer、number、boolean 等
 
@@ -95,6 +96,16 @@
   "type": "geojson",
   "format": "default",
   "coordinate_type": "gcj02"
+}
+```
+
+若字段是 pointer 类型，字段元信息为：
+
+```json
+{
+  "name": "pointer",
+  "type": "reference",
+  "schema_id": "1"
 }
 ```
 
