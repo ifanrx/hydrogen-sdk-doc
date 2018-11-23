@@ -172,6 +172,7 @@ MyUser.setQuery(query).find().then(res => {
         "province": "Guangdong",
         "unionid": null,
         "updated_at": 1524146181,
+        "_group": [123],
         "user_id": 36476036
       }
     ]
