@@ -173,7 +173,7 @@ MyUser.setQuery(query).find().then(res => {
         "unionid": null,
         "updated_at": 1524146181,
         "user_group": [
-          2279
+          123
         ],
         "user_id": 36476036
       }
