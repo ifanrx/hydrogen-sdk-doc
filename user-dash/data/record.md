@@ -266,9 +266,9 @@ Content-Type: `application/json`
 假设现在有两张表： order 表和 customer 表，order 表中有一个类型为 pointer，名称为 user 的字段，指向了 customer 表的数据行。
 现在需要查询 order 表中，user 字段指向 customer 表中 id 为 `5bf4f7457fed8d6c2f5c3d6e` 的数据行。
 
-{% tabs first="Node", second="Python", third="PHP" %}
+{% tabs pointerFirst="Node", pointerSecond="Python", pointerThird="PHP" %}
 
-{% content "first" %}
+{% content "pointerFirst" %}
 
 ```js
 var request = require('request');
@@ -294,7 +294,7 @@ request(opt, function(err, res, body) {
 })
 ```
 
-{% content "second" %}
+{% content "pointerSecond" %}
 
 ```python
 import json
@@ -328,7 +328,7 @@ resp_ = requests.get(API, headers=HEADERS)
 print resp_.content
 ```
 
-{% content "third" %}
+{% content "pointerThird" %}
 
 ```php
 <?php
@@ -407,9 +407,9 @@ curl_close($ch);
 
 **代码示例**
 
-{% tabs first="Node", second="Python", third="PHP" %}
+{% tabs expandFirst="Node", expandSecond="Python", expandThird="PHP" %}
 
-{% content "first" %}
+{% content "expandFirst" %}
 
 ```js
 var request = require('request');
@@ -427,7 +427,7 @@ var opt = {
     order_by: 'id',   // 可选
     offset: 0,    // 可选
     limit: 20,    // 可选
-    expand: pointer,created_by,    //必选，表示需要扩展的字段
+    expand: 'pointer,created_by',    //必选，表示需要扩展的字段
   }
 }
 
@@ -436,7 +436,7 @@ request(opt, function(err, res, body) {
 })
 ```
 
-{% content "second" %}
+{% content "expandSecond" %}
 
 ```python
 import json
@@ -471,7 +471,7 @@ resp_ = requests.get(API, headers=HEADERS)
 print resp_.content
 ```
 
-{% content "third" %}
+{% content "expandThird" %}
 
 ```php
 <?php
@@ -516,9 +516,9 @@ curl_close($ch);
 
 **代码示例**
 
-{% tabs insertNode="Node", insertPHP="PHP" %}
+{% tabs pointerInsertNode="Node", pointerInsertPHP="PHP" %}
 
-{% content "insertNode" %}
+{% content "pointerInsertNode" %}
 
 ```js
 var request = require('request');
@@ -544,7 +544,7 @@ request(opt, function(err, res, body) {
 })
 ```
 
-{% content "insertPHP" %}
+{% content "pointerInsertPHP" %}
 ```php
 <?php
 $table_id = 1;
@@ -591,9 +591,9 @@ curl_close($ch);
 
 **代码示例**
 
-{% tabs updateNode="Node", updatePHP="PHP" %}
+{% tabs pointerUpdateNode="Node", pointerUpdatePHP="PHP" %}
 
-{% content "updateNode" %}
+{% content "pointerUpdateNode" %}
 
 ```js
 var request = require('request');
@@ -614,7 +614,7 @@ request(opt, function(err, res, body) {
 })
 ```
 
-{% content "updatePHP" %}
+{% content "pointerUpdatePHP" %}
 
 ```php
 <?php
