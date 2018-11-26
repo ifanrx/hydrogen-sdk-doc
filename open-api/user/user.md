@@ -1,4 +1,4 @@
-# 用户模块
+# 用户操作
 
 ## 获取用户详情
 
@@ -348,7 +348,7 @@ if ($err) {
             "country": "中国",
             "created_at": 1542858732,
             "created_by": 70695404,
-            "gender": 1,
+            "gender": 0,
             "id": 70695404,
             "is_authorized": true,
             "language": "zh_CN",

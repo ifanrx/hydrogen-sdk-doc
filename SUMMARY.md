@@ -77,7 +77,7 @@
         * [文件操作](open-api/file/file.md)
         * [文件分类操作](open-api/file/file-category.md)
     * [用户模块](open-api/user/README.md)
-        * [用户信息操作](open-api/user/user.md)
+        * [用户操作](open-api/user/user.md)
         * [用户组操作](open-api/group/user-group.md)
         * [用户组与用户的操作](open-api/group/membership.md)
         * [组集操作](open-api/group/super-group.md)
