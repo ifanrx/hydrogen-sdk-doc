@@ -244,15 +244,6 @@ record.save()
 ```
 
 ```js
-// 元素类型为 date
-let Table = new wx.BaaS.TableObject(tableID)
-let record = Table.create()
-let isoStr = ((new Date()).toISOString()).toString()
-record.set('array_date', [isoStr])
-record.save()
-```
-
-```js
 // 元素类型为 object
 let Table = new wx.BaaS.TableObject(tableID)
 let record = Table.create()
@@ -260,6 +251,27 @@ let obj_1 = {a: 10}
 let obj_2 = {b: 20}
 record.set('array_obj', [obj_1, obj_2])
 record.save()
+```
+
+```js
+// 元素类型为 geojson
+let Table = new wx.BaaS.TableObject(tableName)
+let record = Table.create()
+let point = new wx.BaaS.GeoPoint(10, 10)
+record.set('array_geo', [point])
+record.save()
+```
+
+```js
+// 元素类型为 file
+let Table = new wx.BaaS.TableObject(tableName)
+let record = Table.create()
+let MyFile = new wx.BaaS.File()
+MyFile.upload(fileParam).then(res => {
+  let file = res.data.file  // res.data 为 Object 类型
+  record.set('array_file', [file])
+  return record.save()
+})
 ```
 
 ### 批量新增数据项
