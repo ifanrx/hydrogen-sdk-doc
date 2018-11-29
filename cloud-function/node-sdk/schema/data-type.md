@@ -8,7 +8,7 @@
 | integer | 整数， 如 `2` `3`   |
 | number  | 数字，可以是整数，也可以是浮点数，如 `5` `6.2` `3.1415926` |
 | boolean | 布尔值， `true` 或者 `false` |
-| array   | 数组， 数组元素支持 `string`、`integer`、`number`、`boolean` 4 种类型 |
+| array   | 数组， 数组元素支持 `string`、`integer`、`number`、`boolean`、`object`、`geojson`、`file` 7 种类型 |
 | object  | 对象，必须是`{...}`格式，即对象的字面量形式 |
 | geojson | 地理位置，支持 GeoPoint、GeoPloygon（点与多边形）两种类型，请参考[地理位置操作](./geo.md)章节。GeoJSON 具体介绍，请参考 mongoDB 的 [GeoJSON Object](https://docs.mongodb.com/manual/reference/geojson/)  |
 | date    | 日期时间，[ISO8601](https://zh.wikipedia.org/wiki/ISO_8601) 格式的日期字符串，例如：`"2018-09-01T18:31:02.631000+08:00"` |
@@ -46,10 +46,24 @@ file 类型的数据结构
       num: 123.44
     },
   },
-  array_bool: [true, true],   // array
-  array_int: [123456, 123, 456],   // array
-  array_num: [91.7485922640633, 10.305134978939634],   // array
-  array_str: ["abc", "def", "ghi"],   // array
+  array_bool: [true, true],   // array field，元素类型为 boolean
+  array_int: [123456, 123, 456],   // array field，元素类型为 integer
+  array_num: [91.7485922640633, 10.305134978939634],   // array field，元素类型为 number
+  array_str: ["abc", "def", "ghi"],   // array field，元素类型为 string
+  array_object: [{a: 10}],    // array field，元素类型为 object
+  array_geojson [{    // array field，元素类型为 geojson
+    coordinates: [10.123, 8.543],
+    type: "Point"
+  }],
+  array_file [{    // array field，元素类型为 file
+    cdn_path: "1g50PgtbHMNWFntB.png",
+    created_at: 1537932176,
+    id: "5baafb906e73240d2acfb67e",
+    mime_type: "image/png",
+    name: "wxfab60d15556a51ec.o6zAJs8v7AFX-FTE2ziIK8E1moJI.8LnYokv8aq4Ubaeaa306f0bbec994ad399bdb97d92ce.png",
+    path: "https://cloud-minapp-7894.cloud.ifanrusercontent.com/1g50PgtbHMNWFntB.png",
+    size: 105224
+  }],
   bool: true,   // boolean
   date: "2018-09-26T11:22:51.100000+08:00",   // date
   file: {   // file

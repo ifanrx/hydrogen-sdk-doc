@@ -8,18 +8,21 @@
 
 ### 数据类型对应查询操作符表
 
-| 数据类型 |                            可使用的查询操作                                                | 说明 |
-|:---------|:--------------------------------------------------------------------------------------- |:------|
-| string   | =, in, notIn, !=, isNull, isNotNull, contains, matches, exists, notExists                         |      |
+| 数据类型 |                            可使用的查询操作                                             | 说明 |
+|:---------|:--------------------------------------------------------------------------------------- |:-----|
+| string   | =, in, notIn, !=, isNull, isNotNull, contains, matches, exists, notExists               |      |
 | integer  | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                    |      |
 | number   | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                    |      |
-| array    | =, in, notIn, isNull, isNotNull, arrayContains, exists, notExists                       |      |
+| array    | =, in, notIn, isNull, isNotNull, arrayContains, exists, notExists                       | file、geojson、object 类型的 array 不支持查询操作。如果进行查询，会返回空数组 |
 | boolean  | =, exists, notExists, isNull, isNotNull                                                 |      |
 | date     | =, >, >=, <, <=,  exists, notExists, isNull, isNotNull                                  |      |
 | file     | isNull, isNotNull, exists, notExists                                                    |      |
 | geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     | 请参考地理位置操作章节 |
 | object   | =, hasKey, isNull, isNotNull, exists, notExists                                         |      |
 | pointer  | =, in, notIn, !=, isNull, isNotNull, exists, notExists                                  |      |
+
+> **info**
+> file、geojson、object 类型的 array 不支持查询操作。如果进行查询，会返回空数组
 
 ### 操作步骤
 
@@ -79,7 +82,7 @@ Product.find().then(res => {
 })
 ```
 
-**返回示例** 
+**返回示例**
 
 res 结构如下
 

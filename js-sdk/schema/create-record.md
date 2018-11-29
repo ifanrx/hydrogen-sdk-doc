@@ -77,7 +77,7 @@ let apple = {
 
 product.set(apple).save().then(res => {
   // success
-  console.log(res)  
+  console.log(res)
 }, err => {
   //err 为 HError 对象
 })
@@ -91,13 +91,13 @@ product.set('amount', 0)
 
 product.save().then(res => {
   // success
-  console.log(res)  
+  console.log(res)
 }, err => {
   // HError 对象
 })
 ```
 
-**返回示例** 
+**返回示例**
 
 then 回调中的 res 对象结构如下，其中 res.data 为新增的数据行：
 
@@ -220,6 +220,58 @@ order.save()
 ### 添加 object 类型数据
 
 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的
+
+### 添加 array 类型数据
+
+添加 array 类型数据的方法与添加其他类型数据的方法基本一致。区别在于，array 类型数据是将一个的数组赋值给某个字段。
+
+array 类型数据中的元素类型，要与预先在知晓云平台设定的字段类型一致。否则创建的数据将不包含该 array 类型的字段。
+
+```js
+// 元素类型为 integer
+let Table = new wx.BaaS.TableObject(tableID)
+let record = Table.create()
+record.set('array_int', [1, 2, 3])
+record.save()
+```
+
+```js
+// 元素类型为 string
+let Table = new wx.BaaS.TableObject(tableID)
+let record = Table.create()
+record.set('array_str', ['a', 'b', 'c'])
+record.save()
+```
+
+```js
+// 元素类型为 object
+let Table = new wx.BaaS.TableObject(tableID)
+let record = Table.create()
+let obj_1 = {a: 10}
+let obj_2 = {b: 20}
+record.set('array_obj', [obj_1, obj_2])
+record.save()
+```
+
+```js
+// 元素类型为 geojson
+let Table = new wx.BaaS.TableObject(tableName)
+let record = Table.create()
+let point = new wx.BaaS.GeoPoint(10, 10)
+record.set('array_geo', [point])
+record.save()
+```
+
+```js
+// 元素类型为 file
+let Table = new wx.BaaS.TableObject(tableName)
+let record = Table.create()
+let MyFile = new wx.BaaS.File()
+MyFile.upload(fileParam).then(res => {
+  let file = res.data.file  // res.data 为 Object 类型
+  record.set('array_file', [file])
+  return record.save()
+})
 
 ### 添加 pointer 类型数据 (SDK >= 1.10.0)
 
