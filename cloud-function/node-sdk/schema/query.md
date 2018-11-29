@@ -14,6 +14,8 @@
 | geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     | 请参考[地理位置操作](./geo.md)章节 |
 | object   | =, hasKey, isNull, isNotNull, exists, notExists                                         |      ||
 
+> **info**
+> file、geojson、object 类型的 array 不支持查询操作。如果进行查询，会返回空数组
 
 ## 操作步骤
 

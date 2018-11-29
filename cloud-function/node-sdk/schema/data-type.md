@@ -45,16 +45,16 @@ file 类型的数据结构
       num: 123.44
     },
   },
-  array_bool: [true, true],   // array
-  array_int: [123456, 123, 456],   // array
-  array_num: [91.7485922640633, 10.305134978939634],   // array
-  array_str: ["abc", "def", "ghi"],   // array
-  array_object: [{a: 10}],    // array
-  array_geojson [{    // array
+  array_bool: [true, true],   // array field，元素类型为 boolean
+  array_int: [123456, 123, 456],   // array field，元素类型为 integer
+  array_num: [91.7485922640633, 10.305134978939634],   // array field，元素类型为 number
+  array_str: ["abc", "def", "ghi"],   // array field，元素类型为 string
+  array_object: [{a: 10}],    // array field，元素类型为 object
+  array_geojson [{    // array field，元素类型为 geojson
     coordinates: [10.123, 8.543],
     type: "Point"
   }],
-  array_file [{    // array
+  array_file [{    // array field，元素类型为 file
     cdn_path: "1g50PgtbHMNWFntB.png",
     created_at: 1537932176,
     id: "5baafb906e73240d2acfb67e",

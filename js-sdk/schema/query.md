@@ -20,6 +20,9 @@
 | geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     | 请参考地理位置操作章节 |
 | object   | =, hasKey, isNull, isNotNull, exists, notExists                                         |      |
 
+> **info**
+> file、geojson、object 类型的 array 不支持查询操作。如果进行查询，会返回空数组
+
 ### 操作步骤
 
 1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
