@@ -272,10 +272,30 @@ MyTableObject.createMany(records).then(res => {
 then 回调中 res 结构如下:
 ```json
 {
-  "status": 201, // 201 表示创建成功
+  "status": 201, // 201 表示创建成功, 注意这不代表所有数据都插入成功，具体要看 operation_result 字段
   "data": {
     "succeed": 10, // 成功插入记录数
-    "total_count": 10 // 总的待插入记录数
+    "total_count": 10, // 总的待插入记录数
+    "operation_result": [  // 创建的详细结果
+       {
+         "success": {      // 成功时会有 success 字段
+           "id": "5bffbab54b30640ba8135650",
+           "created_at": 1543486133
+         }
+       },
+       {
+         "success": {
+           "id": "5bffbab54b30640ba8135651",
+           "created_at": 1543486133
+         }
+       },
+       {
+         "error": {     // 失败时会有 error 字段
+           "code": 16837,
+           "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
+         }
+       }
+     ] 
   }
 }
 ```
