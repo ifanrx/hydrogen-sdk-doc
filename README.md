@@ -109,6 +109,9 @@
           <a href="/js-sdk/error-code.md/">错误码详解</a>
         </li>
         <li>
+          <a href="/js-sdk/bugout.md/">异常上报</a>
+        </li>
+        <li>
           <a href="/js-sdk/download-sdk.md/">SDK 下载</a>
         </li>
         <li>

@@ -163,7 +163,7 @@ res 结构如下
       "created_at": 1538967271,
       "id": "5bbac6e6bd66033efcfd0a95",
       "mime_type": "image/jpeg",
-      "name": "wxc6b86e382a1e3294.o6zAJs5dCuYRqqJOq0MwNPlGiFVM.UxdrZqves41D1cd738e01dc1c7417c03d046e96408cc.jpg",
+      "name": "6b86e382a1e3294.o6zAJs5dCuYRqqJOq0MwNPlGiFVM.UxdrZqves41D1cd738e01dc1c7417c03d046e96408cc.jpg",
       "path": "https://cloud-minapp-11033.cloud.ifanrusercontent.com/1g9LgkbXEdbXwAJT.jpg",
       "size": 6151
     },
@@ -237,6 +237,54 @@ MyFile.upload(fileParam).then(res => {
 })
 ```
 
+## 添加 pointer 类型数据
+
+> **info**
+> 每张表最多能建立 3 个 pointer 类型的字段，如有更多需求，请提交工单说明
+> pointer 指向的数据表，不能改名或删除
+ 
+
+假设现在有一张 Article 表，表中的的 comment 字段为 pointer 类型，指向了 Comment 表。现在在 Article 表中新增一条数据，其中 comment 字段指向了 Comment 表中 id 为 5bad87ab0769797b4fb27a1b 的数据行：
+
+```js
+// 获取一个 tableRecord 实例
+let Comment = new BaaS.TableObject('Comment')
+// 5bad87ab0769797b4fb27a1b 为 Comment 表中某行数据的 id
+let comment = Comment.getWithoutData('5bad87ab0769797b4fb27a1b')
+
+// 在 city 表中创建一行数据
+let Article = new BaaS.TableObject('Article')
+let article = Article.create()
+
+// 给 pointer 字段赋值
+Article.set('comment', comment)
+
+article.save().then(res=>{
+  // success
+})
+```
+
+**返回示例**
+
+res 结构如下
+```json
+{
+  "status": 201,
+  "data": {
+    "_id": "5be5283240507206d6938ba8",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "5be5283240507206d6938ba8",
+    "comment": {
+      "id": "5bad87ab0769797b4fb27a1b",
+      "_table": "Comment"
+    },
+    "read_perm": [ "user:*" ],
+    "updated_at": 1541744690,
+    "write_perm": [ "user:*" ] }
+}
+```
+
 ## 新增数据项
 
 `TableObject.createMany([item,...])`
@@ -276,10 +324,30 @@ MyTableObject.createMany(records).then(res => {
 then 回调中 res 结构如下:
 ```json
 {
-  "status": 201, // 201 表示创建成功
+  "status": 201, // 201 表示创建成功, 注意这不代表所有数据都插入成功，具体要看 operation_result 字段
   "data": {
     "succeed": 10, // 成功插入记录数
-    "total_count": 10 // 总的待插入记录数
+    "total_count": 10, // 总的待插入记录数
+    "operation_result": [  // 创建的详细结果
+       {
+         "success": {      // 成功时会有 success 字段
+           "id": "5bffbab54b30640ba8135650",
+           "created_at": 1543486133
+         }
+       },
+       {
+         "success": {
+           "id": "5bffbab54b30640ba8135651",
+           "created_at": 1543486133
+         }
+       },
+       {
+         "error": {     // 失败时会有 error 字段
+           "code": 16837,
+           "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
+         }
+       }
+     ] 
   }
 }
 ```
@@ -293,6 +361,13 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
 | 403            | 没有权限写入数据    |
 | 404            | 写入的数据表不存在   |
 
-**状态码说明**
+### 批量创建时不触发触发器
 
-<span class="attention">注：</span> 由于对数据表的增删改均会触发 trigger 动作，为了防止出现严重消耗系统资源的情况，对数据表进行批量操作的数据条目最多不能超过 1000 条。
+```js
+// 知晓云后台设置的触发器将不会被触发
+MyTableObject.createMany(records, {enableTrigger: false}).then(res => {
+   console.log(res.data.succeed)
+}, err => {
+  //err 为 HError 对象
+})
+```

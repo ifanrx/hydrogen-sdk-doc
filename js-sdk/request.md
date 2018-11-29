@@ -66,3 +66,5 @@ BaaS 提供的 API 遵循 RESTful 规范，返回的状态码与对应的请求�
 
 > **info**
 > 当返回 401 状态码时，SDK 会清除本地的客户端认证 `Token`、BaaS 登录状态和BaaS 用户信息（与调用 `wx.BaaS.logout()` 退出 BaaS 一样）
+
+> 插件版的 wx.BaaS.request 不支持请求自定义 URL （即只能访问知晓云服务相关的 URL）

@@ -55,6 +55,7 @@
     * [检测违规图片、文本](js-sdk/censor.md)
     * [短信验证码](js-sdk/sms.md)
     * [错误码和 HError 对象](js-sdk/error-code.md)
+    * [异常上报](js-sdk/bugout.md)
     * [SDK 下载](js-sdk/download-sdk.md)
     * [更新日志](https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md)
 
@@ -75,7 +76,8 @@
         * [文件上传](open-api/file/file-upload.md)
         * [文件操作](open-api/file/file.md)
         * [文件分类操作](open-api/file/file-category.md)
-    * [用户模块](open-api/user.md)
+    * [用户模块](open-api/user/README.md)
+        * [用户操作](open-api/user/user.md)
         * [用户组操作](open-api/group/user-group.md)
         * [用户组与用户的操作](open-api/group/membership.md)
         * [组集操作](open-api/group/super-group.md)

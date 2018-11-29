@@ -80,7 +80,8 @@
   | geojson | center, intersects, nearsphere       |
   | date    | =, >, >=, <, <=, range       |
   | file    | isnull    |
-
+  | object    | =, hasKey, isnull    |
+  | pointer    |  =, in, range, !=, not in      |
   ​
 
   操作符介绍及使用规则
@@ -101,6 +102,7 @@
   | regex    |    正则表达式 |
   | not in  |    不存在于在数组中    |
   | is null |    是否为空     |
+  | hasKey  |    是否存在属性（仅限 Object 类型）     |
   | center  |    请参考[withincircle](../js-sdk/schema/geo.md)  |
   | intersects |  请参考[include](../js-sdk/schema/geo.md)         |
   | nearsphere |  请参考[withinRegion](../js-sdk/schema/geo.md)       |

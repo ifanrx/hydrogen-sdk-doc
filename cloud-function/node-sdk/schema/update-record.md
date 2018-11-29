@@ -130,6 +130,53 @@ product.update().then(res => {}, err => {})
 ```
 
 
+
+## 更新 pointer 类型字段
+
+假设有 product 表，其中的 `customer`  字段为一个指向 customer 表的 pointer 类型字段。
+
+现在需要更新 product 表中 id 为 `5bdfaf068asd123123asd` 的数据行
+
+**示例代码**
+
+```js
+// 获取一个 tableRecord 实例
+let Customer = new BaaS.TableObject('customer')
+let customer = Customer.getWithoutData('5bdfaf068b155c0891d064ad')
+
+// 获取要修改的数据行的实例
+let Product = new BaaS.TableObject('product')
+let product = Product.getWithoutData('5bdfaf068asd123123asd')
+
+// 给 pointer 字段赋值
+product.set('customer', customer)
+
+product.update().then(res=>{
+  // success
+})
+```
+
+**返回示例**
+```json
+{
+  "statusCode": 200,
+  "data": {
+    "_id": "5bdfaf068asd123123asd",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "5bdfaf068asd123123asd",
+    "customer": {
+      "id": "5bdfaf068b155c0891d064ad",
+      "_table": "customer"
+    },
+    "read_perm": [ "user:*" ],
+    "updated_at": 1541744690,
+    "write_perm": [ "user:*" ] }
+}
+```
+
+
+
 ## 数组原子性更新
 
 #### 将 _待插入的数组_ 加到原数组末尾
@@ -241,14 +288,34 @@ then 回调中的 res 对象结构如下：
 
 ```json
 {
-  "status": 200,
+  "status": 200, // 200 表示更新成功, 注意这不代表所有数据都更新成功，具体要看 operation_result 字段
   "statusText": "OK",
   "data": {
     "succeed": 8, // 成功更新记录数
     "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
     "offset": 0,
     "limit": 1000,
-    "next": null // 下一次更新 url，若为 null 则表示全部更新完毕
+    "next": null, // 下一次更新 url，若为 null 则表示全部更新完毕
+    "operation_result": [  // 创建的详细结果
+       {
+         "success": {      // 成功时会有 success 字段
+           "id": "5bffbab54b30640ba8135650",
+           "updated_at": 1543486133
+         }
+       },
+       {
+         "success": {
+           "id": "5bffbab54b30640ba8135651",
+           "updated_at": 1543486133
+         }
+       },
+       {
+         "error": {     // 失败时会有 error 字段
+           "code": 16837,
+           "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
+         }
+       }
+     ] 
   }
 }
 ```
@@ -257,8 +324,24 @@ then 回调中的 res 对象结构如下：
 
 200 更新成功，400 请求数据非法
 
-<span class="attention">注：</span> 由于对数据表的增删改均会触发 trigger 动作，为了防止出现严重消耗系统资源的情况，对数据表进行批量操作的数据条目最多不能超过 1000 条。
+### 批量更新时不触发触发器
 
+```js
+let MyTableObject = new BaaS.TableObject(tableID)
+
+let query = new BaaS.Query()
+
+// 设置查询条件（比较、字符串包含、组合等）
+//...
+
+let records = MyTableObject.getWithoutData(query)
+
+// 与更新特定记录一致
+// 设置更新内容 ...
+
+// 知晓云后台设置的触发器将不会被触发
+records.update({enableTrigger: false}).then(res => {}, err => {})
+```
 
 ## 更新 object 类型内的属性
 ```javascript

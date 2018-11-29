@@ -7,11 +7,13 @@
 
 此面板配置一些触发器的基本信息，或者进行查阅触发器触发日志等操作。
 
-触发类型目前有三种：
+触发类型目前有五种：
 
 - [数据表](#数据表)
 - [微信支付回调](#微信支付回调)
 - [定时任务](#定时任务)
+- [文件操作](#文件操作)
+- [IncomingWebhook](#IncomingWebhook)
 
 ### 条件卡片
 
@@ -90,6 +92,72 @@
 
 > **info**
 > 注：定时任务下的邮件、模板消息动作不支持模板变量
+
+### 文件操作
+触发条件：当用户触发文件相关操作（文件上传、文件删除、图片违规校验），以及符合对应设置的操作结果时触发
+
+使用场景：当有用户上传文件成功，发送模版消息提醒到指定用户。
+
+> **info**
+> 注：文件操作下的WebHook、云函数动作不支持模板变量
+
+在邮件、微信模版消息、数据表操作动作中可以使用的模板变量如下：
+> created_by.id, created_by.nickname, created_by.gender, created_by.country, created_by.province, created_by.city, created_by.language, created_by.openid, created_by.unionid, created_by.avatar, created_by.is_authorized, created_by.hello, created_by.type, created_by.test, created_by.has_seen_demand, created_by.latest_seen_time, created_by.created_at, created_by.updated_at
+
+### IncomingWebhook
+触发条件：用户直接访问特定的 URL，也可以通过 Ajax 方式发起一个请求。
+
+详细说明：支持的 HTTP 方法有 GET, POST, PUT, PATCH, DELETE；请求体只支持 JSON 数据，支持自定义 http header, 但是必须以 `X_HYDROGEN_` 开头，全部会被转换为大写，此外如自定义 HTTP 头中包含 `-` 会被转换为 `_`。
+
+速率限制： 每个小程序 5 QPS。
+
+提交示例：
+```javascript
+    POST /oserve/v1/incoming-webhook/7YnQmaClzc/ HTTP/1.1
+    Host: cloud.minapp.com
+    Content-Type: application/json
+    Customize-Header: hello
+
+    {
+      "hello": "incoming-webhook"
+    }
+```
+
+返回示例：
+
+```javascript
+    HTTP/1.1 200 OK
+    Content-Type: application/json;charset:utf-8
+
+    {
+      "status": "ok"
+    }
+```
+
+对应触发器日志：
+```javascript
+    {
+      "_id": 0,
+      "meta": {
+        "headers": {
+          "CONTENT_LENGTH": 3,
+          "CONTENT_TYPE": "application/json",
+          "HOST": "cloud.minapp.com",
+          "X_HYDROGEN_CUSTOMIZE_HEADER": "hello"
+        },
+        "remote_address": "1.1.1.1",
+        "request_method": "POST",
+      },
+      "payload": {
+        "hello": "incoming-webhook"
+      }
+    }
+```
+
+使用场景：当用户访问特定的 URL 时，执行指定的云函数。
+
+> **info**
+> 注：IncomingWebhook 下的动作不支持模板变量
 
 ## 动作
 
@@ -222,11 +290,11 @@ event.data 参数内容：
 
 | 周期  | cron 表达式| 说明    |
 | ----  | --------- | ------ |
-| 每年  | 0 0 1 1 * | 每年的 1 月 1 号 00:00  |
-| 每月  | 0 0 1 * * | 每个月的 1 号 00:00 |
-| 每周  | 0 0 * * 0 | 每周日的 00:00 |
-| 每天  | 0 0 * * * | 每天的 00:00  |
-| 每小时| 0 * * * *  | 每天整点时间，如 18：00、19：00 ... |
+| 每年  | `0 0 1 1 *` | 每年的 1 月 1 号 00:00  |
+| 每月  | `0 0 1 * *` | 每个月的 1 号 00:00 |
+| 每周  | `0 0 * * 0` | 每周日的 00:00 |
+| 每天  | `0 0 * * *` | 每天的 00:00  |
+| 每小时| `0 * * * *` | 每天整点时间，如 18：00、19：00 ... |
 
 [​Cron 表达式简介](http://support.minapp.com/hc/kb/article/1109371/)
 

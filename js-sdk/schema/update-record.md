@@ -112,6 +112,95 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | 404            | 数据行不存在    |
 
 
+### 更新 object 类型内的属性
+```javascript
+product.patchObject('obj1', {name: '123'})
+```
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-  | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Object |
+| value | Object              | 是  | 更新的对象 |
+
+> **info**
+> 该操作的效果类似 Object.assign(), 是浅合并，也就是只合并第一层，嵌套的属性仍然是被替换。
+> 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的
+
+**请求示例**
+假设数据表 Product 中有数据行如下
+```javascript
+[{
+   id: "7",
+   obj1: {a: [1, 2, 3], b: 666, c: {age: 100}}
+}]
+```
+
+```javascript
+let record = Product.getWithoutData('7')
+
+let patch = {a: [222], b: 555, d: 888}
+record.patchObject('obj1', patch)
+
+```
+执行结果
+
+```javascript
+[
+  {
+    id: '7',
+    obj1: {a: [222], b: 555, c: {age: 100}, d: 888}
+  }
+]
+```
+
+
+### 更新 pointer 类型字段 (SDK >= 1.10.0)
+
+假设有 product 表，其中的 `customer`  字段为一个指向 customer 表的 pointer 类型字段。
+
+现在需要更新 product 表中 id 为 `5bdfaf068asd123123asd` 的数据行
+
+**示例代码**
+
+```js
+// 获取一个 tableRecord 实例
+let Customer = new wx.BaaS.TableObject('customer')
+let customer = Customer.getWithoutData('5bdfaf068b155c0891d064ad')
+
+// 获取要修改的数据行的实例
+let Product = new wx.BaaS.TableObject('product')
+let product = Product.getWithoutData('5bdfaf068asd123123asd')
+
+// 给 pointer 字段赋值
+product.set('customer', customer)
+
+product.update().then(res=>{
+  // success
+})
+```
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "5bdfaf068asd123123asd",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "5bdfaf068asd123123asd",
+    "customer": {
+      "id": "5bdfaf068b155c0891d064ad",
+      "_table": "customer"
+    },
+    "read_perm": [ "user:*" ],
+    "updated_at": 1541744690,
+    "write_perm": [ "user:*" ] }
+}
+```
+
+
 ### 计数器原子性更新
 
 对数字类型的字段进行原子性增减操作。当请求同时对一个数据进行增减时，原子性使得冲突和覆盖导致的数据不正确的情况不会出现。
@@ -209,49 +298,6 @@ order.set('date', 'abc')
 order.update()
 ```
 
-#### 更新 object 类型内的属性
-```javascript
-product.patchObject('obj1', {name: '123'})
-```
-
-**参数说明**
-
-| 参数   | 类型                | 必填 | 说明 |
-| :---- | :------------------ | :-  | :-- |
-| key   | String              | 是  | 在数据表中的类型必须是 Object |
-| value | Object              | 是  | 更新的对象 |
-
-> **info**
-> 该操作的效果类似 Object.assign(), 是浅合并，也就是只合并第一层，嵌套的属性仍然是被替换。
-> 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的
-
-**请求示例**
-假设数据表 Product 中有数据行如下
-```javascript
-[{
-   id: "7",
-   obj1: {a: [1, 2, 3], b: 666, c: {age: 100}}
-}]
-```
-
-```javascript
-let record = Product.getWithoutData('7')
-
-let patch = {a: [222], b: 555, d: 888}
-record.patchObject('obj1', patch)
-
-```
-执行结果
-
-```javascript
-[
-  {
-    id: '7',
-    obj1: {a: [222], b: 555, c: {age: 100}, d: 888}
-  }
-]
-```
-
 ### 批量更新数据项
 
 SDK 1.4.0 及以上版本支持批量更新数据项。可以通过设置查询条件，将符合条件的数据进行批量更新操作。
@@ -287,13 +333,33 @@ then 回调中的 res 对象结构如下：
 
 ```json
 {
-  "statusCode": 200,
+  "statusCode": 200, // 200 表示更新成功, 注意这不代表所有数据都更新成功，具体要看 operation_result 字段
   "data": {
     "succeed": 8, // 成功更新记录数
     "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
     "offset": 0,
     "limit": 1000,
-    "next": null // 下一次更新 url，若为 null 则表示全部更新完毕
+    "next": null, // 下一次更新 url，若为 null 则表示全部更新完毕
+    "operation_result": [  // 创建的详细结果
+       {
+         "success": {      // 成功时会有 success 字段
+           "id": "5bffbab54b30640ba8135650",
+           "updated_at": 1543486133
+         }
+       },
+       {
+         "success": {
+           "id": "5bffbab54b30640ba8135651",
+           "updated_at": 1543486133
+         }
+       },
+       {
+         "error": {     // 失败时会有 error 字段
+           "code": 16837,
+           "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
+         }
+       }
+     ] 
   }
 }
 ```
@@ -306,7 +372,27 @@ catch 回调中的 err 对象:
 
 200 更新成功，400 请求数据非法
 
-<span class="attention">注：</span> 由于对数据表的增删改均会触发 trigger 动作，为了防止出现严重消耗系统资源的情况，对数据表进行批量操作的数据条目最多不能超过 1000 条。
+#### 批量更新时不触发触发器
+
+> **info**
+> SDK 版本需 >= 1.9.1
+
+```js
+let MyTableObject = new wx.BaaS.TableObject(tableID)
+
+let query = new wx.BaaS.Query()
+
+// 设置查询条件（比较、字符串包含、组合等）
+//...
+
+let records = MyTableObject.getWithoutData(query)
+
+// 与更新特定记录一致
+// 设置更新内容 ...
+
+// 知晓云后台设置的触发器将不会被触发
+records.update({enableTrigger: false}).then(res => {}, err => {})
+```
 
 {% content "second" %}
 

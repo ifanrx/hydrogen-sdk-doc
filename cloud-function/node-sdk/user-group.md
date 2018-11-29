@@ -37,6 +37,7 @@ exports.main = async function (event, callback) {
 `userGroup.getUserGroupList({parentID})`
 
 **参数说明**
+
 | 参数       | 类型   | 必填 | 说明 |
 | :---------| :----- | :-- | :-- |
 | parentID | integer | N   | 用户组的组集 ID |
@@ -64,7 +65,7 @@ userGroup.offset(0).limit(20).getUserGroupList({})
     "members": 6,
     "name": "程序员",
     "parent_id": null,
-    "super_group": {"id": null, "name": null},
+    "super_group": {"id": null, "name": null}
   }]
 }
 
@@ -84,8 +85,7 @@ userGroup.offset(0).limit(20).getUserGroupList({})
 ```javascript
 exports.main = async function (event, callback) {
   let userGroup = new BaaS.UserGroup()
-  console.log(await userGroup.create({name: '测试',parent:'11'}))
-  callback(null)
+  callback(null, await userGroup.create({name: '测试',parent:'11'}))
 }
 ```
 
@@ -133,7 +133,7 @@ exports.main = async function (event, callback) {
 
 | 参数    | 类型   | 必填 | 说明 |
 | :-----  | :----- | :-- | :-- |
-| users | integer Array | Y   | 用户 ID 数组|
+| users | integer Array | Y   | 用户 ID (对应 _userprofile 表中的 id 字段) 数组|
 | groups | integer Array | Y   | 用户组 ID 数组|
 
 **示例代码**
@@ -152,7 +152,7 @@ exports.main = async function (event, callback) {
 
 | 参数    | 类型   | 必填 | 说明 |
 | :-----  | :----- | :-- | :-- |
-| users | integer Array | Y   | 用户 ID 数组|
+| users | integer Array | Y   | 用户 ID (对应 _userprofile 表中的 id 字段) 数组|
 | groups | integer Array | Y   | 用户组 ID 数组|
 
 ```javascript

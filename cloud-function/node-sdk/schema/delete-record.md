@@ -115,6 +115,13 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
 | 404            | 数据行不存在      |
 | 403            | 没有权限删除数据   |
 
-**状态码说明**
+#### 批量删除时不触发触发器
 
-<span class="attention">注：</span> 由于对数据表的增删改均会触发 trigger 动作，为了防止出现严重消耗系统资源的情况，对数据表进行批量操作的数据条目最多不能超过 1000 条。
+```js
+// 知晓云后台设置的触发器将不会被触发
+MyTableObject.delete(query, {enableTrigger: false}).then(res => {
+   console.log(res)
+}, err => {
+  //err 为 HError 对象
+})
+```
