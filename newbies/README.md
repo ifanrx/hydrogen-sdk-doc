@@ -12,7 +12,7 @@
 
 ## 小程序注册指引
 
-在使用**知晓云**之前，请先确保按照微信官方指引完成[小程序注册流程](https://mp.weixin.qq.com/)。
+在使用**知晓云**之前，请先确保按照微信官方指引完成[小程序注册流程](https://developers.weixin.qq.com/miniprogram/dev/)。
 
 ## 知晓云账号注册
 
