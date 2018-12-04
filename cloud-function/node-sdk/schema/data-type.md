@@ -8,7 +8,7 @@
 | integer | 整数， 如 `2` `3`   |
 | number  | 数字，可以是整数，也可以是浮点数，如 `5` `6.2` `3.1415926` |
 | boolean | 布尔值， `true` 或者 `false` |
-| array   | 数组， 数组元素支持 `string`、`integer`、`number`、`boolean`、`object`、`geojson`、`file` 7 种类型 |
+| array   | 数组， 数组元素支持 `string`、`integer`、`number`、`boolean`、`object`、`geojson`、`file`、`date` 8 种类型 |
 | object  | 对象，必须是`{...}`格式，即对象的字面量形式 |
 | geojson | 地理位置，支持 GeoPoint、GeoPloygon（点与多边形）两种类型，请参考[地理位置操作](./geo.md)章节。GeoJSON 具体介绍，请参考 mongoDB 的 [GeoJSON Object](https://docs.mongodb.com/manual/reference/geojson/)  |
 | date    | 日期时间，[ISO8601](https://zh.wikipedia.org/wiki/ISO_8601) 格式的日期字符串，例如：`"2018-09-01T18:31:02.631000+08:00"` |
@@ -51,6 +51,7 @@ file 类型的数据结构
   array_num: [91.7485922640633, 10.305134978939634],   // array field，元素类型为 number
   array_str: ["abc", "def", "ghi"],   // array field，元素类型为 string
   array_object: [{a: 10}],    // array field，元素类型为 object
+  array_date: ['2018-12-12T11:48:04+08:00', '2018-12-12T11:48:04.734000+08:00'],    // array field，元素类型为 date
   array_geojson [{    // array field，元素类型为 geojson
     coordinates: [10.123, 8.543],
     type: "Point"
