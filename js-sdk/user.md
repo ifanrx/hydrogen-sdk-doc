@@ -10,7 +10,7 @@
 
 ### 获取当前用户信息
 
-`wx.BaaS.login` 方法会返回完成登录后的当前用户信息，同时，我们也给出 `wx.BaaS.storage.get('userinfo')` 获取存储在 storage 的当前用户信息（该方式目前暂不支持获取自定义字段）。
+`wx.BaaS.login()` 方法会返回完成登录后的当前用户信息。
 
 如果用户授权登录过，该方法将返回以下字段：
 
@@ -30,7 +30,35 @@
 微信目前对小程序获取用户信息有两个小时的缓存设定，因此，如果一个用户修改了个人信息如头像、昵称等，需两个小时才能重新授权拿到最新的信息。
 如果用户未进行授权登录，将返回空。
 
-此时，可通过 `wx.BaaS.storage.get('uid')` 获取 uid (用户 id), `wx.BaaS.storage.get('openid')` 获取 openid, `wx.BaaS.storage.get('unionid')` 获取 unionid。
+> **danger**
+> 调用此方法时请确保用户已经同意授权，请参考 [登入登出章节](./signin-signout.md) 中关于 wx.BaaS.handleUserInfo 的使用方法
+
+**示例代码**
+
+```js
+wx.BaaS.login().then(res => {
+  // success
+}, err => {
+  // err
+})
+```
+
+**返回示例**
+
+```json
+{
+  "nickName": "Larry。",
+  "gender": 1,
+  "language": "zh_CN",
+  "city": "Huizhou",
+  "province": "Guangdong",
+  "country": "China",
+  "avatarUrl": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTK4QEMnT5dggfh4xpSuOWZicyNagricjH4jzKRI5ZFEiaBPzicp8wcQo23IEJjt8vkuAQ6rYVkYF61FVA/132",
+  "id": 11123,
+  "openid": "ofo380BgVHDSf3gz0QK1DYP666",
+  "unionid": "oUsert59Z0TZHkCQ9f3Po777"
+}
+```
 
 ### 获取指定用户信息
 
