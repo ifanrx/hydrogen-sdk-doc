@@ -26,7 +26,7 @@ SDK 提供了快速登录小程序的接口，省去使用微信登录接口时�
 | id      | Integer | 用户在用户表中的 ID |
 | openid  | String | 用户唯一标识，由微信生成 |
 | unionid | String | 用户在开放平台的唯一标识符，由微信生成 |
-| expires_at | Integer | 指示当前登录态的过期时间，由知晓云维护。该值为一个 js 毫秒时间戳 |
+| session_expires_at | Integer | 指示当前登录态的过期时间，由知晓云维护。该值为一个 unix 时间戳 (SDK >= 1.11.0) |
 
 **请求示例**
 
@@ -46,7 +46,7 @@ wx.BaaS.login(false).then(res => {
   "id": 61736923,
   "openid": "ofo380BgVHDSf3gz0QK1DYPGnLxx",
   "unionid": "",
-  "expires_at" : 1546588122840
+  "session_expires_at" : 1546588122840
 }
 ```
 
@@ -95,7 +95,7 @@ then 回调中的 res 对象示例：
   "openid": "ofo380BgVHDSf3gz0QK1DYPGnLxx",
   "province": "Guangdong",
   "unionid": "",
-  "expires_at" : 1546588122840
+  "session_expires_at" : 1546588122840
 }
 ```
 
@@ -107,7 +107,7 @@ then 回调中的 res 对象示例：
   "id": 61736923,
   "openid": "ofo380BgVHDSf3gz0QK1DYPGnLxx",
   "unionid": "",
-  "expires_at" : 1546588122840
+  "session_expires_at" : 1546588122840
 }
 ```
 
@@ -126,7 +126,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | id      | Number | 用户在用户表中的 ID |
 | openid  | String | 用户唯一标识，由微信生成 |
 | unionid | String | 用户在开放平台的唯一标识符，由微信生成 |
-| expires_at | Integer | 指示当前登录态的过期时间，由知晓云维护。该值为一个 js 毫秒时间戳 |
+| expires_at | Integer | 指示当前登录态的过期时间，由知晓云维护。该值为一个 unix 时间戳 (SDK >= 1.11.0) |
 
 当用户允许授权时，在上面返回参数的基础上，加上以下几个参数：
 
