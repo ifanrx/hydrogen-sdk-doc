@@ -26,6 +26,7 @@
 | openid    | String | 用户唯一标识，由微信生成 |
 | province  | String | 用户所在省份 |
 | unionid   | String | 用户在开放平台的唯一标识符，由微信生成 |
+| expires_at | Integer | 指示当前登录态的过期时间，由知晓云维护。该值为一个 js 毫秒时间戳 |
 
 微信目前对小程序获取用户信息有两个小时的缓存设定，因此，如果一个用户修改了个人信息如头像、昵称等，需两个小时才能重新授权拿到最新的信息。
 如果用户未进行授权登录，将返回空。
@@ -56,7 +57,8 @@ wx.BaaS.login().then(res => {
   "avatarUrl": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTK4QEMnT5dggfh4xpSuOWZicyNagricjH4jzKRI5ZFEiaBPzicp8wcQo23IEJjt8vkuAQ6rYVkYF61FVA/132",
   "id": 11123,
   "openid": "ofo380BgVHDSf3gz0QK1DYP666",
-  "unionid": "oUsert59Z0TZHkCQ9f3Po777"
+  "unionid": "oUsert59Z0TZHkCQ9f3Po777",
+  "expires_at": 1546588122840
 }
 ```
 
