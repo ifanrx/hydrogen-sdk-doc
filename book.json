@@ -30,12 +30,12 @@
   "plugins": [
     "algolia",
     "anchor-nav-x",
-    "editlink",
     "expandable-chapters-small",
     "favicon",
     "image-captions",
     "simpletabs",
-    "styled-blockquotes"
+    "styled-blockquotes",
+    "hydrogen-landing@./_ifrx_plugin/gitbook-plugin-hydrogen-landing"
   ],
   "title": "知晓云平台开发文档",
   "variables": {
