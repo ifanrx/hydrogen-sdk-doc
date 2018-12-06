@@ -237,6 +237,15 @@ MyFile.upload(fileParam).then(res => {
 })
 ```
 
+```js
+// 元素类型为 date
+let Table = new BaaS.TableObject(tableName)
+let record = Table.create()
+let date = new Date().toISOString()
+record.set('array_date', [date])
+record.save()
+```
+
 ## 添加 pointer 类型数据
 
 > **info**
