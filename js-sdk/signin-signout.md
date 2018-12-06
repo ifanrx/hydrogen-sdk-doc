@@ -126,7 +126,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | id      | Number | 用户在用户表中的 ID |
 | openid  | String | 用户唯一标识，由微信生成 |
 | unionid | String | 用户在开放平台的唯一标识符，由微信生成 |
-| expires_at | Integer | 指示当前登录态的过期时间，由知晓云维护。该值为一个 unix 时间戳 (SDK >= 1.11.0) |
+| session_expires_at | Integer | 指示当前登录态的过期时间，由知晓云维护。该值为一个 unix 时间戳 (SDK >= 1.11.0) |
 
 当用户允许授权时，在上面返回参数的基础上，加上以下几个参数：
 
