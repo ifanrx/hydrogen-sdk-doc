@@ -31,7 +31,7 @@
 | :------- | :----- | :-- | :---|
 | recordID | String | 是  | 数据行 id |
 
-3.调用 set 或 unset (SDK >= 1.10.3) 修改指定记录的数据
+3.调用 set 或 unset (SDK >= 1.12.0) 修改指定记录的数据
 
 a. set 操作
 
@@ -47,14 +47,14 @@ a. set 操作
 | value | any               | 是  | 与 key 字段的类型保持一致 |
 | obj   | Object            | 是  | 一次性赋值的键值对对象, 如 `{a: 10, b: 20}` |
 
-b. unset 操作 (SDK >= 1.10.3)
+b. unset 操作 (SDK >= 1.12.0)
 
 将某个字段删除
 
 `product.unset(key)` 或 `product.set(obj)`
 
 > **info**
-> SDK 版本需 >= 1.10.3
+> SDK 版本需 >= 1.12.0
 
 **参数说明**
 
