@@ -165,11 +165,11 @@ MyContent.setQuery(query).find().then(res => {
 })
 ```
 
-## 筛选字段
+## 筛选字段 （SDK >= 1.12.1）
 
 select 使用方法可以参考[数据表 - 字段过滤](../schema/select-and-expand.md)小节
 
-## 扩展字段
+## 扩展字段 （SDK >= 1.12.1）
 
 expand 使用方法可以参考[数据表 - 字段扩展](../schema/select-and-expand.md)小节
 
