@@ -114,47 +114,109 @@ MyUser.get(userID).then(res => {
 **返回示例**
 
 非当前用户：
-```js
+```json
 {
-  avatar: "https://media.ifanrusercontent.com/media/tavatar/9a/1d/9a1db7592d6a325a845548f2fecbfb4516e138d0.jpg",
-  id: 36395394,
-  nickname: "hip hop man",
+  "statusCode": 200,
+  "data": {
+    "avatar": "https://media.ifanrusercontent.com/media/tavatar/9a/1d/9a1db7592d6a325a845548f2fecbfb4516e138d0.jpg",
+    "id": 36395394,
+    "nickname": "hip hop man"
+  }
 }
 ```
 
 当前用户：
-```js
+```json
 {
-  avatar: "https://media.ifanrusercontent.com/media/tavatar/9a/1d/9a1db7592d6a325a845548f2fecbfb4516e138d0.jpg",
-  city: "Guangzhou",
-  country: "China",
-  gender: 1,
-  id: 36395394,
-  language: "en",
-  nickname: "hip hop man",
-  openid: "oXUfx0HKez4qLqgX-XSwLCpiBYS9",
-  province: "Guangdong"
+  "statusCode": 200,
+  "data": {
+    "avatar": "https://media.ifanrusercontent.com/media/tavatar/9a/1d/9a1db7592d6a325a845548f2fecbfb4516e138d0.jpg",
+    "city": "Guangzhou",
+    "country": "China",
+    "gender": 1,
+    "id": 36395394,
+    "language": "en",
+    "nickname": "hip hop man",
+    "openid": "oXUfx0HKez4qLqgX-XSwLCpiBYS9",
+    "province": "Guangdong"
+  }
 }
 ```
 
-### 筛选返回字段
+### 筛选返回字段（SDK >= 1.11.1）
 
 select 使用方法可以参考[数据表 - 字段过滤](/js-sdk/schema/select-and-expand.md)小节
 
+### 扩展字段 （SDK >= 1.11.1）
+
+expand 使用方法可以参考[数据表 - 字段扩展](/js-sdk/schema/select-and-expand.md)小节
+
 **请求示例**
+
+假设 _userprofile 表中有一个类型为 pointer 的字段，名称为 `pointer_test_oder`, 指向了 test_order 表
 
 ```javascript
 let MyUser = new wx.BaaS.User()
-MyUser.select('nickname').find().then((res) => {
+MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_order']).get(123456).then((res) => {
+// success
+}, (err) => {
+// err
+})
+```
+
+**请求结果**
+```json
+{
+  "statusCode": 200,
+  "data": {
+    "pointer_test_order": {
+      "created_at": 1538966895,
+      "_table": "test_order",
+      "id": "5bbac56fbd66033df7fd0aa2",
+      "created_by": 61736923,
+      "updated_at": 1538966895
+    },
+    "nickname": "ifanrx"
+  }
+}
+```
+
+```javascript
+let MyUser = new wx.BaaS.User()
+MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_oder']).find().then((res) => {
 // success
 }, (err) => {
 // err
 })
 
 ```
+
 **请求结果**
-```javascript
-[{"nickname": "ifanrx"}]
+
+```json
+{
+  "statusCode": 200,
+  "data": {
+    "meta": {
+      "next": null,
+      "offset": 0,
+      "total_count": 1,
+      "limit": 20,
+      "previous": null
+    },
+    "objects": [
+      {
+        "pointer_test_order": {
+          "id": "5bbac56fbd66033df7fd0aa2",
+          "_table": "test_order",
+          "created_by": 61736923,
+          "updated_at": 1538966895
+        },
+        "nickname": "ifanrx"
+      }
+    ]
+  }
+}
 ```
 
 ### 更新当前用户信息
