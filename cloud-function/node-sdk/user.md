@@ -59,11 +59,11 @@ MyUser.get(userID).then(res => {
 }
 ```
 
-### 筛选返回字段 （SDK >= 1.12.1）
+### 筛选返回字段
 
 select 使用方法可以参考[数据表 - 字段过滤](./schema/select-and-expand.md)小节
 
-### 扩展字段 （SDK >= 1.12.1）
+### 扩展字段
 
 expand 使用方法可以参考[数据表 - 字段扩展](./schema/select-and-expand.md)小节
 
