@@ -73,7 +73,7 @@ expand 使用方法可以参考[数据表 - 字段扩展](./schema/select-and-ex
 
 ```javascript
 let MyUser = new BaaS.User()
-MyUser.expand(['pointer_test_oder']).select('nickname').get(123456).then((res) => {
+MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_order']).get(123456).then((res) => {
 // success
 }, (err) => {
 // err
@@ -99,7 +99,7 @@ MyUser.expand(['pointer_test_oder']).select('nickname').get(123456).then((res) =
 
 ```javascript
 let MyUser = new wx.BaaS.User()
-MyUser.expand(['pointer_test_oder']).select('nickname').find().then((res) => {
+MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_order']).find().then((res) => {
 // success
 }, (err) => {
 // err

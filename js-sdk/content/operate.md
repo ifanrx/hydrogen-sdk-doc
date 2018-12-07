@@ -96,13 +96,19 @@ MyContentGroup.setQuery(query).find().then(res => {
 })
 ```
 
-#### 筛选返回字段
+#### 筛选字段
 
-select 使用方法可以参考[数据表 - 字段过滤]小节(/js-sdk/schema/select-and-expand.md)
+select 使用方法可以参考[数据表 - 字段过滤](/js-sdk/schema/select-and-expand.md)小节
+
+#### 扩展字段
+
+expand 使用方法可以参考[数据表 - 字段扩展](/js-sdk/schema/select-and-expand.md)小节
+
+假设 _richtextcontent 表中有一个类型为 pointer 的字段，名称为 `pointer_test_oder`, 指向了 test_order 表
 
 **请求示例 1**
 ```js
-MyContentGroup.select(['title','content']).find().then(res => {
+MyContentGroup.select(['-title','-content']).expand('pointer_test_oder').getContent(1513076305938456).then(res => {
   // success
 }, err => {
   // err
@@ -111,16 +117,36 @@ MyContentGroup.select(['title','content']).find().then(res => {
 
 **请求结果 1**
 
-```javascript
-[{
-   content: "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
-   title: "iphone X",
-}]
+```json
+{
+  "statusCode": 200,
+  "data": {
+    "categories": [
+      1513076252710475
+    ],
+    "cover": "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1donykIpnuvcRiAX.jpg",
+    "created_at": 1513076305,
+    "created_by": 16042162,
+    "description": "iphoneX 发布",
+    "group_id": 1513076211190694,
+    "id": 1513076305938456,
+    "updated_at": 1513076364,
+    "pointer_test_order": {
+      "created_at": 1538966895,
+      "_table": "test_order",
+      "id": "5bbac56fbd66033df7fd0aa2",
+      "created_by": 61736923,
+      "updated_at": 1538966895
+    }
+  }
+}
+
 ```
+
 
 **请求示例 2**
 ```js
-MyContentGroup.select(['-title','-content']).find().then(res => {
+MyContentGroup.select(['title','content', 'pointer_test_oder']).expand('pointer_test_oder').find().then(res => {
   // success
 }, err => {
   // err
@@ -129,17 +155,40 @@ MyContentGroup.select(['-title','-content']).find().then(res => {
 
 **请求结果 2**
 
-```javascript
-[{
-   categories: [1513076252710475],
-   cover: "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1donykIpnuvcRiAX.jpg",
-   created_at: 1513076305,
-   created_by: 16042162,
-   description: "iphoneX 发布",
-   group_id: 1513076211190694,
-   id: 1513076305938456,
-   updated_at: 1513076364
- }]
+```json
+{
+  "statusCode": 200,
+  "data": {
+    "meta": {
+      "next": null,
+      "offset": 0,
+      "total_count": 1,
+      "limit": 20,
+      "previous": null
+    },
+    "objects": [
+      {
+        "content": "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
+        "title": "iphone X",
+        "pointer_test_order": {
+          "created_at": 1538966895,
+          "_table": "test_order",
+          "id": "5bbac56fbd66033df7fd0aa2",
+          "created_by": 61736923,
+          "updated_at": 1538966895,
+          "pointer_test_order": {
+            "created_at": 1538966895,
+            "_table": "test_order",
+            "id": "5bbac56fbd66033df7fd0aa2",
+            "created_by": 61736923,
+            "updated_at": 1538966895
+          }
+        }
+      }
+    ]
+  }
+}
+
 ```
 
 ### 获取分类详情
@@ -175,16 +224,16 @@ MyContentGroup.getCategory(categoryID).then(res => {
 **返回示例**
 
 res.data:
-```js
+```json
 {
-  have_children: true,
-  id: 1513076252710475,
-  name: "科技",
-  children: [
+  "have_children": true,
+  "id": 1513076252710475,
+  "name": "科技",
+  "children": [
     {
-      have_children: false,
-      id: 1514515552050186,
-      name: "评测"
+      "have_children": false,
+      "id": 1514515552050186,
+      "name": "评测"
     }
   ]
 }
@@ -255,7 +304,7 @@ wx.BaaS.getContent(objects).then(res => {
 
 **返回示例**
 
-```js
+```json
 {
   "content": "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
   "cover": "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1donykIpnuvcRiAX.jpg",
@@ -308,7 +357,7 @@ wx.BaaS.getContentList(objects).then(res => {
 
 **返回示例**
 
-```js
+```json
 {
   "meta": {
     "limit": 20,
@@ -364,7 +413,7 @@ wx.BaaS.getContentGroup(objects).then(res => {
 
 **返回示例**
 
-```js
+```json
 {
   "meta": {
      "limit": 20,
@@ -409,7 +458,7 @@ wx.BaaS.getContentGroupList().then(res => {
 
 **返回示例**
 
-```js
+```json
 {
   "meta": {
      "limit": 20,
@@ -465,7 +514,7 @@ wx.BaaS.getContentCategory(objects).then(res => {
 
 **返回示例**
 
-```js
+```json
 {
   "have_children": true,
   "id": 7,
