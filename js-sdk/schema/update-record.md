@@ -51,7 +51,7 @@ b. unset 操作 (SDK >= 1.12.0)
 
 将某个字段删除
 
-`product.unset(key)` 或 `product.set(obj)`
+`product.unset(key)` 或 `product.unset(obj)`
 
 > **info**
 > SDK 版本需 >= 1.12.0
