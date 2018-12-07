@@ -180,7 +180,7 @@ expand 使用方法可以参考[数据表 - 字段扩展](../schema/select-and-e
 
 ```js
 let richTextID = 1514529306082815
-MyContent.select('content').expand('pointer_test_order').get(richTextID).then(res => {
+MyContent.select(['content', 'pointer_test_order']).expand('pointer_test_order').get(richTextID).then(res => {
   // success
 }, err => {
   // err
@@ -208,7 +208,7 @@ res.data:
 
 ```js
 let richTextID = 1514529306082815
-MyContent.select('content').expand('pointer_test_order').find().then(res => {
+MyContent.select(['content', 'pointer_test_order']).expand('pointer_test_order').find().then(res => {
   // success
 }, err => {
   // err
