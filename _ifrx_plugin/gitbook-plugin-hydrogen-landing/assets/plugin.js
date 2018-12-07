@@ -1,3 +1,10 @@
+function sidebarScrollIntoView() {
+  let el = document.querySelector('.book-summary .active')
+  if (el) {
+    el.scrollIntoView({behavior: 'smooth', block: 'center'})
+  }
+}
+
 require(["gitbook", "jQuery"], function (gitbook, $) {
   gitbook.events.bind('start', function (e, config) {
     setTimeout(() => {
@@ -25,12 +32,9 @@ require(["gitbook", "jQuery"], function (gitbook, $) {
       })
 
     }, 300)
+  })
 
-    setTimeout(() => {
-      let el = document.querySelector('.book-summary .active')
-      if (el) {
-        el.scrollIntoView({behavior: 'smooth', block: 'center'})
-      }
-    }, 1000)
+  gitbook.events.bind('page.change', function () {
+    setTimeout(sidebarScrollIntoView, 300)
   })
 })
