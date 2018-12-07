@@ -49,7 +49,7 @@ a. set 操作
 
 b. unset 操作 (SDK >= 1.12.0)
 
-将某个字段删除
+将某个字段的值清空
 
 `product.unset(key)` 或 `product.unset(obj)`
 
