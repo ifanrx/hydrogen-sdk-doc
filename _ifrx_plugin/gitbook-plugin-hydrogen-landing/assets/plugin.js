@@ -25,5 +25,12 @@ require(["gitbook", "jQuery"], function (gitbook, $) {
       })
 
     }, 300)
+
+    setTimeout(() => {
+      let el = document.querySelector('.book-summary .active')
+      if (el) {
+        el.scrollIntoView({behavior: 'smooth', block: 'center'})
+      }
+    }, 1000)
   })
 })
