@@ -47,9 +47,6 @@ a. set 操作
  
  `product.unset(key)` 或 `product.unset(obj)`
  
-> **info**
-> SDK 版本需 >= 1.12.0
-
 **参数说明**
 
 | 参数  | 类型              | 必填 | 说明 |
