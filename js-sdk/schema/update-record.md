@@ -31,13 +31,41 @@
 | :------- | :----- | :-- | :---|
 | recordID | String | 是  | 数据行 id |
 
-3.修改指定记录的数据
+3.调用 set 或 unset (SDK >= 1.12.0) 修改指定记录的数据
 
-`MyRecord.set(data)`
+a. set 操作
 
-该方法支持两种类型的赋值操作：
+为某个字段赋值
 
-a.一次性赋值：
+`product.set(key, value)` 或 `product.set(obj)`
+
+**参数说明**
+
+| 参数  | 类型              | 必填 | 说明 |
+| :---- | :---------------- | :-- | :-- |
+| key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
+| value | any               | 是  | 与 key 字段的类型保持一致 |
+| obj   | Object            | 是  | 一次性赋值的键值对对象, 如 `{a: 10, b: 20}` |
+
+b. unset 操作 (SDK >= 1.12.0)
+
+将某个字段的值清空
+
+`product.unset(key)` 或 `product.unset(obj)`
+
+> **info**
+> SDK 版本需 >= 1.12.0
+
+**参数说明**
+
+| 参数  | 类型              | 必填 | 说明 |
+| :---- | :---------------- | :-- | :-- |
+| key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
+| obj   | Object            | 是  | 一次性赋值的键值对对象, 如 `{a: '', b: ''}` |
+
+set 和 unset 方法都支持两种类型的赋值操作：
+
+a. 一次性赋值：
 
 ```js
 MyRecord.set({
@@ -46,7 +74,7 @@ MyRecord.set({
 })
 ```
 
-b.逐个赋值
+b. 逐个赋值：
 
 ```js
 MyRecord.set(key1, value1)
@@ -54,7 +82,9 @@ MyRecord.set(key2, value2)
 ```
 
 > **info**
-> 对同一字段进行多次 `set` 操作，后面的数据会覆盖掉前面的数据
+> 1.对同一字段进行多次 `set` 操作，后面的数据会覆盖掉前面的数据
+>
+> 2.不可同时用 `set` 与 `unset` 操作同一字段，否则会报 605 错误
 
 4.将修改后的记录保存到服务器
 
