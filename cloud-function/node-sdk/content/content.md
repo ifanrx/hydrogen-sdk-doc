@@ -130,18 +130,18 @@ MyContent.get(richTextID).then(res => {
 **返回示例**
 
 res.data:
-``` js
+```json
 {
-  categories: [1513076252710475],
-  content: "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
-  cover: "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1donykIpnuvcRiAX.jpg",
-  created_at: 1513076305,
-  created_by: 16042162,
-  description: "iphoneX 发布",
-  group_id: 1513076211190694,
-  id: 1513076305938456,
-  title: "iphone X",
-  updated_at: 1513076364
+  "categories": [1513076252710475],
+  "content": "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
+  "cover": "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1donykIpnuvcRiAX.jpg",
+  "created_at": 1513076305,
+  "created_by": 16042162,
+  "description": "iphoneX 发布",
+  "group_id": 1513076211190694,
+  "id": 1513076305938456,
+  "title": "iphone X",
+  "updated_at": 1513076364
 }
 ```
 
@@ -164,6 +164,85 @@ MyContent.setQuery(query).find().then(res => {
   // err
 })
 ```
+
+## 筛选字段 
+
+select 使用方法可以参考[数据表 - 字段过滤](../schema/select-and-expand.md)小节
+
+## 扩展字段 
+
+expand 使用方法可以参考[数据表 - 字段扩展](../schema/select-and-expand.md)小节
+
+假设 _richtextcontent 表中有一个类型为 pointer 的字段，名称为 `pointer_test_oder`, 指向了 test_order 表
+
+
+**请求示例**
+
+```js
+let richTextID = 1514529306082815
+MyContent.select(['content', 'pointer_test_order']).expand('pointer_test_order').get(richTextID).then(res => {
+  // success
+}, err => {
+  // err
+})
+```
+
+**返回示例**
+
+res.data:
+
+```json
+{
+  "content": "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
+  "pointer_test_order": {
+    "created_at": 1538966895,
+    "_table": "test_order",
+    "id": "5bbac56fbd66033df7fd0aa2",
+    "created_by": 61736923,
+    "updated_at": 1538966895
+  }    
+}
+```
+
+**请求示例**
+
+```js
+let richTextID = 1514529306082815
+MyContent.select(['content', 'pointer_test_order']).expand('pointer_test_order').find().then(res => {
+  // success
+}, err => {
+  // err
+})
+```
+
+**返回示例**
+
+res.data:
+
+```json
+{
+    "meta": {
+      "next": null,
+      "offset": 0,
+      "total_count": 1,
+      "limit": 20,
+      "previous": null
+    },
+    "objects": [
+      {
+        "content": "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
+        "pointer_test_order": {
+          "created_at": 1538966895,
+          "_table": "test_order",
+          "id": "5bbac56fbd66033df7fd0aa2",
+          "created_by": 61736923,
+          "updated_at": 1538966895
+        }
+      }
+    ]
+  }
+```
+
 
 ## 更新内容
 

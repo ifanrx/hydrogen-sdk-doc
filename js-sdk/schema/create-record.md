@@ -272,6 +272,16 @@ MyFile.upload(fileParam).then(res => {
   record.set('array_file', [file])
   return record.save()
 })
+```
+
+```js
+// 元素类型为 date
+let Table = new wx.BaaS.TableObject(tableName)
+let record = Table.create()
+let date = new Date().toISOString()
+record.set('array_date', [date])
+record.save()
+```
 
 ### 添加 pointer 类型数据 (SDK >= 1.10.0)
 
@@ -386,7 +396,7 @@ then 回调中 res 结构如下:
            "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
          }
        }
-     ] 
+     ]
   }
 }
 ```

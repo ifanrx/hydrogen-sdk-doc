@@ -10,7 +10,7 @@
 
 ### 获取当前用户信息
 
-`wx.BaaS.login` 方法会返回完成登录后的当前用户信息，同时，我们也给出 `wx.BaaS.storage.get('userinfo')` 获取存储在 storage 的当前用户信息（该方式目前暂不支持获取自定义字段）。
+`wx.BaaS.login()` 方法会返回完成登录后的当前用户信息。
 
 如果用户授权登录过，该方法将返回以下字段：
 
@@ -26,11 +26,41 @@
 | openid    | String | 用户唯一标识，由微信生成 |
 | province  | String | 用户所在省份 |
 | unionid   | String | 用户在开放平台的唯一标识符，由微信生成 |
+| session_expires_at | Integer | 指示当前登录态的过期时间，由知晓云维护。该值为一个 unix 时间戳 (SDK >= 1.11.0) |
 
 微信目前对小程序获取用户信息有两个小时的缓存设定，因此，如果一个用户修改了个人信息如头像、昵称等，需两个小时才能重新授权拿到最新的信息。
 如果用户未进行授权登录，将返回空。
 
-此时，可通过 `wx.BaaS.storage.get('uid')` 获取 uid (用户 id), `wx.BaaS.storage.get('openid')` 获取 openid, `wx.BaaS.storage.get('unionid')` 获取 unionid。
+> **danger**
+> 调用此方法时请确保用户已经同意授权，请参考 [登入登出章节](./signin-signout.md) 中关于 wx.BaaS.handleUserInfo 的使用方法
+
+**示例代码**
+
+```js
+wx.BaaS.login().then(res => {
+  // success
+}, err => {
+  // err
+})
+```
+
+**返回示例**
+
+```json
+{
+  "nickName": "Larry。",
+  "gender": 1,
+  "language": "zh_CN",
+  "city": "Huizhou",
+  "province": "Guangdong",
+  "country": "China",
+  "avatarUrl": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTK4QEMnT5dggfh4xpSuOWZicyNagricjH4jzKRI5ZFEiaBPzicp8wcQo23IEJjt8vkuAQ6rYVkYF61FVA/132",
+  "id": 11123,
+  "openid": "ofo380BgVHDSf3gz0QK1DYP666",
+  "unionid": "oUsert59Z0TZHkCQ9f3Po777",
+  "session_expires_at": 1546588122840
+}
+```
 
 ### 获取指定用户信息
 
@@ -84,47 +114,109 @@ MyUser.get(userID).then(res => {
 **返回示例**
 
 非当前用户：
-```js
+```json
 {
-  avatar: "https://media.ifanrusercontent.com/media/tavatar/9a/1d/9a1db7592d6a325a845548f2fecbfb4516e138d0.jpg",
-  id: 36395394,
-  nickname: "hip hop man",
+  "statusCode": 200,
+  "data": {
+    "avatar": "https://media.ifanrusercontent.com/media/tavatar/9a/1d/9a1db7592d6a325a845548f2fecbfb4516e138d0.jpg",
+    "id": 36395394,
+    "nickname": "hip hop man"
+  }
 }
 ```
 
 当前用户：
-```js
+```json
 {
-  avatar: "https://media.ifanrusercontent.com/media/tavatar/9a/1d/9a1db7592d6a325a845548f2fecbfb4516e138d0.jpg",
-  city: "Guangzhou",
-  country: "China",
-  gender: 1,
-  id: 36395394,
-  language: "en",
-  nickname: "hip hop man",
-  openid: "oXUfx0HKez4qLqgX-XSwLCpiBYS9",
-  province: "Guangdong"
+  "statusCode": 200,
+  "data": {
+    "avatar": "https://media.ifanrusercontent.com/media/tavatar/9a/1d/9a1db7592d6a325a845548f2fecbfb4516e138d0.jpg",
+    "city": "Guangzhou",
+    "country": "China",
+    "gender": 1,
+    "id": 36395394,
+    "language": "en",
+    "nickname": "hip hop man",
+    "openid": "oXUfx0HKez4qLqgX-XSwLCpiBYS9",
+    "province": "Guangdong"
+  }
 }
 ```
 
-### 筛选返回字段
+### 筛选返回字段（SDK >= 1.11.1）
 
 select 使用方法可以参考[数据表 - 字段过滤](/js-sdk/schema/select-and-expand.md)小节
 
+### 扩展字段 （SDK >= 1.11.1）
+
+expand 使用方法可以参考[数据表 - 字段扩展](/js-sdk/schema/select-and-expand.md)小节
+
 **请求示例**
+
+假设 _userprofile 表中有一个类型为 pointer 的字段，名称为 `pointer_test_oder`, 指向了 test_order 表
 
 ```javascript
 let MyUser = new wx.BaaS.User()
-MyUser.select('nickname').find().then((res) => {
+MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_order']).get(123456).then((res) => {
+// success
+}, (err) => {
+// err
+})
+```
+
+**请求结果**
+```json
+{
+  "statusCode": 200,
+  "data": {
+    "pointer_test_order": {
+      "created_at": 1538966895,
+      "_table": "test_order",
+      "id": "5bbac56fbd66033df7fd0aa2",
+      "created_by": 61736923,
+      "updated_at": 1538966895
+    },
+    "nickname": "ifanrx"
+  }
+}
+```
+
+```javascript
+let MyUser = new wx.BaaS.User()
+MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_oder']).find().then((res) => {
 // success
 }, (err) => {
 // err
 })
 
 ```
+
 **请求结果**
-```javascript
-[{"nickname": "ifanrx"}]
+
+```json
+{
+  "statusCode": 200,
+  "data": {
+    "meta": {
+      "next": null,
+      "offset": 0,
+      "total_count": 1,
+      "limit": 20,
+      "previous": null
+    },
+    "objects": [
+      {
+        "pointer_test_order": {
+          "id": "5bbac56fbd66033df7fd0aa2",
+          "_table": "test_order",
+          "created_by": 61736923,
+          "updated_at": 1538966895
+        },
+        "nickname": "ifanrx"
+      }
+    ]
+  }
+}
 ```
 
 ### 更新当前用户信息

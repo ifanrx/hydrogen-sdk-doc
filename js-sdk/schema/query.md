@@ -13,7 +13,7 @@
 | string   | =, in, notIn, !=, isNull, isNotNull, contains, matches, exists, notExists               |      |
 | integer  | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                    |      |
 | number   | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                    |      |
-| array    | =, in, notIn, isNull, isNotNull, arrayContains, exists, notExists                       | file、geojson、object 类型的 array 不支持查询操作。如果进行查询，会返回空数组 |
+| array    | =, in, notIn, isNull, isNotNull, arrayContains, exists, notExists                       | file、geojson、object、date 类型的 array 不支持查询操作。如果进行查询，会返回空数组 |
 | boolean  | =, exists, notExists, isNull, isNotNull                                                 |      |
 | date     | =, >, >=, <, <=,  exists, notExists, isNull, isNotNull                                  |      |
 | file     | isNull, isNotNull, exists, notExists                                                    |      |
@@ -22,7 +22,7 @@
 | pointer  | =, in, notIn, !=, isNull, isNotNull, exists, notExists                                  |      |
 
 > **info**
-> file、geojson、object 类型的 array 不支持查询操作。如果进行查询，会返回空数组
+> file、geojson、object、date 类型的 array 不支持查询操作。如果进行查询，会返回空数组
 
 ### 操作步骤
 
