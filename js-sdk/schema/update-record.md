@@ -188,7 +188,13 @@ record.patchObject('obj1', patch)
 
 ### 更新 pointer 类型字段 (SDK >= 1.10.0)
 
-假设有 product 表，其中的 `customer`  字段为一个指向 customer 表的 pointer 类型字段。
+假设有 product 表, product 表部分字段如下:
+
+| 字段名          | 字段类型          | 说明                 |
+|----------------|------------------|----------------------|
+| customer       |  pointer         | 指向了 `customer` 表     |
+| user           |  pointer         | 指向了 `_userprofile` 表     |
+
 
 现在需要更新 product 表中 id 为 `5bdfaf068asd123123asd` 的数据行
 
@@ -202,9 +208,12 @@ let customer = Customer.getWithoutData('5bdfaf068b155c0891d064ad')
 // 获取要修改的数据行的实例
 let Product = new wx.BaaS.TableObject('product')
 let product = Product.getWithoutData('5bdfaf068asd123123asd')
+// 69147880 为 _userprofile 表中某行数据的 id
+let user = new wx.BaaS.User().getWithoutData(69147880)
 
 // 给 pointer 字段赋值
 product.set('customer', customer)
+product.set('user', user)
 
 product.update().then(res=>{
   // success
@@ -214,7 +223,7 @@ product.update().then(res=>{
 **返回示例**
 ```json
 {
-  "status": 200,
+  "statusCode": 200,
   "data": {
     "_id": "5bdfaf068asd123123asd",
     "created_at": 1541744690,
@@ -223,6 +232,10 @@ product.update().then(res=>{
     "customer": {
       "id": "5bdfaf068b155c0891d064ad",
       "_table": "customer"
+    },
+    "user": {
+      "id": 69147880,
+      "_table": "_userprofile"
     },
     "read_perm": [ "user:*" ],
     "updated_at": 1541744690,

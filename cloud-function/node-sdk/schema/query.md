@@ -74,10 +74,10 @@ Product.find().then(res => {
 
 res 结构如下
 
-```js
+```json
 {
-  status: 200,
-  data: {
+  "status": 200,
+  "data": {
     "meta": {
       "limit": 20,
       "next": null,
@@ -91,15 +91,14 @@ res 结构如下
         "amount": 0,
         "created_at": 1503904437,
         "created_by": 36395395,
-        "desc": ["good", 'great'],
+        "desc": ["good", "great"],
         "id": "59a3c2b5afb7766a5ec6e84e",
         "name": "apple",
         "price": 1.0,
         "read_perm": ["user:*"],
         "updated_at": 1503904437,
         "write_perm": ["user:*"]
-      },
-      //...
+      }
     ]
   }
 }
@@ -328,18 +327,30 @@ query.hasKey('publisherInfo', 'abc.location')
 
 **示例代码**
 
-假设现在有两张表： order 表和 customer 表，order 表中有一个类型为 pointer，名称为 customer 的字段，指向了 customer 表的数据行。
-现在需要查询 order 表中，customer 字段指向 customer 表中 id 为 `5bad87ab0769797b4fb27a1b` 的数据行。
+假设现在有两张表： order 表和 customer 表。
+
+order 表部分字段结构如下：
+
+| 字段名          | 字段类型          | 说明                 |
+|----------------|------------------|----------------------|
+| customer       |  pointer         | 指向了 `customer` 表     |
+| user           |  pointer         | 指向了 `_userprofile` 表     |
+
+现在需要查询 order 表中，同时满足以下条件的数据行：
+
+- customer 字段指向 customer 表中 id 为 `5bad87ab0769797b4fb27a1b` 的数据行 
+- user 字段指向了 _userprofile 表中 id 为 `69147880` 的数据行
 
 ```js
-var query = new BaaS.Query()
+var query = new wx.BaaS.Query()
 var Customer = new BaaS.TableObject('customer')
 var Order = new BaaS.TableObject('order')
+var User = new BaaS.User()
 
-// 查询 customer 字段指向 customer 表中 id 为 5bad87ab0769797b4fb27a1b 的数据行
 query.compare('customer', '=', Customer.getWithoutData('5bad87ab0769797b4fb27a1b'))
+query.compare('user', '=', User.getWithoutData(69147880))
 
-Order.setQuery(query).expand(['customer']).find().then(res => {
+Order.setQuery(query).expand(['customer', 'user']).find().then(res => {
   
 })
 ```
@@ -372,13 +383,24 @@ res 结构如下:
         "nickname": "qwESIbpm",
         "updated_at": 1535438854
       },
+      "user": {
+        "avatar": null,
+        "created_by": 65816744,
+        "id": 69147880,
+        "openid": "oXUfx0FrNAvKUI0xxxxxx",
+        "unionid": null,
+        "_table": "_userprofile",
+        "age": 110,
+        "is_authorized": false,
+        "created_at": 1532921460,
+        "updated_at": 1539683851
+      },  
       "read_perm": ["user:*"],
       "updated_at": 1541666168,
       "write_perm": ["user:*"]
     }]
   }
 }
-
 ```
 
 **不使用 expand 方法的示例**

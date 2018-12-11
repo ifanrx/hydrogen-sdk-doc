@@ -253,13 +253,27 @@ record.save()
 > pointer 指向的数据表，不能改名或删除
  
 
-假设现在有一张 Article 表，表中的的 comment 字段为 pointer 类型，指向了 Comment 表。现在在 Article 表中新增一条数据，其中 comment 字段指向了 Comment 表中 id 为 5bad87ab0769797b4fb27a1b 的数据行：
+假设现在有一张 Article 表, Article 表部分字段如下:
+
+| 字段名          | 字段类型          | 说明                 |
+|----------------|------------------|----------------------|
+| comment        |  pointer         | 指向了 `Comment` 表     |
+| user           |  pointer         | 指向了 `_userprofile` 表     |
+
+现在在 Article 表中新增一条数据，其中: 
+
+comment 字段指向了 Comment 表中 id 为 5bad87ab0769797b4fb27a1b 的数据行
+
+user 字段指向了 _userprofile 表中 id 为 69147880 的数据行
+
 
 ```js
 // 获取一个 tableRecord 实例
 let Comment = new BaaS.TableObject('Comment')
 // 5bad87ab0769797b4fb27a1b 为 Comment 表中某行数据的 id
 let comment = Comment.getWithoutData('5bad87ab0769797b4fb27a1b')
+// 69147880 为 _userprofile 表中某行数据的 id
+let user = new BaaS.User().getWithoutData(69147880)
 
 // 在 city 表中创建一行数据
 let Article = new BaaS.TableObject('Article')
@@ -267,6 +281,7 @@ let article = Article.create()
 
 // 给 pointer 字段赋值
 Article.set('comment', comment)
+Article.set('user', user)
 
 article.save().then(res=>{
   // success
@@ -288,6 +303,10 @@ res 结构如下
       "id": "5bad87ab0769797b4fb27a1b",
       "_table": "Comment"
     },
+    "user": {
+      "id": 69147880,
+      "_table": "_userprofile"
+    },    
     "read_perm": [ "user:*" ],
     "updated_at": 1541744690,
     "write_perm": [ "user:*" ] }
