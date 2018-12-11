@@ -262,3 +262,11 @@ let MyUser = new BaaS.User()
 
 MyUser.limit(5).offset(10).find().then()
 ```
+## pointer 引用
+
+使用 `wx.BaaS.User().getWithoutData` 可以创建一个 _userprofile 指定数据行的引用。主要配合 pointer 功能使用
+
+```js
+let user = new wx.BaaS.User().getWithoutData(123456)
+```
+具体使用方法请参考 [数据表-添加 pointer 类型数据](./schema/create-record.md) 小节
