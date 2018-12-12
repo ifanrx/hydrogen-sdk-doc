@@ -389,6 +389,8 @@ MyTableObject.createMany(records, {enableTrigger: false}).then(res => {
  
  其中用户组 `开发人员` 的 group_id 为 `656`、创建者的 user_id (对应 _userprofile 表中的 `id` 列) 为 `37087886`。
  
+  `write_perm` 和 `read_perm` 的可选值请参考 [数据表操作-创建数据表](./table.md) 小节
+ 
  **示例代码**
  
  ```javascript
