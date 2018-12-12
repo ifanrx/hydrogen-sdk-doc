@@ -1,15 +1,15 @@
 # 数据表操作
 
-`BaaS.SchemaTable` 对象封装了针对数据表相关的操作，通过实例化 `SchemaTable`，我们可以对数据表进行增删改查。
+`BaaS.TableSchema` 对象封装了针对数据表相关的操作，通过实例化 `TableSchema`，我们可以对数据表进行增删改查。
 
 ```js
-let schemaTable = new BaaS.SchemaTable()
+let tableSchema = new BaaS.TableSchema()
 ```
 
 
 ## 创建数据表
 
-`schemaTable.createSchema(schemaInfo)`
+`tableSchema.createSchema(schemaInfo)`
 
 **参数说明**
 
@@ -17,8 +17,8 @@ let schemaTable = new BaaS.SchemaTable()
 | :------------  | :----------- | :---| :--- |
 | schemaInfo.name           | String(32)   |  是 | 数据表名（以字母开头，字母、数字、下划线的组合) |
 | schemaInfo.schema         | Object       |  是 | 数据表字段的元信息 |
-| schemaInfo.row_read_perm  | String Array |  是 | 数据表行的读权限 |
-| schemaInfo.row_write_perm | String Array |  是 | 数据表行的写权限 |
+| schemaInfo.row_read_perm  | String Array |  是 | 数据表行的默认读权限 |
+| schemaInfo.row_write_perm | String Array |  是 | 数据表行的默认写权限 |
 | schemaInfo.write_perm     | String Array |  是 | 数据表的写权限 |
 
 参数 row_read_perm 和 row_write_perm 控制数据表数据的读写权限，读权限表示用户是否有权限获取数据，写权限表示用户是否有权限更新数据。
@@ -146,7 +146,7 @@ const schemaInfo = {
   ]
 }
 
-schemaTable.createSchema(schemaInfo).then(res=>{
+tableSchema.createSchema(schemaInfo).then(res=>{
   // success
 }).catch(e=>{
   // error
@@ -234,12 +234,12 @@ res.data 结构如下
 
 **接口**
 
-`schemaTable.getSchema(schemaID)`
+`tableSchema.getSchema(schemaID)`
 
 **代码示例**
 
 ```js
-schemaTable.getSchema(1).then(res=>{
+tableSchema.getSchema(1).then(res=>{
   // success
 }).catch(e=>{
   // error
@@ -286,7 +286,7 @@ res.data 结构如下
 
 ## 获取数据表列表
 
-`schemaTable.getSchemaList({offset, limit})`
+`tableSchema.getSchemaList({offset, limit})`
 
 **参数说明**
 
@@ -298,7 +298,7 @@ res.data 结构如下
 **代码示例**
 
 ```js
-schemaTable.getSchemaList({limit:20, offset: 0}).then(res=>{
+tableSchema.getSchemaList({limit:20, offset: 0}).then(res=>{
   // success
 }).catch(e=>{
   // error
@@ -356,7 +356,7 @@ res.data 结构如下
 
 ## 更新数据表
 
-`schemaTable.updateSchema(schemaID, schemaInfo)`
+`tableSchema.updateSchema(schemaID, schemaInfo)`
 
 > **info**
 > 数据表更新接口支持一次更新一个或多个字段
@@ -368,7 +368,7 @@ const schemaInfo = {
   name: "table"
 }
 
-schemaTable.updateSchema(1, schemaInfo).then(res=>{
+tableSchema.updateSchema(1, schemaInfo).then(res=>{
   // success
 }).catch(e=>{
   // error
@@ -416,12 +416,12 @@ res.data 接口如下
 
 ## 删除数据表
 
-`schemaTable.deleteSchema(schemaID)`
+`tableSchema.deleteSchema(schemaID)`
 
 **代码示例**
 
 ```js
-schemaTable.deleteSchema(1).then(res=>{
+tableSchema.deleteSchema(1).then(res=>{
   // success
 }).catch(e=>{
   // error

@@ -12,8 +12,8 @@
 | :------------  | :----------- | :---| :--- |
 | name           | String(32)   |  是 | 数据表名（以字母开头，字母、数字、下划线的组合) |
 | schema         | Object       |  是 | 数据表字段的元信息 |
-| row_read_perm  | String Array |  是 | 数据表行的读权限 |
-| row_write_perm | String Array |  是 | 数据表行的写权限 |
+| row_read_perm  | String Array |  是 | 数据表行的默认读权限 |
+| row_write_perm | String Array |  是 | 数据表行的默认写权限 |
 | write_perm     | String Array |  是 | 数据表的写权限 |
 
 参数 row_read_perm 和 row_write_perm 控制数据表数据的读写权限，读权限表示用户是否有权限获取数据，写权限表示用户是否有权限更新数据。
