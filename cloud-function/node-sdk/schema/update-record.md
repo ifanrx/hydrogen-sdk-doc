@@ -427,3 +427,50 @@ record.patchObject('obj1', patch)
   }
 ]
 ```
+
+## 修改数据行 ACL
+
+  有时候我们需要设置特定数据行的 ACL 权限，之前只能在知晓云控制台修改数据行 ACL，现在云函数中支持通过代码来完该操作了。 
+
+ 假设 product 表中有一行 id 为 5bffbab54b30640ba8135650 的数据行，目前其 acl 为 所有人可读，所有人可写，现在需要将其修改为 `用户组【开发人员】和创建者可写` 、`创建者可读`。
+ 
+ 其中用户组 `开发人员` 的 group_id 为 `656`、创建者的 user_id (对应 _userprofile 表中的 `id` 列) 为 `37087886`。
+ 
+ **示例代码**
+ 
+ ```javascript
+ let Product = new BaaS.TableObject('product')
+ let record = Product.getWithoutData('5bffbab54b30640ba8135650')
+ 
+ record.set('write_perm', [ "gid:656", "user:37087886"])
+ record.set('read_perm', [ "user:37087886" ])
+ 
+ record.update().then(res=>{
+   // success
+ }).catch(e=>{
+   // error
+ })
+ ```
+ 
+ **返回示例**
+ 
+ res 结构如下：
+ 
+ ```json
+{
+  "status": 200,
+  "data": {
+    "_id": "5bffbab54b30640ba8135650",
+    "created_at": 1544423640,
+    "created_by": 16042162,
+    "read_perm": [
+      "user:37087886"
+    ],
+    "updated_at": 1544593093,
+    "write_perm": [
+      "gid:656",
+      "user:37087886"
+    ]
+  }
+}
+```
