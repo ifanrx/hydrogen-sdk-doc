@@ -399,3 +399,52 @@ MyTableObject.createMany(records, {enableTrigger: false}).then(res => {
   //err 为 HError 对象
 })
 ```
+
+## 设置数据行 ACL
+
+ 有时候我们需要设置特定数据行的 ACL 权限，之前只能在知晓云控制台修改数据行 ACL，现在云函数中支持通过代码来完该操作了。 
+ 
+ 假设现在需要在 product 表中创建一行记录，并指定 ACL 为 `用户组【开发人员】和创建者可写` 、`创建者可读`。
+ 
+ 其中用户组 `开发人员` 的 group_id 为 `656`、创建者的 user_id (对应 _userprofile 表中的 `id` 列) 为 `37087886`。
+ 
+  `write_perm` 和 `read_perm` 的可选值请参考 [数据表操作-创建数据表](./table.md) 小节
+ 
+ **示例代码**
+ 
+ ```javascript
+ let Product = new BaaS.TableObject('product')
+ let record = Product.create()
+ 
+ record.set('write_perm', [ "gid:656", "user:37087886"])
+ record.set('read_perm', [ "user:37087886" ])
+ 
+ record.save().then(res=>{
+   // success
+ }).catch(e=>{
+   // error
+ })
+ ```
+ 
+ **返回示例**
+ 
+ res 结构如下：
+ 
+ ```json
+{
+  "status": 201,
+  "data": {
+    "_id": "5bffbab54b30640ba8135650",
+    "created_at": 1544423640,
+    "created_by": 16042162,
+    "read_perm": [
+      "user:37087886"
+    ],
+    "updated_at": 1544593093,
+    "write_perm": [
+      "gid:656",
+      "user:37087886"
+    ]
+  }
+}
+```

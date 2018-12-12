@@ -1,20 +1,25 @@
 # 数据表操作
 
+`BaaS.TableSchema` 对象封装了针对数据表相关的操作，通过实例化 `TableSchema`，我们可以对数据表进行增删改查。
+
+```js
+let tableSchema = new BaaS.TableSchema()
+```
+
+
 ## 创建数据表
 
-**接口**
+`tableSchema.createSchema(schemaInfo)`
 
-`POST https://cloud.minapp.com/userve/v1/table/`
-
-**提交参数**
+**参数说明**
 
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
-| name           | String(32)   |  是 | 数据表名（以字母开头，字母、数字、下划线的组合) |
-| schema         | Object       |  是 | 数据表字段的元信息 |
-| row_read_perm  | String Array |  是 | 数据表行的默认读权限 |
-| row_write_perm | String Array |  是 | 数据表行的默认写权限 |
-| write_perm     | String Array |  是 | 数据表的写权限 |
+| schemaInfo.name           | String(32)   |  是 | 数据表名（以字母开头，字母、数字、下划线的组合) |
+| schemaInfo.schema         | Object       |  是 | 数据表字段的元信息 |
+| schemaInfo.row_read_perm  | String Array |  是 | 数据表行的默认读权限 |
+| schemaInfo.row_write_perm | String Array |  是 | 数据表行的默认写权限 |
+| schemaInfo.write_perm     | String Array |  是 | 数据表的写权限 |
 
 参数 row_read_perm 和 row_write_perm 控制数据表数据的读写权限，读权限表示用户是否有权限获取数据，写权限表示用户是否有权限更新数据。
 
@@ -28,7 +33,7 @@
 | user:<:user_id> | String| 某个用户可写／可读 |
 | gid:<:group_id> | String| 某个分组下的用户可写／可读 |
 
-具体描述与使用场景可参考[ACL 访问控制列表](../../dashboard/acl.md)。
+具体描述与使用场景可参考[ACL 访问控制列表](../../../dashboard/acl.md)。
 
 参数 schema 用于存储数据表字段的元信息，其结构遵循[JSON-Table-Schema](https://frictionlessdata.io/specs/table-schema/)的描述。
 
@@ -65,7 +70,7 @@
 | format          | String        | 否 | geojson 字段类型必填，值默认为 `default` |
 | description     | String        | 否 | 字段的描述，不填自动赋值为字段名称 |
 | constraints     | Object        | 否 | 字段的约束属性，仅支持 required 属性 |
-| default         | 跟字段类型一样  | 否 | 字段的默认值 |
+| default         | 跟字段类型一致  | 否 | 字段的默认值 |
 | acl             | Object        | 否 | 字段权限相关的属性 |
 | coordinate_type | String        | 否 | geojson 字段类型必填|
 | schema_id       | String        | 否 | pointer 字段类型必填，表示关联的数据表 ID|
@@ -120,29 +125,37 @@
 **代码示例**
 
 ```js
-var axios = require('axios').create({
-  withCredentials: true
-})
-
-axios.post('https://cloud.minapp.com/userve/v1/table/', {
-  name: 'Table',
-  schema: {
-    fields: [
+const schemaInfo = {
+  "name": "Table199",
+  "schema": {
+    "fields": [
       {
-        name: 'String',
-        type: 'string'
+        "name": "String",
+        "type": "string"
       }
     ]
   },
-  row_read_perm: ['user:*'],
-  row_write_perm: ['user:*'],
-  write_perm: ['user:*']
-}).then(res => {
-  console.log(res.data)
+  "row_read_perm": [
+    "user:*"
+  ],
+  "row_write_perm": [
+    "user:*"
+  ],
+  "write_perm": [
+    "user:*"
+  ]
+}
+
+tableSchema.createSchema(schemaInfo).then(res=>{
+  // success
+}).catch(e=>{
+  // error
 })
 ```
 
 **返回示例**
+
+res.data 结构如下
 
 ```json
 {
@@ -174,7 +187,7 @@ axios.post('https://cloud.minapp.com/userve/v1/table/', {
       {
         "name": "String",
         "type": "string",
-        "description": "string",
+        "description": "string"
       }
     ]
   },
@@ -221,21 +234,21 @@ axios.post('https://cloud.minapp.com/userve/v1/table/', {
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/table/:table_id/`
+`tableSchema.getSchema(schemaID)`
 
 **代码示例**
 
 ```js
-var axios = require('axios').create({
-  withCredentials: true
-})
-
-axios.get('https://cloud.minapp.com/userve/v1/table/1/').then(res => {
-  console.log(res.data)
+tableSchema.getSchema(1).then(res=>{
+  // success
+}).catch(e=>{
+  // error
 })
 ```
 
 **返回示例**
+
+res.data 结构如下
 
 ```json
 {
@@ -273,33 +286,28 @@ axios.get('https://cloud.minapp.com/userve/v1/table/1/').then(res => {
 
 ## 获取数据表列表
 
-**接口**
+`tableSchema.getSchemaList({offset, limit})`
 
-`GET https://cloud.minapp.com/userve/v1/table/`
+**参数说明**
 
-**提交参数**
-
-- name 支持对数据表名的等值查询
-
-`https://cloud.minapp.com/userve/v1/table/?name=Table`
+|       参数       |  类型  | 说明 |
+| :-------------- | :---- | :--- |
+| limit    | Number | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
+| offset   | Number | 设置返回资源的起始偏移值，默认为 0 |
 
 **代码示例**
 
 ```js
-var axios = require('axios').create({
-  withCredentials: true
-})
-
-axios.get('https://cloud.minapp.com/userve/v1/table/', {
-  params: {
-    name: 'test',
-  }
-}).then(res => {
-  console.log(res.data)
+tableSchema.getSchemaList({limit:20, offset: 0}).then(res=>{
+  // success
+}).catch(e=>{
+  // error
 })
 ```
 
 **返回示例**
+
+res.data 结构如下
 
 ```json
 {
@@ -348,9 +356,7 @@ axios.get('https://cloud.minapp.com/userve/v1/table/', {
 
 ## 更新数据表
 
-**接口**
-
-`PUT https://cloud.minapp.com/userve/v1/table/:table_id/`
+`tableSchema.updateSchema(schemaID, schemaInfo)`
 
 > **info**
 > 数据表更新接口支持一次更新一个或多个字段
@@ -358,18 +364,20 @@ axios.get('https://cloud.minapp.com/userve/v1/table/', {
 **代码示例**
 
 ```js
-var axios = require('axios').create({
-  withCredentials: true
-})
+const schemaInfo = {
+  name: "table"
+}
 
-axios.put('https://cloud.minapp.com/userve/v1/table/1/', {
-  name: 'table'
-}).then(res => {
-  console.log(res.data)
+tableSchema.updateSchema(1, schemaInfo).then(res=>{
+  // success
+}).catch(e=>{
+  // error
 })
 ```
 
 **返回示例**
+
+res.data 接口如下
 
 ```json
 {
@@ -408,19 +416,15 @@ axios.put('https://cloud.minapp.com/userve/v1/table/1/', {
 
 ## 删除数据表
 
-**接口**
-
-`DELETE https://cloud.minapp.com/userve/v1/table/:table_id/`
+`tableSchema.deleteSchema(schemaID)`
 
 **代码示例**
 
 ```js
-var axios = require('axios').create({
-  withCredentials: true
-})
-
-axios.delete('https://cloud.minapp.com/userve/v1/table/1/').then(res => {
-  console.log(res.data)
+tableSchema.deleteSchema(1).then(res=>{
+  // success
+}).catch(e=>{
+  // error
 })
 ```
 
