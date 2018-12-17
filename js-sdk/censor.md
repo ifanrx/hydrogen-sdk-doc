@@ -9,7 +9,7 @@
 
 > 使用此 API 前需要配置 AppSecret，请前往 设置 - 小程序 中配置 AppSecret。
 
-> 如果您使用的是文件版 sdk，请在微信后台将您的 request 合法域名中知晓云域名（形如 xxx.xiaoapp.io）添加到 uploadFile 合法域名中，如下图所示：
+> 如果您使用的是文件版 sdk，请在微信后台将您的 request 合法域名中知晓云域名（形如 xxx.myminapp.com）添加到 uploadFile 合法域名中，如下图所示：
 > ![配置 uploadFile 域名](https://s3.cn-north-1.amazonaws.com.cn/sso-media/baas/request-domain.png)
 
 {% endblock tips1 %}
@@ -28,7 +28,7 @@
 
 {% endblock censorImageSign %}
 
-### 返回示例 
+### 返回示例
 
 ```javascript
 {
@@ -43,7 +43,7 @@
 wx.chooseImage({
   success: function(res) {
     wx.BaaS.wxCensorImage(res.tempFilePaths[0]).then(res => {
-       console.log(res.data.risky)     
+       console.log(res.data.risky)
     }, err => {
       // err
     })
@@ -65,7 +65,7 @@ wx.chooseImage({
 |----------|--------|----------|
 | text | string | 要检测的文本 |
 
-### 返回示例 
+### 返回示例
 
 ```javascript
 {
@@ -78,7 +78,7 @@ wx.chooseImage({
 
 ```javascript
   wx.BaaS.wxCensorText("测试文本").then(res => {
-       console.log(res.data.risky)     
+       console.log(res.data.risky)
     }, err => {
       // err
     })
