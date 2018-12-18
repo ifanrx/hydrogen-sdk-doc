@@ -307,9 +307,12 @@ order.set('date', 'abc')
 order.update()
 ```
 
-## 批量更新数据项
+## 自定义条件批量更新数据项
 
-通过设置查询条件，将符合条件的数据进行批量更新操作。
+通过设置自定义查询条件 Query，将符合条件的数据进行批量更新操作
+
+> 注意：由于条件查询可能命中非常多的数据，默认情况下，限制为最多更新前 1000 条数据。
+> 如需要一次性更新更多数据，请参考下一个章节：不触发触发器的更新，或者通过维护分页来进行。
 
 其中：
  - `Query` 对象的使用请查看 [查询数据项](./query.md) 章节
@@ -326,6 +329,7 @@ let query = new BaaS.Query()
 // 设置查询条件（比较、字符串包含、组合等）
 ...
 
+// limit、offset 可以指定按条件查询命中的数据分页
 let records = MyTableObject.limit(10).offset(0).getWithoutData(query)
 
 // 与更新特定记录一致
@@ -378,7 +382,7 @@ then 回调中的 res 对象结构如下：
 
 200 更新成功，400 请求数据非法
 
-### 批量更新时不触发触发器
+### 按条件批量更新时不触发触发器
 
 ```js
 let MyTableObject = new BaaS.TableObject(tableID)
