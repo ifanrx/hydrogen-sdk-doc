@@ -250,6 +250,10 @@ Content-Type: `application/json`
 `200` 更新成功，`400` 操作符不支持/请求参数有错
 
 
+> **danger**
+> 以下操作仅适用于 API version >= v1.8
+
+
 ## pointer 查询
 
 > **info**
