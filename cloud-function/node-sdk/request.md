@@ -14,4 +14,9 @@ exports.main = function testSDKNetwork(event, callback) {
 }
 ```
 
+> **info**
+> 目前云函数不允许非安全端口，允许的端口有：80、443、8080、8443。
+> 
+> 如因业务需求需要请求其他端口，可通过工单申请，注明域名、端口、路径及使用场景说明。
+
 更多用法，你可以参考 axios 的 [文档](https://github.com/axios/axios)
