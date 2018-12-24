@@ -16,9 +16,9 @@
 
 | 参数   | 类型                   | 描述 |
 | :---- | :--------------------- | :-- |
-| code  | Number                 | code 为 0 时表示成功执行云函数，否则为执行云函数失败 |
-| data  | 由云函数返回的数据类型决定 | 函数通过 callback 返回的数据 |
-| error | Object                 | 返回的错误信息，成功则返回空对象 |
+| data.code  | Number                 | code 为 0 时表示成功执行云函数，否则为执行云函数失败 |
+| data.data  | 由云函数返回的数据类型决定 | 函数通过 callback 返回的数据 |
+| data.error | Object                 | 返回的错误信息，成功则返回空对象 |
 
 **请求示例**
 
@@ -26,10 +26,11 @@
 
 ```js
 BaaS.invokeFunction('helloWorld', {name: 'allen'}).then(res => {
-  if (res.code === 0) {
-    callback(null, res.data)
+  let result = res.data // 此处的 res 为完整的 http response
+  if (result.code === 0) {
+    callback(null, result.data)
   } else {
-    callback(res.error.message)
+    callback(result.error.message)
   }
 }, err => {
   callback(err)
