@@ -103,6 +103,7 @@
         * [用户组操作](user-dash/group/user-group.md)
         * [用户组与用户的操作](user-dash/group/membership.md)
         * [组集操作](user-dash/group/super-group.md)
+    * [云函数](user-dash/cloud-function.md)
 
 ----
 

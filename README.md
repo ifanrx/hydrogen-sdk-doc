@@ -170,6 +170,9 @@
         <li>
           <a href="/user-dash/user.md/">用户模块</a>
         </li>
+        <li>
+          <a href="/user-dash/cloud-function.md/">云函数</a>
+        </li>
       </ul>
     </li>
     <li>
