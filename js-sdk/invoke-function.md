@@ -4,7 +4,10 @@
 
 该模块允许用户创建、编写运行于知晓云云引擎上的代码。适用于一些对安全性有要求，功能复杂、需求个性化的业务场景。配合触发器可以帮助开发者实现功能复杂的小程序。
 
-`wx.BaaS.invokeFunction(functionName, params, sync)`
+`wx.BaaS.invoke(functionName, params, sync)` (SDK >= 1.14.0)
+
+> **info**
+> 原有的 `wx.BaaS.invokeFunction(functionName, params, sync)` API 将被废弃、不推荐继续使用。
 
 {% block tips1 %}
 
@@ -35,7 +38,7 @@
 假设已经创建了一个云函数 helloWorld，其接受一个 name 作为参数，返回 hello ${name}，可通过以下方式在云函数中进行调用
 
 ```js
-wx.BaaS.invokeFunction('helloWorld', {name: 'allen'}).then(res => {
+wx.BaaS.invoke('helloWorld', {name: 'allen'}).then(res => {
   if (res.code === 0) {
     // success
     console.log(res.data)
