@@ -7,7 +7,7 @@
 `wx.BaaS.invoke(functionName, params, sync)` (SDK >= 1.14.0)
 
 > **info**
-> 原有的 `wx.BaaS.invokeFunction(functionName, params, sync)` API 将被废弃、不推荐继续使用。
+> 原有的 `wx.BaaS.invokeFunction(functionName, params, sync)` API 将被废弃，不推荐继续使用。
 
 {% block tips1 %}
 
