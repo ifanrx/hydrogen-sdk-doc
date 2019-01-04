@@ -93,7 +93,6 @@ cmd.on('close', (code) => {
 - /usr/share/fonts/dejavu/DejaVuSerifCondensed-Bold.ttf
 - /usr/share/fonts/dejavu/DejaVuSerifCondensed-Italic.ttf
 - /usr/share/fonts/dejavu/DejaVuSerifCondensed.ttf
-- /usr/share/fonts/google-material/MaterialIcons-Regular.ttf
 - /usr/share/fonts/liberation/LiberationMono-BoldItalic.ttf
 - /usr/share/fonts/liberation/LiberationMono-Bold.ttf
 - /usr/share/fonts/liberation/LiberationMono-Italic.ttf
@@ -106,6 +105,9 @@ cmd.on('close', (code) => {
 - /usr/share/fonts/liberation/LiberationSerif-Bold.ttf
 - /usr/share/fonts/liberation/LiberationSerif-Italic.ttf
 - /usr/share/fonts/liberation/LiberationSerif-Regular.ttf
+
+以下中文字体:
+
 - /usr/share/fonts/arphic-bkai00mp/bkai00mp.ttf
 - /usr/share/fonts/arphic-bsmi00lp/bsmi00lp.ttf
 - /usr/share/fonts/arphic-gbsn00lp/gbsn00lp.ttf
