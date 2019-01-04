@@ -47,7 +47,7 @@ BaaS.invoke('helloWorld', {name: 'allen'}).then(res => {
 }
 ```
 
-## `BaaS.invokeFunction(functionName, params, sync)` <span style="color:red;">已废弃</span> 
+##  <span style="color: #f04134;">`已废弃`</span>  `BaaS.invokeFunction(functionName, params, sync)`
 
 **参数说明**
 

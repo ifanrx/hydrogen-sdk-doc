@@ -57,7 +57,7 @@ wx.BaaS.invoke('helloWorld', {name: 'allen'}).then(res => {
 ```
 
 
-## `wx.BaaS.invokeFunction(functionName, params, sync)` <span style="color:red;">已废弃</span>    
+## <span style="color: #f04134;">`已废弃`</span> `wx.BaaS.invokeFunction(functionName, params, sync)`
 
 **参数说明**
 
