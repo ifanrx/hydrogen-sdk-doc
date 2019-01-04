@@ -54,50 +54,73 @@ cmd.on('close', (code) => {
 
 以下 emoji 字体:
 
-/usr/share/fonts/google-material/MaterialIcons-Regular.ttf
+- /usr/share/fonts/google-material/MaterialIcons-Regular.ttf
 
 以下西文字体:
 
-/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf
-/usr/share/fonts/dejavu/DejaVuSans-BoldOblique.ttf
-/usr/share/fonts/dejavu/DejaVuSans-ExtraLight.ttf
-/usr/share/fonts/dejavu/DejaVuSans-Oblique.ttf
-/usr/share/fonts/dejavu/DejaVuSans.ttf
-/usr/share/fonts/dejavu/DejaVuSansCondensed-Bold.ttf
-/usr/share/fonts/dejavu/DejaVuSansCondensed-BoldOblique.ttf
-/usr/share/fonts/dejavu/DejaVuSansCondensed-Oblique.ttf
-/usr/share/fonts/dejavu/DejaVuSansCondensed.ttf
-/usr/share/fonts/dejavu/DejaVuSansMono-Bold.ttf
-/usr/share/fonts/dejavu/DejaVuSansMono-BoldOblique.ttf
-/usr/share/fonts/dejavu/DejaVuSansMono-Oblique.ttf
-/usr/share/fonts/dejavu/DejaVuSansMono.ttf
-/usr/share/fonts/dejavu/DejaVuSerif-Bold.ttf
-/usr/share/fonts/dejavu/DejaVuSerif-BoldItalic.ttf
-/usr/share/fonts/dejavu/DejaVuSerif-Italic.ttf
-/usr/share/fonts/dejavu/DejaVuSerif.ttf
-/usr/share/fonts/dejavu/DejaVuSerifCondensed-Bold.ttf
-/usr/share/fonts/dejavu/DejaVuSerifCondensed-BoldItalic.ttf
-/usr/share/fonts/dejavu/DejaVuSerifCondensed-Italic.ttf
-/usr/share/fonts/dejavu/DejaVuSerifCondensed.ttf
-/usr/share/fonts/liberation/LiberationMono-Bold.ttf
-/usr/share/fonts/liberation/LiberationMono-BoldItalic.ttf
-/usr/share/fonts/liberation/LiberationMono-Italic.ttf
-/usr/share/fonts/liberation/LiberationMono-Regular.ttf
-/usr/share/fonts/liberation/LiberationSans-Bold.ttf
-/usr/share/fonts/liberation/LiberationSans-BoldItalic.ttf
-/usr/share/fonts/liberation/LiberationSans-Italic.ttf
-/usr/share/fonts/liberation/LiberationSans-Regular.ttf
-/usr/share/fonts/liberation/LiberationSerif-Bold.ttf
-/usr/share/fonts/liberation/LiberationSerif-BoldItalic.ttf
-/usr/share/fonts/liberation/LiberationSerif-Italic.ttf
-/usr/share/fonts/liberation/LiberationSerif-Regular.ttf
-/usr/share/fonts/ttf-bitstream-vera/Vera.ttf
-/usr/share/fonts/ttf-bitstream-vera/VeraBI.ttf
-/usr/share/fonts/ttf-bitstream-vera/VeraBd.ttf
-/usr/share/fonts/ttf-bitstream-vera/VeraIt.ttf
-/usr/share/fonts/ttf-bitstream-vera/VeraMoBI.ttf
-/usr/share/fonts/ttf-bitstream-vera/VeraMoBd.ttf
-/usr/share/fonts/ttf-bitstream-vera/VeraMoIt.ttf
-/usr/share/fonts/ttf-bitstream-vera/VeraMono.ttf
-/usr/share/fonts/ttf-bitstream-vera/VeraSe.ttf
-/usr/share/fonts/ttf-bitstream-vera/VeraSeBd.ttf
+- /usr/share/fonts/ttf-bitstream-vera/VeraBd.ttf
+- /usr/share/fonts/ttf-bitstream-vera/VeraBI.ttf
+- /usr/share/fonts/ttf-bitstream-vera/VeraIt.ttf
+- /usr/share/fonts/ttf-bitstream-vera/VeraMoBd.ttf
+- /usr/share/fonts/ttf-bitstream-vera/VeraMoBI.ttf
+- /usr/share/fonts/ttf-bitstream-vera/VeraMoIt.ttf
+- /usr/share/fonts/ttf-bitstream-vera/VeraMono.ttf
+- /usr/share/fonts/ttf-bitstream-vera/VeraSeBd.ttf
+- /usr/share/fonts/ttf-bitstream-vera/VeraSe.ttf
+- /usr/share/fonts/ttf-bitstream-vera/Vera.ttf
+- /usr/share/fonts/cantarell/Cantarell-Regular.otf
+- /usr/share/fonts/cantarell/Cantarell-Oblique.otf
+- /usr/share/fonts/cantarell/Cantarell-Bold.otf
+- /usr/share/fonts/cantarell/Cantarell-BoldOblique.otf
+- /usr/share/fonts/dejavu/DejaVuSansMono-BoldOblique.ttf
+- /usr/share/fonts/dejavu/DejaVuSansMono-Bold.ttf
+- /usr/share/fonts/dejavu/DejaVuSansMono-Oblique.ttf
+- /usr/share/fonts/dejavu/DejaVuSansMono.ttf
+- /usr/share/fonts/dejavu/DejaVuSans.ttf
+- /usr/share/fonts/dejavu/DejaVuSans-BoldOblique.ttf
+- /usr/share/fonts/dejavu/DejaVuSans-Bold.ttf
+- /usr/share/fonts/dejavu/DejaVuSans-ExtraLight.ttf
+- /usr/share/fonts/dejavu/DejaVuSans-Oblique.ttf
+- /usr/share/fonts/dejavu/DejaVuSerif.ttf
+- /usr/share/fonts/dejavu/DejaVuSerif-BoldItalic.ttf
+- /usr/share/fonts/dejavu/DejaVuSerif-Bold.ttf
+- /usr/share/fonts/dejavu/DejaVuSerif-Italic.ttf
+- /usr/share/fonts/dejavu/DejaVuSansCondensed-BoldOblique.ttf
+- /usr/share/fonts/dejavu/DejaVuSansCondensed-Bold.ttf
+- /usr/share/fonts/dejavu/DejaVuSansCondensed-Oblique.ttf
+- /usr/share/fonts/dejavu/DejaVuSansCondensed.ttf
+- /usr/share/fonts/dejavu/DejaVuSerifCondensed-BoldItalic.ttf
+- /usr/share/fonts/dejavu/DejaVuSerifCondensed-Bold.ttf
+- /usr/share/fonts/dejavu/DejaVuSerifCondensed-Italic.ttf
+- /usr/share/fonts/dejavu/DejaVuSerifCondensed.ttf
+- /usr/share/fonts/google-material/MaterialIcons-Regular.ttf
+- /usr/share/fonts/liberation/LiberationMono-BoldItalic.ttf
+- /usr/share/fonts/liberation/LiberationMono-Bold.ttf
+- /usr/share/fonts/liberation/LiberationMono-Italic.ttf
+- /usr/share/fonts/liberation/LiberationMono-Regular.ttf
+- /usr/share/fonts/liberation/LiberationSans-BoldItalic.ttf
+- /usr/share/fonts/liberation/LiberationSans-Bold.ttf
+- /usr/share/fonts/liberation/LiberationSans-Italic.ttf
+- /usr/share/fonts/liberation/LiberationSans-Regular.ttf
+- /usr/share/fonts/liberation/LiberationSerif-BoldItalic.ttf
+- /usr/share/fonts/liberation/LiberationSerif-Bold.ttf
+- /usr/share/fonts/liberation/LiberationSerif-Italic.ttf
+- /usr/share/fonts/liberation/LiberationSerif-Regular.ttf
+- /usr/share/fonts/arphic-bkai00mp/bkai00mp.ttf
+- /usr/share/fonts/arphic-bsmi00lp/bsmi00lp.ttf
+- /usr/share/fonts/arphic-gbsn00lp/gbsn00lp.ttf
+- /usr/share/fonts/arphic-gkai00mp/gkai00mp.ttf
+- /usr/share/fonts/source-han-sans/SourceHanSans-Bold.ttc
+- /usr/share/fonts/source-han-sans/SourceHanSans-ExtraLight.ttc
+- /usr/share/fonts/source-han-sans/SourceHanSans-Heavy.ttc
+- /usr/share/fonts/source-han-sans/SourceHanSans-Light.ttc
+- /usr/share/fonts/source-han-sans/SourceHanSans-Medium.ttc
+- /usr/share/fonts/source-han-sans/SourceHanSans-Normal.ttc
+- /usr/share/fonts/source-han-sans/SourceHanSans-Regular.ttc
+- /usr/share/fonts/source-han-serif/SourceHanSerif-Bold.ttc
+- /usr/share/fonts/source-han-serif/SourceHanSerif-ExtraLight.ttc
+- /usr/share/fonts/source-han-serif/SourceHanSerif-Heavy.ttc
+- /usr/share/fonts/source-han-serif/SourceHanSerif-Light.ttc
+- /usr/share/fonts/source-han-serif/SourceHanSerif-Medium.ttc
+- /usr/share/fonts/source-han-serif/SourceHanSerif-Regular.ttc
+- /usr/share/fonts/source-han-serif/SourceHanSerif-SemiBold.ttc
