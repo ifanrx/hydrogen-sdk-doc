@@ -121,7 +121,7 @@ wx.chooseImage({
 })
 ```
 
-**onProgressUpdate 返回示例**
+**onProgressUpdate 接收参数示例**
 
 ```json
 {
