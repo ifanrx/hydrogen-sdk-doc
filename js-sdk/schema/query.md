@@ -524,7 +524,7 @@ let orQuery = wx.BaaS.Query.or(andQuery, query3)
 
 ### 获取符合筛选条件的数据总数
 ```javascript
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 let query = new wx.BaaS.Query()
 
 // 设置查询条件
