@@ -8,18 +8,18 @@
 
 ### 操作步骤
 
-1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
+1.通过 `tableName` 或 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
 
-`let MyTableObject = new wx.BaaS.TableObject(tableID)`
+`let MyTableObject = new wx.BaaS.TableObject(tableName | tableID)`
 
 **参数说明**
 
+tableName 和 tableID 二选一，不能同时存在
+
 | 参数     | 类型   | 必填 | 说明 |
 | :-----  | :----- | :-- | :-- |
-| tableID | Number |  是 | 数据表 ID |
-
-> **info**
-> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new wx.BaaS.TableObject('product')
+| tableID   | Number | 是  | 数据表的 ID             |
+| tableName | String |  是 | 数据表名（SDK >= 1.2.0） |
 
 2.指定 `recordID` 执行获取相应数据项操作
 
@@ -37,7 +37,7 @@
 **请求示例**
 
 ```js
-let tableID = 10
+let tableName = 'product'
 let recordID = '59897882ff650c0477f00485'
 
 let Product = new wx.BaaS.TableObject(tableID)

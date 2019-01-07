@@ -10,7 +10,7 @@
 **在 get 方法中使用**
 
 ```js
-var Product = new wx.BaaS.TableObject(tableID)
+var Product = new wx.BaaS.TableObject(tableName)
 var recordID = 'xxxxxxxx' // 数据行 id
 
 // 规定返回特定字段
@@ -27,7 +27,7 @@ Product.select(['-created_at', '-created_by']).get(recordID)
 **在 find 方法中使用**
 
 ```js
-var Product = new wx.BaaS.TableObject(tableID)
+var Product = new wx.BaaS.TableObject(tableName)
 
 var query = new wx.BaaS.Query()
 query.compare('amount', '>', 0)
@@ -95,13 +95,13 @@ Product.setQuery(query).select(['-created_at', '-created_by']).find()
 ### 使用方法
 **在 get 方法中使用**
 ```js
-var Product = new wx.BaaS.TableObject(tableID)
+var Product = new wx.BaaS.TableObject(tableName)
 Product.expand(['created_by', 'pointer_value']).get('5acc2904da6b737322a82f78')
 ```
 
 **在 find 方法中使用**
 ```js
-var Product = new wx.BaaS.TableObject(tableID)
+var Product = new wx.BaaS.TableObject(tableName)
 
 var query = new wx.BaaS.Query()
 query.compare('amount', '>', 0)
