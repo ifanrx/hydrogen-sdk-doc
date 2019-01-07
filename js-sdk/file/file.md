@@ -27,6 +27,10 @@
 | categoryID   | String |  N  | 要上传的文件分类 ID |
 | categoryName | String |  N  | 要上传的文件分类名 |
 
+**返回值** (SDK >= 1.8.0)
+
+Promise<UploadTask>
+
 > **info**
 > 请勿同时填写 categoryID 和 categoryName，默认只使用 categoryID
 
@@ -77,20 +81,50 @@ wx.chooseImage({
 > **danger**
 > 使用 `wx.uploadFile` 以及 `SDK v.1.1.2` 之前版本的 `wx.BaaS.uploadFile` 返回的 res.data 是 json string 类型，而这里的 res.data 是 Object 类型，因此不需要再做类型转换了
 
-**返回示例**
+
+#### 监听上传进度变化事件和中断上传任务 (SDK >= 1.8.0)
+
+- 监听上传进度：`UploadTask.onProgressUpdate(callback)`
+- 中断上传任务：`UploadTask.abort()`
+
+callback 接收一个对象类型的参数，其结构如下：
+
+| 参数                     |  类型  | 说明 |
+| :------------------------| :----- | :------ |
+| progress                 | Number | 上传进度百分比	 |
+| totalBytesSent           | Number | 已经上传的数据长度，单位 Bytes	|
+| totalBytesExpectedToSend | Number | 预期需要上传的数据总长度，单位 Bytes |
+
+
+**示例代码**
 
 ```js
-{
-  status: "ok",
-  path: "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1e2fVFaWoaoAZPyr.svg",
-  file: {
-    cdn_path: "1e2fVFaWoaoAZPyr.svg",
-    created_at: 1507822469,
-    id: "59df8b852ab80e3656cf8783",
-    mime_type: "text/plain; charset=utf-8",
-    name: "tmp_262601706o6zAJs-pmaywKzqHIvzwU97rtiGIe4dd39171563993cf10b12bae2ac30ec.svg",
-    size: 3879
+wx.chooseImage({
+  success: function(res) {
+    let MyFile = new wx.BaaS.File()
+    let fileParams = {filePath: res.tempFilePaths[0]}
+    let metaData = {categoryName: 'SDK'}
+
+    let uploadTask =  MyFile.upload(fileParams, metaData)
+
+    // 监听上传进度    
+    uploadTask.onProgressUpdate(e => {
+      console.log(e)
+    })
+    
+    // 600 毫秒后中断上传
+    setTimeout(()=> uploadTask.abort(), 600)
   }
+})
+```
+
+**onProgressUpdate 返回示例**
+
+```json
+{
+  "progress":80,
+  "totalBytesSent":1507328,
+  "totalBytesExpectedToSend":1883803
 }
 ```
 
@@ -142,18 +176,18 @@ MyFile.get('5a2fe93308443e313a428c4f').then((res) => {
 
 **返回示例**
 
-```js
+```json
 {
-  category: {
-    id: '5a2fe91508443e3123dbe1cb',
-    name: '科技'
+  "category": {
+    "id": "5a2fe91508443e3123dbe1cb",
+    "name": "科技"
   },
-  created_at: 1507822469,
-  id: "5a2fe93308443e313a428c4f",
-  mime_type: "image/png",
-  name: "sdk-test-minapp2.png",
-  path: "https://cloud-minapp-7894.cloud.ifanrusercontent.com/1eOledhCbvjgaCSE.png",
-  size: 3879
+  "created_at": 1507822469,
+  "id": "5a2fe93308443e313a428c4f",
+  "mime_type": "image/png",
+  "name": "sdk-test-minapp2.png",
+  "path": "https://cloud-minapp-7894.cloud.ifanrusercontent.com/1eOledhCbvjgaCSE.png",
+  "size": 3879
 }
 ```
 
@@ -221,7 +255,7 @@ let MyFile = new wx.BaaS.File()
 MyFile.find()
 
 // 按创建时间范围查询: 2018年10月24日17时10分57秒 至今上传的文件
-let query = wx.BaaS.Query.and(new wx.BaaS.Query().compare('created_at', '<=', Math.ceil(Date.now() / 1000)), new wx.BaaS.Query().compare('created_at', '>=', 1540372257)),
+let query = wx.BaaS.Query.and(new wx.BaaS.Query().compare('created_at', '<=', Math.ceil(Date.now() / 1000)), new wx.BaaS.Query().compare('created_at', '>=', 1540372257))
 
 MyFile.setQuery(query).find()
 ```
@@ -357,17 +391,17 @@ wx.chooseImage({
 **返回示例**
 
 JSON.parse(res.data)
-```js
+```json
 {
-  status: "ok",
-  path: "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1e2fVFaWoaoAZPyr.svg",
-  file: {
-    cdn_path: "1e2fVFaWoaoAZPyr.svg",
-    created_at: 1507822469,
-    id: "59df8b852ab80e3656cf8783",
-    mime_type: "text/plain; charset=utf-8",
-    name: "tmp_262601706o6zAJs-pmaywKzqHIvzwU97rtiGIe4dd39171563993cf10b12bae2ac30ec.svg",
-    size: 3879
+  "status": "ok",
+  "path": "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1e2fVFaWoaoAZPyr.svg",
+  "file": {
+    "cdn_path": "1e2fVFaWoaoAZPyr.svg",
+    "created_at": 1507822469,
+    "id": "59df8b852ab80e3656cf8783",
+    "mime_type": "text/plain; charset=utf-8",
+    "name": "tmp_262601706o6zAJs-pmaywKzqHIvzwU97rtiGIe4dd39171563993cf10b12bae2ac30ec.svg",
+    "size": 3879
   }
 }
 ```
