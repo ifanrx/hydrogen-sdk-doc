@@ -29,7 +29,7 @@
 
 **返回值** (SDK >= 1.8.0)
 
-Promise<UploadTask>
+UploadTaskPromise
 
 > **info**
 > 请勿同时填写 categoryID 和 categoryName，默认只使用 categoryID
