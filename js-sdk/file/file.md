@@ -27,10 +27,6 @@
 | categoryID   | String |  N  | 要上传的文件分类 ID |
 | categoryName | String |  N  | 要上传的文件分类名 |
 
-**返回值** (SDK >= 1.8.0)
-
-UploadTaskPromise
-
 > **info**
 > 请勿同时填写 categoryID 和 categoryName，默认只使用 categoryID
 
@@ -83,9 +79,10 @@ wx.chooseImage({
 
 
 #### 监听上传进度变化事件和中断上传任务 (SDK >= 1.8.0)
+在 1.1.2 版本的基础上，1.8.0 版本中 `upload` API 返回的 Promise 对象上增加了 `onProgressUpdate` 和 `abort` 方法，使文件上传增加了以下两个特性：
 
-- 监听上传进度：`UploadTask.onProgressUpdate(callback)`
-- 中断上传任务：`UploadTask.abort()`
+- 监听上传进度：`onProgressUpdate(callback)`
+- 中断上传任务：`abort()`
 
 callback 接收一个对象类型的参数，其结构如下：
 
@@ -105,7 +102,13 @@ wx.chooseImage({
     let fileParams = {filePath: res.tempFilePaths[0]}
     let metaData = {categoryName: 'SDK'}
 
+    // upload API 返回一个 Promise，1.8.0 后返回值增加了 onProgressUpdate 和 abort 方法
     let uploadTask =  MyFile.upload(fileParams, metaData)
+    
+    // 文件成功上传的回调
+    uploadTask.then(res=>{
+      
+    })
 
     // 监听上传进度    
     uploadTask.onProgressUpdate(e => {
