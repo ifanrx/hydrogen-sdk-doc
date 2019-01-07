@@ -79,7 +79,7 @@ wx.chooseImage({
 
 
 #### 监听上传进度变化事件和中断上传任务 (SDK >= 1.8.0)
-在 1.1.2 版本的基础上，1.8.0 版本中 `upload` API 返回的 Promise 对象上增加了 `onProgressUpdate` 和 `abort` 方法，使文件上传增加了以下两个特性：
+在 1.1.2 版本的基础上，1.8.0 版本中增加了对 [UploadTask](https://developers.weixin.qq.com/miniprogram/dev/api/UploadTask.html) 的支持， `upload` API 返回的 Promise 对象上增加了 `onProgressUpdate` 和 `abort` 方法，使文件上传增加了以下两个特性：
 
 - 监听上传进度：`onProgressUpdate(callback)`
 - 中断上传任务：`abort()`
