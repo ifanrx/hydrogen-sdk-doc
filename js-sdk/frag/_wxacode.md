@@ -71,6 +71,7 @@ const params = {
 {{apiPrefix}}BaaS.getWXACode('wxacode', params).then(res => {
   this.setData({imageBase64: res.image})
 }).catch(err => {
+  // HError 对象
   console.log(err)
 })
 
@@ -81,6 +82,7 @@ const params = {
     imageURL: res.download_url
     })
 }).catch(err => {
+  // HError 对象
   console.log(err)
 })
 ```
@@ -95,6 +97,7 @@ const params = {
 BaaS.getWXACode('wxacode', params).then(res => {
   callback(null, res.image)
 }).catch(err => {
+  // HError 对象
   callback(err)
 })
 
@@ -105,6 +108,7 @@ BaaS.getWXACode('wxacode', params, true).then(res => {
     imageURL: res.download_url
   })
 }).catch(err => {
+  // HError 对象
   callback(err)
 })
 ```
@@ -138,6 +142,7 @@ const params = {
 {{apiPrefix}}BaaS.getWXACode('wxacodeunlimit', params).then(res => {
   this.setData({imageBase64: res.image})
 }).catch(err => {
+  // HError 对象
   console.log(err)
 })
 ```
@@ -152,6 +157,7 @@ const params = {
 BaaS.getWXACode('wxacodeunlimit', params).then(res => {
   callback(null, res.image)
 }).catch(err => {
+  // HError 对象
   callback(err)
 })
 ```
@@ -180,6 +186,7 @@ const params = {
 {{apiPrefix}}BaaS.getWXACode('wxaqrcode', params).then(res => {
   this.setData({imageBase64: res.image})
 }).catch(err => {
+  // HError 对象
   console.log(err)
 })
 ```
@@ -193,6 +200,7 @@ const params = {
 BaaS.getWXACode('wxaqrcode', params).then(res => {
   callback(null, res.image)
 }).catch(err => {
+  // HError 对象
   callback(err)
 })
 ```
@@ -200,6 +208,7 @@ BaaS.getWXACode('wxaqrcode', params).then(res => {
 
 {% endtabs %}
 
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 > **info**
 > 了解更多获取二维码的信息，可参考小程序文档 - [获取二维码](https://mp.weixin.qq.com/debug/wxadoc/dev/api/qrcode.html) 章节

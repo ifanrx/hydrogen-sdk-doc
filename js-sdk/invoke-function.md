@@ -43,6 +43,9 @@ wx.BaaS.invoke('helloWorld', {name: 'allen'}).then(res => {
     // fail
     console.log(res.error.message)
   }
+}, err => {
+  // HError 对象
+  callback(err)
 })
 ```
 
@@ -56,6 +59,7 @@ wx.BaaS.invoke('helloWorld', {name: 'allen'}).then(res => {
 }
 ```
 
+HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 
 ## <span style="color: #f04134;">`已废弃`</span> `wx.BaaS.invokeFunction(functionName, params, sync)`
 

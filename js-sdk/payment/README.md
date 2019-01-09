@@ -15,6 +15,7 @@ let params = {
 wx.BaaS.pay(params).then(res => {
   console.log('微信支付流水号', res.transaction_no)
 }, err => {
+  // HError 对象
   if (err.code === 607) {
     console.log('用户取消支付')
   } else if (err.code === 608){
@@ -22,6 +23,8 @@ wx.BaaS.pay(params).then(res => {
   }
 })
 ```
+
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 同时，SDK 也支持通过 transaction_no 获取订单信息，如下：
 
