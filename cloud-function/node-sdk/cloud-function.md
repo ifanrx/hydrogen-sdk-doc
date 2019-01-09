@@ -33,6 +33,7 @@ BaaS.invoke('helloWorld', {name: 'allen'}).then(res => {
     callback(result.error.message)
   }
 }, err => {
+  // HError 对象
   callback(err)
 })
 ```
@@ -46,6 +47,8 @@ BaaS.invoke('helloWorld', {name: 'allen'}).then(res => {
   "data": "hello allen"
 }
 ```
+
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ##  <span style="color: #f04134;">`已废弃`</span>  `BaaS.invokeFunction(functionName, params, sync)`
 

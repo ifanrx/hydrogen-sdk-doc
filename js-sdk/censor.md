@@ -45,10 +45,12 @@ wx.chooseImage({
     wx.BaaS.wxCensorImage(res.tempFilePaths[0]).then(res => {
        console.log(res.data.risky)
     }, err => {
-      // err
+      // HError 对象
     })
   }})
 ```
+
+HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 
 {% endblock censorImageCode %}
 
@@ -80,8 +82,10 @@ wx.chooseImage({
   wx.BaaS.wxCensorText("测试文本").then(res => {
        console.log(res.data.risky)
     }, err => {
-      // err
+      // HError 对象
     })
 ```
+
+HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 
 {% endblock censorTextCode %}

@@ -41,23 +41,25 @@ var order = new BaaS.Order()
 order.getOrderList({trade_no: '1gCeU9ZKQQAA8iQgUM0lWhEbnqr89Qtxxx'}).then(res => {
   // success
 }).catch(e=>{
-  // error
+  // HError 对象
 })
 
 // 通过 transaction_no 查询订单
 order.getOrderList({transaction_no: 'v4WoZ7aNyZPaZbNlFffOZLvagUKqDcOw'}).then(res => {
   // success
 }).catch(e=>{
-  // error
+  // HError 对象
 })
 
 // 分页查询所有订单
 order.offset(20).limit(20).getOrderList().then(res => {
   // success
 }).catch(e=>{
-  // error
+  // HError 对象
 })
 ```
+
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **返回示例**
 
@@ -132,7 +134,7 @@ BaaS.refund({
 }).then(res => {
   // success
 }).catch(e=>{
-  // error
+  // HError 对象
 })
 
 // 通过 trade_no 退款
@@ -142,7 +144,7 @@ BaaS.refund({
 }).then(res => {
   // success
 }).catch(e=>{
-  // error
+  // HError 对象
 })
 
 // 通过 transaction_no 退款
@@ -152,6 +154,8 @@ BaaS.refund({
 }).then(res => {
   // success
 }).catch(e=>{
-  // error
+  // HError 对象
 })
 ```
+
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)

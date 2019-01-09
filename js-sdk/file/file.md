@@ -68,11 +68,13 @@ wx.chooseImage({
 
       let data = res.data  // res.data 为 Object 类型
     }, err => {
-
+      // HError 对象
     })
   }
 })
 ```
+
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 > **danger**
 > 使用 `wx.uploadFile` 以及 `SDK v.1.1.2` 之前版本的 `wx.BaaS.uploadFile` 返回的 res.data 是 json string 类型，而这里的 res.data 是 Object 类型，因此不需要再做类型转换了
@@ -173,9 +175,11 @@ let MyFile = new wx.BaaS.File()
 MyFile.get('5a2fe93308443e313a428c4f').then((res) => {
   // success
 }, err => {
-  // err
+  // HError 对象
 })
 ```
+
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **返回示例**
 
@@ -385,11 +389,13 @@ wx.chooseImage({
 
       let data = JSON.parse(res.data) // res.data 为 JSON String 类型
     }, err => {
-
+      // HError 对象
     })
   }
 })
 ```
+
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **返回示例**
 
