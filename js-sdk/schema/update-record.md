@@ -10,7 +10,7 @@
 
 1.通过 `tableName` 或 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
 
-`let MyTableObject = new wx.BaaS.TableObject(tableName | tableID)`
+`let MyTableObject = new wx.BaaS.TableObject(tableName)`
 
 **参数说明**
 
