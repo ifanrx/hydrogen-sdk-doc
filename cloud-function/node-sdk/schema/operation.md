@@ -39,7 +39,7 @@ tableID 和 tableName 二选一，不能同时存在
 
 ```js
 
-let MyTableObject = new BaaS.TableObject(tableID)
+let MyTableObject = new BaaS.TableObject(tableName)
 MyTableObject.exportData('json', 'all').then(res => {
   // success
 }, err => {
@@ -73,7 +73,7 @@ res.data:
 
 ```js
 /* url */
-let MyTableObject = new BaaS.TableObject(tableID)
+let MyTableObject = new BaaS.TableObject(tableName)
 MyTableObject.importData({dataFileUrl: dataUrl}, 'csv').then(res => {
   // success
 }, err => {
@@ -96,7 +96,7 @@ BaaS.request.get(dataUrl).then(res => {
 
 /* Buffer */
 BaaS.request.get(dataUrl).then(res => {
-  let MyTable = new BaaS.TableObject(tableID)
+  let MyTable = new BaaS.TableObject(tableName)
   MyTable.importData({dataFile: Buffer.from(res.data)}, 'csv').then(res => {
     // success
   }, err => {

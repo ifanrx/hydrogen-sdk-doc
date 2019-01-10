@@ -11,13 +11,13 @@
 通过 `TableRecord` 实例的 `set` 和 `save` 方法，可以完成数据行的创建。
 
 > **info**
-> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new wx.BaaS.TableObject('product')
+> SDK 1.2.0 以下（不包含 1.2.0 ）版本仅支持通过数据表 ID 实例化 TableObject，如操作数据表名为 10 的数据表，可进行如下实例化：new wx.BaaS.TableObject(10)
 
 
 ```js
-let tableID = 10
-// 通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
-let Product = new wx.BaaS.TableObject(tableID)
+let tableName = 'product'
+// 通过 `tableName` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
+let Product = new wx.BaaS.TableObject(tableName)
 // 本地创建一条空记录
 let product = Product.create() // product 为 TableRecord 实例
 
@@ -108,7 +108,7 @@ res 结构如下：
 
 ```js
 // 假设 product 表有一个字段为 product_id ，其中数据的格式形如 '112233'
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 var query = new wx.BaaS.Query()
 
 // 查找产品 ID 以 11 开头，以 33 结尾的产品

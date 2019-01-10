@@ -55,7 +55,7 @@ let query = new BaaS.Query()
 //...
 
 // 应用查询对象
-let Product = new BaaS.TableObject(tableID)
+let Product = new BaaS.TableObject(tableName)
 Product.setQuery(query).find().then(res => {
   // success
 }, err => {
@@ -490,7 +490,7 @@ let orQuery = BaaS.Query.or(andQuery, query3)
 
 ## 获取符合筛选条件的数据总数
 ```javascript
-let Product = new BaaS.TableObject(tableID)
+let Product = new BaaS.TableObject(tableName)
 let query = new BaaS.Query()
 
 // 设置查询条件

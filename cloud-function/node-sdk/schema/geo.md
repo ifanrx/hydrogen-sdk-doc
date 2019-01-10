@@ -30,7 +30,7 @@ var polygon = new BaaS.GeoPolygon([point1, point2, point3, point1])
 **请求示例**
 
 ```js
-var Product = new BaaS.TableObject(tableID)
+var Product = new BaaS.TableObject(tableName)
 var product = Product.create()
 
 // 保存一个点
@@ -55,7 +55,7 @@ product.set('origin', polygon).save()
 ```js
 // 查找当前用户所属小区
 
-var Neighbourhood = new BaaS.TableObject(neighbourhoodTableID)
+var Neighbourhood = new BaaS.TableObject(neighbourhoodTableName)
 
 var query = new BaaS.Query()
 
@@ -70,7 +70,7 @@ Neighbourhood.setQuery(query).find()
 ```js
 // 查找在距离用户 radius 千米范围内的饭店
 
-var Restaurant = new BaaS.TableObject(restaurantTableID)
+var Restaurant = new BaaS.TableObject(restaurantTableName)
 
 // geoField 为 restaurant 表中定义地理位置的字段名
 query.withinCircle('geoField', point, radius)
@@ -84,7 +84,7 @@ Restaurant.setQuery(query).find()
 ```js
 // 查找距离用户 minDistance 千米外，maxDistance 千米内的所有饭店
 
-var Restaurant = new BaaS.TableObject(restaurantTableID)
+var Restaurant = new BaaS.TableObject(restaurantTableName)
 
 // geoField 为 restaurant 表中定义地理位置的字段名，point 为圆点，minDistance 不指定默认为 0
 query.withinRegion('geoField', point, maxDistance, minDistance)
@@ -98,7 +98,7 @@ Restaurant.setQuery(query).find()
 ```js
 // 查找某个小区内的所有饭店
 
-var Neighbourhood = new BaaS.TableObject(neighbourhoodTableID)
+var Neighbourhood = new BaaS.TableObject(neighbourhoodTableName)
 
 Neighbourhood.get(recordID).then(res => {
   var neighbourhood = res.data

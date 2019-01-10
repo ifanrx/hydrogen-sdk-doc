@@ -235,7 +235,7 @@ product.update().then(res=>{
 ```js
 product.append('desc', ['big'])
 // or
-product.append('desc, 'big')
+product.append('desc', 'big')
 ```
 
 #### 将 _待插入的数组_ 中不包含在原数组的数据加到原数组末尾
@@ -254,7 +254,7 @@ product.append('desc, 'big')
 ```js
 product.uAppend('desc', ['sweet'])
 // or
-product.uAppend('desc, 'sweet')
+product.uAppend('desc', 'sweet')
 ```
 
 #### 从原数组中删除指定的值
@@ -322,7 +322,7 @@ order.update()
 **请求示例**
 
 ```js
-let MyTableObject = new BaaS.TableObject(tableID)
+let MyTableObject = new BaaS.TableObject(tableName)
 
 let query = new BaaS.Query()
 
@@ -385,7 +385,7 @@ then 回调中的 res 对象结构如下：
 ### 按条件批量更新时不触发触发器
 
 ```js
-let MyTableObject = new BaaS.TableObject(tableID)
+let MyTableObject = new BaaS.TableObject(tableName)
 
 let query = new BaaS.Query()
 
