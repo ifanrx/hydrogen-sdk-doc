@@ -21,8 +21,9 @@
 ----
 
 * [JS SDK](js-sdk/README.md)
-    * [登入登出](js-sdk/signin-signout.md)
+    * [登入登出](js-sdk/auth.md)
     * [账户管理](js-sdk/account.md)
+    * [用户](js-sdk/user.md)
     * [数据表](js-sdk/schema/README.md)
         * [数据类型](js-sdk/schema/data-type.md)
         * [新增数据项](js-sdk/schema/create-record.md)
@@ -44,6 +45,7 @@
         * [文件操作](js-sdk/file/file.md)
         * [文件分类操作](js-sdk/file/category.md)
     * [微信小程序](js-sdk/wechat/README.md)
+        * [微信登录](js-sdk/wechat/signin-signout.md)
         * [支付](js-sdk/wechat/payment/README.md)
             * [微信支付](js-sdk/wechat/payment/pay.md)
             * [订单查询](js-sdk/wechat/payment/order.md)

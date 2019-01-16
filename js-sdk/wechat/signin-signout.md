@@ -9,7 +9,7 @@ SDK 提供了快速登录小程序的接口，省去使用微信登录接口时�
 
 小程序建议的登录流程是，通过 `wx.BaaS.auth.loginWithWechat()` 获取用户 openID, 这时无需弹框授权，开发者拿到 openID 可以建立自身的帐号 ID。当必须要获得用户的头像昵称等信息时，才让用户点击 button（open-type="getUserInfo" ），弹框授权。
 
-### 通过微信登录
+## 静默登录
 
 `wx.BaaS.auth.loginWithWechat()`
 
@@ -50,7 +50,13 @@ wx.BaaS.auth.loginWithWechat().then(res => {
 
 err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
-### 请求用户授权
+## 设置用户名和邮箱
+
+用户通过微信登录后，可以设置邮箱、用户名、密码，以便下次可以通过用户名或者邮箱登录。
+
+详情请参考 [更新用户名](../account.md) 和 [更新邮箱](../account.md) 
+
+## 请求用户授权
 
 开发者需要提供按钮的方式，令用户触发授权操作
 

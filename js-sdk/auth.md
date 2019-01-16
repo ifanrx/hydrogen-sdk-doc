@@ -10,8 +10,8 @@ opts 参数说明：
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| opts.username   | String  | 用户名 |
-| opts.email      | String  | 邮箱 |
+| opts.username   | String  | 用户名，username 和 email 必选一个 |
+| opts.email      | String  | 邮箱，username 和 email 必选一个 |
 | opts.password   | String  | 密码 |
 
 
@@ -25,7 +25,7 @@ opts 参数说明：
 
 ### 邮箱验证
 
-请参考 [邮箱验证小节](./account.md) 
+请参考 [邮箱验证小节](./user.md) 
 
 
 ### 通过用户名注册
@@ -44,8 +44,8 @@ opts 参数说明：
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| opts.username   | String  | 用户名 |
-| opts.email      | String  | 邮箱 |
+| opts.username   | String  | 用户名，username 和 email 必选一个 |
+| opts.email      | String  | 邮箱，username 和 email 必选一个 |
 | opts.password   | String  | 密码 |
 
 ### 用户名登录
@@ -79,3 +79,16 @@ opts 参数说明：
 
 
 ### 关联支付宝小程序
+
+
+## 忘记密码
+
+### 通过邮件找回密码
+
+`BaaS.auth.requestPasswordReset()`
+
+**示例代码**
+
+```javascript
+
+```

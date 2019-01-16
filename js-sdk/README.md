@@ -8,11 +8,14 @@
 - [web 版接入指南](./web/README.md)
 - [支付宝接入指南](./alipay/README.md)
 
+## 1.x 迁移指南
+
+[迁移指南](./migrate-from-v1.md)
 
 更多内容，可查看以下功能模块介绍：
 
 * [登入登出](./auth.md)
-* [用户](./account.md)
+* [用户](./user.md)
 * [数据表](./schema/README.md)
 * [内容库](./content/README.md)
 * [文件](./file/README.md)
