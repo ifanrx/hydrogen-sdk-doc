@@ -1,8 +1,5 @@
 # 文件分类操作
 
-> **danger**
-> 以下操作仅适用于 SDK version >= v1.1.1
-
 实例化一个 `wx.BaaS.FileCategory` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
 
 `let MyFileCategory = new wx.BaaS.FileCategory()`
