@@ -53,6 +53,8 @@
         * [检测违规图片、文本](js-sdk/wechat/censor.md)
         * [获取二维码](js-sdk/wechat/wxacode.md)
         * [异常上报](js-sdk/wechat/bugout.md)
+    * [WEB](js-sdk/web/README.md)
+    * [支付宝小程序](js-sdk/alipay/README.md)            
     * [调用云函数](js-sdk/invoke-function.md)
     * [短信验证码](js-sdk/sms.md)
     * [错误码和 HError 对象](js-sdk/error-code.md)
