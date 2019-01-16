@@ -1,12 +1,6 @@
 # 新增数据记录
 
-{% tabs first="SDK 1.1.0 及以上版本", second="SDK 1.1.0 以下版本" %}
-
-{% content "first" %}
-
-## SDK 1.1.0 及以上版本
-
-### 操作步骤
+## 操作步骤
 
 1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
 
@@ -443,70 +437,3 @@ MyTableObject.createMany(records, {enableTrigger: false}).then(res => {
   //err 为 HError 对象
 })
 ```
-
-{% content "second" %}
-
-## SDK 1.1.0 以下版本
-
-> **info**
-> 该写法在 sdk v2.0 前仍然有效
-
-`wx.BaaS.createRecord(OBJECT)`
-
-**OBJECT 参数说明**
-
-| 参数     | 类型   | 必填 | 说明 |
-| :-----  | :----- | :-- | :-- |
-| tableID | Number | 是  | 数据表 ID |
-| data    | Object | 是  | 待插入的自定义数据 |
-
-**返回参数**
-
-| 参数        | 类型    | 描述 |
-| :--------- | :------ | :-- |
-| id         | String  | 数据表 ID |
-| created_at | Integer | 创建时间 |
-| is_admin   | Boolean | 自定义字段 |
-| name       | String  | 自定义字段 |
-| price      | Number  | 自定义字段 |
-| tags       |  Array  | 自定义字段 |
-
-**请求示例**
-
-```js
-// 向 tableID 为 10 的数据表插入一条记录
-let tableID = 10
-let data = {
-  "is_admin": false,
-  "name": "OSfvvQFoNm",
-  "price": 99,
-  "tags": ["LRpq", "HGLa"]
-}
-let objects = {
-  tableID,
-  data
-}
-wx.BaaS.createRecord(objects).then(res => {
-  // success
-}, err => {
-  // err
-})
-```
-
-**返回示例**
-
-```json
-{
-  "created_at": 1487053095,
-  "id": "7",
-  "is_admin": false,
-  "name": "OSfvvQFoNm",
-  "price": 99,
-  "tags": ["LRpq", "HGLa"]
-}
-```
-
-> **info**
-> 插入的数据要与预先在知晓云平台设定的数据类型一致
-
-{% endtabs %}

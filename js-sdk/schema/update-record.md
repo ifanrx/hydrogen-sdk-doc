@@ -1,11 +1,5 @@
 # 更新数据项
 
-{% tabs first="SDK 1.1.0 及以上版本", second="SDK 1.1.0 以下版本" %}
-
-{% content "first" %}
-
-## SDK 1.1.0 及以上版本
-
 ### 操作步骤
 
 1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
@@ -453,73 +447,3 @@ let records = MyTableObject.getWithoutData(query)
 
 // 知晓云后台设置的触发器将不会被触发
 records.update({enableTrigger: false}).then(res => {}, err => {})
-```
-
-{% content "second" %}
-
-## SDK 1.1.0 以下版本
-
-> **info**
-> 该写法在 sdk v2.0 前仍然有效
-
-`wx.BaaS.updateRecord(OBJECT)`
-
-**OBJECT 参数说明**
-
-| 参数      | 类型   | 必填 | 说明 |
-| :------  | :----  | :-- | :-- |
-| tableID  | Number | 是  | 数据表 ID |
-| recordID | String | 是  | 数据项 ID |
-| data     | Object | 是  | 待更新的自定义数据 |
-
-**请求示例**
-
-```js
-// 更新 tableID 为 10 的数据表中 id 为 59897882ff650c0477f00485 的数据项的 name 字段
-let tableID = 10
-let recordID = '59897882ff650c0477f00485'
-let data = {
-  name: "VwlPCaUJzxAyNUSNMgzikTQySFoaTZtm"
-}
-let objects = {
-  tableID,
-  recordID,
-  data
-}
-
-wx.BaaS.updateRecord(objects).then(res => {
-  // success
-}, err => {
-  // err
-})
-```
-
-**返回参数**
-
-| 参数        |   类型  | 说明 |
-| :--------- | :------ | :-- |
-| id         | String  | 数据项 ID |
-| created_at | Number  | 创建时间 |
-| is_admin   | Boolean | 自定义字段 |
-| name       | String  | 自定义字段 |
-| price      | Number  | 自定义字段 |
-| tags       |  Array  | 自定义字段 |
-
-**返回示例**
-
-res.data:
-```json
-{
-  "created_at": 1487055951,
-  "id": "59897882ff650c0477f00485",
-  "is_admin": false,
-  "name": "VwlPCaUJzxAyNUSNMgzikTQySFoaTZtm",
-  "price": 10,
-  "tags": ["UZbJ", "eSYo"]
-}
-```
-
-> **info**
-> 本方法支持部分更新和全量更新
-
-{% endtabs %}

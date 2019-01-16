@@ -1,7 +1,5 @@
 # 文件操作
 
-## SDK 1.1.2 及以上版本
-
 实例化一个 `wx.BaaS.File` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
 
 `let MyFile = new wx.BaaS.File()`

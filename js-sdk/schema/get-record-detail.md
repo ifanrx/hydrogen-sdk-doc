@@ -1,11 +1,5 @@
 # 获取数据项详情
 
-{% tabs first="SDK 1.1.0 及以上版本", second="SDK 1.1.0 以下版本" %}
-
-{% content "first" %}
-
-## SDK 1.1.0 及以上版本
-
 ### 操作步骤
 
 1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
@@ -81,65 +75,3 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 ### 字段过滤与扩展
 
 请参考[字段过滤与扩展](./select-and-expand.md)章节
-
-{% content "second" %}
-
-## SDK 1.1.0 以下版本
-
-> **info**
-> 该写法在 sdk v2.0 前仍然有效
-
-`wx.BaaS.getRecord(OBJECT)`
-
-**OBJECT 参数说明**
-
-| 参数      | 类型   | 必填 | 说明 |
-| :------  | :----- | :-- | :-- |
-| tableID  | Number | 是  | 数据表 ID |
-| recordID | String | 是  | 数据行 id |
-
-**请求示例**
-
-```js
-let tableID = 10
-let recordID = '59897882ff650c0477f00485'
-let objects = {
-  tableID,
-  recordID
-}
-
-wx.BaaS.getRecord(objects).then(res => {
-  // success
-}, err => {
-  // err
-})
-```
-
-**返回参数**
-
-res.data:
-
-| 参数        | 类型    | 说明 |
-| :--------- | :------ | :-- |
-| id         | String  | 数据行 id |
-| created_at | Integer | 创建时间 |
-| is_admin   | Boolean | 自定义字段 |
-| name       | String  | 自定义字段 |
-| price      | Number  | 自定义字段 |
-| tags       |  Array  | 自定义字段 |
-
-**返回示例**
-
-res.data:
-```json
-{
-  "created_at": 1487053095,
-  "id": "59897882ff650c0477f00485",
-  "is_admin": false,
-  "name": "JlpvHdheLh",
-  "price": 89,
-  "tags": ["xGHt", "hHqz"]
-}
-```
-
-{% endtabs %}

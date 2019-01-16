@@ -10,10 +10,6 @@
 
 通过 `TableRecord` 实例的 `set` 和 `save` 方法，可以完成数据行的创建。
 
-> **info**
-> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new wx.BaaS.TableObject('product')
-
-
 ```js
 let tableID = 10
 // 通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表

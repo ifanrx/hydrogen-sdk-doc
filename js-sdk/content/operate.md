@@ -1,7 +1,5 @@
 # 内容操作
 
-## SDK 1.1.3 及以上版本
-
 以下操作都需指明操作的内容库，方法如下：
 
 `let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)`
