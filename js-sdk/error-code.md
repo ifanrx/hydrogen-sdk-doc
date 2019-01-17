@@ -16,7 +16,7 @@ HError 实例上有两个重要的属性，对调试错误很有帮助：
 
 
 **示例代码**
-
+{% ifanrxCodeTabs %}
 ```js
 // SDK API 返回值是一个 Promise 对象，在 catch 中捕捉错误
 
@@ -32,7 +32,9 @@ wx.BaaS.login().then(res => {
   // ...
 })
 ```
+{% endifanrxCodeTabs %}
 
+{% ifanrxCodeTabs %}
 ```js
 // SDK API 是一个同步的操作，则用 try-catch 来捕捉错误
 
@@ -46,6 +48,8 @@ try {
 }
 
 ```
+{% endifanrxCodeTabs %}
+
 
 ## 错误码详解
 

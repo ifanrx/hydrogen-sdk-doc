@@ -4,7 +4,7 @@
 
 该模块允许用户创建、编写运行于知晓云云引擎上的代码。适用于一些对安全性有要求，功能复杂、需求个性化的业务场景。配合触发器可以帮助开发者实现功能复杂的小程序。
 
-## `wx.BaaS.invoke(functionName, params, sync)` (SDK >= 1.14.0)
+## `BaaS.invoke(functionName, params, sync)` (SDK >= 1.14.0)
 
 {% block tips1 %}
 
@@ -34,6 +34,8 @@
 
 假设已经创建了一个云函数 helloWorld，其接受一个 name 作为参数，返回 hello ${name}，可通过以下方式在云函数中进行调用
 
+{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
+
 ```js
 wx.BaaS.invoke('helloWorld', {name: 'allen'}).then(res => {
   if (res.code === 0) {
@@ -48,6 +50,9 @@ wx.BaaS.invoke('helloWorld', {name: 'allen'}).then(res => {
   callback(err)
 })
 ```
+
+
+{% endifanrxCodeTabs %}
 
 **返回参数**
 
@@ -82,6 +87,7 @@ HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 **请求示例**
 
 假设已经创建了一个云函数 helloWorld，其接受一个 name 作为参数，返回 hello ${name}，可通过以下方式在云函数中进行调用
+{% ifanrxCodeTabs  %}
 
 ```js
 wx.BaaS.invokeFunction('helloWorld', {name: 'allen'}).then(res => {
@@ -94,6 +100,8 @@ wx.BaaS.invokeFunction('helloWorld', {name: 'allen'}).then(res => {
   }
 })
 ```
+
+{% endifanrxCodeTabs %}
 
 **返回参数**
 

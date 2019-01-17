@@ -369,7 +369,7 @@ let MyTableObject = new wx.BaaS.TableObject(tableID)
 let query = new wx.BaaS.Query()
 
 // 设置查询条件（比较、字符串包含、组合等）
-...
+//...
 
 // limit、offset 可以指定按条件查询命中的数据分页
 let records = MyTableObject.limit(10).offset(0).getWithoutData(query)
