@@ -18,9 +18,14 @@ opts 参数说明：
 ### 通过邮箱注册
 
 **示例代码**
-```javascript
 
+{% ifanrxCodeTabs %}
+```javascript
+wx.BaaS.auth.register({email: 'ifanrx@ifanr.com', password: 'ifanrx123'}).then(res => {
+  console.log(res)
+})
 ```
+{% endifanrxCodeTabs %}
 
 
 ### 邮箱验证
@@ -31,10 +36,13 @@ opts 参数说明：
 ### 通过用户名注册
 
 **示例代码**
+{% ifanrxCodeTabs %}
 ```javascript
-
+wx.BaaS.auth.register({username: 'ifanrx', password: 'ifanrx123'}).then(res => {
+  console.log(res)
+})
 ```
-
+{% endifanrxCodeTabs %}
 
 ## 登录
 
@@ -52,17 +60,26 @@ opts 参数说明：
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```javascript
-
+wx.BaaS.auth.login({username: 'ifanrx', password: 'ifanrx123'}).then(res => {
+  console.log(res)
+})
 ```
+{% endifanrxCodeTabs %}
 
 ### 邮箱登录
 
+
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```javascript
-
+wx.BaaS.auth.login({email: 'ifanrx@ifanr.com', password: 'ifanrx123'}).then(res => {
+  console.log(res)
+})
 ```
+{% endifanrxCodeTabs %}
 
 ## 其他方式登录
 
@@ -85,10 +102,16 @@ opts 参数说明：
 
 ### 通过邮件找回密码
 
+当用户忘记了登录密码，可以通过邮件找回密码。
+
 `BaaS.auth.requestPasswordReset()`
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```javascript
-
+wx.BaaS.auth.requestPasswordReset().then(res => {
+  console.log(res)
+})
 ```
+{% endifanrxCodeTabs %}

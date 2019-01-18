@@ -2,8 +2,8 @@
 
 ## 登入登出
 
-- 原有通过 `wx.BaaS.login(false)` 来进行匿名授权登录，现在改为 `wx.BaaS.auth.loginWithWechat()`
-- `wx.BaaS.logout` 迁移到 `wx.BaaS.auth.logout`
+- 原有通过 `wx.BaaS.login(false)` 来进行静默登录，现在改为 `wx.BaaS.auth.loginWithWechat()`
+- `wx.BaaS.logout` API 迁移到 `wx.BaaS.auth.logout`
 
 ## 获取用户信息
 - `wx.BaaS.handleUserInfo` 迁移到 `wx.BaaS.auth.handleUserInfo`

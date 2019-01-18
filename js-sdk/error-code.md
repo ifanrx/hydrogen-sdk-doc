@@ -1,8 +1,6 @@
 <!-- ex_nonav -->
 # 错误码和 HError 对象
 
-`sdk v1.1.4` 版本重构优化了错误返回信息，你可以通过如下方式对错误信息进行判断。
-
 ## HError 错误对象的格式
 
 在大部分情况下，SDK API 抛出的错误统一为 HError 类的实例，可以使用 `try-catch` 块进行捕捉，若 SDK 的 API 返回值是一个 Promise 时，HError 对象则会作为 catch 回调的参数。

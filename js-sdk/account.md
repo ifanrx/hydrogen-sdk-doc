@@ -30,21 +30,57 @@
 
 ### 更新用户名
 
-`currentUser.updateUsername(username)`
+`currentUser.updateUsername({username, password})`
+
+**参数说明**
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | username   | String  | 新用户名 |
+| password      | String  | 密码 |
+
+**示例代码**
+
+{% ifanrxCodeTabs %}
+```javascript
+let user = wx.BaaS.auth.currentUser()
+
+user.updateUsername({
+  username: 'ifanrx_new',
+  password: '111111',
+}).then(res => {
+  console.log(res)
+})
+```
+{% endifanrxCodeTabs %}
 
 ### 更新邮箱
 
-`currentUser.updateEmail(email, sendVerificationEmail)`
+`currentUser.updateEmail({email, password }, {sendVerificationEmail} = {})`
+
+**参数说明**
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | email      | String  | 新邮箱 |
-| sendVerificationEmail   | Boolean  | 是否发送验证邮件，默认为 false |
+| password      | String  | 密码 |
+| sendVerificationEmail   | Boolean  | 是否发送验证邮件，可选，默认为 false |
 
+**示例代码**
+
+{% ifanrxCodeTabs %}
+```javascript
+let user = wx.BaaS.auth.currentUser()
+
+user.updateEmail({
+  email: 'ifanrx_new@ifanr.com',
+  password: '111111',
+}, {sendVerificationEmail: true}).then(res => {
+  console.log(res)
+})
+
+```
+{% endifanrxCodeTabs %}
 
 ### 更新密码
 
@@ -57,6 +93,16 @@
 | password      | String  | 用户密码 （若用户当前密码为空则为`空`） |
 | newPassword   | String  | 新用户密码 (若用户当前密码为空则为`必填`） |
 
+**示例代码**
+
+{% ifanrxCodeTabs %}
+```javascript
+let user = wx.BaaS.auth.currentUser()
+user.updatePassword({password: '111111', newPassword: '222222'}).then(res => {
+  console.log(res)
+})
+```
+{% endifanrxCodeTabs %}
 
 
 ## 邮箱验证
@@ -68,6 +114,11 @@
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
-
+let user = wx.BaaS.auth.currentUser()
+user.requestEmailVerification().then(res => {
+  console.log(res)
+})
 ```
+{% endifanrxCodeTabs %}
