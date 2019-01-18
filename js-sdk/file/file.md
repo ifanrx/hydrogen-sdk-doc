@@ -1,8 +1,10 @@
 # 文件操作
 
-实例化一个 `wx.BaaS.File` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
+实例化一个 `BaaS.File` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
 
+{% ifanrxCodeTabs %}
 `let MyFile = new wx.BaaS.File()`
+{% endifanrxCodeTabs %}
 
 ### 文件上传
 
@@ -71,7 +73,7 @@ wx.chooseImage({
 HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 > **danger**
-> 使用 `wx.uploadFile` 以及 `SDK v.1.1.2` 之前版本的 `wx.BaaS.uploadFile` 返回的 res.data 是 json string 类型，而这里的 res.data 是 Object 类型，因此不需要再做类型转换了
+> 使用 `wx.uploadFile` 以及 `SDK v.1.1.2` 之前版本的 `BaaS.uploadFile` 返回的 res.data 是 json string 类型，而这里的 res.data 是 Object 类型，因此不需要再做类型转换了
 
 
 #### 监听上传进度变化事件和中断上传任务 (SDK >= 1.8.0)
@@ -164,6 +166,7 @@ category 参数说明：
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyFile = new wx.BaaS.File()
 MyFile.get('5a2fe93308443e313a428c4f').then((res) => {
@@ -172,6 +175,7 @@ MyFile.get('5a2fe93308443e313a428c4f').then((res) => {
   // HError 对象
 })
 ```
+{% endifanrxCodeTabs %}
 
 HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
@@ -205,6 +209,7 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyFile = new wx.BaaS.File()
 
@@ -212,6 +217,7 @@ MyFile.delete('5a2fe93308443e313a428c4f').then()
 
 MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 ```
+{% endifanrxCodeTabs %}
 
 > **info**
 > 删除单个文件，如果权限不足，会返回 401；删除多个文件，如果权限不足，则直接跳过该文件
@@ -232,6 +238,7 @@ MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyFile = new wx.BaaS.File()
 
@@ -247,8 +254,9 @@ query.contains('name', substr)
 
 MyFile.setQuery(query).find()
 ```
+{% endifanrxCodeTabs %}
 
-
+{% ifanrxCodeTabs %}
 ```js
 let MyFile = new wx.BaaS.File()
 
@@ -260,6 +268,7 @@ let query = wx.BaaS.Query.and(new wx.BaaS.Query().compare('created_at', '<=', Ma
 
 MyFile.setQuery(query).find()
 ```
+{% endifanrxCodeTabs %}
 
 
 ### 排序
@@ -273,20 +282,24 @@ MyFile.setQuery(query).find()
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyFile = new wx.BaaS.File()
 MyFile.orderBy('-created_at').find().then()
 ```
+{% endifanrxCodeTabs %}
 
 ### 分页
 文件查询排序与[数据表分页](../schema/limit-and-order.md)方法一致
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyFile = new wx.BaaS.File()
 MyFile.limit(10).offset(5).find().then()
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 

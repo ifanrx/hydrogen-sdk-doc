@@ -6,6 +6,7 @@
 
 SDK 中内置了多个接口，方便你对在控制台中创建的内容库及其中的分类和内容进行获取和查找，如下是查找指定内容库下在指定分类下的内容列表的代码示例：
 
+{% ifanrxCodeTabs %}
 ```js
 let contentGroupID = 1513076211190694
 let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)
@@ -16,6 +17,7 @@ MyContentGroup.setQuery(query).find().then(res => {
   console.log(res.data)
 })
 ```
+{% endifanrxCodeTabs %}
 
 同时，为了方便你将创建的内容显示到小程序上，我们提供了 wxParser 工具。其作用是将富文本转为成能被微信小程序正确解析的 WXML，效果如下：
 

@@ -2,7 +2,9 @@
 
 以下操作都需指明操作的内容库，方法如下：
 
+{% ifanrxCodeTabs %}
 `let MyContentGroup = new wx.BaaS.ContentGroup(contentGroupID)`
+{% endifanrxCodeTabs %}
 
 **参数说明**
 
@@ -40,6 +42,7 @@
 
 **请求示例**
 
+{% ifanrxCodeTabs %}
 ```js
 let contentGroupID = 1513076211190694
 let richTextID = 1514529306082815
@@ -51,6 +54,7 @@ MyContentGroup.getContent(richTextID).then(res => {
   // err
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -76,6 +80,7 @@ res.data:
 
 **请求示例**
 
+{% ifanrxCodeTabs %}
 ```js
 // 查找该内容库下的所有内容
 MyContentGroup.find().then()
@@ -89,6 +94,7 @@ MyContentGroup.setQuery(query).find().then(res => {
   // err
 })
 ```
+{% endifanrxCodeTabs %}
 
 #### 筛选字段 （SDK >= 1.11.1）
 
