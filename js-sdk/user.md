@@ -1,6 +1,10 @@
 # 获取用户信息
 
+{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
+
 `let MyUser = new wx.BaaS.User()`
+
+{% endifanrxCodeTabs %}
 
 ### 获取指定用户信息
 
@@ -41,6 +45,8 @@
 
 **请求示例**
 
+{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
+
 ```js
 let MyUser = new wx.BaaS.User()
 let userID = 36395395
@@ -50,6 +56,8 @@ MyUser.get(userID).then(res => {
   // err
 })
 ```
+
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -95,6 +103,8 @@ expand 使用方法可以参考[数据表 - 字段扩展](/js-sdk/schema/select-
 
 假设 _userprofile 表中有一个类型为 pointer 的字段，名称为 `pointer_test_oder`, 指向了 test_order 表
 
+{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
+
 ```javascript
 let MyUser = new wx.BaaS.User()
 MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_order']).get(123456).then((res) => {
@@ -103,6 +113,7 @@ MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_order']).
 // err
 })
 ```
+{% endifanrxCodeTabs %}
 
 **请求结果**
 ```json
@@ -121,6 +132,8 @@ MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_order']).
 }
 ```
 
+{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
+
 ```javascript
 let MyUser = new wx.BaaS.User()
 MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_oder']).find().then((res) => {
@@ -130,6 +143,7 @@ MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_oder']).f
 })
 
 ```
+{% endifanrxCodeTabs %}
 
 **请求结果**
 
@@ -165,6 +179,7 @@ MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_oder']).f
 
 **请求示例**
 
+{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
 ```js
 let MyUser = new wx.BaaS.User()
 let currentUser = MyUser.getCurrentUserWithoutData()
@@ -176,6 +191,7 @@ currentUser.set('age', 30).update().then(res => {
   // err
 })
 ```
+{% endifanrxCodeTabs %}
 
 ### 查询，获取用户列表
 
@@ -183,6 +199,7 @@ currentUser.set('age', 30).update().then(res => {
 
 **请求示例**
 
+{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
 ```js
 let MyUser = new wx.BaaS.User()
 
@@ -198,6 +215,7 @@ MyUser.setQuery(query).find().then(res => {
   // err
 })
 ```
+{% endifanrxCodeTabs %}
 
 ### 排序
 
@@ -205,11 +223,13 @@ MyUser.setQuery(query).find().then(res => {
 
 **请求示例**
 
+{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
 ```js
 let MyUser = new wx.BaaS.User()
 
 MyUser.orderBy('-nickname').find().then()
 ```
+{% endifanrxCodeTabs %}
 
 ### 分页
 
@@ -217,17 +237,21 @@ MyUser.orderBy('-nickname').find().then()
 
 **请求示例**
 
+{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
 ```js
 let MyUser = new wx.BaaS.User()
 
 MyUser.limit(5).offset(10).find().then()
 ```
+{% endifanrxCodeTabs %}
 
 ### pointer 引用
 
-使用 `wx.BaaS.User().getWithoutData` 可以创建一个 _userprofile 指定数据行的引用。主要配合 pointer 功能使用
+使用 `BaaS.User().getWithoutData` 可以创建一个 _userprofile 指定数据行的引用。主要配合 pointer 功能使用
 
+{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
 ```js
 let user = new wx.BaaS.User().getWithoutData(123456)
 ```
+{% endifanrxCodeTabs %}
 具体使用方法请参考 [数据表-添加 pointer 类型数据](./schema/create-record.md) 小节
