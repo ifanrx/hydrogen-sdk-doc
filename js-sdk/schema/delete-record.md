@@ -4,7 +4,9 @@
 
 1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
 
+{% ifanrxCodeTabs %}
 `let MyTableObject = new wx.BaaS.TableObject(tableID)`
+{% endifanrxCodeTabs %}
 
 **参数说明**
 
@@ -13,7 +15,7 @@
 | tableID | Number |  是 | 数据表 ID |
 
 > **info**
-> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new wx.BaaS.TableObject('product')
+> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new BaaS.TableObject('product')
 
 **返回参数说明**
 
@@ -33,6 +35,8 @@
 ### 示例
 
 **请求示例**
+
+{% ifanrxCodeTabs %}
 ```js
 // 删除 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项
 let tableID = 10
@@ -45,6 +49,8 @@ Product.delete(recordID).then(res => {
   // err
 })
 ```
+{% endifanrxCodeTabs %}
+
 **返回示例**
 
 then 回调中的 res 对象结构如下：
@@ -75,6 +81,7 @@ SDK 1.4.0 及以上版本支持批量删除数据项。可以通过设置查询�
 
 **请求示例**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyTableObject = new wx.BaaS.TableObject(tableID)
 
@@ -89,6 +96,7 @@ MyTableObject.limit(10).offset(0).delete(query).then(res => {
   console.log(err)  
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -128,3 +136,4 @@ MyTableObject.delete(query, {enableTrigger: false}).then(res => {
 }, err => {
   //err 为 HError 对象
 })
+```

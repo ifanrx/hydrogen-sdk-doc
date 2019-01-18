@@ -22,10 +22,12 @@
 
 1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
 
+{% ifanrxCodeTabs %}
 `let MyTableObject = new wx.BaaS.TableObject(tableID)`
+{% endifanrxCodeTabs %}
 
 > **info**
-> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new wx.BaaS.TableObject('product')
+> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new BaaS.TableObject('product')
 
 **参数说明**
 
@@ -34,11 +36,13 @@
 | tableID | Number |  是 | 数据表 ID |
 
 > **info**
-> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new wx.BaaS.TableObject('product')
+> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new BaaS.TableObject('product')
 
 2.示例化一个 `Query` 对象，在该对象上添加查询条件
 
+{% ifanrxCodeTabs %}
 `let query = new wx.BaaS.Query()`
+{% endifanrxCodeTabs %}
 
 查看下面的文档，了解目前支持的查询条件
 
@@ -53,6 +57,7 @@
 
 **请求示例**
 
+{% ifanrxCodeTabs %}
 ```js
 // 实例化查询对象
 let query = new wx.BaaS.Query()
@@ -75,6 +80,7 @@ Product.find().then(res => {
   // err
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -369,6 +375,7 @@ order 表部分字段结构如下：
 - customer 字段指向 customer 表中 id 为 `5bad87ab0769797b4fb27a1b` 的数据行 
 - user 字段指向了 _userprofile 表中 id 为 `69147880` 的数据行
 
+{% ifanrxCodeTabs %}
 ```js
 var query = new wx.BaaS.Query()
 var Customer = new wx.BaaS.TableObject('customer')
@@ -382,6 +389,8 @@ Order.setQuery(query).expand(['customer', 'user']).find().then(res => {
   
 })
 ```
+{% endifanrxCodeTabs %}
+
 **返回示例**
 
 res 结构如下:
@@ -483,6 +492,7 @@ pointer 类型支持的查询操作符请参考 [数据类型对应查询操作�
 
 ### 组合查询
 
+{% ifanrxCodeTabs %}
 ```js
 let query1 = new wx.BaaS.Query()
 
@@ -499,10 +509,12 @@ let andQuery = wx.BaaS.Query.and(query1, query2, ...)
 // or 查询
 let orQuery =  wx.BaaS.Query.or(query1, query2, ...)
 ```
+{% endifanrxCodeTabs %}
 
 
 ### 复杂组合查询
 
+{% ifanrxCodeTabs %}
 ```js
 let query1 = new wx.BaaS.Query()
 query1.isNull('name')
@@ -518,8 +530,11 @@ let query3 = new wx.BaaS.Query()
 query3.compare('amount', '>', 3)
 let orQuery = wx.BaaS.Query.or(andQuery, query3)
 ```
+{% endifanrxCodeTabs %}
 
 ### 获取符合筛选条件的数据总数
+
+{% ifanrxCodeTabs %}
 ```javascript
 let Product = new wx.BaaS.TableObject(tableID)
 let query = new wx.BaaS.Query()
@@ -534,3 +549,4 @@ Product.setQuery(query).count().then(num => {
   // err
 })
 ```
+{% endifanrxCodeTabs %}

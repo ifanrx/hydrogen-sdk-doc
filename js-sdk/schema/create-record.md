@@ -15,7 +15,7 @@
 | tableID | Number |  是 | 数据表 ID |
 
 > **info**
-> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new wx.BaaS.TableObject('product')
+> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new BaaS.TableObject('product')
 
 2.本地创建一条空记录
 
@@ -57,6 +57,7 @@ MyRecord.set(key2, value2)
 
 **请求示例**
 
+{% ifanrxCodeTabs %}
 ```js
 // 向 tableID 为 10 的数据表插入一条记录
 let tableID = 10
@@ -92,6 +93,7 @@ product.save().then(res => {
   // HError 对象
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -144,6 +146,7 @@ product.set('expiration_time', isoStr)
 
 使用 SDK 1.1.2 及以上版本，操作如下：
 
+{% ifanrxCodeTabs %}
 ```js
 let MyFile = new wx.BaaS.File()  // 具体操作查看「文件操作」章节
 MyFile.upload(params).then(res => {
@@ -155,6 +158,7 @@ MyFile.upload(params).then(res => {
   })
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -187,6 +191,7 @@ res 结构如下
 
 使用 SDK 1.1.2 以下版本，操作如下：
 
+{% ifanrxCodeTabs %}
 ```
 wx.BaaS.uploadFile(params).then(res => {
   let data = JSON.parse(res.data)
@@ -194,6 +199,7 @@ wx.BaaS.uploadFile(params).then(res => {
   product.save()
 })
   ```
+  {% endifanrxCodeTabs %}
 
 <span class="attention">注：</span> 添加记录时为字段设置的数据，要与预先在知晓云平台设定的字段的数据类型一致，当仅更新一个字段，并且使用的数据不合法时，将无法成功保存，请求返回 `Failed to save record, type conflict on fields` 错误，如果更新多个字段，其中有一个或一个以上字段数据合法，则请求成功，但其中数据不合法的字段将不会成功保存，如下示例：
 
@@ -223,6 +229,7 @@ order.save()
 
 array 类型数据中的元素类型，要与预先在知晓云平台设定的字段类型一致。否则创建的数据将不包含该 array 类型的字段。
 
+{% ifanrxCodeTabs %}
 ```js
 // 元素类型为 integer
 let Table = new wx.BaaS.TableObject(tableID)
@@ -278,6 +285,7 @@ let date = new Date().toISOString()
 record.set('array_date', [date])
 record.save()
 ```
+{% endifanrxCodeTabs %}
 
 ### 添加 pointer 类型数据 (SDK >= 1.10.0)
 
@@ -298,6 +306,7 @@ comment 字段指向了 Comment 表中 id 为 5bad87ab0769797b4fb27a1b 的数据
 
 user 字段指向了 _userprofile 表中 id 为 69147880 的数据行
 
+{% ifanrxCodeTabs %}
 ```js
 // 获取一个 tableRecord 实例
 let Comment = new wx.BaaS.TableObject('Comment')
@@ -318,6 +327,7 @@ article.save().then(res=>{
   // success
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -358,6 +368,7 @@ SDK **1.4.0** 及以上版本支持批量新增数据项。
 
 **请求示例**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyTableObject = new wx.BaaS.TableObject(tableID)
 
@@ -381,6 +392,7 @@ MyTableObject.createMany(records).then(res => {
   //err 为 HError 对象
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 

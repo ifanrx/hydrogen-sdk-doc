@@ -17,6 +17,7 @@ geojson 类型字段支持使用 GeoPoint 或 GeoPolygon 类型数据进行赋�
 
 * GeoPolygon 表示地理形状，可以通过以下两种方法创建一个地理形状
 
+{% ifanrxCodeTabs %}
 ```
 // 1. 直接使用数字
 var polygon = new wx.BaaS.GeoPolygon([[10, 10], [20, 10], [30, 20], [10, 10]])
@@ -26,9 +27,11 @@ var point1 = new wx.BaaS.GeoPoint(10, 10)
 ...
 var polygon = new wx.BaaS.GeoPolygon([point1, point2, point3, point1])
 ```
+{% endifanrxCodeTabs %}
 
 **请求示例**
 
+{% ifanrxCodeTabs %}
 ```js
 var Product = new wx.BaaS.TableObject(tableID)
 var product = Product.create()
@@ -46,12 +49,14 @@ polygon = new wx.BaaS.GeoPolygon([point1, point2, point3, point1])
 
 product.set('origin', polygon).save()
 ```
+{% endifanrxCodeTabs %}
 
 
 ## 地理位置查询
 
 **`include` 在指定多边形集合中找出包含某一点的多边形**
 
+{% ifanrxCodeTabs %}
 ```js
 // 查找当前用户所属小区
 
@@ -64,9 +69,11 @@ query.include('geoField', point)
 
 Neighbourhood.setQuery(query).find()
 ```
+{% endifanrxCodeTabs %}
 
 **`withinCircle` 在指定点集合中，查找包含在指定圆心和指定半径所构成的圆形区域中的点 (返回结果随机排序)**
 
+{% ifanrxCodeTabs %}
 ```js
 // 查找在距离用户 radius 千米范围内的饭店
 
@@ -77,10 +84,12 @@ query.withinCircle('geoField', point, radius)
 
 Restaurant.setQuery(query).find()
 ```
+{% endifanrxCodeTabs %}
 
 
 **`withinRegion` 在指定点集合中，查找包含在以指定点为圆点，以最大和最小距离为半径，所构成的圆环区域中的点（返回结果按从近到远排序）**
 
+{% ifanrxCodeTabs %}
 ```js
 // 查找距离用户 minDistance 千米外，maxDistance 千米内的所有饭店
 
@@ -91,10 +100,12 @@ query.withinRegion('geoField', point, maxDistance, minDistance)
 
 Restaurant.setQuery(query).find()
 ```
+{% endifanrxCodeTabs %}
 
 
 **`within` 在指定点集合中，查找包含于指定的多边形区域的点**
 
+{% ifanrxCodeTabs %}
 ```js
 // 查找某个小区内的所有饭店
 
@@ -115,3 +126,4 @@ Neighbourhood.get(recordID).then(res => {
   Restaurant.setQuery(query).find()
 })
 ```
+{% endifanrxCodeTabs %}

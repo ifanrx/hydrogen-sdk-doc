@@ -4,7 +4,11 @@
 
 1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
 
+{% ifanrxCodeTabs %}
+
 `let MyTableObject = new wx.BaaS.TableObject(tableID)`
+
+{% endifanrxCodeTabs %}
 
 **参数说明**
 
@@ -13,11 +17,13 @@
 | tableID | Number |  是 | 数据表 ID |
 
 > **info**
-> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new wx.BaaS.TableObject('product')
+> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new BaaS.TableObject('product')
 
 2.通过数据行 id（以下用 `recordID` 参数名表示） 设置指定数据行
 
+{% ifanrxCodeTabs %}
 `let MyRecord = MyTableObject.getWithoutData(recordID)`
+{% endifanrxCodeTabs %}
 
 **参数说明**
 
@@ -90,7 +96,7 @@ MyRecord.set(key2, value2)
 ### 普通数据更新
 
 **请求示例**
-
+{% ifanrxCodeTabs %}
 ```js
 // 更新 tableID 为 10 的数据表中 id 为 59897882ff650c0477f00485 的数据行的 price 字段
 let tableID = 10
@@ -106,6 +112,7 @@ product.update().then(res => {
   // err
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -194,6 +201,7 @@ record.patchObject('obj1', patch)
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
 // 获取一个 tableRecord 实例
 let Customer = new wx.BaaS.TableObject('customer')
@@ -213,6 +221,7 @@ product.update().then(res=>{
   // success
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 ```json
@@ -363,6 +372,7 @@ SDK 1.4.0 及以上版本支持批量更新数据项。可以通过设置自定�
 
 **请求示例**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyTableObject = new wx.BaaS.TableObject(tableID)
 
@@ -381,6 +391,7 @@ records.append(key3, value3)
 
 records.update().then(res => {}, err => {})
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -432,6 +443,7 @@ catch 回调中的 err 对象:
 > **info**
 > SDK 版本需 >= 1.9.1
 
+{% ifanrxCodeTabs %}
 ```js
 let MyTableObject = new wx.BaaS.TableObject(tableID)
 
@@ -447,3 +459,6 @@ let records = MyTableObject.getWithoutData(query)
 
 // 知晓云后台设置的触发器将不会被触发
 records.update({enableTrigger: false}).then(res => {}, err => {})
+```
+
+{% endifanrxCodeTabs %}
