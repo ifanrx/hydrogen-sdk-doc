@@ -5,6 +5,9 @@
 ----
 
 * [新手入门](newbies/README.md)
+    * [新手入门 - 微信小程序](newbies/wechat.md)
+    * [新手入门 - WEB](newbies/web.md)
+    * [新手入门 - 支付宝](newbies/alipay.md)
 
 ----
 
@@ -21,8 +24,9 @@
 ----
 
 * [JS SDK](js-sdk/README.md)
+    * [1.x 迁移指南](js-sdk/migrate-from-v1.md)
     * [登入登出](js-sdk/auth.md)
-    * [账户管理](js-sdk/account.md)
+    * [currentUser](js-sdk/account.md)
     * [用户](js-sdk/user.md)
     * [数据表](js-sdk/schema/README.md)
         * [数据类型](js-sdk/schema/data-type.md)
@@ -48,6 +52,7 @@
         * [文件操作](js-sdk/file/file.md)
         * [文件分类操作](js-sdk/file/category.md)
     * [微信小程序](js-sdk/wechat/README.md)
+        * [接入指南](js-sdk/wechat/how-to.md)
         * [微信登录](js-sdk/wechat/signin-signout.md)
         * [支付](js-sdk/wechat/payment/README.md)
             * [微信支付](js-sdk/wechat/payment/pay.md)
@@ -59,6 +64,7 @@
         * [获取二维码](js-sdk/wechat/wxacode.md)
         * [异常上报](js-sdk/wechat/bugout.md)
     * [WEB](js-sdk/web/README.md)
+        * [接入指南](js-sdk/web/how-to.md)
     * [支付宝小程序](js-sdk/alipay/README.md)            
     * [调用云函数](js-sdk/invoke-function.md)
     * [短信验证码](js-sdk/sms.md)

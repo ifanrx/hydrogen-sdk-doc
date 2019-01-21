@@ -31,7 +31,7 @@ module.exports = {
         var activeState = 'active';
         var markup = markdown.page(block.body).content;
         content += `<div role="tabpanel" class="tab-pane ${activeState}" id="wechat-${blockUID}">${markup}</div>`;
-        content += `<div role="tabpanel" class="tab-pane" id="web-${blockUID}">${markup.replace(/wx\.BaaS/g, 'window.BaaS')}</div>`;
+        content += `<div role="tabpanel" class="tab-pane" id="web-${blockUID}">${markup.replace(/wx\.BaaS/g, 'BaaS')}</div>`;
         content += `<div role="tabpanel" class="tab-pane" id="alipay-${blockUID}">${markup.replace(/wx\.BaaS/g, 'my.BaaS')}</div>`;
 
         // _.map(block.blocks, function (b) {

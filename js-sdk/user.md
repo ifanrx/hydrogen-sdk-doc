@@ -39,6 +39,10 @@
 | nickname | String | 用户昵称 |
 | openid   | String | 用户唯一标识，由微信提供 |
 | province | String | 用户所在省份 |
+| _email | String | 邮箱 |
+| _email_verified | String | 邮箱是否已通过验证 |
+| _is_anonymous | String | 是否为匿名用户 |
+| _username | String | 用户名 |
 
 > **info**
 > 如果有自定义字段，则一并返回（以上两种情况皆是如此）。

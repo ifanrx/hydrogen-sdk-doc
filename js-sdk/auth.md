@@ -21,16 +21,23 @@ opts 参数说明：
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.register({email: 'ifanrx@ifanr.com', password: 'ifanrx123'}).then(res => {
-  console.log(res)
+wx.BaaS.auth.register({email: 'ifanrx@ifanr.com', password: 'ifanrx123'}).then(user => {
+  console.log(user)
+}).catch(err=>{
+  // HError 对象
 })
 ```
 {% endifanrxCodeTabs %}
 
+**返回结果**
+
+user 为 currentUser 对象，该对象的详细介绍请参考 [currentUser 小节](./account.md)
+
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ### 邮箱验证
 
-请参考 [邮箱验证小节](./user.md) 
+请参考 [邮箱验证小节](./account.md) 
 
 
 ### 通过用户名注册
@@ -38,11 +45,15 @@ wx.BaaS.auth.register({email: 'ifanrx@ifanr.com', password: 'ifanrx123'}).then(r
 **示例代码**
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.register({username: 'ifanrx', password: 'ifanrx123'}).then(res => {
-  console.log(res)
+wx.BaaS.auth.register({username: 'ifanrx', password: 'ifanrx123'}).then(user => {
+  console.log(user)
 })
 ```
 {% endifanrxCodeTabs %}
+
+user 为 currentUser 对象，该对象的详细介绍请参考 [currentUser 小节](./account.md)
+
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## 登录
 
@@ -58,28 +69,47 @@ opts 参数说明：
 
 ### 用户名登录
 
+用户可以通过用户名和密码登录
+
 **示例代码**
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.login({username: 'ifanrx', password: 'ifanrx123'}).then(res => {
-  console.log(res)
+wx.BaaS.auth.login({username: 'ifanrx', password: 'ifanrx123'}).then(user => {
+  console.log(user)
+}).catch(err=>{
+  // HError
 })
 ```
 {% endifanrxCodeTabs %}
+
+
+**返回结果**
+
+user 为 currentUser 对象，该对象的详细介绍请参考 [currentUser 小节](./account.md)
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ### 邮箱登录
 
+用户可以通过邮箱和密码登录
 
 **示例代码**
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.login({email: 'ifanrx@ifanr.com', password: 'ifanrx123'}).then(res => {
-  console.log(res)
+wx.BaaS.auth.login({email: 'ifanrx@ifanr.com', password: 'ifanrx123'}).then(user => {
+  console.log(user)
+}).catch(err => {
+  // HError
 })
 ```
 {% endifanrxCodeTabs %}
+
+**返回结果**
+
+user 为 currentUser 对象，该对象的详细介绍请参考 [currentUser 小节](./account.md)
+
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## 其他方式登录
 
@@ -104,14 +134,35 @@ wx.BaaS.auth.login({email: 'ifanrx@ifanr.com', password: 'ifanrx123'}).then(res 
 
 当用户忘记了登录密码，可以通过邮件找回密码。
 
-`BaaS.auth.requestPasswordReset()`
+`BaaS.auth.requestPasswordReset({email})`
+
+> **info**
+> 只有通过验证的邮箱才能使用邮件找回密码功能
 
 **示例代码**
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.requestPasswordReset().then(res => {
+wx.BaaS.auth.requestPasswordReset({email: 'ifanrx@ifanr.com'}).then(res => {
   console.log(res)
+}).catch(err=>{
+  // HError
 })
 ```
 {% endifanrxCodeTabs %}
+
+**返回示例**
+
+成功时 res 结构如下
+```json
+{
+  "statusCode": 201,
+  "data": { "status": "ok" }
+}
+```
+
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+## 获取 currentUser 对象
+
+请参考 [获取 currentUser 对象小节](./account.md)
