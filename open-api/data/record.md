@@ -111,7 +111,7 @@ var opt = {
     where: JSON.stringify({   // 可选, 参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码
       "price": {"$eq": 10}
     }),
-    order_by: 'id',   // 可选
+    order_by: '-created_at',   // 可选
     offset: 0,    // 可选
     limit: 20,    // 可选
   }
@@ -145,7 +145,7 @@ where_ = {
 
 query_ = urllib.urlencode({
   'where': json.dumps(where_),
-  'order_by': '-id',
+  'order_by': '-created_at',
   'limit': 10,
   'offset': 0,
 })
@@ -162,7 +162,7 @@ print resp_.content
 <?php
 $table_id = 1; // 数据表 ID
 $condition = array(
-  'order_by' => '-id',
+  'order_by' => '-created_at',
   'where' => json_encode(['price' => ['$gt' => 'test search']]),
   'limit' => '10',
   'offset' => '0'
