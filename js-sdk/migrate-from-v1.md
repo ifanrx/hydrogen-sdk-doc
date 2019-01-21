@@ -9,6 +9,9 @@
 ## 获取用户信息
 - `wx.BaaS.handleUserInfo` 迁移到 `wx.BaaS.auth.handleUserInfo`
 - `wx.BaaS.auth.handleUserInfo` 返回的 Promise 中回调内容为修改为 [currentUser 对象](./account.md) 
-- 原有通过 `wx.BaaS.login()` 来获取缓存中的用户信息，现在需要通过 `wx.BaaS.auth.currentUser()` 进行获取，请参考 [currentUser 对象小节](./account.md)，
+- 原有通过 `wx.BaaS.login()` 来获取缓存中的用户信息，现在需要通过 `wx.BaaS.auth.currentUser()` 进行获取，请参考 [currentUser 对象小节](./account.md)
+
+## 文件上传
+- 原有 [`File.upload()`](./file/file.md) API 网络请求状态码为 4xx 或 5xx 时，会进入 then 回调，现在改为进入 catch 回调
 
 

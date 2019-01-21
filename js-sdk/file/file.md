@@ -12,16 +12,17 @@
 
 **fileParams 参数说明（必须）**
 
-| 参数     |  类型   | 必填 | 说明 |
-| :------- | :----- | :-- | :-- |
-| filePath | String |  Y  | 本地资源路径 |
+| 参数                 |  类型   | 必填 | 说明 |
+| :-------------------| :----- | :--- | :--------- |
+| fileParams.filePath | String |  Y  | 本地资源路径 |
+| fileParams.fileObj | String |  Y  | 文件对象（在 WEB 端上传时提供该参数） |
 
 **metaData 参数说明（可选）**
 
-| 参数          |  类型  | 必填 | 说明 |
-| :----------- | :----- | :-- | :-- |
-| categoryID   | String |  N  | 要上传的文件分类 ID |
-| categoryName | String |  N  | 要上传的文件分类名 |
+| 参数                   |  类型  | 必填 | 说明 |
+| :---------------------| :----- | :--- | :--- |
+| metaData.categoryID   | String |  N  | 要上传的文件分类 ID |
+| metaData.categoryName | String |  N  | 要上传的文件分类名 |
 
 > **info**
 > 请勿同时填写 categoryID 和 categoryName，默认只使用 categoryID
@@ -49,6 +50,9 @@ file 参数说明：
 
 **示例代码**
 
+{% tabs first="微信小程序", second="WEB" , third="支付宝小程序" %}
+
+{% content "first" %}
 ```js
 wx.chooseImage({
   success: function(res) {
@@ -57,11 +61,7 @@ wx.chooseImage({
     let metaData = {categoryName: 'SDK'}
 
     MyFile.upload(fileParams, metaData).then(res => {
-      /*
-       * 注: 只要是服务器有响应的情况都会进入 success, 即便是 4xx，5xx 都会进入这里
-       * 如果上传成功则会返回资源远程地址,如果上传失败则会返回失败信息
-       */
-
+      // 上传成功
       let data = res.data  // res.data 为 Object 类型
     }, err => {
       // HError 对象
@@ -70,13 +70,7 @@ wx.chooseImage({
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
-
-> **danger**
-> 使用 `wx.uploadFile` 以及 `SDK v.1.1.2` 之前版本的 `BaaS.uploadFile` 返回的 res.data 是 json string 类型，而这里的 res.data 是 Object 类型，因此不需要再做类型转换了
-
-
-#### 监听上传进度变化事件和中断上传任务 (SDK >= 1.8.0)
+#### 监听上传进度变化事件和中断上传任务 (仅限微信小程序)
 在 1.1.2 版本的基础上，1.8.0 版本中增加了对 [UploadTask](https://developers.weixin.qq.com/miniprogram/dev/api/UploadTask.html) 的支持， `upload` API 返回的 Promise 对象上增加了 `onProgressUpdate` 和 `abort` 方法，使文件上传增加了以下两个特性：
 
 - 监听上传进度：`onProgressUpdate(callback)`
@@ -128,6 +122,36 @@ wx.chooseImage({
   "totalBytesExpectedToSend":1883803
 }
 ```
+
+
+{% content "second" %}
+
+```html
+<input type="file" id="file">
+```
+```javascript
+var f = document.getElementById('file')
+
+f.addEventListener('change', function(e) {
+   let File = new BaaS.File()
+   let fileParams = {fileObj: e.target.files[0]}
+  
+   File.upload(fileParams).then(res => {
+     console.log(res)
+   }, err => {
+   // HError 
+   })
+})
+```
+
+
+{% content "third" %}
+
+
+{% endtabs %}
+
+
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 > **info**
 > file 字段可用于含有 file 类型的数据表的数据操作，详细见 [新增数据项](../schema/create-record.md)
