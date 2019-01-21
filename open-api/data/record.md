@@ -86,10 +86,10 @@ https://cloud.minapp.com/oserve/v1/table/1/record/
 
 ```
 # 顺序
-https://cloud.minapp.com/oserve/v1/table/:table_id/record/?order_by=id
+https://cloud.minapp.com/oserve/v1/table/:table_id/record/?order_by=created_at
 
 # 倒序
-https://cloud.minapp.com/oserve/v1/table/:table_id/record/?order_by=-id
+https://cloud.minapp.com/oserve/v1/table/:table_id/record/?order_by=-created_at
 ```
 
 **代码示例**
