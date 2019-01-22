@@ -124,8 +124,7 @@ Page({
   // 绑定添加书目的提交按钮点击事件，向服务器发送数据
   createBook(e) {
     let bookName = this.data.creatingBookName // 缓存在 data 对象中的输入框输入的书名
-    let tableID = '1' // 从知晓云后台的数据表中获取到的对应数据表的 ID
-    let Books = new wx.BaaS.TableObject(tableID) //实例化对应 tableID 的数据表对象
+    let Books = new wx.BaaS.TableObject('bookshelf') //实例化对应 tableName 的数据表对象
     let book = Books.create() // 创建一条记录
 
   // 调用创建数据项接口，进行数据的持久化存储，详见：https://doc.minapp.com/js-sdk/schema/create-record.html
@@ -235,8 +234,7 @@ Page({
   // 绑定添加书目的提交按钮点击事件，向服务器发送数据
   createBook(e) {
     let bookName = this.data.creatingBookName // 缓存在 data 对象中的输入框输入的书名
-    let tableID = '1' // 从知晓云后台的数据表中获取到的对应数据表的 ID
-    let Books = new wx.BaaS.TableObject(tableID) //实例化对应 tableID 的数据表对象
+    let Books = new wx.BaaS.TableObject('bookshelf') //实例化对应 tableName 的数据表对象
     let book = Books.create() // 创建一条记录
 
   // 调用创建数据项接口，进行数据的持久化存储，详见：https://doc.minapp.com/js-sdk/schema/create-record.html

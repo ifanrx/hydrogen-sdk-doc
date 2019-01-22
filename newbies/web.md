@@ -24,10 +24,15 @@
 >**danger**
 > 如果注册或邮件激活失败，请开发者根据失败提示进行后续操作。如果开发者认为是服务提供方方面导致的失败，请邮件联系 `mincloud@ifanr.com`，我们会第一时间处理您的邮件。
 
+## 配置安全域名
+进入知晓云 [小程序-设置页面](https://cloud.minapp.com/dashboard/#/app/settings/app/) 配置安全域名，只有在指定域名下，才能正常的请求知晓云数据：
+![配置安全域名](/images/newbies/web-sdk-secure-domain.png)
+
+假设我们将 web 应用架设在 `http://localhost:8080/`，则在安全域名配置框中输入 `localhost:8080` 即可
 
 ## 第一个接入知晓云的小程序
 
-下面，我们以**我的书架**小程序 demo 为例，创建第一个接入知晓云的小程序。
+下面，我们以**我的书架**小程序 demo 为例，讲解如何在 web 中接入知晓云 SDK。
 
 ### 知晓云的初始化配置
 
@@ -37,16 +42,28 @@
 
 接下来我们就以 `web-sdk-demo` 为范例来讲解如何使用知晓云 JSSDK
 
+
+### 启动 web 服务器
+
+这里我们可以使用 `nginx` 等工具帮助我们启动一个 http 静态文件服务器以便我们浏览 demo，这里我们将服务器启动在 `http://localhost:40034/`， 
+用浏览器访问 `http://localhost:40034/` 即可看到如下界面：
+
+![我的书架](/images/newbies/web-sdk-demo.png)
+
+
 #### 在 HTML 中引入 SDK
+首先我们看在 `index.html` 中如何引入 SDK 文件：
 
 ```html
 <!-- index.html -->
 <script src="https://dl.ifanr.cn/hydrogen/sdk/sdk-web-latest.js"></script>
 ```
 
-通过 `script` 标签引入 SDK 后，可以通过 `window.BaaS` 获取 BaaS 对象的引用
+这里我们使用 `script` 标签引入 SDK 后，接下来就可以使用 `window.BaaS` 获取 BaaS 对象的引用。
+如果你的项目使用了 `webpack` 等打包工具，也可以通过 `var BaaS = require('minapp-sdk')` 的方式引入 SDK
 
 ##### 在 index.js 文件中完成 SDK 的初始化
+引入 SDK 后，我们需要完成 SDK 的初始化。
 
 通过初始化 [SDK](/js-sdk/download-sdk.md)，知晓云服务可以验证当前的应用是否是有效合法的，只有通过验证的应用才能使用 [SDK](/js-sdk/download-sdk.md) 提供的全部功能。
 
@@ -54,7 +71,7 @@
 
 ![复制 clientID](/images/newbies/get-client-id.png)
 
-初次打开 demo，页面会提示输入 clientID，输入 clientID 后就可以初始化 BaaS 对象了。
+初次打开 demo，页面会提示输入 clientID，输入 clientID 后就可以初始化 BaaS 对象了，初始化 BaaS 对象的逻辑如下：
 
 ```js
 // index.js
@@ -67,7 +84,7 @@
 
 ### 创建数据表
 
-完成知晓云的初始化配置后，开发者就可以根据自身应用的业务逻辑，确定所需的数据表，确定好后即可在**知晓云后台 >> 数据管理模块**开始数据表的创建工作。
+完成知晓云的初始化配置后，我们就可以根据自身应用的业务逻辑，确定所需的数据表，确定好后即可在**知晓云后台 >> 数据管理模块**开始数据表的创建工作。
 
 以**我的书架**为例，在数据管理模块，创建一张名为 `bookshelf` 的数据表，并添加一个名为 `bookName` 的数据列。
 
@@ -77,7 +94,7 @@
 
 ### 用户注册与登录
 
-我们编写一个注册模态框和登录模态框，以便用户在使用此应用时可以注册和登录账号：
+默认情况下，知晓云不允许未登录用户获取和修改数据表中的数据，因此我们需要编写一个注册模态框和登录模态框，以便用户在页面上可以注册和登录账号：
 
 ![登录模态框](/images/newbies/web-sdk-login.png)
 
@@ -157,7 +174,7 @@ handleRegister 代码如下：
       })
 ```
 
-用户登录后，就有权限读取和写入数据了。
+用户登录后，就有权限读取和写入数据了。已注册的用户可以在 [用户列表 - 用户](https://cloud.minapp.com/dashboard/#/app/user/list/)页面看到
 
 ### SDK 数据操作接口使用示例
 
@@ -167,6 +184,8 @@ handleRegister 代码如下：
 
 ```js
 // index.js
+var BookShelf = new window.BaaS.TableObject('bookshelf')
+
 new Vue({
   el: '#root',
   data() {
@@ -193,12 +212,11 @@ new Vue({
   },
 })
 ```
-
-同时，我们可以在数据管理模块看到新增的数据项。
+在 demo 中新增的书籍后，我们可以在数据管理模块同时看到新增的数据项。
 
 ![bookshelf 数据表](/images/newbies/bookshelf-schema.jpeg)
 
-至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo.git)的源码。
+至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo/tree/master/web-sdk-demo)的源码。
 
 
 

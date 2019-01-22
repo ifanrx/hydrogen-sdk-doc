@@ -1,5 +1,12 @@
 #  WEB 端 SDK 接入指南
 
+## 配置安全域名
+进入知晓云 [小程序-设置页面](https://cloud.minapp.com/dashboard/#/app/settings/app/) 配置安全域名，只有在指定域名下，才能正常的请求知晓云数据：
+![配置安全域名](/images/newbies/web-sdk-secure-domain.png)
+
+假设我们将 web 应用架设在 `http://localhost:8080/`，则在安全域名配置框中输入 `localhost:8080` 即可
+
+
 ## 引入 SDK
 
 {% tabs first="npm 引入", second="文件引入" %}
@@ -35,9 +42,6 @@ b. 将下载解压后得到的 SDK js 文件放在 WEB 项目目录中，并在 
   let clientID = '知晓云管理后台获取到的 ClientID'
   BaaS.init('clientID')
 ```
-
-## 添加安全域名
-
 
 
 更多内容，可查看以下功能模块介绍：
