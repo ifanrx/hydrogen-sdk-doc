@@ -15,20 +15,11 @@ SDK 提供了快速登录小程序的接口，省去使用微信登录接口时�
 
 该方法会进行简单的登录，不需要用户授权，即不会弹出授权框。
 
-**返回字段说明**
-
-| 参数     | 类型   | 说明 |
-| :------ | :----- | :-- |
-| id      | Integer | 用户在用户表中的 ID |
-| openid  | String | 用户唯一标识，由微信生成 |
-| unionid | String | 用户在开放平台的唯一标识符，由微信生成 |
-| session_expires_at | Integer | 指示当前登录态的过期时间，由知晓云维护。该值为一个 unix 时间戳 (SDK >= 1.11.0) |
-
 **请求示例**
 
 ```js
 // 微信用户登录小程序
-wx.BaaS.auth.loginWithWechat().then(res => {
+wx.BaaS.auth.loginWithWechat().then(user => {
   // 登录成功
 }, err => {
   // 登录失败
@@ -36,15 +27,7 @@ wx.BaaS.auth.loginWithWechat().then(res => {
 ```
 
 **登录成功返回示例**
-
-```json
-{
-  "id": 61736923,
-  "openid": "ofo380BgVHDSf3gz0QK1DYPGnLxx",
-  "unionid": "",
-  "session_expires_at" : 1546588122840
-}
-```
+then 回调中的 user 对象为 currentUser 对象，请参考[currentUser 小节](../account.md) ：
 
 **登录失败返回示例**
 
@@ -72,10 +55,10 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 Page({
   // ...
   userInfoHandler(data) {
-    wx.BaaS.auth.handleUserInfo(data).then(res => {
-        // res 包含用户完整信息，详见下方描述
-      }, res => {
-        // **res 有两种情况**：用户拒绝授权，res 包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 Error 对象（详情见下方注解）
+    wx.BaaS.auth.handleUserInfo(data).then(user => {
+        // ruser 包含用户完整信息，详见下方描述
+      }, err => {
+        // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
     })
   },
   // ...
@@ -83,33 +66,19 @@ Page({
 ```
 
 **用户同意授权返回示例**
-then 回调中的 res 对象示例：
+then 回调中的 user 对象为 currentUser 对象，请参考[currentUser 小节](../account.md) ：
 
-```json
-{
-  "avatarUrl": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTK4QEMnT5dggfh4xpSuOWZicyNagricjH4jzKRI5ZFEiaBPzicp8wcQo23IEJjt8vkuAQ6rYVkYF61FVA/132",
-  "city": "Huizhou",
-  "country": "China",
-  "gender": 1,
-  "id": 61736923,
-  "language": "zh_CN",
-  "nickName": "Larry。",
-  "openid": "ofo380BgVHDSf3gz0QK1DYPGnLxx",
-  "province": "Guangdong",
-  "unionid": "",
-  "session_expires_at" : 1546588122840
-}
-```
 
 **用户拒绝授权示例**
- catch 回调中的 res 对象示例：
+ catch 回调中的 HError 对象示例：
 
 ```json
 {
   "id": 61736923,
   "openid": "ofo380BgVHDSf3gz0QK1DYPGnLxx",
   "unionid": "",
-  "session_expires_at" : 1546588122840
+  "code": 603,
+  "message": "unauthorized"
 }
 ```
 
@@ -118,29 +87,6 @@ catch 回调中的 res 对象示例：
  
 res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
-
-**`wx.BaaS.auth.handleUserInfo` 返回字段说明**
-
-当用户拒绝授权时：
-
-| 参数     | 类型   | 说明 |
-| :------ | :----- | :-- |
-| id      | Number | 用户在用户表中的 ID |
-| openid  | String | 用户唯一标识，由微信生成 |
-| unionid | String | 用户在开放平台的唯一标识符，由微信生成 |
-| session_expires_at | Integer | 指示当前登录态的过期时间，由知晓云维护。该值为一个 unix 时间戳 (SDK >= 1.11.0) |
-
-当用户允许授权时，在上面返回参数的基础上，加上以下几个参数：
-
-| 参数       | 类型   | 说明 |
-| :-------- | :----- | :-- |
-| avatarUrl | String | 用户头像 |
-| city      | String | 用户所在城市 |
-| country   | String | 用户所在国家 |
-| gender    | Number | 用户的性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知 |
-| language  | String | 用户的语言，简体中文为 zh_CN |
-| nickName  | String | 用户昵称 (这里的 nickName 由微信登录接口直接返回，注意与 MyUser.get 方法返回的 nickname 字段拼写上的不同) |
-| province  | String | 用户所在省份 |
 
 > **info**
 > `wx.BaaS.auth.handleUserInfo` 默认会检查用户是否已登录，若未登录，该接口默认会先执行登录操作

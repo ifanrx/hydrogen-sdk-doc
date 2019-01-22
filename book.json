@@ -30,11 +30,11 @@
   "plugins": [
     "hydrogen-landing@./_ifrx_plugin/gitbook-plugin-hydrogen-landing",
     "algolia",
+    "simpletabs",
     "anchor-nav-x",
     "expandable-chapters-small",
     "favicon",
     "image-captions",
-    "simpletabs",
     "styled-blockquotes"
   ],
   "title": "知晓云平台开发文档",

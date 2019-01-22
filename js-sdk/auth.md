@@ -6,6 +6,9 @@
 
 开发者可以使用 `BaaS.auth.register(opts)` API 来进行用户的通用注册。
 
+> **info**
+> 注册成功后会自动登录
+
 opts 参数说明：
 
 | 名称      | 类型           | 说明 |
