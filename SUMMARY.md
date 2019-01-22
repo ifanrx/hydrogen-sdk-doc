@@ -66,6 +66,8 @@
     * [WEB](js-sdk/web/README.md)
         * [接入指南](js-sdk/web/how-to.md)
     * [支付宝小程序](js-sdk/alipay/README.md)            
+        * [接入指南](js-sdk/alipay/how-to.md)
+        * [支付宝登录](js-sdk/alipay/signin-signout.md)
     * [调用云函数](js-sdk/invoke-function.md)
     * [短信验证码](js-sdk/sms.md)
     * [错误码和 HError 对象](js-sdk/error-code.md)

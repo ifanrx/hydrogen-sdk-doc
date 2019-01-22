@@ -40,7 +40,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ### 邮箱验证
 
-请参考 [邮箱验证小节](./account.md) 
+请参考 [邮箱验证小节](./account.md)
 
 
 ### 通过用户名注册
@@ -120,6 +120,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 请参考[微信小程序登录](./wechat/signin-signout.md)
 
 ### 支付宝小程序登录
+请参考[支付宝小程序登录](./alipay/signin-signout.md)
 
 ## 关联小程序账户
 用户在完成登录后，可以关联小程序账户，这样用户可以在下次通过多种方式登录同一账户。
@@ -127,9 +128,8 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 ### 关联微信小程序
 请参考[关联微信小程序](./wechat/signin-signout.md)
 
-
 ### 关联支付宝小程序
-
+请参考[关联支付宝账号](./wechat/signin-signout.md)
 
 ## 忘记密码
 

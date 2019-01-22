@@ -1,3 +1,1 @@
-# 支付宝接入指南
-
-## 获取 BaaS 对象
+{% include "./how-to.md" %}

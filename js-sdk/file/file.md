@@ -15,7 +15,8 @@
 | 参数                 |  类型   | 必填 | 说明 |
 | :-------------------| :----- | :--- | :--------- |
 | fileParams.filePath | String |  Y  | 本地资源路径 |
-| fileParams.fileObj | String |  Y  | 文件对象（在 WEB 端上传时提供该参数） |
+| fileParams.fileObj | String |  Y  | 文件对象（在 WEB 端上传时提供该参数）|
+| fileParams.fileType | String |  Y  | 文件类型，image / video / audio（在支付宝端上传时提供该参数）|
 
 **metaData 参数说明（可选）**
 
@@ -96,17 +97,17 @@ wx.chooseImage({
 
     // upload API 返回一个 Promise，1.8.0 后返回值增加了 onProgressUpdate 和 abort 方法
     let uploadTask =  MyFile.upload(fileParams, metaData)
-    
+
     // 文件成功上传的回调
     uploadTask.then(res=>{
-      
+
     })
 
-    // 监听上传进度    
+    // 监听上传进度
     uploadTask.onProgressUpdate(e => {
       console.log(e)
     })
-    
+
     // 600 毫秒后中断上传
     setTimeout(()=> uploadTask.abort(), 600)
   }
@@ -135,11 +136,11 @@ var f = document.getElementById('file')
 f.addEventListener('change', function(e) {
    let File = new BaaS.File()
    let fileParams = {fileObj: e.target.files[0]}
-  
+
    File.upload(fileParams).then(res => {
      console.log(res)
    }, err => {
-   // HError 
+   // HError
    })
 })
 ```
@@ -147,6 +148,25 @@ f.addEventListener('change', function(e) {
 
 {% content "third" %}
 
+```js
+my.chooseImage({
+  success: function(res) {
+    let MyFile = new wx.BaaS.File()
+    let fileParams = {
+      filePath: res.apFilePaths[0],
+      fileType: 'image',
+    }
+    let metaData = {categoryName: 'SDK'}
+
+    MyFile.upload(fileParams, metaData).then(res => {
+      // 上传成功
+      let data = res.data  // res.data 为 Object 类型
+    }, err => {
+      // HError 对象
+    })
+  }
+})
+```
 
 {% endtabs %}
 
