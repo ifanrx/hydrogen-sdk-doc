@@ -15,7 +15,7 @@
 | 参数                 |  类型   | 必填 | 说明 |
 | :-------------------| :----- | :--- | :--------- |
 | fileParams.filePath | String |  Y  | 本地资源路径 |
-| fileParams.fileObj | String |  Y  | 文件对象（在 WEB 端上传时提供该参数）|
+| fileParams.fileObj | String |  Y  | 文件对象（在 Web 端上传时提供该参数）|
 | fileParams.fileType | String |  Y  | 文件类型，image / video / audio（在支付宝端上传时提供该参数）|
 
 **metaData 参数说明（可选）**
@@ -51,7 +51,7 @@ file 参数说明：
 
 **示例代码**
 
-{% tabs first="微信小程序", second="WEB" , third="支付宝小程序" %}
+{% tabs first="微信小程序", second="Web" , third="支付宝小程序" %}
 
 {% content "first" %}
 ```js

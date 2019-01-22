@@ -6,7 +6,7 @@
 
 * [新手入门](newbies/README.md)
     * [新手入门 - 微信小程序](newbies/wechat.md)
-    * [新手入门 - WEB](newbies/web.md)
+    * [新手入门 - Web](newbies/web.md)
     * [新手入门 - 支付宝](newbies/alipay.md)
 
 ----
@@ -46,7 +46,7 @@
         * [内容操作](js-sdk/content/operate.md)
         * [渲染内容](js-sdk/content/render.md)
             * [微信小程序](js-sdk/content/render-wechat.md)
-            * [WEB](js-sdk/content/render-web.md)
+            * [Web](js-sdk/content/render-web.md)
             * [支付宝小程序](js-sdk/content/render-alipay.md)
     * [文件](js-sdk/file/README.md)
         * [文件操作](js-sdk/file/file.md)
@@ -63,7 +63,7 @@
         * [检测违规图片、文本](js-sdk/wechat/censor.md)
         * [获取二维码](js-sdk/wechat/wxacode.md)
         * [异常上报](js-sdk/wechat/bugout.md)
-    * [WEB](js-sdk/web/README.md)
+    * [Web](js-sdk/web/README.md)
         * [接入指南](js-sdk/web/how-to.md)
     * [支付宝小程序](js-sdk/alipay/README.md)            
         * [接入指南](js-sdk/alipay/how-to.md)

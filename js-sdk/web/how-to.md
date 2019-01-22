@@ -1,4 +1,4 @@
-#  WEB 端 SDK 接入指南
+#  Web 端 SDK 接入指南
 
 ## 配置安全域名
 进入知晓云 [小程序-设置页面](https://cloud.minapp.com/dashboard/#/app/settings/app/) 配置安全域名，只有在指定域名下，才能正常的请求知晓云数据：
@@ -20,7 +20,7 @@ var BaaS = require('minapp-sdk')
 
 a. [下载最新版 SDK 到本地](../download-sdk.md)
 
-b. 将下载解压后得到的 SDK js 文件放在 WEB 项目目录中，并在 HTML 中添加引用
+b. 将下载解压后得到的 SDK js 文件放在 Web 项目目录中，并在 HTML 中添加引用
 
 ```html
 <script src="sdk-web.2.0.0.js"></script>

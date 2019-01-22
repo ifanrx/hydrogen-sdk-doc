@@ -1,6 +1,6 @@
 # 渲染内容
 
-WEB 只需通过设置 DOM 节点的 innerHTML 属性，进行富文本的渲染。 
+Web 只需通过设置 DOM 节点的 innerHTML 属性，进行富文本的渲染。 
 
 **示例代码**
 ```javascript
