@@ -1,6 +1,6 @@
 # 新手入门
 
-**新手入门**章节将会带领大家如何**从零开始**将知晓云接入小程序中。
+**新手入门**章节将会带领大家如何**从零开始**将知晓云接入Web 应用中。
 
 在本章节中，你将会学到以下内容：
 
@@ -10,8 +10,6 @@
 
 
 ## 知晓云账号注册
-
-开发者在微信公众平台申请到自己的小程序后，接下来就可注册并获取知晓云账号，完成相关信息绑定与服务配置后，即可使用知晓云提供的后端服务。
 
 ### 注册并完成相关信息绑定
 
@@ -25,12 +23,12 @@
 > 如果注册或邮件激活失败，请开发者根据失败提示进行后续操作。如果开发者认为是服务提供方方面导致的失败，请邮件联系 `mincloud@ifanr.com`，我们会第一时间处理您的邮件。
 
 ## 配置安全域名
-进入知晓云 [小程序-设置页面](https://cloud.minapp.com/dashboard/#/app/settings/app/) 配置安全域名，只有在指定域名下，才能正常的请求知晓云数据：
+进入知晓云 [设置页面](https://cloud.minapp.com/dashboard/#/app/settings/app/) 配置安全域名，只有在指定域名下，才能正常的请求知晓云数据：
 ![配置安全域名](/images/newbies/web-sdk-secure-domain.png)
 
 假设我们将 web 应用架设在 `http://localhost:8080/`，则在安全域名配置框中输入 `localhost:8080` 即可
 
-## 第一个接入知晓云的小程序
+## 第一个接入知晓云的 Web 应用
 
 下面，我们以[**我的书架** demo](https://github.com/ifanrx/hydrogen-demo/tree/master/web-sdk-demo) 为例，讲解如何在 web 中接入知晓云 SDK。
 
@@ -57,7 +55,7 @@
 
 通过初始化 [SDK](/js-sdk/download-sdk.md)，知晓云服务可以验证当前的应用是否是有效合法的，只有通过验证的应用才能使用 [SDK](/js-sdk/download-sdk.md) 提供的全部功能。
 
-在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
+在知晓云后台 - [**设置模块**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
 
 ![复制 clientID](/images/newbies/get-client-id.png)
 

@@ -1,7 +1,7 @@
 #  Web 端 SDK 接入指南
 
 ## 配置安全域名
-进入知晓云 [小程序-设置页面](https://cloud.minapp.com/dashboard/#/app/settings/app/) 配置安全域名，只有在指定域名下，才能正常的请求知晓云数据：
+进入知晓云 [设置页面](https://cloud.minapp.com/dashboard/#/app/settings/app/) 配置安全域名，只有在指定域名下，才能正常的请求知晓云数据：
 ![配置安全域名](/images/newbies/web-sdk-secure-domain.png)
 
 假设我们将 web 应用架设在 `http://localhost:8080/`，则在安全域名配置框中输入 `localhost:8080` 即可
@@ -38,9 +38,9 @@ var BaaS = require('minapp-sdk')
 
 ## 初始化 SDK
 
-通过初始化 SDK ，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 SDK 提供的全部功能。
+通过初始化 SDK ，知晓云服务可以验证当前的应用是否是有效合法的，只有通过验证的应用才能使用 SDK 提供的全部功能。
 
-在[知晓云后台 - 我的应用](https://cloud.minapp.com/admin/profile/)页面获取要接入知晓云服务的小程序 ClientID, 按照如下方式进行 SDK 初始化:
+在[知晓云后台 - 我的应用](https://cloud.minapp.com/admin/profile/)页面获取要接入知晓云服务的 ClientID, 按照如下方式进行 SDK 初始化:
 
 
 ```javascript
