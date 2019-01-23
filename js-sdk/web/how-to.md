@@ -25,9 +25,7 @@ var BaaS = require('minapp-sdk')
 ```
 {% content "second" %}
 
-a. [下载最新版 SDK 到本地](../download-sdk.md)
-
-b. 将下载解压后得到的 SDK js 文件放在 Web 项目目录中，并在 HTML 中添加引用
+通过 CDN 引入 SDK
 
 ```html
 <script src="https://dl.ifanr.cn/hydrogen/sdk/sdk-web-latest.js"></script>

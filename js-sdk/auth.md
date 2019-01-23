@@ -125,11 +125,9 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 ## 关联小程序账户
 用户在完成登录后，可以关联小程序账户，这样用户可以在下次通过多种方式登录同一账户。
 
-### 关联微信小程序
-请参考[关联微信小程序](./wechat/signin-signout.md)
 
 ### 关联支付宝小程序
-请参考[关联支付宝账号](./wechat/signin-signout.md)
+请参考[关联支付宝账号](./alipay/signin-signout.md)
 
 ## 忘记密码
 
