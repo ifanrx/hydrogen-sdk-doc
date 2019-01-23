@@ -13,6 +13,13 @@
 
 {% content "first" %}
 
+安装依赖
+
+```shell
+npm i minapp-sdk
+```
+
+在代码中引入 SDK
 ```javascript
 var BaaS = require('minapp-sdk')
 ```
@@ -23,7 +30,7 @@ a. [下载最新版 SDK 到本地](../download-sdk.md)
 b. 将下载解压后得到的 SDK js 文件放在 Web 项目目录中，并在 HTML 中添加引用
 
 ```html
-<script src="sdk-web.2.0.0.js"></script>
+<script src="https://dl.ifanr.cn/hydrogen/sdk/sdk-web-latest.js"></script>
 <script>
   var BaaS = window.BaaS
 </script>

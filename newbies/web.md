@@ -6,7 +6,7 @@
 
 - 知晓云账号注册
 
-- 创建第一个接入知晓云的小程序
+- 创建第一个接入知晓云的 Web 应用
 
 
 ## 知晓云账号注册
@@ -32,23 +32,13 @@
 
 ## 第一个接入知晓云的小程序
 
-下面，我们以**我的书架**小程序 demo 为例，讲解如何在 web 中接入知晓云 SDK。
+下面，我们以[**我的书架** demo](https://github.com/ifanrx/hydrogen-demo/tree/master/web-sdk-demo) 为例，讲解如何在 web 中接入知晓云 SDK。
 
 ### 知晓云的初始化配置
 
-首先，打开代码编辑器，将[演示 demo](https://github.com/ifanrx/hydrogen-demo.git) 的 `web-sdk-demo` 文件夹添加入项目中。
+首先，打开代码编辑器，将[演示 demo](https://github.com/ifanrx/hydrogen-demo/tree/master/web-sdk-demo) 的 `web-sdk-demo` 文件夹添加入项目中。
 
 ![创建项目](/images/newbies/web-sdk-init-project.png)
-
-接下来我们就以 `web-sdk-demo` 为范例来讲解如何使用知晓云 JSSDK
-
-
-### 启动 web 服务器
-
-这里我们可以使用 `nginx` 等工具帮助我们启动一个 http 静态文件服务器以便我们浏览 demo，这里我们将服务器启动在 `http://localhost:40034/`， 
-用浏览器访问 `http://localhost:40034/` 即可看到如下界面：
-
-![我的书架](/images/newbies/web-sdk-demo.png)
 
 
 #### 在 HTML 中引入 SDK
@@ -215,6 +205,13 @@ new Vue({
 在 demo 中新增的书籍后，我们可以在数据管理模块同时看到新增的数据项。
 
 ![bookshelf 数据表](/images/newbies/bookshelf-schema.jpeg)
+
+### 浏览示例应用
+
+这里我们可以使用 `nginx` 等工具帮助我们启动一个 http 静态文件服务器，以便我们浏览 demo，这里我们将服务器启动在 `http://localhost:40034/`， 
+用浏览器访问 `http://localhost:40034/` 即可看到如下界面：
+
+![我的书架](/images/newbies/web-sdk-demo.png)
 
 至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo/tree/master/web-sdk-demo)的源码。
 
