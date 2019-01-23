@@ -45,17 +45,30 @@ currentUser 代表了当前登录的用户，开发者可以通过浏览 current
 **示例代码**
 假设开发者在 _userprofile 表中定义了 `custom_name` 列，并设置当前用户的 `custom_name` 为 `ifanrx`。则在 SDK 中查询当前用户自定义字段代码如下：
   
+{% ifanrxCodeTabs %}
 ```javascript
-BaaS.auth.currentUser().then(user => {
-  console.log(currentUser.get('custom_name')) //  ifanrx
+wx.BaaS.auth.currentUser().then(user => {
+  console.log(user.get('custom_name')) //  ifanrx
 })
 ```
+{% endifanrxCodeTabs %}
 
 #### `currentUser.toJSON()`
 
 可以通过 `currentUser.toJSON()` API，来获得一次性获取完整的用户信息。
 
-**`currentUser.toJSON()` 返回示例**
+**示例代码**
+假设开发者在 _userprofile 表中定义了 `custom_name` 列，并设置当前用户的 `custom_name` 为 `ifanrx`。则在 SDK 中查询当前用户自定义字段代码如下：
+  
+{% ifanrxCodeTabs %}
+```javascript
+wx.BaaS.auth.currentUser().then(user => {
+  console.log(user.toJSON()) 
+})
+```
+{% endifanrxCodeTabs %}
+
+**返回示例**
 
 ```json
 {
