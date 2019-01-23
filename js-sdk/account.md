@@ -75,7 +75,6 @@ wx.BaaS.auth.currentUser().then(user => {
   "updated_at": 1547721935,
   "gender": null,
   "_username": "ifanrx",
-  "_is_anonymous": null,
   "_email": "ifanrx@ifanr.com",
   "_provider": null,
   "nickname": null,
