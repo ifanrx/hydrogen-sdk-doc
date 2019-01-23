@@ -26,7 +26,7 @@
 进入知晓云 [设置页面](https://cloud.minapp.com/dashboard/#/app/settings/app/) 配置安全域名，只有在指定域名下，才能正常的请求知晓云数据：
 ![配置安全域名](/images/newbies/web-sdk-secure-domain.png)
 
-假设我们将 web 应用架设在 `http://localhost:8080/`，则在安全域名配置框中输入 `localhost:8080` 即可
+假设我们将 web 应用架设在 `http://localhost:8080/`，则在安全域名配置框中输入 `http://localhost:8080` 即可
 
 ## 第一个接入知晓云的 Web 应用
 
