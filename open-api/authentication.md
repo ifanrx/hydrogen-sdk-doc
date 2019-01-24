@@ -56,7 +56,7 @@ Content-Type: `application/json`
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :-- |
 | code       | String | 授权码 |
-| expires_in | Number | code 的过期时间 |
+| expires_in | Number | code 的过期时间，单位是秒|
 
 > **info**
 > 获取 Code 会经过两次的 `HTTP 302 Found` 跳转，开发者在实现时需要允许客户端跟随跳转。
@@ -115,7 +115,7 @@ Content-Type: `application/json`
 | :----------   | :----- | :-- |
 | access_token  | String | 用户授权的唯一票据 |
 | token_type    | String | token 类型 |
-| expires_in    | Number | access_token 过期时间 |
+| expires_in    | Number | access_token 过期时间，单位是秒 |
 | refresh_token | String | 用于刷新授权有效期 |
 | scope         | String | 权限范围 |
 
