@@ -31,6 +31,8 @@ params 是 Object 类型，为订单过滤条件，你可以参考后面的返�
 | params.trade_no                | String | 知晓云平台所记录的订单号 |
 | params.transaction_no          | String | 对应微信支付成功后返回的 transaction_no，支付流水号 |
 | params.updated_at              | Number | 订单更新时间 |
+| params.paid_at__gte            | Number | 付款时间区间的开始时间 |
+| params.paid_at__lte            | Number | 付款时间区间的结束时间 |
 
 **示例代码**
 
