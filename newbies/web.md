@@ -30,7 +30,7 @@
 
 ## 第一个接入知晓云的 Web 应用
 
-下面，我们以[**我的书架** demo](https://github.com/ifanrx/hydrogen-demo/tree/master/web-sdk-demo) 为例，讲解如何在 web 中接入知晓云 SDK。
+下面，我们以[**我的书架** demo](https://github.com/ifanrx/hydrogen-demo/tree/master/web-sdk-demo) 为例，讲解如何在 web 中接入知晓云 SDK。你可以[点击这里体验示例应用](https://codesandbox.io/s/zq3q291wo3)
 
 ### 知晓云的初始化配置
 
