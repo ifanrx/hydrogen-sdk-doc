@@ -213,5 +213,6 @@ new Vue({
 
 至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo/tree/master/web-sdk-demo)的源码。
 
+**在线编辑示例**
 
-
+[![Edit static](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/zq3q291wo3)
