@@ -529,7 +529,7 @@ let params = {
   "category_id": "5c18bc794e1e8d20dbfcddcc",
   "random_file_link": false
 }
-MyFile.videoConcat(params).then((res) => {
+MyFile.videoClip(params).then((res) => {
   // success
 }, err => {
   // HError 对象

@@ -210,10 +210,6 @@ axios.post('https://cloud.minapp.com/userve/v1/video-snapshot/', {
 
 `404` 文件不存在
 
-`500` 签名错误
-
-`502` 又拍云服务不可用
-
 ## M3U8 视频拼接
 
 **接口**
@@ -293,10 +289,6 @@ axios.post('https://cloud.minapp.com/userve/v1/m3u8-concat/', {
 `400` 请求参数错误
 
 `404` 文件不存在
-
-`500` 签名错误
-
-`502` 又拍云服务不可用
 
 ## M3U8 视频剪辑
 
@@ -383,10 +375,6 @@ axios.post('https://cloud.minapp.com/userve/v1/m3u8-clip/', {
 
 `404` 文件不存在
 
-`500` 签名错误
-
-`502` 又拍云服务不可用
-
 ## M3U8 时长和分片信息
 
 **接口**
@@ -423,7 +411,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/m3u8-clip/', {
+axios.post('https://cloud.minapp.com/userve/v1/m3u8-meta/', {
   params: {
     "m3u8": "xxxxxxxxxx"
   }
@@ -473,9 +461,6 @@ axios.post('https://cloud.minapp.com/userve/v1/m3u8-clip/', {
 
 `404` 文件不存在
 
-`500` 签名错误
-
-`502` 又拍云服务不可用
 
 ## 音视频的元信息
 
@@ -531,7 +516,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/m3u8-clip/', {
+axios.post('https://cloud.minapp.com/userve/v1/audio-video-meta/', {
   params: {
     "source": "xxxxxxxxxx"
   }
@@ -592,7 +577,3 @@ axios.post('https://cloud.minapp.com/userve/v1/m3u8-clip/', {
 `400` 请求参数错误
 
 `404` 文件不存在
-
-`500` 签名错误
-
-`502` 又拍云服务不可用
