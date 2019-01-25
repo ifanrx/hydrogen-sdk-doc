@@ -130,7 +130,7 @@ axios.delete('https://cloud.minapp.com/userve/v1/file/', {
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/file/video-snapshot/`
+`POST https://cloud.minapp.com/userve/v1/media/video-snapshot/`
 
 **请求参数说明**
 
@@ -169,7 +169,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/video-snapshot/', {
+axios.post('https://cloud.minapp.com/userve/v1/media/video-snapshot/', {
   params: {
     "source": "xxxxxxxxxx",
     "save_as": "hello.png",
@@ -214,7 +214,7 @@ axios.post('https://cloud.minapp.com/userve/v1/video-snapshot/', {
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/file/m3u8-concat/`
+`POST https://cloud.minapp.com/userve/v1/media/m3u8-concat/`
 
 **请求参数说明**
 
@@ -250,7 +250,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/m3u8-concat/', {
+axios.post('https://cloud.minapp.com/userve/v1/media/m3u8-concat/', {
   params: {
     "m3u8s": ["xxxxxxxxxx", "xxxxxxxxxx"],
     "save_as": "hello.m3u8",
@@ -294,7 +294,7 @@ axios.post('https://cloud.minapp.com/userve/v1/m3u8-concat/', {
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/file/m3u8-clip/`
+`POST https://cloud.minapp.com/userve/v1/media/m3u8-clip/`
 
 **请求参数说明**
 
@@ -334,7 +334,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/m3u8-clip/', {
+axios.post('https://cloud.minapp.com/userve/v1/media/m3u8-clip/', {
   params: {
     "m3u8": "xxxxxxxxxx",
     "include": [0, 20],
@@ -379,7 +379,7 @@ axios.post('https://cloud.minapp.com/userve/v1/m3u8-clip/', {
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/file/m3u8-meta/`
+`POST https://cloud.minapp.com/userve/v1/media/m3u8-meta/`
 
 **请求参数说明**
 
@@ -411,7 +411,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/m3u8-meta/', {
+axios.post('https://cloud.minapp.com/userve/v1/media/m3u8-meta/', {
   params: {
     "m3u8": "xxxxxxxxxx"
   }
@@ -466,7 +466,7 @@ axios.post('https://cloud.minapp.com/userve/v1/m3u8-meta/', {
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/file/audio-video-meta/`
+`POST https://cloud.minapp.com/userve/v1/media/audio-video-meta/`
 
 **请求参数说明**
 
@@ -516,7 +516,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/audio-video-meta/', {
+axios.post('https://cloud.minapp.com/userve/v1/media/audio-video-meta/', {
   params: {
     "source": "xxxxxxxxxx"
   }
