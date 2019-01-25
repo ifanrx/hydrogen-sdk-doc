@@ -156,11 +156,11 @@ axios.delete('https://cloud.minapp.com/userve/v1/file/', {
 | size   | Integer | 文件大小 |
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
-| reference   | String | 引用 |
+| reference   | Object | 引用 |
 | cdn_path   | String | cdn 中保存的路径 |
 | updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
-| _id   | String | 本条记录 ID |
+| id   | String | 本条记录 ID |
 
 **代码示例**
 
@@ -194,11 +194,11 @@ axios.post('https://cloud.minapp.com/userve/v1/media/video-snapshot/', {
   "size": 99391,
   "name": "1gizRRuY71ZUcSZX.png",
   "status": "success",
-  "reference": "",
+  "reference": {},
   "cdn_path": "1gizRRRdklnf7gCD.png",
   "updated_at": 1547461561,
   "categories": [],
-  "_id": "5c3c63b9d1606e0b3fc7acb7"
+  "id": "5c3c63b9d1606e0b3fc7acb7"
 }
 ```
 
@@ -237,11 +237,11 @@ axios.post('https://cloud.minapp.com/userve/v1/media/video-snapshot/', {
 | size   | Integer | 文件大小 |
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
-| reference   | String | 引用 |
+| reference   | Object | 引用 |
 | cdn_path   | String | cdn 中保存的路径 |
 | updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
-| _id   | String | 本条记录 ID |
+| id   | String | 本条记录 ID |
 
 **代码示例**
 
@@ -278,7 +278,7 @@ axios.post('https://cloud.minapp.com/userve/v1/media/m3u8-concat/', {
   "cdn_path": "1gizRRRdklnf7gCD.m3u8",
   "updated_at": 1547461561,
   "categories": [],
-  "_id": "5c3c63b9d1606e0b3fc7acb7"
+  "id": "5c3c63b9d1606e0b3fc7acb7"
 }
 ```
 
@@ -308,7 +308,6 @@ axios.post('https://cloud.minapp.com/userve/v1/media/m3u8-concat/', {
 | exclude   | Array |  N  | 不包含某段内容的开始结束时间，单位是秒。当 index 为 false 时，为开始结束分片序号 |
 | index   | Boolean |  N  | include 或者 exclude 中的值是否为 ts 分片序号，默认为 false |
 
-
 **返回参数**
 
 | 参数        | 类型   | 说明 |
@@ -321,11 +320,11 @@ axios.post('https://cloud.minapp.com/userve/v1/media/m3u8-concat/', {
 | size   | Integer | 文件大小 |
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
-| reference   | String | 引用 |
+| reference   | Object | 引用 |
 | cdn_path   | String | cdn 中保存的路径 |
 | updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
-| _id   | String | 本条记录 ID |
+| id   | String | 本条记录 ID |
 
 **代码示例**
 
