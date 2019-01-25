@@ -25,8 +25,8 @@ params 是 Object 类型，为订单过滤条件，你可以参考后面的返�
 | params.merchandise_snapshot    | String | - |
 | params.paid_at                 | Number | 付款时间, 未支付的话为 null |
 | params.refund_amount           | Number | 退款金额 |
-| params.refund_status           | String | 退款状态 |
-| params.status                  | String | 订单状态, 可能的值有：complete（退款成功）、pending（待支付）、success（支付成功）、partial（部分退款） |
+| params.refund_status           | String | 退款状态，可能的值有：complete（退款成功）、partial（部分退款），也可能为 null|
+| params.status                  | String | 订单状态, pending（待支付）、success（支付成功） |
 | params.total_cost              | Number | 发起交易请求时的支付金额 |
 | params.trade_no                | String | 知晓云平台所记录的订单号 |
 | params.transaction_no          | String | 对应微信支付成功后返回的 transaction_no，支付流水号 |
