@@ -2,6 +2,18 @@
 
 企业付款为企业提供付款至用户零钱的能力，支持通过API接口付款，具体的场景介绍参考[微信企业付款场景介绍](https://pay.weixin.qq.com/wiki/doc/api/tools/mch_pay.php?chapter=14_1)
 
+企业付款需要到微信支付商户平台中，产品大全 -> 企业付款到零钱 -> 产品设置，配置发起方式，勾选 “使用 API 接口发起付款”，并将以下 IP 加入到接口调用 IP。
+
+```
+52.80.43.200
+52.80.37.170
+52.80.57.80
+```
+
+> **info**
+> 使用以下接口时必须根据上述步骤进行配置
+
+
 `BaaS.wxPromotionTransfer({userID, amount, description, checkName, reUserName})`
 
 ### 参数说明

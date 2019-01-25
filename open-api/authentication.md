@@ -56,7 +56,7 @@ Content-Type: `application/json`
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :-- |
 | code       | String | 授权码 |
-| expires_in | Number | code 的过期时间 |
+| expires_in | Number | code 的过期时间，单位是秒|
 
 > **info**
 > 获取 Code 会经过两次的 `HTTP 302 Found` 跳转，开发者在实现时需要允许客户端跟随跳转。
@@ -100,7 +100,7 @@ $ curl -L ifanr.com
 
 **参数说明**
 
-Content-Type: `multipart/form-data`
+Content-Type: `application/json`
 
 | 参数           | 类型   | 必填 | 说明 |
 | :------------ | :----- | :-- | :-- |
@@ -115,7 +115,7 @@ Content-Type: `multipart/form-data`
 | :----------   | :----- | :-- |
 | access_token  | String | 用户授权的唯一票据 |
 | token_type    | String | token 类型 |
-| expires_in    | Number | access_token 过期时间 |
+| expires_in    | Number | access_token 过期时间，单位是秒 |
 | refresh_token | String | 用于刷新授权有效期 |
 | scope         | String | 权限范围 |
 
@@ -149,7 +149,7 @@ Content-Type: `multipart/form-data`
     var opt = {
       uri: 'https://cloud.minapp.com/api/oauth2/access_token/',
       method: 'POST',
-      formData: {   // 指定 data 以 "Content-Type": "multipart/form-data" 传送
+      json: {
         client_id: 'a4d2d62965ddb57fa4xx',
         client_secret: 'e5802b40135baab9b4e84e35bed058a264c37dxx',
         grant_type: 'authorization_code',
@@ -181,7 +181,7 @@ $param['code'] = $code_data['code'];
 $param['grant_type'] = 'authorization_code';
 
 $access_token_url = 'https://cloud.minapp.com/api/oauth2/access_token/';
-$access_token = postData($access_token_url, $param, 'multipart/form-data'); // 获取到的 Access Token
+$access_token = postData($access_token_url, $param, 'application/json'); // 获取到的 Access Token
 
 // 封装请求函数
 function postData($url, $param, $content_type = 'application/json') {
@@ -218,7 +218,7 @@ function postData($url, $param, $content_type = 'application/json') {
 
 **参数说明**
 
-Content-Type: `multipart/form-data`
+Content-Type: `application/json`
 
 | 参数           | 类型   | 必填 | 说明 |
 | :------------ | :----- | :-- | :-- |
@@ -239,9 +239,9 @@ Content-Type: `multipart/form-data`
 
 **代码示例** 
 
-{% tabs first="Node",second="PHP" %}
+{% tabs refreshTokenFirst="Node",refreshTokenSecond="PHP" %}
 
-{% content "first" %}
+{% content "refreshTokenFirst" %}
 
   ```js
   var request = require('request');
@@ -251,7 +251,7 @@ Content-Type: `multipart/form-data`
     var opt = {
       uri: 'https://cloud.minapp.com/api/oauth2/access_token/',
       method: 'POST',
-      formData: {   // 指定 data 以 "Content-Type": "multipart/form-data" 传送
+      json: {
         client_id: 'a4d2d62965ddb57fa4xx',
         client_secret: 'e5802b40135baab9b4e84e35bed058a264c37dxx',
         grant_type: 'refresh_token',
@@ -264,7 +264,7 @@ Content-Type: `multipart/form-data`
   }
   ```
 
-{% content "second" %}
+{% content "refreshTokenSecond" %}
 
 ```php
 <?php
@@ -276,10 +276,10 @@ $param = array(
 );
 
 $access_token_url = 'https://cloud.minapp.com/api/oauth2/access_token/';
-$access_token = postData($access_token_url, $param, 'multipart/form-data'); // 获取到的 Access Token
+$access_token = postData($access_token_url, $param, 'application/json'); // 获取到的 Access Token
 
 // 封装请求函数
-function postData($url, $param, $content_type = 'multipart/form-data') {
+function postData($url, $param, $content_type = 'application/json') {
   $ch = curl_init();
 
   curl_setopt($ch, CURLOPT_TIMEOUT, 30);

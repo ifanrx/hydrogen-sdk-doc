@@ -219,6 +219,9 @@
           <a href="/cloud-function/node-sdk/wx-promotion-transfer.md">企业付款</a>
         </li>
         <li>
+          <a href="/cloud-function/node-sdk/red-pack.md">公众号发送红包</a>
+        </li>
+        <li>
           <a href="/cloud-function/node-sdk/sms.md">短信验证码</a>
         </li>
         <li>
