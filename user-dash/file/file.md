@@ -130,7 +130,7 @@ axios.delete('https://cloud.minapp.com/userve/v1/file/', {
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/file/video-snapshot/`
+`POST https://cloud.minapp.com/userve/v1/media/video-snapshot/`
 
 **请求参数说明**
 
@@ -156,11 +156,11 @@ axios.delete('https://cloud.minapp.com/userve/v1/file/', {
 | size   | Integer | 文件大小 |
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
-| reference   | String | 引用 |
+| reference   | Object | 引用 |
 | cdn_path   | String | cdn 中保存的路径 |
 | updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
-| _id   | String | 本条记录 ID |
+| id   | String | 本条记录 ID |
 
 **代码示例**
 
@@ -169,7 +169,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/video-snapshot/', {
+axios.post('https://cloud.minapp.com/userve/v1/media/video-snapshot/', {
   params: {
     "source": "xxxxxxxxxx",
     "save_as": "hello.png",
@@ -194,11 +194,11 @@ axios.post('https://cloud.minapp.com/userve/v1/video-snapshot/', {
   "size": 99391,
   "name": "1gizRRuY71ZUcSZX.png",
   "status": "success",
-  "reference": "",
+  "reference": {},
   "cdn_path": "1gizRRRdklnf7gCD.png",
   "updated_at": 1547461561,
   "categories": [],
-  "_id": "5c3c63b9d1606e0b3fc7acb7"
+  "id": "5c3c63b9d1606e0b3fc7acb7"
 }
 ```
 
@@ -214,7 +214,7 @@ axios.post('https://cloud.minapp.com/userve/v1/video-snapshot/', {
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/file/m3u8-concat/`
+`POST https://cloud.minapp.com/userve/v1/media/m3u8-concat/`
 
 **请求参数说明**
 
@@ -237,11 +237,11 @@ axios.post('https://cloud.minapp.com/userve/v1/video-snapshot/', {
 | size   | Integer | 文件大小 |
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
-| reference   | String | 引用 |
+| reference   | Object | 引用 |
 | cdn_path   | String | cdn 中保存的路径 |
 | updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
-| _id   | String | 本条记录 ID |
+| id   | String | 本条记录 ID |
 
 **代码示例**
 
@@ -250,7 +250,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/m3u8-concat/', {
+axios.post('https://cloud.minapp.com/userve/v1/media/m3u8-concat/', {
   params: {
     "m3u8s": ["xxxxxxxxxx", "xxxxxxxxxx"],
     "save_as": "hello.m3u8",
@@ -278,7 +278,7 @@ axios.post('https://cloud.minapp.com/userve/v1/m3u8-concat/', {
   "cdn_path": "1gizRRRdklnf7gCD.m3u8",
   "updated_at": 1547461561,
   "categories": [],
-  "_id": "5c3c63b9d1606e0b3fc7acb7"
+  "id": "5c3c63b9d1606e0b3fc7acb7"
 }
 ```
 
@@ -294,7 +294,7 @@ axios.post('https://cloud.minapp.com/userve/v1/m3u8-concat/', {
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/file/m3u8-clip/`
+`POST https://cloud.minapp.com/userve/v1/media/m3u8-clip/`
 
 **请求参数说明**
 
@@ -308,7 +308,6 @@ axios.post('https://cloud.minapp.com/userve/v1/m3u8-concat/', {
 | exclude   | Array |  N  | 不包含某段内容的开始结束时间，单位是秒。当 index 为 false 时，为开始结束分片序号 |
 | index   | Boolean |  N  | include 或者 exclude 中的值是否为 ts 分片序号，默认为 false |
 
-
 **返回参数**
 
 | 参数        | 类型   | 说明 |
@@ -321,11 +320,11 @@ axios.post('https://cloud.minapp.com/userve/v1/m3u8-concat/', {
 | size   | Integer | 文件大小 |
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
-| reference   | String | 引用 |
+| reference   | Object | 引用 |
 | cdn_path   | String | cdn 中保存的路径 |
 | updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
-| _id   | String | 本条记录 ID |
+| id   | String | 本条记录 ID |
 
 **代码示例**
 
@@ -334,7 +333,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/m3u8-clip/', {
+axios.post('https://cloud.minapp.com/userve/v1/media/m3u8-clip/', {
   params: {
     "m3u8": "xxxxxxxxxx",
     "include": [0, 20],
@@ -379,7 +378,7 @@ axios.post('https://cloud.minapp.com/userve/v1/m3u8-clip/', {
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/file/m3u8-meta/`
+`POST https://cloud.minapp.com/userve/v1/media/m3u8-meta/`
 
 **请求参数说明**
 
@@ -411,7 +410,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/m3u8-meta/', {
+axios.post('https://cloud.minapp.com/userve/v1/media/m3u8-meta/', {
   params: {
     "m3u8": "xxxxxxxxxx"
   }
@@ -466,7 +465,7 @@ axios.post('https://cloud.minapp.com/userve/v1/m3u8-meta/', {
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/file/audio-video-meta/`
+`POST https://cloud.minapp.com/userve/v1/media/audio-video-meta/`
 
 **请求参数说明**
 
@@ -516,7 +515,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/audio-video-meta/', {
+axios.post('https://cloud.minapp.com/userve/v1/media/audio-video-meta/', {
   params: {
     "source": "xxxxxxxxxx"
   }
