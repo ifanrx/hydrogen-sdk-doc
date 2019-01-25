@@ -146,6 +146,7 @@
         * [用户组操作](cloud-function/node-sdk/user-group.md)
         * [组集操作](cloud-function/node-sdk/super-group.md)
     * [企业付款](cloud-function/node-sdk/wx-promotion-transfer.md)
+    * [错误码和 HError 对象](cloud-function/node-sdk/error.md)
     * [公众号发送红包](cloud-function/node-sdk/red-pack.md)
     * [短信验证码](cloud-function/node-sdk/sms.md)
     * [云函数技术细节](cloud-function/technical-notes.md)

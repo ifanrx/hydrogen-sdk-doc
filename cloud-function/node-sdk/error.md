@@ -1,3 +1,4 @@
+<!-- ex_nonav -->
 # SDK Error 说明
 
 ## HError 错误对象的格式
