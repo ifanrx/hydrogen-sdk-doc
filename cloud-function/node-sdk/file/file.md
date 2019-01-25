@@ -238,7 +238,7 @@ MyFile.genVideoSnapshot(params).then((res) => {
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](../error.md)
 
 **返回示例**
 
@@ -310,7 +310,7 @@ MyFile.videoConcat(params).then((res) => {
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](../error.md)
 
 **返回示例**
 
@@ -388,7 +388,7 @@ MyFile.videoClip(params).then((res) => {
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](../error.md)
 
 **返回示例**
 
@@ -451,7 +451,7 @@ MyFile.videoMeta(params).then((res) => {
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](../error.md)
 
 **返回示例**
 
@@ -545,7 +545,7 @@ MyFile.videoAudioMeta(params).then((res) => {
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](../error.md)
 
 **返回示例**
 
