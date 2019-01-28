@@ -28,7 +28,6 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 
 currentUser 代表了当前登录的用户，开发者可以通过浏览 currentUser 上的字段来获取当前用户的信息，通过调用 currentUser 上的方法来更新用户信息。
 该对象关联 `_userprofile` 表中 id 为当前用户 ID 的数据行。currentUser 字段包含了 `_userprofile`表的所有的*内置字段*，自定义字段可以通过 `currentUser.get(key)` 来获取。
-内置字段说明请参考 [获取用户信息小节](./user.md)
 
 ![控制台输出 currentUser 对象](../images/auth/current-user.png)
 
@@ -40,7 +39,7 @@ currentUser 代表了当前登录的用户，开发者可以通过浏览 current
 
 #### `currentUser.get(key)`
 
-通过 `currentUser.get(key)` 可以获取用户单个自定义字段。
+通过 `currentUser.get(key)` 可以获取用户的单个字段(包括内置字段和自定义字段)。
 
 **示例代码**
 假设开发者在 _userprofile 表中定义了 `custom_name` 列，并设置当前用户的 `custom_name` 为 `ifanrx`。则在 SDK 中查询当前用户自定义字段代码如下：
@@ -72,27 +71,28 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 
 ```json
 {
-  "updated_at": 1547721935,
-  "gender": null,
-  "_username": "ifanrx",
-  "_email": "ifanrx@ifanr.com",
-  "_provider": null,
-  "nickname": null,
-  "avatar": "https://media.ifanrusercontent.com/hydrogen/default_avatar.png",
-  "unionid": null,
-  "created_by": 6339469046395138,
-  "id": 6339469046395138,
-  "_password": "pbkdf2_sha256$36000$1Har5NnbfimH$oJ4bWae6NlAtNEWl65o+GOdYd5zP6WB2MZLTOYpTiPY=",
-  "city": null,
-  "created_at": 1547721935,
-  "language": null,
-  "is_authorized": false,
-  "province": null,
-  "openid": null,
-  "_email_verified": true,
-  "country": null
+      "id": 5123461461,
+      "avatar": "http://cdn.ifanr.cn/ifanr/default_avatar.png",
+      "nickname": "riDGldYXLHouWIYx",
+      "_username": "myusername",
+      "_email": "myemail@somemail.com",
+      "_email_verified": false,
+      "_provider": {
+        "alipay": {
+          "avatar": "http://tfsimg.alipay.com/images/partner/T1uIxXXbpXXXXXXXX",
+          "province": "安徽省",
+          "city": "安庆",
+          "nick_name": "支付宝小二",
+          "is_student": true,
+          "user_type": "company_account",
+          "user_status": "authenticated",
+          "verified": true,
+          "gender": "F"
+        }
+      }
 }
 ```
+字段说明请参考 [获取用户信息小节](./user.md)
 
 ## 更新用户信息
 
