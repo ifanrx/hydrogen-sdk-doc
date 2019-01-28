@@ -334,6 +334,9 @@ https://cloud-minapp-7894.cloud.ifanrusercontent.com/1eiuEUuISgOstoVZ.png!/water
 
 ### 视频截图
 
+> **info**
+> SDK 版本要求 >= 1.16.0
+
 `MyFile.genVideoSnapshot(params)`
 
 **params参数说明**
@@ -410,6 +413,10 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ### M3U8 视频拼接
 
+> **info**
+> SDK 版本要求 >= 1.16.0
+
+
 `MyFile.videoConcat(params)`
 
 **params参数说明**
@@ -481,6 +488,10 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 ```
 
 ### M3U8 视频剪辑
+
+> **info**
+> SDK 版本要求 >= 1.16.0
+
 
 `MyFile.videoClip(params)`
 
@@ -560,6 +571,10 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ### M3U8 时长和分片信息
 
+> **info**
+> SDK 版本要求 >= 1.16.0
+
+
 `MyFile.videoMeta(params)`
 
 **params参数说明**
@@ -635,6 +650,10 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 ```
 
 ### 音视频的元信息
+
+> **info**
+> SDK 版本要求 >= 1.16.0
+
 
 `MyFile.videoAudioMeta(params)`
 
