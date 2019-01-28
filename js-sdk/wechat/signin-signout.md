@@ -7,11 +7,6 @@ SDK 提供了快速登录小程序的接口，省去使用微信登录接口时�
 > **danger**
 > 从 2018 年 4 月 30 日开始，在小程序的体验版和开发版调用 wx.getUserInfo 接口，将默认调用失败。为应对微信的调整，我们在 SDK v1.4.0 中增加了对新的登录流程的支持，因此也推荐你使用新的 SDK 接口来完成登录和获取用户信息功能。关于最佳的登录实践，可参考 [微信登录能力优化](https://mp.weixin.qq.com/s?__biz=MjM5NDAxMDg4MA==&mid=2650959412&idx=1&sn=9a140ac9622845b4c362ab686a877197)
 
-
-{% tabs first="SDK 2.0.0 及以上版本", second="SDK 2.0.0 以下版本" %}
-
-{% content "first" %}
-
 小程序建议的登录流程是，通过 `wx.BaaS.auth.loginWithWechat()` 获取用户 openID, 这时无需弹框授权，开发者拿到 openID 可以建立自身的帐号 ID。当必须要获得用户的头像昵称等信息时，才让用户点击 button（open-type="getUserInfo" ），弹框授权。
 
 ## 静默登录
@@ -96,11 +91,30 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 > **info**
 > `wx.BaaS.auth.handleUserInfo` 默认会检查用户是否已登录，若未登录，该接口默认会先执行登录操作
 
-{% content "second" %}
+## 关联微信小程序
+
+`wx.BaaS.auth.linkWechat()`
+
+```javascript
+// 必须在用户通过 login API 登录后才能进行绑定 
+wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(res => {
+  return wx.BaaS.auth.getCurrentUser()
+}).then(user =>{
+  // user 为 currentUser 对象
+  return user.linkWechat()
+}).then(res=>{
+  // success 
+  // 用户可以通过微信授权登录同一个账户了
+})
+```
+
+## <span style="color: #f04134;">`已废弃`</span>  登入登出（SDK < 2.0.0）
+
+
+### 登录(旧)
 
 小程序建议的登录流程是，通过 `wx.login(false)` 获取用户 openID, 这时无需弹框授权，开发者拿到 openID 可以建立自身的帐号 ID。当必须要获得用户的头像昵称等信息时，才让用户点击 button（open-type="getUserInfo" ），弹框授权。
 
-## 登录
 
 `wx.BaaS.login(false)`
 
@@ -144,7 +158,7 @@ wx.BaaS.login(false).then(res => {
 
 err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
-### 请求用户授权
+### 请求用户授权（旧）
 
 开发者需要提供按钮的方式，令用户触发授权操作
 
@@ -232,5 +246,3 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 > **info**
 > `wx.BaaS.handleUserInfo` 默认会检查用户是否已登录，若未登录，该接口默认会先执行登录操作
-
-{% endtabs %}
