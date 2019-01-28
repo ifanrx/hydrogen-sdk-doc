@@ -84,7 +84,7 @@ MyUser.get(userID).then(res => {
         "user_type": "company_account",
         "user_status": "authenticated",
         "verified": true,
-        "gender": "F"
+        "gender": "female"
       }
     }
     }
