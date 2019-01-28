@@ -36,16 +36,16 @@
 
 | 参数      | 类型   | 说明 |
 | :--------- | :----- | :--- |
-|user_id     |  string |  支付宝小程序用户 user_id |
-|is_student  |  boolean |  用户是否是学生 |
-|user_type   |  string |  用户类型，包括：company_account(公司账户)以及 personal_account (个人账户) |
-|user_status |  boolean |  用户状态，包括：registered(快速注册用户、authenticated(已认证用户)、frozen(被冻结用户) 以及inactive(已注册，未激活用户) |
-|verified    |  boolean |  用户是否通过实名认证，当且仅当该值为 true 时gender 值才保证准确性 |
-|avatar      |  string |  支付宝小程序用户头像 |
-|province    |  string |  支付宝小程序用户省份 |
-|city        |  string |  支付宝小程序用户市名称 |
-|nickname    |  string | 支付宝小程序用户昵称 |
-|gender      |  string |  支付宝小程序用户性别，female 为女性，male 为男性 |
+| user_id     |  string |  支付宝小程序用户 user_id |
+| is_student  |  boolean |  用户是否是学生 |
+| user_type   |  string |  用户类型，包括：company_account(公司账户)以及 personal_account (个人账户) |
+| user_status |  boolean |  用户状态，包括：registered(快速注册用户)、authenticated(已认证用户)、frozen(被冻结用户) 以及inactive(已注册，未激活用户) |
+| verified    |  boolean |  用户是否通过实名认证，当且仅当该值为 true 时gender 值才保证准确性 |
+| avatar      |  string |  支付宝小程序用户头像 |
+| province    |  string |  支付宝小程序用户省份 |
+| city        |  string |  支付宝小程序用户市名称 |
+| nickname    |  string | 支付宝小程序用户昵称 |
+| gender      |  string |  支付宝小程序用户性别，female 为女性，male 为男性 |
 
 > **info**
 > 如果有自定义字段，则一并返回
