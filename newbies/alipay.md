@@ -144,4 +144,4 @@ Page({
 
 ![bookshelf 数据表](/images/newbies/bookshelf-schema.jpeg)
 
-至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo.git)的源码。
+至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo/tree/master/alipay-sdk-demo)的源码。
