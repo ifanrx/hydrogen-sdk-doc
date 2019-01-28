@@ -1,16 +1,16 @@
 # currentUser
 
-开发者可以调用 `BaaS.auth.currentUser()` 获取 `currentUser` 对象，通过该对象进而对当前用户进行管理。同时登录注册等接口也会返回 `currentUser` 对象。
+开发者可以调用 `BaaS.auth.getCurrentUser()` 获取 `currentUser` 对象，通过该对象进而对当前用户进行管理。同时登录注册等接口也会返回 `currentUser` 对象。
 
 ## 获取 currentUser 对象
 
-`BaaS.auth.currentUser()`
+`BaaS.auth.getCurrentUser()`
 
 **示例代码**
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.currentUser().then(user => {
+wx.BaaS.auth.getCurrentUser().then(user => {
   // user 为 currentUser 对象
 }).catch(err => {
   // HError  
@@ -47,7 +47,7 @@ currentUser 代表了当前登录的用户，开发者可以通过浏览 current
   
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.currentUser().then(user => {
+wx.BaaS.auth.getCurrentUser().then(user => {
   console.log(user.get('custom_name')) //  ifanrx
 })
 ```
@@ -62,7 +62,7 @@ wx.BaaS.auth.currentUser().then(user => {
   
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.currentUser().then(user => {
+wx.BaaS.auth.getCurrentUser().then(user => {
   console.log(user.toJSON()) 
 })
 ```
@@ -117,7 +117,7 @@ wx.BaaS.auth.currentUser().then(user => {
 
 {% ifanrxCodeTabs %}
 ```javascript
-let currentUser = wx.BaaS.auth.currentUser()
+let currentUser = wx.BaaS.auth.getCurrentUser()
 
 currentUser.updateUsername({
   username: 'ifanrx_new',
@@ -153,7 +153,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```javascript
-let currentUser = wx.BaaS.auth.currentUser()
+let currentUser = wx.BaaS.auth.getCurrentUser()
 
 currentUser.updateEmail({
   email: 'ifanrx_new@ifanr.com',
@@ -189,7 +189,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```javascript
-let currentUser = wx.BaaS.auth.currentUser()
+let currentUser = wx.BaaS.auth.getCurrentUser()
 currentUser.updatePassword({password: '111111', newPassword: '222222'}).then(user => {
   console.log(user)
 }).catch(err=>{
@@ -215,7 +215,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```js
-let currentUser = wx.BaaS.auth.currentUser()
+let currentUser = wx.BaaS.auth.getCurrentUser()
 currentUser.requestEmailVerification().then(res => {
   console.log(res)
 }).catch(err=>{
