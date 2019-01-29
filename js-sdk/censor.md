@@ -1,6 +1,8 @@
 # 检测违规图片、文本
 
-当小程序中有允许用户上传图片或输入文本的场景时，SDK提供了帮助检测图片、文本的合法性的API
+当小程序中有允许用户上传图片或输入文本的场景时，SDK 封装了微信小程序“内容安全”检测图片、文本的合法性的 API。
+
+关于这两个接口的频次限制及效果说明，请参阅微信官方文档：[内容安全-小程序](https://developers.weixin.qq.com/miniprogram/dev/api/imgSecCheck.html)。
 
 {% block tips1 %}
 
