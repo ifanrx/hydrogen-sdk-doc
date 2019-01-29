@@ -31,7 +31,7 @@
 | :------- | :----- | :-- | :---|
 | recordID | String | 是  | 数据行 id |
 
-3.调用 set 或 unset (SDK >= 1.12.0) 修改指定记录的数据
+3.调用 set 或 unset  修改指定记录的数据
 
 a. set 操作
 
@@ -47,7 +47,7 @@ a. set 操作
 | value | any               | 是  | 与 key 字段的类型保持一致 |
 | obj   | Object            | 是  | 一次性赋值的键值对对象, 如 `{a: 10, b: 20}` |
 
-b. unset 操作 (SDK >= 1.12.0)
+b. unset 操作 
 
 将某个字段的值清空
 
@@ -187,7 +187,7 @@ record.patchObject('obj1', patch)
 ```
 
 
-### 更新 pointer 类型字段 (SDK >= 1.10.0)
+### 更新 pointer 类型字段 
 
 假设有 product 表, product 表部分字段如下:
 

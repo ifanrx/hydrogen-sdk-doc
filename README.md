@@ -62,7 +62,10 @@
       </h3>
       <ul class="doc-js-sdk doc-detail-item">
         <li>
-          <a href="/js-sdk/signin-signout.md/">登入登出</a>
+          <a href="/js-sdk/auth.md">登入登出</a>
+        </li>
+        <li>
+          <a href="/js-sdk/account.md">currentUser</a>
         </li>
         <li>
           <a href="/js-sdk/user.md/">用户</a>
@@ -77,19 +80,16 @@
           <a href="/js-sdk/file/README.md/">文件</a>
         </li>
         <li>
-          <a href="/js-sdk/payment/README.md/">支付</a>
-        </li>
-        <li>
-          <a href="/js-sdk/request.md/">网络请求</a>
+          <a href="/js-sdk/wechat/payment/README.md/">微信支付</a>
         </li>
         <li>
           <a href="/js-sdk/local-storage.md/">本地存储</a>
         </li>
         <li>
-          <a href="/js-sdk/template-message.md/">模板消息</a>
+          <a href="/js-sdk/wechat/template-message.md/">模板消息</a>
         </li>
         <li>
-          <a href="/js-sdk/censor.md/">检测违规图片、文本</a>
+          <a href="/js-sdk/wechat/censor.md/">检测违规图片、文本</a>
         </li>
         <li>
            <a href="/js-sdk/sms.md/">短信验证码</a>
@@ -97,10 +97,10 @@
       </ul>
       <ul class="doc-js-sdk doc-detail-item">
         <li>
-          <a href="/js-sdk/wechat-decrypt.md/">微信加密数据解密</a>
+          <a href="/js-sdk/wechat/wechat-decrypt.md/">微信加密数据解密</a>
         </li>
         <li>
-          <a href="/js-sdk/wxacode.md/">获取二维码</a>
+          <a href="/js-sdk/wechat/wxacode.md/">获取二维码</a>
         </li>
         <li>
           <a href="/js-sdk/invoke-function.md/">调用云函数</a>
@@ -109,7 +109,7 @@
           <a href="/js-sdk/error-code.md/">错误码详解</a>
         </li>
         <li>
-          <a href="/js-sdk/bugout.md/">异常上报</a>
+          <a href="/js-sdk/wechat/bugout.md/">异常上报</a>
         </li>
         <li>
           <a href="/js-sdk/download-sdk.md/">SDK 下载</a>

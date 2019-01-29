@@ -287,7 +287,7 @@ record.save()
 ```
 {% endifanrxCodeTabs %}
 
-### 添加 pointer 类型数据 (SDK >= 1.10.0)
+### 添加 pointer 类型数据 
 
 > **info**
 > 每张表最多能建立 3 个 pointer 类型的字段。如有更多需求，请提交工单说明
