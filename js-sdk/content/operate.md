@@ -96,11 +96,11 @@ MyContentGroup.setQuery(query).find().then(res => {
 ```
 {% endifanrxCodeTabs %}
 
-#### 筛选字段 （SDK >= 1.11.1）
+#### 筛选字段 
 
 select 使用方法可以参考[数据表 - 字段过滤](/js-sdk/schema/select-and-expand.md)小节
 
-#### 扩展字段 （SDK >= 1.11.1）
+#### 扩展字段 
 
 expand 使用方法可以参考[数据表 - 字段扩展](/js-sdk/schema/select-and-expand.md)小节
 
