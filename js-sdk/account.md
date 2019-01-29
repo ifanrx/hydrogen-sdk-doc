@@ -94,7 +94,7 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 ```
 字段说明请参考 [获取用户信息小节](./user.md)
 
-## 更新用户信息
+## 设置用户信息
 
 `currentUser` 对象提供了一些方法，用于修改当前用户信息。
 
@@ -102,26 +102,42 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 - 用户的用户名/邮箱设置有误，需要修改为新的用户名/邮箱。
 - 用户使用小程序授权登录后，通过设置用户名或邮箱，以便下次通过用户名或邮箱登录。
 
-### 更新用户名
+### 设置用户名
 
-`currentUser.updateUsername({username, password})`
+`currentUser.setUsername({username, password})`
 
 **参数说明**
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | username   | String  | 新用户名 |
-| password      | String  | 密码 |
+| new_password   | String  | 初始密码，用户在第一次设置邮箱或用户名时需填写 |
 
-**示例代码**
+**示例代码 - 用户初次设置用户名和密码**
 
 {% ifanrxCodeTabs %}
 ```javascript
 let currentUser = wx.BaaS.auth.getCurrentUser()
 
-currentUser.updateUsername({
+currentUser.setUsername({
   username: 'ifanrx_new',
-  password: '111111',
+  new_password: '111111',
+}).then(user => {
+  console.log(user)
+}).catch(err=>{
+  // HError
+})
+```
+{% endifanrxCodeTabs %}
+
+**示例代码 - 用户更新用户名**
+
+{% ifanrxCodeTabs %}
+```javascript
+let currentUser = wx.BaaS.auth.getCurrentUser()
+
+currentUser.setUsername({
+  username: 'ifanrx_new',
 }).then(user => {
   console.log(user)
 }).catch(err=>{
@@ -137,33 +153,48 @@ user 为 currentUser 对象，该对象的说明见上文
 err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 
-### 更新邮箱
+### 设置邮箱
 
-`currentUser.updateEmail({email, password }, {sendVerificationEmail} = {})`
+`currentUser.setEmail({email, password, new_password }, {sendVerificationEmail} = {})`
 
 **参数说明**
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | email      | String  | 新邮箱 |
-| password      | String  | 密码 |
 | sendVerificationEmail   | Boolean  | 是否发送验证邮件，可选，默认为 false |
+| new_password   | String  | 初始密码，用户在第一次设置邮箱或用户名时需填写 |
 
-**示例代码**
+**示例代码 - 用户初次设置邮箱和密码**
 
 {% ifanrxCodeTabs %}
 ```javascript
-let currentUser = wx.BaaS.auth.getCurrentUser()
+wx.BaaS.auth.getCurrentUser().then(user => {
+  user.setEmail({
+    email: 'ifanrx_new@ifanr.com',
+    new_password: '111111',
+  }, {sendVerificationEmail: true}).then(user => {
+    console.log(user)
+  }).catch(err=>{
+      // HError
+    })
+})
+```
+{% endifanrxCodeTabs %}
 
-currentUser.updateEmail({
-  email: 'ifanrx_new@ifanr.com',
-  password: '111111',
-}, {sendVerificationEmail: true}).then(user => {
-  console.log(user)
-}).catch(err=>{
-    // HError
-  })
+**示例代码 - 用户更新邮箱**
 
+{% ifanrxCodeTabs %}
+```javascript
+wx.BaaS.auth.getCurrentUser().then(user => {
+  user.setEmail({
+    email: 'ifanrx_new@ifanr.com',
+  }, {sendVerificationEmail: true}).then(user => {
+    console.log(user)
+  }).catch(err=>{
+      // HError
+    })
+})
 ```
 {% endifanrxCodeTabs %}
 
@@ -189,12 +220,13 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```javascript
-let currentUser = wx.BaaS.auth.getCurrentUser()
-currentUser.updatePassword({password: '111111', newPassword: '222222'}).then(user => {
-  console.log(user)
-}).catch(err=>{
-    // HError
-  })
+wx.BaaS.auth.getCurrentUser().then(user =>{
+  user.updatePassword({password: '111111', newPassword: '222222'}).then(user => {
+    console.log(user)
+  }).catch(err=>{
+      // HError
+  })  
+})
 ```
 {% endifanrxCodeTabs %}
 
@@ -215,11 +247,12 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```js
-let currentUser = wx.BaaS.auth.getCurrentUser()
-currentUser.requestEmailVerification().then(res => {
-  console.log(res)
-}).catch(err=>{
-  // HError
+wx.BaaS.auth.getCurrentUser().then(user =>{
+  user.requestEmailVerification().then(res => {
+    console.log(res)
+  }).catch(err=>{
+    // HError
+  })
 })
 ```
 {% endifanrxCodeTabs %}
