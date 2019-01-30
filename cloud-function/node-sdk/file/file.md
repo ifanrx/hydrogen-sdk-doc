@@ -591,3 +591,94 @@ HError 对象结构请参考[错误码和 HError 对象](../error.md)
   }
 }
 ```
+
+## 刷新 CDN 缓存
+
+`MyFile.purgeCache(operationType, content)`
+
+**参数说明**
+
+| 参数          | 类型   | 必填| 说明 |
+| :------------ | :----- | :-- | :--- |
+| operationType | String |  Y  | 操作类型，包括：`exact`(URL 刷新)、`path_prefix`(目录刷新) |
+| content       | Array  |  Y  | 操作的 URL 列表 |
+
+**示例代码**
+
+```js
+let MyFile = new BaaS.File()
+MyFile.purgeCache('exact', ['https://***']).then((res) => {
+  // success
+}, err => {
+  // HError 对象
+})
+```
+
+HError 对象结构请参考[错误码和 HError 对象](../error.md)
+
+**返回示例**
+
+```json
+{
+  "status": "ok"
+}
+```
+
+## 获取 CDN 缓存刷新操作记录
+
+`MyFile.getPurgeCacheHistory(params)`
+
+**params 参数说明**
+
+| 参数                   | 类型   | 必填| 说明 |
+| :--------------------- | :----- | :-- | :--- |
+| params.limit           | Number |  N  | 数量限制 |
+| params.offset          | Number |  N  | 偏移量 |
+| params.operationType   | String |  N  | 操作类型，包括：`exact`(URL 刷新)、`path_prefix`(目录刷新) |
+| params.created_at__gte | Number |  N  | 创建时间区间的开始时间（时间戳） |
+| params.created_at__lte | Number |  N  | 创建时间区间的结束时间（时间戳） |
+
+**示例代码**
+
+```js
+let MyFile = new BaaS.File()
+let params = {
+  offset: 0,
+  limit: 10,
+  operationType: 'exact',
+  created_at__gte: 1548744906,
+  created_at__lte: 1548917706,
+}
+MyFile.getPurgeCacheHistory(params).then((res) => {
+  // success
+}, err => {
+  // HError 对象
+})
+```
+
+HError 对象结构请参考[错误码和 HError 对象](../error.md)
+
+**返回示例**
+
+```json
+{
+  "meta": {
+      "limit": 10,
+      "next": null,
+      "offset": 0,
+      "previous": null,
+      "total_count": 1
+  },
+  "objects": [
+      {
+          "content": "https://***",
+          "created_at": 1548830917,
+          "error_message": null,
+          "id": "5c5148c57032fce4f73e6ef6",
+          "operation_type": "exact",
+          "status": "in_progress",
+          "updated_at": 1548830917
+      }
+  ]
+}
+```
