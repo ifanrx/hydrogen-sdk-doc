@@ -108,6 +108,7 @@
 ----
 
 * [云函数 Node.js SDK](cloud-function/node-sdk/README.md)
+    * [使用必读](cloud-function/node-sdk/usage-notice.md)
     * [快速入门](cloud-function/quick-start.md)
     * [数据表](cloud-function/node-sdk/schema/README.md)
         * [数据表结构管理](cloud-function/node-sdk/schema/table.md)
