@@ -312,6 +312,7 @@ var opt = {
       type: 'Point',
     },
     file: '',
+    pointer: 	'72477415',  // 需要先获取到要指向的数据表行 id
   }
 }
 
@@ -362,6 +363,7 @@ $param = array(
     'type' => 'Point',
   ),
   'file' => getFile(),
+  'pointer' => 	'72477415'  // 需要先获取到要指向的数据表行 id
 );
 $url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/";
 
