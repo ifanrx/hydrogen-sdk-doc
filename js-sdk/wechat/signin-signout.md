@@ -97,9 +97,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ```javascript
 // 必须在用户通过 login API 登录后才能进行绑定 
-wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(res => {
-  return wx.BaaS.auth.getCurrentUser()
-}).then(user =>{
+wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
   // user 为 currentUser 对象
   return user.linkWechat()
 }).then(res=>{

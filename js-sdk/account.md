@@ -104,13 +104,14 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 
 ### 设置用户名
 
-`currentUser.setUsername({username, password})`
+`currentUser.setUsername({username, password, new_password})`
 
 **参数说明**
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | username   | String  | 新用户名 |
+| password   | String  | 密码，用户在修改用户名时需填写 |
 | new_password   | String  | 初始密码，用户在第一次设置邮箱或用户名时需填写 |
 
 **示例代码 - 用户初次设置用户名和密码**
@@ -138,6 +139,7 @@ let currentUser = wx.BaaS.auth.getCurrentUser()
 
 currentUser.setUsername({
   username: 'ifanrx_new',
+  password: '111111',
 }).then(user => {
   console.log(user)
 }).catch(err=>{
@@ -163,6 +165,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | :------- | :------------  | :------ |
 | email      | String  | 新邮箱 |
 | sendVerificationEmail   | Boolean  | 是否发送验证邮件，可选，默认为 false |
+| password   | String  | 密码，用户在修改邮箱时需填写 |
 | new_password   | String  | 初始密码，用户在第一次设置邮箱或用户名时需填写 |
 
 **示例代码 - 用户初次设置邮箱和密码**
@@ -189,6 +192,7 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 wx.BaaS.auth.getCurrentUser().then(user => {
   user.setEmail({
     email: 'ifanrx_new@ifanr.com',
+    password: '111111',
   }, {sendVerificationEmail: true}).then(user => {
     console.log(user)
   }).catch(err=>{
