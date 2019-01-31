@@ -276,6 +276,21 @@ Content-Type: `application/json`
 ```js
 var request = require('request');
 
+function getFile(cb) {
+  var fileID = '5a2fe93308443e313a428cxx' // 文件 ID 需要到知晓云控制台文件面板获取
+  var opt = {
+    uri: `https://cloud.minapp.com/oserve/v1/file/${fileID}/`,
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  request(opt, function (err, res, body) {
+    cb(JSON.parse(body))
+  })
+}
+
 var opt = {
   uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/',  // 3906 对应 :table_id
   method: 'POST',
@@ -287,27 +302,69 @@ var opt = {
     desc: ['description'],
     price: 19,
     amount: 19,
-    code: '18814098707'
+    code: '18814098707',
+    obj: {
+      a: 1,
+      b: 2,
+    },
+    geo: {
+      coordinates: [10, 10],
+      type: 'Point',
+    },
+    file: '',
   }
 }
 
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
+getFile(function (file) {
+  opt.json.file = file
+  request(opt, function(err, res, body) {
+    console.log(res.statusCode)
+  })
 })
 ```
 
 {% content "insertPHP" %}
 ```php
 <?php
+function getFile() {
+  $file_id = '5a2fe93308443e313a428cxx'; // 文件 ID 需要到知晓云控制台文件面板获取
+  $url = "https://cloud.minapp.com/oserve/v1/file/{$file_id}/";
+
+  $header = array(
+      "Authorization: Bearer {$token}",
+      'Content-Type: application/json; charset=utf-8'
+  );
+  $curl = curl_init();
+  curl_setopt($curl, CURLOPT_URL, $url);
+  curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+  curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+  curl_setopt($curl, CURLOPT_HEADER, 0);
+  curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);//这个是重点。
+  $data = curl_exec($curl);
+  curl_close($curl);
+  return $data;
+}
 $table_id = 1;
 $param = array(
   'name' =>'nickname',
   'desc' => 'description',
   'price' => 19,
   'amount' => 19,
-  'code' => '18814098707'
+  'code' => '18814098707',
+  'obj' => array(
+    'a': 1,
+    'b': 2,
+  ),
+  'geo' => array(
+    'coordinates' => array(10, 10),
+    'type' => 'Point',
+  ),
+  'file' => getFile(),
 );
 $url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/";
+
 
 $ch = curl_init();
 $header = array(
@@ -336,6 +393,8 @@ curl_close($ch);
 
 `201` 写入成功，`400` 请求参数有错
 
+> **info**
+> 如果需要在数据表中存储文件，文件类型的字段必须要包含 `id, name, created_at, mime_type, cdn_path, size` 这几个属性，如果文件类型的字段没有保存成功，请检查文件字段有没有包含这几个属性
 
 ## 更新数据
 
