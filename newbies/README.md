@@ -79,7 +79,7 @@
 
 在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
 
-[复制 clientID](/images/newbies/get-client-id.png)
+![复制 clientID](/images/newbies/get-client-id.png)
 
 ```js
 // app.js
