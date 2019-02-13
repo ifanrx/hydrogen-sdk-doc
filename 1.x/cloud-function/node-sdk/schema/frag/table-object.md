@@ -1,3 +1,3 @@
 {% set apiPrefix = "" %}
 
-{% include "/cloud-function/node-sdk/schema/frag/_table-object.md" %}
+{% include "/1.x/cloud-function/node-sdk/schema/frag/_table-object.md" %}

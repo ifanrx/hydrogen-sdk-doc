@@ -126,7 +126,7 @@ MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 
 ## 查询，获取文件列表
 
-文件查询与[数据表查询](./schema/query.md)方法一致，但只支持以下指定字段的筛选
+文件查询与[数据表查询](../schema/query.md)方法一致，但只支持以下指定字段的筛选
 
 | 支持字段       |  类型  | 说明 |
 | :------------ | :----- | :--- |
@@ -166,7 +166,7 @@ MyFile.setQuery(query).find()
 ```
 
 ## 排序
-文件查询排序与[数据表排序](./schema/limit-and-order.md)方法一致，但只支持对以下指定字段进行排序
+文件查询排序与[数据表排序](../schema/limit-and-order.md)方法一致，但只支持对以下指定字段进行排序
 
 | 支持字段       |  类型   | 说明 |
 | :-----------  | :----- | :--- |
@@ -182,4 +182,4 @@ MyFile.orderBy('-created_at').find().then()
 ```
 
 ## 分页
-文件查询排序与[数据表分页](./schema/limit-and-order.md)方法一致
+文件查询排序与[数据表分页](../schema/limit-and-order.md)方法一致
