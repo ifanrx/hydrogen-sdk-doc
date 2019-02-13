@@ -22,7 +22,16 @@
 
 **请求示例**
 
-假设已经创建了一个云函数 helloWorld，其接受一个 name 作为参数，返回 hello ${name}，可通过以下方式在云函数中进行调用
+假设已经创建了一个云函数 helloWorld，其接受一个 name 作为参数，返回 hello ${name}，云函数代码如下：
+
+```js
+exports.main = function helloWorld(event, callback) {
+  console.log(event)
+  callback(null, `hello ${event.data.name}`)
+}
+```
+
+可通过以下方式在云函数中进行调用 helloWorld 函数。
 
 ```js
 BaaS.invoke('helloWorld', {name: 'allen'}).then(res => {

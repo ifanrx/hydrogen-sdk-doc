@@ -32,7 +32,16 @@
 
 **请求示例**
 
-假设已经创建了一个云函数 helloWorld，其接受一个 name 作为参数，返回 hello ${name}，可通过以下方式在云函数中进行调用
+假设已经创建了一个云函数 helloWorld，其接受一个 name 作为参数，返回 hello ${name}。云函数代码如下：
+
+```js
+exports.main = function helloWorld(event, callback) {
+  console.log(event)
+  callback(null, `hello ${event.data.name}`)
+}
+```
+
+可在小程序中通过以下方式进行调用云函数：
 
 {% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
 
