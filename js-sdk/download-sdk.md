@@ -4,7 +4,8 @@
 
 ### 选择版本下载
 
-- [最新稳定版 v{{ book.latestVersion }}（推荐）](https://dl.ifanr.cn/hydrogen/sdk/sdk-latest.zip)
+- [支付宝小程序 SDK v{{ book.latestVersion }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-wechat.2.0.0-a.zip)
+- [微信小程序 SDK v{{ book.latestVersion }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-alipay.2.0.0-a.zip)
 - [微信小程序插件版 SDK](https://mp.weixin.qq.com/wxopen/pluginbasicprofile?action=intro&appid=wxc6b86e382a1e3294)
 
 ### 更新注意事项

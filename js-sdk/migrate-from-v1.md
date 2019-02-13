@@ -5,10 +5,8 @@
 
 ## 登入登出
 
-- 原有通过 `wx.BaaS.login(false)` 来进行静默登录，现在改为 `wx.BaaS.auth.loginWithWechat()`
-- `wx.BaaS.logout` API 迁移到 `wx.BaaS.auth.logout`
-- 登录接口返回值修改：原有的 `wx.BaaS.login(false)` 返回的 Promise 中回调内容为修改为 [currentUser 对象](./account.md) 
+- 原有通过 `wx.BaaS.login(false)` 已不推荐使用，现在推荐使用 `wx.BaaS.auth.loginWithWechat()`，[点此查看接口说明](./account.md)
+- `wx.BaaS.logout` 已不推荐使用，现在推荐使用 `wx.BaaS.auth.logout`
 
 ## 获取用户信息
-- `wx.BaaS.handleUserInfo` 迁移到 `wx.BaaS.auth.handleUserInfo`
-- `wx.BaaS.auth.handleUserInfo` 返回的 Promise 中回调内容为修改为 [currentUser 对象](./account.md) 
+- `wx.BaaS.handleUserInfo` 已不推荐使用，现在推荐使用 `wx.BaaS.auth.handleUserInfo`
