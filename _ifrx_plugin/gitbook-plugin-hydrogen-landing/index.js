@@ -15,7 +15,7 @@ module.exports = {
         var book = this.book;
         var content = "<ul class='nav nav-tabs' role='tablist'>";
         var classData = "active";
-        let blockUID = uid++
+        var blockUID = uid++
         content += `<li role="presentation" class="${classData}"><a href="#wechat-${blockUID}" aria-controls="wechat-${blockUID}" role="tab" data-toggle="tab">微信小程序</a></li>`;
         content += `<li role="presentation" class=""><a href="#web-${blockUID}" aria-controls="web-${blockUID}" role="tab" data-toggle="tab">Web</a></li>`;
         content += `<li role="presentation" class=""><a href="#alipay-${blockUID}" aria-controls="alipay-${blockUID}" role="tab" data-toggle="tab">支付宝小程序</a></li>`;
