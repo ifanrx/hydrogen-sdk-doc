@@ -1,14 +1,10 @@
 # 文件操作
 
-{% tabs first="SDK 1.1.2 及以上版本", second="SDK 1.1.2 以下版本" %}
+实例化一个 `BaaS.File` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
 
-{% content "first" %}
-
-## SDK 1.1.2 及以上版本
-
-实例化一个 `wx.BaaS.File` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
-
+{% ifanrxCodeTabs %}
 `let MyFile = new wx.BaaS.File()`
+{% endifanrxCodeTabs %}
 
 ### 文件上传
 
@@ -16,16 +12,18 @@
 
 **fileParams 参数说明（必须）**
 
-| 参数     |  类型   | 必填 | 说明 |
-| :------- | :----- | :-- | :-- |
-| filePath | String |  Y  | 本地资源路径 |
+| 参数                 |  类型   | 必填 | 说明 |
+| :-------------------| :----- | :--- | :--------- |
+| fileParams.filePath | String |  Y  | 本地资源路径 |
+| fileParams.fileObj | String |  Y  | 文件对象（在 Web 端上传时提供该参数）|
+| fileParams.fileType | String |  Y  | 文件类型，image / video / audio（在支付宝端上传时提供该参数）|
 
 **metaData 参数说明（可选）**
 
-| 参数          |  类型  | 必填 | 说明 |
-| :----------- | :----- | :-- | :-- |
-| categoryID   | String |  N  | 要上传的文件分类 ID |
-| categoryName | String |  N  | 要上传的文件分类名 |
+| 参数                   |  类型  | 必填 | 说明 |
+| :---------------------| :----- | :--- | :--- |
+| metaData.categoryID   | String |  N  | 要上传的文件分类 ID |
+| metaData.categoryName | String |  N  | 要上传的文件分类名 |
 
 > **info**
 > 请勿同时填写 categoryID 和 categoryName，默认只使用 categoryID
@@ -53,6 +51,9 @@ file 参数说明：
 
 **示例代码**
 
+{% tabs first="微信小程序", second="Web" , third="支付宝小程序" %}
+
+{% content "first" %}
 ```js
 wx.chooseImage({
   success: function(res) {
@@ -61,11 +62,7 @@ wx.chooseImage({
     let metaData = {categoryName: 'SDK'}
 
     MyFile.upload(fileParams, metaData).then(res => {
-      /*
-       * 注: 只要是服务器有响应的情况都会进入 success, 即便是 4xx，5xx 都会进入这里
-       * 如果上传成功则会返回资源远程地址,如果上传失败则会返回失败信息
-       */
-
+      // 上传成功
       let data = res.data  // res.data 为 Object 类型
     }, err => {
       // HError 对象
@@ -74,13 +71,7 @@ wx.chooseImage({
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
-
-> **danger**
-> 使用 `wx.uploadFile` 以及 `SDK v.1.1.2` 之前版本的 `wx.BaaS.uploadFile` 返回的 res.data 是 json string 类型，而这里的 res.data 是 Object 类型，因此不需要再做类型转换了
-
-
-#### 监听上传进度变化事件和中断上传任务 (SDK >= 1.8.0)
+#### 监听上传进度变化事件和中断上传任务 (仅限微信小程序)
 在 1.1.2 版本的基础上，1.8.0 版本中增加了对 [UploadTask](https://developers.weixin.qq.com/miniprogram/dev/api/UploadTask.html) 的支持， `upload` API 返回的 Promise 对象上增加了 `onProgressUpdate` 和 `abort` 方法，使文件上传增加了以下两个特性：
 
 - 监听上传进度：`onProgressUpdate(callback)`
@@ -106,17 +97,17 @@ wx.chooseImage({
 
     // upload API 返回一个 Promise，1.8.0 后返回值增加了 onProgressUpdate 和 abort 方法
     let uploadTask =  MyFile.upload(fileParams, metaData)
-    
+
     // 文件成功上传的回调
     uploadTask.then(res=>{
-      
+
     })
 
-    // 监听上传进度    
+    // 监听上传进度
     uploadTask.onProgressUpdate(e => {
       console.log(e)
     })
-    
+
     // 600 毫秒后中断上传
     setTimeout(()=> uploadTask.abort(), 600)
   }
@@ -132,6 +123,55 @@ wx.chooseImage({
   "totalBytesExpectedToSend":1883803
 }
 ```
+
+
+{% content "second" %}
+
+```html
+<input type="file" id="file">
+```
+```javascript
+var f = document.getElementById('file')
+
+f.addEventListener('change', function(e) {
+   let File = new BaaS.File()
+   let fileParams = {fileObj: e.target.files[0]}
+
+   File.upload(fileParams).then(res => {
+     console.log(res)
+   }, err => {
+   // HError
+   })
+})
+```
+
+
+{% content "third" %}
+
+```js
+my.chooseImage({
+  success: function(res) {
+    let MyFile = new wx.BaaS.File()
+    let fileParams = {
+      filePath: res.apFilePaths[0],
+      fileType: 'image',
+    }
+    let metaData = {categoryName: 'SDK'}
+
+    MyFile.upload(fileParams, metaData).then(res => {
+      // 上传成功
+      let data = res.data  // res.data 为 Object 类型
+    }, err => {
+      // HError 对象
+    })
+  }
+})
+```
+
+{% endtabs %}
+
+
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 > **info**
 > file 字段可用于含有 file 类型的数据表的数据操作，详细见 [新增数据项](../schema/create-record.md)
@@ -170,6 +210,7 @@ category 参数说明：
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyFile = new wx.BaaS.File()
 MyFile.get('5a2fe93308443e313a428c4f').then((res) => {
@@ -178,6 +219,7 @@ MyFile.get('5a2fe93308443e313a428c4f').then((res) => {
   // HError 对象
 })
 ```
+{% endifanrxCodeTabs %}
 
 HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
@@ -211,6 +253,7 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyFile = new wx.BaaS.File()
 
@@ -218,6 +261,7 @@ MyFile.delete('5a2fe93308443e313a428c4f').then()
 
 MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 ```
+{% endifanrxCodeTabs %}
 
 > **info**
 > 删除单个文件，如果权限不足，会返回 401；删除多个文件，如果权限不足，则直接跳过该文件
@@ -238,6 +282,7 @@ MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyFile = new wx.BaaS.File()
 
@@ -253,8 +298,9 @@ query.contains('name', substr)
 
 MyFile.setQuery(query).find()
 ```
+{% endifanrxCodeTabs %}
 
-
+{% ifanrxCodeTabs %}
 ```js
 let MyFile = new wx.BaaS.File()
 
@@ -266,6 +312,7 @@ let query = wx.BaaS.Query.and(new wx.BaaS.Query().compare('created_at', '<=', Ma
 
 MyFile.setQuery(query).find()
 ```
+{% endifanrxCodeTabs %}
 
 
 ### 排序
@@ -279,20 +326,24 @@ MyFile.setQuery(query).find()
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyFile = new wx.BaaS.File()
 MyFile.orderBy('-created_at').find().then()
 ```
+{% endifanrxCodeTabs %}
 
 ### 分页
 文件查询排序与[数据表分页](../schema/limit-and-order.md)方法一致
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyFile = new wx.BaaS.File()
 MyFile.limit(10).offset(5).find().then()
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -758,91 +809,3 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
   }
 }
 ```
-
-{% content "second" %}
-
-## SDK 1.1.2 以下版本
-
-### 文件上传
-
-`wx.BaaS.uploadFile(fileParams)`
-
-**fileParams 参数说明**
-
-| 参数      | 类型   | 必填 | 说明 |
-| :------- | :----- | :-- | :--- |
-| filePath | String |  Y  | 本地资源路径 |
-
-**返回参数说明**
-
-这里效仿微信的 `wx.uploadFile` 接口，放回 json string 的 data，经过 JSON parse 后的数据结构如下：
-
-| 参数    | 类型   | 说明 |
-| :----- | :----- | :----- |
-| status | String | 成功返回 'ok' |
-| path   | String | 上传后的文件地址 |
-| file   | Object | 包含文件详细信息，详见以下 |
-
-
-> **danger**
-> file 字段只在 <span style='color:red'> SDK version >= v1.1.1</span> 中出现
-
-file 参数说明：
-
-| 参数        |  类型  | 说明 |
-| :--------- | :----- | :------ |
-| cdn_path   | String | 文件在 cdn 上的路径 |
-| created_at | String | 文件上传时间 |
-| id         | Object | 文件 ID |
-| mime_type  | String | 文件媒体类型 |
-| name       | String | 文件名 |
-| size       | Number | 以字节为单位 |
-
-> **info**
-> file 可用于含有 file 类型的数据表的数据操作，详细见 [新增数据记录](../schema/create-record.md)
-
-**示例代码**
-
-```js
-wx.chooseImage({
-  success: function(res) {
-    let fileParams = {filePath: res.tempFilePaths[0]}
-
-    wx.BaaS.uploadFile(fileParams).then(res => {
-      /*
-      * 注: 只要是服务器有响应的情况都会进入 success, 即便是 4xx，5xx 都会进入这里
-      * 如果上传成功则会返回资源远程地址,如果上传失败则会返回失败信息
-      */
-
-      let data = JSON.parse(res.data) // res.data 为 JSON String 类型
-    }, err => {
-      // HError 对象
-    })
-  }
-})
-```
-
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
-
-**返回示例**
-
-JSON.parse(res.data)
-```json
-{
-  "status": "ok",
-  "path": "https://cloud-minapp-1131.cloud.ifanrusercontent.com/1e2fVFaWoaoAZPyr.svg",
-  "file": {
-    "cdn_path": "1e2fVFaWoaoAZPyr.svg",
-    "created_at": 1507822469,
-    "id": "59df8b852ab80e3656cf8783",
-    "mime_type": "text/plain; charset=utf-8",
-    "name": "tmp_262601706o6zAJs-pmaywKzqHIvzwU97rtiGIe4dd39171563993cf10b12bae2ac30ec.svg",
-    "size": 3879
-  }
-}
-```
-
-> **info**
-> 微信开发者工具**录音**结束后生成的是 base64 格式文本文件，而在真机上生成的是正常的 buffer。如果在开发者工具里上传录音文件，实际上传的会是一个 base64 格式的文本文件。因此，如果你在使用知晓云上传录音文件，请在真机上调试。该问题微信团队已知，并在修复当中。
-
-{% endtabs %}

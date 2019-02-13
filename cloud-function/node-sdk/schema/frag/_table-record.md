@@ -118,7 +118,7 @@ ResObject 结构如下:
 
 | 参数名    | 类型    | 说明              |
 |-----------|---------|-------------------|
-| opts.enableTrigger | boolean | 是否触发触发器，默认为 true。  {% if apiPrefix %}（ SDK >= 1.9.1 ）{% endif %}          |
+| opts.enableTrigger | boolean | 是否触发触发器，默认为 true。  {% if apiPrefix %}{% endif %}          |
 
 **返回值**
 

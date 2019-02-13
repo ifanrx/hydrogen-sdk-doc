@@ -56,7 +56,7 @@
 | 参数名    | 类型    | 说明              |
 |-----------|---------|-------------------|
 | item   | object     |   符合表结构的对象      |
-| opts.enableTrigger | boolean | 是否触发触发器，默认为 true。  {% if apiPrefix %}（ SDK >= 1.9.1 ）{% endif %}          |
+| opts.enableTrigger | boolean | 是否触发触发器，默认为 true。  {% if apiPrefix %}{% endif %}          |
 
 
 **返回值**
@@ -99,7 +99,7 @@ query 和 recordID 二选一，不能同时存在
 |----------|--------|----------------------------------------------------|
 | query    | object | {{apiPrefix}}BaaS.Query 实例，符合查询条件的数据行将会被删除   |
 | recordID | string / integer | 数据行 id，指定的数据行将会被删除           |
-| opts.enableTrigger | boolean | 是否触发触发器，默认为 true。  {% if apiPrefix %}（ SDK >= 1.9.1 ）{% endif %}          |
+| opts.enableTrigger | boolean | 是否触发触发器，默认为 true。  {% if apiPrefix %}{% endif %}          |
 
 **返回值**
 

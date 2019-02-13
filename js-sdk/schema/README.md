@@ -6,14 +6,11 @@
 
 要操作数据表，需要借助 `TableObject` 对象，每个 TableObject 实例对应一张数据表，通过 TableObject 实例，你可以对数据表进行增删改查的操作。
 
-当我们需要创建一行新的数据时，使用 `create()` 方法, 该方法无需传入参数，`create()` 方法 返回值为 `wx.BaaS.TableRecord` 对象。
+当我们需要创建一行新的数据时，使用 `create()` 方法, 该方法无需传入参数，`create()` 方法 返回值为 `BaaS.TableRecord` 对象。
 
 通过 `TableRecord` 实例的 `set` 和 `save` 方法，可以完成数据行的创建。
 
-> **info**
-> SDK 1.2.0 以下（不包含 1.2.0 ）版本仅支持通过数据表 ID 实例化 TableObject，如操作数据表名为 10 的数据表，可进行如下实例化：new wx.BaaS.TableObject(10)
-
-
+{% ifanrxCodeTabs %}
 ```js
 let tableName = 'product'
 // 通过 `tableName` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
@@ -33,6 +30,7 @@ product.set(apple).save().then(res => {
   console.log(res)
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -100,12 +98,13 @@ res 结构如下：
 
 同时，SDK 提供了多种复杂查询操作，包括正则匹配查询，数组查询，甚至是与或的组合查询，如下是正则匹配查询的使用：
 
-使用高级查询我们需要创建一个 `wx.BaaS.Query` 对象实例，通过在 `Query` 实例上调用 `matches`、`compare` 等方法来设置查询条件，
+使用高级查询我们需要创建一个 `BaaS.Query` 对象实例，通过在 `Query` 实例上调用 `matches`、`compare` 等方法来设置查询条件，
 
 然后调用 `TableObject` 实例的 `setQuery` 方法，来设置查询条件。
 
 最后调用 `TableObject` 实例的 `find` 方法，来发起查询。find 方法返回值为一个 Promise。
 
+{% ifanrxCodeTabs %}
 ```js
 // 假设 product 表有一个字段为 product_id ，其中数据的格式形如 '112233'
 let Product = new wx.BaaS.TableObject(tableName)
@@ -119,6 +118,7 @@ Product.setQuery(query).find().then(res => { // find 方法返回值为一个 Pr
   console.log(res)
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
