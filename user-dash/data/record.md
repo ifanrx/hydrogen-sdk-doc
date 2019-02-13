@@ -87,10 +87,10 @@ axios.get('https://cloud.minapp.com/userve/v1/table/1/record/', {params: {where:
 
 ```
 # 顺序
-https://cloud.minapp.com/userve/v1/table/:table_id/record/?order_by=id
+https://cloud.minapp.com/userve/v1/table/:table_id/record/?order_by=created_at
 
 # 倒序
-https://cloud.minapp.com/userve/v1/table/:table_id/record/?order_by=-id
+https://cloud.minapp.com/userve/v1/table/:table_id/record/?order_by=-created_at
 ```
 
 ## 获取数据项

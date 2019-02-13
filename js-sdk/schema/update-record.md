@@ -2,22 +2,23 @@
 
 ### 操作步骤
 
-1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
+1.通过 `tableName` 或 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
 
 {% ifanrxCodeTabs %}
 
-`let MyTableObject = new wx.BaaS.TableObject(tableID)`
+`let MyTableObject = new wx.BaaS.TableObject(tableName)`
 
 {% endifanrxCodeTabs %}
 
 **参数说明**
 
-| 参数     | 类型   | 必填 | 说明 |
-| :-----  | :----- | :-- | :---|
-| tableID | Number |  是 | 数据表 ID |
+tableName 和 tableID 二选一，不能同时存在
 
-> **info**
-> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new BaaS.TableObject('product')
+
+实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new BaaS.TableObject('product')
+| :-----  | :----- | :-- | :-- |
+| tableID   | Number | 是  | 数据表的 ID             |
+| tableName | String |  是 | 数据表名（SDK >= 1.2.0） |
 
 2.通过数据行 id（以下用 `recordID` 参数名表示） 设置指定数据行
 
@@ -98,11 +99,11 @@ MyRecord.set(key2, value2)
 **请求示例**
 {% ifanrxCodeTabs %}
 ```js
-// 更新 tableID 为 10 的数据表中 id 为 59897882ff650c0477f00485 的数据行的 price 字段
-let tableID = 10
+// 更新 tableName 为 'product' 的数据表中 id 为 59897882ff650c0477f00485 的数据行的 price 字段
+let tableName = 'product'
 let recordID = '59897882ff650c0477f00485' // 数据行 id
 
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 let product = Product.getWithoutData(recordID)
 
 product.set('price', 11)
@@ -374,7 +375,7 @@ SDK 1.4.0 及以上版本支持批量更新数据项。可以通过设置自定�
 
 {% ifanrxCodeTabs %}
 ```js
-let MyTableObject = new wx.BaaS.TableObject(tableID)
+let MyTableObject = new wx.BaaS.TableObject(tableName)
 
 let query = new wx.BaaS.Query()
 
@@ -445,7 +446,7 @@ catch 回调中的 err 对象:
 
 {% ifanrxCodeTabs %}
 ```js
-let MyTableObject = new wx.BaaS.TableObject(tableID)
+let MyTableObject = new wx.BaaS.TableObject(tableName)
 
 let query = new wx.BaaS.Query()
 

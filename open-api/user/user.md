@@ -223,7 +223,9 @@ curl_close($ch);
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/user/info/`
+~~`GET https://cloud.minapp.com/oserve/v1/user/info/`~~(后续将废弃该接口，推荐使用以下接口)
+
+`GET https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/`
 
 **参数说明**
 
@@ -247,7 +249,7 @@ curl_close($ch);
 curl -X GET \
   -H "Authorization: Bearer 35919068aa799eccdef160e1da4bf21381" \
   --data-urlencode '{"test": {"$eq":"test"}}'\
-  https://cloud.minapp.com/oserve/v1/user/info/
+  https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/
 ```
 
 {% content "bulkGetSingleUserInfoNode" %}
@@ -257,7 +259,7 @@ var request = require("request");
 
 var options = {
   method: 'GET',
-  url: 'https://cloud.minapp.com/oserve/v1/user/info/',
+  url: 'https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/',
   headers:
   {
     'Content-Type': 'application/json',
@@ -279,7 +281,7 @@ var req = request(options, function (error, response, body) {
 ```php
 <?php
 $token = '35919068aa799eccdef19160e1da4bf21381';
-$url = "https://cloud.minapp.com/oserve/v1/user/info/?";
+$url = "https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/?";
 
 $ch = curl_init();
 $header = array(
@@ -375,7 +377,9 @@ if ($err) {
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/user/info/:id/`
+~~`GET https://cloud.minapp.com/oserve/v1/user/info/:id/`~~(后续将废弃该接口，推荐使用以下接口)
+
+`GET https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/:id/`
 
 其中 `:id` 是用户在 `_userprofile` 表中的 `id`。
 
@@ -388,7 +392,7 @@ if ($err) {
 ```shell
 curl -X GET \
 -H "Authorization: Bearer 35919068aa799eccdef19160e1da4bf21381d2a2" \
-https://cloud.minapp.com/oserve/v1/user/info/70695404/
+https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/70695404/
 ```
 
 {% content "getSingleUserInfoNode" %}
@@ -398,7 +402,7 @@ var request = require("request");
 
 var options = {
   method: 'GET',
-  url: 'https://cloud.minapp.com/oserve/v1/user/info/70695404/',
+  url: 'https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/70695404/',
   headers:
   {
     'Content-Type': 'application/json',
@@ -417,7 +421,7 @@ var req = request(options, function (error, response, body) {
 ```php
 <?php
 $token = '35919068aa799eccdef19160e1da4bf21381d2a2';
-$url = "https://cloud.minapp.com/oserve/v1/user/info/70695404/";
+$url = "https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/70695404/";
 
 $ch = curl_init();
 $header = array(
@@ -480,7 +484,9 @@ if ($err) {
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v1/user/info/:id/`
+~~`PUT https://cloud.minapp.com/oserve/v1/user/info/:id/`~~(后续将废弃该接口，推荐使用以下接口)
+
+`PUT https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/:id/`
 
 其中 `:id` 是用户在 `_userprofile` 表中的 `id`。
 
@@ -492,7 +498,7 @@ if ($err) {
 
 ```shell
 curl -X PUT \
-  https://cloud.minapp.com/oserve/v1/user/info/70695404/ \
+  https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/70695404/ \
   -H 'Authorization: Bearer 35919068aa799eccdef19160e1da4bf21381d2a2' \
   -H 'Content-Type: application/json' \
   -d '{"test": "test"}'
@@ -505,7 +511,7 @@ var request = require("request");
 
 var options = {
   method: 'PUT',
-  url: 'https://cloud.minapp.com/oserve/v1/user/info/70695404/',
+  url: 'https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/70695404/',
   headers:
   {
     'Content-Type': 'application/json',
@@ -526,7 +532,7 @@ var req = request(options, function (error, response, body) {
 ```php
 <?php
 $token = '35919068aa799eccdef19160e1da4bf21381d2a2';
-$url = "https://cloud.minapp.com/oserve/v1/user/info/70695404/";
+$url = "https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/70695404/";
 
 $ch = curl_init();
 $header = array(

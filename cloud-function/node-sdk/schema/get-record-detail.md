@@ -31,10 +31,10 @@ tableID 和 tableName 二选一，不能同时存在
 **请求示例**
 
 ```js
-let tableID = 10
+let tableName = 'product'
 let recordID = '59897882ff650c0477f00485'
 
-let Product = new BaaS.TableObject(tableID)
+let Product = new BaaS.TableObject(tableName)
 
 Product.get(recordID).then(res => {
   // success

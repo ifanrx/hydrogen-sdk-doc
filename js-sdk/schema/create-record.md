@@ -2,20 +2,19 @@
 
 ## 操作步骤
 
-1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
+1.通过 `tableName` 或 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
 
 {% ifanrxCodeTabs %}
-`let MyTableObject = new wx.BaaS.TableObject(tableID)`
+`let MyTableObject = new wx.BaaS.TableObject(tableName)`
 {% endifanrxCodeTabs %}
 
 **参数说明**
 
-| 参数     | 类型   | 必填 | 说明 |
-| :-----  | :----- | :-- | :---|
-| tableID | Number |  是 | 数据表 ID |
+tableName 和 tableID 二选一，不能同时存在
 
-> **info**
-> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new BaaS.TableObject('product')
+| :-----  | :----- | :-- | :-- |
+| tableID   | Number | 是  | 数据表的 ID             |
+| tableName | String |  是 | 数据表名（SDK >= 1.2.0） |
 
 2.本地创建一条空记录
 
@@ -59,9 +58,9 @@ MyRecord.set(key2, value2)
 
 {% ifanrxCodeTabs %}
 ```js
-// 向 tableID 为 10 的数据表插入一条记录
-let tableID = 10
-let Product = new wx.BaaS.TableObject(tableID)
+// 向 tableName 为 'product' 的数据表插入一条记录
+let tableName = 'product'
+let Product = new wx.BaaS.TableObject(tableName)
 let product = Product.create()
 
 // 设置方式一
@@ -232,7 +231,7 @@ array 类型数据中的元素类型，要与预先在知晓云平台设定的�
 {% ifanrxCodeTabs %}
 ```js
 // 元素类型为 integer
-let Table = new wx.BaaS.TableObject(tableID)
+let Table = new wx.BaaS.TableObject(tableName)
 let record = Table.create()
 record.set('array_int', [1, 2, 3])
 record.save()
@@ -240,7 +239,7 @@ record.save()
 
 ```js
 // 元素类型为 string
-let Table = new wx.BaaS.TableObject(tableID)
+let Table = new wx.BaaS.TableObject(tableName)
 let record = Table.create()
 record.set('array_str', ['a', 'b', 'c'])
 record.save()
@@ -248,7 +247,7 @@ record.save()
 
 ```js
 // 元素类型为 object
-let Table = new wx.BaaS.TableObject(tableID)
+let Table = new wx.BaaS.TableObject(tableName)
 let record = Table.create()
 let obj_1 = {a: 10}
 let obj_2 = {b: 20}
@@ -290,7 +289,7 @@ record.save()
 ### 添加 pointer 类型数据 
 
 > **info**
-> 每张表最多能建立 3 个 pointer 类型的字段。如有更多需求，请提交工单说明
+> 每张表最多能建立 3 个 pointer 类型的字段。如有更多需求，请提交工单说明  
 > pointer 指向的数据表，不能改名或删除
 
 假设现在有一张 Article 表, Article 表部分字段如下:
@@ -370,7 +369,7 @@ SDK **1.4.0** 及以上版本支持批量新增数据项。
 
 {% ifanrxCodeTabs %}
 ```js
-let MyTableObject = new wx.BaaS.TableObject(tableID)
+let MyTableObject = new wx.BaaS.TableObject(tableName)
 
 const records = [
   {

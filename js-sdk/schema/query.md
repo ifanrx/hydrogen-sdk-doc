@@ -20,23 +20,21 @@
 
 ### 操作步骤
 
-1.通过 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表
+1.通过 `tableName` 或 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
 
 {% ifanrxCodeTabs %}
-`let MyTableObject = new wx.BaaS.TableObject(tableID)`
+`let MyTableObject = new wx.BaaS.TableObject(tableName)`
 {% endifanrxCodeTabs %}
 
-> **info**
-> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new BaaS.TableObject('product')
 
 **参数说明**
 
-| 参数     | 类型   | 必填 | 说明 |
-| :-----  | :----- | :-- | :---|
-| tableID | Number |  是 | 数据表 ID |
+tableName 和 tableID 二选一，不能同时存在
 
-> **info**
-> SDK 1.2.0 版本已支持通过数据表名实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new BaaS.TableObject('product')
+| 参数     | 类型   | 必填 | 说明 |
+| :-----  | :----- | :-- | :-- |
+| tableID   | Number | 是  | 数据表的 ID             |
+| tableName | String |  是 | 数据表名（SDK >= 1.2.0） |
 
 2.示例化一个 `Query` 对象，在该对象上添加查询条件
 
@@ -66,7 +64,7 @@ let query = new wx.BaaS.Query()
 //...
 
 // 应用查询对象
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 Product.setQuery(query).find().then(res => {
   // success
 }, err => {
@@ -536,7 +534,7 @@ let orQuery = wx.BaaS.Query.or(andQuery, query3)
 
 {% ifanrxCodeTabs %}
 ```javascript
-let Product = new wx.BaaS.TableObject(tableID)
+let Product = new wx.BaaS.TableObject(tableName)
 let query = new wx.BaaS.Query()
 
 // 设置查询条件

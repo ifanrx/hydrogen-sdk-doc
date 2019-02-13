@@ -72,9 +72,9 @@ exports.main = function functionName(event, callback) {
 
   ```js
   exports.main = function testSchema(event, callback) {
-    let tableID = 233
+    let tableName = 'product'
     let recordID = "5a7291050fc321091e97bcdc"
-    let table = new BaaS.TableObject(tableID)
+    let table = new BaaS.TableObject(tableName)
     table.find().then(res => {
       callback(null, res.data)
     }, err => {

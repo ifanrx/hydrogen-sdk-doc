@@ -11,7 +11,7 @@
 
 {% ifanrxCodeTabs %}
 ```js
-var Product = new wx.BaaS.TableObject(tableID)
+var Product = new wx.BaaS.TableObject(tableName)
 
 var query = new wx.BaaS.Query()
 query.compare('amount', '>', 0)
@@ -30,7 +30,7 @@ Product.setQuery(query).limit(10).offset(0).find().then(res => {
 
 {% ifanrxCodeTabs %}
 ```js
-var Product = new wx.BaaS.TableObject(tableID)
+var Product = new wx.BaaS.TableObject(tableName)
 
 var query = new wx.BaaS.Query()
 query.compare('amount', '>', 0)
