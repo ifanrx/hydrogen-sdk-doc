@@ -92,7 +92,7 @@ wx.BaaS.auth.getCurrentUser().then(user => {
       }
 }
 ```
-字段说明请参考 [获取用户信息小节](./user.md)
+字段说明请参考 [获取用户信息小节](user.md)
 
 ## 设置用户信息
 
@@ -236,6 +236,25 @@ wx.BaaS.auth.getCurrentUser().then(user =>{
 
 user 为 currentUser 对象，该对象的说明见上文
 err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+### 更新用户自定义字段
+
+更新用户信息与[数据表更新数据项](schema/update-record.md)方法基本一致。这里只允许更新 _userprofile 表中自定义的字段。
+
+**请求示例**
+
+{% ifanrxCodeTabs %}
+```js
+wx.BaaS.auth.getCurrentUser().then(user =>{
+   // age 为自定义字段
+   user.set('age', 30).update().then(res => {
+     // success
+   }, err => {
+     // err 为 HError 对象
+   }) 
+})
+```
+{% endifanrxCodeTabs %}
 
 
 ## 邮箱验证
