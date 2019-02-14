@@ -12,7 +12,8 @@
 
 tableName 和 tableID 二选一，不能同时存在
 
-| :-----  | :----- | :-- | :-- |
+| 名称     | 类型   | 必填   | 说明                   |
+| :-----  | :----- | :---- | :--- |
 | tableID   | Number | 是  | 数据表的 ID             |
 | tableName | String |  是 | 数据表名（SDK >= 1.2.0） |
 
@@ -52,7 +53,7 @@ MyRecord.set(key2, value2)
 通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。
 
 
-### 添加普通数据
+## 添加普通数据
 
 **请求示例**
 
@@ -132,7 +133,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 > 因此可以检查 res.data 中对应的字段来判断某些字段是否添加成功。
 
 
-### 添加日期时间 Date 类型的数据
+## 添加日期时间 Date 类型的数据
 
 数据表允许添加时间日期类型的列，为该类型的记录赋值，需要使用 ISO Date 格式的字符串，如 Product 表定义一个时间日期类型的列 expiration_time，创建一条记录时，该字段的赋值操作如下：
 
@@ -141,7 +142,7 @@ let isoStr = ((new Date()).toISOString()).toString()
 product.set('expiration_time', isoStr)
 ```
 
-### 添加 file 类型数据
+## 添加 file 类型数据
 
 使用 SDK 1.1.2 及以上版本，操作如下：
 
@@ -214,15 +215,15 @@ order.set('date', 'abc')
 order.save()
 ```
 
-### 添加 geojson 类型数据
+## 添加 geojson 类型数据
 
 查看 [地理位置操作](./geo.md) 章节
 
-### 添加 object 类型数据
+## 添加 object 类型数据
 
 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的
 
-### 添加 array 类型数据
+## 添加 array 类型数据
 
 添加 array 类型数据的方法与添加其他类型数据的方法基本一致。区别在于，array 类型数据是将一个的数组赋值给某个字段。
 
@@ -286,7 +287,7 @@ record.save()
 ```
 {% endifanrxCodeTabs %}
 
-### 添加 pointer 类型数据 
+## 添加 pointer 类型数据 
 
 > **info**
 > 每张表最多能建立 3 个 pointer 类型的字段。如有更多需求，请提交工单说明  
@@ -353,7 +354,7 @@ res 结构如下
 }
 ```
 
-### 批量新增数据项
+## 批量新增数据项
 
 SDK **1.4.0** 及以上版本支持批量新增数据项。
 
@@ -437,7 +438,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 
 
-#### 批量创建时不触发触发器
+### 批量创建时不触发触发器
 
 > **info**
 > SDK 版本需 >= 1.9.1
