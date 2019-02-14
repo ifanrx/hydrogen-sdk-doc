@@ -1,6 +1,6 @@
 # 分页和排序
 
-### 分页
+## 分页
 
 使用 limit 和 offset 来控制分页数据：
 
@@ -24,7 +24,7 @@ Product.setQuery(query).limit(10).offset(0).find().then(res => {
 ```
 {% endifanrxCodeTabs %}
 
-### 排序
+## 排序
 
 使用 orderBy 来控制使用升序或降序获取数据列表。
 

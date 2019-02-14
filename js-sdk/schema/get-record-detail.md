@@ -1,6 +1,6 @@
 # 获取数据项详情
 
-### 操作步骤
+## 操作步骤
 
 1.通过 `tableName` 或 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
 
@@ -28,7 +28,7 @@ tableName 和 tableID 二选一，不能同时存在
 | recordID | String | 是  | 记录 ID |
 
 
-### 示例
+## 示例
 
 **请求示例**
 
@@ -76,6 +76,6 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 |----------------|-----------------|
 | 404            | 数据行不存在      |
 
-### 字段过滤与扩展
+## 字段过滤与扩展
 
 请参考[字段过滤与扩展](./select-and-expand.md)章节

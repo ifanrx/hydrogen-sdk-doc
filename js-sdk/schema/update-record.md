@@ -1,6 +1,6 @@
 # 更新数据项
 
-### 操作步骤
+## 操作步骤
 
 1.通过 `tableName` 或 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
 
@@ -94,7 +94,7 @@ MyRecord.set(key2, value2)
 通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。
 
 
-### 普通数据更新
+## 普通数据更新
 
 **请求示例**
 {% ifanrxCodeTabs %}
@@ -144,7 +144,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | 404            | 数据行不存在    |
 
 
-### 更新 object 类型内的属性
+## 更新 object 类型内的属性
 ```javascript
 product.patchObject('obj1', {name: '123'})
 ```
@@ -188,7 +188,7 @@ record.patchObject('obj1', patch)
 ```
 
 
-### 更新 pointer 类型字段 
+## 更新 pointer 类型字段 
 
 假设有 product 表, product 表部分字段如下:
 
@@ -248,7 +248,7 @@ product.update().then(res=>{
 ```
 
 
-### 计数器原子性更新
+## 计数器原子性更新
 
 对数字类型的字段进行原子性增减操作。当请求同时对一个数据进行增减时，原子性使得冲突和覆盖导致的数据不正确的情况不会出现。
 
@@ -269,9 +269,9 @@ product.update().then(res => {}, err => {})
 ```
 
 
-### 数组原子性更新
+## 数组原子性更新
 
-#### 将 _待插入的数组_ 加到原数组末尾
+### 将 _待插入的数组_ 加到原数组末尾
 
 `product.append(key, value)`
 
@@ -290,7 +290,7 @@ product.append('desc', ['big'])
 product.append('desc', 'big')
 ```
 
-#### 将 _待插入的数组_ 中不包含在原数组的数据加到原数组末尾
+### 将 _待插入的数组_ 中不包含在原数组的数据加到原数组末尾
 
 `product.uAppend(key, value)`
 
@@ -309,7 +309,7 @@ product.uAppend('desc', ['sweet'])
 product.uAppend('desc', 'sweet')
 ```
 
-#### 从原数组中删除指定的值
+### 从原数组中删除指定的值
 
 `product.remove(key, value)`
 
@@ -359,7 +359,7 @@ order.set('date', 'abc')
 order.update()
 ```
 
-### 按条件批量更新数据项
+## 按条件批量更新数据项
 
 SDK 1.4.0 及以上版本支持批量更新数据项。可以通过设置自定义查询条件 Query，将符合条件的数据进行批量更新操作。
 
@@ -439,7 +439,7 @@ catch 回调中的 err 对象:
 
 200 更新成功，400 请求数据非法
 
-#### 批量更新时不触发触发器
+### 批量更新时不触发触发器
 
 > **info**
 > SDK 版本需 >= 1.9.1
