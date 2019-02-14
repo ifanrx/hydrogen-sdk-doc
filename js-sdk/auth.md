@@ -20,6 +20,9 @@ opts 参数说明：
 
 ### 通过邮箱注册
 
+> **info**
+> 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 
+
 **示例代码**
 
 {% ifanrxCodeTabs %}
@@ -44,6 +47,9 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 
 ### 通过用户名注册
+
+> **info**
+> 用户名不区分大小写。当用户注册了 username 为 ifanrx 的账号后，其他人不能再注册诸如 Ifanrx、IfAnrx、IFANRX 等账号了
 
 **示例代码**
 {% ifanrxCodeTabs %}

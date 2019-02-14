@@ -105,6 +105,9 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 
 ### 设置用户名
 
+> **info**
+> 用户名不区分大小写。当用户设置了 username 为 ifanrx 的账号后，其他人不能再注册诸如 Ifanrx、IfAnrx、IFANRX 等账号了
+
 `currentUser.setUsername({username, newPassword})`
 
 **参数说明**
@@ -156,6 +159,9 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 
 ### 设置邮箱
+
+> **info**
+> 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 
 
 `currentUser.setEmail({email, newPassword }, {sendVerificationEmail} = {})`
 
