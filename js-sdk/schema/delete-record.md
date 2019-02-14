@@ -12,6 +12,7 @@
 
 tableName 和 tableID 二选一，不能同时存在
 
+| 参数  | 类型              | 必填 | 说明 |
 | :-----  | :----- | :-- | :-- |
 | tableID   | Number | 是  | 数据表的 ID             |
 | tableName | String |  是 | 数据表名（SDK >= 1.2.0） |

@@ -16,6 +16,8 @@ tableName 和 tableID 二选一，不能同时存在
 
 
 实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new BaaS.TableObject('product')
+
+| 参数  | 类型              | 必填 | 说明 |
 | :-----  | :----- | :-- | :-- |
 | tableID   | Number | 是  | 数据表的 ID             |
 | tableName | String |  是 | 数据表名（SDK >= 1.2.0） |
