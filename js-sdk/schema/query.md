@@ -1,6 +1,6 @@
 # 查询
 
-### 数据类型对应查询操作符表
+## 数据类型对应查询操作符表
 
 | 数据类型 |                            可使用的查询操作                                             | 说明 |
 |:---------|:--------------------------------------------------------------------------------------- |:-----|
@@ -18,7 +18,7 @@
 > **info**
 > file、geojson、object、date 类型的 array 不支持查询操作。如果进行查询，会返回空数组
 
-### 操作步骤
+## 操作步骤
 
 1.通过 `tableName` 或 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
 
@@ -51,7 +51,7 @@ tableName 和 tableID 二选一，不能同时存在
 > **info**
 > 注意：知晓云的 api URL 长度限定为 16386，超出则返回 502，请在构造查询条件时注意长度控制，如 in 操作符后边的数组长度、match 操作符后边的字符串长度等。
 
-### 示例
+## 示例
 
 **请求示例**
 
@@ -126,7 +126,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | 404            | 数据表不存在  |
 
 
-### 比较查询
+## 比较查询
 
 `query.compare(key, operator, value)`
 
@@ -137,7 +137,7 @@ query.compare('amount', '>',  1)
 ```
 
 
-### 多个查询条件
+## 多个查询条件
 
 当存在多个查询条件时，它们之间默认为 AND 关系，查询返回满足所有条件的记录，如下示例：
 
@@ -149,7 +149,7 @@ query.compare('amount', '<', 10)
 多个查询条件之间需要更复杂的组合关系，可以查看以下 `复杂组合查询` 小节。
 
 
-### 字符串查询
+## 字符串查询
 查询返回满足包含相应字符串的记录，如下示例：
 ```js
 // 例：{"name": "apple"}
@@ -176,7 +176,7 @@ const regExp = /^abc/i
 const regExp = new RegExp('^abc', 'i')
 ```
 
-### 正则匹配示例
+## 正则匹配示例
 
 ```js
 /* 以查找名字为例，name 字段必须为 string 类型 */
@@ -206,7 +206,7 @@ query.matches('phoneNumber', regx)
 ```
 
 
-### 数组查询
+## 数组查询
 
 field 的类型不限制，field 的 value 含有 array 中的一个或多个
 ```js
@@ -251,7 +251,7 @@ query.arrayContains('desc', ['green', 'red', 'yellow'])
 query.compare('desc', '=', ['green', 'red', 'yellow'])
 ```
 
-### null 或非 null 查询
+## null 或非 null 查询
 
 查询字段值为 null 或非 null 记录
 
@@ -263,7 +263,7 @@ query.isNotNull('name')
 query.isNotNull(['name', 'price'])
 ```
 
-### 空或非空查询
+## 空或非空查询
 
 查询字段值为空或非空记录
 
@@ -277,7 +277,7 @@ query.notExists('name')
 query.notExists(['name', 'price'])
 ```
 
-### hasKey 查询 （仅限 object 类型）
+## hasKey 查询 （仅限 object 类型）
 
 **参数说明**
 
@@ -352,7 +352,7 @@ query.hasKey('publisherInfo', 'location')
 query.hasKey('publisherInfo', 'abc.location')
 ```
 
-### pointer 查询 
+## pointer 查询 
 
 > **info**
 > 目前 pointer 仅支持针对 pointer 本身的查询，不支持嵌套查询（即查询 pointer 指向的数据行的字段）
@@ -488,7 +488,7 @@ query.exist('customer')
 
 pointer 类型支持的查询操作符请参考 [数据类型对应查询操作符表](#数据类型对应查询操作符表)
 
-### 组合查询
+## 组合查询
 
 {% ifanrxCodeTabs %}
 ```js
@@ -510,7 +510,7 @@ let orQuery =  wx.BaaS.Query.or(query1, query2, ...)
 {% endifanrxCodeTabs %}
 
 
-### 复杂组合查询
+## 复杂组合查询
 
 {% ifanrxCodeTabs %}
 ```js
@@ -518,7 +518,7 @@ let query1 = new wx.BaaS.Query()
 query1.isNull('name')
 let query2 = new wx.BaaS.Query()
 query2.compare('price', '>', 10)
-...
+//...
 
 // and 查询
 let andQuery = wx.BaaS.Query.and(query1, query2)
@@ -530,7 +530,7 @@ let orQuery = wx.BaaS.Query.or(andQuery, query3)
 ```
 {% endifanrxCodeTabs %}
 
-### 获取符合筛选条件的数据总数
+## 获取符合筛选条件的数据总数
 
 {% ifanrxCodeTabs %}
 ```javascript
