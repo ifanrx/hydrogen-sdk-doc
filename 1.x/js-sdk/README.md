@@ -27,7 +27,7 @@
 <code class="lang-js">
 {"plugins": {
   "sdkPlugin": {
-    "version": "{{ book.previousLatestVersion }}",
+    "version": "{{ book.latestVersion }}",
     "provider": "wxc6b86e382a1e3294"
   }
 }}
@@ -76,7 +76,7 @@ b. 将下载解压后得到的 SDK js 文件放在小程序项目目录中
 App({
   onLaunch() {
     // require SDK
-    require('./sdk-v{{ book.previousLatestVersion }}')
+    require('./sdk-v{{ book.latestVersion }}')
   }
 })
 </code>
@@ -95,7 +95,7 @@ App({
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-v{{ book.previousLatestVersion }}')
+    require('./sdk-v{{ book.latestVersion }}')
      let clientID = '知晓云管理后台获取到的 ClientID'
      wx.BaaS.init(clientID)
   }

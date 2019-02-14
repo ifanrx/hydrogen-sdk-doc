@@ -64,7 +64,7 @@
 <code class="lang-js">
 "plugins": {
     "sdkPlugin": {
-      "version": "{{ book.previousLatestVersion }}",
+      "version": "{{ book.latestVersion }}",
       "provider": "wxc6b86e382a1e3294"
  }
 } 
@@ -182,7 +182,7 @@ Page({
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-v{{ book.previousLatestVersion }}')
+    require('./sdk-v{{ book.latestVersion }}')
   }
 })
 </code>
@@ -199,7 +199,7 @@ App({
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-v{{ book.previousLatestVersion }}')
+    require('./sdk-v{{ book.latestVersion }}')
 
     // 初始化 SDK
     let clientID = '知晓云管理后台获取到的 ClientID'

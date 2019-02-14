@@ -4,7 +4,7 @@
 
 ### 选择版本下载
 
-- [最新稳定版 v{{ book.previousLatestVersion }}（推荐）](https://dl.ifanr.cn/hydrogen/sdk/sdk-latest.zip)
+- [最新稳定版 v{{ book.latestVersion }}（推荐）](https://dl.ifanr.cn/hydrogen/sdk/sdk-latest.zip)
 - [微信小程序插件版 SDK](https://mp.weixin.qq.com/wxopen/pluginbasicprofile?action=intro&appid=wxc6b86e382a1e3294)
 
 
