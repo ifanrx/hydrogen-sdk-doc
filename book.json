@@ -44,9 +44,9 @@
   },
   "pluginsConfig": {
     "algolia": {
-      "index": "prod_minapp_doc",
+      "index": "prod_minapp_doc_2",
       "applicationID": "7TN0U2FL3Q",
-      "publicKey": "b9ab71bfe55a6bcb2e1474e14d79d95a",
+      "publicKey": "a65e9f59e37aba5ba3724da4f93f23a0",
       "freeAccount": "false"
     },
     "favicon": {
