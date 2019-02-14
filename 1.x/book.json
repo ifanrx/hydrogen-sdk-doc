@@ -28,6 +28,7 @@
     "paperSize": "a4"
   },
   "plugins": [
+    "algolia",
     "simpletabs",
     "anchor-nav-x",
     "expandable-chapters-small",
