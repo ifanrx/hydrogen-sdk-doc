@@ -98,11 +98,11 @@ MyContentGroup.setQuery(query).find().then(res => {
 
 #### 筛选字段 （SDK >= 1.11.1）
 
-select 使用方法可以参考[数据表 - 字段过滤](/1.x/js-sdk/schema/select-and-expand.md)小节
+select 使用方法可以参考[数据表 - 字段过滤](/js-sdk/schema/select-and-expand.md)小节
 
 #### 扩展字段 （SDK >= 1.11.1）
 
-expand 使用方法可以参考[数据表 - 字段扩展](/1.x/js-sdk/schema/select-and-expand.md)小节
+expand 使用方法可以参考[数据表 - 字段扩展](/js-sdk/schema/select-and-expand.md)小节
 
 假设 _richtextcontent 表中有一个类型为 pointer 的字段，名称为 `pointer_test_oder`, 指向了 test_order 表
 

@@ -4,7 +4,7 @@
 
 通过知晓云使用微信支付功能，需要先在支付模块中绑定微信支付
 
-![绑定微信支付](/1.x/images/dashboard/payment-binding.png)
+![绑定微信支付](/images/dashboard/payment-binding.png)
 
 1.注册小程序开发者账号
 
@@ -18,16 +18,16 @@
 
 如果你在微信后台修改了证书，可以在证书配置面板进行更新
 
-![查看证书配置](/1.x/images/dashboard/payment-config.png)
+![查看证书配置](/images/dashboard/payment-config.png)
 
 ## 查看和编辑支付记录
 
 知晓云提供了查看和编辑支付记录的功能，允许你通过条件筛选查看支付记录，同时支持编辑订单和进行退款操作
 
-![支付记录面板](/1.x/images/dashboard/payment-main-panel.png)
+![支付记录面板](/images/dashboard/payment-main-panel.png)
 
-![编辑订单](/1.x/images/dashboard/payment-edit-order.png)
+![编辑订单](/images/dashboard/payment-edit-order.png)
 
-![操作退款](/1.x/images/dashboard/payment-refund.png)
+![操作退款](/images/dashboard/payment-refund.png)
 
 

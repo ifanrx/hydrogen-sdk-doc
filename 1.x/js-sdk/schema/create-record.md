@@ -119,7 +119,7 @@ then 回调中的 res 对象结构如下，其中 res.data 为新增的数据行
   }
 }
 ```
-err 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 常见错误：
 
@@ -418,7 +418,7 @@ then 回调中 res 结构如下:
   }
 }
 ```
-err 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 常见错误：
 

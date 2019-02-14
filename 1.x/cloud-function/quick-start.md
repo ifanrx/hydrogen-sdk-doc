@@ -24,11 +24,11 @@
 
 进入知晓云控制台，选择一个应用进入，依次点击「 引擎 」、「 云函數 」、「 添加 」。
 
-![进入云函数控制台面板](/1.x/images/cloud-function/dashboard-into.png)
+![进入云函数控制台面板](/images/cloud-function/dashboard-into.png)
 
 在弹出添加云函数模态框中，选择 `Hello world` 模板，函数命名为 `helloWorld`，点击确认，即可完成云函数的创建。
 
-![创建 hello world 函数](/1.x/images/cloud-function/dashboard-hello-world.png)
+![创建 hello world 函数](/images/cloud-function/dashboard-hello-world.png)
 
 创建好云函数后，在代码编辑器中，默认会添加以下一段代码，它的作用是当调用该方法后，函数会返回 'hello world'。
 
@@ -41,7 +41,7 @@ exports.main = function helloWorld(event, callback) {
 
 ### 在小程序中触发云函数
 
-云函数创建好后，就可以在你的微信小程序代码中，触发该函数了。在此之前，你得先下载我们的 JS SDK，导入项目并进行初始化，关于这块的内容，可以查看我们的 [JS SDK 文档](/1.x/js-sdk/README.md)。触发云函数的示例代码如下：
+云函数创建好后，就可以在你的微信小程序代码中，触发该函数了。在此之前，你得先下载我们的 JS SDK，导入项目并进行初始化，关于这块的内容，可以查看我们的 [JS SDK 文档](/js-sdk/README.md)。触发云函数的示例代码如下：
 
 ```js
 wx.BaaS.invokeFunction('helloWorld').then(res => {

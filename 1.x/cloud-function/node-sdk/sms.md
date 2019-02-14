@@ -81,4 +81,4 @@ BaaS.verifySmsCode({
 
 >对同一手机号码在 1 天内不能发送超过 10 条短信
 
-{% include "/1.x/js-sdk/frag/_enable_sms.md" %}
+{% include "/js-sdk/frag/_enable_sms.md" %}

@@ -74,7 +74,7 @@ wx.chooseImage({
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 > **danger**
 > 使用 `wx.uploadFile` 以及 `SDK v.1.1.2` 之前版本的 `wx.BaaS.uploadFile` 返回的 res.data 是 json string 类型，而这里的 res.data 是 Object 类型，因此不需要再做类型转换了
@@ -179,7 +179,7 @@ MyFile.get('5a2fe93308443e313a428c4f').then((res) => {
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **返回示例**
 
@@ -389,7 +389,7 @@ MyFile.genVideoSnapshot(params).then((res) => {
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **返回示例**
 
@@ -465,7 +465,7 @@ MyFile.videoConcat(params).then((res) => {
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **返回示例**
 
@@ -547,7 +547,7 @@ MyFile.videoClip(params).then((res) => {
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **返回示例**
 
@@ -614,7 +614,7 @@ MyFile.videoMeta(params).then((res) => {
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **返回示例**
 
@@ -712,7 +712,7 @@ MyFile.videoAudioMeta(params).then((res) => {
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **返回示例**
 
@@ -822,7 +822,7 @@ wx.chooseImage({
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **返回示例**
 

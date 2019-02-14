@@ -56,7 +56,7 @@ order.getOrderList({merchandise_schema_id: 1234, status: 'pending'}).then(res =>
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **返回示例**
 
@@ -88,7 +88,7 @@ HError 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.
 }
 ```
 
-err 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 常见错误：
 

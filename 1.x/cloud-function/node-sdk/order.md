@@ -61,7 +61,7 @@ order.offset(20).limit(20).getOrderList().then(res => {
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **返回示例**
 
@@ -160,4 +160,4 @@ BaaS.refund({
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)

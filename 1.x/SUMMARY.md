@@ -2,10 +2,9 @@
 
 * [简介](README.md)
 
+----
+
 * [新手入门](newbies/README.md)
-    * [新手入门 - 微信小程序](newbies/wechat.md)
-    * [新手入门 - Web](newbies/web.md)
-    * [新手入门 - 支付宝](newbies/alipay.md)
 
 ----
 
@@ -22,10 +21,8 @@
 ----
 
 * [JS SDK](js-sdk/README.md)
-    * [1.x 迁移指南](js-sdk/migrate-from-v1.md)
+    * [登入登出](js-sdk/signin-signout.md)
     * [用户](js-sdk/user.md)
-        * [登入登出](js-sdk/auth.md)
-        * [当前用户](js-sdk/account.md)
     * [数据表](js-sdk/schema/README.md)
         * [数据类型](js-sdk/schema/data-type.md)
         * [新增数据项](js-sdk/schema/create-record.md)
@@ -43,33 +40,22 @@
     * [内容库](js-sdk/content/README.md)
         * [内容操作](js-sdk/content/operate.md)
         * [渲染内容](js-sdk/content/render.md)
-            * [微信小程序](js-sdk/content/render-wechat.md)
-            * [Web](js-sdk/content/render-web.md)
-            * [支付宝小程序](js-sdk/content/render-alipay.md)
     * [文件](js-sdk/file/README.md)
         * [文件操作](js-sdk/file/file.md)
         * [文件分类操作](js-sdk/file/category.md)
-    * [微信小程序](js-sdk/wechat/README.md)
-        * [接入指南](js-sdk/wechat/how-to.md)
-        * [微信登录](js-sdk/wechat/signin-signout.md)
-        * [支付](js-sdk/wechat/payment/README.md)
-            * [微信支付](js-sdk/wechat/payment/pay.md)
-            * [订单查询](js-sdk/wechat/payment/order.md)
-        * [网络请求](js-sdk/wechat/request.md)
-        * [模板消息](js-sdk/wechat/template-message.md)
-        * [微信加密数据解密](js-sdk/wechat/wechat-decrypt.md)
-        * [检测违规图片、文本](js-sdk/wechat/censor.md)
-        * [获取二维码](js-sdk/wechat/wxacode.md)
-        * [异常上报](js-sdk/wechat/bugout.md)
-    * [Web](js-sdk/web/README.md)
-        * [接入指南](js-sdk/web/how-to.md)
-    * [支付宝小程序](js-sdk/alipay/README.md)            
-        * [接入指南](js-sdk/alipay/how-to.md)
-        * [支付宝登录](js-sdk/alipay/signin-signout.md)
+    * [支付](js-sdk/payment/README.md)
+        * [微信支付](js-sdk/payment/pay.md)
+        * [订单查询](js-sdk/payment/order.md)
+    * [网络请求](js-sdk/request.md)
+    * [本地存储](js-sdk/local-storage.md)
+    * [模板消息](js-sdk/template-message.md)
+    * [微信加密数据解密](js-sdk/wechat-decrypt.md)
+    * [获取二维码](js-sdk/wxacode.md)
     * [调用云函数](js-sdk/invoke-function.md)
+    * [检测违规图片、文本](js-sdk/censor.md)
     * [短信验证码](js-sdk/sms.md)
     * [错误码和 HError 对象](js-sdk/error-code.md)
-    * [本地存储](js-sdk/local-storage.md)
+    * [异常上报](js-sdk/bugout.md)
     * [SDK 下载](js-sdk/download-sdk.md)
     * [更新日志](https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md)
 

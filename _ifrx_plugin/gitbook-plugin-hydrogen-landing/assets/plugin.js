@@ -3,6 +3,17 @@ function sidebarScrollIntoView() {
   if (el) {
     el.scrollIntoView({behavior: 'smooth', block: 'center'})
   }
+  addHeader()
+}
+
+function addHeader() {
+  if (document.querySelector('#ifanrx-summary-header')) return false
+
+  let el = document.querySelector('.book-summary')
+  let node = document.createElement('div')
+  node.id = 'ifanrx-summary-header'
+  node.innerHTML = '知晓云文档 2.0'
+  el.insertBefore(node, el.firstChild)
 }
 
 require(["gitbook", "jQuery"], function (gitbook, $) {
@@ -31,6 +42,7 @@ require(["gitbook", "jQuery"], function (gitbook, $) {
         }
       })
 
+      addHeader()
     }, 300)
   })
 

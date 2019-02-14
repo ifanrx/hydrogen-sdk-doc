@@ -48,7 +48,7 @@ wx.BaaS.pay(params).then(res => {
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 调用该接口前 **必须完成用户授权**，因此最好在调用 `wx.BaaS.pay` 接口前，先确定一下用户是否已经授权了，如果没有授权，则需要[调用 `wx.BaaS.login()` 接口](../user/sign-in.md)，如下：
 
@@ -92,7 +92,7 @@ wx.BaaS.pay(params).then(res => {
 })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **接口说明**
 
