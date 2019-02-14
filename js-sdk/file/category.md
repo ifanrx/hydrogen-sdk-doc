@@ -1,11 +1,10 @@
 # 文件分类操作
 
-> **danger**
-> 以下操作仅适用于 SDK version >= v1.1.1
+实例化一个 `BaaS.FileCategory` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
 
-实例化一个 `wx.BaaS.FileCategory` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
-
+{% ifanrxCodeTabs %}
 `let MyFileCategory = new wx.BaaS.FileCategory()`
+{% endifanrxCodeTabs %}
 
 ## 获取文件分类详情
 
@@ -62,6 +61,7 @@ MyFileCategory.get('5a2fe91508443e3123dbe1cb').then(res => {
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyFileCategory = new wx.BaaS.FileCategory()
 
@@ -71,6 +71,8 @@ MyFileCategory.getFileList('5a2fe91508443e3123dbe1cb').then(res => {
   // err
 })
 ```
+{% endifanrxCodeTabs %}
+
 > **info**
 > 如需对分类下的文件进行更多条件的筛选，可使用 [File](./file.md) 的查询接口
 
@@ -85,6 +87,7 @@ MyFileCategory.getFileList('5a2fe91508443e3123dbe1cb').then(res => {
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyFileCategory = new wx.BaaS.FileCategory()
 
@@ -96,6 +99,7 @@ let query = new wx.BaaS.Query()
 query.contains('name', substr)
 MyFileCategory.setQuery(query).find()
 ```
+{% endifanrxCodeTabs %}
 
 ## 排序
 

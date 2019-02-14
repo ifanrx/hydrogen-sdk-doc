@@ -1,8 +1,6 @@
 <!-- ex_nonav -->
 # 错误码和 HError 对象
 
-`sdk v1.1.4` 版本重构优化了错误返回信息，你可以通过如下方式对错误信息进行判断。
-
 ## HError 错误对象的格式
 
 在大部分情况下，SDK API 抛出的错误统一为 HError 类的实例，可以使用 `try-catch` 块进行捕捉，若 SDK 的 API 返回值是一个 Promise 时，HError 对象则会作为 catch 回调的参数。
@@ -16,7 +14,7 @@ HError 实例上有两个重要的属性，对调试错误很有帮助：
 
 
 **示例代码**
-
+{% ifanrxCodeTabs %}
 ```js
 // SDK API 返回值是一个 Promise 对象，在 catch 中捕捉错误
 
@@ -32,7 +30,9 @@ wx.BaaS.login().then(res => {
   // ...
 })
 ```
+{% endifanrxCodeTabs %}
 
+{% ifanrxCodeTabs %}
 ```js
 // SDK API 是一个同步的操作，则用 try-catch 来捕捉错误
 
@@ -46,6 +46,8 @@ try {
 }
 
 ```
+{% endifanrxCodeTabs %}
+
 
 ## 错误码详解
 

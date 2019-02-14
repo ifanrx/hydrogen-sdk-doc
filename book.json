@@ -29,24 +29,24 @@
   },
   "plugins": [
     "algolia",
+    "simpletabs",
     "anchor-nav-x",
     "expandable-chapters-small",
     "favicon",
     "image-captions",
-    "simpletabs",
     "styled-blockquotes",
     "hydrogen-landing@./_ifrx_plugin/gitbook-plugin-hydrogen-landing"
   ],
-  "title": "知晓云平台开发文档",
+  "title": "知晓云平台开发文档 2.0",
   "variables": {
-    "latestVersion": "1.16.0",
+    "latestVersion": "2.0.0a",
     "imgURLClipDemo": "https://cloud-minapp-6.cloud.ifanrusercontent.com/1fco21YvWNpWfukk.png!/both/400x400"
   },
   "pluginsConfig": {
     "algolia": {
-      "index": "prod_minapp_doc",
+      "index": "prod_minapp_doc_2",
       "applicationID": "7TN0U2FL3Q",
-      "publicKey": "b9ab71bfe55a6bcb2e1474e14d79d95a",
+      "publicKey": "a65e9f59e37aba5ba3724da4f93f23a0",
       "freeAccount": "false"
     },
     "favicon": {

@@ -1,23 +1,19 @@
 # 新增数据记录
 
-{% tabs first="SDK 1.1.0 及以上版本", second="SDK 1.1.0 以下版本" %}
-
-{% content "first" %}
-
-## SDK 1.1.0 及以上版本
-
-### 操作步骤
+## 操作步骤
 
 1.通过 `tableName` 或 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
 
+{% ifanrxCodeTabs %}
 `let MyTableObject = new wx.BaaS.TableObject(tableName)`
+{% endifanrxCodeTabs %}
 
 **参数说明**
 
 tableName 和 tableID 二选一，不能同时存在
 
-| 参数     | 类型   | 必填 | 说明 |
-| :-----  | :----- | :-- | :-- |
+| 名称     | 类型   | 必填   | 说明                   |
+| :-----  | :----- | :---- | :--- |
 | tableID   | Number | 是  | 数据表的 ID             |
 | tableName | String |  是 | 数据表名（SDK >= 1.2.0） |
 
@@ -57,10 +53,11 @@ MyRecord.set(key2, value2)
 通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。
 
 
-### 添加普通数据
+## 添加普通数据
 
 **请求示例**
 
+{% ifanrxCodeTabs %}
 ```js
 // 向 tableName 为 'product' 的数据表插入一条记录
 let tableName = 'product'
@@ -96,6 +93,7 @@ product.save().then(res => {
   // HError 对象
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -135,7 +133,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 > 因此可以检查 res.data 中对应的字段来判断某些字段是否添加成功。
 
 
-### 添加日期时间 Date 类型的数据
+## 添加日期时间 Date 类型的数据
 
 数据表允许添加时间日期类型的列，为该类型的记录赋值，需要使用 ISO Date 格式的字符串，如 Product 表定义一个时间日期类型的列 expiration_time，创建一条记录时，该字段的赋值操作如下：
 
@@ -144,10 +142,11 @@ let isoStr = ((new Date()).toISOString()).toString()
 product.set('expiration_time', isoStr)
 ```
 
-### 添加 file 类型数据
+## 添加 file 类型数据
 
 使用 SDK 1.1.2 及以上版本，操作如下：
 
+{% ifanrxCodeTabs %}
 ```js
 let MyFile = new wx.BaaS.File()  // 具体操作查看「文件操作」章节
 MyFile.upload(params).then(res => {
@@ -159,6 +158,7 @@ MyFile.upload(params).then(res => {
   })
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -191,6 +191,7 @@ res 结构如下
 
 使用 SDK 1.1.2 以下版本，操作如下：
 
+{% ifanrxCodeTabs %}
 ```
 wx.BaaS.uploadFile(params).then(res => {
   let data = JSON.parse(res.data)
@@ -198,6 +199,7 @@ wx.BaaS.uploadFile(params).then(res => {
   product.save()
 })
   ```
+  {% endifanrxCodeTabs %}
 
 <span class="attention">注：</span> 添加记录时为字段设置的数据，要与预先在知晓云平台设定的字段的数据类型一致，当仅更新一个字段，并且使用的数据不合法时，将无法成功保存，请求返回 `Failed to save record, type conflict on fields` 错误，如果更新多个字段，其中有一个或一个以上字段数据合法，则请求成功，但其中数据不合法的字段将不会成功保存，如下示例：
 
@@ -213,20 +215,21 @@ order.set('date', 'abc')
 order.save()
 ```
 
-### 添加 geojson 类型数据
+## 添加 geojson 类型数据
 
 查看 [地理位置操作](./geo.md) 章节
 
-### 添加 object 类型数据
+## 添加 object 类型数据
 
 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的
 
-### 添加 array 类型数据
+## 添加 array 类型数据
 
 添加 array 类型数据的方法与添加其他类型数据的方法基本一致。区别在于，array 类型数据是将一个的数组赋值给某个字段。
 
 array 类型数据中的元素类型，要与预先在知晓云平台设定的字段类型一致。否则创建的数据将不包含该 array 类型的字段。
 
+{% ifanrxCodeTabs %}
 ```js
 // 元素类型为 integer
 let Table = new wx.BaaS.TableObject(tableName)
@@ -282,8 +285,9 @@ let date = new Date().toISOString()
 record.set('array_date', [date])
 record.save()
 ```
+{% endifanrxCodeTabs %}
 
-### 添加 pointer 类型数据 (SDK >= 1.10.0)
+## 添加 pointer 类型数据 
 
 > **info**
 > 每张表最多能建立 3 个 pointer 类型的字段。如有更多需求，请提交工单说明  
@@ -302,6 +306,7 @@ comment 字段指向了 Comment 表中 id 为 5bad87ab0769797b4fb27a1b 的数据
 
 user 字段指向了 _userprofile 表中 id 为 69147880 的数据行
 
+{% ifanrxCodeTabs %}
 ```js
 // 获取一个 tableRecord 实例
 let Comment = new wx.BaaS.TableObject('Comment')
@@ -322,6 +327,7 @@ article.save().then(res=>{
   // success
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -348,7 +354,7 @@ res 结构如下
 }
 ```
 
-### 批量新增数据项
+## 批量新增数据项
 
 SDK **1.4.0** 及以上版本支持批量新增数据项。
 
@@ -362,6 +368,7 @@ SDK **1.4.0** 及以上版本支持批量新增数据项。
 
 **请求示例**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyTableObject = new wx.BaaS.TableObject(tableName)
 
@@ -385,6 +392,7 @@ MyTableObject.createMany(records).then(res => {
   //err 为 HError 对象
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -430,7 +438,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 
 
-#### 批量创建时不触发触发器
+### 批量创建时不触发触发器
 
 > **info**
 > SDK 版本需 >= 1.9.1
@@ -443,70 +451,3 @@ MyTableObject.createMany(records, {enableTrigger: false}).then(res => {
   //err 为 HError 对象
 })
 ```
-
-{% content "second" %}
-
-## SDK 1.1.0 以下版本
-
-> **info**
-> 该写法在 sdk v2.0 前仍然有效
-
-`wx.BaaS.createRecord(OBJECT)`
-
-**OBJECT 参数说明**
-
-| 参数     | 类型   | 必填 | 说明 |
-| :-----  | :----- | :-- | :-- |
-| tableID | Number | 是  | 数据表 ID |
-| data    | Object | 是  | 待插入的自定义数据 |
-
-**返回参数**
-
-| 参数        | 类型    | 描述 |
-| :--------- | :------ | :-- |
-| id         | String  | 数据表 ID |
-| created_at | Integer | 创建时间 |
-| is_admin   | Boolean | 自定义字段 |
-| name       | String  | 自定义字段 |
-| price      | Number  | 自定义字段 |
-| tags       |  Array  | 自定义字段 |
-
-**请求示例**
-
-```js
-// 向 tableID 为 10 的数据表插入一条记录
-let tableID = 10
-let data = {
-  "is_admin": false,
-  "name": "OSfvvQFoNm",
-  "price": 99,
-  "tags": ["LRpq", "HGLa"]
-}
-let objects = {
-  tableID,
-  data
-}
-wx.BaaS.createRecord(objects).then(res => {
-  // success
-}, err => {
-  // err
-})
-```
-
-**返回示例**
-
-```json
-{
-  "created_at": 1487053095,
-  "id": "7",
-  "is_admin": false,
-  "name": "OSfvvQFoNm",
-  "price": 99,
-  "tags": ["LRpq", "HGLa"]
-}
-```
-
-> **info**
-> 插入的数据要与预先在知晓云平台设定的数据类型一致
-
-{% endtabs %}

@@ -1,29 +1,30 @@
 # 更新数据项
 
-{% tabs first="SDK 1.1.0 及以上版本", second="SDK 1.1.0 以下版本" %}
-
-{% content "first" %}
-
-## SDK 1.1.0 及以上版本
-
-### 操作步骤
+## 操作步骤
 
 1.通过 `tableName` 或 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
 
+{% ifanrxCodeTabs %}
+
 `let MyTableObject = new wx.BaaS.TableObject(tableName)`
+
+{% endifanrxCodeTabs %}
 
 **参数说明**
 
 tableName 和 tableID 二选一，不能同时存在
 
-| 参数     | 类型   | 必填 | 说明 |
+
+实例化 TableObject，如操作数据表名为 'product' 的数据表，可进行如下实例化：new BaaS.TableObject('product')
 | :-----  | :----- | :-- | :-- |
 | tableID   | Number | 是  | 数据表的 ID             |
 | tableName | String |  是 | 数据表名（SDK >= 1.2.0） |
 
 2.通过数据行 id（以下用 `recordID` 参数名表示） 设置指定数据行
 
+{% ifanrxCodeTabs %}
 `let MyRecord = MyTableObject.getWithoutData(recordID)`
+{% endifanrxCodeTabs %}
 
 **参数说明**
 
@@ -31,7 +32,7 @@ tableName 和 tableID 二选一，不能同时存在
 | :------- | :----- | :-- | :---|
 | recordID | String | 是  | 数据行 id |
 
-3.调用 set 或 unset (SDK >= 1.12.0) 修改指定记录的数据
+3.调用 set 或 unset  修改指定记录的数据
 
 a. set 操作
 
@@ -47,7 +48,7 @@ a. set 操作
 | value | any               | 是  | 与 key 字段的类型保持一致 |
 | obj   | Object            | 是  | 一次性赋值的键值对对象, 如 `{a: 10, b: 20}` |
 
-b. unset 操作 (SDK >= 1.12.0)
+b. unset 操作 
 
 将某个字段的值清空
 
@@ -93,10 +94,10 @@ MyRecord.set(key2, value2)
 通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。
 
 
-### 普通数据更新
+## 普通数据更新
 
 **请求示例**
-
+{% ifanrxCodeTabs %}
 ```js
 // 更新 tableName 为 'product' 的数据表中 id 为 59897882ff650c0477f00485 的数据行的 price 字段
 let tableName = 'product'
@@ -112,6 +113,7 @@ product.update().then(res => {
   // err
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -142,7 +144,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | 404            | 数据行不存在    |
 
 
-### 更新 object 类型内的属性
+## 更新 object 类型内的属性
 ```javascript
 product.patchObject('obj1', {name: '123'})
 ```
@@ -186,7 +188,7 @@ record.patchObject('obj1', patch)
 ```
 
 
-### 更新 pointer 类型字段 (SDK >= 1.10.0)
+## 更新 pointer 类型字段 
 
 假设有 product 表, product 表部分字段如下:
 
@@ -200,6 +202,7 @@ record.patchObject('obj1', patch)
 
 **示例代码**
 
+{% ifanrxCodeTabs %}
 ```js
 // 获取一个 tableRecord 实例
 let Customer = new wx.BaaS.TableObject('customer')
@@ -219,6 +222,7 @@ product.update().then(res=>{
   // success
 })
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 ```json
@@ -244,7 +248,7 @@ product.update().then(res=>{
 ```
 
 
-### 计数器原子性更新
+## 计数器原子性更新
 
 对数字类型的字段进行原子性增减操作。当请求同时对一个数据进行增减时，原子性使得冲突和覆盖导致的数据不正确的情况不会出现。
 
@@ -265,9 +269,9 @@ product.update().then(res => {}, err => {})
 ```
 
 
-### 数组原子性更新
+## 数组原子性更新
 
-#### 将 _待插入的数组_ 加到原数组末尾
+### 将 _待插入的数组_ 加到原数组末尾
 
 `product.append(key, value)`
 
@@ -286,7 +290,7 @@ product.append('desc', ['big'])
 product.append('desc', 'big')
 ```
 
-#### 将 _待插入的数组_ 中不包含在原数组的数据加到原数组末尾
+### 将 _待插入的数组_ 中不包含在原数组的数据加到原数组末尾
 
 `product.uAppend(key, value)`
 
@@ -305,7 +309,7 @@ product.uAppend('desc', ['sweet'])
 product.uAppend('desc', 'sweet')
 ```
 
-#### 从原数组中删除指定的值
+### 从原数组中删除指定的值
 
 `product.remove(key, value)`
 
@@ -355,7 +359,7 @@ order.set('date', 'abc')
 order.update()
 ```
 
-### 按条件批量更新数据项
+## 按条件批量更新数据项
 
 SDK 1.4.0 及以上版本支持批量更新数据项。可以通过设置自定义查询条件 Query，将符合条件的数据进行批量更新操作。
 
@@ -369,13 +373,14 @@ SDK 1.4.0 及以上版本支持批量更新数据项。可以通过设置自定�
 
 **请求示例**
 
+{% ifanrxCodeTabs %}
 ```js
 let MyTableObject = new wx.BaaS.TableObject(tableName)
 
 let query = new wx.BaaS.Query()
 
 // 设置查询条件（比较、字符串包含、组合等）
-...
+//...
 
 // limit、offset 可以指定按条件查询命中的数据分页
 let records = MyTableObject.limit(10).offset(0).getWithoutData(query)
@@ -387,6 +392,7 @@ records.append(key3, value3)
 
 records.update().then(res => {}, err => {})
 ```
+{% endifanrxCodeTabs %}
 
 **返回示例**
 
@@ -433,11 +439,12 @@ catch 回调中的 err 对象:
 
 200 更新成功，400 请求数据非法
 
-#### 批量更新时不触发触发器
+### 批量更新时不触发触发器
 
 > **info**
 > SDK 版本需 >= 1.9.1
 
+{% ifanrxCodeTabs %}
 ```js
 let MyTableObject = new wx.BaaS.TableObject(tableName)
 
@@ -455,71 +462,4 @@ let records = MyTableObject.getWithoutData(query)
 records.update({enableTrigger: false}).then(res => {}, err => {})
 ```
 
-{% content "second" %}
-
-## SDK 1.1.0 以下版本
-
-> **info**
-> 该写法在 sdk v2.0 前仍然有效
-
-`wx.BaaS.updateRecord(OBJECT)`
-
-**OBJECT 参数说明**
-
-| 参数      | 类型   | 必填 | 说明 |
-| :------  | :----  | :-- | :-- |
-| tableID  | Number | 是  | 数据表 ID |
-| recordID | String | 是  | 数据项 ID |
-| data     | Object | 是  | 待更新的自定义数据 |
-
-**请求示例**
-
-```js
-// 更新 tableID 为 10 的数据表中 id 为 59897882ff650c0477f00485 的数据项的 name 字段
-let tableID = 10
-let recordID = '59897882ff650c0477f00485'
-let data = {
-  name: "VwlPCaUJzxAyNUSNMgzikTQySFoaTZtm"
-}
-let objects = {
-  tableID,
-  recordID,
-  data
-}
-
-wx.BaaS.updateRecord(objects).then(res => {
-  // success
-}, err => {
-  // err
-})
-```
-
-**返回参数**
-
-| 参数        |   类型  | 说明 |
-| :--------- | :------ | :-- |
-| id         | String  | 数据项 ID |
-| created_at | Number  | 创建时间 |
-| is_admin   | Boolean | 自定义字段 |
-| name       | String  | 自定义字段 |
-| price      | Number  | 自定义字段 |
-| tags       |  Array  | 自定义字段 |
-
-**返回示例**
-
-res.data:
-```json
-{
-  "created_at": 1487055951,
-  "id": "59897882ff650c0477f00485",
-  "is_admin": false,
-  "name": "VwlPCaUJzxAyNUSNMgzikTQySFoaTZtm",
-  "price": 10,
-  "tags": ["UZbJ", "eSYo"]
-}
-```
-
-> **info**
-> 本方法支持部分更新和全量更新
-
-{% endtabs %}
+{% endifanrxCodeTabs %}

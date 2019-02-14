@@ -57,6 +57,8 @@
 ### 分组（group）
 
 根据 status 分组，并计算 总和，平均数，最大值，最小值，数量
+
+{% ifanrxCodeTabs %}
 ```javascript
 let Product = new wx.BaaS.TableObject(tableName)
 
@@ -80,6 +82,7 @@ Product.setAggregation(aggregation).find().then(res => {
 })
 
 ```
+{% endifanrxCodeTabs %}
 
 > **info**
 > 注意在操作符中引用到的字段需要添加 $ 前缀
@@ -107,6 +110,8 @@ Product.setAggregation(aggregation).find().then(res => {
 ### 随机抽取多条数据（sample）
 
 在数据表中随机抽取 2 条数据
+
+{% ifanrxCodeTabs %}
 ```javascript
 let Product = new wx.BaaS.TableObject(tableName)
 
@@ -123,6 +128,8 @@ Product.setAggregation(aggregation).find().then(res => {
 })
 
 ```
+{% endifanrxCodeTabs %}
+
 结果
 ```javascript
 [{
@@ -141,6 +148,7 @@ Product.setAggregation(aggregation).find().then(res => {
 ### 计数（count）
 
 统计数据表中一共有多少条数据
+{% ifanrxCodeTabs %}
 ```javascript
 let Product = new wx.BaaS.TableObject(tableName)
 
@@ -157,6 +165,7 @@ Product.setAggregation(aggregation).find().then(res => {
 })
 
 ```
+{% endifanrxCodeTabs %}
 结果
 ```javascript
 { count: 3 }
@@ -208,7 +217,7 @@ offset 的默认值为 0，limit 默认值为 20
 可以用于筛选数据
 
 #### 参数说明
-- queryInstance：wx.BaaS.Query 的实例 
+- queryInstance：BaaS.Query 的实例 
 
 #### 示例
 
@@ -234,6 +243,7 @@ offset 的默认值为 0，limit 默认值为 20
 ```
 查询 status == "A" 的数据行
 
+{% ifanrxCodeTabs %}
 ```javascript
 let Product = new wx.BaaS.TableObject(tableName)
 
@@ -254,6 +264,7 @@ Product.setAggregation(aggregation).find().then(res => {
 })
 
 ```
+{% endifanrxCodeTabs %}
 查询结果
 
 ```javascript
@@ -343,6 +354,7 @@ Product.setAggregation(aggregation).find().then(res => {
 }]
 ```
 
+{% ifanrxCodeTabs %}
 ```javascript
 
 let Product = new wx.BaaS.TableObject(tableName)
@@ -378,6 +390,7 @@ Product.setAggregation(aggregation).find().then(res => {
 })
 
 ```
+{% endifanrxCodeTabs %}
 结果
 ```javascript
 [ { add: 20100,
@@ -447,6 +460,7 @@ Product.setAggregation(aggregation).find().then(res => {
 
 查找 status 为 A 的数据行，再随机抽取 2 条记录
 
+{% ifanrxCodeTabs %}
 ```javascript
 let Product = new wx.BaaS.TableObject(tableName)
 
@@ -466,6 +480,7 @@ Product.setAggregation(aggregation).find().then(res => {
     // err
 })
 ```
+{% endifanrxCodeTabs %}
 
 结果
 
@@ -525,6 +540,7 @@ Product.setAggregation(aggregation).find().then(res => {
 ```
 
 查找 status 为 A 的数据行，并统计数据量
+{% ifanrxCodeTabs %}
 ```javascript
 let Product = new wx.BaaS.TableObject(tableName)
 
@@ -544,6 +560,7 @@ Product.setAggregation(aggregation).find().then(res => {
     // err
 })
 ```
+{% endifanrxCodeTabs %}
 
 结果
 
@@ -579,6 +596,7 @@ Product.setAggregation(aggregation).find().then(res => {
 }]
 ```
 
+{% ifanrxCodeTabs %}
 ```javascript
 let Product = new wx.BaaS.TableObject(tableName)
 
@@ -600,6 +618,7 @@ Product.setAggregation(aggregation)
     // err
 })
 ```
+{% endifanrxCodeTabs %}
 结果
 
 ```javascript
@@ -655,7 +674,7 @@ Product.setAggregation(aggregation)
     write_perm: [ 'user:*' ] } ]
 ```
 
-
+{% ifanrxCodeTabs %}
 ```javascript
 let Product = new wx.BaaS.TableObject(tableName)
 
@@ -678,6 +697,7 @@ Product.setAggregation(aggregation)
     // err
 })
 ```
+{% endifanrxCodeTabs %}
 结果
 
 ```javascript
@@ -727,6 +747,7 @@ Product.setAggregation(aggregation)
 }]
 ```
 
+{% ifanrxCodeTabs %}
 ```javascript
 let Product = new wx.BaaS.TableObject(tableName)
 
@@ -748,6 +769,7 @@ Product.setAggregation(aggregation)
     // err
 })
 ```
+{% endifanrxCodeTabs %}
 结果
 
 ```javascript

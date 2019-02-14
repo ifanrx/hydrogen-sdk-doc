@@ -9,6 +9,7 @@
 
 **在 get 方法中使用**
 
+{% ifanrxCodeTabs %}
 ```js
 var Product = new wx.BaaS.TableObject(tableName)
 var recordID = 'xxxxxxxx' // 数据行 id
@@ -23,9 +24,11 @@ Product.select('-created_at').get(recordID)
 // or
 Product.select(['-created_at', '-created_by']).get(recordID)
 ```
+{% endifanrxCodeTabs %}
 
 **在 find 方法中使用**
 
+{% ifanrxCodeTabs %}
 ```js
 var Product = new wx.BaaS.TableObject(tableName)
 
@@ -42,6 +45,7 @@ Product.setQuery(query).select('-created_at').find()
 // or
 Product.setQuery(query).select(['-created_at', '-created_by']).find()
 ```
+{% endifanrxCodeTabs %}
 
 <span class="attention">注：</span>
 
@@ -94,12 +98,15 @@ Product.setQuery(query).select(['-created_at', '-created_by']).find()
 
 ### 使用方法
 **在 get 方法中使用**
+{% ifanrxCodeTabs %}
 ```js
 var Product = new wx.BaaS.TableObject(tableName)
 Product.expand(['created_by', 'pointer_value']).get('5acc2904da6b737322a82f78')
 ```
+{% endifanrxCodeTabs %}
 
 **在 find 方法中使用**
+{% ifanrxCodeTabs %}
 ```js
 var Product = new wx.BaaS.TableObject(tableName)
 
@@ -109,3 +116,4 @@ query.compare('amount', '>', 0)
 // 扩展特定字段
 Product.setQuery(query).expand(['created_by', 'pointer_value']).find()
 ```
+{% endifanrxCodeTabs %}

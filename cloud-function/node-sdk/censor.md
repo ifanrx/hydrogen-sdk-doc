@@ -1,4 +1,4 @@
-{% extends "/js-sdk/censor.md" %}
+{% extends "/js-sdk/wechat/censor.md" %}
 
 {% block tips1 %}
 

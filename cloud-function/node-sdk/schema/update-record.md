@@ -41,7 +41,7 @@ a. set 操作
 | value | any               | 是  | 与 key 字段的类型保持一致 |
 | obj   | Object            | 是  | 一次性赋值的键值对对象, 如 `{a: 10, b: 20}` |
  
- b. unset 操作 (SDK >= 1.12.0)
+ b. unset 操作 
  
  将某个字段的值清空
  
