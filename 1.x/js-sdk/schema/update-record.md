@@ -131,7 +131,7 @@ then 回调中的 res 对象结构如下：
 }
 ```
 
-err 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 常见错误：
 
@@ -427,7 +427,7 @@ then 回调中的 res 对象结构如下：
 
 catch 回调中的 err 对象:
 
-请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **状态码说明**
 

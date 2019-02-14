@@ -2,7 +2,7 @@
 
 ## 云函数介绍
 
-云函数相关文档请[移步这里](/1.x/dashboard/cloud-function.md)
+云函数相关文档请[移步这里](/dashboard/cloud-function.md)
 
 ## 云函数实战
 

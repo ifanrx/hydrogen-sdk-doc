@@ -32,7 +32,7 @@ ACL, 又称访问控制列表，是使用以访问控制矩阵为基础的访问
 1. 创建一个数据表，取名 “moments”
 2. 设置数据表的 ACL 权限如下：
 
-![设置数据表的 ACL](/1.x/images/dashboard/schema-acl-settings.png)
+![设置数据表的 ACL](/images/dashboard/schema-acl-settings.png)
 
 在 ACL 的设置中，我们对数据表的权限和数据行的权限进行了区分，其中，数据表控制添加数据的权限；数据行控制读取和修改删除的权限。
 

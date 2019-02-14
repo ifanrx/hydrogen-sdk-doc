@@ -1,4 +1,4 @@
-{% extends "/1.x/js-sdk/censor.md" %}
+{% extends "/js-sdk/censor.md" %}
 
 {% block tips1 %}
 

@@ -1,7 +1,7 @@
 # 异常上报 (SDK >= 1.10.0)
 
 > **info**
-> 阅读本小节前请确保你已经知道如何[初始化知晓云 SDK](/1.x/newbies/README.md)
+> 阅读本小节前请确保你已经知道如何[初始化知晓云 SDK](/newbies/README.md)
 
 通过 wx.BaaS.ErrorTracker 对象，开发者可以对小程序运行中产生的错误进行上报分析，并在知晓云控制台观察特定错误影响的范围和设备数量，以便快速定位代码中的 bug，及时修复。
 
@@ -39,7 +39,7 @@ App({
 {% content "fileConf" %}
 
 ## 配置 request 合法域名
-![](/1.x/images/dashboard/add-request-bugout-domain.png)
+![](/images/dashboard/add-request-bugout-domain.png)
 
 ## 配置 ErrorTracker -- 文件版
 

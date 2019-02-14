@@ -35,7 +35,7 @@
 
 知晓云在设置模块提供了**一键授权**功能，用户只需点击**立即授权**并在新开授权回调页完成授权即可。
 
-![一键授权](/1.x/images/newbies/one-key-authorization.jpeg)
+![一键授权](/images/newbies/one-key-authorization.jpeg)
 
 {% tabs SDKPluginConfig="SDK 插件版接入", SDKFileConfig="SDK 文件版接入" %}
 
@@ -49,11 +49,11 @@
 
 首先，打开[微信开发者工具](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=201822)，将先前下载好的[演示 demo](https://github.com/ifanrx/hydrogen-demo.git) 的 `hello-world` 文件夹添加入小程序项目中。
 
-![创建小程序项目](/1.x/images/newbies/minapp-creation.jpeg)
+![创建小程序项目](/images/newbies/minapp-creation.jpeg)
 
 其中 `AppID` 为小程序的 ID，在微信小程序后台**设置 >> 开发设置** 中可获取，知晓云也在[**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)提供了快速通道获取小程序 ID。
 
-![开发者 ID](/1.x/images/newbies/developer-id.jpg)
+![开发者 ID](/images/newbies/developer-id.jpg)
 
 #### 在 app.json 中加入插件的引用声明
 
@@ -71,15 +71,15 @@
 </code>
 </pre>
 
-![添加插件引用](/1.x/images/newbies/import-plugin.jpg)
+![添加插件引用](/images/newbies/import-plugin.jpg)
 
 ##### 在 app.js 文件中完成 SDK 的初始化
 
-通过初始化 [SDK](/1.x/js-sdk/download-sdk.md)，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 [SDK](/1.x/js-sdk/download-sdk.md) 提供的全部功能。
+通过初始化 [SDK](/js-sdk/download-sdk.md)，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 [SDK](/js-sdk/download-sdk.md) 提供的全部功能。
 
-在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](/1.x/js-sdk/download-sdk.md) 初始化:
+在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
 
-![复制 clientID](/1.x/images/newbies/get-client-id.png)
+![复制 clientID](/images/newbies/get-client-id.png)
 
 ```js
 // app.js
@@ -104,9 +104,9 @@ App({
 
 以**我的书架**为例，在数据管理模块，创建一张名为 `bookshelf` 的数据表，并添加一个名为 `bookName` 的数据列。
 
-![创建表](/1.x/images/newbies/table-creation.jpeg)
+![创建表](/images/newbies/table-creation.jpeg)
 
-![添加列](/1.x/images/newbies/column-addition.jpeg)
+![添加列](/images/newbies/column-addition.jpeg)
 
 ### 3、SDK 数据操作接口使用示例
 
@@ -143,7 +143,7 @@ Page({
 
 同时，我们可以在数据管理模块看到新增的数据项。
 
-![bookshelf 数据表](/1.x/images/newbies/bookshelf-schema.jpeg)
+![bookshelf 数据表](/images/newbies/bookshelf-schema.jpeg)
 
 至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo.git)的源码。
 
@@ -151,13 +151,13 @@ Page({
 
 {% content "SDKFileConfig" %}
 
-完成授权后，接下来用户需要进行服务器域名配置，以解锁小程序 [SDK](/1.x/js-sdk/download-sdk.md) 服务。
+完成授权后，接下来用户需要进行服务器域名配置，以解锁小程序 [SDK](/js-sdk/download-sdk.md) 服务。
 
-![知晓云服务器域名](/1.x/images/newbies/hydrogen-domain-name.jpeg)
+![知晓云服务器域名](/images/newbies/hydrogen-domain-name.jpeg)
 
 登录[小程序后台](https://mp.weixin.qq.com/wxopen/devprofile?action=get_profile&token=41891845&lang=zh_CN)，进入 “设置 - 开发设置”页面，将知晓云提供给开发者的服务器域名配置到微信开发者后台的“服务器域名”配置项中。
 
-![小程序服务器域名配置](/1.x/images/newbies/hydrogen-domain-name-config.jpeg)
+![小程序服务器域名配置](/images/newbies/hydrogen-domain-name-config.jpeg)
 
 ## 第一个接入知晓云的小程序
 
@@ -167,13 +167,13 @@ Page({
 
 首先，打开[微信开发者工具](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=201822)，将先前下载好的[演示 demo](https://github.com/ifanrx/hydrogen-demo.git) 的 `hello-world` 文件夹添加入小程序项目中。
 
-![创建小程序项目](/1.x/images/newbies/minapp-creation.jpeg)
+![创建小程序项目](/images/newbies/minapp-creation.jpeg)
 
 其中 `AppID` 为小程序的 ID，在微信小程序后台**设置 >> 开发设置** 中可获取，知晓云也在[**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)提供了快速通道获取小程序 ID。
 
-![开发者 ID](/1.x/images/newbies/developer-id.jpg)
+![开发者 ID](/images/newbies/developer-id.jpg)
 
-接下来，在 `app.js` 中引入 [SDK js 文件](/1.x/js-sdk/download-sdk.md)（ 如果使用**知晓云 SDK 小程序插件**则参考插件的[使用文档](/1.x/js-sdk/README.md#引入 SDK 并初始化) ）。
+接下来，在 `app.js` 中引入 [SDK js 文件](/js-sdk/download-sdk.md)（ 如果使用**知晓云 SDK 小程序插件**则参考插件的[使用文档](/js-sdk/README.md#引入 SDK 并初始化) ）。
 
 <pre>
 <code class="lang-js">
@@ -189,9 +189,9 @@ App({
 </pre>
 
 
-最后，通过初始化 [SDK](/1.x/js-sdk/download-sdk.md)，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 [SDK](/1.x/js-sdk/download-sdk.md) 提供的全部功能。
+最后，通过初始化 [SDK](/js-sdk/download-sdk.md)，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 [SDK](/js-sdk/download-sdk.md) 提供的全部功能。
 
-在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](/1.x/js-sdk/download-sdk.md) 初始化:
+在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
 
 <pre>
 <code class="lang-js">
@@ -215,9 +215,9 @@ App({
 
 以**我的书架**为例，在数据管理模块，创建一张名为 `bookshelf` 的数据表，并添加一个名为 `bookName` 的数据列。
 
-![创建表](/1.x/images/newbies/table-creation.jpeg)
+![创建表](/images/newbies/table-creation.jpeg)
 
-![添加列](/1.x/images/newbies/column-addition.jpeg)
+![添加列](/images/newbies/column-addition.jpeg)
 
 ### 3、SDK 数据操作接口使用示例
 
@@ -254,7 +254,7 @@ Page({
 
 同时，我们可以在数据管理模块看到新增的数据项。
 
-![bookshelf 数据表](/1.x/images/newbies/bookshelf-schema.jpeg)
+![bookshelf 数据表](/images/newbies/bookshelf-schema.jpeg)
 
 至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo.git)的源码。
 
@@ -276,13 +276,13 @@ Page({
 
 ### JS SDK
 
-![使用知晓云 JS SDK](/1.x/images/newbies/using-js-sdk-demo.png)
+![使用知晓云 JS SDK](/images/newbies/using-js-sdk-demo.png)
 
 js sdk 可以覆盖绝大部分小程序开发的使用场景：开发者把知晓云 js sdk 集成到小程序中，方便快捷地完成用户注册，信息提交，支付等业务逻辑。
 
 ### 云函数 Node SDK
 
-![使用 Node JS SDK](/1.x/images/newbies/using-node-sdk.png)
+![使用 Node JS SDK](/images/newbies/using-node-sdk.png)
 
 Node SDK 在云函数中使用，可以完成某些在小程序端不方便完成的操作，比如计算密钥，修改不对外公开的数据表等敏感操作。
 
@@ -297,11 +297,11 @@ Node SDK 在云函数中使用，可以完成某些在小程序端不方便完�
 如果我们在小程序端计算 `hash` 的话，`hash` 的计算方法和密钥 `'pwd'` 被破译的几率较大，不安全。
 更好的方法是我们在云函数中编写计算 hash 的逻辑，然后小程序调用对应的云函数来获取 hash。最后提交到 product 表中。
 
-更多关于云函数，nodejs sdk 的文档，请[移步这里](/1.x/cloud-function/README.md)
+更多关于云函数，nodejs sdk 的文档，请[移步这里](/cloud-function/README.md)
 
 ### OPEN API
 
-![使用 OPEN API](/1.x/images/newbies/using-open-api.png)
+![使用 OPEN API](/images/newbies/using-open-api.png)
 
 通过 OPEN API，你可以在自己的服务器上，使用 php、nodejs、python 等编程语言或 curl 等工具来操作在知晓云上的数据。
 
@@ -310,11 +310,11 @@ Node SDK 在云函数中使用，可以完成某些在小程序端不方便完�
 假设有这样的需求: 每天 0 点在服务器上遍历知晓云上的 `product` 数据表, 生成 excel 报表。
 那么我们可以在服务器上添加一个 `cron` 任务，定时调用 OPEN API 来获取 `product` 表的数据以便生成报表。
 
-更多请参考 [OPEN API 文档](/1.x/open-api/README.md)
+更多请参考 [OPEN API 文档](/open-api/README.md)
 
 ### 运营后台 API
 
-![自定义运营后台](/1.x/images/newbies/using-user-dashboard.png)
+![自定义运营后台](/images/newbies/using-user-dashboard.png)
 
 知晓云控制台现有的功能复杂且强大，对开发人员友好，但对于运营人员来说，上手使用的难度较大，
 因此如果你希望针对业务需求开发出一个定制版本的控制台，那么使用运营后台 API 是你最好的选择。
@@ -326,4 +326,4 @@ Node SDK 在云函数中使用，可以完成某些在小程序端不方便完�
 不能给予其编辑和删除表的权限，以防误操作导致生产事故，但是目前知晓云的权限限制的粒度没有这么细，无法做到上面的权限控制。
 这时候我们可以结合运营后台 API ，搭建一个页面来展示表数据，同时页面上不提供编辑功能，这样既可以满足运营同事的需求，又可以保证数据安全。
 
-更多请参考[运营后台 API 文档](/1.x/user-dash/README.md)
+更多请参考[运营后台 API 文档](/user-dash/README.md)

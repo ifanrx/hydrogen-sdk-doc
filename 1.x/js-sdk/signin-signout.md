@@ -55,7 +55,7 @@ wx.BaaS.login(false).then(res => {
 
 **登录失败返回示例**
 
-err 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ### 请求用户授权
 
@@ -117,7 +117,7 @@ then 回调中的 res 对象示例：
 **其他错误**
 catch 回调中的 res 对象示例：
  
-res 对象结构请参考[错误码和 HError 对象](/1.x/js-sdk/error-code.md)
+res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 
 **`wx.BaaS.handleUserInfo` 返回字段说明**

@@ -3,7 +3,7 @@
 ## 概览
 ### 触发器配置卡片
 
-![触发器配置](/1.x/images/dashboard/trigger-config.jpg)
+![触发器配置](/images/dashboard/trigger-config.jpg)
 
 此面板配置一些触发器的基本信息，或者进行查阅触发器触发日志等操作。
 
@@ -17,13 +17,13 @@
 
 ### 条件卡片
 
-![触发器条件](/1.x/images/dashboard/trigger-condition.jpg)
+![触发器条件](/images/dashboard/trigger-condition.jpg)
 
 对应上面的触发类型，设置不同触发类型的参数。
 
 ### 动作卡片
 
-![触发器动作](/1.x/images/dashboard/trigger-action.jpg)
+![触发器动作](/images/dashboard/trigger-action.jpg)
 
 当触发器的条件被满足，将会执行触发器中的动作。
 

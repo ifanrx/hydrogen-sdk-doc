@@ -148,7 +148,7 @@ BaaS.sendTemplateMessage(data)
 
 其中 keyword1, keyword2 为微信后台中实际关键词对应的键值
 
-![关键词对应键值示例](/1.x/images/cloud-function/keyword.png)
+![关键词对应键值示例](/images/cloud-function/keyword.png)
 
 
 > **info**

@@ -119,4 +119,4 @@
 ## 访问数据表
 * **使用表**
 
-  已创建的数据表需要配合 [Hydrogen SDK](/1.x/js-sdk/download-sdk.md) 来使用。对开发者而言，在控制台读取到 ``tableID``，即可以配合 SDK 来对该数据表进行符合权限的操作。
+  已创建的数据表需要配合 [Hydrogen SDK](/js-sdk/download-sdk.md) 来使用。对开发者而言，在控制台读取到 ``tableID``，即可以配合 SDK 来对该数据表进行符合权限的操作。
