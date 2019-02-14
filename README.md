@@ -128,7 +128,7 @@
           <a href="/js-sdk/auth.md">登入登出</a>
         </li>
         <li>
-          <a href="/js-sdk/account.md">currentUser</a>
+          <a href="/js-sdk/account.md">当前用户</a>
         </li>
         <li>
           <a href="/js-sdk/user.md/">用户</a>

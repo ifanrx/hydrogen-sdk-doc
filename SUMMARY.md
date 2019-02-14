@@ -186,9 +186,9 @@
     
     * [JS SDK](js-sdk/README.md)
         * [1.x 迁移指南](js-sdk/migrate-from-v1.md)
-        * [登入登出](js-sdk/auth.md)
-        * [当前用户](js-sdk/account.md)
         * [用户](js-sdk/user.md)
+            * [登入登出](js-sdk/auth.md)
+            * [当前用户](js-sdk/account.md)
         * [数据表](js-sdk/schema/README.md)
             * [数据类型](js-sdk/schema/data-type.md)
             * [新增数据项](js-sdk/schema/create-record.md)

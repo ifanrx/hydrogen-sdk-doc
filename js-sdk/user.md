@@ -203,26 +203,6 @@ MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_oder']).f
 }
 ```
 
-### 更新当前用户信息
-
-更新用户信息与[数据表更新数据项](./schema/update-record.md)方法基本一致。这里只允许更新当前用户的信息，并且只支持对 _userprofile 表中自定义的字段进行更新。
-
-**请求示例**
-
-{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
-```js
-let MyUser = new wx.BaaS.User()
-let currentUser = MyUser.getCurrentUserWithoutData()
-
-// age 为自定义字段
-currentUser.set('age', 30).update().then(res => {
-  // success
-}, err => {
-  // err
-})
-```
-{% endifanrxCodeTabs %}
-
 ### 查询，获取用户列表
 
 用户查询与[数据表查询](./schema/query.md)方法一致
