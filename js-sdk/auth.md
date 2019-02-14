@@ -90,6 +90,7 @@ wx.BaaS.auth.login({username: 'ifanrx', password: 'ifanrx123'}).then(user => {
 **返回结果**
 
 user 为 currentUser 对象，该对象的详细介绍请参考 [currentUser 小节](./account.md)
+
 err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ### 邮箱登录

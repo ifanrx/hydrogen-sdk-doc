@@ -42,6 +42,7 @@ currentUser 代表了当前登录的用户，开发者可以通过浏览 current
 通过 `currentUser.get(key)` 可以获取用户的单个字段(包括内置字段和自定义字段)。
 
 **示例代码**
+
 假设开发者在 _userprofile 表中定义了 `custom_name` 列，并设置当前用户的 `custom_name` 为 `ifanrx`。则在 SDK 中查询当前用户自定义字段代码如下：
   
 {% ifanrxCodeTabs %}
