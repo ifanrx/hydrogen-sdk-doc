@@ -111,11 +111,11 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 
 **参数说明**
 
-| 名称      | 类型     |   可选   | 说明 |
+| 名称      | 类型     |  必填   | 说明 |
 | :-------- | :-------|-----  | :------ |
-| username  | String  | Y | 用户名      |
-| email     | String  | Y | 邮箱        |
-| password  | String  | N | 初始密码    |
+| username  | String  | N | 用户名      |
+| email     | String  | N | 邮箱        |
+| password  | String  | Y | 初始密码    |
 
 **示例代码**
 
@@ -124,7 +124,7 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 // ...
 let currentUser = wx.BaaS.auth.getCurrentUser()
 
-currentUser.setAccount('ifanrx_new').then(user => {
+currentUser.setAccount({username: 'hello', email: 'hello@ifanr.com', password: '111111'}).then(user => {
   console.log(user)
 }).catch(err=>{
   // HError
@@ -142,9 +142,9 @@ currentUser.setAccount('ifanrx_new').then(user => {
 
 **参数说明**
 
-| 名称      | 类型           | 说明 |
-| :------- | :------------  | :------ |
-| username   | String  | 新用户名 |
+| 名称       | 类型           | 说明 |
+| :-------- | :------------  | :------ |
+| username  | String       | 新用户名 |
 
 **示例代码**
 
@@ -176,10 +176,10 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **参数说明**
 
-| 名称      | 类型           | 说明 |
-| :------- | :------------  | :------ |
-| email      | String  | 新邮箱 |
-| sendVerificationEmail   | Boolean  | 是否发送验证邮件，可选，默认为 false |
+| 名称                     | 类型        | 必填   | 说明 |
+| :-----------------------| :---------- | ----- | :------ |
+| email                   | String      | Y     |  新邮箱 |
+| sendVerificationEmail   | Boolean     | N     |  是否发送验证邮件，默认为 false |
 
 
 **示例代码**
