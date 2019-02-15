@@ -126,9 +126,6 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ### 批量删除时不触发触发器
 
-> **info**
-> SDK 版本需 >= 1.9.1
-
 ```js
 // 知晓云后台设置的触发器将不会被触发
 MyTableObject.delete(query, {enableTrigger: false}).then(res => {

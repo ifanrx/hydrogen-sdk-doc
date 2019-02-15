@@ -109,7 +109,7 @@ wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
 ## <span style="color: #f04134;">`已废弃`</span>  登入登出（SDK < 2.0.0）
 
 > **info**
-> 目前 SDK 2.x 版本暂时兼容 1.x 版本的登录 API，开发者可以在不变动代码的情况下进行 SDK 版本升级，但**强烈建议**开发者根据的[指导](../migrate-from-v1.md)对代码进行调整。
+> 目前 SDK 2.x 版本暂时兼容 1.x 版本的登录 API，开发者可以在不变动代码的情况下进行 SDK 版本升级，但**强烈建议**开发者根据[指导](../migrate-from-v1.md)对代码进行调整。
 
 
 ### 登录(旧)
