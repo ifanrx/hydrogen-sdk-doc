@@ -103,30 +103,28 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 - 用户的用户名/邮箱设置有误，需要修改为新的用户名/邮箱。
 - 用户使用小程序授权登录后，通过设置用户名或邮箱，以便下次通过用户名或邮箱登录。
 
-### 设置用户名
+### 初始化账号信息
 
-> **info**
-> 用户名不区分大小写。当用户设置了 username 为 ifanrx 的账号后，其他人不能再注册诸如 Ifanrx、IfAnrx、IFANRX 等账号了
+`currentUser.setAccount({username, email, password})`
 
-`currentUser.setUsername({username, newPassword})`
+用户通过微信、支付宝授权登录后，可以设置用户名、邮箱、密码，以便下次通过用户名或邮箱登录。
 
 **参数说明**
 
-| 名称      | 类型           | 说明 |
-| :------- | :------------  | :------ |
-| username   | String  | 新用户名 |
-| newPassword   | String  | 初始密码，用户在第一次设置邮箱或用户名时需填写 |
+| 名称      | 类型     |  必填   | 说明 |
+| :-------- | :-------|-----  | :------ |
+| username  | String  | N | 用户名      |
+| email     | String  | N | 邮箱        |
+| password  | String  | Y | 初始密码    |
 
-**示例代码 - 用户初次设置用户名和密码**
+**示例代码**
 
 {% ifanrxCodeTabs %}
 ```javascript
+// ...
 let currentUser = wx.BaaS.auth.getCurrentUser()
 
-currentUser.setUsername({
-  username: 'ifanrx_new',
-  newPassword: '111111',
-}).then(user => {
+currentUser.setAccount({username: 'hello', email: 'hello@ifanr.com', password: '111111'}).then(user => {
   console.log(user)
 }).catch(err=>{
   // HError
@@ -134,16 +132,27 @@ currentUser.setUsername({
 ```
 {% endifanrxCodeTabs %}
 
-**示例代码 - 用户更新用户名**
+### 设置用户名
+
+> **info**
+> 用户名不区分大小写。当用户设置了 username 为 ifanrx 的账号后，其他人不能再注册诸如 Ifanrx、IfAnrx、IFANRX 等账号了
+
+`currentUser.setUsername(username)`
+
+
+**参数说明**
+
+| 名称       | 类型           | 说明 |
+| :-------- | :------------  | :------ |
+| username  | String       | 新用户名 |
+
+**示例代码**
 
 {% ifanrxCodeTabs %}
 ```javascript
 let currentUser = wx.BaaS.auth.getCurrentUser()
 
-currentUser.setUsername({
-  username: 'ifanrx_new',
-  password: '111111',
-}).then(user => {
+currentUser.setUsername('ifanrx_new').then(user => {
   console.log(user)
 }).catch(err=>{
   // HError
@@ -163,42 +172,22 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 > **info**
 > 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 
 
-`currentUser.setEmail({email, newPassword }, {sendVerificationEmail} = {})`
+`currentUser.setEmail(email, {sendVerificationEmail})`
 
 **参数说明**
 
-| 名称      | 类型           | 说明 |
-| :------- | :------------  | :------ |
-| email      | String  | 新邮箱 |
-| sendVerificationEmail   | Boolean  | 是否发送验证邮件，可选，默认为 false |
-| newPassword   | String  | 初始密码，用户在第一次设置邮箱或用户名时需填写 |
+| 名称                     | 类型        | 必填   | 说明 |
+| :-----------------------| :---------- | ----- | :------ |
+| email                   | String      | Y     |  新邮箱 |
+| sendVerificationEmail   | Boolean     | N     |  是否发送验证邮件，默认为 false |
 
-**示例代码 - 用户初次设置邮箱和密码**
 
-{% ifanrxCodeTabs %}
-```javascript
-wx.BaaS.auth.getCurrentUser().then(user => {
-  user.setEmail({
-    email: 'ifanrx_new@ifanr.com',
-    newPassword: '111111',
-  }, {sendVerificationEmail: true}).then(user => {
-    console.log(user)
-  }).catch(err=>{
-      // HError
-    })
-})
-```
-{% endifanrxCodeTabs %}
-
-**示例代码 - 用户更新邮箱**
+**示例代码**
 
 {% ifanrxCodeTabs %}
 ```javascript
 wx.BaaS.auth.getCurrentUser().then(user => {
-  user.setEmail({
-    email: 'ifanrx_new@ifanr.com',
-    password: '111111',
-  }, {sendVerificationEmail: true}).then(user => {
+  user.setEmail('ifanrx_new@ifanr.com', {sendVerificationEmail: true}).then(user => {
     console.log(user)
   }).catch(err=>{
       // HError
