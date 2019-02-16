@@ -61,7 +61,7 @@ App({
 
 #### 下载并导入 SDK
 
-a. [下载最新版 SDK 到本地](./download-sdk.md)
+a. [下载最新版 SDK 到本地](../download-sdk.md)
 
 b. 将下载解压后得到的 SDK js 文件放在小程序项目目录中
 
