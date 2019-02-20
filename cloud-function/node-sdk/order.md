@@ -1,6 +1,6 @@
 # 微信支付订单操作
 
-### 获取订单
+## 获取订单
 
 `Order.getOrderList(params)`
 
@@ -93,7 +93,7 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 }
 ```
 
-### 退款
+## 退款
 
 `BaaS.refund(data)`
 
