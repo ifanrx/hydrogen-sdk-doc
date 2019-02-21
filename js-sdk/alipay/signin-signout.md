@@ -2,7 +2,7 @@
 
 ## 登入
 
-`my.BaaS.auth.loginWithAlipay({forceLogin, scopes, failIfNotExists})`
+`my.BaaS.auth.loginWithAlipay({forceLogin, scopes, createUser})`
 
 **参数说明**
 
@@ -10,7 +10,7 @@
 | :-------------- | :------ | :----------- |
 | forceLogin      | Boolean | 是否强制登录 |
 | scopes          | Array   | 需要用户授权的 scope 列表 |
-| failIfNotExists | Boolean | 是否在用户不存在时返回失败 |
+| createUser      | Boolean | 是否创建用户 |
 
 当 `forceLogin` 为 `false` 时，为静默登录，不会弹窗授权框；
 当 `forceLogin` 为 `true` 时，为强制登录，会弹窗授权框。授权成功后，后端可以拿到支付宝用户的用户信息。
@@ -19,8 +19,8 @@
 （例如 `auth_life_msg`、`auth_life_msg_tele` 等），则将这些额外的 scope 通过 `scopes` 参数传给接口。
 （静默登录时，会忽略掉这个参数）
 
-当 `failIfNotExists` 为 `true` 时，如果当前支付宝用户未与知晓云应用中的用户关联（即用户未找到），返回 404 错误。
-否则接口会在应用中创建一个新用户并与当前支付宝用户关联。
+当 `createUser` 为 `false` 时，如果当前支付宝用户未与知晓云应用中的用户关联（即用户未找到，登录失败），返回 404 错误；
+当 `createUser` 为 `true` 时，遇到上述情况接口会在应用中创建一个新用户并与当前支付宝用户关联。
 
 > **info**
 > 强制登录时，如果用户拒绝授权，则执行静默登录逻辑。
@@ -54,7 +54,7 @@ my.BaaS.auth.loginWithAlipay().then(currentUser => {
 my.BaaS.auth.loginWithAlipay({
   forceLogin: true,
   scopes: ['auth_life_msg', 'auth_life_msg_tele'],
-  failIfNotExists: true,
+  createUser: true,
 }).then(currentUser => {
   // 登录成功
 }, err => {
