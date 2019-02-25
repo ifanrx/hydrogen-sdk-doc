@@ -10,7 +10,7 @@
 | :-------------- | :------ | :----------- |
 | forceLogin      | Boolean | 是否强制登录 |
 | scopes          | Array   | 需要用户授权的 scope 列表 |
-| createUser      | Boolean | 是否创建用户 |
+| createUser      | Boolean | 是否创建用户，默认为 true |
 
 当 `forceLogin` 为 `false` 时，为静默登录，不会弹窗授权框；
 当 `forceLogin` 为 `true` 时，为强制登录，会弹窗授权框。授权成功后，后端可以拿到支付宝用户的用户信息。
