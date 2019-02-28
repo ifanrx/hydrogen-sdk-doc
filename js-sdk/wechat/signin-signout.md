@@ -11,9 +11,19 @@ SDK 提供了快速登录小程序的接口，省去使用微信登录接口时�
 
 ## 静默登录
 
-`wx.BaaS.auth.loginWithWechat()`
+`wx.BaaS.auth.loginWithWechat({ createUser })`
 
 该方法会进行简单的登录，不需要用户授权，即不会弹出授权框。
+
+**参数说明**
+
+| 参数            | 类型    | 说明         |
+| :-------------- | :------ | :----------- |
+| createUser      | Boolean | 是否创建用户，默认为 true |
+
+
+当 `createUser` 为 `false` 时，如果当前微信用户未与知晓云应用中的用户关联（即用户未找到，登录失败），返回 404 错误；
+当 `createUser` 为 `true` 时，遇到上述情况接口会在应用中创建一个新用户并与当前支付宝用户关联。
 
 **请求示例**
 
@@ -23,6 +33,18 @@ wx.BaaS.auth.loginWithWechat().then(user => {
   // 登录成功
 }, err => {
   // 登录失败
+})
+```
+
+**请求示例 createUser = false**
+
+```js
+// 若用户没有通过 linkWechat() 绑定微信用户或者 loginWithWechat({createUser: true}) 创建用户，这里会报错
+ 
+wx.BaaS.auth.loginWithWechat({createUser: false}).then(user => {
+  // 登录成功
+}, err => {
+  // 登录失败，可能原因为用户不存在
 })
 ```
 

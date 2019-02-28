@@ -64,7 +64,7 @@
 <code class="lang-js">
 "plugins": {
     "sdkPlugin": {
-      "version": "{{ book.latestVersion }}",
+      "version": "{{ book.latestVersionWechat }}",
       "provider": "wxc6b86e382a1e3294"
  }
 } 
@@ -181,7 +181,7 @@ Page({
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-v{{ book.latestVersion }}')
+    require('./sdk-v{{ book.latestVersionWechat }}')
   }
 })
 </code>
@@ -198,7 +198,7 @@ App({
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-v{{ book.latestVersion }}')
+    require('./sdk-v{{ book.latestVersionWechat }}')
 
     // 初始化 SDK
     let clientID = '知晓云管理后台获取到的 ClientID'
