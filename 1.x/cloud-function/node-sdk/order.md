@@ -1,4 +1,4 @@
-# 微信支付订单操作
+# 支付订单操作
 
 ## 获取订单
 
@@ -12,9 +12,10 @@ params 是 Object 类型，为订单过滤条件，你可以参考后面的返�
 
 部分关键字段：
 
-| 参数                            | 类型    | 说明 |
+| 参数                           | 类型   | 说明 |
 | :----------------------------- | :----- | :-- |
-| params.created_at              | Number | 调用 wx.BaaS.pay(object) 的时刻 |
+| params.gateway_type            | String | 支付方式，可选值有：weixin_tenpay（微信支付）、alipay（支付宝支付）|
+| params.created_at              | Number | 调用 wx.BaaS.pay(object) 或 my.BaaS.pay(object) 的时刻 |
 | params.created_by_id           | Number | 订单创建者 id |
 | params.created_by_name         | String | 订单创建者姓名 |
 | params.id                      | Number | 订单 id，用于退款的 order_id |
@@ -36,6 +37,17 @@ params 是 Object 类型，为订单过滤条件，你可以参考后面的返�
 
 **示例代码**
 
+查找微信支付订单
+```js
+var order = new BaaS.Order()
+// 通过 gateway_type 查询订单
+order.getOrderList({gateway_type: 'weixin_tenpay'}).then(res => {
+  // success
+}).catch(e=>{
+  // HError 对象
+})
+```
+
 根据订单号查找
 ```js
 var order = new BaaS.Order()
@@ -52,8 +64,10 @@ order.getOrderList({transaction_no: 'v4WoZ7aNyZPaZbNlFffOZLvagUKqDcOw'}).then(re
 }).catch(e=>{
   // HError 对象
 })
+```
 
-// 分页查询所有订单
+分页查询所有订单
+```json
 order.offset(20).limit(20).getOrderList().then(res => {
   // success
 }).catch(e=>{

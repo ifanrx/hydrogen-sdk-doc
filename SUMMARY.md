@@ -148,7 +148,7 @@
     * [文件](cloud-function/node-sdk/file/README.md)
         * [文件操作](cloud-function/node-sdk/file/file.md)
         * [文件分类操作](cloud-function/node-sdk/file/file-category.md)
-    * [微信支付订单操作](cloud-function/node-sdk/order.md)
+    * [支付订单操作](cloud-function/node-sdk/order.md)
     * [获取二维码](cloud-function/node-sdk/wxacode.md)
     * [调用云函数](cloud-function/node-sdk/cloud-function.md)
     * [发送邮件](cloud-function/node-sdk/email.md)
