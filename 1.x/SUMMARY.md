@@ -3,6 +3,7 @@
 * [简介](README.md)
 
 ----
+* [2.0 版本入口](https://doc.minapp.com/2.x/)
 
 * [新手入门](newbies/README.md)
 
