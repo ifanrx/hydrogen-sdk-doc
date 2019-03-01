@@ -101,7 +101,7 @@ Page({
 })
 ```
 
-**请求示例 -- createUser = false**
+**请求示例 createUser = false**
 
 ```js
 Page({
