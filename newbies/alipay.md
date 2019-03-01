@@ -33,15 +33,17 @@
 
 为了使用知晓云提供的后端服务，进入 dashboard 后，开发者首先需要为知晓云授权。
 
-知晓云在设置模块提供了**一键授权**功能，用户只需点击**立即授权**并在新开授权回调页完成授权即可。
+知晓云在设置模块提供了**一键开通**功能，用户只需进入“设置 - 应用 - 平台设置”，在“支付宝小程序”一栏点击**立即开通**并在新开授权回调页填写配置信息完成授权即可。
 
-![一键授权](/images/newbies/one-key-authorization.jpeg)
+![一键开通](/images/newbies/open-up-alipay.png)
+
+![填写配置信息完成授权](/images/newbies/alipay-setting.png)
 
 ### SDK 文件版接入
 
 完成授权后，接下来用户需要进行服务器域名配置，以解锁小程序 [SDK](/js-sdk/download-sdk.md) 服务。
 
-![知晓云服务器域名](/images/newbies/hydrogen-domain-name.jpeg)
+![知晓云服务器域名](/images/newbies/domain-name-config-alipay.png)
 
 登录[小程序后台](https://open.alipay.com/platform/mini.htm#/app/{{appid}}/setting)，进入 “设置 - 开发设置”页面，将知晓云提供给开发者的服务器域名配置到支付宝开发者后台的“服务器域名”配置项中。
 
@@ -57,9 +59,9 @@
 
 ![创建小程序项目](/images/newbies/minapp-creation-alipay.png)
 
-其中 `AppID` 为小程序的 ID，在支付宝小程序后台**设置 >> 开发设置** 中可获取，知晓云也在[**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)提供了快速通道获取小程序 ID。
+进入项目后，在开发者工具左上角选择关联应用，选择在小程序开放平台已建立的小程序项目或创建新应用，完成应用关联。
 
-![开发者 ID](/images/newbies/developer-id.jpg)
+![开发者 ID](/images/newbies/link-alipay-minapp.png)
 
 接下来，在 `app.js` 中引入 [SDK js 文件](/js-sdk/download-sdk.md)。
 
