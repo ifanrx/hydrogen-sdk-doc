@@ -22,8 +22,10 @@ SDK 提供了快速登录小程序的接口，省去使用微信登录接口时�
 | createUser      | Boolean | 是否创建用户，默认为 true |
 
 
-当 `createUser` 为 `false` 时，如果当前微信用户未与知晓云应用中的用户关联（即用户未找到，登录失败），返回 404 错误；
-当 `createUser` 为 `true` 时，遇到上述情况接口会在应用中创建一个新用户并与当前支付宝用户关联。
+- 当 `createUser` 为 `false` 时，如果当前微信用户未与知晓云应用中的用户关联（即用户未找到，登录失败），返回 404 错误；
+- 当 `createUser` 为 `true` 时，遇到上述情况接口会在应用中创建一个新用户并与当前微信用户关联。
+
+详见 [多平台用户统一登录](#多平台用户统一登录) 说明
 
 **请求示例**
 
@@ -65,6 +67,18 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 开发者需要提供按钮的方式，令用户触发授权操作
 
+`wx.BaaS.auth.handleUserInfo(data, { createUser })`
+
+**参数说明**
+
+| 参数            | 类型    | 说明         |
+| :-------------- | :------ | :----------- |
+| data            | object | 用户授权信息 |
+| createUser      | Boolean | 是否创建用户，默认为 true |
+
+- 当 `createUser` 为 `false` 时，如果当前微信用户未与知晓云应用中的用户关联（即用户未找到，登录失败），返回 404 错误；
+- 当 `createUser` 为 `true` 时，遇到上述情况接口会在应用中创建一个新用户并与当前微信用户关联。
+
 ```html
 <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
 ```
@@ -78,6 +92,22 @@ Page({
   // ...
   userInfoHandler(data) {
     wx.BaaS.auth.handleUserInfo(data).then(user => {
+        // user 包含用户完整信息，详见下方描述
+      }, err => {
+        // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
+    })
+  },
+  // ...
+})
+```
+
+**请求示例 -- createUser = false**
+
+```js
+Page({
+  // ...
+  userInfoHandler(data) {
+    wx.BaaS.auth.handleUserInfo(data, {createUser: false}).then(user => {
         // ruser 包含用户完整信息，详见下方描述
       }, err => {
         // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
@@ -127,6 +157,16 @@ wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
   // 用户可以通过微信授权登录同一个账户了
 })
 ```
+
+## 多平台用户统一登录
+
+假设开发者现在同时支持微信小程序和 web 端登录，需要微信小程序新用户关联到已经注册好的用户账户，才能登录成功。
+可以通过 loginWithWechat 或 handleUserInfo 的参数 `createUser` 设置为 false。
+
+此时，服务端会判断该用户是否已经有账户记录，
+如果没有，则返回 404 状态码。开发者可根据此状态码，跳转到需要填写用户名密码页面，进行已有账户的关联或新的账户的创建，
+完成后，调用 linkWithWechat 方法完成当前微信小程序用户与账户的绑定。下一次用户再次登录时，则会直接登录成功。
+
 
 ## <span style="color: #f04134;">`已废弃`</span>  登入登出（SDK < 2.0.0）
 
@@ -269,3 +309,5 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 > **info**
 > `wx.BaaS.handleUserInfo` 默认会检查用户是否已登录，若未登录，该接口默认会先执行登录操作
+
+
