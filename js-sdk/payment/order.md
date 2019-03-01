@@ -2,8 +2,6 @@
 
 # 订单查询
 
-
-
 通过 BaaS SDK 提供的 `Order.getOrderList(params)` 方法, 可查询到交易的详细信息。典型的使用场景为: 调用 `wx.BaaS.pay(object)` 发起支付, 在成功回调中获取到 transaction_no 或 trade_no, 在要路由到新的页面时带上此 ID, 在新页面的 onLoad 方法中获取到该 ID, 从而使用此 ID 获取交易的详细信息。
 
 **函数签名**
@@ -19,8 +17,10 @@
 | params.status                  | String | 订单支付状态,可选值有：complete（退款成功）、pending（待支付）、success（支付成功）、partial（部分退款） |
 | params.trade_no                | String | 真正的交易 ID, 业务方在微信后台对账时可看到此字段 |
 | params.transaction_no          | String | 知晓云平台所记录的流水号 |
+| params.gateway_type          | String | 支付方法，可选值有：weixin_tenpay（微信支付）、alipay（支付宝支付） |
 
 **示例代码**
+{% ifanrxCodeTabs %}
 ```js
 var order = new wx.BaaS.Order()
 
@@ -52,6 +52,7 @@ order.getOrderList({merchandise_schema_id: 1234, status: 'pending'}).then(res =>
   // HError 对象
 })
 ```
+{% endifanrxCodeTabs %}
 
 HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
