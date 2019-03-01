@@ -15,7 +15,7 @@ params 是 Object 类型，为订单过滤条件，你可以参考后面的返�
 | 参数                           | 类型   | 说明 |
 | :----------------------------- | :----- | :-- |
 | params.gateway_type            | String | 支付方式，可选值有：weixin_tenpay（微信支付）、alipay（支付宝支付）|
-| params.created_at              | Number | 调用 wx.BaaS.pay(object) 或 my.BaaS.pay(object) 的时刻 |
+| params.created_at              | Number | 创建支付请求的时间戳 |
 | params.created_by_id           | Number | 订单创建者 id |
 | params.created_by_name         | String | 订单创建者姓名 |
 | params.id                      | Number | 订单 id，用于退款的 order_id |

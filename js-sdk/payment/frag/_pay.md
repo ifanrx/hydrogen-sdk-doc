@@ -55,12 +55,6 @@ let params = {
 
 {{apiPrefix}}.BaaS.pay(params).then(res => {
   // success. 支付请求成功响应，可以在 res 中拿到 transaction_no 和支付结果信息
-  /* 1.1.4 以下版本：
-    如果支付失败, 则可以获取失败原因
-    注: 只要是服务器有返回的情况都会进入 success, 即便是 4xx，5xx 都会进入
-        所以非系统级别错误导致的支付失败也会进入这里, 例如用户取消，参数错误等
-        这是微信的处理方式与 BaaS 服务(器)无关
-  */
 }, err => {
   // 未完成用户授权或发生网络异常等
   console.log(err)
@@ -129,7 +123,7 @@ my.BaaS.pay(params).then(res => {
 })
 ```
 
-PayError 对象结构请参考 [PayError 错误码详解](#payerror-错误码详解)
+PayError 对象结构请参考 [PayError 错误码详解](#payerror-错误码详解（仅支付宝）)
 
 **接口说明**
 
@@ -137,7 +131,7 @@ PayError 对象结构请参考 [PayError 错误码详解](#payerror-错误码详
 
 `my.BaaS.pay(object)` 实际上做了发起支付统一下单请求，及调用 `my.tradePay()` 接口等操作。开发者只需要调用 `my.BaaS.pay(object)` , 传入必填参数即可发起支付宝支付。用户感知到的现象就是, 点击付款按钮，弹出支付弹框, 要求用户输入密码, 用户输入正确的密码后完成支付流程, 停在支付结果页。用户可在支付结果页点击返回商家按钮回到支付前界面。
 
-### PayError 错误码详解
+### PayError 错误码详解（仅支付宝）
 
 支付错误状态码与[支付宝小程序支付接口的状态码](https://docs.alipay.com/mini/api/openapi-pay)一致。
 
