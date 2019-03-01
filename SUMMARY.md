@@ -1,5 +1,9 @@
 # Summary
 
+* [旧版 1.x 版本文档](https://doc.minapp.com/)
+
+----
+
 * [简介](README.md)
 
 * [新手入门](newbies/README.md)

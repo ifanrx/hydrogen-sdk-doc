@@ -1,9 +1,10 @@
 # Summary
 
-* [简介](README.md)
+* [全平台 2.0 版本文档](https://doc.minapp.com/2.x/)
 
 ----
-* [2.0 版本入口](https://doc.minapp.com/2.x/)
+
+* [简介](README.md)
 
 * [新手入门](newbies/README.md)
 
