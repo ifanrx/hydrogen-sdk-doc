@@ -17,9 +17,7 @@
 ## 上传文件
 点击所要上传文件所属的文件分类，点击「上传文件」按钮, 选择本地资源完成文件上传。资源文件上传支持单文件上传或者批量上传。
 
-![上传文件按钮](/images/dashboard/file-upload-button.jpg)
-
-![上传文件界面](/images/dashboard/file-upload-modal.jpg)
+![上传文件界面](/images/dashboard/file-upload-modal.png)
 
 上传成功后在列表第一行即可看到最新上传成功的文件基本信息。
  
