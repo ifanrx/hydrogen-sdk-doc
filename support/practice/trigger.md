@@ -41,7 +41,7 @@
 
 #### 测试触发器
 编辑动作完成后点击保存后，我们切换到数据表模块，创建一条数据，name 字段为"我的第一件商品"，如下图：
-![测试触发器](../../images/practice/trigger/31707512.jpg)
+![测试触发器](../../images/practice/trigger/WechatIMG114.png)
 
 保存后，检查邮箱，发现收到知晓云发来的邮件了
 ![测试结果](../../images/practice/trigger/57241768.jpg)
@@ -342,14 +342,14 @@ exports.main = function functionName(event, callback) {
 ### 准备工作
 
 我们首先创建一个云函数，如下图所示：
-![](../../images/practice/trigger/83745285.jpg)
+![](../../images/practice/trigger/83745285.png)
 
 ### 创建触发器
 我们创建一个触发类型为定时任务的触发器，触发周期为每小时，动作内容选择我们上面创建的云函数。
 
-![](../../images/practice/trigger/4236952.jpg)
-![](../../images/practice/trigger/80231555.jpg)
-![](../../images/practice/trigger/96971365.jpg)
+![](../../images/practice/trigger/4236952.png)
+![](../../images/practice/trigger/80231555.png)
+![](../../images/practice/trigger/96971365.png)
 
 ### 测试触发器
 过几个小时后，我们查看云函数的任务日志，可以看到云函数被成功执行了
@@ -360,14 +360,14 @@ exports.main = function functionName(event, callback) {
 ### 准备工作
 
 我们首先创建一个云函数，如下图所示：
-![](../../images/practice/trigger/83745285.jpg)
+![](../../images/practice/trigger/83745285.png)
 
 ### 创建触发器
 我们创建一个触发类型为文件操作的触发器，触发条件为上传文件且上传成功，动作内容选择我们上面创建的云函数。
 
-![](../../images/practice/trigger/161626.png)
-![](../../images/practice/trigger/161656.png)
-![](../../images/practice/trigger/96971365.jpg)
+![](../../images/practice/trigger/WechatIMG121.png)
+![](../../images/practice/trigger/WechatIMG122.png)
+![](../../images/practice/trigger/96971365.png)
 
 ### 测试触发器
 我们在控制台中上传一个文件：
@@ -384,14 +384,14 @@ exports.main = function functionName(event, callback) {
 ### 准备工作
 
 我们首先创建一个云函数，如下图所示：
-![](../../images/practice/trigger/83745285.jpg)
+![](../../images/practice/trigger/83745285.png)
 
 ### 创建触发器
 我们创建一个触发类型为IncomingWebhook的触发器，动作内容选择我们上面创建的云函数。
 
-![](../../images/practice/trigger/163837.png)
-![](../../images/practice/trigger/163901.png)
-![](../../images/practice/trigger/96971365.jpg)
+![](../../images/practice/trigger/WechatIMG123.png)
+![](../../images/practice/trigger/WechatIMG124.png)
+![](../../images/practice/trigger/96971365.png)
 
 ### 测试触发器
 

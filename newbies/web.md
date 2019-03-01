@@ -57,7 +57,9 @@
 
 在知晓云后台 - [**设置模块**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
 
-![复制 clientID](/images/newbies/get-client-id.png)
+![复制 clientID](/images/newbies/get-client-id1.jpeg)
+
+![复制 clientID](/images/newbies/get-client-id2.jpeg)
 
 初次打开 demo，页面会提示输入 clientID，输入 clientID 后就可以初始化 BaaS 对象了，初始化 BaaS 对象的逻辑如下：
 
