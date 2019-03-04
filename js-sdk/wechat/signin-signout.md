@@ -67,14 +67,14 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 开发者需要提供按钮的方式，令用户触发授权操作
 
-`wx.BaaS.auth.handleUserInfo(data, { createUser })`
+`wx.BaaS.auth.loginWithWechat(data)`
 
 **参数说明**
 
 | 参数            | 类型    | 说明         |
 | :-------------- | :------ | :----------- |
-| data            | object | 用户授权信息 |
-| createUser      | Boolean | 是否创建用户，默认为 true |
+| data            | object | bindgetuserinfo 事件回调返回的参数 |
+| data.createUser | Boolean | 是否创建用户，默认为 true |
 
 - 当 `createUser` 为 `false` 时，如果当前微信用户未与知晓云应用中的用户关联（即用户未找到，登录失败），返回 404 错误；
 - 当 `createUser` 为 `true` 时，遇到上述情况接口会在应用中创建一个新用户并与当前微信用户关联。
@@ -83,7 +83,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
 ```
 
-用户点击该按钮时，会返回获取到的用户信息，其中包括加密的敏感信息，开发者需在回调中调用 `wx.BaaS.handleUserInfo` 方法，以获得解密后的全部用户信息。
+用户点击该按钮时，会返回获取到的用户信息，其中包括加密的敏感信息，开发者需在回调中调用 `wx.BaaS.loginWithWechat` 方法，以获得解密后的全部用户信息。
 
 **请求示例**
 
@@ -91,7 +91,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 Page({
   // ...
   userInfoHandler(data) {
-    wx.BaaS.auth.handleUserInfo(data).then(user => {
+    wx.BaaS.auth.loginWithWechat(data).then(user => {
         // user 包含用户完整信息，详见下方描述
       }, err => {
         // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
@@ -107,7 +107,7 @@ Page({
 Page({
   // ...
   userInfoHandler(data) {
-    wx.BaaS.auth.handleUserInfo(data, {createUser: false}).then(user => {
+    wx.BaaS.auth.loginWithWechat(Object.assign(data, {createUser: false})).then(user => {
         // ruser 包含用户完整信息，详见下方描述
       }, err => {
         // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
@@ -141,7 +141,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 
 > **info**
-> `wx.BaaS.auth.handleUserInfo` 默认会检查用户是否已登录，若未登录，该接口默认会先执行登录操作
+> `wx.BaaS.auth.linkWechat` 默认会检查用户是否已登录，若未登录，该接口默认会先执行登录操作
 
 ## 关联微信小程序
 
@@ -161,7 +161,7 @@ wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
 ## 多平台用户统一登录
 
 假设开发者现在同时支持微信小程序和 web 端登录，需要微信小程序新用户关联到已经注册好的用户账户，才能登录成功。
-可以通过 loginWithWechat 或 handleUserInfo 的参数 `createUser` 设置为 false。
+可以通过 loginWithWechat 的参数 `createUser` 设置为 false。
 
 此时，服务端会判断该用户是否已经有账户记录，
 如果没有，则返回 404 状态码。开发者可根据此状态码，跳转到需要填写用户名密码页面，进行已有账户的关联或新的账户的创建，

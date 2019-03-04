@@ -9,4 +9,4 @@
 - `wx.BaaS.logout` 已不推荐使用，现在推荐使用 `wx.BaaS.auth.logout`
 
 ## 获取用户信息
-- `wx.BaaS.handleUserInfo` 已不推荐使用，现在推荐使用 `wx.BaaS.auth.handleUserInfo`
+- `wx.BaaS.handleUserInfo` 已不推荐使用，现在推荐使用 `wx.BaaS.auth.loginWithWechat`
