@@ -103,10 +103,10 @@ my.BaaS.auth.loginWithAlipay({
 }).then(currentUser => {
   // 已经有用户记录了
 }, err => {
-  // 这时候可以让用户先通过 my.auth.register() 注册一个账户，或者 my.auth.login() 登录一个已有账户，再使用 linkWechat 进行绑定，这里以登录账户为例
+  // 这时候可以让用户先通过 my.auth.register() 注册一个账户，或者 my.auth.login() 登录一个已有账户，再使用 linkAlipay 进行绑定，这里以登录账户为例
   if (err.code === 404) {
     my.BaaS.auth.login({email: 'ifanrx@ifanr.com', password: 'ifanrx123'}).then(user => {
-      user.linkAlipay(data.detail).then(res => {
+      user.linkAlipay({forceLogin: false}).then(res => {
         console.log(res.statusCode)
         // 关联成功，下次可以通过 wx.BaaS.auth.loginWithAlipay 登录了
       })
