@@ -94,3 +94,23 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 可以通过 loginWithAlipay 的参数 createUser 设置为 false，此时，服务端会判断该用户是否已经有账户记录，
 如果没有，则返回 404 状态码。开发者可根据此状态码，跳转到需要填写用户名密码页面，进行已有账户的关联或新的账户的创建，
 完成后，调用 linkWithAlipay 方法完成当前支付宝小程序用户与账户的绑定。下一次用户再次登录时，则会直接登录成功。
+
+**示例代码**
+```javascript
+my.BaaS.auth.loginWithAlipay({
+  forceLogin: false,
+  createUser: false,
+}).then(currentUser => {
+  // 已经有用户记录了
+}, err => {
+  // 这时候可以让用户先通过 my.auth.register() 注册一个账户，或者 my.auth.login() 登录一个已有账户，再使用 linkWechat 进行绑定，这里以登录账户为例
+  if (err.code === 404) {
+    my.BaaS.auth.login({email: 'ifanrx@ifanr.com', password: 'ifanrx123'}).then(user => {
+      user.linkAlipay(data.detail).then(res => {
+        console.log(res.statusCode)
+        // 关联成功，下次可以通过 wx.BaaS.auth.loginWithAlipay 登录了
+      })
+    })
+  }
+})
+```

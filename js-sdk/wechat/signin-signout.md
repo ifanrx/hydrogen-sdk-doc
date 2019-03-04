@@ -209,7 +209,7 @@ wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
 ```javascript
 // 设置 createUser 参数为 false，避免直接创建一个账户
 wx.BaaS.auth.loginWithWechat({createUser: false}).then(user => {
-    // 登录成功，已经有账户记录了
+  // 已经有用户记录了
   }, err => {
     // 登录失败，没有账户记录。
     // 这时候可以让用户先通过 wx.auth.register() 注册一个账户，或者 wx.auth.login() 登录一个已有账户，再使用 linkWechat 进行绑定，这里以登录账户为例
@@ -235,7 +235,7 @@ Page({
   // ...
   userInfoHandler(data) {
     wx.BaaS.auth.loginWithWechat(Object.assign(data, {createUser: false})).then(user => {
-      // ruser 包含用户完整信息，详见下方描述
+      // 已经有用户记录了
     }, err => {
       // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
       // 这时候可以让用户先通过 wx.auth.register() 注册一个账户，或者 wx.auth.login() 登录一个已有账户，再使用 linkWechat 进行绑定，这里以登录账户为例
