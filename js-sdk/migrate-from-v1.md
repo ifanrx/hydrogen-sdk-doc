@@ -11,7 +11,7 @@
 具体请参考 [多平台用户统一登录](./wechat/signin-signout.md#多平台用户统一登录)。
 
 ```javascript
-// 开发者需要配置 autoLogin 参数为 true
+// 1.x 版本的 SDK ，开发者需要配置 autoLogin 参数为 true
 wx.BaaS.init(ClientID, {autoLogin: true})
 ```
 
