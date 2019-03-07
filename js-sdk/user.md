@@ -6,7 +6,7 @@
 
 {% endifanrxCodeTabs %}
 
-### 获取指定用户信息
+## 获取指定用户信息
 
 `MyUser.get(userID)`
 
@@ -121,11 +121,11 @@ MyUser.get(userID).then(res => {
 }
 ```
 
-### 筛选返回字段
+## 筛选返回字段
 
 select 使用方法可以参考[数据表 - 字段过滤](/js-sdk/schema/select-and-expand.md)小节
 
-### 扩展字段 
+## 扩展字段 
 
 expand 使用方法可以参考[数据表 - 字段扩展](/js-sdk/schema/select-and-expand.md)小节
 
@@ -203,7 +203,7 @@ MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_oder']).f
 }
 ```
 
-### 查询，获取用户列表
+## 查询，获取用户列表
 
 用户查询与[数据表查询](./schema/query.md)方法一致
 
@@ -227,7 +227,7 @@ MyUser.setQuery(query).find().then(res => {
 ```
 {% endifanrxCodeTabs %}
 
-### 排序
+## 排序
 
 用户查询排序与[数据表排序](./schema/limit-and-order.md)方法一致，不包含在返回数据里的字段不支持排序，如 created_at。
 
@@ -241,7 +241,7 @@ MyUser.orderBy('-nickname').find().then()
 ```
 {% endifanrxCodeTabs %}
 
-### 分页
+## 分页
 
 用户查询分页与[数据表分页](./schema/limit-and-order.md)方法一致。
 
@@ -255,7 +255,7 @@ MyUser.limit(5).offset(10).find().then()
 ```
 {% endifanrxCodeTabs %}
 
-### pointer 引用
+## pointer 引用
 
 使用 `BaaS.User().getWithoutData` 可以创建一个 _userprofile 指定数据行的引用。主要配合 pointer 功能使用
 
