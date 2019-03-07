@@ -205,7 +205,7 @@ wx.BaaS.auth.loginWithWechat(null, {createUser: false}).then(user => {
 Page({
   // ...
   userInfoHandler(data) {
-    wx.BaaS.auth.loginWithWechat(null, {createUser: false}, data).then(user => {
+    wx.BaaS.auth.loginWithWechat(data, {createUser: false}).then(user => {
       // 已经有用户记录，不是第一次登录，进入正常业务流程。
     }, err => {
       // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
