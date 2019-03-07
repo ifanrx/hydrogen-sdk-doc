@@ -16,6 +16,19 @@ function addHeader() {
   el.insertBefore(node, el.firstChild)
 }
 
+function addCustomerBtn() {
+  if (document.querySelector('#ifanrx-customer-btn')) return false
+
+  let el = document.querySelector('.book-summary')
+  let node = document.createElement('a')
+  node.id = 'ifanrx-customer-btn'
+  node.title = '提工单'
+  node.href = 'http://support.minapp.com/hc/'
+  node.target = '_blank'
+  node.innerHTML = '<i class="iconfont icon-Customer"></i>'
+  document.body.appendChild(node)
+}
+
 require(["gitbook", "jQuery"], function (gitbook, $) {
   gitbook.events.bind('start', function (e, config) {
     setTimeout(() => {
@@ -42,6 +55,7 @@ require(["gitbook", "jQuery"], function (gitbook, $) {
         }
       })
 
+      addCustomerBtn()
       addHeader()
     }, 300)
   })

@@ -35,7 +35,7 @@
 
 知晓云在设置模块提供了**一键授权**功能，用户只需点击**立即授权**并在新开授权回调页完成授权即可。
 
-![一键授权](/images/newbies/one-key-authorization.jpeg)
+![一键授权](/images/newbies/one-key-authorization.png)
 
 {% tabs SDKPluginConfig="SDK 插件版接入", SDKFileConfig="SDK 文件版接入" %}
 
@@ -53,7 +53,7 @@
 
 其中 `AppID` 为小程序的 ID，在微信小程序后台**设置 >> 开发设置** 中可获取，知晓云也在[**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)提供了快速通道获取小程序 ID。
 
-![开发者 ID](/images/newbies/developer-id.jpg)
+![开发者 ID](/images/newbies/developer-id.png)
 
 #### 在 app.json 中加入插件的引用声明
 
@@ -71,7 +71,7 @@
 </code>
 </pre>
 
-![添加插件引用](/images/newbies/import-plugin.jpg)
+![添加插件引用](/images/newbies/import-plugin.png)
 
 ##### 在 app.js 文件中完成 SDK 的初始化
 
@@ -79,7 +79,9 @@
 
 在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
 
-[复制 clientID](/images/newbies/get-client-id.png)
+![复制 clientID](/images/newbies/get-client-id1.jpeg)
+
+![复制 clientID](/images/newbies/get-client-id2.jpeg)
 
 ```js
 // app.js
@@ -152,7 +154,9 @@ Page({
 
 完成授权后，接下来用户需要进行服务器域名配置，以解锁小程序 [SDK](/js-sdk/download-sdk.md) 服务。
 
-![知晓云服务器域名](/images/newbies/hydrogen-domain-name.jpeg)
+![知晓云服务器域名](/images/newbies/hydrogen-domain-name1.png)
+
+![知晓云服务器域名](/images/newbies/hydrogen-domain-name2.png)
 
 登录[小程序后台](https://mp.weixin.qq.com/wxopen/devprofile?action=get_profile&token=41891845&lang=zh_CN)，进入 “设置 - 开发设置”页面，将知晓云提供给开发者的服务器域名配置到微信开发者后台的“服务器域名”配置项中。
 
@@ -170,7 +174,7 @@ Page({
 
 其中 `AppID` 为小程序的 ID，在微信小程序后台**设置 >> 开发设置** 中可获取，知晓云也在[**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/app/)提供了快速通道获取小程序 ID。
 
-![开发者 ID](/images/newbies/developer-id.jpg)
+![开发者 ID](/images/newbies/developer-id.png)
 
 接下来，在 `app.js` 中引入 [SDK js 文件](/js-sdk/download-sdk.md)（ 如果使用**知晓云 SDK 小程序插件**则参考插件的[使用文档](/js-sdk/README.md#引入 SDK 并初始化) ）。
 

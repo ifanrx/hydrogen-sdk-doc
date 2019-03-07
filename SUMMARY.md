@@ -1,5 +1,9 @@
 # Summary
 
+* [旧版 1.x 版本文档](https://doc.minapp.com/)
+
+----
+
 * [简介](README.md)
 
 * [新手入门](newbies/README.md)
@@ -52,9 +56,7 @@
     * [微信小程序](js-sdk/wechat/README.md)
         * [接入指南](js-sdk/wechat/how-to.md)
         * [微信登录](js-sdk/wechat/signin-signout.md)
-        * [支付](js-sdk/wechat/payment/README.md)
-            * [微信支付](js-sdk/wechat/payment/pay.md)
-            * [订单查询](js-sdk/wechat/payment/order.md)
+        * [微信支付](js-sdk/wechat/payment.md)
         * [网络请求](js-sdk/wechat/request.md)
         * [模板消息](js-sdk/wechat/template-message.md)
         * [微信加密数据解密](js-sdk/wechat/wechat-decrypt.md)
@@ -66,6 +68,11 @@
     * [支付宝小程序](js-sdk/alipay/README.md)            
         * [接入指南](js-sdk/alipay/how-to.md)
         * [支付宝登录](js-sdk/alipay/signin-signout.md)
+        * [支付宝支付](js-sdk/alipay/payment.md)
+    * [支付](js-sdk/payment/README.md)
+        * [微信支付](js-sdk/payment/wechat-pay.md)
+        * [支付宝支付](js-sdk/payment/alipay-pay.md)
+        * [订单查询](js-sdk/payment/order.md)
     * [调用云函数](js-sdk/invoke-function.md)
     * [短信验证码](js-sdk/sms.md)
     * [错误码和 HError 对象](js-sdk/error-code.md)
@@ -147,7 +154,7 @@
     * [文件](cloud-function/node-sdk/file/README.md)
         * [文件操作](cloud-function/node-sdk/file/file.md)
         * [文件分类操作](cloud-function/node-sdk/file/file-category.md)
-    * [微信支付订单操作](cloud-function/node-sdk/order.md)
+    * [支付订单操作](cloud-function/node-sdk/order.md)
     * [获取二维码](cloud-function/node-sdk/wxacode.md)
     * [调用云函数](cloud-function/node-sdk/cloud-function.md)
     * [发送邮件](cloud-function/node-sdk/email.md)
