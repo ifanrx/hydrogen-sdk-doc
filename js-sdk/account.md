@@ -75,6 +75,7 @@ wx.BaaS.auth.getCurrentUser().then(user => {
       "id": 5123461461,
       "avatar": "http://cdn.ifanr.cn/ifanr/default_avatar.png",
       "nickname": "riDGldYXLHouWIYx",
+      "isAnonymousUser": false,
       "_username": "myusername",
       "_email": "myemail@somemail.com",
       "_email_verified": false,
@@ -95,6 +96,30 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 ```
 字段说明请参考 [获取用户信息小节](user.md)
 
+### 判断用户是否是匿名用户
+
+{% ifanrxCodeTabs %}
+```javascript
+// 1.
+wx.BaaS.auth.getCurrentUser().then(user => {
+  if (user.get('isAnonymousUser')) {
+    // 匿名用户
+  } else {
+    // 非匿名用户
+  }
+})
+
+// 2.
+wx.BaaS.auth.getCurrentUser().then(user => {
+  if (user.toJSON().isAnonymousUser) {
+    // 匿名用户
+  } else {
+    // 非匿名用户
+  }
+})
+```
+{% endifanrxCodeTabs %}
+
 ## 设置用户信息
 
 `currentUser` 对象提供了一些方法，用于修改当前用户信息。
@@ -103,7 +128,13 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 - 用户的用户名/邮箱设置有误，需要修改为新的用户名/邮箱。
 - 用户使用小程序授权登录后，通过设置用户名或邮箱，以便下次通过用户名或邮箱登录。
 
+> **info**
+> 除更新自定义字段外，其他方法匿名用户无法调用
+
 ### 初始化账号信息
+
+> **info**
+> 匿名用户无法调用
 
 `currentUser.setAccount({username, email, password})`
 
@@ -135,10 +166,11 @@ currentUser.setAccount({username: 'hello', email: 'hello@ifanr.com', password: '
 ### 设置用户名
 
 > **info**
+> 匿名用户无法调用
+
 > 用户名不区分大小写。当用户设置了 username 为 ifanrx 的账号后，其他人不能再注册诸如 Ifanrx、IfAnrx、IFANRX 等账号了
 
 `currentUser.setUsername(username)`
-
 
 **参数说明**
 
@@ -170,6 +202,8 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 ### 设置邮箱
 
 > **info**
+> 匿名用户无法调用
+
 > 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 
 
 `currentUser.setEmail(email, {sendVerificationEmail})`
@@ -204,6 +238,9 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 
 ### 更新密码
+
+> **info**
+> 匿名用户无法调用
 
 `currentUser.updatePassword({password, newPassword})`
 
@@ -254,6 +291,9 @@ wx.BaaS.auth.getCurrentUser().then(user =>{
 
 
 ## 邮箱验证
+
+> **info**
+> 匿名用户无法调用
 
 `currentUser.requestEmailVerification()`
 
