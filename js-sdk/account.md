@@ -75,7 +75,7 @@ wx.BaaS.auth.getCurrentUser().then(user => {
       "id": 5123461461,
       "avatar": "http://cdn.ifanr.cn/ifanr/default_avatar.png",
       "nickname": "riDGldYXLHouWIYx",
-      "isAnonymousUser": false,
+      "_anonymous": false,
       "_username": "myusername",
       "_email": "myemail@somemail.com",
       "_email_verified": false,
@@ -100,18 +100,8 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 
 {% ifanrxCodeTabs %}
 ```javascript
-// 1.
 wx.BaaS.auth.getCurrentUser().then(user => {
-  if (user.get('isAnonymousUser')) {
-    // 匿名用户
-  } else {
-    // 非匿名用户
-  }
-})
-
-// 2.
-wx.BaaS.auth.getCurrentUser().then(user => {
-  if (user.toJSON().isAnonymousUser) {
+  if (user._anonymous) {
     // 匿名用户
   } else {
     // 非匿名用户
