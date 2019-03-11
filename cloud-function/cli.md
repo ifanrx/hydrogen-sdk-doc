@@ -29,9 +29,9 @@
     mincloud <command>
 
    支持的 command 有：
-      delete, deploy, invoke, list, login, logout, new
+      delete, deploy, invoke, list, login, logout, new, pull
 
-   - mincloud: v1.1.0
+   - mincloud: v1.0.5
    - node: v8.10.0
    ```
 
