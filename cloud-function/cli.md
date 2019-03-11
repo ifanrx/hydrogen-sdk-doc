@@ -29,9 +29,9 @@
     mincloud <command>
 
    支持的 command 有：
-      delete, deploy, invoke, list, login, logout, new
+      delete, deploy, invoke, list, login, logout, new, pull
 
-   - mincloud: v1.1.0
+   - mincloud: v1.0.5
    - node: v8.10.0
    ```
 
@@ -228,6 +228,21 @@ $ mincloud logout
 
 ```
 $ mincloud new <function_name> [cloud_function_root]
+```
+
+参数                | 必填  | 默认值        |  说明
+--------------------|-------|---------------|--------------------------------------------------------------------------
+function_name       | 是    | 无            | 云函数名
+cloud_function_root | 否    | 当前目录 `./` | 用于存放云函数代码的本地目录
+
+### 从服务器上拉取一个已存在的云函数代码到本地
+
+必须先登录，请参考 `mincloud login`。
+
+请谨慎操作，如果本地有此代码文件，将会覆盖。
+
+```
+$ mincloud pull <function_name> [cloud_function_root]
 ```
 
 参数                | 必填  | 默认值        |  说明
