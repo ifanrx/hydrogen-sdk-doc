@@ -34,6 +34,11 @@
 
 **返回字段说明**
 
+{% if apiPrefix %}
+| 参数    | 类型    | 说明 |
+| :------ | :------ | :-- |
+| image_url  | String  | 二维码地址，二维码的下载链接 |
+{% else %}
 | 参数    | 类型    | 说明 |
 | :------ | :------ | :-- |
 | id      | String  | 二维码 ID |
@@ -42,6 +47,7 @@
 | url_param  | String  | 页面地址 |
 | query_param  | String  | 启动参数 |
 | describe  | String  | 描述 |
+{% endif %}
 
 以下几种情况会返回 400 错误：
 
@@ -54,7 +60,6 @@
 {% if apiPrefix %}
 ```js
 {{apiPrefix}}BaaS.getMiniappQRCode({
-  name: "test",
   urlParam: "index",
   queryParam: "key=value&alpha=True",
   describe: "备注：扫码中大奖"})

@@ -69,6 +69,7 @@
         * [接入指南](js-sdk/alipay/how-to.md)
         * [支付宝登录](js-sdk/alipay/signin-signout.md)
         * [支付宝支付](js-sdk/alipay/payment.md)
+        * [模板消息](js-sdk/alipay/template-message.md)
         * [获取二维码](js-sdk/alipay/miniapp-qrcode.md)
     * [支付](js-sdk/payment/README.md)
         * [微信支付](js-sdk/payment/wechat-pay.md)
