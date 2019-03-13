@@ -1,7 +1,7 @@
 # 获取支付宝小程序二维码
 
 {% if apiPrefix %}
-`{{apiPrefix}}BaaS.getMiniappQRCode({name, urlParam, queryParam, describe})`
+`{{apiPrefix}}BaaS.getMiniappQRCode({urlParam, queryParam, describe})`
 {% else %}
 `BaaS.alipay.getMiniappQRCode({name, urlParam, queryParam, describe})`
 {% endif %}
@@ -14,12 +14,20 @@
 
 ## 参数说明
 
+{% if apiPrefix %}
+| 参数    | 类型    | 必填 | 说明 |
+| :------ | :------ | :-- | :-- |
+| urlParam | String  | Y   | 页面地址，最多 128 个字符|
+| queryParam  | String   | Y   | 启动参数，最多 128 个字符|
+| describe | String | Y   | 码描述，最少 2 个字符，最多 20 个字符|
+{% else %}
 | 参数    | 类型    | 必填 | 说明 |
 | :------ | :------ | :-- | :-- |
 | name    | String  | Y   | 二维码名称，最多 128 个字符|
 | urlParam | String  | Y   | 页面地址，最多 128 个字符|
 | queryParam  | String   | Y   | 启动参数，最多 128 个字符|
 | describe | String | Y   | 码描述，最少 2 个字符，最多 20 个字符|
+{% endif %}
 
 
 ## 接口返回
