@@ -157,14 +157,17 @@ BaaS.alipay.sendTemplateMessage(data)
 {% endif %}
 ```
 
-其中 keyword1, keyword2 为支付宝后台中实际关键词对应的键值
 
 {% if platform == 'wechat' %}
+其中 keyword1, keyword2 为微信后台中实际关键词对应的键值
+
 ![关键词对应键值示例](/images/cloud-function/keyword.png)
 
 > **info**
 > 如果 `submission_type = 'form_id'`，请确保在调用 `BaaS.sendTemplateMessage` 前，已在小程序端调用 `wx.BaaS.wxReportTicket`上报模版消息所需的 `formId`
 {% else %}
+其中 keyword1, keyword2 为支付宝后台中实际关键词对应的键值
+
 ![关键词对应键值示例](/images/template-message/alipay-template-message-keyword.png)
 
 > **info**

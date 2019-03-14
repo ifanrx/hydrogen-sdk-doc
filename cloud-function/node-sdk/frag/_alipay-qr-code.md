@@ -1,9 +1,9 @@
 # 获取支付宝小程序二维码
 
 {% if apiPrefix %}
-`{{apiPrefix}}BaaS.getMiniappQRCode({urlParam, queryParam, describe})`
+`{{apiPrefix}}BaaS.getAlipayQRCode({urlParam, queryParam, describe})`
 {% else %}
-`BaaS.alipay.getMiniappQRCode({name, urlParam, queryParam, describe})`
+`BaaS.alipay.getAlipayQRCode({name, urlParam, queryParam, describe})`
 {% endif %}
 
 
@@ -59,7 +59,7 @@
 
 {% if apiPrefix %}
 ```js
-{{apiPrefix}}BaaS.getMiniappQRCode({
+{{apiPrefix}}BaaS.getAlipayQRCode({
   urlParam: "index",
   queryParam: "key=value&alpha=True",
   describe: "备注：扫码中大奖"})
@@ -69,7 +69,7 @@
 ```
 {% else %}
 ```js
-BaaS.alipay.getMiniappQRCode({
+BaaS.alipay.getAlipayQRCode({
   name: "test",
   urlParam: "index",
   queryParam: "key=value&alpha=True",
