@@ -130,7 +130,7 @@
 7. 调用云函数
 
    ```
-   $ mincloud invoke greet -d '{"username": "爱范儿"}'
+   $ mincloud invoke greet "{\"username\": \"爱范儿\"}"
    测试结果：成功
      返回结果：
      您好，爱范儿！
