@@ -42,6 +42,7 @@
     "latestVersionWechat": "2.0.4-a",
     "latestVersionAlipay": "2.0.4-a",
     "latestVersionWeb": "2.0.4-a",
+    "latestVersionWechatPlugin": "1.16.0",
     "imgURLClipDemo": "https://cloud-minapp-6.cloud.ifanrusercontent.com/1fco21YvWNpWfukk.png!/both/400x400"
   },
   "pluginsConfig": {

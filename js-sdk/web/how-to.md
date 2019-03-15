@@ -44,10 +44,14 @@ var BaaS = require('minapp-sdk')
 
 
 ```javascript
-  let clientID = '知晓云管理后台获取到的 ClientID'
-  BaaS.init('clientID')
+BaaS.init(clientID)
 ```
 
+**参数说明**
+
+| 参数            | 类型    | 必填 | 说明         |
+| :-------------- | :------| ---- | :----------- |
+| clientID      | String |   Y   | 知晓云管理后台获取到的 ClientID |
 
 更多内容，可查看以下功能模块介绍：
 

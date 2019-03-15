@@ -20,7 +20,7 @@ params 是 Object 类型，为订单过滤条件，你可以参考后面的返�
 | params.created_by_name         | String | 订单创建者姓名 |
 | params.id                      | Number | 订单 id，用于退款的 order_id |
 | params.ip_address              | Number | - |
-| params.merchandise_description | String | 微信支付-微信支付凭证-商品详情上的文字描述 |
+| params.merchandise_description | String | 商品详情上的文字描述 |
 | params.merchandise_record_id   | String | 商品记录 ID，可用于定位用户购买的物品 |
 | params.merchandise_schema_id   | Number | 商品表 ID，可用于定位用户购买的物品 |
 | params.merchandise_snapshot    | String | - |
@@ -30,7 +30,7 @@ params 是 Object 类型，为订单过滤条件，你可以参考后面的返�
 | params.status                  | String | 订单状态, pending（待支付）、success（支付成功） |
 | params.total_cost              | Number | 发起交易请求时的支付金额 |
 | params.trade_no                | String | 知晓云平台所记录的订单号 |
-| params.transaction_no          | String | 对应微信支付成功后返回的 transaction_no，支付流水号 |
+| params.transaction_no          | String | 对应微信（或支付宝）支付成功后返回的 transaction_no，支付流水号 |
 | params.updated_at              | Number | 订单更新时间 |
 | params.paid_at__gte            | Number | 付款时间区间的开始时间 |
 | params.paid_at__lte            | Number | 付款时间区间的结束时间 |

@@ -23,12 +23,15 @@ App({
 
 #### 初始化 SDK
 
-`my.BaaS.init(ClientID, {autoLogin})`
+```javascript
+my.BaaS.init(clientID, {autoLogin})
+```
 
 **参数说明**
 
 | 参数            | 类型    | 必填 | 说明         |
 | :-------------- | :------| ---- | :----------- |
+| clientID      | String |   Y   | 知晓云管理后台获取到的 ClientID |
 | autoLogin      | Boolean |   N   | 请求知晓云接口时，是否自动静默登录，默认为 false，具体请参考[多平台用户统一登录](./signin-signout.md#多平台用户统一登录) 和 [迁移指南](/js-sdk/migrate-from-v1.md) |
 
 

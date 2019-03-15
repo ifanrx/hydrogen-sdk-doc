@@ -23,7 +23,7 @@
 <code class="lang-js">
 {"plugins": {
   "sdkPlugin": {
-    "version": "{{ book.latestVersionWechat }}",
+    "version": "{{ book.latestVersionWechatPlugin }}",
     "provider": "wxc6b86e382a1e3294"
   }
 }}
@@ -39,12 +39,15 @@
 
 ### 初始化 SDK
 
-`wx.BaaS.init(ClientID, {autoLogin})`
+```javascript
+wx.BaaS.init(clientID, {autoLogin})
+```
 
 **参数说明**
 
 | 参数            | 类型    | 必填 | 说明         |
 | :-------------- | :------| ---- | :----------- |
+| clientID      | String |   Y   | 知晓云管理后台获取到的 ClientID |
 | autoLogin      | Boolean |   N   | 请求知晓云接口时，是否自动静默登录，默认为 false，具体请参考[多平台用户统一登录](./signin-signout.md#多平台用户统一登录) 和 [迁移指南](/js-sdk/migrate-from-v1.md) |
 
 通过初始化 SDK ，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 SDK 提供的全部功能。
