@@ -137,7 +137,7 @@ const schemaInfo = {
     ]
   },
   "row_read_perm": [
-    "user:*"
+    "user:anonymous"
   ],
   "row_write_perm": [
     "user:*"
@@ -197,7 +197,7 @@ res.data 结构如下
   ],
   "default_row_perm": {
     "_read_perm": [
-      "user:*"
+      "user:anonymous"
     ],
     "_write_perm": [
       "user:*"
