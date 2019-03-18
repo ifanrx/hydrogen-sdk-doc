@@ -57,16 +57,13 @@
 
 #### 在 app.json 中加入插件的引用声明
 
-> **info**
-> 插件版 sdk 1.5.1 以上需小程序基础库 2.1.0 及以上。
-
 <pre>
 <code class="lang-js">
 "plugins": {
-    "sdkPlugin": {
-      "version": "{{ book.latestVersionWechat }}",
-      "provider": "wxc6b86e382a1e3294"
- }
+  "sdkPlugin": {
+    "version": "{{ book.latestVersionWechatPlugin }}",
+    "provider": "wxc6b86e382a1e3294"
+  }
 } 
 </code>
 </pre>

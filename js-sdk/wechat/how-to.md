@@ -21,12 +21,12 @@
 
 <pre>
 <code class="lang-js">
-{"plugins": {
+"plugins": {
   "sdkPlugin": {
     "version": "{{ book.latestVersionWechatPlugin }}",
     "provider": "wxc6b86e382a1e3294"
   }
-}}
+}
 </code>
 </pre>
 
