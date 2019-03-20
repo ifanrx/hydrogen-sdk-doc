@@ -185,6 +185,25 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 ### 关联支付宝小程序
 请参考[关联支付宝小程序](./alipay/signin-signout.md)
 
+## 登出
+
+清理客户端存储的用户授权信息。
+
+通过 `BaaS.auth.logout()` 函数完成登出功能。
+
+**请求示例**
+
+{% ifanrxCodeTabs %}
+```javascript
+// 登出 BaaS
+wx.BaaS.auth.logout().then(res => {
+  // success
+}, err => {
+  // err
+})
+```
+{% endifanrxCodeTabs %}
+
 ## 忘记密码
 
 ### 通过邮件找回密码
