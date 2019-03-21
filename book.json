@@ -39,7 +39,7 @@
   ],
   "title": "知晓云平台开发文档 2.0",
   "variables": {
-    "latestVersionWechat": "2.0.4-a",
+    "latestVersionWechat": "2.0.5-a",
     "latestVersionAlipay": "2.0.4-a",
     "latestVersionWeb": "2.0.4-a",
     "latestVersionWechatPlugin": "1.16.0",
