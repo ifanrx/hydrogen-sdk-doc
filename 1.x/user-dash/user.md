@@ -4,7 +4,7 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/miniapp/user-profile/`
+`GET https://cloud.minapp.com/userve/v1.9/miniapp/user-profile/`
 
 **参数说明**
 
@@ -28,7 +28,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/miniapp/user-profile/', {
+axios.get('https://cloud.minapp.com/userve/v1.9/miniapp/user-profile/', {
   params: {
     nickname__contains: 'Tom',
     gender: 1,
@@ -75,7 +75,7 @@ axios.get('https://cloud.minapp.com/userve/v1/miniapp/user-profile/', {
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/miniapp/user-profile/?user_id={{user_id}}`
+`GET https://cloud.minapp.com/userve/v1.9/miniapp/user-profile/?user_id={{user_id}}`
 
 其中 `user_id` 即用户 ID
 
@@ -86,7 +86,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/miniapp/user-profile/', {
+axios.get('https://cloud.minapp.com/userve/v1.9/miniapp/user-profile/', {
   params: {user_id: 36619758},
 }).then(res => {
   console.log(res.data)
