@@ -44,14 +44,15 @@ var BaaS = require('minapp-sdk')
 
 
 ```javascript
-BaaS.init(clientID)
+BaaS.init(clientID, {logLevel})
 ```
 
 **参数说明**
 
-| 参数            | 类型    | 必填 | 说明         |
-| :-------------- | :------| ---- | :----------- |
+| 参数          | 类型   | 必填  | 说明         |
+| :------------ | :------| ----- | :----------- |
 | clientID      | String |   Y   | 知晓云管理后台获取到的 ClientID |
+| logLevel      | String |   N   | 日志输出级别，共支持 `debug`、`info`、`warn`、`error` 4 个级别，默认为 `error`|
 
 更多内容，可查看以下功能模块介绍：
 

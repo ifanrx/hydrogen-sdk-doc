@@ -65,6 +65,7 @@
         * [异常上报](js-sdk/wechat/bugout.md)
     * [Web (内测)](js-sdk/web/README.md)
         * [接入指南](js-sdk/web/how-to.md)
+        * [登入登出](js-sdk/web/signin-signout.md)
     * [支付宝小程序](js-sdk/alipay/README.md)            
         * [接入指南](js-sdk/alipay/how-to.md)
         * [支付宝登录](js-sdk/alipay/signin-signout.md)
