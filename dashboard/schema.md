@@ -3,6 +3,7 @@
 创建数据表、存储和管理数据。
 
 ## 创建数据表
+
 * **创建表**
 
   此过程要求开发者具备基本的数据库知识。
@@ -13,6 +14,38 @@
   2. 将数据模型映射为数据表
   3. 检查所创建的数据表是否能满足整个业务需求
   4. 完善数据表和权限
+
+
+* **通过 JSON 创建数据表**
+
+  提交参数见下表
+
+
+  | 名称 | 解析 | 类型 | 是否必填 | 可选值 |
+  | ----- | ----- | ----- | ----- | ----- |
+  | name | 数据表名称 | string | √ |  |
+  | description | 数据表注释 | string |  |  |
+  | row_write_perm | 行的默认写权限 | array | √ | `[ "user:anonymous" ]` 所有人可写（包含匿名用户和登录用户）。<br>`[ "user:*" ]` 登录用户可写（不包含匿名用户）。<br>`[ "gid:561" ]` 在分组 561 的用户可写。561 为用户组 ID，可根据实际需要进行更改。<br>`[ "user:{created_by}" ]` 创建者可写。|
+  | row_read_perm | 行的默认读权限 | array | √ | `[ "user:anonymous" ]` 所有人可读（包含匿名用户和登录用户）。<br>`[ "user:*" ]` 登录用户可读（不包含匿名用户）。 <br>`[ "gid:561" ]` 在分组 561 的用户可读。561 为用户组 ID，可根据实际需要进行更改。<br>`[ "user:{created_by}" ]` 创建者可读。 |
+  | write_perm | 数据表录入权限 | array | √ | `[ "user:*" ]` 登录用户（不包含匿名用户）可以进行数据录入。<br>`[]` 不开放。<br>`[ "user:anonymous" ]` 所有人（包含匿名用户和登录用户）都可以进行数据录入。<br>`[ "gid:561" ]` 在分组 561 的用户可以进行数据录入。561 为用户组 ID，可根据实际需要进行更改。 |
+  | schema | 数据表表结构信息 | object | √ | `{ "fields": [ {...}, {...}, ... ] }` 目前仅包含一个值为数组的键：fields<br>fields 详细参数见下表 |
+
+ 
+  fields 详细参数
+
+
+  | 名称 | 解析 | 类型 | 是否必填 | 可选值 / 备注 |
+  | ----- | ----- | ----- | ----- | ----- |
+  | name | 列名称 | string | √ |  |
+  | type | 列类型 | string | √ | array 数组类型<br>string 字符串类型<br>integer 整数类型<br>number 数字类型<br>file 文件类型<br>object 对象类型<br>date 日期类型<br>boolean 布尔值类型<br>geojson geojson 类型<br>reference pointer 类型 |
+  | description | 列注释 | string |  |  |
+  | default | 默认值 | 值类型取决于列的 type |  |  |
+  | constraints | 列限制 | object | √ | required: 是否为必填，类型：boolean，必填。 |
+  | acl | 列权限 | object | √ | creatorVisible: 是否仅创建者可见，类型：Boolean，必填。<br>clientReadOnly: 是否只读，类型：Boolean，必填。<br>clientVisible: 客户端是否可见，类型：Boolean，必填。 |
+  | schema_name | 仅当 type 为 reference 时使用，列所指向的数据表表名。 | string | √ |  |
+  | items | 仅当 type 为 array 时使用，定义数据类的数据类型。 | object | √ | 数组中存放 string 时值为： { "type": "string" }。<br>数组中存放 integer 时值为： { "type": "integer" }。<br>数组中存放 number 时值为： { "type": "number" }。<br>数组中存放 file 时值为：{ "type": "file" }。<br>数组中存放 object 时值为：{ "type": "object" }。<br>数组中存放 date 时值为：{ "type": "date" }。<br>数组中存放 boolean 时值为：{ "type": "boolean" }。<br>数组中存放 geojson 时值为：{ "type": "geojson", "coordinate_type": "gcj02", "format": "default" }。<br>coordinate_type 可根据需求改变。 |
+  | format | 仅当 type 为 geojson 时使用 | string | √ | 值只能是 default。 |
+  | coordinate_type | 仅当 type 为 geojson 时使用 | string | √ | 有两个值可选：<br>wgs84: 地球坐标<br>gcj02: 火星坐标 |
 
 
 * **查看表**
