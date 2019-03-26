@@ -10,7 +10,8 @@
 
 ### 更新注意事项
 
-- 使用 2.x 版本的 SDK 前，请先阅读 [1.x --> 2.x 迁移指南](/js-sdk/migrate-from-v1.md)。
+> **danger**
+> 从 1.x 升级的请阅读 [1.x --> 2.x 迁移指南](/js-sdk/migrate-from-v1.md)。
 
 - 所有版本更新日志可查看 [SDK 更新日志](https://github.com/ifanrx/hydrogen-js-sdk/blob/master/CHANGELOG.md)
 
