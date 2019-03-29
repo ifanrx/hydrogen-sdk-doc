@@ -1,6 +1,6 @@
 {% macro importComponent(apiPrefix) %}
 {% if apiPrefix == "wx." %}
-1. 安装 minapp-ticket-wx，在项目根目录下运行一下命令
+1. 安装 minapp-ticket-wx，在项目根目录下运行以下命令（二选一）
 
   ```js
   // 通过 yarn 安装
@@ -23,15 +23,25 @@
   }
   ```
 {% elif apiPrefix == "my." %}
-1. 安装 minapp-ticket-my，在项目根目录下运行一下命令
+1. 安装 minapp-ticket-my，在项目根目录下运行以下命令（二选一）
 
-```js
-// 通过 yarn 安装
-yarn add minapp-ticket-my
+  ```js
+  // 通过 yarn 安装
+  yarn add minapp-ticket-my
 
-// 通过 npm 安装
-npm install --save minapp-ticket-my
-```
+  // 通过 npm 安装
+  npm install --save minapp-ticket-my
+  ```
+
+2. 在将要使用该组件的页面 json 文件中引用组件
+
+  ```js
+  {
+    "usingComponents": {
+      "ticket-report-wrapper": "minapp-ticket-my/src/index"
+    }
+  }
+  ```
 {% endif %}
 {% endmacro %}
 
@@ -54,11 +64,11 @@ npm install --save minapp-ticket-my
 
 当使用小程序的 `<form/>` 组件，且属性 report-submit 设为 true 时，此时表单是声明为需要要发模板消息的，当点击按钮提交表单即可获取 formID。
 
-### 方式二：使用自定义组件自动上报
+### 方式二：使用自定义组件自动上报（推荐）
 {% if apiPrefix == "wx." %}
 
 插件版 SDK 提供了自定义组件 ticket-report-wrapper，
-文件版与 npm 版 SDK，可以通过 npm 获取该组件。
+文件版与 npm 版 SDK，可以通过 npm 获取该组件（包名为 minapp-ticket-wx）。
 
 使用 ticket-report-wrapper 组件包裹内容，相当于在内容之上盖一个透明的遮罩，因此会内容中的点击事件无法被触发。
 如果包裹大面积内容，且内容用有点击或其他交互事件的，请使用 disappear-after-click
@@ -82,6 +92,13 @@ npm install --save minapp-ticket-my
 {% endtabs %}
 
 {% elif apiPrefix == "my." %}
+
+可以通过 npm 获取 ticket-report-wrapper 组件（包名为 minapp-ticket-my）。
+
+使用 ticket-report-wrapper 组件包裹内容，相当于在内容之上盖一个透明的遮罩，因此会内容中的点击事件无法被触发。
+如果包裹大面积内容，且内容用有点击或其他交互事件的，请使用 disappear-after-click
+
+#### 引入组件
 {{ importComponent("my.") }}
 {% endif %}
 
