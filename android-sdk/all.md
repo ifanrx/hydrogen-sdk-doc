@@ -110,11 +110,14 @@ query.putWhere(where);      // 最后放入查询条件里
 {% endifanrxCodeTabs %}
 
 
-## 用户注册
+## 用户相关
 {% ifanrxCodeTabs %}
 ```java
 Auth.signUpByEmail(String email, String pwd);       // 通过邮箱注册
 Auth.signUpByUsername(String username, String pwd); // 通过用户名注册
+Auth.emailVerify();                                 // 发送验证邮件
+Auth.updateUser(UpdateUserReq request);             // 修改用户用于登录的基本信息
+Auth.resetPwd(String email);                        // 重置邮箱所属用户密码
 ```
 {% endifanrxCodeTabs %}
 
@@ -130,10 +133,11 @@ Auth.logout();                                      // 登出
 {% endifanrxCodeTabs %}
 
 
-## 查询用户列表
+## 用户
 {% ifanrxCodeTabs %}
 ```java
-Users.users(BaseQuery query);
+Users.users(BaseQuery query);   // 用户列表
+Users.use(String id);           // 用户明细
 ```
 {% endifanrxCodeTabs %}
 
@@ -169,7 +173,7 @@ Storage.category(String id);            // 分类详情
 ## 内容
 {% ifanrxCodeTabs %}
 ```java
-Contents.contentList(@NonNull BaseQuery query);         // 内容列表
+Contents.contents(@NonNull BaseQuery query);         // 内容列表
 Contents.content(String id);                            // 内容详情
 Contents.contentGroups(@NonNull BaseQuery query);       // 内容库列表
 Contents.contentCategories(@NonNull BaseQuery query);   // 内容分类列表
