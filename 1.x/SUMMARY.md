@@ -1,6 +1,6 @@
 # Summary
 
-* [全平台 2.0 版本文档](https://doc.minapp.com/2.x/)
+* [全平台 2.0 版本文档](https://doc.minapp.com/)
 
 ----
 
