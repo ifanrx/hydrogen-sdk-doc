@@ -13,6 +13,28 @@
 
 ----
 
+* [iOS SDK](ios-sdk/README.md)
+    * [安装 SDK](ios-sdk/install.md)
+    * [用户](ios-sdk/user/README.md)
+        * [登入登出](ios-sdk/user/auth.md)
+        * [当前用户](ios-sdk/user/account.md)
+    * [数据表](ios-sdk/schema/README.md)
+        * [数据类型](ios-sdk/schema/data-type.md)
+        * [新增数据项](ios-sdk/schema/create-record.md)
+        * [更新数据项](ios-sdk/schema/update-record.md)
+        * [删除数据项](ios-sdk/schema/delete-record.md)
+        * [获取数据项](ios-sdk/schema/get-record-detail.md)
+        * [查询数据项](ios-sdk/schema/query.md)
+        * [分页和排序](ios-sdk/schema/limit-and-order.md)
+        * [地理位置操作](ios-sdk/schema/geo.md)
+        * [字段过滤与扩展](ios-sdk/schema/select-and-expand.md)
+    * [内容库](ios-sdk/content/README.md)
+        * [内容操作](ios-sdk/content/operate.md)
+    * [文件](ios-sdk/file/README.md)
+        * [文件操作](ios-sdk/file/file.md)
+
+----
+
 * [控制台操作](dashboard/README.md)
     * [数据管理](dashboard/schema.md)
     * [内容管理](dashboard/content.md)

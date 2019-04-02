@@ -1,0 +1,262 @@
+# 更新数据项
+
+## 操作步骤
+
+1.通过 `tableName` 或 `tableID` 实例化一个 `Table` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
+
+**示例代码**
+{% tabs swift1="Swift", oc1="Objective-c" %}
+{% content "swift1" %}
+```
+// 通过 tableId 创建数据表实例 
+let table = Table(tableId: 1236**)
+
+// 通过 tablename 创建数据表实例
+let table = Table(tableName: "Book")
+```
+{% content "oc1" %}
+```
+// 通过 tableId 创建数据表实例
+BAASTable *table = [[BAASTable alloc] initWithTableId:1236**];
+
+// 通过 tablename 创建数据表实例
+BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
+```
+{% endtabs %}
+
+**参数说明**
+
+tableName 和 tableID 二选一
+
+| 名称     | 类型   | 必填   | 说明                   |
+| :-----  | :----- | :---- | :--- |
+| tableId   | Int  | 是   | 数据表的 ID             |
+| tableName | String |  是 | 数据表名 |
+
+2.通过数据行 id（以下用 `recordId` 参数名表示） 设置指定数据行
+
+{% tabs swift2="Swift", oc2="Objective-c" %}
+{% content "swift2" %}
+```
+let record = table.getWithoutData(recordId: "5c944a10d575a970a9b91c12")
+```
+{% content "oc2" %}
+```
+BAASTableRecord *record = [table getWithoutDataWithRecordId:@"5c944a10d575a970a9b91c12"];
+```
+{% endtabs %}
+
+3.为记录项赋值
+
+有两种类型的赋值操作：
+
+a.一次性赋值：
+
+{% tabs swift3="Swift", oc3="Objective-c" %}
+{% content "swift3" %}
+```
+record.set(record: ["name": "bookname", "color": "red", "price": 19])
+```
+{% content "oc3" %}
+```
+[record setWithRecord:@{@"name": @"bookname", @"color": @"red", @"price": @10}];
+```
+{% endtabs %}
+
+**参数说明**
+
+| 名称       | 类型           | 说明        |
+| :-------- | :------------  | :------    |
+| record    | Dictionary(Swift) / NSDictionary(OC)     | 记录信息，key 为字段名称   |
+
+
+b.逐个赋值：
+
+{% tabs swift4="Swift", oc4="Objective-C" %}
+{% content "swift4" %}
+```
+record.set(key: "color", value: "red")
+record.set(key: "price", value: 10)
+```
+{% content "oc4" %}
+```
+[record setWithKey:@"color" value:@"red"];
+[record setWithKey:@"price" value:@10];
+```
+{% endtabs %}
+
+> **info**
+> 对同一字段进行多次 `set` 操作，后面的数据会覆盖掉前面的数据
+
+c. unset 操作
+
+将某个字段的值清空
+
+{% tabs swift5="Swift", oc5="Objective-C" %}
+{% content "swift5" %}
+```
+book.unset(key: "color")
+```
+{% content "oc5" %}
+```
+[record unsetWithKey:@"color"];
+```
+{% endtabs %}
+
+4.将数据更新保存到服务器
+
+{% tabs swift6="Swift", oc6="Objective-c" %}
+{% content "swift6" %}
+```
+record.update { (success, error) in
+
+}
+```
+{% content "oc6" %}
+```
+[record update:^(BOOL success, NSError * _Nullable error) {
+
+}];
+```
+{% endtabs %}
+
+**结果返回**
+
+| 名称       | 类型           | 说明 |
+| :-------- | :------------  | :------ |
+| success   | Bool           | 是否更新成功 |
+| error   |  HError(Swift) / NSError(OC) |  错误信息     |
+
+通过上面的四个步骤，即完成了一条记录的更新，具体操作阅读以下内容。新的数据同时在 record 中被更新。
+
+## 计数器原子性更新
+
+对数字类型的字段进行原子性增减操作。当请求同时对一个数据进行增减时，原子性使得冲突和覆盖导致的数据不正确的情况不会出现。
+
+假如 Book 表有一个价钱字段 price，通过原子性增加价钱：
+
+{% tabs swift7="Swift", oc7="Objective-C" %}
+{% content "swift7" %}
+```
+book.incrementBy(key: "price", value: 1)
+```
+{% content "oc7" %}
+```
+[book incrementByKey:@"price" value:@1];
+```
+{% endtabs %}
+
+**参数说明**
+
+| 参数   | 类型              | 必填 | 说明 |
+| :---- | :---------------- | :-- | :-- |
+| key   | String(Swift) / NSString(OC)  | 是  | 在数据表中的类型必须是 Number 或 Integer |
+| value | Double             | 是  | 与 key 的类型保持一致 |
+
+## 数组原子性更新
+
+### 将 _待插入的数组_ 加到原数组末尾
+
+假设 Book 表中有一个字段 author，表示作者，类型是数组，可以有多个作者，现增加一个作者：
+
+{% tabs swift8="Swift", oc8="Objective-c" %}
+{% content "swift8" %}
+```
+book.append(key: "author", value: ["xiaoming"])
+```
+{% content "oc8" %}
+```
+[book appendWithKey:@"author" value:@[@"xiaoming"]];
+```
+{% endtabs %}
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-- | :--- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+| value | Array(Swift) / NSArray(OC) | 是  | - |
+
+### 将 _待插入的数组_ 中不包含在原数组的数据加到原数组末尾
+
+{% tabs swift9="Swift", oc9="Objective-c" %}
+{% content "swift9" %}
+```
+book.uAppend(key: @"author", value: ["xiaoming", "xiaohong"])
+```
+{% content "oc9" %}
+```
+[book uAppengWithKey:@"author" value:@[@"xiaoming", @"xiaohogn"]];
+```
+{% endtabs %}
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-- | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+| value | Array(Swift) / NSArray(OC)  | 是   | - |
+
+### 从原数组中删除指定的值
+
+{% tabs swift10="Swift", oc10="Objective-c" %}
+{% content "swift10" %}
+```
+book.remove(key: "author", value: ["xiaoming", "xiaohong"])
+```
+{% content "oc10" %}
+```
+[book remove:@"author" value:@[@"xiaoming", @"xiaohong"]];
+```
+{% endtabs %}
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-  | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+| value | Array(Swift) / NSArray(OC)    | 是  | 如果元素类型是 geojson、object、file，则只能是 length 为 1 的 Array |
+
+## 按条件批量更新数据项
+
+可以通过设置自定义查询条件 Query，将符合条件的数据进行批量更新操作。
+
+> 注意：由于条件查询可能命中非常多的数据，默认情况下，限制为最多更新前 1000 条数据。
+> 如需要一次性更新更多数据，请参考下一个章节：不触发触发器的更新，或者通过维护分页来进行。
+
+其中：
+ - `Query` 对象的使用请查看 [查询数据项](./query.md) 章节
+
+ - `limit` 和 `offset` 的使用请查看 [分页和排序](./limit-and-order.md) 章节
+
+{% tabs swift11="Swift", oc11="Objective-c" %}
+{% content "swift11" %}
+```
+let query = Query.compare(key: "price", operator: "<", value: 15)
+table.setQuery(query)
+let record = table.createRecord()
+record.incrementBy(key: "price", value: 1)
+table.update(record: record) { (success, error) in
+                
+}
+```
+{% content "oc11" %}
+```
+BAASQuery *query = [BAASQuery compareWithKey:@"price" operator:@"<" value:@15];
+[table setQuery:query];
+BAASTableRecord *record = [_table createRecord];
+[record incrementByKey:@"price" value:@1];
+[table updateWithRecord:record enableTrigger:true completion:^(BOOL success, NSError * _Nullable error) {
+
+}];
+```
+{% endtabs %}
+
+**参数说明**
+
+| 参数名    | 类型    | 说明              |
+|-----------|---------|-------------------|
+| record   | Record  |   需要被更新的信息|
+| enableTrigger | Bool    |   是否触发触发器  |
+
+> Swift 默认会触发触发器。
