@@ -20,10 +20,10 @@
 
 ## 操作步骤
 
-1.通过 `tableName` 或 `tableID` 实例化一个 `Table` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
+1.通过 `tableName` 或 `tableId` 实例化一个 `Table` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
 
 **示例代码**
-{% tabs swift1="Swift", oc1="Objective-c" %}
+{% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
 // 通过 tableId 创建数据表实例 
@@ -53,7 +53,7 @@ tableName 和 tableID 二选一
 
 2. 创建 `Query` 对象，在该对象上添加查询条件
 
-{% tabs swift2="Swift", oc2="Objective-c" %}
+{% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
 let query = Query.contains(key: "color", value: "red")
@@ -68,7 +68,7 @@ BAASQuery *query = [BAASQuery containsWithKey:@"color" value:@"red"];
 
 3.支持查询条件并执行查找操作
 
-{% tabs swift3="Swift", oc3="Objective-c" %}
+{% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
 ```
 table.setQuery(query)
@@ -85,14 +85,23 @@ table.find { (result, error) in
 ```
 {% endtabs %}
 
+**返回结果**
+ 
+| 名称      | 类型           | 说明 |
+| :------- | :------------  | :------ |
+| records  | Array<TableTable> (Swift) / NSArray<BAASTableRecord *> (OC)  | 是否新增数据成功 |
+| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+
 > **info**
 > 注意：知晓云的 api URL 长度限定为 16386，超出则返回 502，请在构造查询条件时注意长度控制，如 in 操作符后边的数组长度、match 操作符后边的字符串长度等。
 
 ## 示例
 
-**请求示例**
+**示例代码**
 
-{% tabs swift4="Swift", oc4="Objective-c" %}
+{% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 ```
 // 设置查询条件
@@ -117,7 +126,7 @@ BAASQuery *query = [BAASQuery icontainsWithKey:@"color" value:@"red"];
 // 应用查询条件
 [table setQuery:query];
 [table find:^(NSArray<BAASTableRecord *> * _Nullable records, NSError * _Nullable error) {
-                        
+
 }];
 
 // 不应用查询条件
@@ -127,8 +136,7 @@ BAASQuery *query = [BAASQuery icontainsWithKey:@"color" value:@"red"];
 ```
 {% endtabs %}
 
-err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
-
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 常见错误：
 
@@ -137,12 +145,11 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | 400            | 1. 指定/过滤输出字段的字段名有误、2. GEO 查询参数有误、3. 查询语法错误 |
 | 404            | 数据表不存在  |
 
-
 ## 比较查询
 
 共有六种比较操作，用枚举来表示每种比较：
 
-{% tabs swift5_1="Swift", oc5_1="Objective-c" %}
+{% tabs swift5_1="Swift", oc5_1="Objective-C" %}
 {% content "swift5_1" %}
 ```
 public enum Operator: Int {
@@ -170,7 +177,7 @@ typedef (NSInteger, BAASOperator) {
 
 具体使用如下：
 
-{% tabs swift5="Swift", oc5="Objective-c" %}
+{% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}
 ```
 // 价钱小于等于 10
@@ -189,7 +196,7 @@ operator 包含 =, !=, <, <=, >, >=
 
 当存在多个查询条件时，它们之间默认为 AND 关系，查询返回满足所有条件的记录，如下示例：
 
-{% tabs swift6="Swift", oc6="Objective-c" %}
+{% tabs swift6="Swift", oc6="Objective-C" %}
 {% content "swift6" %}
 ```
 let query = Query.compare(key: "price", operator: .lessThan, value: 10)
@@ -208,66 +215,73 @@ BAASQuery *query = [BAASQuery compareWithKey:@"price" operator:BAASOperatorGreat
 ## 字符串查询
 查询返回满足包含相应字符串的记录，如下示例：
 
-{% tabs swift7="Swift", oc7="Objective-c" %}
+{% tabs swift7="Swift", oc7="Objective-C" %}
 {% content "swift7" %}
 ```
+// name 列包含 apple
 let query = Query.contains(key: "name", value: "apple")
+
+// name 列不包含 app
 let query = Query.contains(key: "name", value: "app")
 ```
 {% content "oc7" %}
 ```
-BAASQuery *query = [BAASQuery icontainsWithKey:@"name" value:@"apple"];
-BAASQuery *query = [BAASQuery icontainsWithKey:@"color" value:@"app"];
+// name 列包含 apple
+BAASQuery *query = [BAASQuery containsWithKey:@"name" value:@"apple"];
+
+// name 列不包含 app
+BAASQuery *query = [BAASQuery containsWithKey:@"color" value:@"app"];
 ```
 {% endtabs %}
 
 ## 数组查询
 
-key 的类型不限制，key 的 value 含有 array 中的一个或多个
-{% tabs swift8="Swift", oc8="Objective-c" %}
+field 的类型不限制，field 的 value 含有 array 中的一个或多个
+
+{% tabs swift8="Swift", oc8="Objective-C" %}
 {% content "swift8" %}
 ```
-let query = Query.inList(key: "keyname", list: array)
+let query = Query.inList(key: "fieldname", list: array)
 ```
 {% content "oc8" %}
 ```
-BAASQuery *query = [BAASQuery inListWithKey: @"keyname" list: array];
+BAASQuery *query = [BAASQuery inListWithKey: @"fieldname" list: array];
 ```
 {% endtabs %}
 
-key 的类型不限制，key 的 value 不含有 array 中的任何一个
-{% tabs swift9="Swift", oc9="Objective-c" %}
+field 的类型不限制，field 的 value 不含有 array 中的任何一个
+{% tabs swift9="Swift", oc9="Objective-C" %}
 {% content "swift9" %}
 ```
-let query = Query.notInList(key: "keyname", list: array)
+let query = Query.notInList(key: "fieldname", list: array)
 ```
 {% content "oc9" %}
 ```
-BAASQuery *query = [BAASQuery notInListWithKey: @"keyname" list: array];
+BAASQuery *query = [BAASQuery notInListWithKey: @"fieldname" list: array];
 ```
 {% endtabs %}
 
-key 的类型必须为数组, key 的 value 包含 array 中的每一个  
-{% tabs swift10="Swift", oc10="Objective-c" %}
+field 的类型必须为数组, field 的 value 包含 array 中的每一个  
+{% tabs swift10="Swift", oc10="Objective-C" %}
 {% content "swift10" %}
 ```
-let query = Query.arrayContains(key: "keyname", list: array)
+let query = Query.arrayContains(key: "fieldname", list: array)
 ```
 {% content "oc10" %}
 ```
-BAASQuery *query = [BAASQuery arrayContainsWithKey: @"keyname" list: array];
+BAASQuery *query = [BAASQuery arrayContainsWithKey: @"fieldname" list: array];
 ```
 {% endtabs %}
 
 如果希望查找数组中只包含指定数组中所有的值的记录，可以使用比较查询
-{% tabs swift11="Swift", oc11="Objective-c" %}
+{% tabs swift11="Swift", oc11="Objective-C" %}
 {% content "swift11" %}
 ```
-let query = Query.compare(key: "keyname", operator: "=", value: array)
+let query = Query.compare(key: "fieldname", operator: .equalTo, value: array)
 ```
 {% content "oc11" %}
 ```
-BAASQuery *query = [BAASQuery compareWithKey:@"keyname" operator:@"=" value: array]
+BAASQuery *query = [BAASQuery compareWithKey:@"keyname" operator:BAASOperatorEqualTo value: array]
 ```
 {% endtabs %}
 
@@ -275,7 +289,7 @@ BAASQuery *query = [BAASQuery compareWithKey:@"keyname" operator:@"=" value: arr
 
 查询字段值为 null 或非 null 记录
 
-{% tabs swift12="Swift", oc12="Objective-c" %}
+{% tabs swift12="Swift", oc12="Objective-C" %}
 {% content "swift12" %}
 ```
 let query = Query.isNull(key: "name")
@@ -292,7 +306,7 @@ BAASQuery *query = [BAASQuery isNotNullWithKey:@"name"];
 
 查询字段值为空或非空记录
 
-{% tabs swift13="Swift", oc13="Objective-c" %}
+{% tabs swift13="Swift", oc13="Objective-C" %}
 {% content "swift13" %}
 ```
 let query = Query.exists(key: "name")
@@ -339,7 +353,7 @@ BAASQuery *query = [BAASQuery notExistsWithKey:@"name"];
 
 查询字段 publisherInfo 中存在 location 属性的数据行
 
-{% tabs swift14="Swift", oc14="Objective-c" %}
+{% tabs swift14="Swift", oc14="Objective-C" %}
 {% content "swift14" %}
 ```
 let query = Query.hasKey("publisherInfo", fieldName: "location")
@@ -370,7 +384,7 @@ BAASQuery *query = [BAASQuery hasKey:@"publisherInfo" fieldName:@"location"];
 
 则下面的查询语句是非法的
 
-{% tabs swift15="Swift", oc15="Objective-c" %}
+{% tabs swift15="Swift", oc15="Objective-C" %}
 {% content "swift15" %}
 ```
 let query = Query.hasKey("publisherInfo", fieldName: "abc.location")
@@ -402,7 +416,7 @@ order 表部分字段结构如下：
 - customer 字段指向 customer 表中 id 为 `5bad87ab0769797b4fb27a1b` 的数据行 
 - user 字段指向了 _userprofile 表中 id 为 `69147880` 的数据行
 
-{% tabs swift16="Swift", oc16="Objective-c" %}
+{% tabs swift16="Swift", oc16="Objective-C" %}
 {% content "swift16" %}
 ```
 let Order = Table(tableName: "Book")
@@ -424,7 +438,7 @@ BAASQuery *query = [BAASQuery andWithQuerys:@[query1, query2]];
 
 ## 组合查询
 
-{% tabs swift17="Swift", oc17="Objective-c" %}
+{% tabs swift17="Swift", oc17="Objective-C" %}
 {% content "swift17" %}
 ```
 let query1 = Query.compare(key: "price", operator: "<", value: 10)

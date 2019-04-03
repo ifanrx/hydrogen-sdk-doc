@@ -33,9 +33,9 @@ tableName 和 tableID 二选一
 | tableId   | Int  | 是   | 数据表的 ID             |
 | tableName | String |  是 | 数据表名 |
 
-2.指定 `recordID` 执行获取相应数据项操作
+2.指定 `recordId` 执行获取相应数据项操作
 
-{% tabs swift2="Swift", oc2="Objective-c" %}
+{% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
 table.get(recordId: "5c944a22d575a970a9b91c13") { (record, error) in
@@ -56,7 +56,6 @@ table.get(recordId: "5c944a22d575a970a9b91c13") { (record, error) in
 | :------- | :----- | :-- | :-- |
 | recordId | String | 是  | 记录 ID |
 
-
 **返回结果**
 
 | 名称       | 类型           | 说明 |
@@ -66,7 +65,7 @@ table.get(recordId: "5c944a22d575a970a9b91c13") { (record, error) in
 
 常见错误：
 
-| 错误码            | 可能的原因       |
+| 错误码            | 可能的原因      |
 |----------------|-----------------|
 | 404            | 数据行不存在      |
 

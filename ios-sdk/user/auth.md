@@ -13,7 +13,7 @@
 > 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 
 
 **示例代码**
-{% tabs swift1="Swift", oc1="Objective-c" %}
+{% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
 Auth.register(email: "test@ifanr.com", password: "111") { (user, error) in
@@ -42,10 +42,12 @@ Auth.register(email: "test@ifanr.com", password: "111") { (user, error) in
 | user    | User         | 当前用户，也可以用 User.currentUser 获取|
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+
 ### 通过用户名注册
 
 **示例代码**
-{% tabs swift2="Swift", oc2="Objective-c" %}
+{% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
 Auth.register(username: "test", password: "111") { (user, error) in
@@ -74,12 +76,14 @@ Auth.register(username: "test", password: "111") { (user, error) in
 | user    | User         | 当前用户，也可以用 User.currentUser 获取|
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+
 ## 登录
 
 ### 通过邮箱登录
 
 **示例代码**
-{% tabs swift3="Swift", oc3="Objective-c" %}
+{% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
 ```
 Auth.login(email: "test@ifanr.com", password: "111") { (user, error) in
@@ -101,6 +105,7 @@ Auth.login(email: "test@ifanr.com", password: "111") { (user, error) in
 | email    | String         | 用户邮箱 |
 | password | String         | 密码     |
 
+
 **返回结果**
 
 | 名称      | 类型           | 说明 |
@@ -108,10 +113,12 @@ Auth.login(email: "test@ifanr.com", password: "111") { (user, error) in
 | user    | User         | 当前用户，也可以用 User.currentUser 获取|
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+
 ### 通过用户名登录
 
 **示例代码**
-{% tabs swift4="Swift", oc4="Objective-c" %}
+{% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 ```
 Auth.login(username: "test", password: "111") { (user, error) in
@@ -132,6 +139,8 @@ Auth.login(username: "test", password: "111") { (user, error) in
 | :------- | :------------  | :------ |
 | username    | String      | 用户邮箱 |
 | password | String         | 密码     |
+
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 **返回结果**
 
@@ -165,7 +174,7 @@ Auth.login(username: "test", password: "111") { (user, error) in
 > 最终进不进行数据合并，由开发者自己考量决定。合并操作需要开发者自己进行。
 
 **示例代码**
-{% tabs swift5="Swift", oc5="Objective-c" %}
+{% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}
 ```
 Auth.anonymousLogin { (user, error) in
@@ -187,12 +196,14 @@ Auth.anonymousLogin { (user, error) in
 | user    | User         | 当前用户，也可以用 User.currentUser 获取|
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+
 ### 登出
 
 清理客户端存储的用户授权信息。
 
 **示例代码**
-{% tabs swift6="Swift", oc6="Objective-c" %}
+{% tabs swift6="Swift", oc6="Objective-C" %}
 {% content "swift6" %}
 ```
 Auth.logout { (success, error) in
@@ -212,4 +223,6 @@ Auth.logout { (success, error) in
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | success  | Bool           | 是否登出成功 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息     |
+| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

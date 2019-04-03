@@ -5,7 +5,7 @@
 1.通过 `tableName` 或 `tableID` 实例化一个 `Table` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
 
 **示例代码**
-{% tabs swift1="Swift", oc1="Objective-c" %}
+{% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
 // 通过 tableId 创建数据表实例 
@@ -35,7 +35,7 @@ tableName 和 tableID 二选一
 
 2.通过数据行 id（以下用 `recordId` 参数名表示） 设置指定数据行
 
-{% tabs swift2="Swift", oc2="Objective-c" %}
+{% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
 let record = table.getWithoutData(recordId: "5c944a10d575a970a9b91c12")
@@ -52,7 +52,7 @@ BAASTableRecord *record = [table getWithoutDataWithRecordId:@"5c944a10d575a970a9
 
 a.一次性赋值：
 
-{% tabs swift3="Swift", oc3="Objective-c" %}
+{% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
 ```
 record.set(record: ["name": "bookname", "color": "red", "price": 19])
@@ -105,7 +105,7 @@ book.unset(key: "color")
 
 4.将数据更新保存到服务器
 
-{% tabs swift6="Swift", oc6="Objective-c" %}
+{% tabs swift6="Swift", oc6="Objective-C" %}
 {% content "swift6" %}
 ```
 record.update { (success, error) in
@@ -120,14 +120,48 @@ record.update { (success, error) in
 ```
 {% endtabs %}
 
-**结果返回**
+**返回结果**
+ 
+| 名称      | 类型           | 说明 |
+| :------- | :------------  | :------ |
+| success  | Bool           | 是否新增数据成功 |
+| error   |  HError(Swift) / NSError(OC) |  错误信息  |
 
-| 名称       | 类型           | 说明 |
-| :-------- | :------------  | :------ |
-| success   | Bool           | 是否更新成功 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息     |
+success 更新数据成功后，记录对象 record 的数据将被更新。
 
-通过上面的四个步骤，即完成了一条记录的更新，具体操作阅读以下内容。新的数据同时在 record 中被更新。
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+
+通过上面的四个步骤，即完成了一条记录的更新，具体操作阅读以下内容。
+
+## 更新普通数据
+
+请参考 [新增数据项](/ios-sdk/schema/create-record.md) 的添加普通数据
+
+## 更新日期时间 Date 类型的数据
+
+请参考 [新增数据项](/ios-sdk/schema/create-record.md) 的添加日期时间 Date 类型的数据
+
+## 更新 file 类型数据
+
+请参考 [新增数据项](/ios-sdk/schema/create-record.md) 的添加 file 类型数据
+
+## 更新 geojson 类型数据
+
+请参考 [新增数据项](/ios-sdk/schema/create-record.md) 的添加 geojson 类型数据
+
+## 更新 object 类型数据
+
+对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的
+
+## 更新array 类型数据
+
+添加 array 类型数据的方法与添加其他类型数据的方法基本一致。区别在于，array 类型数据是将一个的数组赋值给某个字段。
+
+array 类型数据中的元素类型，要与预先在知晓云平台设定的字段类型一致。否则创建的数据将不包含该 array 类型的字段。
+
+## 更新 pointer 类型数据 
+
+请参考 [新增数据项](/ios-sdk/schema/create-record.md) 的添加 pointer 类型数据 
 
 ## 计数器原子性更新
 
@@ -157,16 +191,16 @@ book.incrementBy(key: "price", value: 1)
 
 ### 将 _待插入的数组_ 加到原数组末尾
 
-假设 Book 表中有一个字段 author，表示作者，类型是数组，可以有多个作者，现增加一个作者：
+假设 Book 表中有一个字段 recommender，表示推荐者，类型是数组，可以有多个推荐者，现增加一个作者：
 
-{% tabs swift8="Swift", oc8="Objective-c" %}
+{% tabs swift8="Swift", oc8="Objective-C" %}
 {% content "swift8" %}
 ```
-book.append(key: "author", value: ["xiaoming"])
+book.append(key: "recommender", value: ["xiaoming"])
 ```
 {% content "oc8" %}
 ```
-[book appendWithKey:@"author" value:@[@"xiaoming"]];
+[book appendWithKey:@"recommender" value:@[@"xiaoming"]];
 ```
 {% endtabs %}
 
@@ -174,12 +208,12 @@ book.append(key: "author", value: ["xiaoming"])
 
 | 参数   | 类型                | 必填 | 说明 |
 | :---- | :------------------ | :-- | :--- |
-| key   | String              | 是  | 在数据表中的类型必须是 Array |
+| key   | String(Swift) / NSString(OC) | 是  | 在数据表中的类型必须是 Array |
 | value | Array(Swift) / NSArray(OC) | 是  | - |
 
 ### 将 _待插入的数组_ 中不包含在原数组的数据加到原数组末尾
 
-{% tabs swift9="Swift", oc9="Objective-c" %}
+{% tabs swift9="Swift", oc9="Objective-C" %}
 {% content "swift9" %}
 ```
 book.uAppend(key: @"author", value: ["xiaoming", "xiaohong"])
@@ -194,12 +228,12 @@ book.uAppend(key: @"author", value: ["xiaoming", "xiaohong"])
 
 | 参数   | 类型                | 必填 | 说明 |
 | :---- | :------------------ | :-- | :-- |
-| key   | String              | 是  | 在数据表中的类型必须是 Array |
+| key   | String(Swift) / NSString(OC)              | 是  | 在数据表中的类型必须是 Array |
 | value | Array(Swift) / NSArray(OC)  | 是   | - |
 
 ### 从原数组中删除指定的值
 
-{% tabs swift10="Swift", oc10="Objective-c" %}
+{% tabs swift10="Swift", oc10="Objective-C" %}
 {% content "swift10" %}
 ```
 book.remove(key: "author", value: ["xiaoming", "xiaohong"])
@@ -214,7 +248,7 @@ book.remove(key: "author", value: ["xiaoming", "xiaohong"])
 
 | 参数   | 类型                | 必填 | 说明 |
 | :---- | :------------------ | :-  | :-- |
-| key   | String              | 是  | 在数据表中的类型必须是 Array |
+| key   | String(Swift) / NSString(OC) | 是  | 在数据表中的类型必须是 Array |
 | value | Array(Swift) / NSArray(OC)    | 是  | 如果元素类型是 geojson、object、file，则只能是 length 为 1 的 Array |
 
 ## 按条件批量更新数据项
@@ -229,10 +263,13 @@ book.remove(key: "author", value: ["xiaoming", "xiaohong"])
 
  - `limit` 和 `offset` 的使用请查看 [分页和排序](./limit-and-order.md) 章节
 
-{% tabs swift11="Swift", oc11="Objective-c" %}
+ **实例代码**
+ 将价格小于 15 的书籍的价格加 1
+
+{% tabs swift11="Swift", oc11="Objective-C" %}
 {% content "swift11" %}
 ```
-let query = Query.compare(key: "price", operator: "<", value: 15)
+let query = Query.compare(key: "price", operator: .lessThan, value: 15)
 table.setQuery(query)
 let record = table.createRecord()
 record.incrementBy(key: "price", value: 1)
@@ -242,7 +279,7 @@ table.update(record: record) { (success, error) in
 ```
 {% content "oc11" %}
 ```
-BAASQuery *query = [BAASQuery compareWithKey:@"price" operator:@"<" value:@15];
+BAASQuery *query = [BAASQuery compareWithKey:@"price" operator:BAASOperatorLessThan value:@15];
 [table setQuery:query];
 BAASTableRecord *record = [_table createRecord];
 [record incrementByKey:@"price" value:@1];
@@ -260,3 +297,12 @@ BAASTableRecord *record = [_table createRecord];
 | enableTrigger | Bool    |   是否触发触发器  |
 
 > Swift 默认会触发触发器。
+
+**返回结果**
+ 
+| 名称      | 类型           | 说明 |
+| :------- | :------------  | :------ |
+| success  | Bool           | 是否新增数据成功 |
+| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

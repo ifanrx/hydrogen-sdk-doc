@@ -40,7 +40,7 @@ record.delete { (success, error) in
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-let query = Query.compare(key: "price", operator: "<", value: 15)
+let query = Query.compare(key: "price", operator: .lessThanOrEqualTo value: 15)
 table.setQuery(query)
 table.delete() { (success, error) in
                 
@@ -48,7 +48,7 @@ table.delete() { (success, error) in
 ```
 {% content "oc2" %}
 ```
-BAASQuery *query = [BAASQuery compareWithKey:@"price" operator:@"<" value:@15];
+BAASQuery *query = [BAASQuery compareWithKey:@"price" operator:BAASOperatorLessThanOrEqualTo value:@15];
 [table setQuery:query];
 [table deleteWithEnableTrigger:true completion:^(BOOL success, NSError * _Nullable error) {
 
@@ -58,8 +58,8 @@ BAASQuery *query = [BAASQuery compareWithKey:@"price" operator:@"<" value:@15];
 
 **参数说明**
 
-| 参数名    | 类型    | 说明              |
-|-----------|---------|-------------------|
-| enableTrigger | Bool    |   是否触发触发器  |
+| 参数名    | 类型    | 说明              |  必填  |
+|-----------|---------|-------------------|--|
+| enableTrigger | Bool    |   是否触发触发器  |  N
 
 > Swift 默认会触发触发器。

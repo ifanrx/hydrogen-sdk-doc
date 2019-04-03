@@ -1,15 +1,15 @@
 # 文件操作
 
-实例化一个 `FileTable` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
+实例化一个 `FileManager` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
 
-{% tabs swift1="Swift", oc1="Objective-c" %}
+{% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
-let fileTable = FileTable()
+let fileManager = FileManager()
 ```
 {% content "oc1" %}
 ```
-BAASFileTable *fileTable = [[BAAFileTable alloc] init];
+BAASFileManager *fileManager = [[BAAFileManager alloc] init];
 ```
 {% endtabs %}
 
@@ -17,19 +17,20 @@ BAASFileTable *fileTable = [[BAAFileTable alloc] init];
 
 `MyFile.upload(fileParams, metaData)`
 
-{% tabs swift2="Swift", oc2="Objective-c" %}
+{% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
 let filePath = Bundle.main.path(forResource: "1", ofType: "png")!
-                fileTable.upload(filename: "datasource", localPath: filePath, categoryName: "My", progressBlock: {
+                fileManager.upload(filename: "datasource", localPath: filePath, categoryName: "Book", progressBlock: {
                     progress in
+                    
     }) { (file, error) in
 
 }
 ```
 {% content "oc2" %}
 ```
-[_fileTable uploadWithFilename:@"cover" localPath:filePath categoryName:@"Book" progressBlock:^(NSProgress * _Nullable progress) {
+[fileManager uploadWithFilename:@"cover" localPath:filePath categoryName:@"Book" progressBlock:^(NSProgress * _Nullable progress) {
 
     } completion:^(BAASFile * _Nullable file, NSError * _Nullable error) {
 
@@ -43,20 +44,21 @@ let filePath = Bundle.main.path(forResource: "1", ofType: "png")!
 | :-------------------| :----- | :--- | :--------- |
 | filePath | String |  Y  | 本地资源路径 |
 | filename | String |  Y  |  文件名称|
+| categoryName | String | N  | 文件分类  |
 
 ### 获取文件详情
 
-{% tabs swift3="Swift", oc3="Objective-c" %}
-{% content "swift1" %}
+{% tabs swift3="Swift", oc3="Objective-C" %}
+{% content "swift3" %}
 ```
 let fileId = "5c98b065d575a97d5f878225"
-fileTable.get(fileId: fileId) { (result, error) in
+fileManager.get(fileId: fileId) { (result, error) in
 
 }
 ```
 {% content "oc3" %}
 ```
-[fileTable getWithFileId:@"" completion:^(BAASFile * _Nullable file, NSError * _Nullable error) {
+[fileManager getWithFileId:@"" completion:^(BAASFile * _Nullable file, NSError * _Nullable error) {
 
 }];
 ```
@@ -70,16 +72,16 @@ fileTable.get(fileId: fileId) { (result, error) in
 
 ### 删除文件
 
-{% tabs swift4="Swift", oc4="Objective-c" %}
-{% content "swift1" %}
+{% tabs swift4="Swift", oc4="Objective-C" %}
+{% content "swift4" %}
 ```
-fileTable.delete(fileIds: ["5c98aed0d575a97d5f878224", "5c98aed0d575a97d6e1ace9b"]) { (success, error) in
+fileManager.delete(fileIds: ["5c98aed0d575a97d5f878224", "5c98aed0d575a97d6e1ace9b"]) { (success, error) in
 
 }
 ```
 {% content "oc4" %}
 ```
-[fileTable deleteWithFileIds:@[@"5c98aed0d575a97d5f878224", @"5c98aed0d575a97d6e1ace9b"] completion:^(BOOL success, NSError * _Nullable error) {
+[fileManager deleteWithFileIds:@[@"5c98aed0d575a97d5f878224", @"5c98aed0d575a97d6e1ace9b"] completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 
@@ -110,16 +112,16 @@ fileTable.delete(fileIds: ["5c98aed0d575a97d5f878224", "5c98aed0d575a97d6e1ace9b
 
 ### 获取文件分类列表
 
-{% tabs swift5="Swift", oc5="Objective-c" %}
-{% content "swift3" %}
+{% tabs swift5="Swift", oc5="Objective-C" %}
+{% content "swift5" %}
 ```
-fileTable.getCategoryList { (categorys, error) in
+fileManager.getCategoryList { (categorys, error) in
 
 }
 ```
 {% content "oc5" %}
 ```
-[fileTable getCategoryList:^(NSArray<ContentCategory *> * _Nullable categorys, NSError * _Nullable error) {
+[fileManager getCategoryList:^(NSArray<ContentCategory *> * _Nullable categorys, NSError * _Nullable error) {
 
 }];
 ```
@@ -127,16 +129,16 @@ fileTable.getCategoryList { (categorys, error) in
 
 ## 获取分类下的所有文件
 
-{% tabs swift6="Swift", oc6="Objective-c" %}
+{% tabs swift6="Swift", oc6="Objective-C" %}
 {% content "swift6" %}
 ```
-fileTable.getFileList(categoryId: "435345342345345") { (categorys, error) in
+fileManager.getFileList(categoryId: "435345342345345") { (categorys, error) in
 
 }
 ```
 {% content "oc6" %}
 ```
-[fileTable getFileListWithCategoryId:@"435345342345345" completion:^(NSArray<BAASFile *> * _Nullable files, NSError * _Nullable error) {
+[fileManager getFileListWithCategoryId:@"435345342345345" completion:^(NSArray<BAASFile *> * _Nullable files, NSError * _Nullable error) {
 
 }];
 ```

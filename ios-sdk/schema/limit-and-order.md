@@ -9,7 +9,7 @@
 
 默认 limit 为 20, offset 为 0，我们也可以手动指定 limit 和 offset 来控制。例如，每页展示 100 条数据，需要获取第五页的数据，将 limit 设置为 100、offset 设置为 400 即可。limit 最大可设置为 1000。
 
-{% tabs swift1="Swift", oc1="Objective-c" %}
+{% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
 let table = Table(tableName: "Book")
@@ -34,7 +34,7 @@ BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
 
 使用 orderBy 来控制使用升序或降序获取数据列表。
 
-{% tabs swift2="Swift", oc2="Objective-c" %}
+{% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
 let table = Table(tableName: "Book")
@@ -68,3 +68,12 @@ BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
 }];
 ```
 {% endtabs %}
+
+**返回结果**
+ 
+| 名称      | 类型           | 说明 |
+| :------- | :------------  | :------ |
+| records  | Array<TableTable> (Swift) / NSArray<BAASTableRecord *> (OC)  | 是否新增数据成功 |
+| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

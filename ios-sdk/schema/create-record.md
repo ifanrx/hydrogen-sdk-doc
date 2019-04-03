@@ -2,10 +2,17 @@
 
 ## 操作步骤
 
-1.通过 `tableName` 或 `tableID` 实例化一个 `Table` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
+* 创建一个 `Table` 对象 `table`；
+* 在 `table` 对象创建一条空记录；
+* 为空记录赋值；
+* 将创建的记录保存到服务器。
+
+### 创建 `Table` 对象
+
+通过 `tableName` 或 `tableID` 实例化一个 `Table` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName。
 
 **示例代码**
-{% tabs swift1="Swift", oc1="Objective-c" %}
+{% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
 // 通过 tableId 创建数据表实例 
@@ -31,11 +38,11 @@ tableName 和 tableID 二选一
 | 名称     | 类型   | 必填   | 说明                   |
 | :-----  | :----- | :---- | :--- |
 | tableId   | Int(Swift) / NSInteger(OC)  | 是   | 数据表的 ID             |
-| tableName | String(Swift / NSString(OC)) |  是 | 数据表名 |
+| tableName | String(Swift) / NSString(OC) |  是 | 数据表名 |
 
-2.本地创建一条空记录
+### 本地创建一条空记录
 
-{% tabs swift2="Swift", oc2="Objective-c" %}
+{% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
 let record = table.createRecord()
@@ -46,34 +53,36 @@ BAASRecord *record = [table createRecord];
 ```
 {% endtabs %}
 
-3.为上面创建的空记录赋值
+### 为上面创建的空记录赋值
 
 有两种类型的赋值操作：
 
 a.一次性赋值：
 
-{% tabs swift3="Swift", oc3="Objective-c" %}
+{% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
 ```
 record.set(record: ["name": "bookname", "color": "red", "price": 19])
 ```
-{% content "oc3" %}
-```
-[record setWithRecord:@{@"name": @"bookname", @"color": @"red", @"price": @10}];
-
-```
-{% endtabs %}
-
 **参数说明**
 
 | 名称       | 类型           | 说明        |
 | :-------- | :------------  | :------    |
-| record    | Dictionary(Swift) / NSDictionary(OC)     | 记录信息，key 为字段名称   |
+| record    | Dictionary     | 记录信息，key 为字段名称   |
+{% content "oc3" %}
+```
+[record setWithRecord:@{@"name": @"bookname", @"color": @"red", @"price": @10}];
+```
+**参数说明**
 
+| 名称       | 类型           | 说明        |
+| :-------- | :------------  | :------    |
+| record    | NSDictionary   | 记录信息，key 为字段名称   |
+{% endtabs %}
 
 b.逐个赋值：
 
-{% tabs swift4="Swift", oc4="Objective-c" %}
+{% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 ```
 record .set(key: "color", value: "red")
@@ -91,7 +100,7 @@ record.set(key: "price", value: 10)
 
 4.将创建的记录保存到服务器
 
-{% tabs swift5="Swift", oc5="Objective-c" %}
+{% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}
 ```
 record.save { (success, error) in
@@ -106,41 +115,61 @@ record.save { (success, error) in
 ```
 {% endtabs %}
 
+**返回结果**
+ 
+| 名称      | 类型           | 说明 |
+| :------- | :------------  | :------ |
+| success  | Bool           | 是否新增数据成功 |
+| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+
+success 写入数据成功后，记录对象 record 的数据将被更新。
+
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+
 通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。
 
 ## 添加普通数据
 
+假设有一个 `Book` 表，包括 `name`、`author`、`price` 等字段，表示书名、作者、价格。
+
 **请求示例**
 
-{% tabs swift6="Swift", oc6="Objective-c" %}
+{% tabs swift6="Swift", oc6="Objective-C" %}
 {% content "swift6" %}
 ```
-let Book = Table(tableName: "Book")
-let book = Book.createRecord()
+// 创建 `Table` 对象
+let bookTable = Table(tableName: "Book")
+
+// 创建一条空的记录
+let book = bookTable.createRecord()
 
 // 设置方式一
-book.set(record: ["name": "bookname", "color": "red", "price": 10])
+book.set(record: ["name": "老人与海", "author": "海明威", "price": 49])
 
 // 设置方式二
-book.set(key: "name", value: "bookname");
-book .set(key: "color", value: "red")
-book.set(key: "price", value: 10)
+book.set(key: "name", value: "老人与海");
+book.set(key: "author", value: "海明威")
+book.set(key: "price", value: 49)
+
 book.save { (success, error) in
 
 }
 ```
 {% content "oc6" %}
 ```
-BAASTable *Book = [[BAASTable alloc] initWithTableName:@"Book"];
-BAASTableRecord *book = [Book createRecord];
+// 创建 `Table` 对象
+BAASTable *bookTable = [[BAASTable alloc] initWithTableName:@"Book"];
+
+// 创建一条空记录
+BAASTableRecord *book = [bookTable createRecord];
 
 // 设置方式一
-[book setWithRecord:@{@"name": @"bookname", @"color": @"red" @"price": @10}];
+[book setWithRecord:@{@"name": @"老人与海", @"author": @"海明威" @"price": 49}];
 
 // 设置方式二
-[book setWithKey:@"name" value:@"bookname"];
-[book setWithKey:@"color" value:@"red"];
-[book setWithKey:@"price" value:@10];
+[book setWithKey:@"name" value:@"老人与海"];
+[book setWithKey:@"author" value:@"海明威"];
+[book setWithKey:@"price" value:49];
 
 [book save:^(BOOL success, NSError * _Nullable error) {
 
@@ -148,20 +177,11 @@ BAASTableRecord *book = [Book createRecord];
 ```
 {% endtabs %}
 
-**结果返回**
-
-| 名称       | 类型           | 说明 |
-| :-------- | :------------  | :------ |
-| success   | Bool           | 是否更新成功 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息     |
-
-数据插入成功后，该记录将会被更新。
-
 ## 添加日期时间 Date 类型的数据
 
 数据表允许添加时间日期类型的列，为该类型的记录赋值，需要使用 ISO Date 格式的字符串，如 Book 表定义一个时间日期类型的列 publish_date，创建一条记录时，该字段的赋值操作如下：
 
-{% tabs swift7="Swift", oc7="Objective-c" %}
+{% tabs swift7="Swift", oc7="Objective-C" %}
 {% content "swift7" %}
 ```
 let dateISO = ISO8601DateFormatter().string(from: Date())
@@ -179,7 +199,7 @@ NSString *dateISO = [dateFormatter stringFromDate:[NSDate date]];
 
 如 Book 表定义 file 类型的列 cover，表示书的封面：
 
-{% tabs swift8="Swift", oc8="Objective-c" %}
+{% tabs swift8="Swift", oc8="Objective-C" %}
 {% content "swift8" %}
 ```
 let filePath = Bundle.main.path(forResource: "cover", ofType: "png")!
@@ -202,7 +222,32 @@ NSString *filePath = [[NSBundle mainBundle] pathForResource:@"cover" ofType:@"pn
 
 ## 添加 geojson 类型数据
 
-查看 [地理位置操作](./geo.md) 章节
+表中有名称为 location，polygon 的两列，类型都为 geojson。
+
+{% tabs swift8_1="Swift", oc8_1="Objective-C" %}
+{% content "swift8_1" %}
+```
+// Point 类型
+let point = GeoPoint(latitude: 2, longitude: 10)
+record.set(key: "location", value: point.geoJson)
+
+// GeoPolygon
+let polygon = GeoPolygon(coordinates: [[30, 10], [40, 40], [20, 40], [10, 20], [30, 10]])
+record.set(key: "polygon", value: polygon.geoJson)
+```
+{% content "oc8_1" %}
+```
+// Point类型
+BAASGeoPoint *point = [[BAASGeoPoint alloc] initWithLatitude:10 longitude:2];
+[record setWithKey:@"location" value:point.geoJson];
+
+// GeoPolygon
+BAASGeoPolygon *polygon = [[BAASGeoPolygon alloc] initWithCoordinates:@[@[30, 10], @[40, 40], @[20, 40], @[10, 20], @[30, 10]]];
+[record setWithKey:@"polygon" value:polygon.geoJson];
+```
+{% endtabs %}
+
+关于 geojson 类型查看 [地理位置操作](./geo.md) 章节
 
 ## 添加 object 类型数据
 
@@ -233,7 +278,7 @@ comment 字段指向了 Comment 表中 id 为 5bad87ab0769797b4fb27a1b 的数据
 
 user 字段指向了 _userprofile 表中 id 为 69147880 的数据行
 
-{% tabs swift9="Swift", oc9="Objective-c" %}
+{% tabs swift9="Swift", oc9="Objective-C" %}
 {% content "swift9" %}
 ```
 book.set(key: "comment", value: "5bad87ab0769797b4fb27a1b")
@@ -249,16 +294,16 @@ book.set(key: "user", value: "69147880")
 
 ## 批量新增数据项
 
-{% tabs swift10="Swift", oc10="Objective-c" %}
+{% tabs swift10="Swift", oc10="Objective-C" %}
 {% content "swift10" %}
 ```
-table.create(records: [["name": "bookname1", "color": "red", "price": 10], ["name": "bookname", "color": "green", "price": 10]]) { (success, error) in
+table.create(records: [["name": "老人与海", "author": "海明威", "price": 10], ["name": "麦田", "author": "塞林格", "price": 10]]) { (success, error) in
 
 }
 ```
 {% content "oc10" %}
 ```
-[table createWithRecords:@[@{@"name": @"bookname1", @"color": @"red", @"price": @10}, @{@"name": @"bookname2", @"color": @"green" @"price": @11}] enableTrigger:true completion:^(BOOL success, NSError * _Nullable error) {
+[table createWithRecords:@[@{@"name": @"老人与海", @"author": @"海明威", @"price": @10}, @{@"name": @"麦田", @"author": @"塞林格" @"price": @11}] enableTrigger:true completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -272,3 +317,12 @@ table.create(records: [["name": "bookname1", "color": "red", "price": 10], ["nam
 | enableTrigger | Bool    |   是否触发触发器  |
 
 > Swift 默认会触发触发器。
+
+**返回结果**
+ 
+| 名称      | 类型           | 说明 |
+| :------- | :------------  | :------ |
+| success  | Bool           | 是否新增数据成功 |
+| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

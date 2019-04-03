@@ -12,9 +12,37 @@ currentUser 代表了当前登录的用户，开发者可以通过浏览 current
 
 该对象关联 `_userprofile` 表中 id 为当前用户 ID 的数据行。currentUser 字段包含了 `_userprofile` 表的所有的*内置字段*。
 
-自定义字段获取：
-* Swift： `User.currentUser?.get(key: "keyName")`
-* Objective-C：`[BAASUser.currentUser getWithKey:@"keyName"];`
+**获取内置字段**
+
+{% tabs swift1_1="Swift", oc1_1="Objective-C" %}
+{% content "swift1_1" %}
+```
+User.currentUser?.username      // 用户名
+User.currentUser?.gender        // 性别
+useUser.currentUser?r.city      // 城市
+...                             // 其他内置字段类似方式获取
+```
+{% content "oc1_1" %}
+```
+BAASUser.currentUser.username  // 用户名
+BAASUser.currentUser.gender    // 性别
+BAASUser.currentUser.city      // 城市
+...                            // 其他内置字段类似方式获取
+```
+{% endtabs %}
+
+获取自定义字段：
+
+{% tabs swift1_2="Swift", oc1_2="Objective-C" %}
+{% content "swift1_2" %}
+```
+User.currentUser?.get(key: "keyName")
+```
+{% content "oc1_2" %}
+```
+[BAASUser.currentUser getWithKey:@"keyName"];
+```
+{% endtabs %}
 
 ## 设置用户信息
 
@@ -64,7 +92,7 @@ User.currentUser?.updateUsername("test_new") { (success, error) in
 
 更新成功后，currentUser.username 将被更新为新的用户名。
 
-error 对象结构请参考
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ### 设置邮箱
 
@@ -104,7 +132,7 @@ User.currentUser?.updateEmail("test_new@ifanr.com") { (success, error) in
 
 更新成功后，currentUser.email 将被更新为新的邮箱地址。
 
-error 对象结构请参考
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ### 设置密码
 
@@ -145,7 +173,7 @@ User.currentUser?.updatePassword("111", newPassword: "1111") { (success, error) 
 | success   | Bool           | 是否更新成功 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
-error 对象结构请参考
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ### 更新用户自定义字段
 
@@ -185,7 +213,7 @@ User.currentUser?.updateUserInfo(["age": 18]) { (success, error) in
 
 更新成功后，新的用户信息将被更新到 currentUser。
 
-error 对象结构请参考
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ### 邮箱验证
 
@@ -218,7 +246,7 @@ User.currentUser?.requestEmailVerification() { (success, error) in
 | success   | Bool           | 是否已发送邮件 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
-error 对象结构请参考
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ## 忘记密码
 
@@ -253,4 +281,4 @@ User.currentUser?.resetPassword(email: "test@ifanr.com") { (success, error) in
 | success   | Bool           | 是否已发送邮件 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
-error 对象结构请参考。
+err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
