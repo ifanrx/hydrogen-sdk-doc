@@ -40,18 +40,18 @@ record.save();          // 这样就保存至后端了
 ## 获取一条记录
 {% ifanrxCodeTabs %}
 ```java
-Record record = table.fetchRecord("...");
+Record record = table.fetchRecord(...);
 record.getXXX(...);             // 获取记录的各个属性
 record.putXXX(...);             // 修改之
 record.save();                  // 保存至后端
 ```
 {% endifanrxCodeTabs %}
 
-
-## 查询记录
+## 删除一条记录
 {% ifanrxCodeTabs %}
 ```java
-table.query(BaseQuery query);   // 得到一页记录，包括记录总数，此页内容
+Record record = table.fetchRecord(...);
+record.delete();                  
 ```
 {% endifanrxCodeTabs %}
 
@@ -68,14 +68,16 @@ record.getWritePerm();      // 写权限列表
 record.getReadPerm();       // 读权限列表
 
 // 用户在定义表时新增的列，就需要通过 getXXX() 和 putXXX 方法读写
+record.putXXX(...);
 ```
 {% endifanrxCodeTabs %}
 
 
-## 查询
+## 列表查询
 {% ifanrxCodeTabs %}
 ```java
-BaseQuery query = new BaseQuery();  // BaseQuery 代表了查询条件，一般的列表 api 都需要传一个此实例过去
+// BaseQuery 代表了查询条件，一般的列表 api 都需要传一个此实例过去
+BaseQuery query = new BaseQuery();  
 
 // 通用的查询条件，具体的使用方法参考文档和代码注释
 BaseQuery.OFFSET
@@ -89,6 +91,9 @@ query.put(BaseQuery.OFFSET, "0")
 query.put(BaseQuery.LIMIT, "15")
 query.put(BaseQuery.EXPAND, "horse_owner")
 query.put(BaseQuery.ORDER_BY, Record.CREATED_AT)
+
+// 得到一页记录，包括记录总数，此页内容
+table.query(query);  
 ```
 {% endifanrxCodeTabs %}
 
@@ -109,6 +114,34 @@ query.putWhere(where);      // 最后放入查询条件里
 ```
 {% endifanrxCodeTabs %}
 
+## 批量操作
+```java
+// 批量删除，这里主要是构建 where 条件（类似 delete from where ...），可以添加分页条件
+BaseQuery query = new BaseQuery();
+query.put(...)
+Where condition = new Where();
+query.putWhere(condition);
+table.batchDelete(query);
+
+// 批量保存
+List<Record> products = table.query(query).getObjects();
+for(Record product : products) {
+    product.put(...);
+}
+table.batchSave(products);
+
+// 批量删除，这里主要是构建 where 条件（类似 update where ...），可以添加分页条件
+BaseQuery query = new BaseQuery();
+query.put(...)
+Where condition = new Where();
+query.putWhere(condition);
+
+// 这里相当于 update 的内容
+Record update = new Record();
+update.put(...);
+table.batchUpdate(query, update);
+```
+
 
 ## 用户相关
 {% ifanrxCodeTabs %}
@@ -122,13 +155,14 @@ Auth.resetPwd(String email);                        // 重置邮箱所属用户�
 {% endifanrxCodeTabs %}
 
 
-## 用户登录和登出
+## 登录和登出
 {% ifanrxCodeTabs %}
 ```java
 Auth.signInByEmail(String email, String pwd);       // 邮箱登录
 Auth.signInByUsername(String username, String pwd); // 用户名登录
 Auth.signInAnonymous();                             // 匿名登录
 Auth.logout();                                      // 登出
+Auth.isSignIn();                                    // 是否有登录
 ```
 {% endifanrxCodeTabs %}
 
@@ -173,7 +207,7 @@ Storage.category(String id);            // 分类详情
 ## 内容
 {% ifanrxCodeTabs %}
 ```java
-Contents.contents(@NonNull BaseQuery query);         // 内容列表
+Contents.contents(@NonNull BaseQuery query);            // 内容列表
 Contents.content(String id);                            // 内容详情
 Contents.contentGroups(@NonNull BaseQuery query);       // 内容库列表
 Contents.contentCategories(@NonNull BaseQuery query);   // 内容分类列表
