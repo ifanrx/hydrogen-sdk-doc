@@ -47,6 +47,44 @@
 
 # 模板消息
 
+## 上报模版消息卡片点击事件
+
+{% if apiPrefix == "wx." %}
+`wx.BaaS.reportTemplateMsgAnalytics(options)`
+{% elif apiPrefix == "my." %}
+`my.BaaS.reportTemplateMsgAnalytics(options)`
+{% endif %}
+
+**参数说明**
+
+| 参数   | 类型   | 必填 | 说明 |
+| :----- | :----- | :--- | :-- |
+| options | Object | 是   | 与 onShow 中的参数 options 相同 |
+
+上报模版消息卡片点击事件，需要用户在 `app.js` 的 `onShow` 中做一个埋点，其他的事情由 SDK 自动完成。
+
+**示例代码**
+
+{% if apiPrefix == "wx." %}
+```js
+// app.js
+...
+  onShow: function(options) {
+    wx.BaaS.reportTemplateMsgAnalytics(options)
+  },
+...
+```
+{% elif apiPrefix == "my." %}
+```js
+// app.js
+...
+   onShow: function(options) {
+    my.BaaS.reportTemplateMsgAnalytics(options)
+  },
+...
+```
+{% endif %}
+
 ## 上报模版消息所需 formId
 
 ### 方式一：获取到 formId 后，调用接口上报
