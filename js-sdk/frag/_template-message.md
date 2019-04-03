@@ -67,7 +67,7 @@
 ### 方式二：使用自定义组件自动上报（推荐）
 {% if apiPrefix == "wx." %}
 
-插件版 SDK 提供了自定义组件 ticket-report-wrapper，
+插件版 SDK 提供了自定义组件 ticket-report-wrapper（插件版本尚未发布，即将在 2.0.5 以上版本提供，请先使用 npm 版），
 文件版与 npm 版 SDK，可以通过 npm 获取该组件（包名为 minapp-ticket-wx）。
 
 使用 ticket-report-wrapper 组件包裹内容，相当于在内容之上盖一个透明的遮罩，因此会内容中的点击事件无法被触发。
