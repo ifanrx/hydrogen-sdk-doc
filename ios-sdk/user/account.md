@@ -92,7 +92,7 @@ User.currentUser?.updateUsername("test_new") { (success, error) in
 
 更新成功后，currentUser.username 将被更新为新的用户名。
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ### 设置邮箱
 
@@ -132,7 +132,7 @@ User.currentUser?.updateEmail("test_new@ifanr.com") { (success, error) in
 
 更新成功后，currentUser.email 将被更新为新的邮箱地址。
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ### 设置密码
 
@@ -173,7 +173,7 @@ User.currentUser?.updatePassword("111", newPassword: "1111") { (success, error) 
 | success   | Bool           | 是否更新成功 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ### 更新用户自定义字段
 
@@ -213,7 +213,7 @@ User.currentUser?.updateUserInfo(["age": 18]) { (success, error) in
 
 更新成功后，新的用户信息将被更新到 currentUser。
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ### 邮箱验证
 
@@ -246,7 +246,7 @@ User.currentUser?.requestEmailVerification() { (success, error) in
 | success   | Bool           | 是否已发送邮件 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ## 忘记密码
 
@@ -281,4 +281,4 @@ User.currentUser?.resetPassword(email: "test@ifanr.com") { (success, error) in
 | success   | Bool           | 是否已发送邮件 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

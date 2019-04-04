@@ -42,7 +42,7 @@ Auth.register(email: "test@ifanr.com", password: "111") { (user, error) in
 | user    | User         | 当前用户，也可以用 User.currentUser 获取|
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ### 通过用户名注册
 
@@ -76,7 +76,7 @@ Auth.register(username: "test", password: "111") { (user, error) in
 | user    | User         | 当前用户，也可以用 User.currentUser 获取|
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ## 登录
 
@@ -140,7 +140,7 @@ Auth.login(username: "test", password: "111") { (user, error) in
 | username    | String      | 用户邮箱 |
 | password | String         | 密码     |
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 **返回结果**
 
@@ -196,7 +196,7 @@ Auth.anonymousLogin { (user, error) in
 | user    | User         | 当前用户，也可以用 User.currentUser 获取|
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ### 登出
 
@@ -225,4 +225,4 @@ Auth.logout { (success, error) in
 | success  | Bool           | 是否登出成功 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息  |
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

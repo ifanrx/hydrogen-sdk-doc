@@ -104,8 +104,9 @@
         * [内容操作](ios-sdk/content/operate.md)
     * [文件](ios-sdk/file/README.md)
         * [文件操作](ios-sdk/file/file.md)
+    * [调用云函数](ios-sdk/invoke-function.md)
     * [错误码和 HError 对象](ios-sdk/error-code.md)
-
+    
 ----
 
 * [知晓云开放 API](open-api/README.md)

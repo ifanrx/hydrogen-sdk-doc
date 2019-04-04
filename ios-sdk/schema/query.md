@@ -234,6 +234,105 @@ BAASQuery *query = [BAASQuery containsWithKey:@"color" value:@"app"];
 ```
 {% endtabs %}
 
+## 正则匹配
+
+构造正则表达式语法
+
+```
+regex = "/pattern/flags"
+```
+
+* pattern: 匹配模式
+* flags: 修饰符，如下表介绍
+
+| flag   | 介绍               | 
+| :---- | :------------------|
+| g   | global match; find all matches rather than stopping after the first match              |
+| i | ignore case; if u flag is also enabled, use Unicode case folding  |
+| m   | multiline; treat beginning and end characters (^ and $) as working over multiple lines (i.e., match the beginning or end of each line (delimited by \n or \r), not only the very beginning or end of the whole input string)|
+| s | "dotAll"; allows . to match newlines|
+| u   | Unicode; treat pattern as a sequence of Unicode code points|
+| z | sticky; matches only from the index indicated by the lastIndex property of this regular expression in the target string (and does not attempt to match from any later indexes).|
+
+> 正则表达式，使用的是 `JavaScript` 的语法规则，请参考 [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)。
+
+**代码示例**
+
+```js
+/* 以查找名字为例，name 字段必须为 string 类型 */
+
+let regExp
+
+// 查找 以 foo 开头的名字，并且对大小写不敏感
+regExp = /^foo/i
+
+query.matches('name', regExp)
+
+
+/* 以查找手机号码为例，phoneNumber 字段必须为 string 类型 */
+
+let regx
+
+// 查找 以 188 开头的手机号码
+regx = /^188/
+
+// 查找 以 708 结尾的手机号码
+regx = /708$/
+
+// 查找 以 188 开头的手机号码，以 708 结尾的手机号码
+regx = /^188\d+708$/
+
+query.matches('phoneNumber', regx)
+```
+
+{% tabs swift8_1="Swift", oc8_1="Objective-C" %}
+{% content "swift8_1" %}
+```
+/* 以查找名字为例，name 字段必须为 String 类型 */
+
+// 查找 以 foo 开头的名字，并且对大小写不敏感
+let regExp = "/^foo/i"
+
+let query = Query.matches(key: "name", regx: regExp)
+
+
+/* 以查找手机号码为例，phoneNumber 字段必须为 string 类型 */
+
+// 查找 以 188 开头的手机号码
+let regx = "/^188/"
+
+// 查找 以 708 结尾的手机号码
+let regx = "/708$/"
+
+// 查找 以 188 开头的手机号码，以 708 结尾的手机号码
+let regx = "/^188\d+708$/"
+
+let query = Query.matches(key: 'phoneNumber', regx: regx)
+```
+{% content "oc8_1" %}
+```
+/* 以查找名字为例，name 字段必须为 NSString 类型 */
+
+// 查找 以 foo 开头的名字，并且对大小写不敏感
+NSString *regx = @"/^foo/i";
+
+BAASQuery *query = [BAASQuery matchesWithKey:@"name" regx: regx];
+
+/* 以查找手机号码为例，phoneNumber 字段必须为 NSString 类型 */
+
+// 查找 以 188 开头的手机号码
+NSString *regx = @"/^188/";
+
+// 查找 以 708 结尾的手机号码
+NSString *regx = @"/708$/";
+
+// 查找 以 188 开头的手机号码，以 708 结尾的手机号码
+NSString *regx = @"/^188\d+708$/";
+
+BAASQuery *query = [BAASQuery matchesWithKey:@"phoneNumber" regx: regx];
+```
+{% endtabs %}
+
 ## 数组查询
 
 field 的类型不限制，field 的 value 含有 array 中的一个或多个
