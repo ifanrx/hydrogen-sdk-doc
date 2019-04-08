@@ -63,3 +63,30 @@ BAASQuery *query = [BAASQuery compareWithKey:@"price" operator:BAASOperatorLessT
 | enableTrigger | Bool    |   是否触发触发器  |  N
 
 > Swift 默认会触发触发器。
+
+**返回结果**
+ 
+| 名称      | 类型           | 说明 |
+| :------- | :------------  | :------ |
+| result  |  Dictionary           | 删除的数据结果 |
+| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+
+ **返回示例**
+ ```
+ {
+  "succeed": 8,
+  "total_count": 10,
+  "offset": 0,
+  "limit": 10,
+  "next": null
+}
+ ```
+
+**参数说明**
+* succeed:	成功删除记录数
+* total_count:	query 条件匹配的记录数，包括无权限操作记录
+* offset: 与传入参数 offset 一致
+* limit: 与传入参数 limit 一致
+* next: 下一次的更新链接，若待更新记录数超过上限，可通过该链接继续更新
+
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

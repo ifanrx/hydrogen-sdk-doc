@@ -9,18 +9,18 @@
 {% content "swift1" %}
 ```
 // 通过 tableId 创建数据表实例 
-let table = Table(tableId: 1236**)
+let table = Table(Id: 1236**)
 
 // 通过 tablename 创建数据表实例
-let table = Table(tableName: "Book")
+let table = Table(name: "Book")
 ```
 {% content "oc1" %}
 ```
 // 通过 tableId 创建数据表实例
-BAASTable *table = [[BAASTable alloc] initWithTableId:1236**];
+BAASTable *table = [[BAASTable alloc] initWithId:1236**];
 
 // 通过 tablename 创建数据表实例
-BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
+BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
 ```
 {% endtabs %}
 
@@ -38,13 +38,13 @@ tableName 和 tableID 二选一
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-table.get(recordId: "5c944a22d575a970a9b91c13") { (record, error) in
+table.get("5c944a22d575a970a9b91c13") { (record, error) in
 
 }
 ```
 {% content "oc2" %}
 ```
-[table getWithRecordId:@"5ca09074be20d67490232a28" completion:^(BAASTableRecord * _Nullable record, NSError * _Nullable error) {
+[table get:@"5ca09074be20d67490232a28" completion:^(BAASTableRecord * _Nullable record, NSError * _Nullable error) {
                         
 }];
 ```

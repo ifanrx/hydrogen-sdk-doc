@@ -9,18 +9,18 @@
 {% content "swift1" %}
 ```
 // 通过 tableId 创建数据表实例 
-let table = Table(tableId: 1236**)
+let table = Table(Id: 1236**)
 
 // 通过 tablename 创建数据表实例
-let table = Table(tableName: "Book")
+let table = Table(name: "Book")
 ```
 {% content "oc1" %}
 ```
 // 通过 tableId 创建数据表实例
-BAASTable *table = [[BAASTable alloc] initWithTableId:1236**];
+BAASTable *table = [[BAASTable alloc] initWithId:1236**];
 
 // 通过 tablename 创建数据表实例
-BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
+BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
 ```
 {% endtabs %}
 
@@ -67,7 +67,7 @@ record.set(record: ["name": "bookname", "color": "red", "price": 19])
 
 | 名称       | 类型           | 说明        |
 | :-------- | :------------  | :------    |
-| record    | Dictionary(Swift) / NSDictionary(OC)     | 记录信息，key 为字段名称   |
+| record    | Dictionary     | 记录信息，key 为字段名称   |
 
 
 b.逐个赋值：
@@ -184,7 +184,7 @@ book.incrementBy(key: "price", value: 1)
 
 | 参数   | 类型              | 必填 | 说明 |
 | :---- | :---------------- | :-- | :-- |
-| key   | String(Swift) / NSString(OC)  | 是  | 在数据表中的类型必须是 Number 或 Integer |
+| key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
 | value | Double             | 是  | 与 key 的类型保持一致 |
 
 ## 数组原子性更新
@@ -208,8 +208,8 @@ book.append(key: "recommender", value: ["xiaoming"])
 
 | 参数   | 类型                | 必填 | 说明 |
 | :---- | :------------------ | :-- | :--- |
-| key   | String(Swift) / NSString(OC) | 是  | 在数据表中的类型必须是 Array |
-| value | Array(Swift) / NSArray(OC) | 是  | - |
+| key   | String             | 是  | 在数据表中的类型必须是 Array |
+| value | Array               | 是  | - |
 
 ### 将 _待插入的数组_ 中不包含在原数组的数据加到原数组末尾
 
@@ -228,8 +228,8 @@ book.uAppend(key: @"author", value: ["xiaoming", "xiaohong"])
 
 | 参数   | 类型                | 必填 | 说明 |
 | :---- | :------------------ | :-- | :-- |
-| key   | String(Swift) / NSString(OC)              | 是  | 在数据表中的类型必须是 Array |
-| value | Array(Swift) / NSArray(OC)  | 是   | - |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+| value | Array               | 是   | - |
 
 ### 从原数组中删除指定的值
 
@@ -248,8 +248,8 @@ book.remove(key: "author", value: ["xiaoming", "xiaohong"])
 
 | 参数   | 类型                | 必填 | 说明 |
 | :---- | :------------------ | :-  | :-- |
-| key   | String(Swift) / NSString(OC) | 是  | 在数据表中的类型必须是 Array |
-| value | Array(Swift) / NSArray(OC)    | 是  | 如果元素类型是 geojson、object、file，则只能是 length 为 1 的 Array |
+| key   | String               | 是  | 在数据表中的类型必须是 Array |
+| value | Array               | 是  | 如果元素类型是 geojson、object、file，则只能是 length 为 1 的 Array |
 
 ## 按条件批量更新数据项
 
@@ -273,7 +273,7 @@ let query = Query.compare(key: "price", operator: .lessThan, value: 15)
 table.setQuery(query)
 let record = table.createRecord()
 record.incrementBy(key: "price", value: 1)
-table.update(record: record) { (success, error) in
+table.update(record) { (success, error) in
                 
 }
 ```
@@ -283,7 +283,7 @@ BAASQuery *query = [BAASQuery compareWithKey:@"price" operator:BAASOperatorLessT
 [table setQuery:query];
 BAASTableRecord *record = [_table createRecord];
 [record incrementByKey:@"price" value:@1];
-[table updateWithRecord:record enableTrigger:true completion:^(BOOL success, NSError * _Nullable error) {
+[table update:record enableTrigger:true completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -302,7 +302,42 @@ BAASTableRecord *record = [_table createRecord];
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| success  | Bool           | 是否新增数据成功 |
+| result  | Dictionary           | 更新的数据结果 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息  |
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+> 说明
+ error 为 nil 不说明批量更新数据完全成功，仅代表服务端已收到并处理了这个请求，只有当返回的结果中 operation_result 列表中不存在 error 元素时，才可以认为所有数据均更新成功。
+
+ **返回示例**
+ ```
+ {
+  "operation_result": [
+    {"success": {"id": "5bfe000ce74243582bf2979f", "updated_at": "1543459089"}},
+    {
+       "error": {
+         "code": 16837,
+         "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
+       }
+    }
+  ],
+  "succeed": 8,
+  "total_count": 10,
+  "offset": 0,
+  "limit": 10,
+  "next": null
+}
+ ```
+
+**参数说明**
+* succeed:	成功创建记录数
+* total_count:	总的待创建记录数
+* offset: 与传入参数 offset 一致
+* limit: 与传入参数 limit 一致
+* next: 下一次的更新链接，若待更新记录数超过上限，可通过该链接继续更新
+* operation_result: 批量写入每一条数据的结果
+
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+
+**常见错误码**
+* 201：成功写入
+* 400：非法数据

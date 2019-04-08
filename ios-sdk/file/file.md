@@ -52,13 +52,14 @@ let filePath = Bundle.main.path(forResource: "1", ofType: "png")!
 {% content "swift3" %}
 ```
 let fileId = "5c98b065d575a97d5f878225"
-fileManager.get(fileId: fileId) { (result, error) in
+fileManager.get(fileId) { (result, error) in
 
 }
 ```
 {% content "oc3" %}
 ```
-[fileManager getWithFileId:@"" completion:^(BAASFile * _Nullable file, NSError * _Nullable error) {
+NString *fileId = @"5c98b065d575a97d5f878225";
+[fileManager get:@"" completion:^(BAASFile * _Nullable file, NSError * _Nullable error) {
 
 }];
 ```
@@ -75,13 +76,13 @@ fileManager.get(fileId: fileId) { (result, error) in
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 ```
-fileManager.delete(fileIds: ["5c98aed0d575a97d5f878224", "5c98aed0d575a97d6e1ace9b"]) { (success, error) in
+fileManager.delete(["5c98aed0d575a97d5f878224", "5c98aed0d575a97d6e1ace9b"]) { (success, error) in
 
 }
 ```
 {% content "oc4" %}
 ```
-[fileManager deleteWithFileIds:@[@"5c98aed0d575a97d5f878224", @"5c98aed0d575a97d6e1ace9b"] completion:^(BOOL success, NSError * _Nullable error) {
+[fileManager delete:@[@"5c98aed0d575a97d5f878224", @"5c98aed0d575a97d6e1ace9b"] completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 
@@ -104,8 +105,8 @@ fileManager.delete(fileIds: ["5c98aed0d575a97d5f878224", "5c98aed0d575a97d6e1ace
 | 支持字段       |  类型   | 说明 |
 | :-----------  | :----- | :--- |
 | name          | String | 文件名 |
-| size          | Number | 文件大小，以字节为单位 |
-| created_at    | Number | 文件上传时间 |
+| size          | Int | 文件大小，以字节为单位 |
+| created_at    | TimeInterval | 文件上传时间 |
 
 ### 分页
 文件查询排序与[数据表分页](../schema/limit-and-order.md)方法一致

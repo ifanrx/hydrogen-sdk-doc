@@ -12,7 +12,7 @@
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
-let table = Table(tableName: "Book")
+let table = Table(name: "Book")
 table.limit(100)
 table.offset(400)
 table.find { (result, error) in
@@ -21,7 +21,7 @@ table.find { (result, error) in
 ```
 {% content "oc1" %}
 ```
-BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
+BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
 [table limit:100];
 [table offset:400];
 [table find:^(NSArray<BAASTableRecord *> * _Nullable records, NSError * _Nullable error) {
@@ -37,7 +37,7 @@ BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-let table = Table(tableName: "Book")
+let table = Table(name: "Book")
 // 升序
 table.orderBy(['created_at'])
 
@@ -53,7 +53,7 @@ table.find { (records, error) in
 ```
 {% content "oc2" %}
 ```
-BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
+BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
 // 升序
 [table orderBy:@[@"created_at"]];
 
@@ -73,7 +73,7 @@ BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| records  | Array<TableTable> (Swift) / NSArray<BAASTableRecord *> (OC)  | 是否新增数据成功 |
+| records  | Array<TableTable>  | 是否新增数据成功 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息  |
 
 err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

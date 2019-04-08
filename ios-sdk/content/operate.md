@@ -5,11 +5,11 @@
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
-let contentGroup = ContentGroup(contentGroupId: "1553312765380156")
+let contentGroup = ContentGroup(Id: "1553312765380156")
 ```
 {% content "oc1" %}
 ```
-BAASContentGroup *contentGroup = [[BAASContentGroup alloc] initWithContentGroupId: @"1553312765380156"];
+BAASContentGroup *contentGroup = [[BAASContentGroup alloc] initId: @"1553312765380156"];
 ```
 {% endtabs %}
 
@@ -17,7 +17,7 @@ BAASContentGroup *contentGroup = [[BAASContentGroup alloc] initWithContentGroupI
 
 | 参数           | 类型    | 必填 | 说明 |
 | :------------- | :----- | :-- | :-- |
-| contentGroupID | String | 是  | 内容库 ID |
+| Id | String | 是  | 内容库 ID |
 
 ### 获取内容详情
 
@@ -25,14 +25,14 @@ BAASContentGroup *contentGroup = [[BAASContentGroup alloc] initWithContentGroupI
 {% content "swift2" %}
 ```
 let contentId = "1553329603126641"
-contentGroup.get(contentId: contentId) { (result, error) in
+contentGroup.get(contentId) { (result, error) in
 
 }
 ```
 {% content "oc2" %}
 ```
 NSString *contentId = @"1553329603126641";
-[_contentGroup getWithContentId:contentId completion:^(BAASContent * _Nullable content, NSError * _Nullable error) {
+[_contentGroup get:contentId completion:^(BAASContent * _Nullable content, NSError * _Nullable error) {
 
 }];
 ```
@@ -42,7 +42,7 @@ NSString *contentId = @"1553329603126641";
 
 | 参数名      | 类型   | 必填  | 说明 |
 | :--------- | :----- | :--- | :-- |
-| contentId | String | 是   | 内容 ID |
+| Id | String | 是   | 内容 ID |
 
 ### 查询，获取内容列表
 

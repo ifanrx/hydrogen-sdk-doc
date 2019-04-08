@@ -1,4 +1,4 @@
-# 使用 CocoaPods 安装 BaaSSDK
+# 使用 CocoaPods 安装 MinCloud
 
 在 Podfile 文件中添加以下代码
 
@@ -7,7 +7,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target 'YOUR_APP_TARGET' do # 替换 YOUR_APP_TARGET 为你的应用名称。
-    pod 'BaaSSDK'
+    pod 'MinCloud'
 end
 ```
 
@@ -17,11 +17,11 @@ end
 pod install
 ```
 
-# 初始化 BaaSSDK
+# 初始化 MinCloud
 
 在应用启动时，需要注册知晓云 clientId，即在 APPDelegate 文件中，找到 application:didFinishLaunchingWithOptions 函数，插入下面代码：
 **示例代码**
-{% tabs swift1="Swift", oc1="Objective-c" %}
+{% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
 BaaS.register(clientID: "f86c122f10f45d1152a1")
@@ -32,16 +32,16 @@ BaaS.register(clientID: "f86c122f10f45d1152a1")
 ```
 {% endtabs %}
 
-## 在需要使用 BaaSSDK 的文件中导入 BaaSSDK
+## 在需要使用 MinCloud 的文件中导入 MinCloud
 
-{% tabs swift2="Swift", oc2="Objective-c" %}
+{% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-import BaaSSDK
+import MinCloud
 ```
 {% content "oc2" %}
 ```
-@import BaaSSDK;
+@import MinCloud;
 ```
 {% endtabs %}
 
@@ -49,7 +49,7 @@ import BaaSSDK
 
 开启调试信息，将在开发过程输出错误信息。
 
-{% tabs swift3="Swift", oc3="Objective-c" %}
+{% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
 ```
 BaaS.isDebug = true

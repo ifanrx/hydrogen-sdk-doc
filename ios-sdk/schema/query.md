@@ -27,18 +27,18 @@
 {% content "swift1" %}
 ```
 // 通过 tableId 创建数据表实例 
-let table = Table(tableId: 1236)
+let table = Table(Id: 1236)
 
 // 通过 tablename 创建数据表实例
-let table = Table(tableName: "Book")
+let table = Table(name: "Book")
 ```
 {% content "oc1" %}
 ```
 // 通过 tableId 创建数据表实例
-BAASTable *table = [[BAASTable alloc] initWithTableId:1236**];
+BAASTable *table = [[BAASTable alloc] initWithId:1236**];
 
 // 通过 tablename 创建数据表实例
-BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
+BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
 ```
 {% endtabs %}
 
@@ -89,7 +89,7 @@ table.find { (result, error) in
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| records  | Array<TableTable> (Swift) / NSArray<BAASTableRecord *> (OC)  | 是否新增数据成功 |
+| records  | Array<TableTable>  | 是否新增数据成功 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息  |
 
 err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
@@ -518,7 +518,7 @@ order 表部分字段结构如下：
 {% tabs swift16="Swift", oc16="Objective-C" %}
 {% content "swift16" %}
 ```
-let Order = Table(tableName: "Book")
+let Order = Table(name: "Book")
 let query1 = Query.compare(key: "customer", operator: "=", value: "5bad87ab0769797b4fb27a1b")
 let query2 = Query.compare(key: "user", operator: "=", value: 69147880)
 let query = Query.and(querys:[query1, query2])
@@ -527,7 +527,7 @@ Order.setQuery(query)
 {% content "oc16" %}
 ```
 // 通过 tableId 创建数据表实例
-BAASTable *Order = [[BAASTable alloc] initWithTableId:1236**];
+BAASTable *Order = [[BAASTable alloc] initWithId:1236**];
 BAASQuery *query1 = [BAASQuery compareWithKey:@"customer" operator:@"=" value:@"5bad87ab0769797b4fb27a1b"];
 BAASQuery *query2 = [BAASQuery compareWithKey:@"user" operator:@"=" value:@69147880];
 BAASQuery *query = [BAASQuery andWithQuerys:@[query1, query2]];

@@ -9,7 +9,7 @@
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
-let table = Table(tableName: "Book")
+let table = Table(name: "Book")
 
 // 返回特定字段
 table.select(["created_at", "created_by"])
@@ -18,13 +18,13 @@ table.select(["created_at", "created_by"])
 table.select(["-created_at", "-created_by"])
 
 let recordId = "5c944a10d575a970a9b91c12"
-table.get(recordId: recordId) { (result, error) in
+table.get(recordId) { (result, error) in
 
 }
 ```
 {% content "oc1" %}
 ```
-BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
+BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
 
 // 返回特定字段
 [_table select:@[@"created_at", @"created_by"]];
@@ -33,7 +33,7 @@ BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
 [_table select:@[@"-created_at", @"-created_by"]];
 
 NSString *recordId = @"5ca09074be20d67490232a28";
-[table getWithRecordId:recordId completion:^(BAASTableRecord * _Nullable record, NSError * _Nullable error) {
+[table get:recordId completion:^(BAASTableRecord * _Nullable record, NSError * _Nullable error) {
                         
 }];
 ```
@@ -44,7 +44,7 @@ NSString *recordId = @"5ca09074be20d67490232a28";
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-let table = Table(tableName: "Book")
+let table = Table(name: "Book")
 
 // 返回特定字段
 table.select(["created_at", "created_by"])
@@ -58,7 +58,7 @@ table.find() { (results, error) in
 ```
 {% content "oc2" %}
 ```
-BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
+BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
 
 // 返回特定字段
 [_table select:@[@"created_at", @"created_by"]];
@@ -126,25 +126,25 @@ BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
 {% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
 ```
-let table = Table(tableName: "Book")
+let table = Table(name: "Book")
 
 // 扩展的字段
 table.expand(["created_by", "pointer_value"])
 
 let recordId = "5c944a10d575a970a9b91c12"
-table.get(recordId: recordId) { (result, error) in
+table.get(recordId) { (result, error) in
 
 }
 ```
 {% content "oc3" %}
 ```
-BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
+BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
 
 // 扩展的字段
 [_table expand:@[@"created_by", @"pointer_value"]];
 
 NSString *recordId = @"5ca09074be20d67490232a28";
-[table getWithRecordId:recordId completion:^(BAASTableRecord * _Nullable record, NSError * _Nullable error) {
+[table get:recordId completion:^(BAASTableRecord * _Nullable record, NSError * _Nullable error) {
                         
 }];
 ```
@@ -154,7 +154,7 @@ NSString *recordId = @"5ca09074be20d67490232a28";
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 ```
-let table = Table(tableName: "Book")
+let table = Table(name: "Book")
 
 // 扩展的字段
 table.expand(["created_by", "pointer_value"])
@@ -165,7 +165,7 @@ table.find() { (results, error) in
 ```
 {% content "oc4" %}
 ```
-BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
+BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
 
 // 扩展的字段
 [_table expand:@[@"created_by", @"pointer_value"]];

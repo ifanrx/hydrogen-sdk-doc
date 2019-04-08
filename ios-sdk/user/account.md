@@ -12,6 +12,24 @@ currentUser 代表了当前登录的用户，开发者可以通过浏览 current
 
 该对象关联 `_userprofile` 表中 id 为当前用户 ID 的数据行。currentUser 字段包含了 `_userprofile` 表的所有的*内置字段*。
 
+| 参数      | 类型   | 说明 |
+| :------- | :----- | :-- |
+| avatar   | String | 用户头像 |
+| city     | String | 用户所在城市 |
+| country  | String | 用户所在国家 |
+| gender   | String | 用户的性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知 |
+| id       | Number | 用户 ID (对应 _userprofile 表中的 id 字段) |
+| language | String | 用户的语言，简体中文为 zh_CN |
+| nickname | String | 用户昵称 |
+| openid   | String | 用户唯一标识，由微信生成 |
+| province  | String | 用户所在省份 |
+| unionid  | String | 用户在开放平台的唯一标识符，由微信生成 |
+| _email | String | 用户邮箱（用于用户以邮箱 & 密码登录） |
+| _username | String | 用户名（用于用户以用户名 & 密码登录） |
+| _email_verified | Boolean | 用户邮箱是否已经通过验证（已验证邮箱才能找回密码） |
+| _provider |Object |  用户在平台方的用户信息  |
+| _provider.alipay |Object |  支付宝平台的用户信息，见下方说明  |
+
 **获取内置字段**
 
 {% tabs swift1_1="Swift", oc1_1="Objective-C" %}
@@ -201,7 +219,7 @@ User.currentUser?.updateUserInfo(["age": 18]) { (success, error) in
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| userInfo | Dictionary(Swift) / NSDictionary(OC)     | 用户自定义字段信息 |
+| userInfo | Dictionary     | 用户自定义字段信息 |
 
 
 **结果返回**

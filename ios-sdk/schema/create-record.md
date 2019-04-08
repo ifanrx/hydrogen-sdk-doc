@@ -16,18 +16,18 @@
 {% content "swift1" %}
 ```
 // 通过 tableId 创建数据表实例 
-let table = Table(tableId: 1236**)
+let table = Table(Id: 1236**)
 
 // 通过 tablename 创建数据表实例
-let table = Table(tableName: "Book")
+let table = Table(name: "Book")
 ```
 {% content "oc1" %}
 ```
 // 通过 tableId 创建数据表实例
-BAASTable *table = [[BAASTable alloc] initWithTableId:1236**];
+BAASTable *table = [[BAASTable alloc] initId:1236**];
 
 // 通过 tablename 创建数据表实例
-BAASTable *table = [[BAASTable alloc] initWithTableName:@"Book"];
+BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
 ```
 {% endtabs %}
 
@@ -37,8 +37,8 @@ tableName 和 tableID 二选一
 
 | 名称     | 类型   | 必填   | 说明                   |
 | :-----  | :----- | :---- | :--- |
-| tableId   | Int(Swift) / NSInteger(OC)  | 是   | 数据表的 ID             |
-| tableName | String(Swift) / NSString(OC) |  是 | 数据表名 |
+| Id   | Int  | 是   | 数据表的 ID             |
+| name | String |  是 | 数据表名 |
 
 ### 本地创建一条空记录
 
@@ -138,7 +138,7 @@ err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% content "swift6" %}
 ```
 // 创建 `Table` 对象
-let bookTable = Table(tableName: "Book")
+let bookTable = Table(name: "Book")
 
 // 创建一条空的记录
 let book = bookTable.createRecord()
@@ -158,7 +158,7 @@ book.save { (success, error) in
 {% content "oc6" %}
 ```
 // 创建 `Table` 对象
-BAASTable *bookTable = [[BAASTable alloc] initWithTableName:@"Book"];
+BAASTable *bookTable = [[BAASTable alloc] initWithName:@"Book"];
 
 // 创建一条空记录
 BAASTableRecord *book = [bookTable createRecord];
@@ -297,13 +297,13 @@ book.set(key: "user", value: "69147880")
 {% tabs swift10="Swift", oc10="Objective-C" %}
 {% content "swift10" %}
 ```
-table.create(records: [["name": "老人与海", "author": "海明威", "price": 10], ["name": "麦田", "author": "塞林格", "price": 10]]) { (success, error) in
+table.create([["name": "老人与海", "author": "海明威", "price": 10], ["name": "麦田", "author": "塞林格", "price": 10]]) { (success, error) in
 
 }
 ```
 {% content "oc10" %}
 ```
-[table createWithRecords:@[@{@"name": @"老人与海", @"author": @"海明威", @"price": @10}, @{@"name": @"麦田", @"author": @"塞林格" @"price": @11}] enableTrigger:true completion:^(BOOL success, NSError * _Nullable error) {
+[table create:@[@{@"name": @"老人与海", @"author": @"海明威", @"price": @10}, @{@"name": @"麦田", @"author": @"塞林格" @"price": @11}] enableTrigger:true completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -313,7 +313,7 @@ table.create(records: [["name": "老人与海", "author": "海明威", "price": 
 
 | 参数名    | 类型    | 说明              |
 |-----------|---------|-------------------|
-| records   | Dictionary(Swift) / NSDictionary(OC)  |   符合表结构的对象|
+| records   | Dictionary  |   符合表结构的对象|
 | enableTrigger | Bool    |   是否触发触发器  |
 
 > Swift 默认会触发触发器。
@@ -322,7 +322,37 @@ table.create(records: [["name": "老人与海", "author": "海明威", "price": 
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| success  | Bool           | 是否新增数据成功 |
+| result  |  Dictionary           | 新增的数据结果 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息  |
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+> 说明
+ error 为 nil 不说明批量写入数据完全成功，仅代表服务端已收到并处理了这个请求，只有当返回的结果中 operation_result 列表中不存在 error 元素时，才可以认为所有数据均写入成功。
+
+ **返回示例**
+ ```
+ {
+  "succeed": 10,
+  "total_count": 10,
+  "operation_result": [
+    {"success": {"id": "5bfe000ce74243582bf2979f", "created_at": "1543459089"}},
+    {
+       "error": {
+         "code": 11000,
+         "err_msg": "数据写入失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
+       }
+    }
+  ]
+}
+ ```
+
+**参数说明**
+* succeed:	成功创建记录数
+* total_count:	总的待创建记录数
+* operation_result: 批量写入每一条数据的结果
+
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+
+**常见错误码**
+* 201：成功写入
+* 400：非法数据
+* 403：无权限写入（表权限）

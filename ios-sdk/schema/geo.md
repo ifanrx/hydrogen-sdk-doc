@@ -8,7 +8,7 @@
 
 | 参数   | 类型                     | 必填 | 说明 |
 | :---- | :---------------------- | :--- | :--- |
-| key   | String(Swift) / NSString(OC)  | 是   | 在数据表中的类型必须是 geojson |
+| key   | String  | 是   | 在数据表中的类型必须是 geojson |
 | value | GeoPoint 或 GeoPolygon   | 是   | - |
 
 geojson 类型字段支持使用 GeoPoint 或 GeoPolygon 类型数据进行赋值：
@@ -61,7 +61,7 @@ BAASGeoPolygon *polygon = [[BAASGeoPolygon alloc] initWithPoints:@[point1, point
 ```
 // 查找当前用户所属小区
 
-let neighbourhood = Table(tableName: "neighbourhoodTableName")
+let neighbourhood = Table(name: "neighbourhoodTableName")
 
 // geoField 为 neighbourhood 表中定义地理位置的字段名，point 为用户所在位置，为 GeoPoint 类型
 let query = Query.include(key: "geoField", point: point)
@@ -74,7 +74,7 @@ neighbourhood.find { (result, error) in
 ```
 // 查找当前用户所属小区
 
-BAASTable *neighbourhood = [[BAASTable alloc] initWithTableName:@"neighbourhoodTableName"];
+BAASTable *neighbourhood = [[BAASTable alloc] initWithName:@"neighbourhoodTableName"];
 
 // geoField 为 neighbourhood 表中定义地理位置的字段名，point 为用户所在位置，为 GeoPoint 类型
 BAASQuery *query = [BAASQuery includeWithKey:@"geoField" point: point];
@@ -92,7 +92,7 @@ BAASQuery *query = [BAASQuery includeWithKey:@"geoField" point: point];
 ```
 // 查找在距离用户 radius 千米范围内的饭店
 
-let restaurant = Table(tableName: "restaurantTableName")
+let restaurant = Table(name: "restaurantTableName")
 
 // geoField 为 restaurant 表中定义地理位置的字段名
 let query = Query.withinCircle(key: "geoField", point: point, radius: radius)
@@ -105,7 +105,7 @@ restaurant.find { (result, error) in
 ```
 
 // 查找在距离用户 radius 千米范围内的饭店
-BAASTable *restaurant = [[BAASTable alloc] initWithTableName:@"restaurantTableName"];
+BAASTable *restaurant = [[BAASTable alloc] initWithName:@"restaurantTableName"];
 
 // geoField 为 restaurant 表中定义地理位置的字段名
 BAASQuery *query = [BAASQuery withinCircleWithKey:@"geoField" point: point radius: radius];
@@ -123,7 +123,7 @@ BAASQuery *query = [BAASQuery withinCircleWithKey:@"geoField" point: point radiu
 ```
 // 查找距离用户 minDistance 千米外，maxDistance 千米内的所有饭店
 
-let restaurant = Table(tableName: "restaurantTableName")
+let restaurant = Table(name: "restaurantTableName")
 
 // geoField 为 restaurant 表中定义地理位置的字段名，point 为圆点，minDistance 不指定默认为 0
 let query = Query.Query.withinRegion(key:"geoField", point: point, minDistance: minDistance, maxDistance: maxDistance)
@@ -136,7 +136,7 @@ restaurant.find { (result, error) in
 ```
 // 查找距离用户 minDistance 千米外，maxDistance 千米内的所有饭店
 
-BAASTable *restaurant = [[BAASTable alloc] initWithTableName:@"restaurantTableName"];
+BAASTable *restaurant = [[BAASTable alloc] initWithName:@"restaurantTableName"];
 
 // geoField 为 restaurant 表中定义地理位置的字段名，point 为圆点，minDistance 不指定默认为 0
 BAASQuery *query = [BAASQuery withinRegionWithKey: point:point minDistance:minDistance maxDistance:maxDistance];
