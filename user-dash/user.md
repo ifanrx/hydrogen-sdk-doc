@@ -111,3 +111,65 @@ axios.get('https://cloud.minapp.com/userve/v2.0/miniapp/user_profile/36619758/')
   "user_id": 36619758
 }
 ```
+
+## 修改用户登录信息
+
+**接口**
+
+`PUT https://cloud.minapp.com/userve/v2.0/miniapp/user/account/:id/`
+
+其中 `:id` 是用户在 `_userprofile` 表中的 `id`。
+
+**参数说明**
+
+Content-Type: `application/json`
+
+| 参数    | 类型   | 必填 | 说明 |
+| :----- | :----- | :-- | :-- |
+| username   | String | N   | 用户名，不区分大小写 |
+| email | String | N   | 邮箱，不区分大小写 |
+| password | String | N | 用户密码，新用户密码若 new_password 不为空则必填 |
+| new_password | String | N | 新用户密码 |
+
+**代码示例**
+
+```javascript
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.put('https://cloud.minapp.com/userve/v2.0/miniapp/user/account/70695404/', {
+  username: "pretty_girl"
+}).then(res => {
+  console.log(res.data)
+});
+
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```json
+{
+  "email": "pretty_girl@fake.com",
+  "email_verified": false,
+  "username": "pretty_girl"
+}
+```
+
+**返回参数说明**
+
+| 参数    | 类型   | 说明 |
+| :----- | :----- | :-- |
+| username   | String | 用户名，不区分大小写 |
+| email | String | 邮箱，不区分大小写 |
+| email_verified | Boolean | 用户邮箱是否已激活 |
+
+**状态码说明**
+
+`200`: 成功。
+
+`400`: password 错误、email 不合法、username 或 email 已经存在。
+
+`404`: 用户不存在。
