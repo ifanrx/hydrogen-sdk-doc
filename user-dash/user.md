@@ -139,7 +139,7 @@ var axios = require('axios').create({
 })
 
 axios.put('https://cloud.minapp.com/userve/v2.0/miniapp/user/account/70695404/', {
-  username: "pretty_girl"
+  username: 'pretty_girl'
 }).then(res => {
   console.log(res.data)
 });
