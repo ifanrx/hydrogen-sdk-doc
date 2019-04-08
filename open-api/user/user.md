@@ -593,3 +593,122 @@ if ($err) {
 `401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
 
 `404`: 用户不存在。
+
+### 修改用户登录信息
+
+**接口**
+
+`PUT https://cloud.minapp.com/oserve/v2.0/miniapp/user/account/:id/`
+
+其中 `:id` 是用户在 `_userprofile` 表中的 `id`。
+
+**参数说明**
+
+Content-Type: `application/json`
+
+| 参数    | 类型   | 必填 | 说明 |
+| :----- | :----- | :-- | :-- |
+| username   | String | N   | 用户名，不区分大小写 |
+| email | String | N   | 邮箱，不区分大小写 |
+| password | String | N | 用户密码，新用户密码若 new_password 不为空则必填 |
+| new_password | String | N | 新用户密码 |
+
+**代码示例**
+
+{% tabs  updateSingleUserAccountInfoCurl="Curl", updateSingleUserAccountInfoNode="Node", updateSingleUserAccountInfoPHP="PHP" %}
+
+{% content "updateSingleUserAccountInfoCurl"%}
+
+```shell
+curl -X PUT \
+  https://cloud.minapp.com/oserve/v2.0/miniapp/user/account/70695404/ \
+  -H 'Authorization: Bearer 35919068aa799eccdef19160e1da4bf21381d2a2' \
+  -H 'Content-Type: application/json' \
+  -d '{"username": "pretty_girl"}'
+```
+
+{% content "updateSingleUserAccountInfoNode" %}
+
+```javascript
+var request = require("request");
+
+var options = {
+  method: 'PUT',
+  url: 'https://cloud.minapp.com/oserve/v2.0/miniapp/user/account/70695404/',
+  headers:
+  {
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer 35919068aa799eccdef19160e1da4bf21381d2a2'
+  },
+  body: { "username": "pretty_girl" },
+  json: true
+};
+
+var req = request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+  console.log(body);
+});
+```
+
+{% content "updateSingleUserAccountInfoPHP"%}
+
+```php
+<?php
+$token = '35919068aa799eccdef19160e1da4bf21381d2a2';
+$url = "https://cloud.minapp.com/oserve/v2.0/miniapp/user/account/70695404/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, "{\"username\": \"pretty_girl\"}");
+
+$response = curl_exec($ch);
+$err = curl_error($ch);
+
+curl_close($ch);
+
+if ($err) {
+  echo "CURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```json
+{
+  "email": "pretty_girl@fake.com",
+  "email_verified": false,
+  "username": "pretty_girl"
+}
+```
+
+**返回参数说明**
+
+| 参数    | 类型   | 说明 |
+| :----- | :----- | :-- |
+| username   | String | 用户名，不区分大小写 |
+| email | String | 邮箱，不区分大小写 |
+| email_verified | Boolean | 用户邮箱是否已激活 |
+
+**状态码说明**
+
+`200`: 成功。
+
+`400`: 字段类型不匹配，更新非自定义字段或不存在的字段。
+
+`401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
+
+`404`: 用户不存在。
