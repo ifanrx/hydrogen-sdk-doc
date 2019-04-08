@@ -145,72 +145,17 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs  updateSingleUserAccountInfoCurl="Curl", updateSingleUserAccountInfoNode="Node", updateSingleUserAccountInfoPHP="PHP" %}
-
-{% content "updateSingleUserAccountInfoCurl"%}
-
-```shell
-curl -X PUT \
-  https://cloud.minapp.com/userve/v2.0/miniapp/user/account/70695404/ \
-  -H 'Authorization: Bearer 35919068aa799eccdef19160e1da4bf21381d2a2' \
-  -H 'Content-Type: application/json' \
-  -d '{"username": "pretty_girl"}'
-```
-
-{% content "updateSingleUserAccountInfoNode" %}
-
 ```javascript
-var request = require("request");
+var axios = require('axios').create({
+  withCredentials: true
+})
 
-var options = {
-  method: 'PUT',
-  url: 'https://cloud.minapp.com/userve/v2.0/miniapp/user/account/70695404/',
-  headers:
-  {
-    'Content-Type': 'application/json',
-    Authorization: 'Bearer 35919068aa799eccdef19160e1da4bf21381d2a2'
-  },
-  body: { "username": "pretty_girl" },
-  json: true
-};
-
-var req = request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-  console.log(body);
+axios.put('https://cloud.minapp.com/userve/v2.0/miniapp/user/account/70695404/', {
+  username: "pretty_girl"
+}).then(res => {
+  console.log(res.data)
 });
-```
 
-{% content "updateSingleUserAccountInfoPHP"%}
-
-```php
-<?php
-$token = '35919068aa799eccdef19160e1da4bf21381d2a2';
-$url = "https://cloud.minapp.com/userve/v2.0/miniapp/user/account/70695404/";
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Bearer {$token}",
-  'Content-Type: application/json; charset=utf-8'
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, "{\"username\": \"pretty_girl\"}");
-
-$response = curl_exec($ch);
-$err = curl_error($ch);
-
-curl_close($ch);
-
-if ($err) {
-  echo "CURL Error #:" . $err;
-} else {
-  echo $response;
-}
 ```
 
 {% endtabs %}
@@ -238,7 +183,5 @@ if ($err) {
 `200`: 成功。
 
 `400`: password 错误、email 不合法、username 或 email 已经存在。
-
-`401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
 
 `404`: 用户不存在。

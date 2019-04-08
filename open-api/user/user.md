@@ -615,7 +615,7 @@ Content-Type: `application/json`
 
 **代码示例**
 
-{% tabs  updateSingleUserAccountInfoCurl="Curl", updateSingleUserAccountInfoNode="Node", updateSingleUserAccountInfoPHP="PHP" %}
+{% tabs updateSingleUserAccountInfoCurl="Curl", updateSingleUserAccountInfoNode="Node", updateSingleUserAccountInfoPHP="PHP" %}
 
 {% content "updateSingleUserAccountInfoCurl"%}
 
@@ -640,7 +640,7 @@ var options = {
     'Content-Type': 'application/json',
     Authorization: 'Bearer 35919068aa799eccdef19160e1da4bf21381d2a2'
   },
-  body: { "username": "pretty_girl" },
+  body: { 'username': 'pretty_girl' },
   json: true
 };
 
@@ -658,10 +658,12 @@ $token = '35919068aa799eccdef19160e1da4bf21381d2a2';
 $url = "https://cloud.minapp.com/oserve/v2.0/miniapp/user/account/70695404/";
 
 $ch = curl_init();
-$header = array(
+$header = [
   "Authorization: Bearer {$token}",
-  'Content-Type: application/json; charset=utf-8'
-);
+  "Content-Type: application/json; charset=utf-8"
+];
+$payload = json_encode([
+  "username" => "pretty_girl_php"]);
 
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
@@ -669,7 +671,7 @@ curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, "{\"username\": \"pretty_girl\"}");
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 
 $response = curl_exec($ch);
 $err = curl_error($ch);
@@ -689,7 +691,7 @@ if ($err) {
 
 ```json
 {
-  "email": "pretty_girl@fake.com",
+  "email": "pretty_girl@example.com",
   "email_verified": false,
   "username": "pretty_girl"
 }
@@ -707,7 +709,7 @@ if ($err) {
 
 `200`: 成功。
 
-`400`: 字段类型不匹配，更新非自定义字段或不存在的字段。
+`400`: password 错误、email 不合法、username 或 email 已经存在。
 
 `401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
 
