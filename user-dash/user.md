@@ -146,8 +146,6 @@ axios.put('https://cloud.minapp.com/userve/v2.0/miniapp/user/account/70695404/',
 
 ```
 
-{% endtabs %}
-
 **返回示例**
 
 ```json
