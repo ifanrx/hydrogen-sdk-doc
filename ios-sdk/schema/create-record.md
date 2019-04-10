@@ -24,10 +24,10 @@ let table = Table(name: "Book")
 {% content "oc1" %}
 ```
 // 通过 tableId 创建数据表实例
-BAASTable *table = [[BAASTable alloc] initId:1236**];
+BaaSTable *table = [[BaaSTable alloc] initId:1236**];
 
 // 通过 tablename 创建数据表实例
-BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
+BaaSTable *table = [[BaaSTable alloc] initWithName:@"Book"];
 ```
 {% endtabs %}
 
@@ -49,7 +49,7 @@ let record = table.createRecord()
 ```
 {% content "oc2" %}
 ```
-BAASRecord *record = [table createRecord];
+BaaSRecord *record = [table createRecord];
 ```
 {% endtabs %}
 
@@ -85,7 +85,7 @@ b.逐个赋值：
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 ```
-record .set(key: "color", value: "red")
+record.set(key: "color", value: "red")
 record.set(key: "price", value: 10)
 ```
 {% content "oc4" %}
@@ -158,10 +158,10 @@ book.save { (success, error) in
 {% content "oc6" %}
 ```
 // 创建 `Table` 对象
-BAASTable *bookTable = [[BAASTable alloc] initWithName:@"Book"];
+BaaSTable *bookTable = [[BaaSTable alloc] initWithName:@"Book"];
 
 // 创建一条空记录
-BAASTableRecord *book = [bookTable createRecord];
+BaaSTableRecord *book = [bookTable createRecord];
 
 // 设置方式一
 [book setWithRecord:@{@"name": @"老人与海", @"author": @"海明威" @"price": 49}];
@@ -270,25 +270,22 @@ array 类型数据中的元素类型，要与预先在知晓云平台设定的�
 | 字段名          | 字段类型          | 说明                 |
 |----------------|------------------|----------------------|
 | comment        |  pointer         | 指向了 `Comment` 表     |
-| user           |  pointer         | 指向了 `_userprofile` 表     |
 
 现在在 Book 表中新增一条数据，其中: 
 
 comment 字段指向了 Comment 表中 id 为 5bad87ab0769797b4fb27a1b 的数据行
 
-user 字段指向了 _userprofile 表中 id 为 69147880 的数据行
-
 {% tabs swift9="Swift", oc9="Objective-C" %}
 {% content "swift9" %}
 ```
-book.set(key: "comment", value: "5bad87ab0769797b4fb27a1b")
-book.set(key: "user", value: "69147880")
+let comment = table.getWithoutData(recordId: "5bad87ab0769797b4fb27a1b")
+book.set(key: "comment", value: comment)
 }
 ```
 {% content "oc9" %}
 ```
-[book setWithKey:@"comment" value:@"5bad87ab0769797b4fb27a1b"];
-[book setWithKey:@"user" value:@"69147880"];
+BaaSTableRecord *comment = [table getWithoutDataWithRecordId:@"5bad87ab0769797b4fb27a1b"];
+[book setWithKey:@"comment" value:comment];
 ```
 {% endtabs %}
 
@@ -297,13 +294,17 @@ book.set(key: "user", value: "69147880")
 {% tabs swift10="Swift", oc10="Objective-C" %}
 {% content "swift10" %}
 ```
-table.create([["name": "老人与海", "author": "海明威", "price": 10], ["name": "麦田", "author": "塞林格", "price": 10]]) { (success, error) in
+let options = ["enable_trigger": true]
+table.createMany([["name": "书名六", "author": "hua", "price": 19], 
+                  ["name": "书名七", "author": "lin", "price": 19]], options: options) { (success, error) in
 
 }
 ```
 {% content "oc10" %}
 ```
-[table create:@[@{@"name": @"老人与海", @"author": @"海明威", @"price": @10}, @{@"name": @"麦田", @"author": @"塞林格" @"price": @11}] enableTrigger:true completion:^(BOOL success, NSError * _Nullable error) {
+NSDictionary *options = @{@"enable_trigger": @YES};
+[table createMany:@[@{@"name": @"bookname", @"price": @10}, 
+                     @{@"name": @"bookname2", @"price": @11}] options:options completion:^(NSDictionary<NSString *,id> * _Nullable records, NSError * _Nullable error) {
 
 }];
 ```
@@ -311,10 +312,10 @@ table.create([["name": "老人与海", "author": "海明威", "price": 10], ["na
 
 **参数说明**
 
-| 参数名    | 类型    | 说明              |
-|-----------|---------|-------------------|
-| records   | Dictionary  |   符合表结构的对象|
-| enableTrigger | Bool    |   是否触发触发器  |
+| 参数名    | 类型    | 说明              |  必填  |
+|-----------|---------|-------------------|----|
+| records   | Dictionary  |   符合表结构的对象| Y |
+| options | Dictionary    |   批量操作选项 ，目前支持支持 enable_trigger, true 为触发触发器 |  N |
 
 > Swift 默认会触发触发器。
 
