@@ -127,7 +127,7 @@ record.update { (success, error) in
 | success  | Bool           | 是否新增数据成功 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息  |
 
-success 更新数据成功后，记录对象 record 的数据将被更新。
+success 更新数据成功后，**记录对象 record 的数据将被更新**。
 
 err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -145,9 +145,11 @@ err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 请参考 [新增数据项](/ios-sdk/schema/create-record.md) 的添加 file 类型数据
 
+<!--
 ## 更新 geojson 类型数据
 
 请参考 [新增数据项](/ios-sdk/schema/create-record.md) 的添加 geojson 类型数据
+-->
 
 ## 更新 object 类型数据
 

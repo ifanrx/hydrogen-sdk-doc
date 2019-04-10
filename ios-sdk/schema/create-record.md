@@ -35,23 +35,25 @@ BaaSTable *table = [[BaaSTable alloc] initWithName:@"Book"];
 
 tableName 和 tableID 二选一
 
-| 名称     | 类型   | 必填   | 说明                   |
-| :-----  | :----- | :---- | :--- |
-| Id   | Int  | 是   | 数据表的 ID             |
-| name | String |  是 | 数据表名 |
+| 名称     | 类型   |说明    |
+| :-----  | :----- | :--- |
+| Id   | Int  |  数据表的 ID |
+| name | String |   数据表名 |
 
 ### 本地创建一条空记录
 
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-let record = table.createRecord()
+let record: TableRecord = table.createRecord()
 ```
 {% content "oc2" %}
 ```
 BaaSRecord *record = [table createRecord];
 ```
 {% endtabs %}
+
+关于 `TableRecord` 类型查看 [数据类型](./data-type.md) 章节
 
 ### 为上面创建的空记录赋值
 
@@ -122,9 +124,9 @@ record.save { (success, error) in
 | success  | Bool           | 是否新增数据成功 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息  |
 
-success 写入数据成功后，记录对象 record 的数据将被更新。
+success 写入数据成功后，**记录对象 record 的数据将被更新**。
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。
 
@@ -197,7 +199,11 @@ NSString *dateISO = [dateFormatter stringFromDate:[NSDate date]];
 
 ## 添加 file 类型数据
 
-如 Book 表定义 file 类型的列 cover，表示书的封面：
+> 注意
+>
+>  为 file 类型字段设置值时，必须以 json 格式提供特定的文件信息。通过使用 `fileInfo` 可方便获取文件信息。
+
+如 Book 表定义 file 类型的列 cover，表示书的封面。示例：将一个文件上传到知晓云后，将该文件设置为书的封面。
 
 {% tabs swift8="Swift", oc8="Objective-C" %}
 {% content "swift8" %}
@@ -219,6 +225,10 @@ NSString *filePath = [[NSBundle mainBundle] pathForResource:@"cover" ofType:@"pn
 }];
 ```
 {% endtabs %}
+
+关于 `file` 类型查看 [文件](../file/file.md) 章节
+
+<!--
 
 ## 添加 geojson 类型数据
 
@@ -248,6 +258,8 @@ BAASGeoPolygon *polygon = [[BAASGeoPolygon alloc] initWithCoordinates:@[@[30, 10
 {% endtabs %}
 
 关于 geojson 类型查看 [地理位置操作](./geo.md) 章节
+
+-->
 
 ## 添加 object 类型数据
 

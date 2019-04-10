@@ -10,14 +10,14 @@
 {% content "swift0" %}
 ```
 // 用户管理对象
-UserManager.shared.getCurrentUserInfo { (currentUser, error) in
+Auth.getCurrentUserInfo { (currentUser, error) in
 
 }
 ```
 {% content "oc0" %}
 ```
 // 用户管理对象
-[BaaSUserManager.shared getCurrentUserInfo:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
+[BaaSAuth getCurrentUserInfo:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
 
 }];
 ```

@@ -9,7 +9,7 @@
 在 Podfile 文件中添加以下代码
 
 ```
-platform :ios, '10.0'
+platform :ios, '9.0'
 use_frameworks!
 
 target 'YOUR_APP_TARGET' do # 替换 YOUR_APP_TARGET 为你的应用名称。
@@ -30,11 +30,11 @@ pod install
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
-BaaS.register(clientID: "f86c122f10f45d1152a1")
+BaaS.register(clientID: "f86c1******45d1152a1")
 ```
 {% content "oc1" %}
 ```
-[BaaS registerWithClientID:@"196ba98487ebc358955d"];
+[BaaS registerWithClientID:@"f86c1******45d1152a1"];
 ```
 {% endtabs %}
 
