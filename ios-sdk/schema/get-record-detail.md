@@ -17,10 +17,10 @@ let table = Table(name: "Book")
 {% content "oc1" %}
 ```
 // 通过 tableId 创建数据表实例
-BAASTable *table = [[BAASTable alloc] initWithId:1236**];
+BaaSTable *table = [[BaaSTable alloc] initWithId:1236**];
 
 // 通过 tablename 创建数据表实例
-BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
+BaaSTable *table = [[BaaSTable alloc] initWithName:@"Book"];
 ```
 {% endtabs %}
 
@@ -28,10 +28,10 @@ BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
 
 tableName 和 tableID 二选一
 
-| 名称     | 类型   | 必填   | 说明                   |
-| :-----  | :----- | :---- | :--- |
-| tableId   | Int  | 是   | 数据表的 ID             |
-| tableName | String |  是 | 数据表名 |
+| 名称     | 类型   |  说明                   |
+| :-----  | :----- | :--- |
+| tableId   | Int  | 数据表的 ID             |
+| tableName | String | 数据表名 |
 
 2.指定 `recordId` 执行获取相应数据项操作
 
@@ -44,7 +44,7 @@ table.get("5c944a22d575a970a9b91c13") { (record, error) in
 ```
 {% content "oc2" %}
 ```
-[table get:@"5ca09074be20d67490232a28" completion:^(BAASTableRecord * _Nullable record, NSError * _Nullable error) {
+[_table get:@"5ca47715d625d83705971cec" query:nil completion:^(BaaSTableRecord * _Nullable record, NSError * _Nullable error) {
                         
 }];
 ```
@@ -54,7 +54,8 @@ table.get("5c944a22d575a970a9b91c13") { (record, error) in
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
-| recordId | String | 是  | 记录 ID |
+| recordId | String | Y  | 记录 ID |
+| query | Query |  N  | 过滤条件 |
 
 **返回结果**
 

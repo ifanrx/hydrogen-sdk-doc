@@ -12,23 +12,29 @@
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
-let table = Table(name: "Book")
-table.limit(100)
-table.offset(400)
-table.find { (result, error) in
-
+let query = Query()
+query.limit(1)
+query.offset(10)
+table.find(query: query) { (listResult, error) in
+                    
 }
 ```
 {% content "oc1" %}
 ```
-BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
-[table limit:100];
-[table offset:400];
-[table find:^(NSArray<BAASTableRecord *> * _Nullable records, NSError * _Nullable error) {
-                        
+BaaSQuery *query = [[BaaSQuery alloc] init];
+[query offset:1];
+[query limit:10];
+[table findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
+
 }];
 ```
 {% endtabs %}
+
+**参数说明**
+
+|  参数  |  类型   | 必填 | 说明 |
+| :----- | :---- | :-- | :-- |
+| query | Query |  N  | 查询条件 |
 
 ## 排序
 
@@ -37,43 +43,49 @@ BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-let table = Table(name: "Book")
+let query = Query()
 // 升序
-table.orderBy(['created_at'])
+query.orderBy(['created_at'])
 
 // 降序
-table.orderBy(['-created_at'])
+query.orderBy(['-created_at'])
 
 // 多重排序
-table.orderBy(['created_at', 'created_by'])
+query.orderBy(['created_at', 'created_by'])
 
-table.find { (records, error) in
-
+table.find(query: query) { (listResult, error) in
+                    
 }
 ```
 {% content "oc2" %}
 ```
-BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
+BaaSQuery *query = [[BaaSQuery alloc] init];
 // 升序
-[table orderBy:@[@"created_at"]];
+[query orderBy:@[@"created_at"]];
 
 // 降序
-[table orderBy:@[@"-created_at"]];
+[query orderBy:@[@"-created_at"]];
 
 // 多重排序
-[table orderBy:@[@"created_at", @"created_by"]];
+[query orderBy:@[@"created_at", @"created_by"]];
 
-[table find:^(NSArray<BAASTableRecord *> * _Nullable records, NSError * _Nullable error) {
-                        
+[table findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
+
 }];
 ```
 {% endtabs %}
+
+**参数说明**
+
+|  参数  |  类型   | 必填 | 说明 |
+| :----- | :---- | :-- | :-- |
+| query | Query |  N  | 查询条件 |
 
 **返回结果**
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| records  | Array<TableTable>  | 是否新增数据成功 |
+| listResult  | BaaSRecordListResult | 结果列表 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息  |
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

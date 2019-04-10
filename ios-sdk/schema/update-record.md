@@ -17,10 +17,10 @@ let table = Table(name: "Book")
 {% content "oc1" %}
 ```
 // 通过 tableId 创建数据表实例
-BAASTable *table = [[BAASTable alloc] initWithId:1236**];
+BaaSTable *table = [[BaaSTable alloc] initWithId:1236**];
 
 // 通过 tablename 创建数据表实例
-BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
+BaaSTable *table = [[BaaSTable alloc] initWithName:@"Book"];
 ```
 {% endtabs %}
 
@@ -28,10 +28,10 @@ BAASTable *table = [[BAASTable alloc] initWithName:@"Book"];
 
 tableName 和 tableID 二选一
 
-| 名称     | 类型   | 必填   | 说明                   |
-| :-----  | :----- | :---- | :--- |
-| tableId   | Int  | 是   | 数据表的 ID             |
-| tableName | String |  是 | 数据表名 |
+| 名称     | 类型   | 说明                   |
+| :-----  | :-----  | :--- |
+| tableId   | Int   | 数据表的 ID             |
+| tableName | String  | 数据表名 |
 
 2.通过数据行 id（以下用 `recordId` 参数名表示） 设置指定数据行
 
@@ -42,7 +42,7 @@ let record = table.getWithoutData(recordId: "5c944a10d575a970a9b91c12")
 ```
 {% content "oc2" %}
 ```
-BAASTableRecord *record = [table getWithoutDataWithRecordId:@"5c944a10d575a970a9b91c12"];
+BaaSTableRecord *record = [table getWithoutDataWithRecordId:@"5c944a10d575a970a9b91c12"];
 ```
 {% endtabs %}
 
@@ -251,6 +251,7 @@ book.remove(key: "author", value: ["xiaoming", "xiaohong"])
 | key   | String               | 是  | 在数据表中的类型必须是 Array |
 | value | Array               | 是  | 如果元素类型是 geojson、object、file，则只能是 length 为 1 的 Array |
 
+<!--
 ## 按条件批量更新数据项
 
 可以通过设置自定义查询条件 Query，将符合条件的数据进行批量更新操作。
@@ -259,7 +260,7 @@ book.remove(key: "author", value: ["xiaoming", "xiaohong"])
 > 如需要一次性更新更多数据，请参考下一个章节：不触发触发器的更新，或者通过维护分页来进行。
 
 其中：
- - `Query` 对象的使用请查看 [查询数据项](./query.md) 章节
+ - `Where` 对象的使用请查看 [查询数据项](./query.md) 章节
 
  - `limit` 和 `offset` 的使用请查看 [分页和排序](./limit-and-order.md) 章节
 
@@ -341,3 +342,4 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 **常见错误码**
 * 201：成功写入
 * 400：非法数据
+-->

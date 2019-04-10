@@ -35,22 +35,26 @@ record.delete { (success, error) in
 
  - `limit` 和 `offset` 的使用请查看 [分页和排序](./limit-and-order.md) 章节
 
-示例：删除价钱低于 15 的书。
+示例：批量删除，如删除所有 color 为 brown 的记录项。
 
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-let query = Query.compare(key: "price", operator: .lessThanOrEqualTo value: 15)
-table.setQuery(query)
-table.delete() { (success, error) in
-                
-}
+let whereArgs = Where.contains(key: "color", value: "brown")
+let query = Query()
+query.setWhere(whereArgs)
+let options = ["enable_trigger": true]
+table.delete(query: query, options:  completion: { (result, error) in
+
+})
 ```
 {% content "oc2" %}
 ```
-BAASQuery *query = [BAASQuery compareWithKey:@"price" operator:BAASOperatorLessThanOrEqualTo value:@15];
-[table setQuery:query];
-[table deleteWithEnableTrigger:true completion:^(BOOL success, NSError * _Nullable error) {
+BaaSWhere *where = [BaaSWhere containsWithKey:@"color" value:@"brown"];
+BaaSQuery *query = [[BaaSQuery alloc] init];
+[query setWhere:where];
+NSDictionary *options = @{@"enable_trigger": @true};
+[table deleteWithQuery:query options:options completion:^(NSDictionary<NSString *,id> * _Nullable result, NSError * _Nullable error) {
 
 }];
 ```
@@ -60,7 +64,7 @@ BAASQuery *query = [BAASQuery compareWithKey:@"price" operator:BAASOperatorLessT
 
 | 参数名    | 类型    | 说明              |  必填  |
 |-----------|---------|-------------------|--|
-| enableTrigger | Bool    |   是否触发触发器  |  N
+| options | Dictionary    |   批量操作选项 ，目前支持支持 enable_trigger, true 为触发触发器 | N|
 
 > Swift 默认会触发触发器。
 

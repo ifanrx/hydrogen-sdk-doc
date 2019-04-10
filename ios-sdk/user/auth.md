@@ -16,13 +16,13 @@
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
-Auth.register(email: "test@ifanr.com", password: "111") { (user, error) in
+Auth.register(email: "test@ifanr.com", password: "111") { (currentUser, error) in
 
 }
 ```
 {% content "oc1" %}
 ```
-[BAASAuth registerWithEmail:@"test@ifanr.com" password:@"111" completion:^(BAASUser * _Nullable user, NSError * _Nullable error) {
+[BaaSAuth registerWithEmail:@"test@ifanr.com" password:@"111" completion:^(BAASUser * _Nullable currentUser, NSError * _Nullable error) {
 
 }];
 ```
@@ -39,7 +39,7 @@ Auth.register(email: "test@ifanr.com", password: "111") { (user, error) in
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| user    | User         | 当前用户，也可以用 User.currentUser 获取|
+| currentUser| CurrentUser         | 当前用户 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
@@ -50,13 +50,13 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-Auth.register(username: "test", password: "111") { (user, error) in
+Auth.register(username: "test", password: "111") { (currentUser, error) in
 
 }
 ```
 {% content "oc2" %}
 ```
-[BAASAuth registerWithUsername:@"test" password:@"111" completion:^(BAASUser * _Nullable user, NSError * _Nullable error) {
+[BaaSAuth registerWithUsername:@"test" password:@"111" completion:^(BAASUser * _Nullable currentUser, NSError * _Nullable error) {
 
 }];
 ```
@@ -73,7 +73,7 @@ Auth.register(username: "test", password: "111") { (user, error) in
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| user    | User         | 当前用户，也可以用 User.currentUser 获取|
+| currentUser    | CurrentUser         | 当前用户|
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
@@ -86,13 +86,13 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
 ```
-Auth.login(email: "test@ifanr.com", password: "111") { (user, error) in
+Auth.login(email: "test@ifanr.com", password: "111") { (currentUser, error) in
 
 }
 ```
 {% content "oc3" %}
 ```
-[BAASAuth loginWithEmail:@"test@ifanr.com" password:@"111" completion:^(BAASUser * _Nullable user, NSError * _Nullable error) {
+[BaaSAuth loginWithEmail:@"test@ifanr.com" password:@"111" completion:^(BAASUser * _Nullable currentUser, NSError * _Nullable error) {
 
 }];
 ```
@@ -110,7 +110,7 @@ Auth.login(email: "test@ifanr.com", password: "111") { (user, error) in
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| user    | User         | 当前用户，也可以用 User.currentUser 获取|
+| currentUser    | CurrentUser         | 当前用户|
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
 err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
@@ -121,13 +121,13 @@ err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 ```
-Auth.login(username: "test", password: "111") { (user, error) in
+Auth.login(username: "test", password: "111") { (currentUser, error) in
 
 }
 ```
 {% content "oc4" %}
 ```
-[BAASAuth loginWithUsername:@"test" password:@"111" completion:^(BAASUser * _Nullable user, NSError * _Nullable error) {
+[BaaSAuth loginWithUsername:@"test" password:@"111" completion:^(BAASUser * _Nullable currentUser, NSError * _Nullable error) {
 
 }];
 ```
@@ -146,7 +146,7 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| user    | User         | 当前用户，也可以用 User.currentUser 获取|
+| currentUser    | CurrentUser         | 当前用户 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
 ### 匿名登录
@@ -183,7 +183,7 @@ Auth.anonymousLogin { (user, error) in
 ```
 {% content "oc5" %}
 ```
-[BAASAuth anonymousLogin:^(BAASUser * _Nullable user, NSError * _Nullable error) {
+[BaaSAuth anonymousLogin:^(BAASUser * _Nullable user, NSError * _Nullable error) {
 
 }];
 ```
@@ -193,7 +193,7 @@ Auth.anonymousLogin { (user, error) in
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| user    | User         | 当前用户，也可以用 User.currentUser 获取|
+| currentUser    | CurrentUser         | 当前用户 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
@@ -212,7 +212,7 @@ Auth.logout { (success, error) in
 ```
 {% content "oc6" %}
 ```
-[[BAASAuth logout:^(BOOL success, NSError * _Nullable error) {
+[[BaaSAuth logout:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
