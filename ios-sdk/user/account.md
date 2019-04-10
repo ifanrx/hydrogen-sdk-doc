@@ -2,9 +2,27 @@
 
 ## 获取 currentUser 对象
 
-开发者可以调用 `User.currentUser`(Swift)，或 `BAASUser.currentUser`(Objective-C), 获取 `currentUser` 对象，通过该对象进而对当前用户进行管理。同时登录注册等接口也会返回 `currentUser` 对象。
+通过当前用户对象进而对当前用户进行管理，开发者只能通过两种方式获取到当前用户对象：
 
-若当前为未登录状态，则会返回 nil。
+1. 通过注册、登录后将获取当前用户对象。
+2. 通过以下方法获取当前用户：
+    {% tabs swift0="Swift", oc0="Objective-C" %}
+{% content "swift0" %}
+```
+// 用户管理对象
+UserManager.shared.getCurrentUserInfo { (currentUser, error) in
+
+}
+```
+{% content "oc0" %}
+```
+// 用户管理对象
+[BaaSUserManager.shared getCurrentUserInfo:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
+
+}];
+```
+{% endtabs %}
+
 
 ## currentUser 对象说明
 
@@ -35,17 +53,17 @@ currentUser 代表了当前登录的用户，开发者可以通过浏览 current
 {% tabs swift1_1="Swift", oc1_1="Objective-C" %}
 {% content "swift1_1" %}
 ```
-User.currentUser?.username      // 用户名
-User.currentUser?.gender        // 性别
-useUser.currentUser?r.city      // 城市
-...                             // 其他内置字段类似方式获取
+currentUser.username      // 用户名
+currentUser.gender        // 性别
+currentUser.city      // 城市
+...                  // 其他内置字段类似方式获取
 ```
 {% content "oc1_1" %}
 ```
-BAASUser.currentUser.username  // 用户名
-BAASUser.currentUser.gender    // 性别
-BAASUser.currentUser.city      // 城市
-...                            // 其他内置字段类似方式获取
+currentUser.username  // 用户名
+currentUser.gender    // 性别
+currentUser.city      // 城市
+...                   // 其他内置字段类似方式获取
 ```
 {% endtabs %}
 
@@ -54,11 +72,11 @@ BAASUser.currentUser.city      // 城市
 {% tabs swift1_2="Swift", oc1_2="Objective-C" %}
 {% content "swift1_2" %}
 ```
-User.currentUser?.get(key: "keyName")
+currentUser.get(key: "keyName")
 ```
 {% content "oc1_2" %}
 ```
-[BAASUser.currentUser getWithKey:@"keyName"];
+[currentUser getWithKey:@"keyName"];
 ```
 {% endtabs %}
 
@@ -83,13 +101,13 @@ User.currentUser?.get(key: "keyName")
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
-User.currentUser?.updateUsername("test_new") { (success, error) in
+currentUser.updateUsername("test_new") { (result, error) in
                     
 }
 ```
 {% content "oc1" %}
 ```
-[BAASUser.currentUser updateUsername:@"test_new" completion:^(BOOL success, NSError * _Nullable error) {
+[currentUser updateUsername:@"testoc_new" completion:^(NSDictionary<NSString *,id> * _Nullable result, NSError * _Nullable error) {
 
 }];
 ```
@@ -105,10 +123,8 @@ User.currentUser?.updateUsername("test_new") { (success, error) in
 
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
-| success   | Bool           | 是否更新成功 |
+| result   | Dictionary           | 被更新的信息 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
-
-更新成功后，currentUser.username 将被更新为新的用户名。
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -123,13 +139,13 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-User.currentUser?.updateEmail("test_new@ifanr.com") { (success, error) in
+currentUser.updateEmail("test_new@ifanr.com") { (result, error) in
                     
 }
 ```
 {% content "oc2" %}
 ```
-[BAASUser.currentUser updateEmail:@"test_new@ifanr.com" completion:^(BOOL success, NSError * _Nullable error) {
+[currentUser updateEmail:@"test_new@ifanr.com" completion:^(NSDictionary<NSString *,id> * _Nullable result, NSError * _Nullable error) {
 
 }];
 ```
@@ -145,7 +161,7 @@ User.currentUser?.updateEmail("test_new@ifanr.com") { (success, error) in
 
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
-| success   | Bool           | 是否更新成功 |
+| result   | Dictionary           | 被更新的信息 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
 更新成功后，currentUser.email 将被更新为新的邮箱地址。
@@ -163,13 +179,13 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
 ```
-User.currentUser?.updatePassword("111", newPassword: "1111") { (success, error) in
+currentUser.updatePassword("111", newPassword: "1111") { (result, error) in
 
 }
 ```
 {% content "oc3" %}
 ```
-[BAASUser.currentUser updatePassword:@"111" newPassword:@"123" completion:^(BOOL success, NSError * _Nullable error) {
+[currentUser updatePassword:@"111" newPassword:@"123" completion:^(NSDictionary<NSString *,id> * _Nullable result, NSError * _Nullable error) {
 
 }];
 ```
@@ -188,7 +204,7 @@ User.currentUser?.updatePassword("111", newPassword: "1111") { (success, error) 
 
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
-| success   | Bool           | 是否更新成功 |
+| result   | Dictionary           | 被更新的信息 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
@@ -201,13 +217,13 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 ```
-User.currentUser?.updateUserInfo(["age": 18]) { (success, error) in
+currentUser.updateUserInfo(["age": 18]) { (result, error) in
 
 }
 ```
 {% content "oc4" %}
 ```
-[BAASUser.currentUser updateUserInfo:@{@"age": @18} completion:^(BOOL success, NSError * _Nullable error) {
+[currentUser updateUserInfo:@{@"age": @18} completion:^(NSDictionary<NSString *,id> * _Nullable result, NSError * _Nullable error) {
 
 }];
 ```
@@ -226,7 +242,7 @@ User.currentUser?.updateUserInfo(["age": 18]) { (success, error) in
 
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
-| success   | Bool           | 是否更新成功 |
+| result   | Dictionary           | 被更新的信息 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
 更新成功后，新的用户信息将被更新到 currentUser。
@@ -245,13 +261,13 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}
 ```
-User.currentUser?.requestEmailVerification() { (success, error) in
+currentUser.requestEmailVerification() { (success, error) in
 
 }
 ```
 {% content "oc5" %}
 ```
-[BAASUser.currentUser requestEmailVerification:^(BOOL success, NSError * _Nullable error) {
+[currentUser requestEmailVerification:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -280,13 +296,13 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% tabs swift6="Swift", oc6="Objective-C" %}
 {% content "swift6" %}
 ```
-User.currentUser?.resetPassword(email: "test@ifanr.com") { (success, error) in
+currentUser.resetPassword(email: "test@ifanr.com") { (success, error) in
 
 }
 ```
 {% content "oc6" %}
 ```
-[BAASUser.currentUser resetPasswordWithEmail:@"test@ifanr.com" completion:^(BOOL success, NSError * _Nullable error) {
+[currentUser resetPasswordWithEmail:@"test@ifanr.com" completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
