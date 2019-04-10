@@ -1,3 +1,9 @@
+# Requirements
+
+* iOS 9.0+
+* Xcode 10.1+
+* Swift 4.2+
+
 # 使用 CocoaPods 安装 MinCloud
 
 在 Podfile 文件中添加以下代码
