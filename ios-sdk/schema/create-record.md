@@ -12,6 +12,7 @@
 通过 `tableName` 或 `tableID` 实例化一个 `Table` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName。
 
 **示例代码**
+
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```

@@ -6,7 +6,8 @@
 
 1. 通过注册、登录后将获取当前用户对象。
 2. 通过以下方法获取当前用户：
-    {% tabs swift0="Swift", oc0="Objective-C" %}
+
+{% tabs swift0="Swift", oc0="Objective-C" %}
 {% content "swift0" %}
 ```
 // 用户管理对象
@@ -22,7 +23,6 @@ Auth.getCurrentUserInfo { (currentUser, error) in
 }];
 ```
 {% endtabs %}
-
 
 ## currentUser 对象说明
 
