@@ -85,7 +85,7 @@
 
 ----
 
-* [iOS SDK](ios-sdk/README.md)
+* [iOS SDK （alpha 内测）](ios-sdk/README.md)
     * [安装 SDK](ios-sdk/install.md)
     * [用户](ios-sdk/user/README.md)
         * [登入登出](ios-sdk/user/auth.md)
