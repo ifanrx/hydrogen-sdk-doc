@@ -1,6 +1,6 @@
-# 删除数据项
+# 删除记录项
 
-## 操作步骤
+## 删除本记录项
 
 已经获取数据项的情况下，可以调用 delete 方法将记录项删除。
 
@@ -26,12 +26,14 @@ record.delete { (success, error) in
 | success   | Bool           | 是否删除成功 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+
 ## 批量删除数据项
 
 可以通过设置查询条件，将符合条件的数据进行批量删除操作。
 
 其中：
- - `Query` 对象的使用请查看 [查询数据项](./query.md) 章节
+ - `Where` 对象的使用请查看 [查询数据项](./query.md) 章节
 
  - `limit` 和 `offset` 的使用请查看 [分页和排序](./limit-and-order.md) 章节
 
@@ -64,9 +66,8 @@ NSDictionary *options = @{@"enable_trigger": @true};
 
 | 参数名    | 类型    | 说明              |  必填  |
 |-----------|---------|-------------------|--|
+| query | Query | 设置扩展字段 |  N  | 
 | options | Dictionary    |   批量操作选项 ，目前支持支持 enable_trigger, true 为触发触发器 | N|
-
-> Swift 默认会触发触发器。
 
 **返回结果**
  

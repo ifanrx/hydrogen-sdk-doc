@@ -13,6 +13,7 @@
 > 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 
 
 **示例代码**
+
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```

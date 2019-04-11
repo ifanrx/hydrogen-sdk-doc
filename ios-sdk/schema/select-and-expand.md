@@ -2,42 +2,54 @@
 
 ## 字段过滤
 
-使用 select 来控制请求返回的字段
+使用 select 来筛选请求返回的字段，设置需要返回的字段名，不需要返回的字段名前加 "-"。
 
 **在 get 方法中使用**
 
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
-let query = Query()
-
 // 返回特定字段
-query.select(["created_at", "created_by"])
+let select = ["created_at", "created_by"]
 
 // 不返回特定字段
-query.select(["-created_at", "-created_by"])
+let select = ["-created_at", "-created_by"]
 
-let recordId = "5c944a10d575a970a9b91c12"
-table.get(recordId, query: query) { (record, error) in
+let recordId = "5c944a10d575a970a9b9****"
+table.get(recordId, select: select) { (record, error) in
 
 }
 ```
 {% content "oc1" %}
 ```
-BaaSQuery *query = [[BaaSQuery alloc] init];
-
 // 返回特定字段
-[query select:@[@"created_at", @"created_by"]];
+NSArray *select = @[@"created_at", @"created_by"];
 
 // 不返回特定字段
-[query select:@[@"-created_at", @"-created_by"]];
+NSArray *select = @[@"-created_at", @"-created_by"];
 
-NSString *recordId = @"5ca09074be20d67490232a28";
-[_table get:recordId query:nil completion:^(BaaSTableRecord * _Nullable record, NSError * _Nullable error) {
+[table get:@"5ca47715d625d8370597****" select:select expand:nil completion:^(BaaSTableRecord * _Nullable record, NSError * _Nullable error) {
                         
 }];
 ```
 {% endtabs %}
+
+**参数说明**
+
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :-- |
+| recordId | String | Y  | 记录 ID |
+| select | Array<String> |  N  | 指定筛选的字段 |
+| expand | Array<String> |  N  | 指定扩展的字段 |
+
+**返回结果**
+
+| 名称       | 类型           | 说明 |
+| :-------- | :------------  | :------ |
+| record   | TableRecord     | 数据项实例, 关于 `TableRecord` 类型查看 [数据类型](./data-type.md) 章节|
+| error     | HError(Swift) / NSError(OC) | 错误信息   |
+
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 **在 find 方法中使用**
 
@@ -71,6 +83,21 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 }];
 ```
 {% endtabs %}
+
+**参数说明**
+
+|  参数  |  类型   | 必填 | 说明 |
+| :----- | :---- | :-- | :-- |
+| query | Query |  N  | 设置筛选字段 |
+
+**返回结果**
+ 
+| 名称      | 类型           | 说明 |
+| :------- | :------------  | :------ |
+| listResult  | RecordListResult | 结果列表，详见 [数据类型](./data-type.md) 章节|
+| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 <span class="attention">注：</span>
 
@@ -126,31 +153,45 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 {% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
 ```
-let query = Query()
-
 // 扩展的字段
-query.expand(["created_by", "pointer_value"])
+let expand = ["created_by", "pointer_value"]
 
-let recordId = "5c944a10d575a970a9b91c12"
-table.get(recordId, query: query) { (record, error) in
+let recordId = "5c944a10d575a970a9b9****"
+table.get(recordId, expand: expand) { (record, error) in
 
 }
 ```
 {% content "oc3" %}
 ```
-BaaSQuery *query = [[BaaSQuery alloc] init];
-
 // 扩展的字段
-[_table expand:@[@"created_by", @"pointer_value"]];
+NSArray *expand = @[@"created_by", @"pointer_value"];
 
-NSString *recordId = @"5ca09074be20d67490232a28";
-[_table get:recordId query:nil completion:^(BaaSTableRecord * _Nullable record, NSError * _Nullable error) {
+NSString *recordId = @"5ca09074be20d6749023****";
+[_table get:recordId select:nil expand:expand completion:^(BaaSTableRecord * _Nullable record, NSError * _Nullable error) {
                         
 }];
 ```
 {% endtabs %}
 
+**参数说明**
+
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :-- |
+| recordId | String | Y  | 记录 ID |
+| select | Array<String> |  N  | 指定筛选的字段 |
+| expand | Array<String> |  N  | 指定扩展的字段 |
+
+**返回结果**
+
+| 名称       | 类型           | 说明 |
+| :-------- | :------------  | :------ |
+| record   | TableRecord     | 数据项实例, 关于 `TableRecord` 类型查看 [数据类型](./data-type.md) 章节|
+| error     | HError(Swift) / NSError(OC) | 错误信息   |
+
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+
 **在 find 方法中使用**
+
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 ```
@@ -167,11 +208,26 @@ table.find(query: query) { (listResult, error) in
 ```
 BaaSQuery *query = [[BaaSQuery alloc] init];
 
-// 扩展的字段
-[_table expand:@[@"created_by", @"pointer_value"]];
+// 返回特定字段
+[query expand:@[@"created_by", @"pointer_value"]];
 
 [_table findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
 {% endtabs %}
+
+**参数说明**
+
+|  参数  |  类型   | 必填 | 说明 |
+| :----- | :---- | :-- | :-- |
+| query | Query |  N  | 设置扩展字段 |
+
+**返回结果**
+ 
+| 名称      | 类型           | 说明 |
+| :------- | :------------  | :------ |
+| listResult  | RecordListResult | 结果列表，详见 [数据类型](./data-type.md) 章节|
+| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

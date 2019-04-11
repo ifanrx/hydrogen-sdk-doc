@@ -2,7 +2,7 @@
 
 ## 数据类型对应查询操作符表
 
-| 数据类型 |                            可使用的查询操作                                             | 说明 |
+| 数据类型 |                            可使用的查询操作                            | 说明 |
 |:---------|:--------------------------------------------------------------------------------------- |:-----|
 | string   | =, in, notIn, !=, isNull, isNotNull, contains, matches, exists, notExists               |      |
 | integer  | =, >, >=, <, <=, !=, in, notIn, isNull, isNotNull, exists, notExists                    |      |
@@ -11,12 +11,14 @@
 | boolean  | =, exists, notExists, isNull, isNotNull                                                 |      |
 | date     | =, >, >=, <, <=,  exists, notExists, isNull, isNotNull                                  |      |
 | file     | isNull, isNotNull, exists, notExists                                                    |      |
-| geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     | 请参考地理位置操作章节 |
+| geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     |      |
 | object   | =, hasKey, isNull, isNotNull, exists, notExists                                         |      |
 | pointer  | =, in, notIn, !=, isNull, isNotNull, exists, notExists                                  |      |
 
 > **info**
-> file、geojson、object、date 类型的 array 不支持查询操作。如果进行查询，会返回空数组
+> 
+> 1. 使用查询时，字段必须满足相应的类型。（请先查阅上表）
+> 2. file、geojson、object、date 类型的 array 不支持查询操作。如果进行查询，会返回空数组
 
 ## 操作步骤
 
@@ -51,7 +53,7 @@ tableName 和 tableID 二选一
 | tableId   | Int  | 数据表的 ID |
 | tableName | String |  数据表名 |
 
-2. 创建 `Where` 对象，在该对象上添加查询条件
+2.创建 `Where` 对象，在该对象上添加查询条件
 
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
@@ -60,13 +62,13 @@ let whereargs = Where.contains(key: "color", value: "red")
 ```
 {% content "oc2" %}
 ```
-BAASWhere *where = [BAASWhere containsWithKey:@"color" value:@"red"];
+BaaSWhere *where = [BaaSWhere containsWithKey:@"color" value:@"red"];
 ```
 {% endtabs %}
 
 查看下面的文档，了解目前支持的查询条件
 
-3.支持查询条件并执行查找操作
+3.设置查询条件并执行查找操作
 
 {% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
@@ -91,7 +93,7 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| listResult  | RecordListResult  | 数据结果 |
+| listResult  | RecordListResult | 结果列表，详见 [数据类型](./data-type.md) 章节|
 | error   |  HError(Swift) / NSError(OC) |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
@@ -119,8 +121,9 @@ table.find(query: query) { (listResult, error) in
 {% content "oc4" %}
 ```
 // 设置查询条件
-BAASWhere *where = [BAASWhere icontainsWithKey:@"color" value:@"red"];
+BaaSWhere *where = [BaaSWhere icontainsWithKey:@"color" value:@"red"];
 
+// 应用查询条件
 BaaSQuery *query = [[BaaSQuery alloc] init];
 [query setWhere:where];
 [table findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
@@ -129,46 +132,7 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 ```
 {% endtabs %}
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
-
-常见错误：
-
-| 错误码          | 可能的原因        |
-|----------------|------------------|
-| 400            | 1. 指定/过滤输出字段的字段名有误、2. GEO 查询参数有误、3. 查询语法错误 |
-| 404            | 数据表不存在  |
-
 ## 比较查询
-
-共有六种比较操作，用枚举来表示每种比较：
-
-{% tabs swift5_1="Swift", oc5_1="Objective-C" %}
-{% content "swift5_1" %}
-```
-public enum Operator: Int {
-    case equalTo = 0
-    case notEqualTo = 1
-    case greaterThan
-    case greaterThanOrEqualTo
-    case lessThan
-    case lessThanOrEqualTo
-}
-```
-{% content "oc5_1" %}
-```
-typedef (NSInteger, BAASOperator) {
-  BAASOperatorEqualTo = 0,
-  BAASOperatorNotEqualTo = 1,
-  BAASOperatorGreaterThan = 2,
-  BAASOperatorGreaterThanOrEqualTo = 3,
-  BAASOperatorLessThan = 4,
-  BAASOperatorLessThanOrEqualTo = 5,
-};
-
-```
-{% endtabs %}
-
-具体使用如下：
 
 {% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}
@@ -176,34 +140,34 @@ typedef (NSInteger, BAASOperator) {
 // 价钱小于等于 10
 let whereargs = Where.compare(key: "price", operator: .greaterThanOrEqualTo, value: 10)
 ```
+
+operator 说明：
+
+| 类型            | 说明      |
+| :--------------| :-----------------|
+| equalTo            | =      |
+| notEqualTo         | !=      |
+| greaterThan        | >    |
+| greaterThanOrEqualTo | >=      |
+| lessThan | <      |
+| lessThanOrEqualTo  |  <=      |
+
 {% content "oc5" %}
 ```
 // 价钱小于等于 10
-BAASWhere *where = [BAASWhere compareWithKey:@"price" operator:BAASOperatorGreaterThanOrEqualTo value:@10];
+BaaSWhere *where = [BaaSWhere compareWithKey:@"price" operator: BaaSOperatorGreaterThanOrEqualTo value:@10];
 ```
+operator 说明：
+
+| 类型            | 说明      |
+| :---------------| :----------------|
+| BaaSOperatorEqualTo            | =      |
+| BaaSOperatorNotEqualTo         | !=      |
+| BaaSOperatorGreaterThan        | >    |
+| BaaSOperatorGreaterThanOrEqualTo | >=      |
+| BaaSOperatorLessThan               | <      |
+| BaaSOperatorLessThanOrEqualTo  |  <=      |
 {% endtabs %}
-
-operator 包含 =, !=, <, <=, >, >=
-
-## 多个查询条件
-
-当存在多个查询条件时，它们之间默认为 AND 关系，查询返回满足所有条件的记录，如下示例：
-
-{% tabs swift6="Swift", oc6="Objective-C" %}
-{% content "swift6" %}
-```
-let whereargs = Where.compare(key: "price", operator: .lessThan, value: 10)
-let whereargs = Where.compare(key: "price", operator: .greaterThanOrEqualTo, value: 1)
-```
-{% content "oc6" %}
-```
-BAASWhere *where = [BAASWhere compareWithKey:@"price" operator:BAASOperatorLessThan value:@10];
-BAASWhere *where = [BAASWhere compareWithKey:@"price" operator:BAASOperatorGreaterThanOrEqualTo value:@1];
-```
-{% endtabs %}
-
-多个查询条件之间需要更复杂的组合关系，可以查看以下 `复杂组合查询` 小节。
-
 
 ## 字符串查询
 查询返回满足包含相应字符串的记录，如下示例：
@@ -220,10 +184,10 @@ let whereargs = Where.contains(key: "name", value: "app")
 {% content "oc7" %}
 ```
 // name 列包含 apple
-BAASWhere *where = [BAASWhere containsWithKey:@"name" value:@"apple"];
+BaaSWhere *where = [BaaSWhere containsWithKey:@"name" value:@"apple"];
 
 // name 列不包含 app
-BAASWhere *where = [BAASWhere containsWithKey:@"color" value:@"app"];
+BaaSWhere *where = [BaaSWhere icontainsWithKey:@"color" value:@"app"];
 ```
 {% endtabs %}
 
@@ -247,36 +211,10 @@ regex = "/pattern/flags"
 | u   | Unicode; treat pattern as a sequence of Unicode code points|
 | z | sticky; matches only from the index indicated by the lastIndex property of this regular expression in the target string (and does not attempt to match from any later indexes).|
 
+> **info**
 > 正则表达式，使用的是 `JavaScript` 的语法规则，请参考 [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)。
 
 **代码示例**
-
-```js
-/* 以查找名字为例，name 字段必须为 string 类型 */
-
-let regExp
-
-// 查找 以 foo 开头的名字，并且对大小写不敏感
-regExp = /^foo/i
-
-query.matches('name', regExp)
-
-
-/* 以查找手机号码为例，phoneNumber 字段必须为 string 类型 */
-
-let regx
-
-// 查找 以 188 开头的手机号码
-regx = /^188/
-
-// 查找 以 708 结尾的手机号码
-regx = /708$/
-
-// 查找 以 188 开头的手机号码，以 708 结尾的手机号码
-regx = /^188\d+708$/
-
-query.matches('phoneNumber', regx)
-```
 
 {% tabs swift8_1="Swift", oc8_1="Objective-C" %}
 {% content "swift8_1" %}
@@ -287,7 +225,6 @@ query.matches('phoneNumber', regx)
 let regExp = "/^foo/i"
 
 let whereargs = Where.matches(key: "name", regx: regExp)
-
 
 /* 以查找手机号码为例，phoneNumber 字段必须为 string 类型 */
 
@@ -309,7 +246,7 @@ let whereargs = Where.matches(key: 'phoneNumber', regx: regx)
 // 查找 以 foo 开头的名字，并且对大小写不敏感
 NSString *regx = @"/^foo/i";
 
-BAASWhere *where = [BAASWhere matchesWithKey:@"name" regx: regx];
+BaaSWhere *where = [BaaSWhere matchesWithKey:@"name" regx: regx];
 
 /* 以查找手机号码为例，phoneNumber 字段必须为 NSString 类型 */
 
@@ -322,7 +259,7 @@ NSString *regx = @"/708$/";
 // 查找 以 188 开头的手机号码，以 708 结尾的手机号码
 NSString *regx = @"/^188\d+708$/";
 
-BAASWhere *where = [BAASWhere matchesWithKey:@"phoneNumber" regx: regx];
+BaaSWhere *where = [BaaSWhere matchesWithKey:@"phoneNumber" regx: regx];
 ```
 {% endtabs %}
 
@@ -337,7 +274,7 @@ let whereargs = Where.inList(key: "fieldname", list: array)
 ```
 {% content "oc8" %}
 ```
-BAASWhere *where = [BAASWhere inListWithKey: @"fieldname" list: array];
+BaaSWhere *where = [BaaSWhere inListWithKey: @"fieldname" list: array];
 ```
 {% endtabs %}
 
@@ -349,7 +286,7 @@ let whereargs = Where.notInList(key: "fieldname", list: array)
 ```
 {% content "oc9" %}
 ```
-BAASWhere *where = [BAASWhere notInListWithKey: @"fieldname" list: array];
+BaaSWhere *where = [BaaSWhere notInListWithKey: @"fieldname" list: array];
 ```
 {% endtabs %}
 
@@ -361,7 +298,7 @@ let whereargs = Where.arrayContains(key: "fieldname", list: array)
 ```
 {% content "oc10" %}
 ```
-BAASWhere *where = [BAASWhere arrayContainsWithKey: @"fieldname" list: array];
+BaaSWhere *where = [BaaSWhere arrayContainsWithKey: @"fieldname" list: array];
 ```
 {% endtabs %}
 
@@ -373,7 +310,7 @@ let whereargs = Where.compare(key: "fieldname", operator: .equalTo, value: array
 ```
 {% content "oc11" %}
 ```
-BAASWhere *where = [BAASWhere compareWithKey:@"keyname" operator:BAASOperatorEqualTo value: array]
+BaaSWhere *where = [BaaSWhere compareWithKey:@"keyname" operator:BaaSOperatorEqualTo value: array]
 ```
 {% endtabs %}
 
@@ -389,8 +326,8 @@ let whereargs = Where.isNotNull(key: "name")
 ```
 {% content "oc12" %}
 ```
-BAASWhere *where = [BAASWhere isNullWithKey:@"name"];
-BAASWhere *where = [BAASWhere isNotNullWithKey:@"name"];
+BaaSWhere *where = [BaaSWhere isNullWithKey:@"name"];
+BaaSWhere *where = [BaaSWhere isNotNullWithKey:@"name"];
 ```
 {% endtabs %}
 
@@ -406,8 +343,8 @@ let whereargs = Where.notExists(key: "name")
 ```
 {% content "oc13" %}
 ```
-BAASWhere *where = [BAASWhere existsWith:@"name"];
-BAASWhere *where = [BAASWhere notExistsWithKey:@"name"];
+BaaSWhere *where = [BaaSWhere existsWith:@"name"];
+BaaSWhere *where = [BaaSWhere notExistsWithKey:@"name"];
 ```
 {% endtabs %}
 
@@ -452,11 +389,12 @@ let whereargs = Where.hasKey("publisherInfo", fieldName: "location")
 ```
 {% content "oc14" %}
 ```
-BAASWhere *where = [BAASWhere hasKey:@"publisherInfo" fieldName:@"location"];
+BaaSWhere *where = [BaaSWhere hasKey:@"publisherInfo" fieldName:@"location"];
 ```
 {% endtabs %}
 
-注意：目前暂不支持查询内嵌属性
+> **info**
+> 目前暂不支持查询内嵌属性
 
 假设数据行如下
 ```javascript
@@ -483,7 +421,7 @@ let whereargs = Where.hasKey("publisherInfo", fieldName: "abc.location")
 ```
 {% content "oc15" %}
 ```
-BAASWhere *where = [BAASWhere hasKey:@"publisherInfo" fieldName:@"abc.location"];
+BaaSWhere *where = [BaaSWhere hasKey:@"publisherInfo" fieldName:@"abc.location"];
 ```
 {% endtabs %}
 
@@ -521,10 +459,10 @@ Order.setQuery(query)
 {% content "oc16" %}
 ```
 // 通过 tableId 创建数据表实例
-BAASTable *Order = [[BAASTable alloc] initWithId:1236**];
-BAASQuery *query1 = [BAASQuery compareWithKey:@"customer" operator:@"=" value:@"5bad87ab0769797b4fb27a1b"];
-BAASQuery *query2 = [BAASQuery compareWithKey:@"user" operator:@"=" value:@69147880];
-BAASWhere *where = [BAASWhere andWithQuerys:@[query1, query2]];
+BaaSTable *Order = [[BaaSTable alloc] initWithId:1236**];
+BaaSQuery *query1 = [BaaSQuery compareWithKey:@"customer" operator:@"=" value:@"5bad87ab0769797b4fb27a1b"];
+BaaSQuery *query2 = [BaaSQuery compareWithKey:@"user" operator:@"=" value:@69147880];
+BaaSWhere *where = [BaaSWhere andWithQuerys:@[query1, query2]];
 [Order setQuery: query];
 ```
 {% endtabs %}
@@ -533,10 +471,12 @@ BAASWhere *where = [BAASWhere andWithQuerys:@[query1, query2]];
 
 ## 组合查询
 
+当有多个查询时，可以使用 `and` 和 `or` 来组合查询查询条件。
+
 {% tabs swift17="Swift", oc17="Objective-C" %}
 {% content "swift17" %}
 ```
-let args1 = Where.compare(key: "price", operator: "<", value: 10)
+let args1 = Where.compare(key: "price", operator:.lessThan , value: 10)
 let args2 = Where.isNull(key: "name")
 
 // and 查询
@@ -548,13 +488,13 @@ let whereargs.or(wheres: [args1, args2])
 ```
 {% content "oc17" %}
 ```
-BAASWhere *args1 = [BaaSWhere isNullWithKey:@"name"];
-BaaSWhere *args2 = [BaaSWhere compareWithKey:@"price" operator:@"<" value:@10];
+BaaSWhere *args1 = [BaaSWhere isNullWithKey:@"name"];
+BaaSWhere *args2 = [BaaSWhere compareWithKey:@"price" operator:BaaSOperatorLessThan value:@10];
 
 // and 查询
-BAASWhere *where = [BAASWhere andWithWheres:@[args1, args2]];
+BaaSWhere *where = [BaaSWhere andWithWheres:@[args1, args2]];
 
 // or 查询
-BAASWhere *where = [BAASWhere orWithWheres:@[args1, args2]];
+BaaSWhere *where = [BaaSWhere orWithWheres:@[args1, args2]];
 ```
 {% endtabs %}

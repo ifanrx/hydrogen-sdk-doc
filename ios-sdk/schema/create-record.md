@@ -12,6 +12,7 @@
 通过 `tableName` 或 `tableID` 实例化一个 `Table` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName。
 
 **示例代码**
+
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
@@ -35,23 +36,25 @@ BaaSTable *table = [[BaaSTable alloc] initWithName:@"Book"];
 
 tableName 和 tableID 二选一
 
-| 名称     | 类型   | 必填   | 说明                   |
-| :-----  | :----- | :---- | :--- |
-| Id   | Int  | 是   | 数据表的 ID             |
-| name | String |  是 | 数据表名 |
+| 名称     | 类型   |说明    |
+| :-----  | :----- | :--- |
+| Id   | Int  |  数据表的 ID |
+| name | String |   数据表名 |
 
 ### 本地创建一条空记录
 
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-let record = table.createRecord()
+let record: TableRecord = table.createRecord()
 ```
 {% content "oc2" %}
 ```
-BaaSRecord *record = [table createRecord];
+BaaSTableRecord *record = [table createRecord];
 ```
 {% endtabs %}
+
+关于 `TableRecord` 类型查看 [数据类型](./data-type.md) 章节
 
 ### 为上面创建的空记录赋值
 
@@ -98,7 +101,7 @@ record.set(key: "price", value: 10)
 > **info**
 > 对同一字段进行多次 `set` 操作，后面的数据会覆盖掉前面的数据
 
-4.将创建的记录保存到服务器
+### 将创建的记录保存到服务器
 
 {% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}
@@ -122,11 +125,11 @@ record.save { (success, error) in
 | success  | Bool           | 是否新增数据成功 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息  |
 
-success 写入数据成功后，记录对象 record 的数据将被更新。
+success 写入数据成功后，**记录对象 record 的数据将被更新**。
 
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
-通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。
+**通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。**
 
 ## 添加普通数据
 
@@ -197,7 +200,10 @@ NSString *dateISO = [dateFormatter stringFromDate:[NSDate date]];
 
 ## 添加 file 类型数据
 
-如 Book 表定义 file 类型的列 cover，表示书的封面：
+> **info**
+>  为 file 类型字段设置值时，必须以 json 格式提供特定的文件信息。通过使用 `fileInfo` 可方便获取文件信息。
+
+如 Book 表定义 file 类型的列 cover，表示书的封面。示例：将一个文件上传到知晓云后，将该文件设置为书的封面。
 
 {% tabs swift8="Swift", oc8="Objective-C" %}
 {% content "swift8" %}
@@ -219,6 +225,10 @@ NSString *filePath = [[NSBundle mainBundle] pathForResource:@"cover" ofType:@"pn
 }];
 ```
 {% endtabs %}
+
+关于 `file` 类型查看 [文件](../file/file.md) 章节
+
+<!--
 
 ## 添加 geojson 类型数据
 
@@ -248,6 +258,8 @@ BAASGeoPolygon *polygon = [[BAASGeoPolygon alloc] initWithCoordinates:@[@[30, 10
 {% endtabs %}
 
 关于 geojson 类型查看 [地理位置操作](./geo.md) 章节
+
+-->
 
 ## 添加 object 类型数据
 
@@ -317,8 +329,6 @@ NSDictionary *options = @{@"enable_trigger": @YES};
 | records   | Dictionary  |   符合表结构的对象| Y |
 | options | Dictionary    |   批量操作选项 ，目前支持支持 enable_trigger, true 为触发触发器 |  N |
 
-> Swift 默认会触发触发器。
-
 **返回结果**
  
 | 名称      | 类型           | 说明 |
@@ -326,8 +336,8 @@ NSDictionary *options = @{@"enable_trigger": @YES};
 | result  |  Dictionary           | 新增的数据结果 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息  |
 
-> 说明
- error 为 nil 不说明批量写入数据完全成功，仅代表服务端已收到并处理了这个请求，只有当返回的结果中 operation_result 列表中不存在 error 元素时，才可以认为所有数据均写入成功。
+> **info**
+> error 为 nil 不说明批量写入数据完全成功，仅代表服务端已收到并处理了这个请求，只有当返回的结果中 operation_result 列表中不存在 error 元素时，才可以认为所有数据均写入成功。
 
  **返回示例**
  ```

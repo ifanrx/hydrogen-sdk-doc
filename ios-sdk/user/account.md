@@ -6,23 +6,23 @@
 
 1. 通过注册、登录后将获取当前用户对象。
 2. 通过以下方法获取当前用户：
-    {% tabs swift0="Swift", oc0="Objective-C" %}
+
+{% tabs swift0="Swift", oc0="Objective-C" %}
 {% content "swift0" %}
 ```
 // 用户管理对象
-UserManager.shared.getCurrentUserInfo { (currentUser, error) in
+Auth.getCurrentUserInfo { (currentUser, error) in
 
 }
 ```
 {% content "oc0" %}
 ```
 // 用户管理对象
-[BaaSUserManager.shared getCurrentUserInfo:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
+[BaaSAuth getCurrentUserInfo:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
 
 }];
 ```
 {% endtabs %}
-
 
 ## currentUser 对象说明
 
@@ -164,8 +164,6 @@ currentUser.updateEmail("test_new@ifanr.com") { (result, error) in
 | result   | Dictionary           | 被更新的信息 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
 
-更新成功后，currentUser.email 将被更新为新的邮箱地址。
-
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ### 设置密码
@@ -211,6 +209,7 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ### 更新用户自定义字段
 
+> **info**
 > 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 。
 
 **示例代码**
@@ -244,8 +243,6 @@ currentUser.updateUserInfo(["age": 18]) { (result, error) in
 | :-------- | :------------  | :------ |
 | result   | Dictionary           | 被更新的信息 |
 | error   |  HError(Swift) / NSError(OC) |  错误信息     |
-
-更新成功后，新的用户信息将被更新到 currentUser。
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
