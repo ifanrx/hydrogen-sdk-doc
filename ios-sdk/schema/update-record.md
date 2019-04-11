@@ -222,7 +222,7 @@ book.uAppend(key: @"author", value: ["xiaoming", "xiaohong"])
 ```
 {% content "oc9" %}
 ```
-[book uAppengWithKey:@"author" value:@[@"xiaoming", @"xiaohogn"]];
+[book uAppengWithKey:"author" value:@[@"xiaoming", @"xiaohogn"]];
 ```
 {% endtabs %}
 

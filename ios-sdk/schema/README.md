@@ -13,4 +13,3 @@
 * [获取数据项](./get-record-detail.md)
 * [查询数据项](./query.md)
 * [分页和排序](./limit-and-order.md)
-* [地理位置操作](./geo.md)

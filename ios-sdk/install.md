@@ -23,6 +23,19 @@ end
 pod install
 ```
 
+# 在需要使用 MinCloud 的文件中导入 MinCloud
+
+{% tabs swift2="Swift", oc2="Objective-C" %}
+{% content "swift2" %}
+```
+import MinCloud
+```
+{% content "oc2" %}
+```
+@import MinCloud;
+```
+{% endtabs %}
+
 # 初始化 MinCloud
 
 在应用启动时，需要注册知晓云 `clientId`，即在 `APPDelegate` 文件中，找到 `application:didFinishLaunchingWithOptions` 函数，插入下面代码：
@@ -35,19 +48,6 @@ BaaS.register(clientID: "f86c1******45d1152a1")
 {% content "oc1" %}
 ```
 [BaaS registerWithClientID:@"f86c1******45d1152a1"];
-```
-{% endtabs %}
-
-# 在需要使用 MinCloud 的文件中导入 MinCloud
-
-{% tabs swift2="Swift", oc2="Objective-C" %}
-{% content "swift2" %}
-```
-import MinCloud
-```
-{% content "oc2" %}
-```
-@import MinCloud;
 ```
 {% endtabs %}
 

@@ -201,13 +201,13 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% tabs swift6="Swift", oc6="Objective-C" %}
 {% content "swift6" %}
 ```
-FileManager.getFileList(categoryId: "5ca489bb8c374f5039a8****") { (result, error) in
+FileManager.find(categoryId: "5ca489bb8c374f5039a8****") { (result, error) in
 
 }
 ```
 {% content "oc6" %}
 ```
-[BaaSFileManager getFileListWithCategoryId:@"5ca489bb8c374f5039a8****" query:nil completion:^(BaaSFileListResult * _Nullable listResult, NSError * _Nullable error) {
+[BaaSFileManager findWithCategoryId:@"5ca489bb8c374f5039a8****" query:nil completion:^(BaaSFileListResult * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```

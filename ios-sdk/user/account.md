@@ -11,14 +11,14 @@
 {% content "swift0" %}
 ```
 // 用户管理对象
-Auth.getCurrentUserInfo { (currentUser, error) in
+Auth.getCurrentUser { (currentUser, error) in
 
 }
 ```
 {% content "oc0" %}
 ```
 // 用户管理对象
-[BaaSAuth getCurrentUserInfo:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
+[BaaSAuth getCurrentUser:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
 
 }];
 ```
@@ -46,7 +46,7 @@ currentUser 代表了当前登录的用户，开发者可以通过浏览 current
 | _username | String | 用户名（用于用户以用户名 & 密码登录） |
 | _email_verified | Boolean | 用户邮箱是否已经通过验证（已验证邮箱才能找回密码） |
 | _provider |Object |  用户在平台方的用户信息  |
-| _provider.alipay |Object |  支付宝平台的用户信息，见下方说明  |
+| _provider.alipay |Object |  支付宝平台的用户信息  |
 
 **获取内置字段**
 
@@ -281,12 +281,12 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ## 忘记密码
 
-### 通过邮件找回密码
+### 通过邮件重置密码
 
-当用户忘记了登录密码，可以通过邮件找回密码。
+当用户忘记了登录密码，可以通过邮件重置密码。
 
 > **info**
-> 只有通过验证的邮箱才能使用邮件找回密码功能
+> 只有通过验证的邮箱才能使用邮件重置密码功能
 
 **示例代码**
 
