@@ -1,4 +1,4 @@
-﻿# 知晓云 Android SDK Demo 的使用
+﻿# 知晓云 Android SDK Demo 使用指南
 
 ## 下载 Android Studio
 从[这里](https://developer.android.com/studio)下载，并安装
