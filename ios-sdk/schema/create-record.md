@@ -46,15 +46,15 @@ tableName 和 tableID 二选一
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-let record: TableRecord = table.createRecord()
+let record: Record = table.createRecord()
 ```
 {% content "oc2" %}
 ```
-BaaSTableRecord *record = [table createRecord];
+BaaSRecord *record = [table createRecord];
 ```
 {% endtabs %}
 
-关于 `TableRecord` 类型查看 [数据类型](./data-type.md) 章节
+关于 `Record` 类型查看 [数据类型](./data-type.md) 章节
 
 ### 为上面创建的空记录赋值
 
@@ -164,7 +164,7 @@ book.save { (success, error) in
 BaaSTable *bookTable = [[BaaSTable alloc] initWithName:@"Book"];
 
 // 创建一条空记录
-BaaSTableRecord *book = [bookTable createRecord];
+BaaSRecord *book = [bookTable createRecord];
 
 // 设置方式一
 [book setWithRecord:@{@"name": @"老人与海", @"author": @"海明威" @"price": 49}];
@@ -296,7 +296,7 @@ book.set(key: "comment", value: comment)
 ```
 {% content "oc9" %}
 ```
-BaaSTableRecord *comment = [table getWithoutDataWithRecordId:@"5bad87ab0769797b4fb27a1b"];
+BaaSRecord *comment = [table getWithoutDataWithRecordId:@"5bad87ab0769797b4fb27a1b"];
 [book setWithKey:@"comment" value:comment];
 ```
 {% endtabs %}

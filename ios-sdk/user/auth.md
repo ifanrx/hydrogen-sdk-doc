@@ -138,7 +138,7 @@ Auth.login(username: "test", password: "111") { (currentUser, error) in
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| username    | String      | 用户邮箱 |
+| username    | String      | 用户名 |
 | password | String         | 密码     |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

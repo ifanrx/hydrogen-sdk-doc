@@ -48,7 +48,7 @@ table.get("5caae446ce8e9e5be81bba48", select: select, expand: expand) { (record,
 ```
 NSArray *select = @[@"color", @"created_by"];
 NSArray *expand = @[@"created_by"];
-[_table get:@"5ca47715d625d83705971cec" select:select expand:expand completion:^(BaaSTableRecord * _Nullable record, NSError * _Nullable error) {
+[_table get:@"5ca47715d625d83705971cec" select:select expand:expand completion:^(BaaSRecord * _Nullable record, NSError * _Nullable error) {
                         
 }];
 ```
@@ -66,7 +66,7 @@ NSArray *expand = @[@"created_by"];
 
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
-| record   | TableRecord     | 数据项实例, 关于 `TableRecord` 类型查看 [数据类型](./data-type.md) 章节|
+| record   | Record     | 数据项实例, 关于 `Record` 类型查看 [数据类型](./data-type.md) 章节|
 | error     | HError(Swift) / NSError(OC) | 错误信息   |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

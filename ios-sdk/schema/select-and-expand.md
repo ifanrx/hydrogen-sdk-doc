@@ -28,7 +28,7 @@ NSArray *select = @[@"created_at", @"created_by"];
 // 不返回特定字段
 NSArray *select = @[@"-created_at", @"-created_by"];
 
-[table get:@"5ca47715d625d8370597****" select:select expand:nil completion:^(BaaSTableRecord * _Nullable record, NSError * _Nullable error) {
+[table get:@"5ca47715d625d8370597****" select:select expand:nil completion:^(BaaSRecord * _Nullable record, NSError * _Nullable error) {
                         
 }];
 ```
@@ -46,7 +46,7 @@ NSArray *select = @[@"-created_at", @"-created_by"];
 
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
-| record   | TableRecord     | 数据项实例, 关于 `TableRecord` 类型查看 [数据类型](./data-type.md) 章节|
+| record   | Record     | 数据项实例, 关于 `Record` 类型查看 [数据类型](./data-type.md) 章节|
 | error     | HError(Swift) / NSError(OC) | 错误信息   |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
@@ -167,7 +167,7 @@ table.get(recordId, expand: expand) { (record, error) in
 NSArray *expand = @[@"created_by", @"pointer_value"];
 
 NSString *recordId = @"5ca09074be20d6749023****";
-[_table get:recordId select:nil expand:expand completion:^(BaaSTableRecord * _Nullable record, NSError * _Nullable error) {
+[_table get:recordId select:nil expand:expand completion:^(BaaSRecord * _Nullable record, NSError * _Nullable error) {
                         
 }];
 ```
@@ -185,7 +185,7 @@ NSString *recordId = @"5ca09074be20d6749023****";
 
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
-| record   | TableRecord     | 数据项实例, 关于 `TableRecord` 类型查看 [数据类型](./data-type.md) 章节|
+| record   | Record     | 数据项实例, 关于 `Record` 类型查看 [数据类型](./data-type.md) 章节|
 | error     | HError(Swift) / NSError(OC) | 错误信息   |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

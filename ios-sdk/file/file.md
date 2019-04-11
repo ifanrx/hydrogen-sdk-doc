@@ -65,8 +65,8 @@ NSArray *expand = @[@"created_by"];
 |  参数  |  类型   | 必填 | 说明 |
 | :----- | :---- | :-- | :-- |
 | fileId | String |  Y  | 文件 id |
-| select | Array<String> |  N  | 指定筛选的字段，详见[数据表 - 字段过滤](./select-and-expand.md)章节 |
-| expand | Array<String> |  N  | 指定扩展的字段，详见[数据表 - 字段扩展](./select-and-expand.md)章节 |
+| select | Array<String> |  N  | 指定筛选的字段，详见[数据表 - 字段过滤](../schema/select-and-expand.md)章节 |
+| expand | Array<String> |  N  | 指定扩展的字段，详见[数据表 - 字段扩展](../schema/select-and-expand.md)章节 |
 
 **返回结果**
 
