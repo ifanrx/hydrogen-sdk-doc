@@ -1,27 +1,12 @@
 # 文件操作
 
-实例化一个 `FileManager` 对象，以下操作都是在该对象上进行操作。获取一个单例对象：
-
-{% tabs swift1="Swift", oc1="Objective-C" %}
-{% content "swift1" %}
-```
-FileManager.shared
-```
-{% content "oc1" %}
-```
-BaaSFileManager.shared
-```
-{% endtabs %}
-
 ### 文件上传
-
-`MyFile.upload(fileParams, metaData)`
 
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
 let filePath = Bundle.main.path(forResource: "1", ofType: "png")!
-FileManager.shared.upload(filename: "datasource", localPath: filePath, categoryName: "Book", progressBlock: { progress in
+FileManager.upload(filename: "datasource", localPath: filePath, categoryName: "Book", progressBlock: { progress in
                     
     }) { (file, error) in
 
@@ -29,7 +14,7 @@ FileManager.shared.upload(filename: "datasource", localPath: filePath, categoryN
 ```
 {% content "oc2" %}
 ```
-[BaaSFileManager.shared uploadWithFilename:@"cover" localPath:filePath categoryName:@"Book" progressBlock:^(NSProgress * _Nullable progress) {
+[BaaSFileManager uploadWithFilename:@"cover" localPath:filePath categoryName:@"Book" progressBlock:^(NSProgress * _Nullable progress) {
 
     } completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
 
@@ -46,6 +31,7 @@ FileManager.shared.upload(filename: "datasource", localPath: filePath, categoryN
 | categoryName | String | N  | 文件分类  |
 
 **返回结果**
+
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | file  |   File           | 已上传的文件，详见 **数据类型** 小节 |
@@ -59,7 +45,7 @@ FileManager.shared.upload(filename: "datasource", localPath: filePath, categoryN
 let fileId = "5c98b065d575a97d5f878225"
 let select = ["name", "created_by"]
 let expand = ["created_by"]
-FileManager.shared.get(fileId, select: select, expand: expand) { (result, error) in
+FileManager.get(fileId, select: select, expand: expand) { (result, error) in
 
 }
 ```
@@ -68,7 +54,7 @@ FileManager.shared.get(fileId, select: select, expand: expand) { (result, error)
 NString *fileId = @"5c98b065d575a97d5f878225";
 NSArray *select = @[@"name", @"created_by"];
 NSArray *expand = @[@"created_by"];
-[BaaSFileManager.shared get:fileId select:select expand:expand completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
+[BaaSFileManager get:fileId select:select expand:expand completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
 
 }];
 ```
@@ -83,6 +69,7 @@ NSArray *expand = @[@"created_by"];
 | expand | Array<String> |  N  | 指定扩展的字段，详见[数据表 - 字段扩展](./select-and-expand.md)章节 |
 
 **返回结果**
+
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | file  |   File           | 已上传的文件，详见 **数据类型** 小节 |
@@ -90,8 +77,9 @@ NSArray *expand = @[@"created_by"];
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
-### 删除一个文件
+### 删除本文件
 
+> **info**
 > 获取一个 File 对象实例后，该实例可以删除对应的文件，在知晓云服务器删除成功后，该实例并没有被 SDK 清除，建议开发自行清除。
 
 {% tabs swift4_1="Swift", oc4_1="Objective-C" %}
@@ -122,13 +110,13 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 ```
-FileManager.shared.delete(["5c98aed0d575****5f878224", "5c98aed0d575****6e1ace9b"]) { (success, error) in
+FileManager.delete(["5c98aed0d575****5f878224", "5c98aed0d575****6e1ace9b"]) { (success, error) in
 
 }
 ```
 {% content "oc4" %}
 ```
-[BaaSFileManager.shared delete:@[@"5c98aed0d5****7d5f878224", @"5c98aed0d575****6e1ace9b"] completion:^(BOOL success, NSError * _Nullable error) {
+[BaaSFileManager delete:@[@"5c98aed0d5****7d5f878224", @"5c98aed0d575****6e1ace9b"] completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 
@@ -142,6 +130,7 @@ FileManager.shared.delete(["5c98aed0d575****5f878224", "5c98aed0d575****6e1ace9b
 | fileId | Array |  Y  | 需要删除的文件 id |
 
 **返回结果**
+
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | success  |   Bool           | 是否删除成功 |
@@ -153,7 +142,17 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 文件查询与[数据表查询](../schema/query.md)方法一致，但只支持以下指定字段的筛选
 
+| 支持字段       |  类型   | 说明 |
+| :-----------  | :----- | :--- |
+| id            | String | 文件 id |
+| name          | String | 文件名 |
+| size          | Integer| 文件大小，以字节为单位 |
+| category_id   | String | 文件分类 id |
+| category_name | String | 文件分类名 |
+| created_at    | Integer| 创建时间 （格式为 unix 时间戳） |
+
 ### 排序
+
 文件查询排序与[数据表排序](../schema/limit-and-order.md)方法一致，但只支持对以下指定字段进行排序
 
 | 支持字段       |  类型   | 说明 |
@@ -170,13 +169,13 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}
 ```
-FileManager.shared.getCategoryList() { (result, error) in
+FileManager.getCategoryList() { (result, error) in
 
 }
 ```
 {% content "oc5" %}
 ```
-[BaaSFileManager.shared getCategoryListWithQuery:nil completion:^(BaaSFileCategoryListResult * _Nullable listResult, NSError * _Nullable) {
+[BaaSFileManager getCategoryListWithQuery:nil completion:^(BaaSFileCategoryListResult * _Nullable listResult, NSError * _Nullable) {
 
 }];
 ```
@@ -202,13 +201,13 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% tabs swift6="Swift", oc6="Objective-C" %}
 {% content "swift6" %}
 ```
-FileManager.shared.getFileList(categoryId: "5ca489bb8c374f5039a8****") { (result, error) in
+FileManager.getFileList(categoryId: "5ca489bb8c374f5039a8****") { (result, error) in
 
 }
 ```
 {% content "oc6" %}
 ```
-[BaaSFileManager.shared getFileListWithCategoryId:@"5ca489bb8c374f5039a8****" query:nil completion:^(BaaSFileListResult * _Nullable listResult, NSError * _Nullable error) {
+[BaaSFileManager getFileListWithCategoryId:@"5ca489bb8c374f5039a8****" query:nil completion:^(BaaSFileListResult * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
@@ -275,7 +274,7 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 | 属性         |  类型   | 说明 |
 | :--------- | :---     | :--- |
-| categoryId  |   String  | 分类 Id |
+| Id  |   String  | 分类 Id |
 | mimeType |  String    | 文件类型 |
 | name  |  String  | 分类名 |
 | files  |  Int | 该分类的文件数量 |

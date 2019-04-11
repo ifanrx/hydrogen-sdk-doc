@@ -11,7 +11,7 @@
 | boolean  | =, exists, notExists, isNull, isNotNull                                                 |      |
 | date     | =, >, >=, <, <=,  exists, notExists, isNull, isNotNull                                  |      |
 | file     | isNull, isNotNull, exists, notExists                                                    |      |
-| geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     | 请参考地理位置操作章节 |
+| geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     |      |
 | object   | =, hasKey, isNull, isNotNull, exists, notExists                                         |      |
 | pointer  | =, in, notIn, !=, isNull, isNotNull, exists, notExists                                  |      |
 
@@ -53,7 +53,7 @@ tableName 和 tableID 二选一
 | tableId   | Int  | 数据表的 ID |
 | tableName | String |  数据表名 |
 
-2. 创建 `Where` 对象，在该对象上添加查询条件
+2.创建 `Where` 对象，在该对象上添加查询条件
 
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
@@ -68,7 +68,7 @@ BaaSWhere *where = [BaaSWhere containsWithKey:@"color" value:@"red"];
 
 查看下面的文档，了解目前支持的查询条件
 
-3.支持查询条件并执行查找操作
+3.设置查询条件并执行查找操作
 
 {% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
@@ -123,6 +123,7 @@ table.find(query: query) { (listResult, error) in
 // 设置查询条件
 BaaSWhere *where = [BaaSWhere icontainsWithKey:@"color" value:@"red"];
 
+// 应用查询条件
 BaaSQuery *query = [[BaaSQuery alloc] init];
 [query setWhere:where];
 [table findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
@@ -141,8 +142,9 @@ let whereargs = Where.compare(key: "price", operator: .greaterThanOrEqualTo, val
 ```
 
 operator 说明：
+
 | 类型            | 说明      |
-|----------------|-----------------|
+| :--------------| :-----------------|
 | equalTo            | =      |
 | notEqualTo         | !=      |
 | greaterThan        | >    |
@@ -158,7 +160,7 @@ BaaSWhere *where = [BaaSWhere compareWithKey:@"price" operator: BaaSOperatorGrea
 operator 说明：
 
 | 类型            | 说明      |
-|----------------|-----------------|
+| :---------------| :----------------|
 | BaaSOperatorEqualTo            | =      |
 | BaaSOperatorNotEqualTo         | !=      |
 | BaaSOperatorGreaterThan        | >    |
@@ -185,7 +187,7 @@ let whereargs = Where.contains(key: "name", value: "app")
 BaaSWhere *where = [BaaSWhere containsWithKey:@"name" value:@"apple"];
 
 // name 列不包含 app
-BaaSWhere *where = [BaaSWhere containsWithKey:@"color" value:@"app"];
+BaaSWhere *where = [BaaSWhere icontainsWithKey:@"color" value:@"app"];
 ```
 {% endtabs %}
 
@@ -209,6 +211,7 @@ regex = "/pattern/flags"
 | u   | Unicode; treat pattern as a sequence of Unicode code points|
 | z | sticky; matches only from the index indicated by the lastIndex property of this regular expression in the target string (and does not attempt to match from any later indexes).|
 
+> **info**
 > 正则表达式，使用的是 `JavaScript` 的语法规则，请参考 [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)。
 
 **代码示例**
@@ -390,7 +393,8 @@ BaaSWhere *where = [BaaSWhere hasKey:@"publisherInfo" fieldName:@"location"];
 ```
 {% endtabs %}
 
-注意：目前暂不支持查询内嵌属性
+> **info**
+> 目前暂不支持查询内嵌属性
 
 假设数据行如下
 ```javascript

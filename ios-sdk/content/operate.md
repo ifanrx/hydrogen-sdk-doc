@@ -19,7 +19,7 @@ BaaSContentGroup *contentGroup = [[BaaSContentGroup alloc] initId: @"155331****3
 | :------------- | :----- | :-- | :-- |
 | Id | Int64 | 是  | 内容库 ID |
 
-### 获取内容详情
+## 获取内容详情
 
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
@@ -51,6 +51,7 @@ NSArray *expand = @[@"created_by"];
 | expand | Array<String> |  N  | 指定扩展的字段，详见[数据表 - 字段扩展](./select-and-expand.md)章节 |
 
 **返回结果**
+
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | content  |   Content           | 内容详情，详见 **数据类型** 小节 |
@@ -58,11 +59,11 @@ NSArray *expand = @[@"created_by"];
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
-### 查询，获取内容列表
+## 查询，获取内容列表
 
 内容查询与[数据表查询](../schema/query.md)方法一致。
 
-### 获取分类详情
+## 获取分类详情
 
 {% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
@@ -86,6 +87,7 @@ contentGroup.getCategory(Id: categoryId) { (category, error) in
 | categoryID | Int64 |  是 | 分类 ID |
 
 **返回结果**
+
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | contentCategory  |   ContentCategory           | 内容分类详情，详见 **数据类型** 小节 |
@@ -93,7 +95,7 @@ contentGroup.getCategory(Id: categoryId) { (category, error) in
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
-### 获取内容库分类列表
+## 获取内容库分类列表
 
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
@@ -125,7 +127,7 @@ contentGroup.getCategoryList { (listResult, error) in
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
-### 分页与排序
+## 分页与排序
 内容查询的分页与排序操作和[数据表分页与排序](../schema/limit-and-order.md)方法一致。
 
 ## 数据类型
@@ -134,7 +136,7 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 | 属性         |  类型   | 说明 |
 | :--------- | :---     | :--- |
-| contentId         |   Int64  | 内容 Id |
+| Id         |   Int64  | 内容 Id |
 | title |  String    | 名称 |
 | desc  |  String  | 描述 |
 | cover  |  String | 封面 路径 |
@@ -154,7 +156,7 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 | 属性         |  类型   | 说明 |
 | :--------- | :---     | :--- |
-| categoryId  |   Int64  | 分类 Id |
+| Id  |   Int64  | 分类 Id |
 | name  |  String  | 分类名 |
 | haveChildren  |  Bool | 是否有子类 |
 | children | Array  |   子类列表，元素类型为 ContentCategory  | 
