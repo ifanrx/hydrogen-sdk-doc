@@ -5,11 +5,11 @@
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
-let contentGroup = ContentGroup(Id: "155331****380156")
+let contentGroup = ContentGroup(Id: 155331****380156)
 ```
 {% content "oc1" %}
 ```
-BaaSContentGroup *contentGroup = [[BaaSContentGroup alloc] initId: @"155331****380156"];
+BaaSContentGroup *contentGroup = [[BaaSContentGroup alloc] initId: 155331****380156];
 ```
 {% endtabs %}
 
@@ -33,7 +33,7 @@ contentGroup.get(contentId, select: select, expand: expand) { (content, error) i
 ```
 {% content "oc2" %}
 ```
-NSNumber *contentId = @155332****126641;
+long long = 155332****126641;
 NSArray *select = @[@"title", @"created_by"];
 NSArray *expand = @[@"created_by"];
 [contentGroup get:contentId select:select expand:expand completion:^(BaaSContent * _Nullable content, NSError * _Nullable error) {

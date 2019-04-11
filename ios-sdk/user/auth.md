@@ -67,7 +67,7 @@ Auth.register(username: "test", password: "111") { (currentUser, error) in
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| username    | String      | 用户邮箱 |
+| username    | String      | 用户名 |
 | password | String         | 密码     |
 
 **返回结果**
