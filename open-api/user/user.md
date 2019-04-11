@@ -610,7 +610,7 @@ Content-Type: `application/json`
 | :----- | :----- | :-- | :-- |
 | username   | String | N   | 用户名，不区分大小写 |
 | email | String | N   | 邮箱，不区分大小写 |
-| password | String | N | 用户密码，新用户密码若 new_password 不为空则必填 |
+| password | String | N | 旧用户密码；第一次设置密码：不填，更新密码：必填 |
 | new_password | String | N | 新用户密码 |
 
 **代码示例**
