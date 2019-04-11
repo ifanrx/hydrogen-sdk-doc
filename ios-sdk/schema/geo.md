@@ -79,7 +79,7 @@ BAASTable *neighbourhood = [[BAASTable alloc] initWithName:@"neighbourhoodTableN
 // geoField 为 neighbourhood 表中定义地理位置的字段名，point 为用户所在位置，为 GeoPoint 类型
 BAASQuery *query = [BAASQuery includeWithKey:@"geoField" point: point];
 [neighbourhood setQuery: query];
-[neighbourhood find:^(NSArray<BAASTableRecord *> * _Nullable records, NSError * _Nullable error) {
+[neighbourhood find:^(NSArray<BAASRecord *> * _Nullable records, NSError * _Nullable error) {
                         
 }];
 ```
@@ -110,7 +110,7 @@ BAASTable *restaurant = [[BAASTable alloc] initWithName:@"restaurantTableName"];
 // geoField 为 restaurant 表中定义地理位置的字段名
 BAASQuery *query = [BAASQuery withinCircleWithKey:@"geoField" point: point radius: radius];
 [restaurant setQuery: query];
-[restaurant find:^(NSArray<BAASTableRecord *> * _Nullable records, NSError * _Nullable error) {
+[restaurant find:^(NSArray<BAASRecord *> * _Nullable records, NSError * _Nullable error) {
                         
 }];
 ```
@@ -141,7 +141,7 @@ BAASTable *restaurant = [[BAASTable alloc] initWithName:@"restaurantTableName"];
 // geoField 为 restaurant 表中定义地理位置的字段名，point 为圆点，minDistance 不指定默认为 0
 BAASQuery *query = [BAASQuery withinRegionWithKey: point:point minDistance:minDistance maxDistance:maxDistance];
 [restaurant setQuery: query];
-[restaurant find:^(NSArray<BAASTableRecord *> * _Nullable records, NSError * _Nullable error) {
+[restaurant find:^(NSArray<BAASRecord *> * _Nullable records, NSError * _Nullable error) {
  
 }];
 ```

@@ -1,8 +1,8 @@
 {% include "/cloud-function/node-sdk/schema/data-type.md" %}
 
-## TableRecord 类型
+## Record 类型
 
-`TableRecord` 表示数据库中的一条记录，包括 id、创建时间等，其中 recordInfo 包含该记录的所有信息。
+`Record` 表示数据库中的一条记录，包括 id、创建时间等，其中 recordInfo 包含该记录的所有信息。
 
 | 属性         |  类型   | 说明 |
 | :--------- | :---     | :--- |
@@ -22,4 +22,4 @@
 | limit     |  Int  |  返回记录的最大个数   |
 | offset    | Int  |    返回记录的起始偏移值 |
 | totalCount   | Int   |   实际返回的记录总数 |
-| records  |   Array<TableRecord> | 记录列表，每个元素为 TableRecord 类型   |
+| records  |   Array<Record> | 记录列表，每个元素为 Record 类型   |

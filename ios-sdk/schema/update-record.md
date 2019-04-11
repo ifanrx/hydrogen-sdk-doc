@@ -42,7 +42,7 @@ let record = table.getWithoutData(recordId: "5c944a10d575a970a9b91c12")
 ```
 {% content "oc2" %}
 ```
-BaaSTableRecord *record = [table getWithoutDataWithRecordId:@"5c944a10d575a970a9b91c12"];
+BaaSRecord *record = [table getWithoutDataWithRecordId:@"5c944a10d575a970a9b91c12"];
 ```
 {% endtabs %}
 
@@ -284,7 +284,7 @@ table.update(record) { (success, error) in
 ```
 BAASQuery *query = [BAASQuery compareWithKey:@"price" operator:BAASOperatorLessThan value:@15];
 [table setQuery:query];
-BAASTableRecord *record = [_table createRecord];
+BAASRecord *record = [_table createRecord];
 [record incrementByKey:@"price" value:@1];
 [table update:record enableTrigger:true completion:^(BOOL success, NSError * _Nullable error) {
 
