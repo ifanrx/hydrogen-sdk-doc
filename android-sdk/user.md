@@ -2,7 +2,7 @@
 
 ## 获取指定用户信息
 
-`Users.use(id)`
+`Users.user(id)`
 
 **参数说明**
 
@@ -62,7 +62,7 @@
 
 ```java
 try {
-  User potter = Users.use("potter");
+  User potter = Users.user("potter");
   potter.getString(User.AVATAR);
   potter.getInt(User.ID);
   // 操作成功
@@ -77,40 +77,34 @@ try {
 非当前用户：
 ```json
 {
-  "statusCode": 200,
-  "data": {
-    "avatar": "https://media.ifanrusercontent.com/media/tavatar/9a/1d/9a1db7592d6a325a845548f2fecbfb4516e138d0.jpg",
-    "id": 36395394,
-    "nickname": "hip hop man"
-  }
+  "avatar": "https://media.ifanrusercontent.com/media/tavatar/9a/1d/9a1db7592d6a325a845548f2fecbfb4516e138d0.jpg",
+  "id": 36395394,
+  "nickname": "hip hop man"
 }
 ```
 
 当前用户：
 ```json
 {
-  "statusCode": 200,
-  "data": {
-      "id": 5123461461,
-      "avatar": "http://cdn.ifanr.cn/ifanr/default_avatar.png",
-      "nickname": "riDGldYXLHouWIYx",
-      "_username": "myusername",
-      "_email": "myemail@somemail.com",
-      "_email_verified": false,
-      "_provider": {
-        "alipay": {
-          "avatar": "http://tfsimg.alipay.com/images/partner/T1uIxXXbpXXXXXXXX",
-          "province": "安徽省",
-          "city": "安庆",
-          "nick_name": "支付宝小二",
-          "is_student": true,
-          "user_type": "company_account",
-          "user_status": "authenticated",
-          "verified": true,
-          "gender": "female"
-        }
-      }
+  "id": 5123461461,
+  "avatar": "http://cdn.ifanr.cn/ifanr/default_avatar.png",
+  "nickname": "riDGldYXLHouWIYx",
+  "_username": "myusername",
+  "_email": "myemail@somemail.com",
+  "_email_verified": false,
+  "_provider": {
+    "alipay": {
+      "avatar": "http://tfsimg.alipay.com/images/partner/T1uIxXXbpXXXXXXXX",
+      "province": "安徽省",
+      "city": "安庆",
+      "nick_name": "支付宝小二",
+      "is_student": true,
+      "user_type": "company_account",
+      "user_status": "authenticated",
+      "verified": true,
+      "gender": "female"
     }
+  }  
 }
 ```
 
@@ -136,8 +130,8 @@ try {
 
   // 获取第一页的用户
   Query query = new Query();
-  query.put(Query.OFFSET, "10");
-  query.put(Query.LIMIT, "10");
+  query.offset(10);
+  query.limit(10);
   PagedList<User> pageTwo = Users.users(query);
 
   // 操作成功
@@ -167,8 +161,8 @@ PagedList<User> all = Users.users(query);
 
 ```java
 Query query = new Query();
-query.put(Query.OFFSET, "10");
-query.put(Query.LIMIT, "5");
+query.offset(10);
+query.limit(5);
 PagedList<User> pageTwo = Users.users(query);
 ```
 

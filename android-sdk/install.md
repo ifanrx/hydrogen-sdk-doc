@@ -8,7 +8,7 @@ buildscript {
     }
 }
 
-// app 模块引入依赖，目前最新版本为 0.0.8
+// app 模块引入依赖，目前最新版本为 0.0.9
 implementation "com.minapp.android:sdk:xxx"
 ```
 

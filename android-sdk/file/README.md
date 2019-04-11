@@ -24,13 +24,24 @@ try {
 
 ```java
 try {
-  Storage.file(avatar.getId());
+  CloudFile file = Storage.file(avatar.getId());
   // 操作成功
 } catch (Exception e) {
   Log.d(TAG, e.getMessage(), e);
   // 操作失败
 }
 ```
+
+**`CloudFile` 的属性**
+
+| 参数        |  类型  | 说明 |
+| :--------- | :----- | :------ |
+| path          | String       | 文件的访问路径 |
+| mimeType      | String       | 文件媒体类型 |
+| name          | String       | 文件名 |
+| mediaType     | String       | 如果文件是视频/图片，表示文件的格式 |
+| cdnPath       | String       | 文件在 path 上的名字 |
+| category      | FileCategory | 文件归属的目录 |
 
 同时，知晓云提供能一个功能强大，但操作简单的图片处理功能，方便你对图片进行缩放、裁切、打水印等功能。如下，通过在图片 url 后面加上 `!/both/400x400` 即可缩放图片至 400x400 大小
 

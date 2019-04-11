@@ -24,10 +24,10 @@ threadPool.submit(() -> {
 
 一些自定义的异常如下：
 
-`AnonymousNotAllowedException`  anonymous user is not allowed 某些 api 是不允许匿名登录用户操作的
+`AnonymousNotAllowedException`  612 anonymous user is not allowed 某些 api 是不允许匿名登录用户操作的
 
-`UninitializedException`  uninitialized  未调用 BaaS.init() 进行初始化
+`UninitializedException`        602 uninitialized  未调用 BaaS.init() 进行初始化
 
-`SessionMissingException`  session missing  用户尚未登录
+`SessionMissingException`       604 session missing  用户尚未登录
 
 `com.minapp.android.sdk.exception.HttpException`  当网络请求失败（< 200 || > 300）时，抛出此异常；`code` 是 http status code，`errorMsg` 是错误内容

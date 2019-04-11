@@ -12,7 +12,7 @@
 
 3.调用 put 或 unset 修改指定记录的数据
 
-a. set 操作
+a. put 操作
 
 为某个字段赋值
 
@@ -39,7 +39,11 @@ b. unset 操作
 
 4.将修改后的记录保存到服务器
 
-`record.save()`
+1.`record.save()`
+2.`record.saveInBackground(cb)`
+
+> **info**
+对于所有的 CURD 操作，都提供 `xxxInBackground` 的异步版本
 
 通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。
 
@@ -89,13 +93,12 @@ try {
 ```java
 try {
     Table comments = new Table("Comment");
-    Table users = new Table(Const.TABLE_USER_PROFILE);
     Table articles = new Table("Article");
 
     // 5bad87ab0769797b4fb27a1b 为 Comment 表中某行数据的 id
     Record comment = comments.fetchWithoutData("5bad87ab0769797b4fb27a1b");
     // 69147880 为 _userprofile 表中某行数据的 id
-    Record user = users.fetchWithoutData("69147880");
+    Record user = Users.userWithoutData("69147880");
     
     Record article = articles.createRecord();
     article.put("comment", comment);

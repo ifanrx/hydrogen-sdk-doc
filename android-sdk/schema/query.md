@@ -100,9 +100,9 @@ where.notEqualTo("key", 5);
 查询返回满足包含相应字符串的记录，如下示例：
 ```java
 // 例：{"name": "apple"}
-where.contains('name', 'apple')  // 查询name字段包含'apple'的记录，能正确匹配
-where.contains('name', 'app')  // 查询name字段包含'app'的记录，能正确匹配
-where.contains('name', 'apple123')  // 查询name字段包含'apple123'的记录，不能正确匹配
+where.contains("name", "apple")  // 查询name字段包含'apple'的记录，能正确匹配
+where.contains("name", "app")  // 查询name字段包含'app'的记录，能正确匹配
+where.contains("name", "apple123")  // 查询name字段包含'apple123'的记录，不能正确匹配
 ```
 
 
@@ -152,12 +152,11 @@ where.contains('desc', array);
 where.equalTo('desc', array);
 ```
 
-## null 查询
-
-查询字段值为 null 或非 null 记录
+## null 和 exists 查询
 
 ```java
-where.isNull('name');
+where.isNull('name');   // 查询字段值为 null 或非 null 记录
+where.exists("name");   // 查询字段是否存在
 ```
 
 ## 组合查询

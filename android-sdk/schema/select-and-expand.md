@@ -13,13 +13,10 @@ try {
     Query query = new Query();
 
     // 规定返回特定字段
-    query.put(Query.KEYS, "created_at,created_by");
-    // Record 里定义了一行记录固有的几列，作为参考
-    query.put(Query.KEYS, Util.join(Arrays.asList(Record.CREATED_AT, Record.CREATED_BY), ","));
+    query.keys("created_at", "created_by");
 
     // 规定不返回特定字段
-    query.put(Query.KEYS, "-created_at,-created_by");
-    query.put(Query.KEYS, Util.join(Arrays.asList("-" + Record.CREATED_AT, "-" + Record.CREATED_BY), ","));
+    query.keys("-created_at", "-created_by");
     
     Record record = table.fetchRecord(id, query);
     // 操作成功

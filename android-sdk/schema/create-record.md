@@ -53,7 +53,7 @@ record.put("price", 999);
 
 **请求示例**
 
-```js
+```java
 try {
     Table fruits = new Table("fruits");
 
@@ -93,7 +93,7 @@ try {
 
 > **info**
 > 对于不合法的数据，知晓云会进行过滤。比如开发者尝试在 integer 类型的字段写入 string 类型的数据，该操作不会报错而是会忽略对该字段的修改。
-> 因此可以检查 res.data 中对应的字段来判断某些字段是否添加成功。
+> 执行 `save()` 后，本地的 record 会同步至服务器上的最新版本，因此可以检查本地 record 中对应的字段来判断某些字段是否添加成功。
 
 
 ## 添加日期时间 Calendar 类型的数据
@@ -171,13 +171,12 @@ user 字段指向了 _userprofile 表中 id 为 69147880 的数据行
 ```java
 try {
     Table comments = new Table("Comment");
-    Table users = new Table(Const.TABLE_USER_PROFILE);
     Table articles = new Table("Article");
 
     // 5bad87ab0769797b4fb27a1b 为 Comment 表中某行数据的 id
     Record comment = comments.fetchWithoutData("5bad87ab0769797b4fb27a1b");
     // 69147880 为 _userprofile 表中某行数据的 id
-    Record user = users.fetchWithoutData("69147880");
+    User user = Users.userWithoutData("69147880");
     
     Record article = articles.createRecord();
     article.put("comment", comment);
@@ -191,7 +190,25 @@ try {
 
 ## 批量新增数据项
 
-`comments.batchSave(records)`
+`Table.batchSave(records)`
+
+**请求示例**
+
+```java
+try {
+    Table fruits = new Table("fruits");
+
+    Record apple = fruits.createRecord();
+    apple.put("name", "apple");
+    Record banana = fruits.createRecord();
+    banana.put("name", "banana");
+
+    fruits.batchSave(Arrays.listOf(apple, banana));
+    // 操作成功
+} catch (Exception e) {
+    // 操作失败
+}
+```
 
 异常[异常](../error-code.md)
 

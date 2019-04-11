@@ -52,8 +52,8 @@ try {
 Table product = new Table("product");
 
 Query query = new Query();
-query.put(Query.OFFSET, "0");
-query.put(Query.LIMIT, "10");
+query.put(Query.OFFSET, 0);
+query.put(Query.LIMIT, 10);
 
 Where where = new Where();
 // 设置查询条件（比较、字符串包含、组合等）

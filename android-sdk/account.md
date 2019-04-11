@@ -13,6 +13,18 @@ try {
   // 当前登录用户的信息；它会执行一次网络请求，获取到的用户信息总是最新的
   // 当未登录或者是匿名登录时，返回 null
   CurrentUser curUser = Auth.currentUser();
+
+  // 异步的方式
+  Auth.currentUserInBackground(new Callback<CurrentUser>() {
+     @Override
+     public void onSuccess(@Nullable CurrentUser currentUser) {
+         //...
+     }
+     @Override
+     public void onFailure(Exception e) {
+         //...
+     }
+ });
 } catch (Exception e) {
   Log.d(TAG, e.getMessage(), e);
 }
@@ -49,14 +61,8 @@ try {
 
 ### 判断用户是否是匿名用户
 
-```javascript
-try {
-  if (Auth.isSignIn() && Auth.currentUser() == null) {
-    // 已登录，但没有用户信息，表示当前登录是匿名登录
-  }
-} catch (Exception e) {
-  Log.d(TAG, e.getMessage(), e);
-}
+```java
+Auth.isSignInAnonymous();
 ```
 
 ## 设置用户信息
