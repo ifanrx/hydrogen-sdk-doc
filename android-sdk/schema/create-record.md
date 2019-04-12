@@ -44,7 +44,7 @@ record.put("price", 999);
 
 4.将创建的记录保存到服务器
 
-`record.save()`
+`record.save()` or `record.saveInBackground(callback)`
 
 通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。
 
@@ -54,26 +54,49 @@ record.put("price", 999);
 **请求示例**
 
 ```java
+Table fruits = new Table("fruits");
+
+// 设置方式一，每个属性逐个赋值
+Record apple = fruits.createRecord().put("name", "apple");
+
+// 设置方式二，构造一个模板保存通用属性，批量赋值
+Record template = new Record();
+template.put("category_id", 999);
+template.put("location", "sxz");
+Record banana = fruits.createRecord().put("name", "banana").putAll(template);
+
+// 同步版本的保存
 try {
-    Table fruits = new Table("fruits");
-
-    // 设置方式一
-    fruits.createRecord().put("name", "apple").save();
-
-    // 设置方式二
-    Record template = new Record();
-    template.put("category_id", 999);
-    template.put("location", "sxz");
-
-    Record red = fruits.createRecord();
-    red.putAll(template).save();
-    
-    Record blue = fruits.createRecord();
-    blue.putAll(template).save();
+    red.save();
+    blue.save();
     // 操作成功
 } catch (Exception e) {
     // 操作失败
 }
+
+// 异步回调版本
+apple.saveInBackground(new Callback<Record>() {
+    @Override
+    public void onSuccess(@Nullable Record record) {
+        // 保存成功
+    
+    @Override
+    public void onFailure(Exception e) {
+        // 保存失败
+    }
+});
+banana.saveInBackground(new Callback<Record>() {
+    @Override
+    public void onSuccess(@Nullable Record record) {
+        // 保存成功
+    }
+    
+    @Override
+    public void onFailure(Exception e) {
+        // 保存失败
+    }
+});
+
 ```
 
 **操作结果**
@@ -195,19 +218,30 @@ try {
 **请求示例**
 
 ```java
+Table fruits = new Table("fruits");
+Record apple = fruits.createRecord().put("name", "apple");
+Record banana = fruits.createRecord().put("name", "banana");
+
+// 同步版本
 try {
-    Table fruits = new Table("fruits");
-
-    Record apple = fruits.createRecord();
-    apple.put("name", "apple");
-    Record banana = fruits.createRecord();
-    banana.put("name", "banana");
-
     fruits.batchSave(Arrays.listOf(apple, banana));
     // 操作成功
 } catch (Exception e) {
     // 操作失败
 }
+
+// 异步回调版本
+fruits.batchSaveInBackground(Arrays.listOf(apple, banana), new Callback<BatchResult>() {
+    @Override
+    public void onSuccess(@Nullable BatchResult batchResult) {
+        // 批量保存成功，拿到结果
+    }
+
+    @Override
+    public void onFailure(Exception e) {
+        // 批量保存失败了
+    }
+});
 ```
 
 异常[异常](../error-code.md)

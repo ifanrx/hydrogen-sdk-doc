@@ -40,23 +40,37 @@
 **请求示例**
 
 ```java
+Table table = new Table("tableName");
+
+Where where = new Where();
+// 设置查询条件（比较、字符串包含、组合等）
+// where.equalTo("key", "value")
+
+Query query = new Query();
+// 设置分页、排序等
+// query.orderBy("create_at")
+query.put(where);
+
+// 同步版本
 try {
-    Table table = new Table("tableName");
-
-    Query query = new Query();
-    // 设置分页、排序等
-    // query.orderBy("create_at")
-
-    Where where = new Where();
-    // 设置查询条件（比较、字符串包含、组合等）
-    // where.equalTo("key", "value")
-    query.put(where);
-
     PagedList<Record> records = table.query(query);
     // 操作成功
 } catch (Exception e) {
     // 操作失败
 }
+
+// 异步查询
+table.queryInBackground(query, new Callback<PagedList<Record>>() {
+    @Override
+    public void onSuccess(@Nullable PagedList<Record> recordPagedList) {
+        // 查询成功，拿到数据集
+    }
+    
+    @Override
+    public void onFailure(Exception e) {
+        // 查询失败了
+    }
+});
 ```
 
 异常请参考[异常](../error-code.md)

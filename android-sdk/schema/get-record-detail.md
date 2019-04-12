@@ -25,12 +25,26 @@
 
 ```java
 Table product = new Table("product");
+
+// 同步版本
 try {
     Record record = product.fetchRecord("59897882ff650c0477f00485");
     // 操作成功
 } catch (Exception e) {
     // 操作失败
 }
+
+// 异步版本
+product.fetchRecordInBackground("59897882ff650c0477f00485", new Callback<Record>() {
+    @Override
+    public void onSuccess(@Nullable Record record) {
+        // 拿到数据
+    }
+    @Override
+    public void onFailure(Exception e) {
+        // 获取数据失败了
+    }
+});
 ```
 
 异常请参考[异常](../error-code.md)

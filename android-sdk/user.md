@@ -62,7 +62,7 @@
 
 ```java
 try {
-  User potter = Users.user("potter");
+  User potter = Users.user(15549039403);
   potter.getString(User.AVATAR);
   potter.getInt(User.ID);
   // 操作成功

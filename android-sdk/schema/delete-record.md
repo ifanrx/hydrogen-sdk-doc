@@ -22,12 +22,26 @@
 // 删除 tableName 为 'product' 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项
 Table product = new Table("product");
 Record record = product.fetchWithoutData("59897882ff650c0477f00485");
+
+// 同步版本
 try {
     record.delete();
     // 操作成功
 } catch (Exception e) {
     // 操作失败
 }
+
+// 异步版本
+record.deleteInBackground(new Callback<Record>() {
+    @Override
+    public void onSuccess(@Nullable Record record) {
+        // 删除成功
+    }
+    @Override
+    public void onFailure(Exception e) {
+        // 删除失败
+    }
+});
 ```
 
 异常请参考[异常](../error-code.md)
@@ -52,18 +66,31 @@ try {
 Table product = new Table("product");
 
 Query query = new Query().offset(0).limit(10);
-
 Where where = new Where();
 // 设置查询条件（比较、字符串包含、组合等）
 // ...
 query.put(where);
 
+// 同步版本
 try {
     BatchResult result = product.batchDelete(query);
     // 操作成功
 } catch (Exception e) {
     // 操作失败
 }
+
+// 异步回调版本
+product.batchDeleteInBackground(null, new Callback<BatchResult>() {
+    @Override
+    public void onSuccess(@Nullable BatchResult batchResult) {
+        // 批量删除成功，这里拿到操作结果
+    }
+    
+    @Override
+    public void onFailure(Exception e) {
+        // 批量删除失败了
+    }
+});
 ```
 
 **返回示例**
