@@ -62,7 +62,6 @@
         * [微信加密数据解密](js-sdk/wechat/wechat-decrypt.md)
         * [检测违规图片、文本](js-sdk/wechat/censor.md)
         * [获取二维码](js-sdk/wechat/wxacode.md)
-        * [异常上报](js-sdk/wechat/bugout.md)
     * [Web](js-sdk/web/README.md)
         * [接入指南](js-sdk/web/how-to.md)
         * [登入登出](js-sdk/web/signin-signout.md)
