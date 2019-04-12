@@ -120,6 +120,11 @@
       </ul>
     </li>
     <li>
+        <h3>
+        <a href="/ios-sdk/README.md/">iOS SDK（alpha 内测）</a>
+      </h3>
+    </li>
+    <li>
       <h3>
         <a href="/open-api/README.md/">知晓云开放 API</a>
       </h3>
