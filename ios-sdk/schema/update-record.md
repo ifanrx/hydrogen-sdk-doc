@@ -125,7 +125,7 @@ record.update { (success, error) in
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | success  | Bool           | 是否新增数据成功 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+| error   |  NSError |  错误信息  |
 
 success 更新数据成功后，**记录对象 record 的数据将被更新**。
 
@@ -306,7 +306,7 @@ BAASRecord *record = [_table createRecord];
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | result  | Dictionary           | 更新的数据结果 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+| error   |  NSError |  错误信息  |
 
 > 说明
  error 为 nil 不说明批量更新数据完全成功，仅代表服务端已收到并处理了这个请求，只有当返回的结果中 operation_result 列表中不存在 error 元素时，才可以认为所有数据均更新成功。

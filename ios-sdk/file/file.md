@@ -35,7 +35,7 @@ FileManager.upload(filename: "datasource", localPath: filePath, categoryName: "B
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | file  |   File           | 已上传的文件，详见 **数据类型** 小节 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+| error   |  NSError |  错误信息  |
 
 ### 获取文件详情
 
@@ -73,7 +73,7 @@ NSArray *expand = @[@"created_by"];
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | file  |   File           | 已上传的文件，详见 **数据类型** 小节 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+| error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -101,7 +101,7 @@ file.delete() { (result, error) in
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | success  |   Bool           | 是否删除成功 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+| error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -134,7 +134,7 @@ FileManager.delete(["5c98aed0d575****5f878224", "5c98aed0d575****6e1ace9b"]) { (
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | success  |   Bool           | 是否删除成功 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+| error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -192,7 +192,7 @@ FileManager.getCategoryList() { (result, error) in
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | listResult  | FileCategoryListResult | 文件分类列表结果，详见 **数据类型** 小节 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+| error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -225,7 +225,7 @@ FileManager.find(categoryId: "5ca489bb8c374f5039a8****") { (result, error) in
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | listResult  | FileListResult | 文件列表结果，详见 **数据类型** 小节 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+| error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 

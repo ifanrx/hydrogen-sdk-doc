@@ -55,7 +55,7 @@ NSArray *expand = @[@"created_by"];
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | content  |   Content           | 内容详情，详见 **数据类型** 小节 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+| error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -91,7 +91,7 @@ contentGroup.getCategory(Id: categoryId) { (category, error) in
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | contentCategory  |   ContentCategory           | 内容分类详情，详见 **数据类型** 小节 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+| error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -123,7 +123,7 @@ contentGroup.getCategoryList { (listResult, error) in
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | listResult  | ContentCategoryListResult | 内容分类列表结果，详见 **数据类型** 小节 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+| error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 

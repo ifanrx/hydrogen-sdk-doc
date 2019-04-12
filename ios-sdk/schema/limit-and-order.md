@@ -41,7 +41,7 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | listResult  | RecordListResult | 结果列表，详见 [数据类型](./data-type.md) 章节|
-| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+| error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -95,6 +95,6 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | listResult  | RecordListResult | ，详见 [数据类型](./data-type.md) 章节 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+| error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
