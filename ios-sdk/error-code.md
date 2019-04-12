@@ -3,21 +3,12 @@
 
 ## 错误对象
 
-SDK API 的错误对象作为回调参数 error 传回，Swift 的错误对象类型为 HError，OC 的错误对象类型为 NSError。通过对象是否为 nil 来判断是否发生错误，并获取错误信息。error 对象上有两个重要的属性，对调试错误很有帮助：
-
-{% tabs swift1="Swift", oc1="Objective-C" %}
-{% content "swift1" %}
+SDK API 的错误对象作为回调参数 error 传回，错误对象类型为 NSError。通过对象是否为 nil 来判断是否发生错误，并获取错误信息。error 对象上有两个重要的属性，对调试错误很有帮助：
 
 | 字段名    | 类型   | 说明     |
 |----------|--------|----------|
-| errorCode  |  Int |  错误码 | 
+| code  |  Int |  错误码 | 
 | localizedDescription | String | 错误描述 | 
-{% content "oc1" %}
-| 字段名    | 类型   | 说明     |
-|----------|--------|----------|
-| code  |  NSInteger |  错误码 | 
-| localizedDescription | NSString | 错误描述 | 
-{% endtabs %}
 
 **示例代码**
 
@@ -28,7 +19,7 @@ Auth.login(username: "test0402", password: "111") { (user, error) in
     // 错误处理
     if error != nil {
         if let error = error as? HError {
-            print("Parsing error: \(error.errorCode), \(error.localizedDescription)")
+            print("Parsing error: \(error.error.code), \(error.localizedDescription)")
         } else {
             print("Other error: \(error!)")
         }
