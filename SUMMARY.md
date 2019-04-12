@@ -104,7 +104,7 @@
     * [文件](ios-sdk/file/README.md)
         * [文件操作](ios-sdk/file/file.md)
     * [调用云函数](ios-sdk/invoke-function.md)
-    * [错误码和 HError 对象](ios-sdk/error-code.md)
+    * [错误码和错误对象](ios-sdk/error-code.md)
     
 ----
 

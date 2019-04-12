@@ -2,7 +2,7 @@
 
 ## 操作步骤
 
-1.通过 `tableName` 或 `tableID` 实例化一个 `Table` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
+1.通过 `tableName` 或 `tableId` 实例化一个 `Table` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
 
 **示例代码**
 {% tabs swift1="Swift", oc1="Objective-C" %}
@@ -26,11 +26,11 @@ BaaSTable *table = [[BaaSTable alloc] initWithName:@"Book"];
 
 **参数说明**
 
-tableName 和 tableID 二选一
+tableName 和 tableId 二选一
 
 | 名称     | 类型   | 说明                   |
 | :-----  | :-----  | :--- |
-| tableId   | Int   | 数据表的 ID             |
+| tableId   | Int   | 数据表的 Id             |
 | tableName | String  | 数据表名 |
 
 2.通过数据行 id（以下用 `recordId` 参数名表示） 设置指定数据行

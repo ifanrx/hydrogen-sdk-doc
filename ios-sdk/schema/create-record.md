@@ -9,7 +9,7 @@
 
 ### 创建 `Table` 对象
 
-通过 `tableName` 或 `tableID` 实例化一个 `Table` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName。
+通过 `tableName` 或 `tableId` 实例化一个 `Table` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName。
 
 **示例代码**
 
@@ -34,11 +34,11 @@ BaaSTable *table = [[BaaSTable alloc] initWithName:@"Book"];
 
 **参数说明**
 
-tableName 和 tableID 二选一
+tableName 和 tableId 二选一
 
 | 名称     | 类型   |说明    |
 | :-----  | :----- | :--- |
-| Id   | Int  |  数据表的 ID |
+| Id   | Int  |  数据表的 Id |
 | name | String |   数据表名 |
 
 ### 本地创建一条空记录

@@ -38,7 +38,7 @@ NSArray *select = @[@"-created_at", @"-created_by"];
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
-| recordId | String | Y  | 记录 ID |
+| recordId | String | Y  | 记录 Id |
 | select | Array<String> |  N  | 指定筛选的字段 |
 | expand | Array<String> |  N  | 指定扩展的字段 |
 
@@ -177,7 +177,7 @@ NSString *recordId = @"5ca09074be20d6749023****";
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
-| recordId | String | Y  | 记录 ID |
+| recordId | String | Y  | 记录 Id |
 | select | Array<String> |  N  | 指定筛选的字段 |
 | expand | Array<String> |  N  | 指定扩展的字段 |
 
