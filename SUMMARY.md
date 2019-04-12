@@ -134,6 +134,8 @@
 * [知晓云 Web API](web-api/README.md)
     * [用户](web-api/user.md)
     * [支付](web-api/payment.md)
+    * [短信服务](web-api/sms.md)
+    * [云函数](web-api/cloud-function.md)
     * [文件模块](web-api/file/README.md)
         * [文件上传](web-api/file/file-upload.md)
         * [文件操作](web-api/file/file.md)
@@ -145,8 +147,6 @@
         * [内容库操作](web-api/content/content-group.md)
         * [内容分类操作](web-api/content/content-category.md)
         * [内容操作](web-api/content/content.md)
-    * [云函数](web-api/cloud-function.md)
-    * [数据结构](web-api/object-struct.md)
 
 ----
 

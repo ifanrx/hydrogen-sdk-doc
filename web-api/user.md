@@ -1,3 +1,48 @@
+# <span id="user-object">用户(user)</span>
+
+### 字段
+
+|        参数       |      类型    |   说明    |
+| :--------------- | :----------- | :------- |
+| user_id           | Integer      | 用户 ID |
+| avatar           | String      | 用户头像 |
+| token             | String       | User authentication token |
+| expires_in | Integer | 过期时间，为时间戳，单位：秒 |
+| _username           | String       | 用户名 |
+| _email           | String       | 用户邮件地址 |
+| _email_verified       | Boolean | 用户邮件地址是否已经验证 |
+| _provider | Object | 用户在平台方的用户信息(见 `v2.0/user/info` 接口)以及其他 _userprofile 表的内置字段及用户自定义字段 |
+| _session | Object | Cookies 信息 |
+| country | String | 用户所在的国家 |
+| province | String | 用户所在的省份 |
+| city | String | 用户所在城市 |
+| gender | String | 用户的性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知 |
+
+
+### 示例
+```json
+{
+    "_email": "hgzchn@qq.com",
+    "_email_verified": false,
+    "_provider": {},
+    "_session": {
+        "ip_address": "183.61.109.***",
+        "login_method": "email",
+        "session_key": "bdvz5*********mobvqmbsloqj2*****7",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36"
+    },
+    "avatar": "https://media.ifanrusercontent.com/hydrogen/default_avatar.png",
+    "expires_in": 2592000,
+    "id": 34719381111111,
+    "token": "bdvz5*********mobvqmbsloqj2*****7",
+    "user_id": 3471938111111,
+    "country": "China",
+    "province": "Guangdong",
+    "city": "Guangzhou",
+    "gender": 1
+}
+```
+
 # 用户注册
 
 **接口**
@@ -65,7 +110,7 @@ X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
 
 **返回参数说明**
 
-参考[用户(user)](/web-api/object-struct.md)
+参考[用户(user)](#user-object)
 
 **状态码说明**
 
@@ -140,7 +185,7 @@ X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
 
 **返回示例**
 
-参考[用户(user)](/web-api/object-struct.md)
+参考[用户(user)](#user-object)
 
 **状态码说明**
 
@@ -154,7 +199,7 @@ X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
 
 `GET https://cloud.minapp.com/hserve/v2.0/user/info/:user_id/`
 
-**:user_id** 为[用户(user)](/web-api/object-struct.md)中的 user_id 
+**:user_id** 为[用户(user)](#user-object)中的 user_id 
 
 **请求示例**
 ```json
@@ -186,7 +231,7 @@ Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
     "city": "Guangzhou"
 }
 ```
-字段详细说明请参考[用户](/web-api/object-struct.md)
+字段详细说明请参考[用户(user)](#user-object)
 
 **状态码说明**
 
@@ -245,7 +290,7 @@ Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
     }
 }
 ```
-字段的详细请参考[用户](/web-api/object-struct.md)
+字段的详细请参考[用户(user)](#user-object)
 
 **状态码说明**
 
@@ -422,96 +467,3 @@ X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
 `400`: 参数错误
 
 `404`: 用户不存在
-
-
-# 发送短信验证码
-
-**接口**
-
-`POST https://cloud.minapp.com/hserve/v1.8/sms-verification-code/`
-
-发送短信前请先进行[短信签名审核](https://cloud.minapp.com/dashboard/#/app/sms/setting)，审核通过后才能发送短信
-
-**请求参数**
-
-Content-Type: `application/json`
-
-|       参数     |       类型    | 必填 | 说明 |
-| :------------  | :----------- | :---| :--- |
-| phone           | String   |  是 | 发送短信验证码的手机 |
-
-**请求示例**
-```json
-POST /hserve/v1.8/sms-verification-code/ HTTP/1.1
-Host: cloud.minapp.com
-Accept: application/json  
-Content-Type: application/json
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
-Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
-{
-      "phone": "12345678910",
-}
-```
-
-
-**返回示例**
-```json
-{
-    "status": "ok"
-}
-```
-
-**状态码说明**
-
-`200`: 成功发送
-
-`400`: 失败（rate limit 或短信签名没有通过审核）
-
-`402`: 当前应用已欠费
-
-`402`: 当前应用已欠费
-
-
-
-# 验证短信验证码
-
-**接口**
-
-`POST https://cloud.minapp.com/hserve/v1.8/sms-verification-code/verify/`
-
-**请求参数**
-
-Content-Type: `application/json`
-
-|       参数     |       类型    | 必填 | 说明 |
-| :------------  | :----------- | :---| :--- |
-| phone           | String   |  是 | 需要验证的手机号 |
-| code | String   |  是 | 收到的验证码 |
-
-**请求示例**
-```json
-POST /hserve/v1.8/sms-verification-code/verify/ HTTP/1.1
-Host: cloud.minapp.com
-Accept: application/json  
-Content-Type: application/json
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
-Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
-{
-      "phone": "12345678910",
-      "code": "352353"
-}
-```
-
-
-**返回示例**
-```json
-{
-    "status": "ok"
-}
-```
-
-**状态码说明**
-
-`200`: 成功发送
-
-`400`: 验证码错误 / 参数错误

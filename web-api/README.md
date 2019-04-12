@@ -4,12 +4,13 @@
 
 ## 章节目录
 
-* [授权认证](./authentication.md)
+* [用户](./user.md)
+* [支付](./payment.md)
+* [短信服务](./sms.md)
+* [云函数](./cloud-function.md)
 * [数据模块](./data/README.md)
 * [内容模块](./content/README.md)
 * [文件模块](./file/README.md)
-* [用户模块](./user/README.md)
-* [云函数](./cloud-function.md)
 
 ## 使用须知
 

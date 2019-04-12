@@ -1,0 +1,93 @@
+# 短信服务
+
+# 发送短信验证码
+
+**接口**
+
+`POST https://cloud.minapp.com/hserve/v1.8/sms-verification-code/`
+
+发送短信前请先进行[短信签名审核](https://cloud.minapp.com/dashboard/#/app/sms/setting)，审核通过后才能发送短信
+
+**请求参数**
+
+Content-Type: `application/json`
+
+|       参数     |       类型    | 必填 | 说明 |
+| :------------  | :----------- | :---| :--- |
+| phone           | String   |  是 | 发送短信验证码的手机 |
+
+**请求示例**
+```json
+POST /hserve/v1.8/sms-verification-code/ HTTP/1.1
+Host: cloud.minapp.com
+Accept: application/json  
+Content-Type: application/json
+X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
+Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
+{
+      "phone": "12345678910",
+}
+```
+
+
+**返回示例**
+```json
+{
+    "status": "ok"
+}
+```
+
+**状态码说明**
+
+`200`: 成功发送
+
+`400`: 失败（rate limit 或短信签名没有通过审核）
+
+`402`: 当前应用已欠费
+
+`402`: 当前应用已欠费
+
+
+
+# 验证短信验证码
+
+**接口**
+
+`POST https://cloud.minapp.com/hserve/v1.8/sms-verification-code/verify/`
+
+**请求参数**
+
+Content-Type: `application/json`
+
+|       参数     |       类型    | 必填 | 说明 |
+| :------------  | :----------- | :---| :--- |
+| phone           | String   |  是 | 需要验证的手机号 |
+| code | String   |  是 | 收到的验证码 |
+
+**请求示例**
+```json
+POST /hserve/v1.8/sms-verification-code/verify/ HTTP/1.1
+Host: cloud.minapp.com
+Accept: application/json  
+Content-Type: application/json
+X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
+Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
+{
+      "phone": "12345678910",
+      "code": "352353"
+}
+```
+
+
+**返回示例**
+```json
+{
+    "status": "ok"
+}
+```
+
+**状态码说明**
+
+`200`: 成功发送
+
+`400`: 验证码错误 / 参数错误
