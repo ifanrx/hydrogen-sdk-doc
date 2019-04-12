@@ -85,6 +85,29 @@
 
 ----
 
+* [Android SDK (alpha 内测版)](android-sdk/README.md)
+    * [用户](android-sdk/user.md)
+        * [登入登出](android-sdk/auth.md)
+        * [当前用户](android-sdk/account.md)
+    * [数据表](android-sdk/schema/README.md)
+        * [新增数据项](android-sdk/schema/create-record.md)
+        * [更新数据项](android-sdk/schema/update-record.md)
+        * [删除数据项](android-sdk/schema/delete-record.md)
+        * [获取数据项](android-sdk/schema/get-record-detail.md)
+        * [查询数据项](android-sdk/schema/query.md)
+        * [分页和排序](android-sdk/schema/limit-and-order.md)
+        * [字段过滤与扩展](android-sdk/schema/select-and-expand.md)
+    * [内容库](android-sdk/content/README.md)
+        * [内容操作](android-sdk/content/operate.md)
+    * [文件](android-sdk/file/README.md)
+        * [文件操作](android-sdk/file/file.md)
+        * [文件分类操作](android-sdk/file/category.md)
+    * [异常](android-sdk/error-code.md)
+    * [安装 sdk](android-sdk/install.md)
+    * [demo 的编译和安装](android-sdk/demo.md)
+
+----
+
 * [知晓云开放 API](open-api/README.md)
     * [授权认证](open-api/authentication.md)
     * [数据模块](open-api/data/README.md)

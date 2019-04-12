@@ -63,7 +63,13 @@ try {
 ### 判断用户是否是匿名用户
 
 ```java
-Auth.isSignInAnonymous();
+Auth.isAnonymous();
+```
+
+### 获取当前用户登录 session 的过期时间（单位毫秒）
+
+```java
+CurrentUser.getExpiresAt();
 ```
 
 ## 设置用户信息

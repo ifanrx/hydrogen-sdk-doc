@@ -1,4 +1,4 @@
-# 知晓云 Android SDK
+# 知晓云 Android SDK（alpha 内测版）
 
 ## 简介
 

@@ -102,8 +102,14 @@ Auth.signInAnonymous();
 
 **请求示例**
 
-```javascript
+```java
 Auth.logout();
+```
+
+## 判断当前用户是否登录
+
+```java
+Auth.signedIn();
 ```
 
 ## 获取 currentUser 对象
