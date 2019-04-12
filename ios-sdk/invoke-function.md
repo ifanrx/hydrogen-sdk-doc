@@ -45,7 +45,7 @@ BaaS.invoke(name: "helloWorld", data: ["name": "BaaS"], sync: true) { (result, e
 | 参数          | 类型   | 必填 | 说每个 |
 | :----------- | :----- | :-- | :-- |
 | name | String | 是     | 云函数名 |
-| data       | Dictionary(Swift) / NSDictionary(OC) | 否  | 传递给云函数的参数 |
+| data       | Dictionary | 否  | 传递给云函数的参数 |
 | sync         | Bool   | 否  | 是否等待返回函数执行结果，默认为 true。同步与异步云函数有不同的超时时间，同步云函数为 5 秒，而异步云函数为 5 分钟（300 秒）|
 
 **返回参数说明**

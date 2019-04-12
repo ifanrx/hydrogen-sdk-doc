@@ -5,7 +5,7 @@
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-let filePath = Bundle.main.path(forResource: "1", ofType: "png")!
+let localPath = Bundle.main.path(forResource: "cover", ofType: "png")!
 FileManager.upload(filename: "datasource", localPath: filePath, categoryName: "Book", progressBlock: { progress in
                     
     }) { (file, error) in
@@ -14,7 +14,7 @@ FileManager.upload(filename: "datasource", localPath: filePath, categoryName: "B
 ```
 {% content "oc2" %}
 ```
-[BaaSFileManager uploadWithFilename:@"cover" localPath:filePath categoryName:@"Book" progressBlock:^(NSProgress * _Nullable progress) {
+[BaaSFileManager uploadWithFilename:@"cover" localPath:localPath categoryName:@"Book" progressBlock:^(NSProgress * _Nullable progress) {
 
     } completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
 
@@ -26,8 +26,8 @@ FileManager.upload(filename: "datasource", localPath: filePath, categoryName: "B
 
 | 参数                 |  类型   | 必填 | 说明 |
 | :-------------------| :----- | :--- | :--------- |
-| filePath | String |  Y  | 本地资源路径 |
 | filename | String |  Y  |  文件名称|
+| localPath | String |  Y  | 本地资源路径 |
 | categoryName | String | N  | 文件分类  |
 
 **返回结果**
@@ -85,7 +85,7 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% tabs swift4_1="Swift", oc4_1="Objective-C" %}
 {% content "swift4_1" %}
 ```
-file.delete() { (result, error) in
+file.delete() { (success, error) in
 
 }
 ```
@@ -98,6 +98,7 @@ file.delete() { (result, error) in
 {% endtabs %}
 
 **返回结果**
+
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | success  |   Bool           | 是否删除成功 |

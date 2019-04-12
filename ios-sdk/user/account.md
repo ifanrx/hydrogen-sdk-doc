@@ -47,7 +47,7 @@ currentUser 代表了当前登录的用户，开发者可以通过浏览 current
 | _email_verified | Boolean | 用户邮箱是否已经通过验证（已验证邮箱才能找回密码） |
 | _provider |Object |  用户在平台方的用户信息  |
 | _provider.alipay |Object |  支付宝平台的用户信息  |
-| _seesion_expires_at  |  Double  | 登录 session 过期时间 |
+| _seesion_expires_at  |  Integer  | 登录 session 过期时间 |
 
 **获取内置字段**
 
