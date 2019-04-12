@@ -1,19 +1,21 @@
 ﻿# 知晓云 Android SDK 接入指南
 
+1. 在根模块的 build.gradle 加入 jcenter 仓库
+
 ```gradle
-// 根模块加入 jcenter 仓库
 buildscript {
     repositories {
         jcenter()   
     }
 }
+```
 
-// app 模块引入依赖，目前最新版本为 0.1.2
-implementation "com.minapp.android:sdk:xxx"
+2. 在 app 模块的 build.gradle 里加入以下配置
 
-// 需要 java 8 的支持
+```gradle
 android {
 
+    // 需要 java 8 的支持
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
@@ -23,6 +25,29 @@ android {
         minSdkVersion 21        // sdk 最低支持 21，所以这里必须 >= 21
     }
 }
+
+// app 模块引入依赖，目前最新版本为 0.1.2
+dependencies {
+    implementation "com.minapp.android:sdk:xxx"
+}
 ```
 
+3. sdk 需要用到网络请求，所以在使用 sdk 前去 AndroidManifest.xml 检查下有没申请网络权限
 
+```xml
+<manifest>
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>
+```
+
+4. 在使用 sdk 前先初始化
+```java
+public class App extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        BaaS.init("clientId", this);
+        // ...
+    }
+}
+```
