@@ -83,13 +83,13 @@ expand 使用方法可以参考[数据表 - 字段扩展](../schema/select-and-e
 
 **请求示例 1**
 ```java
-Query query = new Query();
-query.put(Query.KEYS, "-title,-content");
-query.put(Query.EXPAND, "pointer_test_oder");
 Where where = new Where();
 where.equalTo(Content.ID, "1513076305938456");
-query.put(where);
 
+Query query = new Query()
+  .keys("-title", "-content")
+  .expand("pointer_test_oder")
+  .put(where);
 Content content = Contents.contents(query).getObjects().get(0);
 ```
 
@@ -121,11 +121,10 @@ Content content = Contents.contents(query).getObjects().get(0);
 
 **请求示例 2**
 ```java
-Query query = new Query();
-query.put(Query.KEYS, "title,content,pointer_test_oder");
-query.put(Query.EXPAND, "pointer_test_oder");
-query.put(where);
-
+Query query = new Query()
+  .keys("title", "content", "pointer_test_oder")
+  .expand("pointer_test_oder")
+  .put(where);
 PagedList<Content> contents = Contents.contents(query);
 ```
 
@@ -219,9 +218,6 @@ PagedList<ContentGroup> groups = Contents.contentGroups(null);
 **请求示例**
 
 ```java
-Query query = new Query();
-query.put(Query.OFFSET, "10");
-query.put(Query.LIMIT, "5");
-query.put(Query.ORDER_BY, "-created_by");
+Query query = new Query().offset(10).limit(5).orderBy("-created_by")
 PagedList<ContentGroup> groups = Contents.contentGroups(query);
 ```

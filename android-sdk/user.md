@@ -148,8 +148,7 @@ try {
 **请求示例**
 
 ```java
-Query query = new Query();
-query.put(Query.ORDER_BY, "-nickname");
+Query query = new Query().orderBy("-nickname");
 PagedList<User> all = Users.users(query);
 ```
 

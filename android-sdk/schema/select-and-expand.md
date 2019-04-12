@@ -2,7 +2,7 @@
 
 ## 字段过滤
 
-使用 `Query.KEYS` 来控制请求返回的字段
+使用 `Query.keys(...)` 来控制请求返回的字段
 
 **在 `Table.fetchRecord` 方法中使用**
 
@@ -17,8 +17,11 @@ try {
 
     // 规定不返回特定字段
     query.keys("-created_at", "-created_by");
-    
     Record record = table.fetchRecord(id, query);
+
+    // 或者使用便利方法
+    Record record = table.fetchRecord(id, null, Arrays.asList("created_at", "created_by"));
+
     // 操作成功
 } catch (Exception e) {
     // 操作失败
@@ -30,18 +33,13 @@ try {
 ```java
 Table table = new Table("product");
 try {
-    Query query = new Query();
-    query.put(Query.OFFSET, "0");
-    query.put(Query.LIMIT, "15");
+    Query query = new Query().offset(0).limit(15);
 
     // 规定返回特定字段
-    query.put(Query.KEYS, "created_at,created_by");
-    // Record 里定义了一行记录固有的几列，作为参考
-    query.put(Query.KEYS, Util.join(Arrays.asList(Record.CREATED_AT, Record.CREATED_BY), ","));
+    query.keys(Record.CREATED_AT, Record.CREATED_BY);
 
     // 规定不返回特定字段
-    query.put(Query.KEYS, "-created_at,-created_by");
-    query.put(Query.KEYS, Util.join(Arrays.asList("-" + Record.CREATED_AT, "-" + Record.CREATED_BY), ","));
+    query.keys("-created_at", "-created_by");
     PagedList<Record> records = table.query(query);
 
     // 操作成功
@@ -100,7 +98,7 @@ try {
 
 ### 使用方法
 
-**在 get 方法中使用**
+**在 fetchRecord 方法中使用**
 
 ```java
 Table table = new Table("product");
@@ -108,26 +106,27 @@ String id = "990ads2849nafakl3ur";
 try {
     Query query = new Query();
     // 设置需要展开的字段
-    query.put(Query.EXPAND, "created_by,pointer_value");
-
+    query.expand("created_by", "pointer_value");
     Record record = table.fetchRecord(id, query);
+
+    // 或者使用便利方法
+    Record record = table.fetchRecord(id, Arrays.asList("created_by", "pointer_value"), null);
+
     // 操作成功
 } catch (Exception e) {
     // 操作失败
 }
 ```
 
-**在 find 方法中使用**
+**在 query 方法中使用**
 
 ```java
 Table table = new Table("product");
 try {
-    Query query = new Query();
-    query.put(Query.OFFSET, "0");
-    query.put(Query.LIMIT, "15");
+    Query query = new Query().offset(0).limit(15);
 
     // 设置需要展开的字段
-    query.put(Query.EXPAND, "created_by,pointer_value");
+    query.expand("created_by", "pointer_value");
     PagedList<Record> records = table.query(query);
 
     // 操作成功

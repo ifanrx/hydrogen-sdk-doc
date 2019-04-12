@@ -8,15 +8,15 @@
 
 2.指定 `recordID` 执行获取相应数据项操作
 
-`product.fetchRecord(recordID)` or `product.fetchRecord(recordID, expand, keys)`
+`product.fetchRecord(recordID)` or `product.fetchRecord(recordID, expands, keys)`
 
 **参数说明**
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
-| recordID | String  | 是  | 记录 ID |
-| expand   | String  | 否  | 设置展开对象 |
-| keys     | String  | 否  | 过滤字段 |
+| recordID | String              | 是  | 记录 ID |
+| expand   | Collection<String>  | 否  | 设置展开对象，里面是需展开的字段列表 |
+| keys     | Collection<String>  | 否  | 过滤/不过滤字段，里面是需过滤/不过滤的字段列表 |
 
 
 ## 示例

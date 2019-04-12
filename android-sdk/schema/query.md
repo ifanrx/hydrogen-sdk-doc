@@ -45,7 +45,7 @@ try {
 
     Query query = new Query();
     // 设置分页、排序等
-    // query.put(Query.ORDER_BY, "create_at")
+    // query.orderBy("create_at")
 
     Where where = new Where();
     // 设置查询条件（比较、字符串包含、组合等）
@@ -93,7 +93,7 @@ where.notEqualTo("key", "value");
 where.greaterThanOrEqualTo("key", 10);
 where.notEqualTo("key", 5);
 ```
-多个查询条件之间需要更复杂的组合关系，可以查看以下 `复杂组合查询` 小节。
+多个查询条件之间需要更复杂的组合关系，可以查看以下 `组合查询` 小节。
 
 
 ## 字符串查询
@@ -103,6 +103,27 @@ where.notEqualTo("key", 5);
 where.contains("name", "apple")  // 查询name字段包含'apple'的记录，能正确匹配
 where.contains("name", "app")  // 查询name字段包含'app'的记录，能正确匹配
 where.contains("name", "apple123")  // 查询name字段包含'apple123'的记录，不能正确匹配
+```
+
+也支持正则匹配 ( <span style='color:red'>* sdk version >= v1.1.1，</span> [正则表达式相关知识](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions) )：
+
+```java
+String regExp = "...";
+where.matches("name", regExp);
+
+// 正则表达式示例
+
+// 查找 以 foo 开头的名字
+regExp = "^foo";
+
+// 查找 以 188 开头的手机号码
+regx = "^188";
+
+// 查找 以 708 结尾的手机号码
+regx = "708$";
+
+// 查找 以 188 开头的手机号码，以 708 结尾的手机号码
+regx = "^188\d+708$";
 ```
 
 
@@ -120,7 +141,7 @@ where.notContainedIn(fieldName, array)
 
 field 的类型必须为数组, field 的 value 包含 array 中的每一个  ( <span style='color:red'>* sdk version >= v1.1.1</span> )
 ```java
-where.contains(fieldName, array)
+where.arrayContains(fieldName, array)
 ```
 
 如果希望查找数组中只包含指定数组中所有的值的记录，可以使用比较查询
@@ -155,9 +176,87 @@ where.equalTo('desc', array);
 ## null 和 exists 查询
 
 ```java
-where.isNull('name');   // 查询字段值为 null 或非 null 记录
-where.exists("name");   // 查询字段是否存在
+where.isNull('name');       // 查询字段是否为 null
+where.isNotNull('name');    // 查询字段是否不为 null
+where.exists("name");       // 查询字段是否存在
+where.notExists("name");    // 查询字段是否不存在
 ```
+
+## hasKey 查询 （仅限 object 类型）
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-  | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Object |
+| value | String              | 是  | 需要检测的属性名, 只能包含字母、数字和下划线，必须以字母开头 |
+
+**示例代码**
+
+假设数据表有如下数据行
+```javascript
+[
+  {
+    'id': '59a3c2b5afb7766a5ec6e84e',
+    name: '战争与和平',
+    publisherInfo: {
+      name: 'abc出版社',
+    },
+  },
+  {
+    'id': '59a3c2b5afb7766a5ec6e84g',
+    name: '西游记',
+    publisherInfo: {
+      name: 'efg出版社',
+      location: '广东省广州市天河区五山路 100 号'
+    },
+  },
+]
+```
+
+查询字段 publisherInfo 中存在 location 属性的数据行
+```java
+where.hasKey('publisherInfo', 'location')
+```
+
+查询结果
+```javascript
+[
+  {
+      'id': '59a3c2b5afb7766a5ec6e84g',
+      name: '西游记',
+      publisherInfo: {
+        name: 'efg出版社',
+        location: '广东省广州市天河区五山路 100 号'
+      },
+  }
+]
+```
+
+注意：目前暂不支持查询内嵌属性
+
+假设数据行如下
+```javascript
+[
+  {
+      'id': '59a3c2b5afb7766a5ec6e84g',
+      name: '西游记',
+      publisherInfo: {
+        abc: {
+          name: 'efg出版社',
+          location: '广东省广州市天河区五山路 100 号'
+        }
+      },
+  }
+]
+```
+
+则下面的查询语句是非法的
+
+```java
+where.hasKey('publisherInfo', 'abc.location')
+```
+
 
 ## 组合查询
 

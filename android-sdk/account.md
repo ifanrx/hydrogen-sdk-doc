@@ -10,8 +10,9 @@
 
 ```java
 try {
+  // 同步的方式
   // 当前登录用户的信息；它会执行一次网络请求，获取到的用户信息总是最新的
-  // 当未登录或者是匿名登录时，返回 null
+  // 当未登录时，返回 null
   CurrentUser curUser = Auth.currentUser();
 
   // 异步的方式

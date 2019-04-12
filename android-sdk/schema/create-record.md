@@ -176,7 +176,7 @@ try {
     // 5bad87ab0769797b4fb27a1b 为 Comment 表中某行数据的 id
     Record comment = comments.fetchWithoutData("5bad87ab0769797b4fb27a1b");
     // 69147880 为 _userprofile 表中某行数据的 id
-    User user = Users.userWithoutData("69147880");
+    User user = Users.userWithoutData(69147880);
     
     Record article = articles.createRecord();
     article.put("comment", comment);

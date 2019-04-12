@@ -56,13 +56,26 @@ b. unset 操作
 Table product = new Table("product");
 Record record = product.fetchWithoutData("59897882ff650c0477f00485");
 
+// 同步的方式
 try {
     record.put("price", 1);
-    record.save();
+    record.save();   
     // 操作成功
 } catch (Exception e) {
     // 操作失败
 }
+
+// 异步的方式
+record.saveInBackground(new Callback<Record>() {
+   @Override
+   public void onSuccess(@Nullable Record record) {
+       // 保存成功
+   }
+   @Override
+   public void onFailure(Exception e) {
+       // 保存失败
+   }
+);
 ```
 
 异常请参考[异常](../error-code.md)
@@ -98,7 +111,9 @@ try {
     // 5bad87ab0769797b4fb27a1b 为 Comment 表中某行数据的 id
     Record comment = comments.fetchWithoutData("5bad87ab0769797b4fb27a1b");
     // 69147880 为 _userprofile 表中某行数据的 id
-    Record user = Users.userWithoutData("69147880");
+    Record user = Users.userWithoutData(69147880);
+    // 针对当前登录用户，可用以下方法
+    // CurrentUser user = Auth.currentUserWithoutData();
     
     Record article = articles.createRecord();
     article.put("comment", comment);

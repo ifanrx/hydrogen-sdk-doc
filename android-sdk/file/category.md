@@ -38,8 +38,7 @@ try {
     // 获取某分类下的文件（第一页）
     Where where = new Where();
     where.equalTo(CloudFile.QUERY_CATEGORY_ID, "124");
-    Query query = new Query();
-    query.put(Query.LIMIT, "10");
+    Query query = new Query().limit(10);
     query.put(where);
     PagedList<CloudFile> pageOne = Storage.files(query);
     

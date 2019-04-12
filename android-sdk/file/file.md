@@ -145,8 +145,7 @@ try {
 ```java
 try {
     // 查找所有文件
-    Query query = new Query();
-    query.put(Query.ORDER_BY, CloudFile.CREATED_AT);
+    Query query = new Query().orderBy(CloudFile.CREATED_AT);
     PagedList<CloudFile> all = Storage.files(query);
     // 操作成功
 } catch (Exception e) {
@@ -162,9 +161,7 @@ try {
 ```java
 try {
     // 查找所有文件
-    Query query = new Query();
-    query.put(Query.OFFSET, "10");
-    query.put(Query.LIMIT, "20");
+    Query query = new Query().offset(10).limit(20);
     PagedList<CloudFile> pageTwo = Storage.files(query);
     
     // 操作成功
