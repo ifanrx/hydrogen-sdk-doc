@@ -24,7 +24,7 @@ record.delete { (success, error) in
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | success   | Bool           | 是否删除成功 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息     |
+| error   |  NSError |  错误信息     |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -74,7 +74,7 @@ NSDictionary *options = @{@"enable_trigger": @true};
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | result  |  Dictionary           | 删除的数据结果 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息  |
+| error   |  NSError |  错误信息  |
 
  **返回示例**
  ```

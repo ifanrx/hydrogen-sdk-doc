@@ -67,7 +67,7 @@ NSArray *expand = @[@"created_by"];
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | record   | Record     | 数据项实例, 关于 `Record` 类型查看 [数据类型](./data-type.md) 章节|
-| error     | HError(Swift) / NSError(OC) | 错误信息   |
+| error     | NSError | 错误信息   |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 

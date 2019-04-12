@@ -125,7 +125,7 @@ currentUser.updateUsername("test_new") { (result, error) in
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | result   | Dictionary           | 被更新的信息 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息     |
+| error   |  NSError |  错误信息     |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -163,7 +163,7 @@ currentUser.updateEmail("test_new@ifanr.com") { (result, error) in
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | result   | Dictionary           | 被更新的信息 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息     |
+| error   |  NSError |  错误信息     |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -204,7 +204,7 @@ currentUser.updatePassword("111", newPassword: "1111") { (result, error) in
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | result   | Dictionary           | 被更新的信息 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息     |
+| error   |  NSError |  错误信息     |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -243,7 +243,7 @@ currentUser.updateUserInfo(["age": 18]) { (result, error) in
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | result   | Dictionary           | 被更新的信息 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息     |
+| error   |  NSError |  错误信息     |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -276,7 +276,7 @@ currentUser.requestEmailVerification() { (success, error) in
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | success   | Bool           | 是否已发送邮件 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息     |
+| error   |  NSError |  错误信息     |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
@@ -311,6 +311,6 @@ currentUser.resetPassword(email: "test@ifanr.com") { (success, error) in
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | success   | Bool           | 是否已发送邮件 |
-| error   |  HError(Swift) / NSError(OC) |  错误信息     |
+| error   |  NSError |  错误信息     |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
