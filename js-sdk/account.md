@@ -334,10 +334,10 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 支持同步的字段：
 
-1. avatar: 头像
-2. city: 城市
-3. country: 国家
-4. gender: 性别（仅微信）
-5. language: 语言
-6. nickname: 昵称
-7. province: 省份
+1. nickname: 昵称
+2. avatar: 头像
+3. gender: 性别（仅微信）
+4. language: 语言
+5. city: 城市
+6. province: 省份
+7. country: 国家
