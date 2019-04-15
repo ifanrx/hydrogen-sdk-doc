@@ -1,5 +1,8 @@
 # 更新数据项
 
+> **info**
+> 如需匿名读写数据表，请先查看[数据表匿名读写权限特别说明](/js-sdk/schema/#数据表匿名读写权限特别说明)
+
 ## 操作步骤
 
 1.通过 `tableName` 或 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
@@ -19,8 +22,8 @@ tableName 和 tableID 二选一，不能同时存在
 
 | 参数  | 类型              | 必填 | 说明 |
 | :-----  | :----- | :-- | :-- |
-| tableID   | Number | 是  | 数据表的 ID             |
-| tableName | String |  是 | 数据表名（SDK >= 1.2.0） |
+| tableID   | Number | 是  | 数据表的 ID |
+| tableName | String |  是 | 数据表名 |
 
 2.通过数据行 id（以下用 `recordID` 参数名表示） 设置指定数据行
 
@@ -55,9 +58,6 @@ b. unset 操作
 将某个字段的值清空
 
 `product.unset(key)` 或 `product.unset(obj)`
-
-> **info**
-> SDK 版本需 >= 1.12.0
 
 **参数说明**
 
