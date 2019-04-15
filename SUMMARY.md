@@ -44,6 +44,7 @@
             * [TableObject](js-sdk/schema/frag/table-object.md)
             * [TableRecord](js-sdk/schema/frag/table-record.md)
             * [Query](js-sdk/schema/frag/query.md)
+        * [数据表操作常见错误](js-sdk/schema/operate-error.md)
     * [内容库](js-sdk/content/README.md)
         * [内容操作](js-sdk/content/operate.md)
         * [渲染内容](js-sdk/content/render.md)
