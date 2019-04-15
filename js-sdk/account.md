@@ -315,3 +315,29 @@ wx.BaaS.auth.getCurrentUser().then(user =>{
 ```
 
 err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+# 同步第一层级用户信息
+
+2.x 支持多平台登录，第三方登录（微信小程序中使用微信登录与支付宝小程序中使用支付宝登录，都属于第三方登录）
+后获取到的用户信息保存在 userpofile 记录的 _provider 字段（参照上文 currentUser 中的 _provider 字段）中，
+而 1.x 的用户数据保存在与 _provider 用一层级（即第一层级）的字段中，为了使相关代码能平滑升级到 2.x，
+第一层级的用户信息字段被保留了下来，并提供了接口让开发者决定是否在用户授权的时候，同步第一层级的用户信息。
+
+支持的接口：
+
+1. [微信登录](/js-sdk/wechat/signin-signout.md)
+  1. `wx.BaaS.loginWithWechat(data, {syncUserProfile})`
+  2. `UserRecord.linkWechat(data, {syncUserProfile})`
+2. [支付宝登录](/js-sdk/alipay/signin-signout.md)
+  1. `my.BaaS.loginWithAlipay({forceLogin, syncUserProfile})`
+  2. `UserRecord.linkAlipay({forceLogin, syncUserProfile})`
+
+支持同步的字段：
+
+1. nickname: 昵称
+2. avatar: 头像
+3. gender: 性别（仅微信）
+4. language: 语言
+5. city: 城市
+6. province: 省份
+7. country: 国家
