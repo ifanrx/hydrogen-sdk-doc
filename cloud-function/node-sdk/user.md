@@ -189,6 +189,79 @@ user.set('age', 30).update().then(res => {
 })
 ``` 
 
+### 设置账号信息
+
+`UserRecord.setAccount({username, email, password})`
+
+通过微信、支付宝授权登录用户，可以设置用户名、邮箱、密码，以便下次通过用户名或邮箱登录。
+
+**参数说明**
+
+| 名称      | 类型    |  必填   | 说明 |
+| :-------- | :-------|-----  | :------ |
+| username  | String  | N | 用户名      |
+| email     | String  | N | 邮箱        |
+| password  | String  | N | 密码    |
+
+**示例代码**
+
+```javascript
+const MyUser = new BaaS.User()
+const userRecord = MyUser.getWithoutData(userID)
+userRecord.setAccount({
+  email: 'foo@gmail.com',
+  username: 'bar',
+  password: 'baz',
+}).then(res => {
+  // success
+}).catch(err => {
+  // err
+})
+```
+
+**返回示例**
+
+```json
+{
+  "status": 200,
+  "data": {
+    "email": "foo@gmail.com",
+    "email_verified": false,
+    "username": "bar"
+  }
+}
+```
+
+## 删除用户
+
+`MyUser.delete(userID)`
+
+**参数说明**
+
+| 名称      | 类型    | 必填    | 说明    |
+| :-------- | :------ | :------ | :------ |
+| userID    | Number  | Y       | 用户 ID |
+
+**示例代码**
+
+```javascript
+const MyUser = new BaaS.User()
+User.delete(userID).then(res => {
+  // success
+}).catch(err => {
+  // err
+})
+```
+
+**返回示例**
+
+```json
+{
+  "status": 204,
+  "data": ""
+}
+```
+
 ## 查询，获取用户列表
 
 用户查询与[数据表查询](./schema/query.md)方法一致
