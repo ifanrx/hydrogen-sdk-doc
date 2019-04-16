@@ -1,6 +1,6 @@
 # Summary
 
-* [旧版 1.x 版本文档](https://doc.minapp.com/)
+* [旧版 1.x 版本文档](https://doc.minapp.com/1.x/)
 
 ----
 
@@ -8,7 +8,7 @@
 
 * [新手入门](newbies/README.md)
     * [新手入门 - 微信小程序](newbies/wechat.md)
-    * [新手入门 - Web (内测)](newbies/web.md)
+    * [新手入门 - Web](newbies/web.md)
     * [新手入门 - 支付宝](newbies/alipay.md)
 
 ----
@@ -62,8 +62,7 @@
         * [微信加密数据解密](js-sdk/wechat/wechat-decrypt.md)
         * [检测违规图片、文本](js-sdk/wechat/censor.md)
         * [获取二维码](js-sdk/wechat/wxacode.md)
-        * [异常上报](js-sdk/wechat/bugout.md)
-    * [Web (内测)](js-sdk/web/README.md)
+    * [Web](js-sdk/web/README.md)
         * [接入指南](js-sdk/web/how-to.md)
         * [登入登出](js-sdk/web/signin-signout.md)
     * [支付宝小程序](js-sdk/alipay/README.md)            
@@ -106,6 +105,29 @@
     * [安装 sdk](android-sdk/install.md)
     * [demo 的编译和安装](android-sdk/demo.md)
 
+----
+
+* [iOS SDK （alpha 内测）](ios-sdk/README.md)
+    * [安装 SDK](ios-sdk/install.md)
+    * [用户](ios-sdk/user/README.md)
+        * [登入登出](ios-sdk/user/auth.md)
+        * [当前用户](ios-sdk/user/account.md)
+    * [数据表](ios-sdk/schema/README.md)
+        * [数据类型](ios-sdk/schema/data-type.md)
+        * [新增数据项](ios-sdk/schema/create-record.md)
+        * [更新数据项](ios-sdk/schema/update-record.md)
+        * [删除数据项](ios-sdk/schema/delete-record.md)
+        * [获取数据项](ios-sdk/schema/get-record-detail.md)
+        * [查询数据项](ios-sdk/schema/query.md)
+        * [分页和排序](ios-sdk/schema/limit-and-order.md)
+        * [字段过滤与扩展](ios-sdk/schema/select-and-expand.md)
+    * [内容库](ios-sdk/content/README.md)
+        * [内容操作](ios-sdk/content/operate.md)
+    * [文件](ios-sdk/file/README.md)
+        * [文件操作](ios-sdk/file/file.md)
+    * [调用云函数](ios-sdk/invoke-function.md)
+    * [错误码和错误对象](ios-sdk/error-code.md)
+    
 ----
 
 * [知晓云开放 API](open-api/README.md)

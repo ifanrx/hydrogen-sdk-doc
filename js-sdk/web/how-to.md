@@ -25,14 +25,20 @@ var BaaS = require('minapp-sdk')
 ```
 {% content "second" %}
 
-通过 CDN 引入 SDK
+### 下载并导入 SDK
 
-```html
-<script src="https://dl.ifanr.cn/hydrogen/sdk/sdk-web-latest.js"></script>
-<script>
+a. [下载最新版 SDK 到本地](../download-sdk.md)
+
+b. 将下载解压后得到的 SDK js 文件放在项目目录中
+
+<pre>
+<code class="lang-html">
+&lt;script src="./sdk-v{{ book.latestVersionWechat }}.js"&gt;&lt;/script&gt;
+&lt;script&gt;
   var BaaS = window.BaaS
-</script>
-```
+&lt;/script&gt;
+</code>
+</pre>
 
 {% endtabs %}
 

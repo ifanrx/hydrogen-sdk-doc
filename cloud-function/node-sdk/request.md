@@ -20,3 +20,10 @@ exports.main = function testSDKNetwork(event, callback) {
 > 如因业务需求需要请求其他端口，可通过工单申请，注明域名、端口、路径及使用场景说明。
 
 更多用法，你可以参考 axios 的 [文档](https://github.com/axios/axios)
+
+> **info**
+> 网络请求出口 IP
+>
+> 如果外部接口需要对请求 IP 进行限制，可以将以下 IP 放入 IP 访问白名单中：
+>
+> 52.80.218.3
