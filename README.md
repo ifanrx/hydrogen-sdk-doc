@@ -121,6 +121,42 @@
     </li>
     <li>
       <h3>
+        <a href="/android-sdk/README.md">Android SDK（alpha 内测版）</a>
+      </h3>
+      <ul class="doc-js-sdk doc-detail-item">
+        <li>
+          <a href="/android-sdk/auth.md">注册登录</a>
+        </li>
+        <li>
+          <a href="/android-sdk/account.md">当前用户</a>
+        </li>
+        <li>
+          <a href="/android-sdk/user.md">用户</a>
+        </li>
+        <li>
+          <a href="/android-sdk/schema/README.md/">数据表</a>
+        </li>
+        <li>
+          <a href="/android-sdk/content/README.md/">内容库</a>
+        </li>
+        <li>
+          <a href="/android-sdk/file/README.md/">文件</a>
+        </li>
+      </ul>
+      <ul class="doc-android-sdk doc-detail-item">
+        <li>
+          <a href="/android-sdk/error-code.md">异常</a>
+        </li>
+        <li>
+          <a href="/android-sdk/install.md">sdk 接入指南</a>
+        </li>
+        <li>
+          <a href="/android-sdk/demo.md">demo 使用指南</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <h3>
         <a href="/open-api/README.md/">知晓云开放 API</a>
       </h3>
       <ul class="doc-open-api doc-detail-item">

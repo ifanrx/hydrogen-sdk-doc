@@ -87,7 +87,7 @@
 
 * [Android SDK (alpha 内测版)](android-sdk/README.md)
     * [用户](android-sdk/user.md)
-        * [登入登出](android-sdk/auth.md)
+        * [注册登录](android-sdk/auth.md)
         * [当前用户](android-sdk/account.md)
     * [数据表](android-sdk/schema/README.md)
         * [新增数据项](android-sdk/schema/create-record.md)
