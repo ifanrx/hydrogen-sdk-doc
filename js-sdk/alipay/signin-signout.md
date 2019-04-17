@@ -11,6 +11,7 @@
 | forceLogin      | Boolean | 是否强制登录 |
 | scopes          | Array   | 需要用户授权的 scope 列表 |
 | createUser      | Boolean | 是否创建用户，默认为 `true` |
+| syncUserProfile | String  | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx`，仅在 forceLogin 为 true 时生效 |
 
 - 当 `forceLogin` 为 `false` 时，为静默登录，不会弹窗授权框；
 - 当 `forceLogin` 为 `true` 时，为强制登录，会弹窗授权框。授权成功后，后端可以拿到支付宝用户的用户信息。
@@ -22,6 +23,8 @@
 `createUser` 参数决定了一个新的支付宝用户第一次登录时的服务端处理行为。
 默认为 `true`，服务端会有该用户创建一个知晓云用户记录。
 当 `createUser` 为 `false` 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见 [多平台用户统一登录](#多平台用户统一登录) 说明
+
+{% include "/js-sdk/frag/_sync_user_profile_param.md" %}
 
 > **info**
 > 强制登录时，如果用户拒绝授权，则执行静默登录逻辑。
@@ -80,11 +83,20 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## 关联支付宝账号
 
-`my.BaaS.auth.linkAlipay({forceLogin})`
+`UserRecord.linkAlipay({forceLogin, syncUserProfile})`
+
+**参数说明**
+
+| 参数            | 类型    | 说明         |
+| :-------------- | :------ | :----------- |
+| forceLogin      | Boolean | 是否强制登录 |
+| syncUserProfile | String  | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx`，仅在 forceLogin 为 true 时生效 |
 
 当使用账号密码登录账号，可以调用该接口，使支付宝账号与当前登录账号相关联。
 
 `forceLogin` 参数的使用方法与上面登录接口一致。
+
+{% include "/js-sdk/frag/_sync_user_profile_param.md" %}
 
 ## 多平台用户统一登录
 

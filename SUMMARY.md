@@ -44,6 +44,7 @@
             * [TableObject](js-sdk/schema/frag/table-object.md)
             * [TableRecord](js-sdk/schema/frag/table-record.md)
             * [Query](js-sdk/schema/frag/query.md)
+        * [数据表操作常见错误](js-sdk/schema/operate-error.md)
     * [内容库](js-sdk/content/README.md)
         * [内容操作](js-sdk/content/operate.md)
         * [渲染内容](js-sdk/content/render.md)
@@ -84,8 +85,31 @@
 
 ----
 
+* [Android SDK (alpha 内测版)](android-sdk/README.md)
+    * [用户](android-sdk/user.md)
+        * [注册登录](android-sdk/auth.md)
+        * [当前用户](android-sdk/account.md)
+    * [数据表](android-sdk/schema/README.md)
+        * [新增数据项](android-sdk/schema/create-record.md)
+        * [更新数据项](android-sdk/schema/update-record.md)
+        * [删除数据项](android-sdk/schema/delete-record.md)
+        * [获取数据项](android-sdk/schema/get-record-detail.md)
+        * [查询数据项](android-sdk/schema/query.md)
+        * [分页和排序](android-sdk/schema/limit-and-order.md)
+        * [字段过滤与扩展](android-sdk/schema/select-and-expand.md)
+    * [内容库](android-sdk/content/README.md)
+        * [内容操作](android-sdk/content/operate.md)
+    * [文件](android-sdk/file/README.md)
+        * [文件操作](android-sdk/file/file.md)
+        * [文件分类操作](android-sdk/file/category.md)
+    * [异常](android-sdk/error-code.md)
+    * [安装 sdk](android-sdk/install.md)
+    * [demo 的编译和安装](android-sdk/demo.md)
+
+----
+
 * [iOS SDK （alpha 内测）](ios-sdk/README.md)
-    * [安装 SDK](ios-sdk/install.md)
+    * [上手指南](ios-sdk/install.md)
     * [用户](ios-sdk/user/README.md)
         * [登入登出](ios-sdk/user/auth.md)
         * [当前用户](ios-sdk/user/account.md)
@@ -103,7 +127,8 @@
     * [文件](ios-sdk/file/README.md)
         * [文件操作](ios-sdk/file/file.md)
     * [调用云函数](ios-sdk/invoke-function.md)
-    * [错误码和 HError 对象](ios-sdk/error-code.md)
+    * [错误码和错误对象](ios-sdk/error-code.md)
+    * [Demo 下载](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
     
 ----
 

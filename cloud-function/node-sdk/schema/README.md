@@ -15,7 +15,8 @@ let apple = {
   name: 'apple',
   price: 1,
   desc: ['good'],
-  amount: 0
+  amount: 0,
+  created_by: 36395395,
 }
 
 // 为上面创建的空记录赋值，并保存到服务器
@@ -135,6 +136,29 @@ res 结构如下
   }
 }
 ```
+
+
+## 关于 `created_by` 字段
+如果在云函数中创建数据记录时没有指定 `created_by` 字段，则创建的记录的 `created_by` 将是应用所属于企业的超级管理员的用户 ID。
+此 ID 在控制台 - 用户中将无法被查到（因为并不是小程序 / Web 应用用户）
+
+如果云函数是由小程序所调用，而云函数中需要以小程序用户身份创建记录，可以从 [event](../usage-notice.html#云函数中-event-结构说明) 中获取到请求云函数用户的信息，从而指定创建记录的 `created_by`：
+
+```js
+exports.main = function functionName(event, callback) {
+  let tableName = 'product'
+  let Product = new BaaS.TableObject(tableName)
+  let product = Product.create()
+  let apple = {
+    name: 'apple',
+    created_by: event.request.user.id
+  }
+  product.set(apple).save().then(res=>{
+    callback(null, res.data)
+  })
+}
+```
+
 
 阅读以下章节，了解更多数据表操作接口：
 

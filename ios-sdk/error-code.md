@@ -18,8 +18,8 @@ SDK API 的错误对象作为回调参数 error 传回，错误对象类型为 N
 Auth.login(username: "test0402", password: "111") { (user, error) in
     // 错误处理
     if error != nil {
-        if let error = error as? HError {
-            print("Parsing error: \(error.error.code), \(error.localizedDescription)")
+        if let error = error {
+            print("Parsing error: \(error.code), \(error.localizedDescription)")
         } else {
             print("Other error: \(error!)")
         }
@@ -28,14 +28,13 @@ Auth.login(username: "test0402", password: "111") { (user, error) in
     
 }
 ```
-{% content "oc1" %}
+{% content "oc2" %}
 ```
 [BAASAuth loginWithUsername:@"test" password:@"111" completion:^(BAASUser * _Nullable user, NSError * _Nullable error) {
 
     // 错误处理
     if (error) {
         NSLog(@"Parsing error: [code: %ld], [description: %@]", error.code, error.localizedDescription);
-        return;
     }
     
 }];

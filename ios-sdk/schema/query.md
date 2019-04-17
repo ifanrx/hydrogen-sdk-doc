@@ -50,7 +50,7 @@ tableName 和 tableID 二选一
 
 | 名称     | 类型   | 说明  |
 | :-----  | :----- | :--- |
-| tableId   | Int  | 数据表的 ID |
+| tableId   | Int  | 数据表的 Id |
 | tableName | String |  数据表名 |
 
 2.创建 `Where` 对象，在该对象上添加查询条件
