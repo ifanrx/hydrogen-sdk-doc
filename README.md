@@ -123,6 +123,35 @@
         <h3>
         <a href="/ios-sdk/README.md/">iOS SDK（alpha 内测）</a>
       </h3>
+      <ul class="doc-ios-sdk doc-detail-item">
+        <li>
+          <a href="/ios-sdk/install.md">上手指南</a>
+        </li>
+        <li>
+          <a href="/ios-sdk/user/auth.md">登入登出</a>
+        </li>
+        <li>
+          <a href="/ios-sdk/user/account.md">当前用户</a>
+        </li>
+        <li>
+          <a href="/ios-sdk/schema/README.md/">数据表</a>
+        </li>
+        <li>
+          <a href="/ios-sdk/content/README.md/">内容库</a>
+        </li>
+        <li>
+          <a href="/ios-sdk/file/README.md/">文件</a>
+        </li>
+        <li>
+          <a href="/ios-sdk/invoke-function.md/">调用云函数</a>
+        </li>
+        <li>
+          <a href="">错误码与错误处理</a>
+        </li>
+        <li>
+          <a href="https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo">Demo 下载</a>
+        </li>
+      </ul>
     </li>
     <li>
       <h3>

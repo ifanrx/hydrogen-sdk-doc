@@ -109,7 +109,7 @@
 ----
 
 * [iOS SDK （alpha 内测）](ios-sdk/README.md)
-    * [安装 SDK](ios-sdk/install.md)
+    * [上手指南](ios-sdk/install.md)
     * [用户](ios-sdk/user/README.md)
         * [登入登出](ios-sdk/user/auth.md)
         * [当前用户](ios-sdk/user/account.md)
@@ -128,6 +128,7 @@
         * [文件操作](ios-sdk/file/file.md)
     * [调用云函数](ios-sdk/invoke-function.md)
     * [错误码和错误对象](ios-sdk/error-code.md)
+    * [Demo 下载](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
     
 ----
 
