@@ -7,7 +7,7 @@
 开发者可以使用 `Auth` 来进行用户的通用注册。
 
 > **info**
-> 注册成功后会自动登录
+> 注册成功后会自动登录，调用注册方法之前需先前往[设置](https://cloud.minapp.com/dashboard/#/app/settings/sdk/)打开该登录方法
 
 
 ### 通过邮箱注册
@@ -43,6 +43,9 @@ Auth.signUpByUsername(username, pwd);
 异常请参考[异常](./error-code.md)
 
 ## 登录
+
+> **info**
+> 调用登录方法之前需先前往[设置](https://cloud.minapp.com/dashboard/#/app/settings/sdk/)打开该登录方法
 
 ### 用户名登录
 
