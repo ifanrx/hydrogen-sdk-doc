@@ -146,7 +146,7 @@
           <a href="/ios-sdk/invoke-function.md/">调用云函数</a>
         </li>
         <li>
-          <a href="">错误码与错误处理</a>
+          <a href="/ios-sdk/error-code.md/">错误码与错误处理</a>
         </li>
         <li>
           <a href="https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo">Demo 下载</a>
