@@ -1,4 +1,4 @@
-# <span id="user-object">用户(user)</span>
+# <span id="user-object">用户(user)对象结构</span>
 
 ### 字段
 
@@ -47,18 +47,18 @@
 
 **接口**
 
-`POST https://cloud.minapp.com/hserve/v2.0/register/:register-type/`
+`POST /hserve/v2.0/register/:register-type/`
 
 **:register-type** 有两种:
 
 * email: 通过邮箱注册
 * username: 通过用户名注册
 
-
 {% tabs createTableEmail="通过邮箱注册",
 createTableUsername="通过用户名注册" %}
 
 {% content "createTableEmail" %}
+
 **请求参数**
 
 Content-Type: `application/json`
@@ -69,20 +69,17 @@ Content-Type: `application/json`
 | password         | String       |  是 | 密码 |
 
 **请求示例**
-```json
-POST /hserve/v2.0/register/email/ HTTP/1.1
-Host: cloud.minapp.com
-Accept: application/json  
-Content-Type: application/json
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
 
-{
-    "email": "aaa@bbb.com",
-    "password": "abc***abd"
-}
+```shell
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Content-Type: application/json" \
+  -d '{"email":"hegz@qq.com","password":"mbbmb*cb"}' \
+  https://{{ServerUrl}}/hserve/v2.0/register/email/
 ```
 
 {% content "createTableUsername" %}
+
 **请求参数**
 
 Content-Type: `application/json`
@@ -93,17 +90,13 @@ Content-Type: `application/json`
 | password         | String       |  是 | 密码 |
 
 **请求示例**
-```json
-POST /hserve/v2.0/register/username/ HTTP/1.1
-Host: cloud.minapp.com
-Accept: application/json  
-Content-Type: application/json
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
 
-{
-    "username": "he",
-    "password": "abc***abd"
-}
+```shell
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Content-Type: application/json" \
+  -d '{"username":"hegz","password":"mbbmb*cb"}' \
+  https://{{ServerUrl}}/hserve/v2.0/register/username/
 ```
 
 {% endtabs %}
@@ -122,7 +115,7 @@ X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
 
 **接口**
 
-`POST https://cloud.minapp.com/hserve/v2.0/login/:login-type/`
+`POST /hserve/v2.0/login/:login-type/`
 
 **:login-type** 有两种:
 
@@ -133,6 +126,7 @@ X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
 createTableUsernameLogin="通过用户名登陆" %}
 
 {% content "createTableEmailLogin" %}
+
 **请求参数**
 
 Content-Type: `application/json`
@@ -143,20 +137,17 @@ Content-Type: `application/json`
 | password         | String       |  是 | 密码 |
 
 **请求示例**
-```json
-POST /hserve/v2.0/login/email/ HTTP/1.1
-Host: cloud.minapp.com
-Accept: application/json  
-Content-Type: application/json
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
 
-{
-    "email": "aaa@bbb.com",
-    "password": "abc***abd"
-}
+```shell
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Content-Type: application/json" \
+  -d '{"email":"hegz@qq.com","password":"mbbmb*cb"}' \
+  https://{{ServerUrl}}/hserve/v2.0/login/email/
 ```
 
 {% content "createTableUsernameLogin" %}
+
 **请求参数**
 
 Content-Type: `application/json`
@@ -167,21 +158,16 @@ Content-Type: `application/json`
 | password         | String       |  是 | 密码 |
 
 **请求示例**
-```json
-POST /hserve/v2.0/login/username/ HTTP/1.1
-Host: cloud.minapp.com
-Accept: application/json  
-Content-Type: application/json
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
 
-{
-    "username": "he",
-    "password": "abc***abd"
-}
+```shell
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Content-Type: application/json" \
+  -d '{"username":"hegz","password":"mbbmb*cb"}' \
+  https://{{ServerUrl}}/hserve/v2.0/login/username/
 ```
 
 {% endtabs %}
-
 
 **返回示例**
 
@@ -197,17 +183,18 @@ X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
 
 **接口**
 
-`GET https://cloud.minapp.com/hserve/v2.0/user/info/:user_id/`
+`GET /hserve/v2.0/user/info/:user_id/`
 
 **:user_id** 为[用户(user)](#user-object)中的 user_id 
 
 **请求示例**
-```json
-GET /hserve/v2.0/user/info/1/ HTTP/1.1
-Host: cloud.minapp.com
-Accept: application/json
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
-Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
+
+```shell
+curl -X GET \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  https://{{ServerUrl}}/hserve/v2.0/user/info/72818312393/
 ```
 
 **返回示例**
@@ -219,7 +206,7 @@ Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
     "unionid": null,
     "age": 40,
     "created_at": 1513088820,
-    "id": 30000000,
+    "id": 72818312393,
     "custom_name": "custom_default_value",
     "nickname": "hgz",
     "updated_at": 1531543768,
@@ -246,16 +233,16 @@ Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
 
 **接口**
 
-`GET https://cloud.minapp.com/hserve/v2.0/user/info/`
+`GET /hserve/v2.0/user/info/`
 
 
 **请求示例**
-```json
-GET /hserve/v2.0/user/info/ HTTP/1.1
-Host: cloud.minapp.com
-Accept: application/json
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
-Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
+```shell
+curl -X GET \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  https://{{ServerUrl}}/hserve/v2.0/user/info/
 ```
 
 **返回示例**
@@ -304,16 +291,16 @@ Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
 
 **接口**
 
-`POST https://cloud.minapp.com/hserve/v2.0/user/email-verify/`
+`POST /hserve/v2.0/user/email-verify/`
 
 
 **请求示例**
-```json
-POST /hserve/v2.0/user/email-verify/ HTTP/1.1
-Host: cloud.minapp.com
-Accept: application/json
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
-Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
+```shell
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  https://{{ServerUrl}}/hserve/v2.0/user/email-verify/
 ```
 
 **返回示例**
@@ -336,16 +323,17 @@ Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
 
 **接口**
 
-`POST https://cloud.minapp.com/hserve/v2.0/session/destroy/`
+`POST /hserve/v2.0/session/destroy/`
 
 
 **请求示例**
-```json
-POST /hserve/v2.0/session/destroy/ HTTP/1.1
-Host: cloud.minapp.com
-Accept: application/json
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
-Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
+```shell
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d "{}" \
+  https://{{ServerUrl}}/hserve/v2.0/session/destroy/
 ```
 
 **返回示例**
@@ -368,7 +356,7 @@ Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
 
 **接口**
 
-`PUT https://cloud.minapp.com/hserve/v2.0/user/account/`
+`PUT /hserve/v2.0/user/account/`
 
 
 **请求参数**
@@ -385,17 +373,13 @@ Content-Type: `application/json`
 如果选择**修改密码**, 必须同时传入 `password` 和 `new_password`
 
 **请求示例**
-```json
-PUT /hserve/v2.0/user/account/ HTTP/1.1
-Host: cloud.minapp.com
-Accept: application/json  
-Content-Type: application/json
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
-Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
-{
-    "password": "oldpassword",
-    "new_password": "new_password"
-}
+```shell
+curl -X PUT \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d '{"password": "oldpassword", "new_password": "new_password"}' \
+  https://{{ServerUrl}}/hserve/v2.0/user/account/
 ```
 
 
@@ -429,7 +413,7 @@ Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
 
 **接口**
 
-`POST https://cloud.minapp.com/hserve/v2.0/user/password/reset/`
+`POST /hserve/v2.0/user/password/reset/`
 
 
 **请求参数**
@@ -441,15 +425,12 @@ Content-Type: `application/json`
 | email           | String   |  是 | 需要重置密码的用户的邮箱地址 |
 
 **请求示例**
-```json
-POST /hserve/v2.0/user/password/reset/ HTTP/1.1
-Host: cloud.minapp.com
-Accept: application/json  
-Content-Type: application/json
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
-{
-    "email": "aaa@bbb.com"
-}
+```shell
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Content-Type: application/json" \
+  -d '{"email":"hgzchn@qq.com"}' \
+  https://{{ServerUrl}}/hserve/v2.0/user/password/reset/
 ```
 
 

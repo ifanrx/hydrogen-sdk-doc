@@ -2,7 +2,7 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/hserve/v2.0/idp/pay/order/`
+`GET /hserve/v2.0/idp/pay/order/`
 
 **请求参数**
 
@@ -19,17 +19,14 @@ Content-Type: `application/json`
 | gateway_type          | String | 支付方法，可选值有：weixin_tenpay（微信支付）、alipay（支付宝支付） |
 
 **请求示例**
-```json
-GET /hserve/v2.0/idp/pay/order/ HTTP/1.1
-Host: cloud.minapp.com
-Accept: application/json
-Content-Type: application/json
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcX***
-Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHn***
-{
-    "status": "success"
-}
-
+```shell
+curl -X GET \
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -G \
+  --data-urlencode 'status=success' \
+  https://{{ServerUrl}}/hserve/v2.0/idp/pay/order/
 ```
 **返回参数说明**
 

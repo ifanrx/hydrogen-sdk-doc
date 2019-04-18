@@ -4,67 +4,19 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/hserve/v1.3/uploaded-file/:file_id/`
+`GET /hserve/v1.3/uploaded-file/:file_id/`
 
 其中 `:file_id` 需替换为你的文件 ID
 
 **请求示例**
 
-{% tabs getFileDetailCurl="Curl", getFileDetailNode="Node", getFileDetailPHP="PHP" %}
-
-{% content "getFileDetailCurl" %}
-
-```
+```shell
 curl -X GET \
--H "X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***" \
--H "Authorization: Hydrogen-r1  58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/hserve/v1.3/uploaded-file/5a1ba9c1fff1d651135e5ff1/
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  https://{{ServerUrl}}/hserve/v1.3/uploaded-file/5cac3d2299ecae0c9e8aa3e6/
 ```
-
-{% content "getFileDetailNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/hserve/v1.3/uploaded-file/5a2fe93308443e313a428cxx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :file_id
-  method: 'GET',
-  headers: {
-    Authorization: `Hydrogen-r1  ${token}`
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
-```
-
-{% content "getFileDetailPHP" %}
-
-```php
-<?php
-$file_id = '5a2fe93308443e313a428cxx'; // 文件 ID
-$url = "https://cloud.minapp.com/hserve/v1.3/uploaded-file/{$file_id}/";
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8'
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res = curl_exec($ch);
-curl_close($ch);
-```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -72,13 +24,13 @@ curl_close($ch);
 {
   "categories": [
     {
-      "id": "5a1ba7b708443e7fc5f2fb18",
+      "id": "5cac3d2299ecae0c9e8aa3e6",
       "name": "Category",
     }
   ],
   "cdn_path": "1eJCS1MFGdvaaBoV.png",
   "created_at": 1511762369,
-  "id": "5a1ba9c1fff1d651135e5ff1",
+  "id": "5cac3d2299ecae0c9e8aa3e6",
   "media_type": "image",
   "mime_type": "image/png",
   "name": "box_close.png",
@@ -93,7 +45,7 @@ curl_close($ch);
 
 **接口**
 
-`GET https://cloud.minapp.com/hserve/v1.3/uploaded-file/`
+`GET /hserve/v1.3/uploaded-file/`
 
 **参数说明**
 
@@ -107,136 +59,59 @@ Content-Type: `application/json`
 
 **请求示例**
 
-{% tabs getFileListCurl="Curl", getFileListNode="Node", getFileListPHP="PHP" %}
-
-{% content "getFileListCurl" %}
-
-```
+```shell
 curl -X GET \
--H "X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***" \
--H "Authorization: Hydrogen-r1  58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
--H "Content-Type: application/json" \
--G \
--d order_by=-created_at \
--d category=5a1ba7b708443e7fc5f2fb18 \
-https://cloud.minapp.com/hserve/v1.3/uploaded-file/
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -G \
+  --data-urlencode  "order_by=-created_at" \
+  https://{{ServerUrl}}/hserve/v1.3/uploaded-file/
 ```
 
-{% content "getFileListNode" %}
+**返回示例**
 
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/hserve/v1.3/uploaded-file/',
-  method: 'GET',
-  headers: {
-    Authorization: `Hydrogen-r1  ${token}`
-  },
-  qs: {     // query string, 被附加到uri的参数
-    offset: 0,     // 可选
-    limit: 20,     // 可选
-    order_by: 'created_at'  // 按照创建时间来排序，可选
-  }
+```json
+{
+    "meta": {
+        "limit": 20,
+        "next": null,
+        "offset": 0,
+        "previous": null,
+        "total_count": 5
+    },
+    "objects": [
+        {
+            "category": null,
+            "created_at": 1546008508,
+            "id": "5cac3d2299ecae0c9e8aa3e6",
+            "mime_type": "image/jpeg",
+            "name": "test.jpeg",
+            "path": "https://cloud-minapp-18630.cloud.ifanrusercontent.com/1gctR6qybW3irhEo.jpeg",
+            "size": 27273
+        },
+        ......
+    ]
 }
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
 ```
-
-{% content "getFileListPHP" %}
-
-```php
-<?php
-$url = "https://cloud.minapp.com/hserve/v1.3/uploaded-file/";
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8'
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res = curl_exec($ch);
-curl_close($ch);
-```
-
-{% endtabs %}
-
 
 ## 删除文件
 
 **接口**
 
-`DELETE https://cloud.minapp.com/hserve/v1.3/uploaded-file/:file_id/`
+`DELETE https://{{ServerUrl}}/hserve/v1.3/uploaded-file/:file_id/`
 
 其中 `:file_id` 需替换为你的文件 ID
 
 **请求示例**
 
-{% tabs deleteFileCurl="Curl", deleteFileNode="Node", deleteFilePHP="PHP" %}
-
-{% content "deleteFileCurl" %}
-
-```
+```shell
 curl -X DELETE \
--H "X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***" \
--H "Authorization: Hydrogen-r1  58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/hserve/v1.3/uploaded-file/5a1ba9c1fff1d651135e5ff1/
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  https://{{ServerUrl}}/hserve/v1.3/uploaded-file/5a1ba9c1fff1d651135e5ff1/
 ```
-
-{% content "deleteFileNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/hserve/v1.3/uploaded-file/5a45f22bfff1d659681c87xx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :file_id
-  method: 'DELETE',
-  headers: {
-    Authorization: `Hydrogen-r1  ${token}`
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% content "deleteFilePHP" %}
-
-```php
-<?php
-$file_id = '5a45f22bfff1d659681c87xx'; // 文件 ID
-$url = "https://cloud.minapp.com/hserve/v1.3/uploaded-file/{$file_id}/";
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8'
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res['response'] = curl_exec($ch); // 反馈结果
-$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close($ch);
-```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -247,67 +122,19 @@ curl_close($ch);
 
 **接口**
 
-`DELETE https://cloud.minapp.com/hserve/v1.3/uploaded-file/?id__in=:file1_id,:file2_id`
+`DELETE /hserve/v1.3/uploaded-file/?id__in=:file1_id,:file2_id`
 
 **请求示例**
 
-{% tabs patchDeleteCurl="Curl", patchDeleteNode="Node", patchDeletePHP="PHP" %}
-
-{% content "patchDeleteCurl" %}
-
-```
+```shell
 curl -X DELETE \
--H "X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***" \
--H "Authorization: Hydrogen-r1  58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/hserve/v1.3/uploaded-file/?id__in=5a1ba9c1fff1d651135e5ff1,59ca3d275f281f58523fc47a
+  -H "X-Hydrogen-Client-ID: {{Client ID}}" \
+  -H "Authorization: Hydrogen-r1  {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -G \
+  --data-urlencode  "id__in=-5a1ba9c1fff1d651135e5ff1, 59ca3d275f281f58523fc47a" \
+  https://{{ServerUrl}}/hserve/v1.3/uploaded-file/
 ```
-
-{% content "patchDeleteNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/hserve/v1.3/uploaded-file/?id__in=5a3b8e8908443e06aa6f0a99,5a3b673308443e643f1b0c47',
-  method: 'DELETE',
-  headers: {
-    Authorization: `Hydrogen-r1  ${token}`
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% content "patchDeletePHP" %}
-
-```php
-<?php
-$file_id[] = '5a45f22bfff1d659681cxxxx'; // 文件 ID
-$file_id[] = '5a3b673308443e643f1bxxxx'; // 文件 ID
-$url = "https://cloud.minapp.com/hserve/v1.3/uploaded-file/?id__in=".implode(',',$file_id);
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8'
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res['response'] = curl_exec($ch); // 反馈结果
-$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close($ch);
-```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -318,7 +145,7 @@ curl_close($ch);
 
 **接口**
 
-`POST https://cloud.minapp.com/hserve/v1/media/video-snapshot/`
+`POST /hserve/v1/media/video-snapshot/`
 
 **请求参数说明**
 
@@ -352,86 +179,17 @@ curl_close($ch);
 
 **请求示例**
 
-{% tabs videoSnapshotCurl="Curl", videoSnapshotNode="Node", videoSnapshotPHP="PHP" %}
-
-{% content "videoSnapshotCurl" %}
-
-```curl
+```shell
 curl --request POST \
-  --url https://cloud.minapp.com/hserve/v1/media/video-snapshot/ \
-  --header 'Authorization: Hydrogen-r1  050c5121242eda175e8d0ee1cbe6950dadc77' \
+  --url https://{{ServerUrl}}/hserve/v1/media/video-snapshot/ \
+  --header 'Authorization: Hydrogen-r1  {{AccessToken}}' \
   --header 'Content-Type: application/json' \
   --data '{\n	"source": "5c4a6db320fa9c2e054c6c36",\n	"save_as": "1-25-test.png",\n	"point": "00:00:50",\n	"category_id": "5a377bb009a8054139faafed"\n}'
 ```
 
-{% content "videoSnapshotNode" %}
-
-```javascript
-var request = require("request");
-
-var options = {
-  method: 'POST',
-  url: 'https://cloud.minapp.com/hserve/v1/media/video-snapshot/',
-  headers:
-  {
-    'Content-Type': 'application/json',
-    Authorization: 'Hydrogen-r1  2323d124881bd3d63c9bb78458252454f80a676b'
-  },
-  body:
-  {
-    source: "5c453c7cfe10833f3178479e",
-    save_as: "1-25-test.png",
-    point: "00:00:50",
-    category_id: "5a377bcb09a8054139faaff1"
-  },
-  json: true
-};
-
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-  console.log(body);
-});
-```
-
-{% content "videoSnapshotPHP" %}
-
-```php
-<?php
-
-$curl = curl_init();
-
-curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://cloud.minapp.com/hserve/v1/media/video-snapshot/",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\n\t\"source\": \"5c4a6db320fa9c2e054c6c36\",\n\t\"save_as\": \"1-25-test.png\",\n\t\"point\": \"00:00:50\",\n\t\"category_id\": \"5a377bb009a8054139faafed\"\n}",
-  CURLOPT_HTTPHEADER => array(
-    "Authorization: Hydrogen-r1  050c5121242eda175e8d0ee1cbe6950dadc777db",
-    "Content-Type: application/json",
-  ),
-));
-
-$response = curl_exec($curl);
-$err = curl_error($curl);
-
-curl_close($curl);
-
-if ($err) {
-  echo "cURL Error #:" . $err;
-} else {
-  echo $response;
-}
-```
-
-{% endtabs %}
-
 **返回示例**
 
-```javascript
+```json
 {
   "status": "success",
   "id": "5c4a6dcc20fa9c2e054c6c3b",
@@ -467,7 +225,7 @@ if ($err) {
 
 **接口**
 
-`POST https://cloud.minapp.com/hserve/v1/media/m3u8-concat/`
+`POST /hserve/v1/media/m3u8-concat/`
 
 **请求参数说明**
 
@@ -498,85 +256,17 @@ if ($err) {
 
 **请求示例**
 
-{% tabs m3u8ConcatCurl="Curl", m3u8ConcatNode="Node", m3u8ConcatPHP="PHP" %}
-
-{% content "m3u8ConcatCurl" %}
-
-```curl
+```shell
 curl --request POST \
-  --url https://cloud.minapp.com/hserve/v1/media/m3u8-concat/ \
-  --header 'Authorization: Hydrogen-r1  050c5121242eda175e8d0ee1cbe6950dadc777db' \
+  --url https://{{ServerUrl}}/hserve/v1/media/m3u8-concat/ \
+  --header 'Authorization: Hydrogen-r1  {{AccessToken}}' \
   --header 'Content-Type: application/json' \
   --data '{\n	"m3u8s": ["5c453c7cfe10833f3178479e", "5c452bebfe10832bf97846c9"],\n	"save_as": "1-25-test.m3u8",\n	"category_id": "5a377bcb09a8054139faaff1"\n}'
 ```
 
-{% content "m3u8ConcatNode" %}
-
-```javascript
-var request = require("request");
-
-var options = {
-  method: 'POST',
-  url: 'https://cloud.minapp.com/hserve/v1/media/m3u8-concat/',
-  headers:
-  {
-    'Content-Type': 'application/json',
-    Authorization: 'Hydrogen-r1  2323d124881bd3d63c9bb78458252454f80a676b'
-  },
-  body:
-  {
-    m3u8s: ["5c453c7cfe10833f3178479e", "5c452bebfe10832bf97846c9"],
-    save_as: "1-25-test.m3u8",
-    category_id: "5a377bcb09a8054139faaff1"
-  },
-  json: true
-};
-
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-  console.log(body);
-});
-```
-
-{% content "m3u8ConcatPHP" %}
-
-```php
-<?php
-
-$curl = curl_init();
-
-curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://cloud.minapp.com/hserve/v1/media/m3u8-concat/",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\n\t\"m3u8s\": [\"5c453c7cfe10833f3178479e\", \"5c452bebfe10832bf97846c9\"],\n\t\"save_as\": \"1-25-test.m3u8\",\n\t\"category_id\": \"5a377bcb09a8054139faaff1\"\n}",
-  CURLOPT_HTTPHEADER => array(
-    "Authorization: Hydrogen-r1  050c5121242eda175e8d0ee1cbe6950dadc777db",
-    "Content-Type: application/json",
-  ),
-));
-
-$response = curl_exec($curl);
-$err = curl_error($curl);
-
-curl_close($curl);
-
-if ($err) {
-  echo "cURL Error #:" . $err;
-} else {
-  echo $response;
-}
-```
-
-{% endtabs %}
-
 **返回示例**
 
-```javascript
+```json
 {
   "status": "pending",
   "id": "5c4a699820fa9c27f14c6ddd",
@@ -612,7 +302,7 @@ if ($err) {
 
 **接口**
 
-`POST https://cloud.minapp.com/hserve/v1/media/video-clip/`
+`POST /hserve/v1/media/video-clip/`
 
 **请求参数说明**
 
@@ -646,86 +336,17 @@ if ($err) {
 
 **请求示例**
 
-{% tabs m3u8ClipCurl="Curl", m3u8ClipNode="Node", m3u8ClipPHP="PHP" %}
-
-{% content "m3u8ClipCurl" %}
-
-```curl
+```shell
 curl --request POST \
-  --url https://cloud.minapp.com/hserve/v1/media/m3u8-clip/ \
-  --header 'Authorization: Hydrogen-r1  050c5121242eda175e8d0ee1cbe6950dadc777db' \
+  --url https://{{ServerUrl}}/hserve/v1/media/m3u8-clip/ \
+  --header 'Authorization: Hydrogen-r1  {{AccessToken}}' \
   --header 'Content-Type: application/json' \
   --data '{\n	"m3u8": "5c452bebfe10832bf97846c9",\n	"save_as": "1-25-test.m3u8",\n	"include": [0, 5],\n	"category_id": "5a377bcb09a8054139faaff1"\n}'
 ```
 
-{% content "m3u8ClipNode" %}
-
-```javascript
-var request = require("request");
-
-var options = {
-  method: 'POST',
-  url: 'https://cloud.minapp.com/hserve/v1/media/m3u8-clip/',
-  headers:
-  {
-    'Content-Type': 'application/json',
-    Authorization: 'Hydrogen-r1  2323d124881bd3d63c9bb78458252454f80a676b'
-  },
-  body:
-  {
-    m3u8: "5c3421788318ed7f50e5ea8b",
-    save_as: "1-25-test.m3u8",
-    include: [0, 5],
-    category_id: "5a377bcb09a8054139faaff1"
-  },
-  json: true
-};
-
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-  console.log(body);
-});
-```
-
-{% content "m3u8ClipPHP" %}
-
-```php
-<?php
-
-$curl = curl_init();
-
-curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://cloud.minapp.com/hserve/v1/media/m3u8-clip/",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\n\t\"m3u8\": \"5c452bebfe10832bf97846c9\",\n\t\"save_as\": \"1-25-test.m3u8\",\n\t\"include\": [0, 5],\n\t\"category_id\": \"5a377bcb09a8054139faaff1\"\n}",
-  CURLOPT_HTTPHEADER => array(
-    "Authorization: Hydrogen-r1  050c5121242eda175e8d0ee1cbe6950dadc777db",
-    "Content-Type: application/json",
-  ),
-));
-
-$response = curl_exec($curl);
-$err = curl_error($curl);
-
-curl_close($curl);
-
-if ($err) {
-  echo "cURL Error #:" . $err;
-} else {
-  echo $response;
-}
-```
-
-{% endtabs %}
-
 **返回示例**
 
-```javascript
+```json
 {
   "status": "pending",
   "id": "5c4a685520fa9c27f14c6d48",
@@ -761,7 +382,7 @@ if ($err) {
 
 **接口**
 
-`POST https://cloud.minapp.com/hserve/v1/media/m3u8-meta/`
+`POST /hserve/v1/media/m3u8-meta/`
 
 **请求参数说明**
 
@@ -788,83 +409,17 @@ meta 参数说明：
 
 **请求示例**
 
-{% tabs m3u8MetaCurl="Curl", m3u8MetaNode="Node", m3u8MetaPHP="PHP" %}
-
-{% content "m3u8MetaCurl" %}
-
-```curl
+```shell
 curl --request POST \
-  --url https://cloud.minapp.com/hserve/v1/media/m3u8-meta/ \
-  --header 'Authorization: Hydrogen-r1  050c5121242eda175e8d0ee1cbe6950dadc777db' \
+  --url https://{{ServerUrl}}/hserve/v1/media/m3u8-meta/ \
+  --header 'Authorization: Hydrogen-r1  {{AccessToken}}' \
   --header 'Content-Type: application/json' \
   --data '{\n	"m3u8": "5c452bebfe10832bf97846c9"\n}'
 ```
 
-{% content "m3u8MetaNode" %}
-
-```javascript
-var request = require("request");
-
-var options = {
-  method: 'POST',
-  url: 'https://cloud.minapp.com/hserve/v1/media/m3u8-meta/',
-  headers:
-  {
-    'Content-Type': 'application/json',
-    Authorization: 'Hydrogen-r1  2323d124881bd3d63c9bb78458252454f80a676b'
-  },
-  body:
-  {
-    m3u8: "5c3421788318ed7f50e5ea8b"
-  },
-  json: true
-};
-
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-  console.log(body);
-});
-```
-
-{% content "m3u8MetaPHP" %}
-
-```php
-<?php
-
-$curl = curl_init();
-
-curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://cloud.minapp.com/hserve/v1/media/m3u8-meta/",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\n\t\"m3u8\": \"5c452bebfe10832bf97846c9\"\n}",
-  CURLOPT_HTTPHEADER => array(
-    "Authorization: Hydrogen-r1  050c5121242eda175e8d0ee1cbe6950dadc777db",
-    "Content-Type: application/json",
-  ),
-));
-
-$response = curl_exec($curl);
-$err = curl_error($curl);
-
-curl_close($curl);
-
-if ($err) {
-  echo "cURL Error #:" . $err;
-} else {
-  echo $response;
-}
-```
-
-{% endtabs %}
-
 **返回示例**
 
-```javascript
+```json
 {
   "message": "ok",
   "status_code": 200,
@@ -905,7 +460,7 @@ if ($err) {
 
 **接口**
 
-`POST https://cloud.minapp.com/hserve/v1/media/audio-video-meta/`
+`POST /hserve/v1/media/audio-video-meta/`
 
 **请求参数说明**
 
@@ -915,8 +470,6 @@ if ($err) {
 
 
 **返回参数**
-
-res:
 
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
@@ -950,83 +503,17 @@ streams 参数说明：
 
 **请求示例**
 
-{% tabs audioVideoMetaCurl="Curl", audioVideoMetaNode="Node", audioVideoMetaPHP="PHP" %}
-
-{% content "audioVideoMetaCurl" %}
-
-```curl
+```shell
 curl --request POST \
-  --url https://cloud.minapp.com/hserve/v1/media/audio-video-meta/ \
-  --header 'Authorization: Hydrogen-r1  050c5121242eda175e8d0ee1cbe6950dadc777db' \
+  --url https://{{ServerUrl}}/hserve/v1/media/audio-video-meta/ \
+  --header 'Authorization: Hydrogen-r1  {{AccessToken}}' \
   --header 'Content-Type: application/json' \
   --data '{\n	"source": "5c3421788318ed7f50e5ea8b"\n}'
 ```
 
-{% content "audioVideoMetaNode" %}
-
-```javascript
-var request = require("request");
-
-var options = {
-  method: 'POST',
-  url: 'https://cloud.minapp.com/hserve/v1/media/audio-video-meta/',
-  headers:
-  {
-    'Content-Type': 'application/json',
-    Authorization: 'Hydrogen-r1  2323d124881bd3d63c9bb78458252454f80a676b'
-  },
-  body:
-  {
-    source: "5c3421788318ed7f50e5ea8b"
-  },
-  json: true
-};
-
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-  console.log(body);
-});
-```
-
-{% content "audioVideoMetaPHP" %}
-
-```php
-<?php
-
-$curl = curl_init();
-
-curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://cloud.minapp.com/hserve/v1/media/audio-video-meta/",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\n\t\"source\": \"5c3421788318ed7f50e5ea8b\"\n}",
-  CURLOPT_HTTPHEADER => array(
-    "Authorization: Hydrogen-r1  050c5121242eda175e8d0ee1cbe6950dadc777db",
-    "Content-Type: application/json",
-  ),
-));
-
-$response = curl_exec($curl);
-$err = curl_error($curl);
-
-curl_close($curl);
-
-if ($err) {
-  echo "cURL Error #:" . $err;
-} else {
-  echo $response;
-}
-```
-
-{% endtabs %}
-
 **返回示例**
 
-```javascript
+```json
 {
   "format": {
     "format": "mov,mp4,m4a,3gp,3g2,mj2",

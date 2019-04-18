@@ -2,7 +2,7 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/hserve/v2.0/content/detail/`
+`GET /hserve/v2.0/content/detail/`
 
 **请求参数**
   * where 查询语句
@@ -14,14 +14,13 @@
 
 **请求示例**
 
-```
+```shell
 curl -X GET \
--H "X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***" \
--H "Authorization: Hydrogen-r1  cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "X-Hydrogen-Client-ID: {{Client ID}}" \
+-H "Authorization: Hydrogen-r1  {{AccessToken}}" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/hserve/v2.0/content/detail/?content_group_id=1548659930013242
+https://{{ServerUrl}}/hserve/v2.0/content/detail/?content_group_id=1548659930013242
 ```
-
 
 **返回示例**
 
@@ -57,18 +56,18 @@ https://cloud.minapp.com/hserve/v2.0/content/detail/?content_group_id=1548659930
 
 **接口**
 
-`GET https://cloud.minapp.com/hserve/v2.0/content/detail/:content_id/`
+`GET /hserve/v2.0/content/detail/:content_id/`
 
 其中 `content_id` 是内容的 ID
 
 **请求示例**
 
-```
+```shell
 curl -X POST \
--H "X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***" \
--H "Authorization: Hydrogen-r1  cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "X-Hydrogen-Client-ID: {{Client ID}}" \
+-H "Authorization: Hydrogen-r1  {{AccessToken}}" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/hserve/v2.0/content/detail/1/
+https://{{ServerUrl}}/hserve/v2.0/content/detail/1/
 ```
 
 **返回示例**

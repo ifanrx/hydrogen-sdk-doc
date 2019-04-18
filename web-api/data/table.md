@@ -4,65 +4,17 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/hserve/v1/table/:table_id/`
+`GET /hserve/v1/table/:table_id/`
 
 **请求示例**
 
-{% tabs getTableCurl="Curl", getTableNode="Node", getTablePHP="PHP" %}
-
-{% content "getTableCurl" %}
-
-```
+```shell
 curl -X GET \
--H "X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***" \
--H "Authorization: Hydrogen-r1  cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/hserve/v1/table/1/
+  -H "X-Hydrogen-Client-ID: {{Client ID}}" \
+  -H "Authorization: Hydrogen-r1  {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  https://{{ServerUrl}}/hserve/v1/table/952728/
 ```
-
-{% content "getTableNode" %}
-
-```js
-var request = require("request");
-
-var options = { method: 'GET',
-  url: 'https://cloud.minapp.com/hserve/v1/table/1/',
-  headers: 
-   { 'Content-Type': 'application/json',
-     Authorization: 'Hydrogen-r1  cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
-
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
-```
-
-{% content "getTablePHP" %}
-
-```php
-<?php
-$table_id = 1; // 数据表 ID
-$url = "https://cloud.minapp.com/hserve/v1/table/{$table_id}/";
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8'
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res = curl_exec($ch);
-curl_close($ch);
-```
-
-{% endtabs %}
 
 **返回示例**
 
@@ -117,63 +69,17 @@ curl_close($ch);
 
 **接口**
 
-`GET https://cloud.minapp.com/hserve/v1/table/`
+`GET /hserve/v1/table/`
 
 **请求示例**
 
-{% tabs getTableListCurl="Curl", getTableListNode="Node", getTableListPHP="PHP" %}
-
-{% content "getTableListCurl" %}
-
-```
+```shell
 curl -X GET \
--H "X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***" \
--H "Authorization: Hydrogen-r1  cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
--H "Content-Type: application/json" \
-https://cloud.minapp.com/hserve/v1/table/
+  -H "X-Hydrogen-Client-ID: {{Client ID}}" \
+  -H "Authorization: Hydrogen-r1  {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  https://{{ServerUrl}}/hserve/v1/table/
 ```
-
-{% content "getTableListNode" %}
-
-```js
-var request = require("request");
-
-var options = { method: 'GET',
-  url: 'https://cloud.minapp.com/hserve/v1/table/',
-  headers: 
-   { 'Content-Type': 'application/json',
-     Authorization: 'Hydrogen-r1  cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
-
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
-```
-
-{% content "getTableListPHP" %}
-
-```php
-<?php
-$url = "https://cloud.minapp.com/hserve/v1/table/";
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8'
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res = curl_exec($ch);
-curl_close($ch);
-```
-{% endtabs %}
 
 **返回示例**
 

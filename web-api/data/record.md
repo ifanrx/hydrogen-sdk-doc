@@ -3,7 +3,7 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/hserve/v2.0/table/:table_id/record/`
+`GET /hserve/v2.0/table/:table_id/record/`
 
 其中 `:table_id` 需替换为你的数据表 ID
 
@@ -28,14 +28,14 @@ Content-Type: `application/json`
 
 执行
 
-```
+```shell
 curl -X GET \
--H "X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***" \
--H "Authorization: Hydrogen-r1 r0s9sd3c87wttxth4pl6cmouznumcpkj" \
+-H "X-Hydrogen-Client-ID: {{ClientID}}" \
+-H "Authorization: Hydrogen-r1 {{AccessToken}}" \
 -H "Content-Type: application/json" \
 -G \
 --data-urlencode 'where={"price":"$eq":10}' \
-https://cloud.minapp.com/hserve/v2.0/table/1/record/
+https://{{ServerUrl}}/hserve/v2.0/table/952728/record/
 ```
 
 该接口完整支持的查询操作符如下：
@@ -84,43 +84,29 @@ https://cloud.minapp.com/hserve/v2.0/table/1/record/
 
 ```
 # 顺序
-https://cloud.minapp.com/hserve/v2.0/table/:table_id/record/?order_by=created_at
+https://{{ServerUrl}}/hserve/v2.0/table/:table_id/record/?order_by=created_at
 
 # 倒序
-https://cloud.minapp.com/hserve/v2.0/table/:table_id/record/?order_by=-created_at
+https://{{ServerUrl}}/hserve/v2.0/table/:table_id/record/?order_by=-created_at
 ```
 
 **请求示例**
+{% tabs getRecordUseCurl="curl", getRecordUsePython="python" %}
 
-{% tabs first="Node", second="Python", third="PHP" %}
+{% content "getRecordUseCurl" %}
 
-{% content "first" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/hserve/v2.0/table/3906/record/',  // 3906 对应 :table_id
-  method: 'GET',
-  headers: {
-    Authorization: `Hydrogen-r1  ${token}`,
-  },
-  qs: {     // query string, 被附加到uri的参数
-    where: JSON.stringify({   // 可选, 参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码
-      "price": {"$eq": 10}
-    }),
-    order_by: '-created_at',   // 可选
-    offset: 0,    // 可选
-    limit: 20,    // 可选
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
+```shell
+curl -X GET \
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -G \
+  --data-urlencode 'limit=10' \
+  --data-urlencode 'offset=0' \
+  https://{{ServerUrl}}/hserve/v2.0/table/952728/record/
 ```
 
-{% content "second" %}
+{% content "getRecordUsePython" %}
 
 ```python
 import json
@@ -130,7 +116,7 @@ import requests
 
 
 table_id = ''
-BASE_API = r'https://cloud.minapp.com/hserve/v2.0/table/%s/record/' % table_id
+BASE_API = r'https://{{ServerUrl}}/hserve/v2.0/table/%s/record/' % table_id
 
 TOKEN = ''
 HEADERS = {
@@ -153,104 +139,31 @@ API = '?'.join((BASE_API, query_))
 resp_ = requests.get(API, headers=HEADERS)
 print resp_.content
 ```
-
-{% content "third" %}
-
-```php
-<?php
-$table_id = 1; // 数据表 ID
-$condition = array(
-  'order_by' => '-created_at',
-  'where' => json_encode(['price' => ['$gt' => 'test search']]),
-  'limit' => '10',
-  'offset' => '0'
-);
-$url = "https://cloud.minapp.com/hserve/v2.0/table/{$table_id}/record/?";
-$url .= http_build_query($condition);
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8',
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res = curl_exec($ch);
-curl_close($ch);
-```
-
 {% endtabs %}
-
 
 ## 获取数据项
 
 **接口**
 
-`GET https://cloud.minapp.com/hserve/v2.0/table/:table_id/record/:record_id/`
+`GET /hserve/v2.0/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
 **请求示例**
 
-{% tabs itemFirst="Node", itemSecond="PHP" %}
-
-{% content "itemFirst" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/hserve/v2.0/table/3906/record/5a2fa9b008443e59e0e678xx/',  // 3906 对应 :table_id, 5a2fa9b008443e59e0e678xx 对应 :record_id
-  method: 'GET',
-  headers: {
-    Authorization: `Hydrogen-r1  ${token}`,
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
+```shell
+curl -X GET \
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  https://{{ServerUrl}}/hserve/v2.0/table/952728/record/5272/
 ```
-
-{% content "itemSecond" %}
-```php
-<?php
-$table_id = 1;
-$recornd_id = '5a2fa9b008443e59e0e678xx';
-$url = "https://cloud.minapp.com/hserve/v2.0/table/{$table_id}/record/{$recornd_id}/";
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8',
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res = curl_exec($ch);
-curl_close($ch);
-
-```
-
-{% endtabs %}
-
 
 ## 写入数据
 
 **接口**
 
-`POST https://cloud.minapp.com/hserve/v2.0/table/:table_id/record/`
+`POST /hserve/v2.0/table/:table_id/record/`
 
 其中 `:table_id` 需替换为你的数据表 ID
 
@@ -267,127 +180,14 @@ Content-Type: `application/json`
 
 **请求示例**
 
-{% tabs insertNode="Node", insertPHP="PHP" %}
-
-{% content "insertNode" %}
-
-```js
-var request = require('request');
-
-function getFile(cb) {
-  var fileID = '5a2fe93308443e313a428cxx' // 文件 ID 需要到知晓云控制台文件面板获取
-  var opt = {
-    uri: `https://cloud.minapp.com/hserve/v1/file/${fileID}/`,
-    method: 'GET',
-    headers: {
-      Authorization: `Hydrogen-r1  ${token}`
-    }
-  }
-
-  request(opt, function (err, res, body) {
-    cb(JSON.parse(body))
-  })
-}
-
-var opt = {
-  uri: 'https://cloud.minapp.com/hserve/v2.0/table/3906/record/',  // 3906 对应 :table_id
-  method: 'POST',
-  headers: {
-    Authorization: `Hydrogen-r1  ${token}`,
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    name: 'nickname',
-    desc: ['description'],
-    price: 19,
-    amount: 19,
-    code: '18814098707',
-    obj: {
-      a: 1,
-      b: 2,
-    },
-    geo: {
-      coordinates: [10, 10],
-      type: 'Point',
-    },
-    file: '',
-    pointer: 	'72477415',  // 需要先获取到要指向的数据表行 id
-  }
-}
-
-getFile(function (file) {
-  opt.json.file = file
-  request(opt, function(err, res, body) {
-    console.log(res.statusCode)
-  })
-})
+```shell
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"nickname","desc":"desc"}' \
+  https://{{ServerUrl}}/hserve/v2.0/table/952728/record/
 ```
-
-{% content "insertPHP" %}
-```php
-<?php
-function getFile() {
-  $file_id = '5a2fe93308443e313a428cxx'; // 文件 ID 需要到知晓云控制台文件面板获取
-  $url = "https://cloud.minapp.com/hserve/v1/file/{$file_id}/";
-
-  $header = array(
-      "Authorization: Hydrogen-r1  {$token}",
-      'Content-Type: application/json; charset=utf-8'
-  );
-  $curl = curl_init();
-  curl_setopt($curl, CURLOPT_URL, $url);
-  curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
-  curl_setopt($curl, CURLOPT_TIMEOUT, 30);
-  curl_setopt($curl, CURLOPT_HEADER, 0);
-  curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
-  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);//这个是重点。
-  $data = curl_exec($curl);
-  curl_close($curl);
-  return $data;
-}
-$table_id = 1;
-$param = array(
-  'name' =>'nickname',
-  'desc' => 'description',
-  'price' => 19,
-  'amount' => 19,
-  'code' => '18814098707',
-  'obj' => array(
-    'a': 1,
-    'b': 2,
-  ),
-  'geo' => array(
-    'coordinates' => array(10, 10),
-    'type' => 'Point',
-  ),
-  'file' => getFile(),
-  'pointer' => 	'72477415'  // 需要先获取到要指向的数据表行 id
-);
-$url = "https://cloud.minapp.com/hserve/v2.0/table/{$table_id}/record/";
-
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8',
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res['response'] = curl_exec($ch); // 反馈结果
-$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close($ch);
-
-```
-
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -402,7 +202,7 @@ curl_close($ch);
 
 **接口**
 
-`PUT https://cloud.minapp.com/hserve/v2.0/table/:table_id/record/:record_id/`
+`PUT  /hserve/v2.0/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -419,58 +219,14 @@ Content-Type: `application/json`
 
 **请求示例**
 
-{% tabs updateNode="Node", updatePHP="PHP" %}
-
-{% content "updateNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/hserve/v2.0/table/3906/record/5a6ee2ab4a7baa1fc083e3xx',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
-  method: 'PUT',
-  headers: {
-    Authorization: `Hydrogen-r1  ${token}`,
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    name: 'nickname'
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
+```shell
+curl -X PUT \
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"nickname","desc":"desc"}' \
+  https://{{ServerUrl}}/hserve/v2.0/table/952728/record/5272/
 ```
-
-{% content "updatePHP" %}
-
-```php
-<?php
-$table_id = 1; // 数据表 ID
-$record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
-$url = "https://cloud.minapp.com/hserve/v2.0/table/{$table_id}/record/{$record_id}/";
-$param['name'] = 'nickname';
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8'
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res['response'] = curl_exec($ch); // 反馈结果
-$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close($ch);
-```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -484,58 +240,20 @@ curl_close($ch);
 
 **接口**
 
-`DELETE https://cloud.minapp.com/hserve/v2.0/table/:table_id/record/:record_id/`
+`DELETE /hserve/v2.0/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
 **请求示例**
 
-{% tabs deleteNode="Node", deletePHP="PHP" %}
-
-{% content "deleteNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/hserve/v2.0/table/3906/record/5a6ee2ab4a7baa1fc083e3xx/',// 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
-  method: 'DELETE',
-  headers: {
-    Authorization: `Hydrogen-r1  ${token}`,
-  }
+```shell
+curl -X DELETE \
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  https://{{ServerUrl}}/hserve/v2.0/table/952728/record/5272/
 }
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
 ```
-
-{% content "deletePHP" %}
-```php
-<?php
-$table_id = 1; // 数据表 ID
-$record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
-$url = "https://cloud.minapp.com/hserve/v2.0/table/{$table_id}/record/{$record_id}/";
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8',
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res['response'] = curl_exec($ch); // 反馈结果
-$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close($ch);
-```
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -548,7 +266,7 @@ curl_close($ch);
 
 **接口**
 
-`PUT https://cloud.minapp.com/hserve/v2.0/table/:table_id/record/:record_id/`
+`PUT  /hserve/v2.0/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -622,65 +340,15 @@ Content-Type: `application/json`
 
 **请求示例**
 
-{% tabs atomicNode="Node", atomicPHP="PHP" %}
-
-{% content "atomicNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/hserve/v2.0/table/3906/record/5a33406909a805412e3169xx/',  // 3906 对应 :table_id, 5a33406909a805412e3169xx 对应 :record_id
-  method: 'PUT',
-  headers: {
-    Authorization: `Hydrogen-r1  ${token}`,
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    desc: {
-      "$append": ['atomic data']
-    },
-    price: {
-      "$incr_by": -1
-    }
-  }
+```shell
+curl -X PUT \
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d "{'desc': '{'$append': ['atomic data']}', 'price': '{'$incr_by': -1}'}" \
+  https://{{ServerUrl}}/hserve/v2.0/table/952728/record/5272/
 }
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
 ```
-
-{% content "atomicPHP" %}
-
-```php
-<?php
-$table_id = 1; // 数据表 ID
-$record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
-$url = "https://cloud.minapp.com/hserve/v2.0/table/{$table_id}/record/{$record_id}/";
-$param = array(
-  'desc' => ['$append' => ['atomic data']], 
-  'price' => ['$incr_by' => -1]
-);
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8',
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res['response'] = curl_exec($ch); // 反馈结果
-$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close($ch);
-```
-{% endtabs %}
 
 **状态码说明**
 
@@ -698,44 +366,32 @@ curl_close($ch);
 
 **接口**
 
-`GET https://cloud.minapp.com/hserve/v1.8/table/:table_id/record/?where=query`
+`GET /hserve/v1.8/table/:table_id/record/?where=query`
 
 其中 `:table_id` 需替换为你的数据表 ID，query 为查询条件
 
 **示例代码**
 
 假设现在有两张表： order 表和 customer 表，order 表中有一个类型为 pointer，名称为 user 的字段，指向了 customer 表的数据行。
-现在需要查询 order 表中，user 字段指向 customer 表中 id 为 `5bf4f7457fed8d6c2f5c3d6e` 的数据行。
+现在需要查询 order 表中，user 字段指向 customer 表中 id 为 `5272` 的数据行。
 
-{% tabs pointerFirst="Node", pointerSecond="Python", pointerThird="PHP" %}
+{% tabs pointerRecordUseCurl="curl", pointerRecordUsePython="python" %}
 
-{% content "pointerFirst" %}
+{% content "pointerRecordUseCurl" %}
 
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/hserve/v1.8/table/3906/record/',  // 3906 对应 :table_id
-  method: 'GET',
-  headers: {
-    Authorization: `Hydrogen-r1  ${token}`,
-  },
-  qs: {     // query string, 被附加到uri的参数
-    where: JSON.stringify({   // 可选, 参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码
-      "user": {"$eq": "5bf4f7457fed8d6c2f5c3d6e"}
-    }),
-    order_by: 'id',   // 可选
-    offset: 0,    // 可选
-    limit: 20,    // 可选
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
+```shell
+curl -X GET \
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -G \
+  --data-urlencode 'where={"user": {"$eq": "5272"}}' \
+  --data-urlencode 'limit=10' \
+  --data-urlencode 'offset=0' \
+  https://{{ServerUrl}}/hserve/v1.8/table/952728/record/
 ```
 
-{% content "pointerSecond" %}
+{% content "pointerRecordUsePython" %}
 
 ```python
 import json
@@ -743,9 +399,8 @@ import urllib
 
 import requests
 
-
 table_id = ''
-BASE_API = r'https://cloud.minapp.com/hserve/v1.8/table/%s/record/' % table_id
+BASE_API = r'https://{{ServerUrl}}/hserve/v1.8/table/%s/record/' % table_id
 
 TOKEN = ''
 HEADERS = {
@@ -753,7 +408,7 @@ HEADERS = {
 }
 
 where_ = {
-  'user': {'$eq': "5bf4f7457fed8d6c2f5c3d6e"},
+  'user': {'$eq': "5272"},
 }
 
 query_ = urllib.urlencode({
@@ -768,40 +423,7 @@ API = '?'.join((BASE_API, query_))
 resp_ = requests.get(API, headers=HEADERS)
 print resp_.content
 ```
-
-{% content "pointerThird" %}
-
-```php
-<?php
-$table_id = 1; // 数据表 ID
-$condition = array(
-  'order_by' => '-id',
-  'where' => json_encode(['user' => ['$eq' => '5bf4f7457fed8d6c2f5c3d6e']]),
-  'limit' => '10',
-  'offset' => '0',
-);
-$url = "https://cloud.minapp.com/hserve/v1.8/table/{$table_id}/record/?";
-$url .= http_build_query($condition);
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8',
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res = curl_exec($ch);
-curl_close($ch);
-```
-
 {% endtabs %}
-
 
 ## 字段扩展
 
@@ -809,7 +431,7 @@ curl_close($ch);
 
 **接口**
 
-`GET https://cloud.minapp.com/hserve/v1.8/table/:table_id/record/?expand=pointer,created_by`
+`GET /hserve/v1.8/table/:table_id/record/?expand=pointer,created_by`
 
 其中 `:table_id` 需替换为你的数据表 ID
 
@@ -847,37 +469,19 @@ curl_close($ch);
 ```
 
 **请求示例**
+{% tabs expandRecordUseCurl="curl", expandRecordUsePython="python" %}
 
-{% tabs expandFirst="Node", expandSecond="Python", expandThird="PHP" %}
+{% content "expandRecordUseCurl" %}
 
-{% content "expandFirst" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/hserve/v1.8/table/3906/record/',  // 3906 对应 :table_id
-  method: 'GET',
-  headers: {
-    Authorization: `Hydrogen-r1  ${token}`,
-  },
-  qs: {     // query string, 被附加到uri的参数
-    where: JSON.stringify({   // 可选, 参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码
-      "price": {"$eq": 10}
-    }),
-    order_by: 'id',   // 可选
-    offset: 0,    // 可选
-    limit: 20,    // 可选
-    expand: 'pointer,created_by',    //必选，表示需要扩展的字段
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
+```shell
+curl -X GET \
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  https://{{ServerUrl}}/hserve/v1.8/table/952728/record/?expand=pointer,created_by
 ```
 
-{% content "expandSecond" %}
+{% content "expandRecordUsePython" %}
 
 ```python
 import json
@@ -887,7 +491,7 @@ import requests
 
 
 table_id = ''
-BASE_API = r'https://cloud.minapp.com/hserve/v1.8/table/%s/record/' % table_id
+BASE_API = r'https://{{ServerUrl}}/hserve/v1.8/table/%s/record/' % table_id
 
 TOKEN = ''
 HEADERS = {
@@ -911,111 +515,26 @@ API = '?'.join((BASE_API, query_))
 resp_ = requests.get(API, headers=HEADERS)
 print resp_.content
 ```
-
-{% content "expandThird" %}
-
-```php
-<?php
-$table_id = 1; // 数据表 ID
-$condition = array(
-  'order_by' => '-id',
-  'where' => json_encode(['price' => ['$gt' => 'test search']]),
-  'limit' => '10',
-  'offset' => '0',
-  'expand' => 'pointer,created_by'
-);
-$url = "https://cloud.minapp.com/hserve/v1.8/table/{$table_id}/record/?";
-$url .= http_build_query($condition);
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8',
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res = curl_exec($ch);
-curl_close($ch);
-```
-
 {% endtabs %}
-
 
 ## 添加 pointer 类型数据
 
 **接口**
 
-`POST https://cloud.minapp.com/hserve/v1.8/table/:table_id/record/`
+`POST /hserve/v1.8/table/:table_id/record/`
 
 其中 `:table_id` 需替换为你的数据表 ID
 
 **请求示例**
 
-{% tabs pointerInsertNode="Node", pointerInsertPHP="PHP" %}
-
-{% content "pointerInsertNode" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/hserve/v1.8/table/3906/record/',  // 3906 对应 :table_id
-  method: 'POST',
-  headers: {
-    Authorization: `Hydrogen-r1  ${token}`,
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    name: 'nickname',
-    desc: ['description'],
-    price: 19,
-    amount: 19,
-    code: '18814098707'
-    pointer: '5a2fa9b008443e59e0e67889',    // pointer 关联的数据 ID
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
+```shell
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"nickname","desc":"["description"]"}' \
+  https://{{ServerUrl}}/hserve/v1.8/table/952728/record/
 ```
-
-{% content "pointerInsertPHP" %}
-```php
-<?php
-$table_id = 1;
-$param = array(
-  'pointer' => '5a2fa9b008443e59e0e67889'
-);
-$url = "https://cloud.minapp.com/hserve/v1.8/table/{$table_id}/record/";
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8',
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res['response'] = curl_exec($ch); // 反馈结果
-$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close($ch);
-
-```
-
-
-{% endtabs %}
 
 **状态码说明**
 
@@ -1026,64 +545,20 @@ curl_close($ch);
 
 **接口**
 
-`PUT https://cloud.minapp.com/hserve/v1.8/table/:table_id/record/:record_id/`
+`PUT  /hserve/v1.8/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
 **请求示例**
 
-{% tabs pointerUpdateNode="Node", pointerUpdatePHP="PHP" %}
-
-{% content "pointerUpdateNode" %}
-
 ```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/hserve/v1.8/table/3906/record/5a6ee2ab4a7baa1fc083e3xx',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
-  method: 'PUT',
-  headers: {
-    Authorization: `Hydrogen-r1  ${token}`,
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    pointer: '5a2fa9b008443e59e0e67889',    // pointer 关联的数据 ID
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
+curl -X PUT \
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d '{"pointer":"5a2fa9b008443e59e0e67889"}' \
+  https://{{ServerUrl}}/hserve/v1.8/table/952728/record/5272
 ```
-
-{% content "pointerUpdatePHP" %}
-
-```php
-<?php
-$table_id = 1; // 数据表 ID
-$record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
-$url = "https://cloud.minapp.com/hserve/v1.8/table/{$table_id}/record/{$record_id}/";
-$param['pointer'] = '5a2fa9b008443e59e0e67889';
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Hydrogen-r1  {$token}",
-  'Content-Type: application/json; charset=utf-8'
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res['response'] = curl_exec($ch); // 反馈结果
-$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close($ch);
-```
-
-{% endtabs %}
 
 **状态码说明**
 

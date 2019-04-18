@@ -31,7 +31,7 @@
 
 **接口**
 
-`POST https://cloud.minapp.com/hserve/v1/upload/`
+`POST /hserve/v1/upload/`
 
 **请求参数说明**
 
@@ -45,18 +45,13 @@ Content-Type: `application/json`
 
 **请求示例**
 
-```json
-POST /hserve/v1/upload/ HTTP/1.1
-Host: cloud.minapp.com
-Accept: application/json
-Content-Type: application/json
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
-Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
-
-{
-    "filename": "hello-world.png",
-    "category_name": "cate"
-}
+```shell
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d '{"filename": "test.jpg", "category_name": "cate"}' \
+  https://{{ServerUrl}}/hserve/v1/upload/
 ```
 
 **返回参数**
@@ -73,11 +68,11 @@ Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
 
 ```json
 {
-    "policy": "eyJidWNrZXQiOiAiY2xvdWQtbWluYXBwLTE4NjMwIiwgImRhdGUiOiAiVHVlLCAwOSBBcHIgMjAxOSAwNjozNToxNCBHTVQiLCAic2F2ZS1rZXkiOiAiMWhEa0xpcDVoY3hkUXBsNS5wbmciLCAibm90aWZ5LXVybCI6ICJodHRwczovL3Nzby5pZmFuci5jb20vZXh0YXBpL2h5ZHJvZ2VuL3VweXVuL2NhbGxiYWNrLzE4NjMwLzVjYWMzZDIyOTllY2FlMGM5ZThhYTNlNi8iLCAiZXhwaXJhdG*********",
-    "authorization": "UPYUN allenzhang:RMb8VGEOpFQt/TV*********",
+    "policy": "********eyJidWNrZXQiOiAiY2xvdWQtbWluYXBwLTE4NjMwIiwgImRhdGUiOiAiVGh1LCAxOCBBcHIgMjAxOSAwODoyMTo0MSBHTVQiLCAibm90aWZ5LXVybCI6ICJodHRwczovL3Nzby5pZmFuci5jb20vZXh0YXBpL2h5ZHJvZ2VuL3VweXVuL2NhbGxiYWNrLzE4NjMwLzVjYjgzMzk1YWNjNzM5NDMxNzBjZWFkNS8iLCAic2F2ZS1rZXkiOiAiMWhIMklmWlgwUlIzc1dvSS5wbmciLCAiZXhwaXJhdGlvbiI6IDE1NTU1NzYwMDF9*********",
+    "authorization": "UPYUN allenzhang:aBIGd7s5Tjcc2khrnx2uxgjYuzw=",
     "upload_url": "https://v0.api.upyun.com/cloud-minapp-18****",
     "id": "5cac3d2299ecae0c9e8****6",
-    "file_link": "https://cloud-minapp-18630.cloud.ifanrusercontent.com/1hDkLip5hcxdQpl5.png"
+    "file_link": "https://cloud-minapp-18630.cloud.ifanrusercontent.com/1hDkLip5hcxdQpl5.jpg"
 }
 ```
 
@@ -113,22 +108,17 @@ Content-Type: `multipart/form-data`
 
 **请求示例**
 
-```json
-POST v0.api.upyun.com/cloud-minapp-18**** HTTP/1.1
-Host: cloud.minapp.com
-Content-Type: multipart/form-data
-X-Hydrogen-Client-ID: AwBeIhQeTDReSUQHltzabBhddcrXf***
-Authorization: Hydrogen-r1 tKqfyPberbIroVRPRVxcrlVmFHnAI***
-
-// multipart/form-data
-authorization="UPYUN allenzhang:RMb8VGEOpFQt/TV*********" 
-file=@"filename"
-policy="eyJidWNrZXQiOiAiY2xvdWQtbWluYXBwLTE4NjMwIiwgImRhdGUiOiAiVHVlLCAwOSBBcHIgMjAxOSAwNjozNToxNCBHTVQiLCAic2F2ZS1rZXkiOiAiMWhEa0xpcDVoY3hkUXBsNS5wbmciLCAibm90aWZ5LXVybCI6ICJodHRwczovL3Nzby5pZmFuci5jb20vZXh0YXBpL2h5ZHJvZ2VuL3VweXVuL2NhbGxiYWNrLzE4NjMwLzVjYWMzZDIyOTllY2FlMGM5ZThhYTNlNi8iLCAiZXhwaXJhdG*********"
+```shell
+curl \
+ -F authorization="UPYUN allenzhang:aBIGd7s5Tjcc2khrnx2uxgjYuzw=" \
+ -F file=@"/Users/hehehe/Downloads/test.jpg" \
+ -F policy="eyJidWNrZXQiOiAiY2xvdWQtbWluYXBwLTE4NjMwIiwgImRhdGUiOiAiVGh1LCAxOCBBcHIgMjAxOSAwODoyMTo0MSBHTVQiLCAibm90aWZ5LXVybCI6ICJodHRwczovL3Nzby5pZmFuci5jb20vZXh0YXBpL2h5ZHJvZ2VuL3VweXVuL2NhbGxiYWNrLzE4NjMwLzVjYjgzMzk1YWNjNzM5NDMxNzBjZWFkNS8iLCAic2F2ZS1rZXkiOiAiMWhIMklmWlgwUlIzc1dvSS5wbmciLCAiZXhwaXJhdGlvbiI6IDE1NTU1NzYwMDF9=" \
+  https://v0.api.upyun.com/cloud-minapp-18630
 ```
 
 **返回示例**
 
-```
+```json
 {
     "image-type": "GIF",
     "image-frames": 8,
