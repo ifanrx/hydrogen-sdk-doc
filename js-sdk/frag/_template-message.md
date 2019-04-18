@@ -48,6 +48,11 @@
 # 模板消息
 
 ## 上报模版消息所需 formId
+{% if apiPrefix == "wx." %}
+{% set api = "wx.BaaS.wxReportTicket" %}
+{% elif apiPrefix == "my." %}
+{% set api = "my.BaaS.reportTicket" %}
+{% endif %}
 
 ### 方式一：获取到 formId 后，调用接口上报
 {% if apiPrefix == "wx." %}
@@ -65,13 +70,18 @@
 当使用小程序的 `<form/>` 组件，且属性 report-submit 设为 true 时，此时表单是声明为需要要发模板消息的，当点击按钮提交表单即可获取 formID。
 
 ### 方式二：使用自定义组件自动上报（推荐）
+
+> **info**
+> 组件中添加了节流逻辑进行频次限制，
+> 限制的规则为：** 1s 内最多触发 1 次，24h 内最多触发 20 次 **。也就是说，
+> 用户在 1 秒内无论点击组件多少次，formId 只会上报一次，一天之内最多只会上报 20 个 formId。
+>
+> 如有需要多次上报 formId，请使用方式一。
+
 {% if apiPrefix == "wx." %}
 
-插件版 SDK 提供了自定义组件 ticket-report-wrapper（插件版本尚未发布，即将在 2.0.5 以上版本提供，请先使用 npm 版），
+插件版 SDK 提供了自定义组件 ticket-report-wrapper（插件版 2.0.6 以上），
 文件版与 npm 版 SDK，可以通过 npm 获取该组件（包名为 minapp-ticket-wx）。
-
-使用 ticket-report-wrapper 组件包裹内容，相当于在内容之上盖一个透明的遮罩，因此会内容中的点击事件无法被触发。
-如果包裹大面积内容，且内容用有点击或其他交互事件的，请使用 disappear-after-click
 
 #### 引入组件
 {% tabs sdkplugin="小程序插件版", sdkfile="js 文件版", npm="npm 包" %}
@@ -95,16 +105,13 @@
 
 可以通过 npm 获取 ticket-report-wrapper 组件（包名为 minapp-ticket-my）。
 
-使用 ticket-report-wrapper 组件包裹内容，相当于在内容之上盖一个透明的遮罩，因此会内容中的点击事件无法被触发。
-如果包裹大面积内容，且内容用有点击或其他交互事件的，请使用 disappear-after-click
-
 #### 引入组件
 {{ importComponent("my.") }}
 {% endif %}
 
 #### 使用组件
 ```xml
-<ticket-report-wrapper disappear-after-click>
+<ticket-report-wrapper>
   ...
 </ticket-report-wrapper>
 ```
@@ -113,11 +120,8 @@
 
 {% if apiPrefix == "wx." %}
 
-| 参数   | 类型   | 必填 | 说明 |
-| :----- | :----- | :--- | :--- |
-| disappear-after-click | Boolean | 否   | 是否点击一次后遮罩层消失 |
-
-如果需要监听组件的点击事件，可以像使用内置组件一样指定事件回调函数。
+微信小程序可以像普通组件一样在自定义组件上监听事件、设置属性，
+所以此处没有做限制，详情请参考[微信小程序自定义组件文档](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/)。
 
 ```html
 <ticket-report-wrapper bind:tap="handleTap">
@@ -129,7 +133,6 @@
 
 | 参数   | 类型   | 必填 | 说明 |
 | :----- | :----- | :--- | :--- |
-| disappear-after-click | Boolean | 否   | 是否点击一次后遮罩层消失 |
 | onTap | String | 否   | 点击事件回调函数名 |
 
 {% endif %}
