@@ -7,7 +7,7 @@
 开发者可以使用 `BaaS.auth.register(opts)` API 来进行用户的通用注册。
 
 > **info**
-> 注册成功后会自动登录
+> 注册成功后会自动登录，调用注册方法之前需先前往[设置](https://cloud.minapp.com/dashboard/#/app/settings/sdk/)打开该登录方法
 
 opts 参数说明：
 
@@ -67,6 +67,9 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 ## 登录
 
 开发者可以通过 `BaaS.auth.login(opts)` API 来进行用户的通用登录
+
+> **info**
+> 调用登录方法之前需先前往[设置](https://cloud.minapp.com/dashboard/#/app/settings/sdk/)打开该登录方法
 
 opts 参数说明：
 
