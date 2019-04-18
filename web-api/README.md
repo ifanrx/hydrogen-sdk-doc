@@ -27,7 +27,9 @@
 
 ##### 使用方式
 Web API 形如 `https://{{ServerUrl}}/hserve/v2.0/idp/pay/order/` 
+
 (eg: `https://abcd11223344daeabcd.myminapp.com/hserve/v2.0/idp/pay/order/`)
+
 其中 `ServerUrl` 就是你在上面获取到的 ``request 合法域名`` 的值
 
 ##### 使用例子
@@ -37,6 +39,7 @@ curl -X GET \
 -H "Authorization: Hydrogen-r1 t3yzfew6tt3yzfew6t" \
 -H "Content-Type: application/json" \
 https://abcd11223344daeabcd.myminapp.com/hserve/v2.0/idp/pay/order/
+```
 
 ### ClientID
 区分应用的唯一凭证，服务器依靠这个字段来辨别请求者的应用。
