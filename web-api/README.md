@@ -2,7 +2,15 @@
 
 # 知晓云 Web API
 
-## 章节目录
+知晓云 Web API 可以让你用任何支持发送 HTTP 请求的设备来与知晓云进行交互，你可以使用 Web API 做很多事情，比如：
+
+* 用户注册，用户登录，密码找回
+* 给用户的手机号发送短信
+* 上传文件
+* 触发云函数
+* 获取数据表和数据表中的数据
+
+## Web API 类别
 
 * [用户](./user.md)
 * [数据库](./data/README.md)
@@ -12,9 +20,9 @@
 * [支付](./payment.md)
 * [短信服务](./sms.md)
 
-## 使用须知
+## 如何构造 HTTP 请求
 
-在知晓云 `Web API` 的使用过程中，有三个重要的概念:
+**首先，发起一个 HTPP 请求时，你得知道服务器的域名(Server Url)**
 
 ### Server Url
 应用的服务器域名, 你可以通过这个地址和应用交互
@@ -30,7 +38,7 @@ Web API 形如 `https://{{ServerUrl}}/hserve/v2.0/idp/pay/order/`
 
 (eg: `https://abcd11223344daeabcd.myminapp.com/hserve/v2.0/idp/pay/order/`)
 
-其中 `ServerUrl` 就是你在上面获取到的 ``request 合法域名`` 的值
+其中服务器域名 `abcd11223344daeabcd.myminapp.com` 就是你在上面获取到的 ``request 合法域名`` 的值
 
 ##### 使用例子
 ```shell
@@ -41,8 +49,10 @@ curl -X GET \
 https://abcd11223344daeabcd.myminapp.com/hserve/v2.0/idp/pay/order/
 ```
 
+**知道服务器域名之后，你就可以利用 HTTP 请求和位于服务器上的应用交互了，但是服务器怎么辨别收到 HTTP 请求时是属于哪一个应用？这时候，就需要用到 `ClientID` 了**
+
 ### ClientID
-区分应用的唯一凭证，服务器依靠这个字段来辨别请求者的应用。
+区分应用的唯一凭证，服务器依靠这个字段来辨别请求者的应用
 
 ##### 获取方式
 * 进入[知晓云控制台设置页面](https://cloud.minapp.com/dashboard/#/app/settings/info/), 在左上角选择你的应用
@@ -66,6 +76,8 @@ curl -X GET \
 https://abcd11223344daeabcd.myminapp.com/hserve/v1/content/category/?content_group_id=1
 ```
 
+**有一些 WEB API 除了需要知道 `ClientID` 外，还需要知道请求来自哪一名用户(如修改用户信息，应用就需要知道修改的是哪一个用户的信息)，`Access Token` 能满足应用的这个需求**
+ 
 ### Access Token
 用于应用中用户的鉴权
 
@@ -111,7 +123,6 @@ curl -X POST \
 -H "Content-Type: application/json" \
 https://abcd11223344daeabcd.myminapp.com/hserve/v2.0/session/destroy/
 ```
-
 
 ### 响应格式
 对于所有的请求，响应格式都是一个 `JSON` 对象。
