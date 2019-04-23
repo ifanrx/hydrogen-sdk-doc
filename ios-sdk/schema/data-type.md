@@ -8,9 +8,9 @@
 | :--------- | :---     | :--- |
 | id         |   String  |记录项 Id |
 | createdById|  Int64    | 创建者 Id |
-| createdBy  |  Dictionary  | 创建者信息 |
-| createdAt  |  TimeInterval | 创建日期 |
-| updatedAt  |  TimeInterval | 更新日期 |
+| createdBy  |  Dictionary  | 创建者信息，只有才查询设置 expand 时才有值。详见[过滤与扩展](./select-and-expand.md) |
+| createdAt  |  TimeInterval | 时间戳，创建日期 |
+| updatedAt  |  TimeInterval | 时间戳，更新日期  |
 | recordInfo |  Dictionary  | 该记录项的所有信息 |
 
 ## RecordListResult 类型

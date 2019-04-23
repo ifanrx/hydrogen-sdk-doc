@@ -89,6 +89,12 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 ```
 {% endtabs %}
 
+**参数说明**
+
+|  参数  |  类型   | 必填 | 说明 |
+| :----- | :---- | :-- | :-- |
+| query | Query |  N  | 查询条件 |
+
 **返回结果**
  
 | 名称      | 类型           | 说明 |

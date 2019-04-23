@@ -153,13 +153,26 @@ err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ## 更新 object 类型数据
 
-对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的
+对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的。
 
-## 更新array 类型数据
+**示例**
 
-添加 array 类型数据的方法与添加其他类型数据的方法基本一致。区别在于，array 类型数据是将一个的数组赋值给某个字段。
+Book 表中的 publish_info 为 object 类型，表示出版商，其中有两个字段信息：name 表示出版商名称，location 为出版商地址。
 
-array 类型数据中的元素类型，要与预先在知晓云平台设定的字段类型一致。否则创建的数据将不包含该 array 类型的字段。
+{% tabs swift6_1="Swift", oc6_1="Objective-C" %}
+{% content "swift6_1" %}
+```
+book.updateObject(key: "publish_info", value: ["name": "efg出版社", "location": "广东省广州市天河区五山路 100 号"])
+```
+{% content "oc6_1" %}
+```
+[book updateObjectWithKey:@"publish_info" value: @{@"name": @"efg出版社", @"location": @"广东省广州市天河区五山路 100 号"}];
+```
+{% endtabs %}
+
+## 更新 array 类型数据
+
+请参考 [新增数据项](/ios-sdk/schema/create-record.md) 的添加 array 类型数据
 
 ## 更新 pointer 类型数据 
 
@@ -253,13 +266,13 @@ book.remove(key: "author", value: ["xiaoming", "xiaohong"])
 | key   | String               | 是  | 在数据表中的类型必须是 Array |
 | value | Array               | 是  | 如果元素类型是 geojson、object、file，则只能是 length 为 1 的 Array |
 
-<!--
+
 ## 按条件批量更新数据项
 
 可以通过设置自定义查询条件 Query，将符合条件的数据进行批量更新操作。
 
 > 注意：由于条件查询可能命中非常多的数据，默认情况下，限制为最多更新前 1000 条数据。
-> 如需要一次性更新更多数据，请参考下一个章节：不触发触发器的更新，或者通过维护分页来进行。
+> 如需要一次性更新更多数据，请参考下一个小节：不触发触发器的更新，或者通过维护分页来进行。
 
 其中：
  - `Where` 对象的使用请查看 [查询数据项](./query.md) 章节
@@ -272,21 +285,36 @@ book.remove(key: "author", value: ["xiaoming", "xiaohong"])
 {% tabs swift11="Swift", oc11="Objective-C" %}
 {% content "swift11" %}
 ```
-let query = Query.compare(key: "price", operator: .lessThan, value: 15)
-table.setQuery(query)
+// 设置查询条件
+let whereArgs = Where.compare(key: "price", operator: .lessThan, value: 15)
+let query = Query()
+query.setWhere(whereArgs)
+
+// 创建一个空记录，用于设置需要更新的操作
 let record = table.createRecord()
 record.incrementBy(key: "price", value: 1)
-table.update(record) { (success, error) in
-                
+
+// 更新操作
+table.update(record: record, query: query, options: options) { (result, error) in
+
 }
 ```
 {% content "oc11" %}
 ```
-BAASQuery *query = [BAASQuery compareWithKey:@"price" operator:BAASOperatorLessThan value:@15];
-[table setQuery:query];
-BAASRecord *record = [_table createRecord];
+// 设置查询条件
+BaaSWhere *where = [BaaSWhere compareWithKey:@"price" operator:BaaSOperatorLessThan value:@15];
+BaaSQuery *query = [[BaaSQuery alloc] init];
+[query setWhere:where];
+
+// 设置选项
+NSDictionary *options = @{@"enable_trigger": @YES};
+
+// 创建一个空记录，用于设置需要更新的操作
+BaaSRecord *record = [_table createRecord];
 [record incrementByKey:@"price" value:@1];
-[table update:record enableTrigger:true completion:^(BOOL success, NSError * _Nullable error) {
+
+// 更新操作
+[_table updateWithRecord:record query:query options: options completion:^(NSDictionary<NSString *,id> * _Nullable result, NSError * _Nullable error) {
 
 }];
 ```
@@ -294,12 +322,11 @@ BAASRecord *record = [_table createRecord];
 
 **参数说明**
 
-| 参数名    | 类型    | 说明              |
-|-----------|---------|-------------------|
-| record   | Record  |   需要被更新的信息|
-| enableTrigger | Bool    |   是否触发触发器  |
-
-> Swift 默认会触发触发器。
+| 参数名    | 类型    | 说明              |  必须  |
+|-----------|---------|-------------------|-------|
+| record   | Record  |   需要被更新的信息|  Y |
+| query | Query | 设置扩展字段 |  N  | 
+| options | Dictionary    |   批量操作选项 ，目前支持支持 enable_trigger, true 为触发触发器 |  N |
 
 **返回结果**
  
@@ -344,4 +371,3 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 **常见错误码**
 * 201：成功写入
 * 400：非法数据
--->

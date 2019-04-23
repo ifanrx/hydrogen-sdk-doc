@@ -112,6 +112,7 @@
     * [上手指南](ios-sdk/install.md)
     * [用户](ios-sdk/user/README.md)
         * [登入登出](ios-sdk/user/auth.md)
+        * [用户](ios-sdk/user/user.md)
         * [当前用户](ios-sdk/user/account.md)
     * [数据表](ios-sdk/schema/README.md)
         * [数据类型](ios-sdk/schema/data-type.md)
