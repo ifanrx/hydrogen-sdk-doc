@@ -73,6 +73,8 @@ curl -X DELETE \
 | limit       | 与传入参数 limit 一致                                          |
 | next        | 下一次的删除链接，若待删除记录数超过上限，可通过该链接继续删除 |
 
+`limit`、`offset` 的构造可参考[分页和排序](./limit-and-order.md)
+
 **返回示例**
 
 删除成功时，返回如下:

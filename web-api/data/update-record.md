@@ -257,6 +257,8 @@ curl -X PUT \
 | limit       | 与传入参数 limit 一致                                          |
 | next        | 下一次的更新链接，若待更新记录数超过上限，可通过该链接继续更新 |
 
+`limit`、`offset` 的构造可参考[分页和排序](./limit-and-order.md)
+
 **返回示例**
 
 写入成功时，返回如下:

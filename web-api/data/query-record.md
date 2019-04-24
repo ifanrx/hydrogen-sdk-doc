@@ -113,6 +113,7 @@ print resp_.content
 | offset   | Number | N    | 设置返回资源的起始偏移值，默认为 0                                |
 
 `where` 和 `expand` 的构造可参考[字段过滤和扩展](./select-and-expand.md)
+`limit`、`offset` 和 `order_by` 的构造可参考[分页和排序](./limit-and-order.md)
 
 **请求示例**
 
