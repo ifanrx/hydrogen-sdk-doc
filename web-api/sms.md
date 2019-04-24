@@ -10,8 +10,6 @@
 
 **请求参数**
 
-Content-Type: `application/json`
-
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
 | phone           | String   |  是 | 发送短信验证码的手机 |
@@ -20,11 +18,11 @@ Content-Type: `application/json`
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"phone": "12345678910"}' \
-  https://{{ServerUrl}}/hserve/v1.8/sms-verification-code/
+  https://{{服务器域名}}/hserve/v1.8/sms-verification-code/
 ```
 
 **返回示例**
@@ -52,8 +50,6 @@ curl -X POST \
 
 **请求参数**
 
-Content-Type: `application/json`
-
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
 | phone           | String   |  是 | 需要验证的手机号 |
@@ -62,11 +58,11 @@ Content-Type: `application/json`
 **请求示例**
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"phone": "12345678910", "code": "352353"}' \
-  https://{{ServerUrl}}/hserve/v1.8/sms-verification-code/verify/
+  https://{{服务器域名}}/hserve/v1.8/sms-verification-code/verify/
 ```
 
 **返回示例**

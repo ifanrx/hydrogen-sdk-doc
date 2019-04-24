@@ -6,8 +6,6 @@
 
 **请求参数**
 
-Content-Type: `application/json`
-
 | 参数                           | 类型    | 说明 |
 | :------------------------------| :----- | :-- |
 | merchandise_record_id   | String | 商品记录 ID，可用于定位用户购买的物品 |
@@ -21,12 +19,12 @@ Content-Type: `application/json`
 **请求示例**
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -G \
   --data-urlencode 'status=success' \
-  https://{{ServerUrl}}/hserve/v2.0/idp/pay/order/
+  https://{{服务器域名}}/hserve/v2.0/idp/pay/order/
 ```
 **返回参数说明**
 

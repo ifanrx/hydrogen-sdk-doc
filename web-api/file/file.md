@@ -12,10 +12,10 @@
 
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{ServerUrl}}/hserve/v1.3/uploaded-file/5cac3d2299ecae0c9e8aa3e6/
+  https://{{服务器域名}}/hserve/v1.3/uploaded-file/5cac3d2299ecae0c9e8aa3e6/
 ```
 
 **返回示例**
@@ -49,8 +49,6 @@ curl -X GET \
 
 **参数说明**
 
-Content-Type: `application/json`
-
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
 | order_by | String | Y   | 排序（支持 `created_at` 进行排序）|
@@ -61,12 +59,12 @@ Content-Type: `application/json`
 
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -G \
   --data-urlencode  "order_by=-created_at" \
-  https://{{ServerUrl}}/hserve/v1.3/uploaded-file/
+  https://{{服务器域名}}/hserve/v1.3/uploaded-file/
 ```
 
 **返回示例**
@@ -99,7 +97,7 @@ curl -X GET \
 
 **接口**
 
-`DELETE https://{{ServerUrl}}/hserve/v1.3/uploaded-file/:file_id/`
+`DELETE https://{{服务器域名}}/hserve/v1.3/uploaded-file/:file_id/`
 
 其中 `:file_id` 需替换为你的文件 ID
 
@@ -107,10 +105,10 @@ curl -X GET \
 
 ```shell
 curl -X DELETE \
-  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{ServerUrl}}/hserve/v1.3/uploaded-file/5a1ba9c1fff1d651135e5ff1/
+  https://{{服务器域名}}/hserve/v1.3/uploaded-file/5a1ba9c1fff1d651135e5ff1/
 ```
 
 **状态码说明**
@@ -129,11 +127,11 @@ curl -X DELETE \
 ```shell
 curl -X DELETE \
   -H "X-Hydrogen-Client-ID: {{Client ID}}" \
-  -H "Authorization: Hydrogen-r1  {{AccessToken}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -G \
   --data-urlencode  "id__in=-5a1ba9c1fff1d651135e5ff1, 59ca3d275f281f58523fc47a" \
-  https://{{ServerUrl}}/hserve/v1.3/uploaded-file/
+  https://{{服务器域名}}/hserve/v1.3/uploaded-file/
 ```
 
 **状态码说明**
@@ -181,8 +179,8 @@ curl -X DELETE \
 
 ```shell
 curl --request POST \
-  --url https://{{ServerUrl}}/hserve/v1/media/video-snapshot/ \
-  --header 'Authorization: Hydrogen-r1  {{AccessToken}}' \
+  --url https://{{服务器域名}}/hserve/v1/media/video-snapshot/ \
+  --header 'Authorization: Hydrogen-r1 {{AccessToken}}' \
   --header 'Content-Type: application/json' \
   --data '{\n	"source": "5c4a6db320fa9c2e054c6c36",\n	"save_as": "1-25-test.png",\n	"point": "00:00:50",\n	"category_id": "5a377bb009a8054139faafed"\n}'
 ```
@@ -258,8 +256,8 @@ curl --request POST \
 
 ```shell
 curl --request POST \
-  --url https://{{ServerUrl}}/hserve/v1/media/m3u8-concat/ \
-  --header 'Authorization: Hydrogen-r1  {{AccessToken}}' \
+  --url https://{{服务器域名}}/hserve/v1/media/m3u8-concat/ \
+  --header 'Authorization: Hydrogen-r1 {{AccessToken}}' \
   --header 'Content-Type: application/json' \
   --data '{\n	"m3u8s": ["5c453c7cfe10833f3178479e", "5c452bebfe10832bf97846c9"],\n	"save_as": "1-25-test.m3u8",\n	"category_id": "5a377bcb09a8054139faaff1"\n}'
 ```
@@ -338,8 +336,8 @@ curl --request POST \
 
 ```shell
 curl --request POST \
-  --url https://{{ServerUrl}}/hserve/v1/media/m3u8-clip/ \
-  --header 'Authorization: Hydrogen-r1  {{AccessToken}}' \
+  --url https://{{服务器域名}}/hserve/v1/media/m3u8-clip/ \
+  --header 'Authorization: Hydrogen-r1 {{AccessToken}}' \
   --header 'Content-Type: application/json' \
   --data '{\n	"m3u8": "5c452bebfe10832bf97846c9",\n	"save_as": "1-25-test.m3u8",\n	"include": [0, 5],\n	"category_id": "5a377bcb09a8054139faaff1"\n}'
 ```
@@ -411,8 +409,8 @@ meta 参数说明：
 
 ```shell
 curl --request POST \
-  --url https://{{ServerUrl}}/hserve/v1/media/m3u8-meta/ \
-  --header 'Authorization: Hydrogen-r1  {{AccessToken}}' \
+  --url https://{{服务器域名}}/hserve/v1/media/m3u8-meta/ \
+  --header 'Authorization: Hydrogen-r1 {{AccessToken}}' \
   --header 'Content-Type: application/json' \
   --data '{\n	"m3u8": "5c452bebfe10832bf97846c9"\n}'
 ```
@@ -505,8 +503,8 @@ streams 参数说明：
 
 ```shell
 curl --request POST \
-  --url https://{{ServerUrl}}/hserve/v1/media/audio-video-meta/ \
-  --header 'Authorization: Hydrogen-r1  {{AccessToken}}' \
+  --url https://{{服务器域名}}/hserve/v1/media/audio-video-meta/ \
+  --header 'Authorization: Hydrogen-r1 {{AccessToken}}' \
   --header 'Content-Type: application/json' \
   --data '{\n	"source": "5c3421788318ed7f50e5ea8b"\n}'
 ```

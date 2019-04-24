@@ -8,7 +8,7 @@
 * 给用户的手机号发送短信
 * 上传文件
 * 触发云函数
-* 获取数据表和数据表中的数据
+* 对数据表进行增删改查
 
 ## Web API 类别
 
@@ -22,19 +22,19 @@
 
 ## 如何构造 HTTP 请求
 
-**首先，发起一个 HTPP 请求时，你得知道服务器的域名(Server Url)**
+**首先，发起一个 HTPP 请求时，你得知道服务器的域名**
 
-### Server Url
-应用的服务器域名, 你可以通过这个地址和应用交互
+### 服务器域名
+首先，发起一个 HTTP 请求时，要先获取应用的服务器域名
 
 ##### 获取方式
 * 进入[知晓云控制台设置页面](https://cloud.minapp.com/dashboard/#/app/settings/info/), 在左上角选择你的应用
 ![client-id](/web-api/image/client-id.jpg)
-* 在选择完应用后(必须先选择应用，因为不同的应用会有不同的 `ServerUrl`)，向下滑动页面，在`服务器域名`中就可以找到 `request 合法域名`
+* 在选择完应用后(必须先选择应用，因为不同的应用会有不同的 `服务器域名`)，向下滑动页面，在`服务器域名`中就可以找到 `request 合法域名`
 ![server-url](/web-api/image/server-url.jpg)
 
 ##### 使用方式
-Web API 形如 `https://{{ServerUrl}}/hserve/v2.0/idp/pay/order/` 
+Web API 形如 `https://{{服务器域名}}/hserve/v2.0/idp/pay/order/` 
 
 (eg: `https://abcd11223344daeabcd.myminapp.com/hserve/v2.0/idp/pay/order/`)
 
@@ -67,7 +67,7 @@ https://abcd11223344daeabcd.myminapp.com/hserve/v2.0/idp/pay/order/
 
 其中的 `a4d2d62965dda4d2d62965dd` 为你在控制台拿到的 `ClientID`
 
-##### 使用例子
+##### 使用示例
 获取应用的内容库分类列表
 ```shell
 curl -X GET \
@@ -114,8 +114,8 @@ https://abcd11223344daeabcd.myminapp.com/hserve/v1/content/category/?content_gro
 
 其中的 `t3yzfew6tt3yzfew6t` 为用户的`Access Token`
 
-##### 使用例子
-用户登出(需同时提供ClientID)
+##### 使用示例
+用户登出(需同时提供 `ClientID`)
 ```shell
 curl -X POST \
 -H "X-Hydrogen-Client-ID: a4d2d62965dda4d2d62965dd" \
@@ -124,10 +124,8 @@ curl -X POST \
 https://abcd11223344daeabcd.myminapp.com/hserve/v2.0/session/destroy/
 ```
 
+### 请求格式
+对于 Web API 的请求，如果需要附带数据，请求的主体必须是 `JSON` 格式，而且 `HTTP header` 的 `Content-Type` 需要设置为 `application/json`。
+
 ### 响应格式
-对于所有的请求，响应格式都是一个 `JSON` 对象。
-
-一个请求是否成功是由 `HTTP` 状态码标明的。一个 `2XX` 的状态码表示成功，而一个 `4XX` 表示请求失败。
-
-> **info**
-> 若遇到问题，请联系 <minapp-support@ifanr.com> 或者客服（微信号：minsupport3）
+参考[错误响应](./error-code.md)

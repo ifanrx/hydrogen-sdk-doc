@@ -61,8 +61,6 @@ createTableUsername="通过用户名注册" %}
 
 **请求参数**
 
-Content-Type: `application/json`
-
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
 | email           | String   |  是 | 邮箱地址 |
@@ -75,14 +73,12 @@ curl -X POST \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Content-Type: application/json" \
   -d '{"email":"hegz@qq.com","password":"mbbmb*cb"}' \
-  https://{{ServerUrl}}/hserve/v2.0/register/email/
+  https://{{服务器域名}}/hserve/v2.0/register/email/
 ```
 
 {% content "createTableUsername" %}
 
 **请求参数**
-
-Content-Type: `application/json`
 
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
@@ -96,7 +92,7 @@ curl -X POST \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Content-Type: application/json" \
   -d '{"username":"hegz","password":"mbbmb*cb"}' \
-  https://{{ServerUrl}}/hserve/v2.0/register/username/
+  https://{{服务器域名}}/hserve/v2.0/register/username/
 ```
 
 {% endtabs %}
@@ -129,8 +125,6 @@ createTableUsernameLogin="通过用户名登陆" %}
 
 **请求参数**
 
-Content-Type: `application/json`
-
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
 | email           | String   |  是 | 邮箱地址 |
@@ -143,14 +137,12 @@ curl -X POST \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Content-Type: application/json" \
   -d '{"email":"hegz@qq.com","password":"mbbmb*cb"}' \
-  https://{{ServerUrl}}/hserve/v2.0/login/email/
+  https://{{服务器域名}}/hserve/v2.0/login/email/
 ```
 
 {% content "createTableUsernameLogin" %}
 
 **请求参数**
-
-Content-Type: `application/json`
 
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
@@ -164,7 +156,7 @@ curl -X POST \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Content-Type: application/json" \
   -d '{"username":"hegz","password":"mbbmb*cb"}' \
-  https://{{ServerUrl}}/hserve/v2.0/login/username/
+  https://{{服务器域名}}/hserve/v2.0/login/username/
 ```
 
 {% endtabs %}
@@ -194,7 +186,7 @@ curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{ServerUrl}}/hserve/v2.0/user/info/72818312393/
+  https://{{服务器域名}}/hserve/v2.0/user/info/72818312393/
 ```
 
 **返回示例**
@@ -242,7 +234,7 @@ curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{ServerUrl}}/hserve/v2.0/user/info/
+  https://{{服务器域名}}/hserve/v2.0/user/info/
 ```
 
 **返回示例**
@@ -300,7 +292,7 @@ curl -X POST \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{ServerUrl}}/hserve/v2.0/user/email-verify/
+  https://{{服务器域名}}/hserve/v2.0/user/email-verify/
 ```
 
 **返回示例**
@@ -333,7 +325,7 @@ curl -X POST \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d "{}" \
-  https://{{ServerUrl}}/hserve/v2.0/session/destroy/
+  https://{{服务器域名}}/hserve/v2.0/session/destroy/
 ```
 
 **返回示例**
@@ -361,8 +353,6 @@ curl -X POST \
 
 **请求参数**
 
-Content-Type: `application/json`
-
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
 | email          | String   |  否 | 新的邮箱地址 |
@@ -379,7 +369,7 @@ curl -X PUT \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"password": "oldpassword", "new_password": "new_password"}' \
-  https://{{ServerUrl}}/hserve/v2.0/user/account/
+  https://{{服务器域名}}/hserve/v2.0/user/account/
 ```
 
 
@@ -418,8 +408,6 @@ curl -X PUT \
 
 **请求参数**
 
-Content-Type: `application/json`
-
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
 | email           | String   |  是 | 需要重置密码的用户的邮箱地址 |
@@ -430,7 +418,7 @@ curl -X POST \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Content-Type: application/json" \
   -d '{"email":"hgzchn@qq.com"}' \
-  https://{{ServerUrl}}/hserve/v2.0/user/password/reset/
+  https://{{服务器域名}}/hserve/v2.0/user/password/reset/
 ```
 
 

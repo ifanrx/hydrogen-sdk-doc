@@ -17,11 +17,11 @@ Content-Type: `Content-Type: application/json`
 **请求示例**
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"function_name":"test"}' \
-  https://{{ServerUrl}}/hserve/v1/cloud-function/job/
+  https://{{服务器域名}}/hserve/v1/cloud-function/job/
 ```
 
 **返回参数说明**

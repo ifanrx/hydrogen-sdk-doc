@@ -13,9 +13,9 @@
 ```shell
 curl -X GET \
   -H "X-Hydrogen-Client-ID: {{Client ID}}" \
-  -H "Authorization: Hydrogen-r1  {{AccessToken}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{ServerUrl}}/hserve/v1.3/file-category/5a1bb2ed7026d950ca7d2a78/
+  https://{{服务器域名}}/hserve/v1.3/file-category/5a1bb2ed7026d950ca7d2a78/
 ```
 
 **返回示例**
@@ -40,8 +40,6 @@ curl -X GET \
 
 **参数说明**
 
-Content-Type: `application/json`
-
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
 | order_by | String | N   | 排序（支持 `created_at` 进行排序）|
@@ -56,7 +54,7 @@ curl -X GET \
   -H "Content-Type: application/json" \
   -G \
   -d order_by=-created_at \
-  https://{{ServerUrl}}/hserve/v1.3/file-category/
+  https://{{服务器域名}}/hserve/v1.3/file-category/
 ```
 
 **返回示例**

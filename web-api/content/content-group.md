@@ -12,10 +12,10 @@
 
 ```shell
 curl -X GET \
--H "Authorization: Hydrogen-r1  {{AccessToken}}" \
+-H "Authorization: Hydrogen-r1 {{AccessToken}}" \
 -H "X-Hydrogen-Client-ID: {{Client ID}}" \
 -H "Content-Type: application/json" \
-https://{{ServerUrl}}/hserve/v1/content/group/1/
+https://{{服务器域名}}/hserve/v1/content/group/1/
 ```
 
 **返回示例**
@@ -37,10 +37,10 @@ https://{{ServerUrl}}/hserve/v1/content/group/1/
 
 ```shell
 curl -X GET \
--H "Authorization: Hydrogen-r1  {{AccessToken}}" \
+-H "Authorization: Hydrogen-r1 {{AccessToken}}" \
 -H "X-Hydrogen-Client-ID: {{Client ID}}" \
 -H "Content-Type: application/json" \
-https://{{ServerUrl}}/hserve/v1/content/group/
+https://{{服务器域名}}/hserve/v1/content/group/
 ```
 
 **返回示例**

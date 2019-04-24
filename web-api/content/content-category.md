@@ -11,10 +11,10 @@
 **请求示例**
 ```shell
 curl -X GET \
-  -H "Authorization: Hydrogen-r1  {{AccessToken}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "X-Hydrogen-Client-ID: {{Client ID}}" \
   -H "Content-Type: application/json" \
-  https://{{ServerUrl}}/hserve/v1/content/category/1/
+  https://{{服务器域名}}/hserve/v1/content/category/1/
 ```
 
 **返回示例**
@@ -51,15 +51,15 @@ curl -X GET \
 
 **请求参数**
 
-- content_group_id 内容库列表，必选参数。
+- `content_group_id` 内容库列表，必选参数。
 
 **请求示例**
 ```shell
 curl -X GET \
-  -H "Authorization: Hydrogen-r1  {{AccessToken}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "X-Hydrogen-Client-ID: {{Client ID}}" \
    -H "Content-Type: application/json" \
-  https://{{ServerUrl}}/hserve/v1/content/category/?content_group_id=1
+  https://{{服务器域名}}/hserve/v1/content/category/?content_group_id=1
 ```
 
 **返回示例**

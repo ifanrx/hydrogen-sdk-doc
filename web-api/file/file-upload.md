@@ -35,8 +35,6 @@
 
 **请求参数说明**
 
-Content-Type: `application/json`
-
 | 参数           | 类型   | 必填 | 说明 |
 | :------------ | :----- | :-- | :-- |
 | filename      | String | N   | 上传的文件名 |
@@ -47,11 +45,11 @@ Content-Type: `application/json`
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientId}}" \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"filename": "test.jpg", "category_name": "cate"}' \
-  https://{{ServerUrl}}/hserve/v1/upload/
+  https://{{服务器域名}}/hserve/v1/upload/
 ```
 
 **返回参数**
