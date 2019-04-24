@@ -28,7 +28,6 @@ curl -X GET \
   "gender": "male",
   "updated_at": 1555991015,
   "write_perm": []
-
 ```
 
 # pointer 查询

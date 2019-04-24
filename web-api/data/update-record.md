@@ -233,6 +233,7 @@ Query String:
 | enable_trigger | Integer | N    | 是否使用触发器，1 为使用触发器，0 为不使用 |
 
 `where` 的构造可参考[字段过滤和扩展](./select-and-expand.md)
+`limit`、`offset` 的构造可参考[分页和排序](./limit-and-order.md)
 
 **请求示例**
 
