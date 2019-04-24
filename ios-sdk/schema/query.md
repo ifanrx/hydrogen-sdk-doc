@@ -431,7 +431,6 @@ BaaSWhere *where = [BaaSWhere hasKey:@"publisherInfo" fieldName:@"abc.location"]
 ```
 {% endtabs %}
 
-<!--
 ## pointer 查询 
 
 > **info**
@@ -439,41 +438,39 @@ BaaSWhere *where = [BaaSWhere hasKey:@"publisherInfo" fieldName:@"abc.location"]
 
 **示例代码**
 
-假设现在有两张表： order 表和 customer 表。
+假设现在有两张表： Book 表和 Author 表。
 
 order 表部分字段结构如下：
 
 | 字段名          | 字段类型          | 说明                 |
 |----------------|------------------|----------------------|
-| customer       |  pointer         | 指向了 `customer` 表     |
-| user           |  pointer         | 指向了 `_userprofile` 表     |
+| author       |  pointer         | 指向了 `Author` 表     |
 
-现在需要查询 order 表中，同时满足以下条件的数据行：
+现在需要查询 Book 表中，同时满足以下条件的数据行：
 
-- customer 字段指向 customer 表中 id 为 `5bad87ab0769797b4fb27a1b` 的数据行 
-- user 字段指向了 _userprofile 表中 id 为 `69147880` 的数据行
+- author 字段指向 Author 表中 id 为 `5bad87ab0769797b4fb27a1b` 的数据行 
 
 {% tabs swift16="Swift", oc16="Objective-C" %}
 {% content "swift16" %}
 ```
-let Order = Table(name: "Book")
-let query1 = Query.compare(key: "customer", operator: "=", value: "5bad87ab0769797b4fb27a1b")
-let query2 = Query.compare(key: "user", operator: "=", value: 69147880)
-let whereargs = Where.and(querys:[query1, query2])
-Order.setQuery(query)
+let bookTable = Table(name: "Book")
+let authorTable = Table(name: "Author")
+
+let author = authorTable.getWithoutData(recordId: "5bad87ab0769797b4fb27a1b")
+
+let whereArgs = Where.compare(key: "customer", operator: .equalTo, value: author)
 ```
 {% content "oc16" %}
 ```
 // 通过 tableId 创建数据表实例
-BaaSTable *Order = [[BaaSTable alloc] initWithId:1236**];
-BaaSQuery *query1 = [BaaSQuery compareWithKey:@"customer" operator:@"=" value:@"5bad87ab0769797b4fb27a1b"];
-BaaSQuery *query2 = [BaaSQuery compareWithKey:@"user" operator:@"=" value:@69147880];
-BaaSWhere *where = [BaaSWhere andWithQuerys:@[query1, query2]];
-[Order setQuery: query];
+BaaSTable *bookTable = [[BaaSTable alloc] initWithId: "Book"];
+BaaSTable *authorTable = [[BaaSTable alloc] initWithId: "Author"];
+
+BaaSRecord *author = [authorTable getWithoutDataWithRecordId:@"5bad87ab0769797b4fb27a1b"];
+
+BaaSWhere *where = [BaaSWhere compareWithKey:@"customer" operator:BaaSOperatoEqualThan value: author];
 ```
 {% endtabs %}
-
--->
 
 ## 组合查询
 

@@ -123,6 +123,7 @@
         * [查询数据项](ios-sdk/schema/query.md)
         * [分页和排序](ios-sdk/schema/limit-and-order.md)
         * [字段过滤与扩展](ios-sdk/schema/select-and-expand.md)
+        * [地理位置操作](ios-sdk/schema/geo.md)
     * [内容库](ios-sdk/content/README.md)
         * [内容操作](ios-sdk/content/operate.md)
     * [文件](ios-sdk/file/README.md)

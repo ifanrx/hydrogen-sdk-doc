@@ -228,38 +228,9 @@ NSString *filePath = [[NSBundle mainBundle] pathForResource:@"cover" ofType:@"pn
 
 关于 `file` 类型查看 [文件](../file/file.md) 章节
 
-<!--
-
 ## 添加 geojson 类型数据
 
-表中有名称为 location，polygon 的两列，类型都为 geojson。
-
-{% tabs swift8_1="Swift", oc8_1="Objective-C" %}
-{% content "swift8_1" %}
-```
-// Point 类型
-let point = GeoPoint(latitude: 2, longitude: 10)
-record.set(key: "location", value: point.geoJson)
-
-// GeoPolygon
-let polygon = GeoPolygon(coordinates: [[30, 10], [40, 40], [20, 40], [10, 20], [30, 10]])
-record.set(key: "polygon", value: polygon.geoJson)
-```
-{% content "oc8_1" %}
-```
-// Point类型
-BAASGeoPoint *point = [[BAASGeoPoint alloc] initWithLatitude:10 longitude:2];
-[record setWithKey:@"location" value:point.geoJson];
-
-// GeoPolygon
-BAASGeoPolygon *polygon = [[BAASGeoPolygon alloc] initWithCoordinates:@[@[30, 10], @[40, 40], @[20, 40], @[10, 20], @[30, 10]]];
-[record setWithKey:@"polygon" value:polygon.geoJson];
-```
-{% endtabs %}
-
-关于 geojson 类型查看 [地理位置操作](./geo.md) 章节
-
--->
+详见 [地理位置操作](./geo.md) 设置地理信息小节
 
 ## 添加 object 类型数据
 
