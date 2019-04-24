@@ -129,6 +129,7 @@
     * [文件](ios-sdk/file/README.md)
         * [文件操作](ios-sdk/file/file.md)
     * [调用云函数](ios-sdk/invoke-function.md)
+    * [短信验证码](ios-sdk/sms.md)
     * [错误码和错误对象](ios-sdk/error-code.md)
     * [Demo 下载](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
     
