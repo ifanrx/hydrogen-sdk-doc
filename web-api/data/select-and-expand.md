@@ -51,10 +51,12 @@ eg: 查询 `title` 包含 A1 或 `subtitle` 包含 A1 的所有资源，并且�
         {
           "title": {
             "$contains": "A1"
+          }
         },
         {
           "subtitle": {
             "$contains": "A1"
+          }
         }
       ]
     }

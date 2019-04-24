@@ -28,6 +28,7 @@ curl -X GET \
   "gender": "male",
   "updated_at": 1555991015,
   "write_perm": []
+}
 ```
 
 # pointer 查询
@@ -111,8 +112,8 @@ print resp_.content
 | limit    | Number | N    | 限制返回资源的个数，默认为 20 条，最大可设置为 1000               |
 | offset   | Number | N    | 设置返回资源的起始偏移值，默认为 0                                |
 
-`where` 和 `expand` 的构造可参考[字段过滤和扩展](./select-and-expand.md)
-`limit`、`offset` 和 `order_by` 的构造可参考[分页和排序](./limit-and-order.md)
+- `where` 和 `expand` 的构造可参考[字段过滤和扩展](./select-and-expand.md)
+- `limit`、`offset` 和 `order_by` 的构造可参考[分页和排序](./limit-and-order.md)
 
 **请求示例**
 

@@ -24,9 +24,9 @@ curl -X GET \
 
 order_by 的值必须为 table 表中的字段，可支持多重排序，字段之间用 `,` 隔开，以下是 order_by 的一些例子:
 
-* `https://{{服务器域名}}/hserve/v2.0/table/:table_name/record/?order_by=created_at`: 按照 `created_at` 升序排序
-* `https://{{服务器域名}}/hserve/v2.0/table/:table_name/record/?order_by=-created_at`: 按照 `created_at` 倒序排序
-* `https://{{服务器域名}}/hserve/v2.0/table/:table_name/record/?order_by=-created_at,id`: 多重排序，先按照 `created_at` 降序，再按照 `id` 升序排序
+* `/hserve/v2.0/table/:table_name/record/?order_by=created_at`: 按照 `created_at` 升序排序
+* `/hserve/v2.0/table/:table_name/record/?order_by=-created_at`: 按照 `created_at` 倒序排序
+* `/hserve/v2.0/table/:table_name/record/?order_by=-created_at,id`: 多重排序，先按照 `created_at` 降序，再按照 `id` 升序排序
 
 **请求示例**
 {% tabs getRecordUseCurl="curl", getRecordUsePython="python" %}

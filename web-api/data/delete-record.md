@@ -49,7 +49,8 @@ Query String:
 | offset         | Integer | N    | 从第几条开始删除                           |
 | enable_trigger | Integer | N    | 是否使用触发器，1 为使用触发器，0 为不使用 |
 
-`where` 的构造可参考[字段过滤和扩展](./select-and-expand.md)
+- `where` 的构造可参考[字段过滤和扩展](./select-and-expand.md)
+- `limit`、`offset` 的构造可参考[分页和排序](./limit-and-order.md)
 
 **请求示例**
 
@@ -72,8 +73,6 @@ curl -X DELETE \
 | offset      | 与传入参数 offset 一致                                         |
 | limit       | 与传入参数 limit 一致                                          |
 | next        | 下一次的删除链接，若待删除记录数超过上限，可通过该链接继续删除 |
-
-`limit`、`offset` 的构造可参考[分页和排序](./limit-and-order.md)
 
 **返回示例**
 

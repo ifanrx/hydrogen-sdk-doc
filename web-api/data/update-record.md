@@ -232,8 +232,8 @@ Query String:
 | offset         | Integer | N    | 从第几条开始更新                           |
 | enable_trigger | Integer | N    | 是否使用触发器，1 为使用触发器，0 为不使用 |
 
-`where` 的构造可参考[字段过滤和扩展](./select-and-expand.md)
-`limit`、`offset` 的构造可参考[分页和排序](./limit-and-order.md)
+- `where` 的构造可参考[字段过滤和扩展](./select-and-expand.md)
+- `limit`、`offset` 的构造可参考[分页和排序](./limit-and-order.md)
 
 **请求示例**
 
@@ -257,8 +257,6 @@ curl -X PUT \
 | offset      | 与传入参数 offset 一致                                         |
 | limit       | 与传入参数 limit 一致                                          |
 | next        | 下一次的更新链接，若待更新记录数超过上限，可通过该链接继续更新 |
-
-`limit`、`offset` 的构造可参考[分页和排序](./limit-and-order.md)
 
 **返回示例**
 
