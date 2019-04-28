@@ -81,10 +81,10 @@ curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/?where%3d%7b%22status%22%3a%7b%22%24eq%22%3a%22deleted%22%7d%7d
+  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/?where=%7b%22status%22%3a%7b%22%24eq%22%3a%22deleted%22%7d%7d
 ```
 
-其中 `where%3d%7b%22status%22%3a%7b%22%24eq%22%3a%22deleted%22%7d%7d` 为 `where={"status":{"$eq":"deleted"}}` 经过 urlencode 后的值
+其中 `%7b%22status%22%3a%7b%22%24eq%22%3a%22deleted%22%7d%7d` 为 `{"status":{"$eq":"deleted"}}` 经过 urlencode 后的值
 
 或
 

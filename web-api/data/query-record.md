@@ -56,6 +56,7 @@ curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
+  -G \
   --data-urlencode 'where={"user": {"$eq": "5272"}}' \
   https://{{服务器域名}}/hserve/v2.0/table/952728/record/
 ```

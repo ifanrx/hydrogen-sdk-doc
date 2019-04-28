@@ -120,17 +120,20 @@ curl -X DELETE \
 
 **接口**
 
-`DELETE /hserve/v1.3/uploaded-file/?id__in=:file1_id,:file2_id`
+`DELETE /hserve/v1.3/uploaded-file/`
+
+**提交参数**
+
+``id__in`` 包含多个文件 ID， ID 之间通过 `,` 分隔
 
 **请求示例**
 
 ```shell
 curl -X DELETE \
-  -H "X-Hydrogen-Client-ID: {{Client ID}}" \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  -G \
-  --data-urlencode  "id__in=-5a1ba9c1fff1d651135e5ff1, 59ca3d275f281f58523fc47a" \
+  -d '{"id__in":["5c263d739a557716c96c6dc6","5c263d689a557718706c6e37"]}' \
   https://{{服务器域名}}/hserve/v1.3/uploaded-file/
 ```
 
@@ -178,11 +181,12 @@ curl -X DELETE \
 **请求示例**
 
 ```shell
-curl --request POST \
-  --url https://{{服务器域名}}/hserve/v1/media/video-snapshot/ \
-  --header 'Authorization: Hydrogen-r1 {{AccessToken}}' \
-  --header 'Content-Type: application/json' \
-  --data '{\n	"source": "5c4a6db320fa9c2e054c6c36",\n	"save_as": "1-25-test.png",\n	"point": "00:00:50",\n	"category_id": "5a377bb009a8054139faafed"\n}'
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d '{"source": "5cc577ec1466ec1a1b3f65bc", "save_as": "abc.png", "point": "00:00:10"}' \
+  https://{{服务器域名}}/hserve/v1/media/video-snapshot/
 ```
 
 **返回示例**
@@ -255,11 +259,12 @@ curl --request POST \
 **请求示例**
 
 ```shell
-curl --request POST \
-  --url https://{{服务器域名}}/hserve/v1/media/m3u8-concat/ \
-  --header 'Authorization: Hydrogen-r1 {{AccessToken}}' \
-  --header 'Content-Type: application/json' \
-  --data '{\n	"m3u8s": ["5c453c7cfe10833f3178479e", "5c452bebfe10832bf97846c9"],\n	"save_as": "1-25-test.m3u8",\n	"category_id": "5a377bcb09a8054139faaff1"\n}'
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d '{"m3u8s": ["5c453c7cfe10833f3178479e", "5c452bebfe10832bf97846c9"], "save_as": "abc.m3u8", "category_id": "5a377bcb09a8054139faaff1"}' \
+  https://{{服务器域名}}/hserve/v1/media/m3u8-concat/
 ```
 
 **返回示例**
@@ -335,11 +340,12 @@ curl --request POST \
 **请求示例**
 
 ```shell
-curl --request POST \
-  --url https://{{服务器域名}}/hserve/v1/media/m3u8-clip/ \
-  --header 'Authorization: Hydrogen-r1 {{AccessToken}}' \
-  --header 'Content-Type: application/json' \
-  --data '{\n	"m3u8": "5c452bebfe10832bf97846c9",\n	"save_as": "1-25-test.m3u8",\n	"include": [0, 5],\n	"category_id": "5a377bcb09a8054139faaff1"\n}'
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d '{"m3u8s": "5c452bebfe10832bf97846c9", "save_as": "abc.m3u8", "category_id": "5a377bcb09a8054139faaff1", "include": [0, 5]}' \
+  https://{{服务器域名}}/hserve/v1/media/m3u8-clip/
 ```
 
 **返回示例**
@@ -408,11 +414,12 @@ meta 参数说明：
 **请求示例**
 
 ```shell
-curl --request POST \
-  --url https://{{服务器域名}}/hserve/v1/media/m3u8-meta/ \
-  --header 'Authorization: Hydrogen-r1 {{AccessToken}}' \
-  --header 'Content-Type: application/json' \
-  --data '{\n	"m3u8": "5c452bebfe10832bf97846c9"\n}'
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d '{"m3u8s": "5c452bebfe10832bf97846c9"}' \
+  https://{{服务器域名}}/hserve/v1/media/m3u8-meta/
 ```
 
 **返回示例**
@@ -502,11 +509,12 @@ streams 参数说明：
 **请求示例**
 
 ```shell
-curl --request POST \
-  --url https://{{服务器域名}}/hserve/v1/media/audio-video-meta/ \
-  --header 'Authorization: Hydrogen-r1 {{AccessToken}}' \
-  --header 'Content-Type: application/json' \
-  --data '{\n	"source": "5c3421788318ed7f50e5ea8b"\n}'
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d '{"source": "5cc577ec1466ec1a1b3f65bc"}' \
+  https://cloud.minapp.com/hserve/v1/media/audio-video-meta/
 ```
 
 **返回示例**

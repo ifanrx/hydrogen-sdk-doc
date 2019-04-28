@@ -7,6 +7,7 @@
 **请求参数**
   * `where` 查询语句
   * `order_by` 排序字段
+  
   **以下参数需二选一**
   可选：
   * `category_id`      分类 ID
@@ -18,7 +19,7 @@
 
 ```shell
 curl -X GET \
--H "X-Hydrogen-Client-ID: {{Client ID}}" \
+-H "X-Hydrogen-Client-ID: {{ClientID}}" \
 -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
 -H "Content-Type: application/json" \
 https://{{服务器域名}}/hserve/v2.0/content/detail/?content_group_id=1548659930013242
@@ -65,8 +66,8 @@ https://{{服务器域名}}/hserve/v2.0/content/detail/?content_group_id=1548659
 **请求示例**
 
 ```shell
-curl -X POST \
--H "X-Hydrogen-Client-ID: {{Client ID}}" \
+curl -X GET \
+-H "X-Hydrogen-Client-ID: {{ClientID}}" \
 -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
 -H "Content-Type: application/json" \
 https://{{服务器域名}}/hserve/v2.0/content/detail/1/

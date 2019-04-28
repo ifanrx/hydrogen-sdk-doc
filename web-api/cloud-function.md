@@ -6,8 +6,6 @@
 
 **请求参数说明**
 
-Content-Type: `Content-Type: application/json`
-
 | 参数          | 类型 | 必填 | 说明 |
 | :----------   | :--- | :--- | :--- |
 | function_name | String | 是  | 要运行的云函数名 |
