@@ -12,7 +12,7 @@
   * `category_id`      分类 ID
   * `content_group_id` 内容库 ID
 
-`where` 的构造可参考[字段过滤和扩展](./select-and-expand.md)
+`where` 的构造可参考[字段过滤和扩展](./query-keys-expand.md)
 
 **请求示例**
 

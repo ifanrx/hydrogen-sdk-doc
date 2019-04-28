@@ -40,7 +40,7 @@ curl -X DELETE \
 
 **参数说明**
 
-Query String:
+Query Parameters:
 
 | 参数           | 类型    | 必填 | 说明                                       |
 | :------------- | :------ | :--- | :----------------------------------------- |
@@ -49,7 +49,7 @@ Query String:
 | offset         | Integer | N    | 从第几条开始删除                           |
 | enable_trigger | Integer | N    | 是否使用触发器，1 为使用触发器，0 为不使用 |
 
-- `where` 的构造可参考[字段过滤和扩展](./select-and-expand.md)
+- `where` 的构造可参考[字段过滤和扩展](./query-keys-expand.md)
 - `limit`、`offset` 的构造可参考[分页和排序](./limit-and-order.md)
 
 **请求示例**
@@ -61,7 +61,9 @@ curl -X DELETE \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/?where={'string':{'$eq':'he'}}
+  -G \
+  --data-urlencode 'where={"string":{"$eq":"he"}}' \
+  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/
 ```
 
 **返回参数说明**

@@ -40,7 +40,7 @@ curl -X GET \
 
 `GET /hserve/v2.0/table/:table_name/record/?where=query`
 
-其中 `:table_name` 需替换为你的数据表名称，`where` 的构造可参考[字段过滤和扩展](./select-and-expand.md)
+其中 `:table_name` 需替换为你的数据表名称，`where` 的构造可参考[字段过滤和扩展](./query-keys-expand.md)
 
 **示例代码**
 
@@ -56,7 +56,8 @@ curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.0/table/952728/record/?where={"user": {"$eq": "5272"}}
+  --data-urlencode 'where={"user": {"$eq": "5272"}}' \
+  https://{{服务器域名}}/hserve/v2.0/table/952728/record/
 ```
 
 {% content "pointerRecordUsePython" %}
@@ -112,7 +113,7 @@ print resp_.content
 | limit    | Number | N    | 限制返回资源的个数，默认为 20 条，最大可设置为 1000               |
 | offset   | Number | N    | 设置返回资源的起始偏移值，默认为 0                                |
 
-- `where` 和 `expand` 的构造可参考[字段过滤和扩展](./select-and-expand.md)
+- `where` 和 `expand` 的构造可参考[字段过滤和扩展](./query-keys-expand.md)
 - `limit`、`offset` 和 `order_by` 的构造可参考[分页和排序](./limit-and-order.md)
 
 **请求示例**

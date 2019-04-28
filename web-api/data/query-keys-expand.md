@@ -1,10 +1,13 @@
-# 字段过滤
+# 查询
 
-当请求参数支持使用 `where` 时，你可以通过构造 `where` 过滤记录
+当请求参数支持使用 `where` 时，你可以通过构造 `where` 参数来构造查询条件。
 
 - `where` 支持 `or`、`and` 等逻辑操作符查询，查询语句是将操作符以逆波兰表示法进行树结构的构造
 - `where` 可以抽象的认为是一种`键值对`的结构
 - `where` 查询语句可以进行`嵌套查询`
+
+> **info**
+> where 一定要作为 URL 的 **Query Parameters** 传入
 
 **操作符**
 
@@ -71,21 +74,8 @@ eg: 查询 `title` 包含 A1 或 `subtitle` 包含 A1 的所有资源，并且�
 
 查询 test_table 表中 status 为 `deleted` 的记录
 
-```shell
-curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
-  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
-  -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/?where={"status":{"$eq":"deleted"}}
-```
+此时的 url 较为特殊，Query Parameters 为一个**字典**，需要经过 urlencode 才可正常使用，通常有两种用法:
 
-因为此时的 url 较为特殊，query string 为一个**字典**，所以 query string 需要经过 urlencode 才可正常使用:
-
-```
-where={"status":{"$eq":"deleted"}} ---urlencode--->  where%3d%7b%22status%22%3a%7b%22%24eq%22%3a%22deleted%22%7d%7d
-```
-
-所以此时的请求应该为:
 ```shell
 curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
@@ -94,6 +84,103 @@ curl -X GET \
   https://{{服务器域名}}/hserve/v2.0/table/test_table/record/?where%3d%7b%22status%22%3a%7b%22%24eq%22%3a%22deleted%22%7d%7d
 ```
 
+其中 `where%3d%7b%22status%22%3a%7b%22%24eq%22%3a%22deleted%22%7d%7d` 为 `where={"status":{"$eq":"deleted"}}` 经过 urlencode 后的值
+
+或
+
+```shell
+curl -X GET \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -G \
+  --data-urlencode 'where={"status":{"$eq":"deleted"}}' \
+  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/
+```
+
+
+# 字段过滤
+
+Hydrogen 所有的数据接口均支持指定输出/不输出某个字段。需注意，接口不支持指定输出，不输出的情况，即：`?keys=-a,b`
+
+## 指定字段输出
+
+**使用方式**
+
+在 Query Parameters 中加入 keys，值为需要指定输出的字段，可同时指定多个字段，中间用 `,` 隔开，如 `?keys=id,created_at`
+
+**使用例子**
+
+设 `test_table` 表拥有 4 个字段，分别为 `id`, `created_at`, `nickname`, `gender` 
+
+```shell
+curl -X GET \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/?keys=id,created_at
+```
+
+**返回示例**
+
+```json
+{
+    "meta": {
+        "limit": 20,
+        "next": null,
+        "offset": 0,
+        "previous": null,
+        "total_count": 1
+    },
+    "objects": [
+        {
+            "id": 16,
+            "created_at": 1514174425
+        }
+    ]
+}
+```
+
+## 指定字段不输出
+
+**使用方式**
+
+在 Query Parameters 中加入 keys，值为需要指定不输出的字段，字段需要加上前缀 `-`，可同时指定多个字段，中间用 `,` 隔开, 如 `?keys=-id,-created_at`
+
+**使用例子**
+
+设 `test_table` 表拥有 4 个字段，分别为 `id`, `created_at`, `nickname`, `gender` 
+
+```shell
+curl -X GET \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/?keys=-id,-created_at
+```
+
+**返回示例**
+
+```json
+{
+    "meta": {
+        "limit": 20,
+        "next": null,
+        "offset": 0,
+        "previous": null,
+        "total_count": 1
+    },
+    "objects": [
+        {
+          "nickname": "John Doe",
+          "gender": "famale"
+        }
+    ]
+}
+```
+
+> **info**
+> 当提交 keys 不是 Table 的字段时，会报 400 的错误
 
 # 字段扩展
 
@@ -105,7 +192,7 @@ curl -X GET \
 
 **使用方式**
 
-在 query string 中加入 expand，值为需要扩展的字段，可同时扩展多个字段，中间用 `,` 隔开
+在 Query Parameters 中加入 expand，值为需要扩展的字段，可同时扩展多个字段，中间用 `,` 隔开
 
 **使用例子**
 

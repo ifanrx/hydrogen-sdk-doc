@@ -17,6 +17,7 @@
 > - 对同一字段进行多次 set 操作，后面的数据会覆盖掉前面的数据
 > - 不可同时用 set 与 unset 操作同一字段，否则会报 605 错误
 > - 数据要与预先在知晓云平台设定的数据类型一致
+> - 如果没有指定为 $unset 更新，则默认为 $set 更新
 
 **请求示例**
 
@@ -26,7 +27,7 @@ curl -X PUT \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  -d '"$set": {"nickname": "cool"}, "$unset": {"gender": ""}' \
+  -d '{"$set": {"nickname": "cool"}, "$unset": {"gender": ""}}' \
   https://{{服务器域名}}/hserve/v2.0/table/test_table/record/5cbe89e7f1ec740af442a1fa/
 ```
 
@@ -219,11 +220,12 @@ curl -X PUT \
 其中 `:table_name` 需替换为你的数据表名称，`record_id` 需替换为你的记录 ID
 
 > **info**
-> 当更新的数据大于 1000 条时，不支持使用触发器，且删除操作是异步执行
+> 1. 当更新的数据大于 1000 条时，不支持使用触发器，且删除操作是异步执行
+> 2. 如需更新 1000 条以上数据，可指定 enable_trigger 为 0 不触发触发器。
 
 **参数说明**
 
-Query String:
+Query Parameters:
 
 | 参数           | 类型    | 必填 | 说明                                       |
 | :------------- | :------ | :--- | :----------------------------------------- |
@@ -232,7 +234,7 @@ Query String:
 | offset         | Integer | N    | 从第几条开始更新                           |
 | enable_trigger | Integer | N    | 是否使用触发器，1 为使用触发器，0 为不使用 |
 
-- `where` 的构造可参考[字段过滤和扩展](./select-and-expand.md)
+- `where` 的构造可参考[字段过滤和扩展](./query-keys-expand.md)
 - `limit`、`offset` 的构造可参考[分页和排序](./limit-and-order.md)
 
 **请求示例**
@@ -245,8 +247,13 @@ curl -X PUT \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"age": {"$incr_by": 1}}' \
-  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/?where={"nickname":{"$eq":"hgz"}}
+  "https://{{服务器域名}}/hserve/v2.0/table/test_table/record/?where=%7b%22nickname%22%3a%7b%22%24eq%22%3a%22hgz%22%7d%7d"
 ```
+
+其中 `%7b%22nickname%22%3a%7b%22%24eq%22%3a%22hgz%22%7d%7d` 为 `{"nickname":{"$eq":"hgz"}}` 经过 urlencode 后的结果
+
+**info**
+> where 一定要作为 URL 的 **Query Parameters** 传入
 
 **返回参数说明**
 
@@ -260,7 +267,6 @@ curl -X PUT \
 
 **返回示例**
 
-写入成功时，返回如下:
 ```json
 {
     "succeed": 8,
