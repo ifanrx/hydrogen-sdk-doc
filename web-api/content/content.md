@@ -25,6 +25,24 @@ curl -X GET \
 https://{{服务器域名}}/hserve/v2.0/content/detail/?content_group_id=1548659930013242
 ```
 
+**返回参数说明**
+
+| 参数              | 说明                     |
+| :--------------- | :----------------------- |
+| id               | id             |
+| title            |  内容标题        |
+| cover            |  封面图片地址     |
+| description      |  简介           |
+| group_id         |  分组 id        |
+| created_at       | 创建时间        |
+| updated_at       | 更新时间        |
+| created_by       | 创建者 id       |
+| offset           | 偏移量          |
+| limit            | 每次请求返回的最大记录数目|
+| previous         | 上一页地址       |
+| next             | 下一页地址       |
+| total_count      | 记录总数目       |
+
 **返回示例**
 
 ```json

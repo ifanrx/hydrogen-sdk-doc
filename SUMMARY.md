@@ -159,6 +159,7 @@
 * [知晓云 Web API](web-api/README.md)
     * [用户](web-api/user.md)
     * [数据表](web-api/data/README.md)
+        * [数据类型](web-api/data/data-type.md)
         * [新增数据](web-api/data/create-record.md)
         * [更新数据](web-api/data/update-record.md)
         * [删除数据](web-api/data/delete-record.md)

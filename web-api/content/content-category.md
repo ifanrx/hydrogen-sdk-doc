@@ -36,12 +36,12 @@ curl -X GET \
 
 **返回参数说明**
 
-|      参数     |      类型     |   说明   |
-| :-------------| :----------- | :------ |
-| id            | Integer      | 分类 ID |
-| name          | String       | 分类名称 |
-| have_children | Boolean      | 是否有子分类 |
-| children    | Object Array   | 子分类详情 |
+|      参数      |   说明   |
+| :-------------| :------ |
+| id            | 分类 ID |
+| name          | 分类名称 |
+| have_children | 是否有子分类 |
+| children      | 子分类详情 |
 
 ## 获取内容分类列表
 
@@ -61,6 +61,19 @@ curl -X GET \
   -H "Content-Type: application/json" \
   https://{{服务器域名}}/hserve/v1/content/category/?content_group_id=1
 ```
+
+**返回参数说明**
+
+| 参数              | 说明                     |
+| :--------------- | :----------------------- |
+| id               | 分类 ID |
+| name             | 分类名称 |
+| have_children    | 是否有子分类 |
+| offset           | 偏移量          |
+| limit            | 每次请求返回的最大记录数目|
+| previous         | 上一页地址       |
+| next             | 下一页地址       |
+| total_count      | 记录总数目       |
 
 **返回示例**
 

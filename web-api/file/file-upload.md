@@ -114,6 +114,20 @@ curl \
   https://v0.api.upyun.com/cloud-minapp-18630
 ```
 
+**返回参数说明**
+
+| 参数              | 说明                     |
+| :--------------- | :----------------------- |
+| image-type               | 图片类型             |
+| image-height            |  图片高度        |
+| image-width            |  图片宽度        |
+| code            |  响应码     |
+| time            |  上传时间     |
+| file_size      |  图片大小           |
+| url      |  图片链接           |
+| message         |  附加信息       |
+| mimetype         |   mime 类型        |
+
 **返回示例**
 
 ```json

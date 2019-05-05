@@ -16,6 +16,17 @@ curl -X GET \
   https://{{服务器域名}}/hserve/v2.0/table/:table_name/record/5cbe89e7f1ec740af442a1fa/
 ```
 
+**返回参数说明**
+
+| 参数              | 说明                     |
+| :--------------- | :----------------------- |
+| id               | id, 唯一标识    |
+| created_at       | 创建时间        |
+| updated_at       | 更新时间        |
+| created_by       | 创建者 id       |
+| read_perm        | 读权限          |
+| write_perm       | 写权限          |
+
 **返回示例**
 ```json
 {
@@ -31,7 +42,105 @@ curl -X GET \
 }
 ```
 
-# pointer 查询
+# 批量查询数据
+
+**接口**
+
+`GET /hserve/v2.0/table/:table_name/record/`
+
+其中 `:table_name` 需替换为你的数据表名称
+
+**参数说明**
+
+| 参数     | 类型   | 必填 | 说明                                                              |
+| :------- | :----- | :--- | :---------------------------------------------------------------- |
+| where    | String | N    | 查询语句，参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码 |
+| keys     | String | N    | 字段过滤                                  |
+| expand   | String | N    | 可对 pointer 类型的字段进行扩展                                   |
+| order_by | String | N    | 对资源进行字段排序                                                |
+| limit    | Number | N    | 限制返回资源的个数，默认为 20 条，最大可设置为 1000               |
+| offset   | Number | N    | 设置返回资源的起始偏移值，默认为 0                                |
+
+- `where` 、`keys` 和 `expand` 的构造可参考[字段过滤和扩展](./query-keys-expand.md)
+- `limit`、`offset` 和 `order_by` 的构造可参考[分页和排序](./limit-and-order.md)
+
+**请求示例**
+
+```shell
+curl -X GET \
+-H "X-Hydrogen-Client-ID: {{ClientID}}" \
+-H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+-H "Content-Type: application/json" \
+https://{{服务器域名}}/hserve/v2.0/table/952728/record/?limit=10&offset=0
+```
+
+**返回参数说明**
+
+| 参数              | 说明                     |
+| :--------------- | :----------------------- |
+| id               | id, 唯一标识    |
+| created_at       | 创建时间        |
+| updated_at       | 更新时间        |
+| created_by       | 创建者 id       |
+| read_perm        | 读权限          |
+| write_perm       | 写权限          |
+| offset           | 偏移量          |
+| limit            | 每次请求返回的最大记录数目|
+| previous         | 上一页地址       |
+| next             | 下一页地址       |
+| total_count      | 记录总数目       |
+
+**返回示例**
+```json
+{
+    "meta": {
+        "offset": 0,
+        "limit": 10,
+        "previous": null,
+        "next": null,
+        "total_count": 2
+    },
+    "objects": [
+        {
+            "created_by": 76797941,
+            "gender": "male",
+            "nickname": "hgz",
+            "id": "5cbe7ccefc63ae0ab7f2d159",
+            "write_perm": [
+                "user:*"
+            ],
+            "created_at": 1555987620,
+            "updated_at": 1556016901,
+            "read_perm": [
+                "user:*"
+            ],
+            "_id": "5cbe7ccefc63ae0ab7f2d159"
+        },
+        {
+            "created_by": 76797941,
+            "gender": "male",
+            "nickname": "he",
+            "id": "5cbe7ce3fc63ae381ba6bc20",
+            "write_perm": [
+                "user:*"
+            ],
+            "created_at": 1555987680,
+            "updated_at": 1556074279,
+            "read_perm": [
+                "user:*"
+            ],
+            "_id": "5cbe7ce3fc63ae381ba6bc20"
+        }
+    ]
+}
+```
+
+**状态码**
+- `200`: 成功
+- `400`: 请求数据不合法;查询参数不合法;操作符不合法
+
+
+## pointer 查询
 
 > **info**
 > 目前 pointer 仅支持针对 pointer 本身的查询，不支持嵌套查询（即查询 pointer 指向的数据行的字段）
@@ -94,84 +203,3 @@ resp_ = requests.get(API, headers=HEADERS)
 print resp_.content
 ```
 {% endtabs %}
-
-
-# 批量查询数据
-
-**接口**
-
-`GET /hserve/v2.0/table/:table_name/record/`
-
-其中 `:table_name` 需替换为你的数据表名称
-
-**参数说明**
-
-| 参数     | 类型   | 必填 | 说明                                                              |
-| :------- | :----- | :--- | :---------------------------------------------------------------- |
-| where    | String | N    | 查询语句，参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码 |
-| expand   | String | N    | 可对 pointer 类型的字段进行扩展                                   |
-| order_by | String | N    | 对资源进行字段排序                                                |
-| limit    | Number | N    | 限制返回资源的个数，默认为 20 条，最大可设置为 1000               |
-| offset   | Number | N    | 设置返回资源的起始偏移值，默认为 0                                |
-
-- `where` 和 `expand` 的构造可参考[字段过滤和扩展](./query-keys-expand.md)
-- `limit`、`offset` 和 `order_by` 的构造可参考[分页和排序](./limit-and-order.md)
-
-**请求示例**
-
-```shell
-curl -X GET \
--H "X-Hydrogen-Client-ID: {{ClientID}}" \
--H "Authorization: Hydrogen-r1 {{AccessToken}}" \
--H "Content-Type: application/json" \
-https://{{服务器域名}}/hserve/v2.0/table/952728/record/?limit=10&offset=0
-```
-
-**返回示例**
-```json
-{
-    "meta": {
-        "offset": 0,
-        "limit": 10,
-        "previous": null,
-        "next": null,
-        "total_count": 2
-    },
-    "objects": [
-        {
-            "created_by": 76797941,
-            "gender": "male",
-            "nickname": "hgz",
-            "id": "5cbe7ccefc63ae0ab7f2d159",
-            "write_perm": [
-                "user:*"
-            ],
-            "created_at": 1555987620,
-            "updated_at": 1556016901,
-            "read_perm": [
-                "user:*"
-            ],
-            "_id": "5cbe7ccefc63ae0ab7f2d159"
-        },
-        {
-            "created_by": 76797941,
-            "gender": "male",
-            "nickname": "he",
-            "id": "5cbe7ce3fc63ae381ba6bc20",
-            "write_perm": [
-                "user:*"
-            ],
-            "created_at": 1555987680,
-            "updated_at": 1556074279,
-            "read_perm": [
-                "user:*"
-            ],
-            "_id": "5cbe7ce3fc63ae381ba6bc20"
-        }
-    ]
-}
-```
-
-**状态码**
-- `200`: 成功
-- `400`: 请求数据不合法;查询参数不合法;操作符不合法

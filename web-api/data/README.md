@@ -2,6 +2,7 @@
 
 # 数据表模块
 
+* [数据类型](./data-type.md)
 * [新增数据](./create-record.md)
 * [更新数据](./update-record.md)
 * [删除数据](./delete-record.md)

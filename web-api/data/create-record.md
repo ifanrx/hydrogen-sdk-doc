@@ -26,6 +26,17 @@ curl -X POST \
 > **info**
 > 如果需要在数据表中存储文件，文件类型的字段必须要包含 `id, name, created_at, mime_type, cdn_path, size` 这几个属性，如果文件类型的字段没有保存成功，请检查文件字段有没有包含这几个属性
 
+**返回参数说明**
+
+| 参数              | 说明                     |
+| :--------------- | :----------------------- |
+| id               | id, 唯一标识    |
+| created_at       | 创建时间        |
+| updated_at       | 更新时间        |
+| created_by       | 创建者 id       |
+| read_perm        | 读权限          |
+| write_perm       | 写权限          |
+
 **返回示例**
 ```json
 {

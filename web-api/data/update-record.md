@@ -31,6 +31,18 @@ curl -X PUT \
   https://{{服务器域名}}/hserve/v2.0/table/test_table/record/5cbe89e7f1ec740af442a1fa/
 ```
 
+**返回参数说明**
+
+| 参数              | 说明                     |
+| :--------------- | :----------------------- |
+| id               | id, 唯一标识    |
+| created_at       | 创建时间        |
+| updated_at       | 更新时间        |
+| created_by       | 创建者 id       |
+| read_perm        | 读权限          |
+| write_perm       | 写权限          |
+
+
 **返回示例**
 ```json
 {
@@ -80,6 +92,18 @@ curl -X PUT \
   -d '{"user":"5cbecc548b155c0b6d1da762"}' \
   https://{{服务器域名}}/hserve/v2.0/table/product/record/1bdfaf068asd123123asd/
 ```
+
+**返回参数说明**
+
+| 参数              | 说明                     |
+| :--------------- | :----------------------- |
+| id               | id, 唯一标识    |
+| created_at       | 创建时间        |
+| updated_at       | 更新时间        |
+| created_by       | 创建者 id       |
+| read_perm        | 读权限          |
+| write_perm       | 写权限          |
+
 
 **返回示例**
 ```json
@@ -194,6 +218,13 @@ curl -X PUT \
   -d '{"desc": {"$append": ["atomic data"]}, "price": {"$incr_by": -1}}' \
   https://{{服务器域名}}/hserve/v2.0/table/test_table/record/5cbe89e7f1ec740af442a1fa/
 ```
+
+**返回参数说明**
+
+| 参数              | 说明                     |
+| :--------------- | :----------------------- |
+| id               | id, 唯一标识    |
+| created_at       | 创建时间        |
 
 **返回示例**
 
