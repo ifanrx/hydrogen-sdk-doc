@@ -36,12 +36,12 @@ curl -X GET \
 
 **返回参数说明**
 
-|      参数      |   说明   |
-| :-------------| :------ |
-| id            | 分类 ID |
-| name          | 分类名称 |
-| have_children | 是否有子分类 |
-| children      | 子分类详情 |
+| 参数              | 类型      | 说明                       |
+| :--------------- | :-------  | :-----------------------  |
+| id               |  integer   | 分类 ID           |
+| children         |  object array | 子分类详情    |
+| have_children    |  bool    |  是否有子分类      |
+| name             |  string   | 分类名称          |
 
 ## 获取内容分类列表
 
@@ -64,16 +64,17 @@ curl -X GET \
 
 **返回参数说明**
 
-| 参数              | 说明                     |
-| :--------------- | :----------------------- |
-| id               | 分类 ID |
-| name             | 分类名称 |
-| have_children    | 是否有子分类 |
-| offset           | 偏移量          |
-| limit            | 每次请求返回的最大记录数目|
-| previous         | 上一页地址       |
-| next             | 下一页地址       |
-| total_count      | 记录总数目       |
+| 参数              | 类型      | 说明                       |
+| :--------------- | :-------  | :-----------------------  |
+| id               |  string   | id, 唯一标识               |
+| name             |  string  | 分类名称                    |
+| have_children    |  bool    |  是否有子分类               |
+| offset           |  integer  |  偏移量                    |
+| limit            |  integer  |  每次请求返回的最大记录数目    |
+| previous         |  string   |  上一页地址                 |
+| next             |  string   |  下一页地址                 |
+| total_count      |  integer  |  记录总数目                 |
+
 
 **返回示例**
 

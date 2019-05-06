@@ -4,19 +4,19 @@
 
 |        参数       |      类型    |   说明    |
 | :--------------- | :----------- | :------- |
-| user_id           | Integer      | 用户 ID |
-| avatar           | String      | 用户头像 |
-| token             | String       | User authentication token |
-| expires_in | Integer | 过期时间，为时间戳，单位：秒 |
-| _username           | String       | 用户名 |
-| _email           | String       | 用户邮件地址 |
-| _email_verified       | Boolean | 用户邮件地址是否已经验证 |
-| _provider | Object | 用户在平台方的用户信息(见 `v2.0/user/info` 接口)以及其他 _userprofile 表的内置字段及用户自定义字段 |
-| _session | Object | Cookies 信息 |
-| country | String | 用户所在的国家 |
-| province | String | 用户所在的省份 |
-| city | String | 用户所在城市 |
-| gender | String | 用户的性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知 |
+| user_id           | integer      | 用户 ID |
+| avatar           | string      | 用户头像 |
+| token             | string       | User authentication token |
+| expires_in | integer | 过期时间，为时间戳，单位：秒 |
+| _username           | string       | 用户名 |
+| _email           | string       | 用户邮件地址 |
+| _email_verified       | boolean | 用户邮件地址是否已经验证 |
+| _provider | object | 用户在平台方的用户信息(见 `v2.0/user/info` 接口)以及其他 _userprofile 表的内置字段及用户自定义字段 |
+| _session | object | Cookies 信息 |
+| country | string | 用户所在的国家 |
+| province | string | 用户所在的省份 |
+| city | string | 用户所在城市 |
+| gender | string | 用户的性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知 |
 
 
 ### 示例
@@ -63,8 +63,8 @@ createTableUsername="通过用户名注册" %}
 
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
-| email           | String   |  是 | 邮箱地址 |
-| password         | String       |  是 | 密码 |
+| email           | string   |  是 | 邮箱地址 |
+| password         | string       |  是 | 密码 |
 
 **请求示例**
 
@@ -82,8 +82,8 @@ curl -X POST \
 
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
-| username           | String   |  是 | 用户名 |
-| password         | String       |  是 | 密码 |
+| username           | string   |  是 | 用户名 |
+| password         | string       |  是 | 密码 |
 
 **请求示例**
 
@@ -127,8 +127,8 @@ createTableUsernameLogin="通过用户名登陆" %}
 
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
-| email           | String   |  是 | 邮箱地址 |
-| password         | String       |  是 | 密码 |
+| email           | string   |  是 | 邮箱地址 |
+| password         | string       |  是 | 密码 |
 
 **请求示例**
 
@@ -146,8 +146,8 @@ curl -X POST \
 
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
-| username           | String   |  是 | 用户名 |
-| password         | String       |  是 | 密码 |
+| username           | string   |  是 | 用户名 |
+| password         | string       |  是 | 密码 |
 
 **请求示例**
 
@@ -355,10 +355,10 @@ curl -X POST \
 
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
-| email          | String   |  否 | 新的邮箱地址 |
-| username       | String   |  否 | 新的用户名 |
-| password       | String   |  否 | 旧密码 |
-| new_password   | String   |  否 | 新密码 |
+| email          | string   |  否 | 新的邮箱地址 |
+| username       | string   |  否 | 新的用户名 |
+| password       | string   |  否 | 旧密码 |
+| new_password   | string   |  否 | 新密码 |
 
 如果选择**修改密码**, 必须同时传入 `password` 和 `new_password`
 
@@ -386,9 +386,9 @@ curl -X PUT \
 
 |       参数     |       类型   | 说明 |
 | :------------ | :----------- | :---| :--- |
-| email         | String   | 目前的邮箱 |
-| email_verified| Boolean  | 邮箱是否已经验证 |
-| username      | String   | 目前的用户名 |
+| email         | string   | 目前的邮箱 |
+| email_verified| boolean  | 邮箱是否已经验证 |
+| username      | string   | 目前的用户名 |
 
 **状态码说明**
 
@@ -410,7 +410,7 @@ curl -X PUT \
 
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
-| email           | String   |  是 | 需要重置密码的用户的邮箱地址 |
+| email           | string   |  是 | 需要重置密码的用户的邮箱地址 |
 
 **请求示例**
 ```shell

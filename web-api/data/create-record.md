@@ -28,14 +28,14 @@ curl -X POST \
 
 **返回参数说明**
 
-| 参数              | 说明                     |
-| :--------------- | :----------------------- |
-| id               | id, 唯一标识    |
-| created_at       | 创建时间        |
-| updated_at       | 更新时间        |
-| created_by       | 创建者 id       |
-| read_perm        | 读权限          |
-| write_perm       | 写权限          |
+| 参数 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| id | string | id, 唯一标识 |
+| created_at | integer | 创建时间 |
+| updated_at | integer | 更新时间 |
+| created_by | integer | 创建者 id |
+| read_perm | array | 读权限 |
+| write_perm | array | 写权限 |
 
 **返回示例**
 ```json
@@ -62,7 +62,7 @@ curl -X POST \
 
 **参数说明**
 
-参数为 `List Object`, 即一个 `Object` 的数组，其中 `Object` 的结构如下:
+参数为 `object array`, 即一个 `object` 的数组，其中 `object` 的结构如下:
 
 | 参数 | 类型                   | 必填 | 说明                         |
 | :--- | :--------------------- | :--- | :--------------------------- |
@@ -83,11 +83,14 @@ curl -X POST \
 
 **返回参数说明**
 
-| 参数             | 说明                     |
-| :--------------- | :----------------------- |
-| succeed          | 成功创建记录数           |
-| total_count      | 总的待创建记录数         |
-| operation_result | 批量写入每一条数据的结果 |
+| 参数 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| id | string | id, 唯一标识 |
+| created_at | integer | 创建时间 |
+| total_count | integer | 总的待创建记录数 |
+| succeed | integer | 成功创建记录数 |
+| operation_result | object array | 批量写入每一条数据的结果 |
+
 
 **返回示例**
 

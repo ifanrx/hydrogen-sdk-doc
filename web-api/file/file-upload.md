@@ -37,9 +37,9 @@
 
 | 参数           | 类型   | 必填 | 说明 |
 | :------------ | :----- | :-- | :-- |
-| filename      | String | N   | 上传的文件名 |
-| category_id   | String | N   | 上传文件的所属分类，格式为文件分类的 ID 数组 |
-| category_name   | String | N   | 目录名，若同时指定 category_id 及 category_name ，将优先使用 category_id (可选) |
+| filename      | string | N   | 上传的文件名 |
+| category_id   | string | N   | 上传文件的所属分类，格式为文件分类的 ID 数组 |
+| category_name   | string | N   | 目录名，若同时指定 category_id 及 category_name ，将优先使用 category_id (可选) |
 
 **请求示例**
 
@@ -56,11 +56,11 @@ curl -X POST \
 
 | 参数           | 类型         | 说明 |
 | :----------   | :----------- | :-- |
-| id            | String       | 上传的文件 ID |
-| policy        | String       | 文件上传配置 |
-| authorization | String       | 文件上传凭证 |
-| file_link     | String       | 文件上传成功后的访问地址 |
-| upload_url    | String       | 上传文件的目标地址 |
+| id            | string       | 上传的文件 ID |
+| policy        | string       | 文件上传配置 |
+| authorization | string       | 文件上传凭证 |
+| file_link     | string       | 文件上传成功后的访问地址 |
+| upload_url    | string       | 上传文件的目标地址 |
 
 **返回示例**
 
@@ -100,9 +100,9 @@ Content-Type: `multipart/form-data`
 
 | 参数           | 类型   | 必填 | 说明 |
 | :------------ | :----- | :-- | :-- |
-| authorization | String | Y   | 授权凭证 |
-| file          | String | Y   | 上传的文件流 |
-| policy        | String | Y   | 授权凭证 |
+| authorization | string | Y   | 授权凭证 |
+| file          | string | Y   | 上传的文件流 |
+| policy        | string | Y   | 授权凭证 |
 
 **请求示例**
 
@@ -116,17 +116,19 @@ curl \
 
 **返回参数说明**
 
-| 参数              | 说明                     |
-| :--------------- | :----------------------- |
-| image-type               | 图片类型             |
-| image-height            |  图片高度        |
-| image-width            |  图片宽度        |
-| code            |  响应码     |
-| time            |  上传时间     |
-| file_size      |  图片大小           |
-| url      |  图片链接           |
-| message         |  附加信息       |
-| mimetype         |   mime 类型        |
+
+| 参数              | 类型      | 说明                       |
+| :--------------- | :-------  | :-----------------------  |
+| image-type        |  string   | 图片类型                   |
+| image-height      |  integer  | 图片高度                   |
+| image-width       |  integer  |  图片宽度                  |
+| code              |  integer  |  响应码                    |
+| time              |  array    |  上传时间                   |
+| file_size         |  array    |  图片大小                   |
+| url               |  integer  |  图片链接                   |
+| message           |  integer  |  附加信息                   |
+| mimetype          |  string   |  mime                     |
+
 
 **返回示例**
 

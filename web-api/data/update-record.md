@@ -10,8 +10,8 @@
 
 | 参数   | 类型   | 必填 | 说明     |
 | :----- | :----- | :--- | :------- |
-| $unset | Object | N    | 删除字段 |
-| $set   | Object | Y    | 更新字段 |
+| $unset | object | N    | 删除字段 |
+| $set   | object | Y    | 更新字段 |
 
 >	**info**
 > - 对同一字段进行多次 set 操作，后面的数据会覆盖掉前面的数据
@@ -33,15 +33,14 @@ curl -X PUT \
 
 **返回参数说明**
 
-| 参数              | 说明                     |
-| :--------------- | :----------------------- |
-| id               | id, 唯一标识    |
-| created_at       | 创建时间        |
-| updated_at       | 更新时间        |
-| created_by       | 创建者 id       |
-| read_perm        | 读权限          |
-| write_perm       | 写权限          |
-
+| 参数              | 类型      | 说明                       |
+| :--------------- | :-------  | :-----------------------  |
+| id               |  string   | id, 唯一标识               |
+| created_at       |  integer  | 创建时间                  |
+| updated_at       |  integer  |  更新时间                  |
+| created_by       |  integer  |  创建者 id                 |
+| read_perm        |  array    |  读权限                    |
+| write_perm       |  array    |  写权限                    |
 
 **返回示例**
 ```json
@@ -259,12 +258,12 @@ Query Parameters:
 
 | 参数           | 类型    | 必填 | 说明                                       |
 | :------------- | :------ | :--- | :----------------------------------------- |
-| where          | Object  | Y    | 筛选的条件                                 |
-| limit          | Integer | N    | 最多更新数                                 |
-| offset         | Integer | N    | 从第几条开始更新                           |
-| enable_trigger | Integer | N    | 是否使用触发器，1 为使用触发器，0 为不使用 |
+| where          | object  | Y    | 筛选的条件                                 |
+| limit          | integer | N    | 最多更新数                                 |
+| offset         | integer | N    | 从第几条开始更新                           |
+| enable_trigger | integer | N    | 是否使用触发器，1 为使用触发器，0 为不使用 |
 
-- `where` 的构造可参考[字段过滤和扩展](./query-keys-expand.md)
+- `where` 可参考[查询数据](./query-record.md)中的使用方式
 - `limit`、`offset` 的构造可参考[分页和排序](./limit-and-order.md)
 
 **请求示例**

@@ -42,9 +42,9 @@ curl -X GET \
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
-| order_by | String | N   | 排序（支持 `created_at` 进行排序）|
-| limit    | Number | N   | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
-| offset   | Number | N   | 设置返回资源的起始偏移值，默认为 0 |
+| order_by | string | N   | 排序（支持 `created_at` 进行排序）|
+| limit    | integer | N   | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
+| offset   | integer | N   | 设置返回资源的起始偏移值，默认为 0 |
 
 **请求示例**
 ```shell
@@ -57,16 +57,16 @@ curl -X GET \
 
 **返回参数说明**
 
-| 参数              | 说明                     |
-| :--------------- | :----------------------- |
-| id               | id, 唯一标识    |
-| name            | 文件名        |
-| created_at       | 创建时间        |
-| offset           | 偏移量          |
-| limit            | 每次请求返回的最大记录数目|
-| previous         | 上一页地址       |
-| next             | 下一页地址       |
-| total_count      | 记录总数目       |
+| 参数              | 类型      | 说明                       |
+| :--------------- | :-------  | :-----------------------  |
+| id               |  string   | id, 唯一标识               |
+| name             |  string  |  文件名                  |
+| created_at       |  integer  | 创建时间                  |
+| offset           |  integer  |  偏移量                    |
+| limit            |  integer  |  每次请求返回的最大记录数目    |
+| previous         |  string   |  上一页地址                 |
+| next             |  string   |  下一页地址                 |
+| total_count      |  integer  |  记录总数目                 |
 
 **返回示例**
 

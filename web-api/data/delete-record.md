@@ -44,12 +44,12 @@ Query Parameters:
 
 | 参数           | 类型    | 必填 | 说明                                       |
 | :------------- | :------ | :--- | :----------------------------------------- |
-| where          | Object  | Y    | 筛选的条件                                 |
-| limit          | Integer | N    | 最多删除数                                 |
-| offset         | Integer | N    | 从第几条开始删除                           |
-| enable_trigger | Integer | N    | 是否使用触发器，1 为使用触发器，0 为不使用 |
+| where          | object  | Y    | 筛选的条件                                 |
+| limit          | integer | N    | 最多删除数                                 |
+| offset         | integer | N    | 从第几条开始删除                           |
+| enable_trigger | integer | N    | 是否使用触发器，1 为使用触发器，0 为不使用 |
 
-- `where` 的构造可参考[字段过滤和扩展](./query-keys-expand.md)
+- `where` 可参考[查询数据](./query-record.md)中的使用方式
 - `limit`、`offset` 的构造可参考[分页和排序](./limit-and-order.md)
 
 **请求示例**
@@ -68,13 +68,13 @@ curl -X DELETE \
 
 **返回参数说明**
 
-| 参数        | 说明                                                           |
-| :---------- | :------------------------------------------------------------- |
-| succeed     | 成功删除记录数                                                 |
-| total_count | where 匹配的记录数，包括无权限操作记录                         |
-| offset      | 与传入参数 offset 一致                                         |
-| limit       | 与传入参数 limit 一致                                          |
-| next        | 下一次的删除链接，若待删除记录数超过上限，可通过该链接继续删除 |
+| 参数              | 类型      | 说明                       |
+| :--------------- | :-------  | :-----------------------  |
+| succeed          |  integer  | 成功删除记录数               |
+| offset           |  integer  |  与传入参数 offset 一致     |
+| limit            |  integer  |  与传入参数 limit 一致       |
+| next             |  string   |  下一次的删除链接，若待删除记录数超过上限，可通过该链接继续删除 |
+| total_count      |  integer  |  where 匹配的记录数，包括无权限操作记录  |
 
 **返回示例**
 

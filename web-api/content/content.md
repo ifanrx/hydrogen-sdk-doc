@@ -13,7 +13,7 @@
   * `category_id`      分类 ID
   * `content_group_id` 内容库 ID
 
-`where` 的构造可参考[字段过滤和扩展](./query-keys-expand.md)
+`where` 可参考[查询数据](./query-record.md)中的使用方式
 
 **请求示例**
 
@@ -27,21 +27,22 @@ https://{{服务器域名}}/hserve/v2.0/content/detail/?content_group_id=1548659
 
 **返回参数说明**
 
-| 参数              | 说明                     |
-| :--------------- | :----------------------- |
-| id               | id             |
-| title            |  内容标题        |
-| cover            |  封面图片地址     |
-| description      |  简介           |
-| group_id         |  分组 id        |
-| created_at       | 创建时间        |
-| updated_at       | 更新时间        |
-| created_by       | 创建者 id       |
-| offset           | 偏移量          |
-| limit            | 每次请求返回的最大记录数目|
-| previous         | 上一页地址       |
-| next             | 下一页地址       |
-| total_count      | 记录总数目       |
+|      参数    |    类型       | 说明    |
+| :---------- | :----------   | :----  |
+| id          | integer       | 内容 ID |
+| title       | string        | 内容标题 |
+| cover       | file          | 封面图 |
+| description | string        | 内容摘要 |
+| categories  | array         | 所需分类的 ID |
+| group_id    | integer       | 内容库 ID |
+| created_at  | integer       | 内容创建时间 |
+| updated_at  | integer       | 内容更新时间 |
+| created_by       |  integer  |  创建者 id                 |
+| offset           |  integer  |  偏移量                    |
+| limit            |  integer  |  每次请求返回的最大记录数目    |
+| previous         |  string   |  上一页地址                 |
+| next             |  string   |  下一页地址                 |
+| total_count      |  integer  |  记录总数目                 |
 
 **返回示例**
 
@@ -117,15 +118,15 @@ https://{{服务器域名}}/hserve/v2.0/content/detail/1/
 
 |      参数    |    类型       | 说明    |
 | :---------- | :----------   | :----  |
-| id          | Integer       | 内容 ID |
-| title       | String        | 内容标题 |
-| content     | String        | 详细容 |
-| cover       | File          | 封面图 |
-| description | String        | 内容摘要 |
-| group_id    | Integer       | 内容库 ID |
-| categories  | Integer Array | 内容所属分类的ID |
-| created_at  | Integer       | 内容创建时间 |
-| updated_at  | Integer       | 内容更新时间 |
+| id          | integer       | 内容 ID |
+| title       | string        | 内容标题 |
+| content     | string        | 详细容 |
+| cover       | file          | 封面图 |
+| description | string        | 内容摘要 |
+| group_id    | integer       | 内容库 ID |
+| categories  | integer array | 内容所属分类的ID |
+| created_at  | integer       | 内容创建时间 |
+| updated_at  | integer       | 内容更新时间 |
 
 **状态码说明**
 

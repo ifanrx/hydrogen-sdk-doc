@@ -51,9 +51,9 @@ curl -X GET \
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
-| order_by | String | Y   | 排序（支持 `created_at` 进行排序）|
-| limit    | Number | N   | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
-| offset   | Number | N   | 设置返回资源的起始偏移值，默认为 0 |
+| order_by | string | Y   | 排序（支持 `created_at` 进行排序）|
+| limit    | integer | N   | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
+| offset   | integer | N   | 设置返回资源的起始偏移值，默认为 0 |
 
 **请求示例**
 
@@ -152,31 +152,31 @@ curl -X DELETE \
 
 |  参数  |  类型   | 必填 | 说明 |
 | :----- | :-- -- | :-- | :-- |
-| source | String |  Y  | 视频文件的 id |
-| save_as | String |  Y  | 截图保存的文件名 |
-| point | String |  Y  | 截图时间格式，格式：HH:MM:SS |
-| category_id | String |  N  | 文件所属类别 ID |
-| random_file_link | Boolean |  N  | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true |
-| size | String |  N  | 截图尺寸，格式为 宽 x 高，默认是视频尺寸 |
-| format | String |  N  | 截图格式，可选值为 jpg，png, webp, 默认根据 save_as 的后缀生成 |
+| source | string |  Y  | 视频文件的 id |
+| save_as | string |  Y  | 截图保存的文件名 |
+| point | string |  Y  | 截图时间格式，格式：HH:MM:SS |
+| category_id | string |  N  | 文件所属类别 ID |
+| random_file_link | boolean |  N  | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true |
+| size | string |  N  | 截图尺寸，格式为 宽 x 高，默认是视频尺寸 |
+| format | string |  N  | 截图格式，可选值为 jpg，png, webp, 默认根据 save_as 的后缀生成 |
 
 **返回参数**
 
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
-| created_at   | Integer | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 路径 |
-| created_by   | Integer | 创建者 id |
-| mime_type   | String | mime_type 类型 |
-| media_type   | String | 媒体类型 |
-| size   | Integer | 文件大小 |
-| name   | String | 文件名 |
-| status   | String | 文件状态 |
-| reference   | Object | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
-| updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
-| categories   | String | 文件所属类别 |
-| id   | String | 本条记录 ID |
+| created_at   | integer | 创建时间 （格式为 unix 时间戳) |
+| path   | string | 路径 |
+| created_by   | integer | 创建者 id |
+| mime_type   | string | mime_type 类型 |
+| media_type   | string | 媒体类型 |
+| size   | integer | 文件大小 |
+| name   | string | 文件名 |
+| status   | string | 文件状态 |
+| reference   | object | 引用 |
+| cdn_path   | string | cdn 中保存的路径 |
+| updated_at   | integer | 更新时间 （格式为 unix 时间戳) |
+| categories   | string | 文件所属类别 |
+| id   | string | 本条记录 ID |
 
 **请求示例**
 
@@ -233,28 +233,28 @@ curl -X POST \
 
 |  参数  |  类型   | 必填 | 说明 |
 | :----- | :-- -- | :-- | :-- |
-| m3u8s | Array |  Y  | 视频文件的 id 列表，按请求的顺序进行拼接 |
-| save_as   | String |  Y  | 截图保存的文件名 |
-| category_id   | String |  N  | 文件所属类别 ID |
-| random_file_link   | Boolean |  N  | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true |
+| m3u8s | array |  Y  | 视频文件的 id 列表，按请求的顺序进行拼接 |
+| save_as   | string |  Y  | 截图保存的文件名 |
+| category_id   | string |  N  | 文件所属类别 ID |
+| random_file_link   | boolean |  N  | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true |
 
 **返回参数**
 
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
-| created_at   | Integer | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 路径 |
-| created_by   | Integer | 创建者 id |
-| mime_type   | String | mime_type 类型 |
-| media_type   | String | 媒体类型 |
-| size   | Integer | 文件大小 |
-| name   | String | 文件名 |
-| status   | String | 文件状态 |
-| reference   | Object | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
-| updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
-| categories   | String | 文件所属类别 |
-| id   | String | 本条记录 ID |
+| created_at   | integer | 创建时间 （格式为 unix 时间戳) |
+| path   | string | 路径 |
+| created_by   | integer | 创建者 id |
+| mime_type   | string | mime_type 类型 |
+| media_type   | string | 媒体类型 |
+| size   | integer | 文件大小 |
+| name   | string | 文件名 |
+| status   | string | 文件状态 |
+| reference   | object | 引用 |
+| cdn_path   | string | cdn 中保存的路径 |
+| updated_at   | integer | 更新时间 （格式为 unix 时间戳) |
+| categories   | string | 文件所属类别 |
+| id   | string | 本条记录 ID |
 
 **请求示例**
 
@@ -311,31 +311,31 @@ curl -X POST \
 
 |  参数  |  类型   | 必填 | 说明 |
 | :----- | :-- -- | :-- | :-- |
-| m3u8 | String |  Y  | 视频文件的 id |
-| save_as   | String |  Y  | 截图保存的文件名 |
-| category_id   | String |  N  | 文件所属类别 ID |
-| random_file_link   | Boolean |  N  | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true |
-| include   | Array |  N  | 包含某段内容的开始结束时间，单位是秒。当 index 为 false 时，为开始结束分片序号 |
-| exclude   | Array |  N  | 不包含某段内容的开始结束时间，单位是秒。当 index 为 false 时，为开始结束分片序号 |
-| index   | Boolean |  N  | include 或者 exclude 中的值是否为 ts 分片序号，默认为 false |
+| m3u8 | string |  Y  | 视频文件的 id |
+| save_as   | string |  Y  | 截图保存的文件名 |
+| category_id   | string |  N  | 文件所属类别 ID |
+| random_file_link   | boolean |  N  | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true |
+| include   | array |  N  | 包含某段内容的开始结束时间，单位是秒。当 index 为 false 时，为开始结束分片序号 |
+| exclude   | array |  N  | 不包含某段内容的开始结束时间，单位是秒。当 index 为 false 时，为开始结束分片序号 |
+| index   | boolean |  N  | include 或者 exclude 中的值是否为 ts 分片序号，默认为 false |
 
 **返回参数**
 
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
-| created_at   | Integer | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 文件访问完整 URL |
-| created_by   | Integer | 创建者 id |
-| mime_type   | String | mime_type 类型 |
-| media_type   | String | 媒体类型 |
-| size   | Integer | 文件大小 |
-| name   | String | 文件名 |
-| status   | String | 文件状态 |
-| reference   | Object | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
-| updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
-| categories   | String | 文件所属类别 |
-| id   | String | 本条记录 ID |
+| created_at   | integer | 创建时间 （格式为 unix 时间戳) |
+| path   | string | 文件访问完整 URL |
+| created_by   | integer | 创建者 id |
+| mime_type   | string | mime_type 类型 |
+| media_type   | string | 媒体类型 |
+| size   | integer | 文件大小 |
+| name   | string | 文件名 |
+| status   | string | 文件状态 |
+| reference   | object | 引用 |
+| cdn_path   | string | cdn 中保存的路径 |
+| updated_at   | integer | 更新时间 （格式为 unix 时间戳) |
+| categories   | string | 文件所属类别 |
+| id   | string | 本条记录 ID |
 
 **请求示例**
 
@@ -392,7 +392,7 @@ curl -X POST \
 
 |  参数  |  类型   | 必填 | 说明 |
 | :----- | :-- -- | :-- | :-- |
-| m3u8 | String |  Y  | 视频文件的 id |
+| m3u8 | string |  Y  | 视频文件的 id |
 
 **返回参数**
 
@@ -400,16 +400,16 @@ res:
 
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
-| status_code   | Integer | 状态码 |
-| message   | String | 返回信息 |
-| meta   | Object | 详见以下 |
+| status_code   | integer | 状态码 |
+| message   | string | 返回信息 |
+| meta   | object | 详见以下 |
 
 meta 参数说明：
 
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
-| duartion   | Number | m3u8 时长 |
-| points   | Array | 时间点 |
+| duartion   | integer | m3u8 时长 |
+| points   | array | 时间点 |
 
 **请求示例**
 
@@ -471,40 +471,40 @@ curl -X POST \
 
 |  参数  |  类型   | 必填 | 说明 |
 | :----- | :-- -- | :-- | :-- |
-| source   | String |  Y  | 文件的 id |
+| source   | string |  Y  | 文件的 id |
 
 
 **返回参数**
 
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
-| format   | Object | 音视频格式信息，详见以下 |
-| streams   | Array | stream 列表，详见以下 |
+| format   | object | 音视频格式信息，详见以下 |
+| streams   | array | stream 列表，详见以下 |
 
 format 参数说明：
 
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
-| bitrate   | Integer | 比特率 |
-| duration   | Number | 时长 |
-| format   | String | 容器格式 |
-| fullname   | String | 容器格式全称 |
+| bitrate   | integer | 比特率 |
+| duration   | integer | 时长 |
+| format   | string | 容器格式 |
+| fullname   | string | 容器格式全称 |
 
 streams 参数说明：
 
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
-| index   | Integer | 表示第几路流 |
-| type   | String | 一般情况下, video 或 audio |
-| bitrate   | Integer | 流码率 |
-| codec   | String | 流编码 |
-| codec_desc   | String | 流编码说明 |
-| duration   | Number | 流时长 |
-| video_fps   | Number | (视频流)视频帧数 |
-| video_height   | Integer | (视频流)视频高度 |
-| video_width   | Integer | (视频流)视频宽度 |
-| audio_channels   | Integer | (音频流)音频通道数 |
-| audio_samplerate   | Integer | (音频流)音频采样率 |
+| index   | integer | 表示第几路流 |
+| type   | string | 一般情况下, video 或 audio |
+| bitrate   | integer | 流码率 |
+| codec   | string | 流编码 |
+| codec_desc   | string | 流编码说明 |
+| duration   | integer | 流时长 |
+| video_fps   | integer | (视频流)视频帧数 |
+| video_height   | integer | (视频流)视频高度 |
+| video_width   | integer | (视频流)视频宽度 |
+| audio_channels   | integer | (音频流)音频通道数 |
+| audio_samplerate   | integer | (音频流)音频采样率 |
 
 **请求示例**
 

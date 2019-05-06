@@ -8,13 +8,13 @@
 
 | 参数                           | 类型    | 说明 |
 | :------------------------------| :----- | :-- |
-| merchandise_record_id   | String | 商品记录 ID，可用于定位用户购买的物品 |
-| merchandise_schema_id   | Integer | 商品表 ID，可用于定位用户购买的物品 |
-| status                  | String | 订单支付状态,可选值有：pending（待支付）、success（支付成功） |
-| refund_status                  | String | 订单退款状态,可选值有：complete（退款成功）、partial（部分退款）、failed（退款失败）、' '(空字符串，订单没有发生退款操作时的默认状态) |
-| trade_no                | String | 真正的交易 ID, 业务方在微信后台对账时可看到此字段 |
-| transaction_no          | String | 知晓云平台所记录的流水号 |
-| gateway_type          | String | 支付方法，可选值有：weixin_tenpay（微信支付）、alipay（支付宝支付） |
+| merchandise_record_id   | string | 商品记录 ID，可用于定位用户购买的物品 |
+| merchandise_schema_id   | integer | 商品表 ID，可用于定位用户购买的物品 |
+| status                  | string | 订单支付状态,可选值有：pending（待支付）、success（支付成功） |
+| refund_status                  | string | 订单退款状态,可选值有：complete（退款成功）、partial（部分退款）、failed（退款失败）、' '(空字符串，订单没有发生退款操作时的默认状态) |
+| trade_no                | string | 真正的交易 ID, 业务方在微信后台对账时可看到此字段 |
+| transaction_no          | string | 知晓云平台所记录的流水号 |
+| gateway_type          | string | 支付方法，可选值有：weixin_tenpay（微信支付）、alipay（支付宝支付） |
 
 **请求示例**
 ```shell
@@ -32,14 +32,14 @@ curl -X GET \
 
 | 参数                    | 类型    | 说明 |
 | :---------------------- | :----- | :-- |
-| created_at              | Integer | 订单创建时间 |
-| merchandise_description | String | 微信支付-微信支付凭证-商品详情上的文字描述 |
-| paid_at                 | Integer | 付款时间, 未支付的话为 null |
-| status                  | String | 订单支付状态 |
-|  refund_status          | String | 退款状态 |
-| total_cost              | Integer | 发起交易请求时的支付金额 |
-| trade_no                | String | 真正的交易 ID, 业务方在微信后台对账时可看到此字段 |
-| transaction_no          | String | 知晓云平台所记录的流水号 |
+| created_at              | integer | 订单创建时间 |
+| merchandise_description | string | 微信支付-微信支付凭证-商品详情上的文字描述 |
+| paid_at                 | integer | 付款时间, 未支付的话为 null |
+| status                  | string | 订单支付状态 |
+|  refund_status          | string | 退款状态 |
+| total_cost              | integer | 发起交易请求时的支付金额 |
+| trade_no                | string | 真正的交易 ID, 业务方在微信后台对账时可看到此字段 |
+| transaction_no          | string | 知晓云平台所记录的流水号 |
 
 **返回实例**
 ```json
