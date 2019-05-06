@@ -165,7 +165,7 @@
         * [删除数据](web-api/data/delete-record.md)
         * [查询数据](web-api/data/query-record.md)
         * [分页与排序](web-api/data/limit-and-order.md)
-        * [字段约束与扩展](web-api/data/query-keys-expand.md)
+        * [字段过滤与扩展](web-api/data/query-keys-expand.md)
         * [数据相关错误常见错误](web-api/data/operate-error.md)
     * [内容库](web-api/content/README.md)
         * [内容库操作](web-api/content/content-group.md)
