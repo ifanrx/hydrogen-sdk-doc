@@ -429,7 +429,7 @@ Content-Type: `application/json`
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/5a6ee2ab4a7baa1fc083e3xx',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
+  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/5a6ee2ab4a7baa1fc083e3xx/',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
   method: 'PUT',
   headers: {
     Authorization: `Bearer ${token}`,
@@ -477,6 +477,83 @@ curl_close($ch);
 **状态码说明**
 
 `201` 写入成功，`400` 请求参数有错
+
+
+## 修改数据行 ACL 
+
+**接口**
+
+`PUT https://cloud.minapp.com/oserve/v1/table/:table_id/record/:record_id/`
+
+其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
+
+**参数说明**
+
+假设 product 表 (id=3906) 中有一行 id 为 5a6ee2ab4a7baa1fc083e3xx 的数据行，目前其 acl 为 所有人可读，所有人可写，现在需要将其修改为 `用户组【开发人员】和创建者可写` 、`创建者可读`。
+
+ 其中用户组 `开发人员` 的 group_id 为 `656`、创建者的 user_id (对应 _userprofile 表中的 `id` 列) 为 `37087886`。
+
+`write_perm` 和 `read_perm` 的可选值请参考 [数据表操作-创建数据表](./table.md) 小节
+
+**代码示例**
+
+{% tabs updateACLNode="Node", updateACLPHP="PHP" %}
+
+{% content "updateACLNode" %}
+
+```js
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v1/table/3906/record/5a6ee2ab4a7baa1fc083e3xx/',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
+  method: 'PUT',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
+    write_perm: [ "gid:656", "user:37087886"],
+    read_perm: [ "user:37087886" ]
+  }
+}
+
+request(opt, function(err, res, body) {
+  console.log(res.statusCode)
+})
+```
+{% content "updateACLPHP" %}
+ 
+```php
+<?php
+$table_id = 3906; // 数据表 ID
+$record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
+$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/record/{$record_id}/";
+$param['write_perm'] = [ "gid:656", "user:37087886"];
+$param['read_perm'] = [ "user:37087886" ];
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
+```
+
+{% endtabs %}
+ 
+**状态码说明**
+
+`200` 更新成功，`400` 请求参数有错
 
 
 ## 数据删除
