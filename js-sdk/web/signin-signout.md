@@ -69,7 +69,7 @@
 
 **返回结果**
 
-Promise<[UserRecord(currentUser)](/js-sdk/account.md)>
+Promise<[UserRecord](/js-sdk/account.md)>
 
 **请求示例**
 
@@ -101,7 +101,21 @@ BaaS.auth.loginWithThirdParty('oauth-wechat-web', '/auth.html')
 | options.windowFeatures  | String  | 否   | `''` | popup-window 模式下，授权窗口的特性 |
 | options.syncUserProfile | String  | 否   | `'setnx'` | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 overwrite、setnx、false |
 
-接口的参数与[第三方登录](#第三方登录)几乎相同，只少了 `option.createUser` 参数，因为只有已经登录了才能关联第三方账号。
+接口的参数与[第三方登录](#第三方登录)几乎相同，只少了 `option.createUser` 参数，因为只有已经登录用户才能关联第三方账号。
+
+**请求示例**
+
+```js
+BaaS.auth.getCurrentUser().then(user => {
+  return user.linkThirdParty('oauth-wechat-web', '/auth.html')
+})
+  .then(() => {
+    // 关联成功
+  })
+  .catch(err => {
+    // 关联失败
+  })
+```
 
 ## 获取授权结果（options.mode 为 redirect）
 
@@ -152,4 +166,30 @@ window.opener，`popup-iframe` 模式会传给 window.parent，`redirect` 模式
     </script>
   </body>
 </html>
+```
+
+## 移动端示例
+
+```js
+// 授权完成后，页面会重定向回来，接口能从 URL 中获取到授权结果。
+BaaS.auth.getRedirectResult()
+  .then(result => {
+    // 获取授权结果成功
+  })
+  .catch(err => {
+    // 未找到授权结果
+  })
+
+...
+
+// 在页面中调用登录接口后，页面会重定向到授权页。
+BaaS.auth.loginWithThirdParty('oauth-wechat-mp', '/auth.html', {
+  mode: 'redirect',
+})
+  .catch(err => {
+    // 接口调用失败
+  })
+
+...
+
 ```
