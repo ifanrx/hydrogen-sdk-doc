@@ -20,6 +20,7 @@
 | options.debug           | Boolean | 否   | false  | 是否 debug 模式 |
 | options.mode            | String  | 否   | `'popup-window'` | 授权窗口打开模式 |
 | options.authModalStyle  | Object  | 否   | `{}` | popup-iframe 模式下，授权模态框的样式 |
+| options.wechatIframeContentStyle  | Object  | 否   | `{}` | 微信 web 授权，在 popup-iframe 模式下，微信授权页面的样式 |
 | options.windowFeatures  | String  | 否   | `''` | popup-window 模式下，授权窗口的特性 |
 | options.createUser      | Boolean | 否   | `true` | 是否创建用户 |
 | options.syncUserProfile | String  | 否   | `'setnx'` | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 overwrite、setnx、false |
@@ -37,7 +38,7 @@
 
 其他参数：
 
-1. ** options.debug ** - 是否 debug 模式 。debug 模式下，假如授权失败，授权页面不会关闭，方法开发者调试接口。
+1. ** options.debug ** - 是否 debug 模式 。debug 模式下，假如授权失败，授权页面不会关闭，方便开发者调试接口。
 
   > **info**
   > 生产环境请关闭 debug 模式。
@@ -61,11 +62,23 @@
   }
   ```
 
-3. ** options.windowFeatures ** - mode 为 `popup-window` 时，弹窗样式，详见 [strWindowFeatures](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open)。如果传该参数，或值为 `''`，浏览器会新建一个 tab 来打开页面。
+3. ** options.wechatIframeContentStyle ** -  providor 为 'oauth-wechat-web'，mode 为 'popup-iframe' 时，微信授权页面的样式。数据结构为：
 
-4. ** options.createUser ** - 是否创建用户。
+  ```js
+  {
+    style: '',  // 提供"black"、"white"可选，默认为黑色文字描述。
+    href: ''  // 自定义样式链接，第三方可根据实际需求覆盖默认样式。详见文档底部FAQ
+  }
+  ```
 
-5. ** options.syncUserProfile ** - 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)。可选值为 `overwrite`、`setnx`、`false`。
+  字段 style，href 的作用与调用[微信 SDK ](https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316505&token=&lang=zh_CN)时传的参数一致。
+  参数 options.wechatIframeContentStyle 与参数 options.authModalStyle 配合，可以实现自定义 iframe 样式（仅微信 web 授权）。
+
+4. ** options.windowFeatures ** - mode 为 `popup-window` 时，弹窗样式，详见 [strWindowFeatures](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open)。如果传该参数，或值为 `''`，浏览器会新建一个 tab 来打开页面。
+
+5. ** options.createUser ** - 是否创建用户。
+
+6. ** options.syncUserProfile ** - 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)。可选值为 `overwrite`、`setnx`、`false`。
 
 **返回结果**
 
@@ -125,8 +138,32 @@ redirect 模式是直接在页面内跳转到授权，在授权完成后并不�
 而是会直接重定向会调用授权的页面，授权结果放在页面 URL 中。该接口就是获取 URL 中的授权结果的。请在页面加载时或页面 js 代码的最顶部调用该接口，
 来判断授权操作是否成功。
 
+**请求示例**
+
+```js
+BaaS.auth.getRedirectResult().then(user => {
+  return user.linkThirdParty('oauth-wechat-web', '/auth.html')
+})
+  .then(result => {
+    // 获取授权结果成功，可以在这里做登录后的操作
+  })
+  .catch(err => {
+    // 未获取到结果，可以忽略
+  })
+```
+
 ** 返回值 **
+
 Promise<Result>
+Promise<[UserRecord](/js-sdk/account.md)>
+
+Result 数据结构：
+
+| 字段   | 类型    | 说明         |
+| :----- | :------ | :----------- |
+| status | String  | 状态。 'success' / 'fail' |
+| action | String  | 操作。'login'(第三方登录) / 'associate'(关联第三方账号) |
+| user   | String  | 当前用户对象，仅 status 为 'success' 且 action 为 'login' 时返回 |
 
 ## 第三方授权
 
