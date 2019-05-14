@@ -103,6 +103,7 @@
         * [文件操作](android-sdk/file/file.md)
         * [文件分类操作](android-sdk/file/category.md)
     * [短信验证码](android-sdk/sms.md)
+    * [调用云函数](android-sdk/invoke-function.md)
     * [异常](android-sdk/error-code.md)
     * [安装 sdk](android-sdk/install.md)
     * [demo 的编译和安装](android-sdk/demo.md)
