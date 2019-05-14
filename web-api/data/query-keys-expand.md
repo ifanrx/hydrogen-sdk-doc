@@ -105,7 +105,10 @@ curl -X GET \
 
 **返回示例**
 
-注：pointer_value 为指向其他表的 pointer 类型字段
+pointer_value 为指向其他表的 pointer 类型字段
+
+> **info**
+> 未 expand 的情况下，created_by 的值是 int 类型，而其他 pointer 的值是 object
 
 使用 expand
 ```json
@@ -135,6 +138,9 @@ curl -X GET \
   "id": "5a2fa9b008443e59e0e67829",
   "name": "小米无线耳机",
   "price": 199,
-  "pointer_value": "5a2fa9xxxxxxxxxxxxxx"
+  "pointer_value": {
+    "id": "5a2fa9xxxxxxxxxxxxxx",
+    "_table": "table-name"
+  }
 }
 ```
