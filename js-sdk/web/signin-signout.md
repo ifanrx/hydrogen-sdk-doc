@@ -21,7 +21,7 @@
 | options.mode            | String  | 否   | `'popup-window'` | 授权窗口打开模式 |
 | options.authModalStyle  | Object  | 否   | `{}` | popup-iframe 模式下，授权模态框的样式 |
 | options.wechatIframeContentStyle  | Object  | 否   | `{}` | 微信 web 授权，在 popup-iframe 模式下，微信授权页面的样式 |
-| options.windowFeatures  | String  | 否   | `''` | popup-window 模式下，授权窗口的特性 |
+| options.windowFeatures  | String  | 否   | `''` | popup-window 模式下，授权窗口的特性，详见 [strWindowFeatures](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open)。 |
 | options.createUser      | Boolean | 否   | `true` | 是否创建用户 |
 | options.syncUserProfile | String  | 否   | `'setnx'` | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 overwrite、setnx、false |
 
@@ -30,13 +30,13 @@
 1. ** provider ** - 第三方平台。目前支持三个平台 `oauth-wechat-mp`(微信公众号)、`oauth-wechat-web`(微信网页)、`oauth-weibo`(新浪微博)
 
 2. ** authPageUrl  ** - 授权页面 URL。进行授权时，SDK 会打开一个新窗口（或 iframe，具体请查看参数 options.mode ），在该页面中跳转到第三方授权页面进行授权，
-并将结果返回给 loginWithThirdParty 接口，所以该页面是整个授权过程的总控页面。页面不需要开发者自行开发，我们已经提供了[模版](#授权页模版)，只需要该一下配置项，
-并放带自己的服务器下即可。页面的内容请查看下方的授权页面模版。
+并将结果返回给授权调用方（loginWithThirdParty 或 linkThirdParty 接口），所以该页面是整个授权过程的总控页面。页面不需要开发者自行开发，我们已经提供了[模版](#授权页模版)，只需要改一下配置项，
+并放到自己的服务器下即可。页面的内容请查看下方的授权页面模版。
 
   > **info**
   > 授权页必须与主页面同源。
 
-其他参数：
+可选参数：
 
 1. ** options.debug ** - 是否 debug 模式 。debug 模式下，假如授权失败，授权页面不会关闭，方便开发者调试接口。
 
@@ -67,14 +67,14 @@
   ```js
   {
     style: '',  // 提供"black"、"white"可选，默认为黑色文字描述。
-    href: ''  // 自定义样式链接，第三方可根据实际需求覆盖默认样式。详见文档底部FAQ
+    href: ''  // 自定义样式链接，第三方可根据实际需求覆盖默认样式。
   }
   ```
 
-  字段 style，href 的作用与调用[微信 SDK ](https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316505&token=&lang=zh_CN)时传的参数一致。
-  参数 options.wechatIframeContentStyle 与参数 options.authModalStyle 配合，可以实现自定义 iframe 样式（仅微信 web 授权）。
+  字段 style，href 的作用与调用[微信官方 SDK ](https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316505&token=&lang=zh_CN)时传的参数一致。
+  参数 options.wechatIframeContentStyle 与参数 options.authModalStyle 配合，可以实现自定义整个授权弹窗样式（仅微信 web 授权）。
 
-4. ** options.windowFeatures ** - mode 为 `popup-window` 时，弹窗样式，详见 [strWindowFeatures](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open)。如果传该参数，或值为 `''`，浏览器会新建一个 tab 来打开页面。
+4. ** options.windowFeatures ** - mode 为 `popup-window` 时的弹窗样式，详见 [strWindowFeatures](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open)。如果没传该参数，或值为 `''`，浏览器会新建一个 tab 来打开页面。
 
 5. ** options.createUser ** - 是否创建用户。
 
@@ -96,6 +96,8 @@ BaaS.auth.loginWithThirdParty('oauth-wechat-web', '/auth.html')
   })
 ```
 
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
 ## 关联第三方账号
 
 > **info**
@@ -109,8 +111,10 @@ BaaS.auth.loginWithThirdParty('oauth-wechat-web', '/auth.html')
 | :---------------------- | :------ | :--- | :----- | :----------- |
 | provider                | String  | 是   | -      | 第三方平台 |
 | authPageUrl             | String  | 是   | -      | 授权页面 URL |
+| options.debug           | Boolean | 否   | false  | 是否 debug 模式 |
 | options.mode            | String  | 否   | `'popup-window'` | 授权窗口打开模式 |
 | options.authModalStyle  | Object  | 否   | `{}` | popup-iframe 模式下，授权模态框的样式 |
+| options.wechatIframeContentStyle  | Object  | 否   | `{}` | 微信 web 授权，在 popup-iframe 模式下，微信授权页面的样式 |
 | options.windowFeatures  | String  | 否   | `''` | popup-window 模式下，授权窗口的特性 |
 | options.syncUserProfile | String  | 否   | `'setnx'` | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 overwrite、setnx、false |
 
@@ -130,12 +134,14 @@ BaaS.auth.getCurrentUser().then(user => {
   })
 ```
 
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
 ## 获取授权结果（options.mode 为 redirect）
 
 `BaaS.auth.getRedirectResult()`
 
 redirect 模式是直接在页面内跳转到授权，在授权完成后并不能直接在调用用授权的地方直接往下执行（`popup-window`、`popup-iframe` 这两种模式可以），
-而是会直接重定向会调用授权的页面，授权结果放在页面 URL 中。该接口就是获取 URL 中的授权结果的。请在页面加载时或页面 js 代码的最顶部调用该接口，
+而是会直接重定向回调用授权的页面，授权结果放在页面 URL 中。该接口就是获取 URL 中的授权结果的。请在页面加载时或页面 js 代码的最顶部调用该接口
 来判断授权操作是否成功。
 
 **请求示例**
