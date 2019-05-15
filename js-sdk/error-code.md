@@ -81,12 +81,12 @@ try {
 
 `608`  payment failed  支付失败
 
-`609`  wxExtend function should be executed to allow plugin use wx.login, wx.getUserInfo, wx.requestPayment  必须调用 wx.BaaS.wxExtend 方法
+`609`  wxExtend function should be executed to allow plugin use wx.login, wx.getUserInfo, wx.requestPayment  使用小程序插件版本的 sdk，需先调用 wx.BaaS.wxExtend 方法完成初始化配置
 
 `610`  errorTracker uninitialized  errorTracker 未初始化
 
 `611`  unsupported function  不支持该方法
 
-`612`  anonymous user is not allowed  临时用户不支持调用该方法
+`612`  anonymous user is not allowed  临时匿名用户不支持调用该方法
 
 `613`  third party authorization failed  第三方授权失败

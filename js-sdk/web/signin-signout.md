@@ -17,7 +17,7 @@
 | :---------------------- | :------ | :--- | :----- | :----------- |
 | provider                | String  | 是   | -      | 第三方平台 |
 | authPageUrl             | String  | 是   | -      | 授权页面 URL |
-| options.debug           | Boolean | 否   | false  | 是否 debug 模式 |
+| options.debug           | Boolean | 否   | false  | 是否开启 debug 模式 |
 | options.mode            | String  | 否   | `'popup-window'` | 授权窗口打开模式 |
 | options.authModalStyle  | Object  | 否   | `{}` | popup-iframe 模式下，授权模态框的样式 |
 | options.wechatIframeContentStyle  | Object  | 否   | `{}` | 微信 web 授权，在 popup-iframe 模式下，微信授权页面的样式 |
@@ -38,15 +38,15 @@
 
 可选参数：
 
-1. ** options.debug ** - 是否 debug 模式 。debug 模式下，假如授权失败，授权页面不会关闭，方便开发者调试接口。
+1. ** options.debug ** - 是否开启 debug 模式 。debug 模式为开启状态下，假如授权失败，授权页面不会关闭，方便开发者调试接口。
 
   > **info**
   > 生产环境请关闭 debug 模式。
 
-1. ** options.mode ** - 授权窗口打开模式 。支持三种模式，分别为`popup-window`（新窗口打开授权页面）、`popup-iframe`（在 iframe 中打开授权页面）、`redirect`（在当前页面中跳转到授权页面）。
+2. ** options.mode ** - 授权窗口打开模式 。支持三种模式，分别为`popup-window`（新窗口打开授权页面）、`popup-iframe`（在 iframe 中打开授权页面）、`redirect`（在当前页面中跳转到授权页面）。
 移动端推荐使用`redirect`模式（**微信内置浏览器中，只能使用这种模式**）。
 
-2. ** options.authModalStyle ** - mode 为 `popup-iframe` 时，授权模态框的样式。数据结构为：
+3. ** options.authModalStyle ** - mode 为 `popup-iframe` 时，授权模态框的样式。数据结构为：
 
   ```js
   {
@@ -62,7 +62,7 @@
   }
   ```
 
-3. ** options.wechatIframeContentStyle ** -  providor 为 'oauth-wechat-web'，mode 为 'popup-iframe' 时，微信授权页面的样式。数据结构为：
+4. ** options.wechatIframeContentStyle ** -  providor 为 'oauth-wechat-web'，mode 为 'popup-iframe' 时，微信授权页面的样式。数据结构为：
 
   ```js
   {
@@ -74,11 +74,12 @@
   字段 style，href 的作用与调用[微信官方 SDK ](https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316505&token=&lang=zh_CN)时传的参数一致。
   参数 options.wechatIframeContentStyle 与参数 options.authModalStyle 配合，可以实现自定义整个授权弹窗样式（仅微信 web 授权）。
 
-4. ** options.windowFeatures ** - mode 为 `popup-window` 时的弹窗样式，详见 [strWindowFeatures](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open)。如果没传该参数，或值为 `''`，浏览器会新建一个 tab 来打开页面。
+5. ** options.windowFeatures ** - mode 为 `popup-window` 时的弹窗样式，详见 [strWindowFeatures](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open)。
+如果没传该参数，或值为 `''`，浏览器会新建一个 tab 来打开页面。
 
-5. ** options.createUser ** - 是否创建用户。
+6. ** options.createUser ** - 是否创建用户。
 
-6. ** options.syncUserProfile ** - 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)。可选值为 `overwrite`、`setnx`、`false`。
+7. ** options.syncUserProfile ** - 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)。可选值为 `overwrite`、`setnx`、`false`。
 
 **返回结果**
 
@@ -111,7 +112,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | :---------------------- | :------ | :--- | :----- | :----------- |
 | provider                | String  | 是   | -      | 第三方平台 |
 | authPageUrl             | String  | 是   | -      | 授权页面 URL |
-| options.debug           | Boolean | 否   | false  | 是否 debug 模式 |
+| options.debug           | Boolean | 否   | false  | 是否开启 debug 模式 |
 | options.mode            | String  | 否   | `'popup-window'` | 授权窗口打开模式 |
 | options.authModalStyle  | Object  | 否   | `{}` | popup-iframe 模式下，授权模态框的样式 |
 | options.wechatIframeContentStyle  | Object  | 否   | `{}` | 微信 web 授权，在 popup-iframe 模式下，微信授权页面的样式 |
@@ -154,14 +155,13 @@ BaaS.auth.getRedirectResult().then(user => {
     // 获取授权结果成功，可以在这里做登录后的操作
   })
   .catch(err => {
-    // 未获取到结果，可以忽略
+    // 未获取到结果
   })
 ```
 
 ** 返回值 **
 
-Promise<Result>
-Promise<[UserRecord](/js-sdk/account.md)>
+`Promise<Result>`
 
 Result 数据结构：
 
@@ -187,7 +187,7 @@ window.opener，`popup-iframe` 模式会传给 window.parent，`redirect` 模式
 使用以下代码创建一个 html 文件，将该文件放置到服务器中（必须与调用授权的页面同源），
 并保证通过 url 能访问到该文件。
 
-代码中的 `<sdk-url>` 需要替换成知晓云 sdk 在服务器中的 url，`<cilent-id>` 需要
+代码中的 `<sdk-url>` 需要替换成知晓云 SDK 在服务器中的 URL，`<cilent-id>` 需要
 替换为应用的 clientId。
 
 单页应用的开发者，也可以不使用该模版，只要保证 authPageUrl 能访问到的对应的页面，
@@ -236,3 +236,16 @@ BaaS.auth.loginWithThirdParty('oauth-wechat-mp', '/auth.html', {
 ...
 
 ```
+
+## 时序图
+
+> **info**
+> 以 loginWithThirdParty 为例
+
+1. mode 为 'popup-window' 或 'popup-window' 时，接口的调用过程：
+
+  ![弹窗模式时序图](/images/third-party-auth/popup.jpg)
+
+2. mode 为 'redirect' 时，接口的调用过程：
+
+  ![重定向模式时序图](/images/third-party-auth/redirect.jpg)
