@@ -89,4 +89,6 @@ try {
 
 `612`  anonymous user is not allowed  临时匿名用户不支持调用该方法
 
-`613`  third party authorization failed  第三方授权失败
+`613`  third party auth denied  用户拒绝第三方授权
+
+`614`  third party auth failed  第三方授权失败
