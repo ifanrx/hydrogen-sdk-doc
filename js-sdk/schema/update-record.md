@@ -28,7 +28,7 @@ tableName 和 tableID 二选一，不能同时存在
 2.通过数据行 id（以下用 `recordID` 参数名表示） 设置指定数据行
 
 {% ifanrxCodeTabs %}
-`let MyRecord = MyTableObject.getWithoutData(recordID)`
+`let product = MyTableObject.getWithoutData(recordID)`
 {% endifanrxCodeTabs %}
 
 **参数说明**
@@ -53,7 +53,7 @@ a. set 操作
 | value | any               | 是  | 与 key 字段的类型保持一致 |
 | obj   | Object            | 是  | 一次性赋值的键值对对象, 如 `{a: 10, b: 20}` |
 
-b. unset 操作 
+b. unset 操作
 
 将某个字段的值清空
 
@@ -71,7 +71,7 @@ set 和 unset 方法都支持两种类型的赋值操作：
 a. 一次性赋值：
 
 ```js
-MyRecord.set({
+product.set({
   key1: value1,
   key2: value2
 })
@@ -80,8 +80,8 @@ MyRecord.set({
 b. 逐个赋值：
 
 ```js
-MyRecord.set(key1, value1)
-MyRecord.set(key2, value2)
+product.set(key1, value1)
+product.set(key2, value2)
 ```
 
 > **info**
@@ -91,7 +91,7 @@ MyRecord.set(key2, value2)
 
 4.将修改后的记录保存到服务器
 
-`MyRecord.update()`
+`product.update()`
 
 通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。
 
@@ -190,7 +190,7 @@ record.patchObject('obj1', patch)
 ```
 
 
-## 更新 pointer 类型字段 
+## 更新 pointer 类型字段
 
 假设有 product 表, product 表部分字段如下:
 
@@ -428,7 +428,7 @@ then 回调中的 res 对象结构如下：
            "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
          }
        }
-     ] 
+     ]
   }
 }
 ```
@@ -442,9 +442,6 @@ catch 回调中的 err 对象:
 200 更新成功，400 请求数据非法
 
 ### 批量更新时不触发触发器
-
-> **info**
-> SDK 版本需 >= 1.9.1
 
 {% ifanrxCodeTabs %}
 ```js
