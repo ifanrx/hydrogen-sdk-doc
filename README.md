@@ -210,7 +210,7 @@
           <a href="/open-api/group/README.md/">分组模块</a>
         </li>
         <li>
-          <a href="/open-api/user/">用户模块</a>
+          <a href="/open-api/user/README.md">用户模块</a>
         </li>
         <li>
           <a href="/open-api/cloud-function.md/">云函数</a>
