@@ -6,7 +6,7 @@
 
 ~~`GET https://cloud.minapp.com/oserve/v1/miniapp/user-profile/`~~(后续将废弃该接口，推荐使用以下接口)
 
-`GET https://cloud.minapp.com/oserve/v2.0/miniapp/user_profile/`
+`GET https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/`
 
 **参数说明**
 
@@ -27,7 +27,7 @@
 | user_id    | String | N   | 用户 ID (对应 _userprofile 表中的 id 字段) |
 
 > **info**
-> 以下参数支持在 v2.0 版本接口中使用
+> 以下参数支持在 v2.1 版本接口中使用
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
@@ -52,7 +52,7 @@ curl -X GET \
 -H "Content-Type: application/json" \
 -G \
 --data-urlencode 'where={"test": {"$eq": "test"}}' \
-https://cloud.minapp.com/oserve/v2.0/miniapp/user_profile/
+https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/
 ```
 
 {% content "second" %}
@@ -61,7 +61,7 @@ https://cloud.minapp.com/oserve/v2.0/miniapp/user_profile/
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v2.0/miniapp/user_profile/',
+  uri: 'https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/',
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ request(opt, function(err, res, body) {
 
 ```php
 <?php
-$url = "https://cloud.minapp.com/oserve/v2.0/miniapp/user_profile/?";
+$url = "https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/?";
 $condition = array(
   'where' => json_encode(['test' => ['$eq' => 'test']]),
 );
@@ -155,13 +155,22 @@ curl_close($ch);
 }
 ```
 
+**状态码说明**
+
+`200`: 成功。
+
+`400`: where 中的操作符或值错误；排序字段不支持。
+
+`401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
+
+
 ## 获取用户详情
 
 **接口**
 
 ~~`GET https://cloud.minapp.com/oserve/v1/miniapp/user-profile/?user_id={{ user_id }}`~~(后续将废弃该接口，推荐使用以下接口)
 
-`GET https://cloud.minapp.com/oserve/v2.0/miniapp/user_profile/:id/`
+`GET https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/:id/`
 
 其中 `:id` 是用户在 `_userprofile` 表中的 `id`。
 
@@ -175,14 +184,14 @@ curl_close($ch);
 curl -X GET \
 -H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v2.0/miniapp/user_profile/55019/
+https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/55019/
 ```
 
 {% content "node" %}
 
 ```js
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v2.0/miniapp/user_profile/55019/',   // 55019 对应 :id
+  uri: 'https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/55019/',   // 55019 对应 :id
   method: 'GET',
   headers: {
     'Authorization': `Bearer ${token}`,
@@ -199,7 +208,7 @@ request(opt, function(err, res, body) {
 ```php
 <?php
 $user_id = '55019'; // 用户 ID
-$url = "https://cloud.minapp.com/oserve/v2.0/miniapp/user_profile/{$user_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/{$user_id}/";
 
 $ch = curl_init();
 $header = array(
@@ -241,15 +250,27 @@ curl_close($ch);
 }
 ```
 
+**状态码说明**
+
+`200`: 成功。
+
+`401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
+
+`404`: 用户不存在。
+
+
 ### 更新单个用户信息
 
 **接口**
 
 ~~`PUT https://cloud.minapp.com/oserve/v1/user/info/:id/`~~(后续将废弃该接口，推荐使用以下接口)
 
-`PUT https://cloud.minapp.com/oserve/v2.0/miniapp/user_profile/:id/`
+`PUT https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/:id/`
 
 其中 `:id` 是用户在 `_userprofile` 表中的 `id`。
+
+> **info**
+> v2.1 版本接口允许修改部分内置字段，可修改的字段如下：`nickname, gender, country, province, city, language, avatar`。
 
 **代码示例**
 
@@ -259,7 +280,7 @@ curl_close($ch);
 
 ```shell
 curl -X PUT \
-  https://cloud.minapp.com/oserve/v2.0/miniapp/user_profile/70695404/ \
+  https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/70695404/ \
   -H "Authorization: Bearer 35919068aa799eccdef19160e1da4bf21381d2a2" \
   -H "Content-Type: application/json" \
   -d '{"test": "test"}'
@@ -272,7 +293,7 @@ var request = require("request");
 
 var options = {
   method: 'PUT',
-  url: 'https://cloud.minapp.com/oserve/v2.0/miniapp/user_profile/70695404/',
+  url: 'https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/70695404/',
   headers:
   {
     'Content-Type': 'application/json',
@@ -293,7 +314,7 @@ var req = request(options, function (error, response, body) {
 ```php
 <?php
 $token = '35919068aa799eccdef19160e1da4bf21381d2a2';
-$url = "https://cloud.minapp.com/oserve/v2.0/miniapp/user_profile/70695404/";
+$url = "https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/70695404/";
 
 $ch = curl_init();
 $header = array(
@@ -349,7 +370,7 @@ if ($err) {
 
 `200`: 成功。
 
-`400`: 字段类型不匹配，更新非自定义字段或不存在的字段。
+`400`: 字段类型不匹配；更新不允许修改的内置字段或不存在的字段。
 
 `401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
 
@@ -359,7 +380,7 @@ if ($err) {
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v2.0/miniapp/user/account/:id/`
+`PUT https://cloud.minapp.com/oserve/v2.1/miniapp/user/account/:id/`
 
 其中 `:id` 是用户在 `_userprofile` 表中的 `id`。
 
@@ -381,7 +402,7 @@ Content-Type: `application/json`
 
 ```shell
 curl -X PUT \
-  https://cloud.minapp.com/oserve/v2.0/miniapp/user/account/70695404/ \
+  https://cloud.minapp.com/oserve/v2.1/miniapp/user/account/70695404/ \
   -H 'Authorization: Bearer 35919068aa799eccdef19160e1da4bf21381d2a2' \
   -H 'Content-Type: application/json' \
   -d '{"username": "pretty_girl"}'
@@ -394,7 +415,7 @@ var request = require("request");
 
 var options = {
   method: 'PUT',
-  url: 'https://cloud.minapp.com/oserve/v2.0/miniapp/user/account/70695404/',
+  url: 'https://cloud.minapp.com/oserve/v2.1/miniapp/user/account/70695404/',
   headers:
   {
     'Content-Type': 'application/json',
@@ -415,7 +436,7 @@ var req = request(options, function (error, response, body) {
 ```php
 <?php
 $token = '35919068aa799eccdef19160e1da4bf21381d2a2';
-$url = "https://cloud.minapp.com/oserve/v2.0/miniapp/user/account/70695404/";
+$url = "https://cloud.minapp.com/oserve/v2.1/miniapp/user/account/70695404/";
 
 $ch = curl_init();
 $header = [
