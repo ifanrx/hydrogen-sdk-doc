@@ -119,25 +119,46 @@ where.contains("name", "app")  // 查询name字段包含'app'的记录，能正�
 where.contains("name", "apple123")  // 查询name字段包含'apple123'的记录，不能正确匹配
 ```
 
-也支持正则匹配 ( <span style='color:red'>* sdk version >= v1.1.1，</span> [正则表达式相关知识](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions) )：
+也支持正则匹配 ([正则表达式相关知识](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions) )：
 
 ```java
-String regExp = "...";
-where.matches("name", regExp);
-
-// 正则表达式示例
+/* 以查找名字为例，name 字段必须为 string 类型 */
+Where where = new Where();
 
 // 查找 以 foo 开头的名字
-regExp = "^foo";
+where.matches("name", "^foo.*");
+
+/* 以查找手机号码为例，phoneNumber 字段必须为 string 类型 */
 
 // 查找 以 188 开头的手机号码
-regx = "^188";
+where.matches("phoneNumber", "^188\\d*");
 
 // 查找 以 708 结尾的手机号码
-regx = "708$";
+where.matches("phoneNumber", "\\d*708$");
 
 // 查找 以 188 开头的手机号码，以 708 结尾的手机号码
-regx = "^188\d+708$";
+where.matches("phoneNumber", "^188\\d*708$");
+```
+
+## 正则匹配示例
+
+```java
+/* 以查找名字为例，name 字段必须为 string 类型 */
+Where where = new Where();
+
+// 查找 以 foo 开头的名字
+where.matches("name", "^foo.*");
+
+/* 以查找手机号码为例，phoneNumber 字段必须为 string 类型 */
+
+// 查找 以 188 开头的手机号码
+where.matches("phoneNumber", "^188\\d*");
+
+// 查找 以 708 结尾的手机号码
+where.matches("phoneNumber", "\\d*708$");
+
+// 查找 以 188 开头的手机号码，以 708 结尾的手机号码
+where.matches("phoneNumber", "^188\\d*708$");
 ```
 
 
@@ -286,3 +307,40 @@ Where where = Where.and(where1, where2);
 // or
 Where where = Where.or(where1, where2);
 ```
+
+## 复杂组合查询
+
+```java
+Where where1 = new Where();
+where1.isNull("name");
+
+Where where2 = new Where();
+where2.greaterThan("price", 10);
+
+Where where3 = new Where();
+where3.greaterThan("amout", 3);
+
+// where1 和 where2 是 and，然后与 where3 进行 or
+Where finial = Where.or(Where.and(where1, where2), where3);
+Query query = new Query();
+query.put(finial);
+```
+
+## 获取符合筛选条件的数据总数
+
+```java
+Table table = new Table("Products");
+Query query = new Query();
+
+table.countInBackground(query, new BaseCallback<Integer>() {
+    @Override
+    public void onSuccess(Integer integer) {
+        // success
+    }
+    @Override
+    public void onFailure(Throwable e) {
+        // fail
+    }
+});
+```
+
