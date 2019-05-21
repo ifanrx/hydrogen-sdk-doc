@@ -216,3 +216,115 @@ record.put('amount', 10)
 record.put('date', 'abc')
 record.save()
 ```
+
+## 按条件批量更新数据项
+
+> 注意：由于条件查询可能命中非常多的数据，默认情况下，限制为最多更新前 1000 条数据。
+> 如需要一次性更新更多数据，请参考下一个章节：不触发触发器的更新，或者通过维护分页来进行。
+
+其中：
+ - `Query` 对象的使用请查看 [查询数据项](./query.md) 章节
+
+ - `limit` 和 `offset` 的使用请查看 [分页和排序](./limit-and-order.md) 章节
+
+**请求示例**
+
+```java
+Table table = new Table("my_horses");
+
+// 设置查询条件（比较、字符串包含、组合等）
+//...
+Query query = new Query();
+
+// 与更新特定记录一致
+Record updateOption = table.createRecord();
+updateOption.put("name", "peter");
+updateOption.put("age", 25);
+
+table.batchUpdateInBackground(query, updateOption, new BaseCallback<BatchResult>() {
+    @Override
+    public void onSuccess(BatchResult batchResult) {
+        // success
+    }
+    @Override
+    public void onFailure(Throwable e) {
+        // fail
+    }
+});
+```
+
+**返回示例**
+
+then 回调中的 res 对象结构如下：
+
+```json
+{
+  "statusCode": 200, // 200 表示更新成功, 注意这不代表所有数据都更新成功，具体要看 operation_result 字段
+  "data": {
+    "succeed": 8, // 成功更新记录数
+    "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
+    "offset": 0,
+    "limit": 1000,
+    "next": null, // 下一次更新 url，若为 null 则表示全部更新完毕
+    "operation_result": [  // 创建的详细结果
+       {
+         "success": {      // 成功时会有 success 字段
+           "id": "5bffbab54b30640ba8135650",
+           "updated_at": 1543486133
+         }
+       },
+       {
+         "success": {
+           "id": "5bffbab54b30640ba8135651",
+           "updated_at": 1543486133
+         }
+       },
+       {
+         "error": {     // 失败时会有 error 字段
+           "code": 16837,
+           "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
+         }
+       }
+     ] 
+  }
+}
+```
+
+catch 回调中的 err 对象:
+
+请参考[异常](/android-sdk/error-code.md)
+
+**状态码说明**
+
+200 更新成功，400 请求数据非法
+
+### 批量更新时不触发触发器
+
+```java
+Table table = new Table("my_horses");
+
+// 设置查询条件（比较、字符串包含、组合等）
+//...
+Query query = new Query();
+
+// 与更新特定记录一致
+Record updateOption = table.createRecord();
+updateOption.put("name", "peter");
+updateOption.put("age", 25);
+
+// 知晓云后台设置的触发器将不会被触发
+query.enableTrigger(false);
+
+table.batchUpdateInBackground(query, updateOption, new BaseCallback<BatchResult>() {
+    @Override
+    public void onSuccess(BatchResult batchResult) {
+        // success
+    }
+    @Override
+    public void onFailure(Throwable e) {
+        // fail
+    }
+});
+```
+
+
