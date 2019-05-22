@@ -217,6 +217,34 @@
         </li>
       </ul>
     </li>
+        <li>
+      <h3>
+        <a href="/web-api/README.md/">知晓云 Web API</a>
+      </h3>
+      <ul class="doc-hserve doc-detail-item">
+        <li>
+          <a href="/web-api/user.md/">用户相关</a>
+        </li>
+        <li>
+          <a href="/web-api/data/README.md/">数据表</a>
+        </li>
+        <li>
+          <a href="/web-api/content/README.md/">内容库</a>
+        </li>
+        <li>
+          <a href="/web-api/file/README.md/">文件</a>
+        </li>
+        <li>
+          <a href="/web-api/cloud-function.md/">云函数</a>
+        </li>
+        <li>
+          <a href="/web-api/payment.md/">支付</a>
+        </li>
+        <li>
+          <a href="/web-api/sms.md/">短信服务</a>
+        </li>
+      </ul>
+    </li>
     <li>
       <h3>
         <a href="/user-dash/README.md/">运营后台 API</a>
