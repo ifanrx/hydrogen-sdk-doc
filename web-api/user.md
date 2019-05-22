@@ -91,7 +91,7 @@ curl -X POST \
 |        参数       |      类型    |   说明    |
 | :--------------- | :----------- | :------- |
 | token             | string       | User authentication token |
-| expires_in | integer | 过期时间，为时间戳，单位：秒 |
+| expires_in | integer | token 的有效时间，最长为 30 天，单位：秒；token 过期时间 = 注册时间 + token 有效时间 |
 
 其余字段可参考[用户(user)](#user-object)
 
@@ -160,7 +160,7 @@ curl -X POST \
 |        参数       |      类型    |   说明    |
 | :--------------- | :----------- | :------- |
 | token             | string       | User authentication token |
-| expires_in | integer | 过期时间，为时间戳，单位：秒 |
+| expires_in | integer | token 的有效时间，最长为 30 天，单位：秒；token 过期时间 = 登录时间 + token 有效时间 |
 
 其余字段可参考[用户(user)](#user-object)
 
