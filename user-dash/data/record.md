@@ -376,6 +376,9 @@ curl_close($ch);
 
 支持 expand created_by 以及 pointer 类型字段。返回结果中的 created_by 以及扩展的 pointer 类型字段会被替换为这个字段对应的完整对象。
 
+> **info**
+> 字段扩展功能仅支持在 v1.8 及以上版本接口使用
+
 **接口**
 
 `GET https://cloud.minapp.com/userve/v1.8/table/:table_id/record/?expand=pointer,created_by`
