@@ -128,12 +128,12 @@ res 结构如下
 {
   "statusCode": 200,
   "data": {
-    "meta": {
-      "limit": 20,
-      "next": null,
-      "offset": 0,
-      "previous": null,
-      "total_count": 2
+    "meta": { // 数据列表的元信息
+    "limit": 20, // 最大返回数据条数，默认是 20，具体请参考 分页与排序 章节
+    "next": null, // 下一页的请求链接，null 表示没有下一页
+    "offset": 0, // 当前数据列表的分页信息，具体请参考 分页与排序 章节
+    "previous": null, // 上一页的请求链接，null 表示没有上一页
+    "total_count": 2 // 查询条件命中的总条数
     },
     "objects": [
       {
