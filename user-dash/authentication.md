@@ -46,3 +46,8 @@
 3. 在登录了知晓云管理后台（cloud.minapp.com/dashboard/）的浏览器，访问对应的开发页面地址。
 
 4. 即可开始开发和调试。
+
+> **info**
+> 项目中对静态资源的引用，请使用相对路径，如：`./style.css`
+>
+> 单页应用的路由请使用 hash 路由，如：`http://test.com/#index`

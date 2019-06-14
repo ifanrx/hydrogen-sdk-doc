@@ -29,7 +29,56 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 currentUser 代表了当前登录的用户，开发者可以通过浏览 currentUser 上的字段来获取当前用户的信息，通过调用 currentUser 上的方法来更新用户信息。
 该对象关联 `_userprofile` 表中 id 为当前用户 ID 的数据行。currentUser 字段包含了 `_userprofile`表的所有的*内置字段*，自定义字段可以通过 `currentUser.get(key)` 来获取。
 
-![控制台输出 currentUser 对象](../images/auth/current-user.png)
+```js
+// currentUser 数据结构
+{
+  avatar: "...",
+  city: "...",
+  country: "...",
+  created_at: 1557474865,
+  created_by: 45768973992321,
+  gender: 1,
+  get: function (key) {}
+  id: 45768973992321,
+  is_authorized: true,
+  language: "...",
+  nickname: "...",
+  openid: "...",
+  province: "...",
+  session_expires_at": 1561283491,
+  toJSON: function () {},
+  unionid: "...",
+  updated_at: 1558691521,
+  user_id: 45768973992321,
+  _anonymous: false,
+  _email_verified : false,
+  _provider: {
+    alipay: {
+      avatar: "...",
+      province: "...",
+      city: "...",
+      nick_name: "...",
+      is_student: true,
+      user_type: "...",
+      user_status: "...",
+      verified: true,
+      gender: "..."
+    },
+    wechat: {
+      avatar: "...",
+      city: "...",
+      country: "...",
+      gender: 1,
+      language: "...",
+      nickname: "...",
+      openid: "...",
+      province: "...",
+      unionid: "...",
+    }
+  }
+}
+
+```
 
 ### 获取用户自定义字段
 
@@ -44,7 +93,7 @@ currentUser 代表了当前登录的用户，开发者可以通过浏览 current
 **示例代码**
 
 假设开发者在 _userprofile 表中定义了 `custom_name` 列，并设置当前用户的 `custom_name` 为 `ifanrx`。则在 SDK 中查询当前用户自定义字段代码如下：
-  
+ 
 {% ifanrxCodeTabs %}
 ```javascript
 wx.BaaS.auth.getCurrentUser().then(user => {
