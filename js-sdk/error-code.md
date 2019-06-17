@@ -9,8 +9,8 @@ HError 实例上有两个重要的属性，对调试错误很有帮助：
 
 | 字段名    | 类型   | 说明     |
 |----------|--------|----------|
-| code     |  integer |  错误码 | 
-| message  | string | 错误描述 | 
+| code     |  integer |  错误码 |
+| message  | string | 错误描述 |
 
 
 **示例代码**
@@ -55,11 +55,11 @@ try {
 
 `400`  Bad Request 参数错误
 
-`401`  Unauthorized 未授权  
+`401`  Unauthorized 未授权
 
 `402`  Payment Required 应用欠费
 
-`403`  Forbidden 禁止访问  
+`403`  Forbidden 禁止访问
 
 `404`  Not Found 服务器找不到给定的资源
 
@@ -80,3 +80,15 @@ try {
 `607`  payment cancelled  用户取消支付
 
 `608`  payment failed  支付失败
+
+`609`  wxExtend function should be executed to allow plugin use wx.login, wx.getUserInfo, wx.requestPayment  使用小程序插件版本的 sdk，需先调用 wx.BaaS.wxExtend 方法完成初始化配置
+
+`610`  errorTracker uninitialized  errorTracker 未初始化
+
+`611`  unsupported function  不支持该方法
+
+`612`  anonymous user is not allowed  临时匿名用户不支持调用该方法
+
+`613`  third party auth denied  用户拒绝第三方授权
+
+`614`  third party auth failed  第三方授权失败
