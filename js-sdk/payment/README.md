@@ -42,4 +42,5 @@ wx.BaaS.order(params).then()
 
 * [微信支付](./wechat-pay.md)
 * [支付宝支付](./alipay-pay.md)
+* [Web 支付](./web.md)
 * [订单查询](./order.md)
