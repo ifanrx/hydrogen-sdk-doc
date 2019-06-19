@@ -2,14 +2,14 @@
 
 目前 Web 端支持一下支付方式：
 
-1. [微信支付](#微信支付)
-2. [支付宝支付](#支付宝支付)
+1. [微信网页支付](#微信网页支付)
+2. [支付宝网页支付](#支付宝网页支付)
 
 **客户端支付结果判断：**
 
 当开发者调用支付接口后，需要通过[查询支付订单](/js-sdk/payment/order.md)状态来判断订单是否已经支付成功。
 
-## 微信支付
+## 微信网页支付
 
 `BaaS.payment.payWithWechat(options)`
 
@@ -23,7 +23,7 @@ Web 端微信支付支持两种支付方式：
 | 参数                   | 类型    | 必填 | 参数描述 |
 | :--------------------- | :------ | :-- | :------ |
 | options.gatewayType            | String  | Y   | 支付方式，`weixin_tenpay_wap` / `weixin_tenpay_native` |
-| options.totalCost              | Number  | Y   | 支付总额 |
+| options.totalCost              | Number  | Y   | 支付总额，单位：元 |
 | options.merchandiseDescription | String  | Y   | 微信支付凭证-商品详情的内容 |
 | options.merchandiseSchemaID    | Integer | N   | 商品数据表 ID，可用于定位用户购买的物品 |
 | options.merchandiseRecordID    | String  | N   | 商品数据行 ID，可用于定位用户购买的物品 |
@@ -37,7 +37,7 @@ Web 端微信支付支持两种支付方式：
 | 参数                      | 类型   | 说明 |
 | :-------------------------| :----- | :-- |
 | transaction_no | String   | 微信支付流水号 |
-| trade_no    | String | 真正的交易 ID, 业务方在微信后台对账时可看到此字段 |
+| trade_no    | String | 微信支付交易 ID, 业务方在微信后台对账时可看到此字段 |
 | code_url    | String | gatewayType="`weixin_tenpay_native`" 时返回，用于生成支付二维码 |
 | mweb_url    | String | gatewayType="`weixin_tenpay_wap`"时返回，用户可通过访问该 url 来拉起微信客户端，完成支付 |
 
@@ -110,7 +110,7 @@ BaaS.payment.payWithWechat(params).then(res => {
 }
 ```
 
-## 支付宝支付
+## 支付宝网页支付
 
 Web 端支付宝支付支持两种支付方式：
 
@@ -124,7 +124,7 @@ Web 端支付宝支付支持两种支付方式：
 | 参数                   | 类型    | 必填 | 参数描述 |
 | :--------------------- | :------ | :-- | :------ |
 | options.gatewayType            | String  | Y   | 支付方式，`alipay_page` / `alipay_wap` |
-| options.totalCost              | Number  | Y   | 支付总额 |
+| options.totalCost              | Number  | Y   | 支付总额，单位：元 |
 | options.merchandiseDescription | String  | Y   | 支付宝支付凭证-商品详情的内容 |
 | options.merchandiseSchemaID    | Integer | N   | 商品数据表 ID，可用于定位用户购买的物品 |
 | options.merchandiseRecordID    | String  | N   | 商品数据行 ID，可用于定位用户购买的物品 |
@@ -138,7 +138,7 @@ Web 端支付宝支付支持两种支付方式：
 | 参数                      | 类型   | 说明 |
 | :-------------------------| :----- | :-- |
 | transaction_no | String   | 微信支付流水号 |
-| trade_no    | String | 真正的交易 ID, 业务方在微信后台对账时可看到此字段 |
+| trade_no    | String | 支付宝支付交易 ID, 业务方在微信后台对账时可看到此字段 |
 | payment_url    | String | 用户可通过访问该 url 来拉起支付宝支付收银台的中间页面，完成支付 |
 
 **示例代码**
