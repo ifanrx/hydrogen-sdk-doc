@@ -21,7 +21,7 @@ opts 参数说明：
 ### 通过邮箱注册
 
 > **info**
-> 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 
+> 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com
 
 **示例代码**
 
@@ -178,6 +178,9 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ### 支付宝小程序登录
 请参考[支付宝小程序登录](./alipay/signin-signout.md)
+
+### Web 端第三方登录
+请参考[ Web 登录](./web/signin-signout.md)
 
 ## 关联小程序账户
 用户在完成登录后，可以关联小程序账户，这样用户可以在下次通过多种方式登录同一账户。
