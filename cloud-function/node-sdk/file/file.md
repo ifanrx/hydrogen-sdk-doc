@@ -17,12 +17,33 @@
 
 **FileMeta对象说明**
 
-| 字段名       | 类型   | 必填 | 说明           | 默认值 |
+| 字段名      | 类型   | 必填 | 说明           | 默认值 |
 | :---------- | :----- | :-- | :------------- | :---- |
 | category_id | String |  N  | 文件分类 ID     | ''    |
 | filename    | String |  N  | 文件名          | file.bin |
 | filepath    | String |  N  | 文件路径        | /tmp/file.bin |
 | contentType | String |  N  | 文件 MIME 类型  | application/octet-stream |
+
+**返回参数说明**
+
+res.data:
+
+| 参数        | 类型   | 说明 |
+| :--------- | :----- | :------ |
+| path       | String | 文件路径 |
+| file       | Object | 包含文件信息，详见以下 |
+
+file 参数说明：
+
+| 参数        | 类型   | 说明 |
+| :--------- | :----- | :------ |
+| id         | Object | 文件 ID |
+| path       | String | 文件路径 |
+| created_at | String | 文件上传时间 |
+| name       | String | 文件名 |
+| mime_type  | String | 文件媒体类型 |
+| cdn_path   | String | CDN 中保存的路径 |
+| size       | Number | 以字节为单位 |
 
 **示例代码**
 
@@ -62,6 +83,7 @@ res.data:
 | mime_type  | String | 文件媒体类型 |
 | name       | String | 文件名 |
 | path       | String | 文件路径 |
+| cdn_path   | String | CDN 中保存的路径 |
 | size       | Number | 以字节为单位 |
 
 category 参数说明：
@@ -95,6 +117,7 @@ MyFile.get('5a2fe93308443e313a428c4f').then(res => {
   "mime_type": "text/plain; charset=utf-8",
   "name": "tmp_262601706o6zAJs-pmaywKzqHIvzwU97rtiGIe4dd39171563993cf10b12bae2ac30ec.svg",
   "path": "https://baas-hello-world.cloud.ifanrusercontent.com/1fQTn8UCwQYlGFrv.txt",
+  "cdn_path": "1fQTn8UCwQYlGFrv.txt",
   "size": 3879
 }
 ```
@@ -364,7 +387,7 @@ res.data:
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
 | reference   | String | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
+| cdn_path   | String | CDN 中保存的路径 |
 | updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
 | _id   | String | 本条记录 ID |
