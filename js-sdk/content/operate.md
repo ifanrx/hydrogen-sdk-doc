@@ -84,6 +84,10 @@ res.data:
 
 内容查询与[数据表查询](../schema/query.md)方法一致。
 
+
+> **info**
+> `MyContentGroup.find()` 接口返回的内容中，不包含 `content` 字段。
+
 **请求示例**
 
 {% ifanrxCodeTabs %}
@@ -114,7 +118,7 @@ expand 使用方法可以参考[数据表 - 字段扩展](/js-sdk/schema/select-
 
 **请求示例 1**
 ```js
-MyContentGroup.select(['-title','-content']).expand('pointer_test_oder').getContent(1513076305938456).then(res => {
+MyContentGroup.select(['-title']).expand('pointer_test_oder').getContent(1513076305938456).then(res => {
   // success
 }, err => {
   // err
@@ -152,7 +156,7 @@ MyContentGroup.select(['-title','-content']).expand('pointer_test_oder').getCont
 
 **请求示例 2**
 ```js
-MyContentGroup.select(['title','content', 'pointer_test_oder']).expand('pointer_test_oder').find().then(res => {
+MyContentGroup.select(['title', 'pointer_test_oder']).expand('pointer_test_oder').find().then(res => {
   // success
 }, err => {
   // err
@@ -174,7 +178,6 @@ MyContentGroup.select(['title','content', 'pointer_test_oder']).expand('pointer_
     },
     "objects": [
       {
-        "content": "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
         "title": "iphone X",
         "pointer_test_order": {
           "created_at": 1538966895,
