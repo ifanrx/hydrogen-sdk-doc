@@ -29,6 +29,9 @@
 
 #### 1. 获取上传文件所需授权凭证和上传地址
 
+> **info**
+> 推荐使用新版接口 [获取上传文件所需授权凭证和上传地址 v2.1](#获取上传文件所需授权凭证和上传地址-v21)
+
 **接口**
 
 `POST /hserve/v1/upload/`
@@ -39,7 +42,7 @@
 | :------------ | :----- | :-- | :-- |
 | filename      | string | N   | 上传的文件名 |
 | category_id   | string | N   | 上传文件的所属分类，格式为文件分类的 ID 数组 |
-| category_name   | string | N   | 目录名，若同时指定 category_id 及 category_name ，将优先使用 category_id (可选) |
+| category_name | string | N   | 目录名，若同时指定 category_id 及 category_name ，将优先使用 category_id (可选) |
 
 **请求示例**
 
@@ -153,3 +156,61 @@ curl \
 
 > **info**
 > 如果需要获取文件上传成功后文件的完整 url，请使用步骤 1 接口返回的 file_link
+
+#### 获取上传文件所需授权凭证和上传地址 v2.1
+
+接口
+
+`POST /hserve/v2.1/upload/`
+
+**请求参数说明**
+
+| 参数           | 类型   | 必填 | 说明 |
+| :------------ | :----- | :-- | :-- |
+| filename      | string | N   | 上传的文件名 |
+| category_id   | string | N   | 上传文件的所属分类，格式为文件分类的 ID 数组 |
+| category_name   | string | N   | 目录名，若同时指定 category_id 及 category_name ，将优先使用 category_id (可选) |
+
+**请求示例**
+
+```shell
+curl -X POST \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d '{"filename": "test.jpg", "category_name": "cate"}' \
+  https://{{服务器域名}}/hserve/v2.1/upload/
+```
+
+**返回参数**
+
+| 参数           | 类型         | 说明 |
+| :----------   | :----------- | :-- |
+| id            | String       | 上传的文件 ID |
+| policy        | String       | 文件上传配置 |
+| authorization | String       | 文件上传凭证 |
+| path          | String       | 文件上传成功后的访问地址 |
+| upload_url    | String       | 上传文件的目标地址 |
+| name          | String       | 文件名 |
+| cdn_path      | String       | 文件在 CDN 中保存的路径 |
+| created_at    | Integer      | 文件创建时间戳 |
+
+**返回示例**
+
+```json
+{
+    "policy": "eyJkYXRlIjogIldlZCwgMDYgRGVjIDIwMTcgMDM6MzI6MzMgR01UIiwgIm5vdGlmeS11cmwiOiAiaHR0cHM6Ly9zc28uaWZhbnIuY29tL2V4dGFwaS9oeWRyb2dlbi91cHl1bi9jYWxsYmFjay8yODcvNWEyNzY0ZDFmZmYxZDYxYWQwZWNhMjQ1LyIsICJidWNrZXQiOiAiY2xvdWQtbWluYXBwLTI4NyIsICJzYXZlLWtleSI6ICIxZU1RUmxrSndoZ2FNaUNnLmdpZiIsICJleHBpcmF0aW9uIjogMTUxMjUzMTQ1M30=",
+    "upload_url": "https://v0.api.upyun.com/cloud-minapp-287",
+    "path": "https://cloud-minapp-287.cloud.ifanrusercontent.com/1eMQRlkJwhgaMiCg.gif",
+    "id": "5a2764d1fff1d61ad0eca245",
+    "authorization": "UPYUN allenzhang:MzmYCcWVjrWoeovC4+tM5Bgwusg=",
+    "name": "1eMQRlkJwhgaMiCg.gif",
+    "cdn_path": "1eMQRlkJwhgaMiCg.gif",
+    "created_at": 12344566
+}
+```
+
+**状态码说明**
+
+`200` 获得授权凭证成功
+
