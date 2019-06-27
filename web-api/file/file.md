@@ -43,17 +43,20 @@ curl -X GET \
 
 ## 获取文件列表
 
+> **info**
+> 推荐使用最新接口 [获取文件列表 v2.1](#获取文件列表-v21)
+
 **接口**
 
 `GET /hserve/v1.3/uploaded-file/`
 
 **参数说明**
 
-| 参数      | 类型   | 必填 | 说明 |
-| :------- | :----- | :-- | :-- |
-| order_by | string | Y   | 排序（支持 `created_at` 进行排序）|
-| limit    | integer | N   | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
-| offset   | integer | N   | 设置返回资源的起始偏移值，默认为 0 |
+| 参数     | 类型    | 必填 | 说明 |
+| :------- | :-----  | :--  | :-- |
+| order_by  | string  | Y    | 排序（支持 `created_at` 进行排序）|
+| limit    | integer | N    | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
+| offset   | integer | N    | 设置返回资源的起始偏移值，默认为 0 |
 
 **请求示例**
 
@@ -93,7 +96,63 @@ curl -X GET \
 }
 ```
 
+## 获取文件列表 v2.1
+
+**接口**
+
+`GET /hserve/v2.1/uploaded-file/`
+
+**参数说明**
+
+| 参数     | 类型    | 必填 | 说明 |
+| :------- | :-----  | :--  | :-- |
+| order_by  | string  | Y    | 排序（支持 `created_at` 进行排序）|
+| limit    | integer | N    | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
+| offset   | integer | N    | 设置返回资源的起始偏移值，默认为 0 |
+
+**请求示例**
+
+```shell
+curl -X GET \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -G \
+  --data-urlencode  "order_by=-created_at" \
+  https://{{服务器域名}}/hserve/v2.1/uploaded-file/
+```
+
+**返回示例**
+
+```json
+{
+    "meta": {
+        "limit": 20,
+        "next": null,
+        "offset": 0,
+        "previous": null,
+        "total_count": 5
+    },
+    "objects": [
+        {
+            "category": null,
+            "created_at": 1546008508,
+            "id": "5cac3d2299ecae0c9e8aa3e6",
+            "mime_type": "image/jpeg",
+            "name": "test.jpeg",
+            "path": "https://cloud-minapp-18630.cloud.ifanrusercontent.com/1gctR6qybW3irhEo.jpeg",
+            "size": 27273,
+            "cdn_path": "1gctR6qybW3irhEo.jpeg"
+        },
+        ......
+    ]
+}
+```
+
 ## 删除文件
+
+> **info**
+> 推荐使用最新接口 [删除文件 v2.1](#删除文件-v21)
 
 **接口**
 
@@ -115,8 +174,32 @@ curl -X DELETE \
 
 `204` 删除成功
 
+## 删除文件 v2.1
+
+**接口**
+
+`DELETE https://{{服务器域名}}/hserve/v2.1/uploaded-file/:file_id/`
+
+其中 `:file_id` 需替换为你的文件 ID
+
+**请求示例**
+
+```shell
+curl -X DELETE \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  https://{{服务器域名}}/hserve/v2.1/uploaded-file/5a1ba9c1fff1d651135e5ff1/
+```
+
+**状态码说明**
+
+`204` 删除成功
 
 ## 批量删除文件
+
+> **info**
+> 推荐使用最新接口 [批量删除文件 v2.1](#批量删除文件-v21)
 
 **接口**
 
@@ -141,6 +224,31 @@ curl -X DELETE \
 
 `204` 删除成功
 
+
+## 批量删除文件 v2.1
+
+**接口**
+
+`DELETE /hserve/v2.1/uploaded-file/`
+
+**提交参数**
+
+``id__in`` 包含多个文件 ID， ID 之间通过 `,` 分隔
+
+**请求示例**
+
+```shell
+curl -X DELETE \
+  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
+  -H "Content-Type: application/json" \
+  -d '{"id__in":["5c263d739a557716c96c6dc6","5c263d689a557718706c6e37"]}' \
+  https://{{服务器域名}}/hserve/v2.1/uploaded-file/
+```
+
+**状态码说明**
+
+`204` 删除成功
 
 ## 视频截图
 
