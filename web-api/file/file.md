@@ -52,9 +52,9 @@ curl -X GET \
 
 **参数说明**
 
-| 参数     | 类型    | 必填 | 说明 |
+| 参数     | 类型     | 必填  | 说明 |
 | :------- | :-----  | :--  | :-- |
-| order_by  | string  | Y    | 排序（支持 `created_at` 进行排序）|
+| order_by | string  | Y    | 排序（支持 `created_at` 进行排序）|
 | limit    | integer | N    | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
 | offset   | integer | N    | 设置返回资源的起始偏移值，默认为 0 |
 

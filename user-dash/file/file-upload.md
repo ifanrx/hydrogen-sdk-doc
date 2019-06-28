@@ -92,7 +92,7 @@ axios.post('https://cloud.minapp.com/userve/v2.1/upload/', {
 
 `200` 获得授权凭证成功，`400` 参数错误（不支持上传的文件格式)，`404` 找不到文件分类 ID
 
-**#### 2. 使用上一步获取的授权凭证和上传地址，进行文件上传
+#### 2. 使用上一步获取的授权凭证和上传地址，进行文件上传
 
 **接口**
 
@@ -153,10 +153,9 @@ axios.post('https://v0.api.upyun.com/cloud-minapp-287', formData, {
 
 `200` 上传成功
 
-
 #### 获取上传文件所需授权凭证和上传地址 v1
 
-接口**
+**接口**
 
 `POST https://cloud.minapp.com/userve/v1/upload/`
 

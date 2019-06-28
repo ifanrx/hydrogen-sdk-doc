@@ -273,7 +273,7 @@ curl_close($ch);
 
 #### 获取上传文件所需授权凭证和上传地址 v1
 
-*接口**
+**接口**
 
 `POST https://cloud.minapp.com/oserve/v1/upload/`
 
