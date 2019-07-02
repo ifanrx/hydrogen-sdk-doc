@@ -42,6 +42,7 @@ file 参数说明：
 
 | 参数        |  类型  | 说明 |
 | :--------- | :----- | :------ |
+| path       | String | 上传后的文件地址 (v2.2.0 版本新增) |
 | cdn_path   | String | 文件在 cdn 上的路径 |
 | created_at | String | 文件上传时间 |
 | id         | Object | 文件 ID |
@@ -199,6 +200,7 @@ res.data:
 | mime_type  | String | 文件媒体类型 |
 | name       | String | 文件名 |
 | path       | String | 文件在 cdn 上的路径 |
+| cdn_path   | String | cdn 中保存的路径 (v2.2.0 新增) |
 | size       | Number | 以字节为单位 |
 
 category 参数说明：
