@@ -128,6 +128,11 @@ BaaS.alipay.sendTemplateMessage(data)
 
 schema_user 允许同时存在 user_profile_filters 和 user_group_name 参数
 
+> **info**
+> 如果 `recipient_type` 为 `schema_user` 且参数中包含 `user_group_name` 字段，
+> 则 `user_profile_filters` 字段中，最外层的 `$and` 或 `$or` 不能省略。
+
+
 ```js
 let data = {
   recipient_type: 'schema_user',

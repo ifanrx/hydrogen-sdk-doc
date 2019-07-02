@@ -39,9 +39,10 @@
   ],
   "title": "知晓云平台开发文档 2.0",
   "variables": {
-    "latestVersionWechat": "2.1.0",
-    "latestVersionAlipay": "2.1.0",
-    "latestVersionWeb": "2.1.0",
+    "latestVersionWechat": "2.2.0",
+    "latestVersionAlipay": "2.2.0",
+    "latestVersionWeb": "2.2.0",
+    "latestVersionQQ": "2.2.0",
     "latestVersionWechatPlugin": "2.0.9",
     "imgURLClipDemo": "https://cloud-minapp-6.cloud.ifanrusercontent.com/1fco21YvWNpWfukk.png!/both/400x400"
   },

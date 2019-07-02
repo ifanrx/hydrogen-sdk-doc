@@ -13,7 +13,7 @@
 
 | 参数                    | 类型    | 必填 | 参数描述 |
 | :--------------------- | :------ | :-- | :------ |
-| totalCost              | Number  | Y   | 支付总额 |
+| totalCost              | Number  | Y   | 支付总额，单位：元 |
 | merchandiseDescription | String  | Y   | {{platformName}}支付凭证-商品详情的内容 |
 | merchandiseSchemaID    | Integer | N   | 商品数据表 ID，可用于定位用户购买的物品 |
 | merchandiseRecordID    | String  | N   | 商品数据行 ID，可用于定位用户购买的物品 |
@@ -29,13 +29,13 @@
 | :-------------------------| :----- | :-- |
 | errMsg | String   | 微信支付状态信息 |
 | transaction_no | String   | 微信支付流水号 |
-| trade_no    | String | 真正的交易 ID, 业务方在微信后台对账时可看到此字段 |
+| trade_no    | String | 微信支付交易 ID, 业务方在微信后台对账时可看到此字段 |
 {% elif apiPrefix == 'my' %}
 | 参数                      | 类型   | 说明 |
 | :-------------------------| :----- | :-- |
 | resultCode | String   | 支付宝支付状态码 |
 | transaction_no | String   | 支付宝支付流水号 |
-| trade_no    | String | 真正的交易 ID, 业务方在支付宝后台对账时可看到此字段 |
+| trade_no    | String | 支付宝支付交易 ID, 业务方在支付宝后台对账时可看到此字段 |
 
 > **info**
 > `resultCode`是支付宝返回的状态码，
@@ -141,11 +141,11 @@ PayError 对象结构请参考 [PayError 错误码详解](#payerror-错误码详
 
 `'6001'`  用户中途取消
 
-`'6002'`  网络连接出错  
+`'6002'`  网络连接出错
 
 `'6004'`  支付结果未知（有可能已经支付成功），请查询商户订单列表中订单的支付状态
 
-`'99'`  用户点击忘记密码导致快捷界面退出（only iOS）  
+`'99'`  用户点击忘记密码导致快捷界面退出（only iOS）
 
 {% else %}
 {% endif %}

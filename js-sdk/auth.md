@@ -182,6 +182,9 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 ### Web 端第三方登录
 请参考[ Web 登录](./web/signin-signout.md)
 
+### QQ 小程序登录
+请参考[ QQ 小程序登录](./qq/signin-signout.md)
+
 ## 关联小程序账户
 用户在完成登录后，可以关联小程序账户，这样用户可以在下次通过多种方式登录同一账户。
 
