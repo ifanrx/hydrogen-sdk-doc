@@ -61,7 +61,7 @@ BaaS.invoke(name: "helloWorld", data: ["name": "BaaS"], sync: true) { (result, e
 {
   "error": {},
   "code": 0,
-  "data": "hello allen"
+  "data": "hello BaaS"
 }
 ```
 

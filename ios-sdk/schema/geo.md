@@ -95,7 +95,7 @@ let neighbourhood = Table(name: "neighbourhoodTableName")
 let whereArgs = Where.include(key: "geoField", point: point)
 let query = Query()
 query.setWhere(whereArgs)
-neighbourhood.find(query: query, completion: {result, error in
+neighbourhood.find(query: query, completion: {listResult, error in
 
 })
 ```
@@ -128,7 +128,7 @@ let whereArgs = Where.withinCircle(key: "geoField", point: point, radius: radius
 restaurant.setQuery(query)
 let query = Query()
 query.setWhere(whereArgs)
-restaurant.find(query: query, completion: {result, error in
+restaurant.find(query: query, completion: {listResult, error in
 
 })
 ```
@@ -161,7 +161,7 @@ let whereArgs = Where.withinRegion(key:"geoField", point: point, minDistance: mi
 restaurant.setQuery(query)
 let query = Query()
 query.setWhere(whereArgs)
-restaurant.find(query: query, completion: {result, error in
+restaurant.find(query: query, completion: {listResult, error in
 
 })
 ```
@@ -197,7 +197,7 @@ let whereArgs = Where.within(key:"restaurantGeoField", polygon: neighbourhoodPol
 restaurant.setQuery(query)
 let query = Query()
 query.setWhere(whereArgs)
-restaurant.find(query: query, completion: {result, error in
+restaurant.find(query: query, completion: {listResult, error in
 
 })
 ```
