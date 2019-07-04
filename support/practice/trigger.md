@@ -258,7 +258,7 @@ exports.main = function functionName(event, callback) {
 App({
   onLaunch: function () {
     require('./vendor/sdk-v1.4.0.js')
-    let clientID = '此处填写clientID'
+    let clientID = '此处填写 clientID'
     wx.BaaS.init(clientID)
 
     wx.BaaS.login()
@@ -266,7 +266,7 @@ App({
 })
 ```
 
-我们在首页增加一个按钮，在按钮上绑定 click 回调，在回调函数中使用`wx.BaaS.pay`来发起支付请求
+我们在首页增加一个按钮，在按钮上绑定 click 回调，在回调函数中使用 `wx.BaaS.pay` 来发起支付请求
 ```javascript
 Page({
   pay: function () {
@@ -303,13 +303,13 @@ Page({
 
 
 > **info**
-> 这里我们使用了`{{total_cost}}`模板变量，用于拿到用户支付的具体金额。
+> 这里我们使用了 `{{total_cost}}` 模板变量，用于拿到用户支付的具体金额。
 
 随后我们测试微信支付，支付成功后，查看收件箱，如图：
 ![邮件-支付回调](../../images/practice/trigger/19040484.jpg)
 
 ### 微信模板消息-支付回调
-动作创建参照上文创建微信模板消息小节。只是这里我们把参数`keyword1`改为`{{total_cost}}`，这样就可以拿到用户支付的具体金额。
+动作创建参照上文创建微信模板消息小节。只是这里我们把参数 `keyword1` 改为 `{{total_cost}}`，这样就可以拿到用户支付的具体金额。
 
 ![微信模板消息-支付回调](../../images/practice/trigger/12429227.jpg)
 
@@ -325,7 +325,7 @@ Page({
 ### 云函数-支付回调
 
 #### 创建云函数
-我们创建一个云函数`verifyPayment`，函数内容如下
+我们创建一个云函数 `verifyPayment`，函数内容如下
 ```js
 exports.main = function functionName(event, callback) {
   console.log(event.data)
@@ -404,6 +404,89 @@ exports.main = function functionName(event, callback) {
 上面返回了 status: 'ok'; 说明执行成功了。我们查看云函数的任务日志，如下：
 ![](../../images/practice/trigger/164956.png)
 
+## 触发类型：微信消息推送
+
+### 准备工作
+
+我们首先创建一个云函数，如下图所示：
+![](../../images/practice/trigger/83745285.png)
+
+### 创建触发器
+我们创建一个触发类型为微信消息推送的触发器，填入小程序或公众号的 AppID，具体参数值请参考[微信文档][9]，动作内容选择我们上面创建的云函数。
+
+![](../../images/practice/trigger/WX20190704-143557.png)
+![](../../images/practice/trigger/WX20190704-143808.png)
+![](../../images/practice/trigger/WX20190704-143950.png)
+
+### 测试触发器
+
+我们在小程序页面中添加进入客服消息按钮
+```html
+<button plain open-type="contact"></button>
+```
+
+在小程序页面中点击按钮进入客服会话，并发送文字消息：
+
+![](../../images/practice/trigger/WX20190704-151623.png)
+
+之后，我们查看云函数的任务日志，可以看到云函数被成功执行了：
+![](../../images/practice/trigger/WX20190704-150906.png)
+
+## 触发类型：支付宝支付回调
+### 准备工作
+1. [认证小程序，接入支付宝支付][10]
+2. [在知晓云配置商户号，证书等][5]
+
+### 创建触发器
+我们创建一个触发类型为支付宝支付回调的触发器，触发条件为支付成功，触发动作下文只讨论`支付宝模板消息`动作类型，其他动作类型请参考上文微信支付回调。
+
+![](../../images/practice/trigger/WX20190704-161930.png)
+
+> **info**
+> 发送模板消息必须提前提交 formId
+
+### 测试触发器
+我们新建一个小程序，在小程序入口加载 BaaS JS SDK，请求用户授权：代码如下
+```javascript
+App({
+  onLaunch: function () {
+    require('./vendor/sdk-v2.2.0.js')
+    let clientID = '此处填写 clientID'
+    my.BaaS.init(clientID)
+
+    my.BaaS.login()
+  }
+})
+```
+
+我们在首页增加一个按钮，在按钮上绑定 click 回调，在回调函数中使用 `my.BaaS.pay` 来发起支付请求
+```javascript
+Page({
+  pay: function () {
+    let params = {
+      totalCost: 0.01,
+      merchandiseDescription: '一条支付描述'
+    }
+
+    my.BaaS.pay(params).then(res => {
+      console.log('pay')
+    }, err => {
+      // 未完成用户授权或发生网络异常等
+      console.log(err)
+    })
+  }
+})
+```
+
+支付成功结果：
+
+![支付成功结果](../../images/practice/trigger/WX20190704-160543.png)
+![支付成功结果](../../images/practice/trigger/WX20190704-160641.png)
+
+检查触发器日志，调用触发器成功，并成功发送模板消息：
+
+![支付宝支付回调](../../images/practice/trigger/WX20190704-162448.png)
+
 
   [1]: https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html
   [2]: https://github.com/ifanrx/hydrogen-js-sdk
@@ -413,3 +496,5 @@ exports.main = function functionName(event, callback) {
   [6]: https://doc.minapp.com/payment/pay.html
   [7]: https://github.com/ifanrx/hydrogen-demo/tree/master/payment-demo
   [8]: https://github.com/ifanrx/hydrogen-demo/blob/master/payment-demo/config/config.js
+  [9]: https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1451025274
+  [10]: https://docs.alipay.com/mini/introduce/pay#%E6%8E%A5%E5%85%A5%E6%8C%87%E5%BC%95
