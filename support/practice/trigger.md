@@ -254,17 +254,19 @@ exports.main = function functionName(event, callback) {
 
 
 我们新建一个小程序，在小程序入口加载 BaaS JS SDK，请求用户授权：代码如下
-```javascript
+<pre>
+<code class="lang-js">
 App({
   onLaunch: function () {
-    require('./vendor/sdk-v1.4.0.js')
+    require('./vendor/sdk-v{{book.latestVersionWechat}}.js')
     let clientID = '此处填写 clientID'
     wx.BaaS.init(clientID)
 
     wx.BaaS.login()
   }
 })
-```
+</code>
+</pre>
 
 我们在首页增加一个按钮，在按钮上绑定 click 回调，在回调函数中使用 `wx.BaaS.pay` 来发起支付请求
 ```javascript
@@ -447,17 +449,19 @@ exports.main = function functionName(event, callback) {
 
 ### 测试触发器
 我们新建一个小程序，在小程序入口加载 BaaS JS SDK，请求用户授权：代码如下
-```javascript
+<pre>
+<code class="lang-js">
 App({
   onLaunch: function () {
-    require('./vendor/sdk-v2.2.0.js')
+    require('./vendor/sdk-v{{book.latestVersionAlipay}}.js')
     let clientID = '此处填写 clientID'
     my.BaaS.init(clientID)
 
     my.BaaS.login()
   }
 })
-```
+</code>
+</pre>
 
 我们在首页增加一个按钮，在按钮上绑定 click 回调，在回调函数中使用 `my.BaaS.pay` 来发起支付请求
 ```javascript
