@@ -11,11 +11,12 @@
 
 opts 参数说明：
 
-| 名称      | 类型           | 说明 |
-| :------- | :------------  | :------ |
-| opts.username   | String  | 用户名，username 和 email 必选一个 |
-| opts.email      | String  | 邮箱，username 和 email 必选一个 |
-| opts.password   | String  | 密码 |
+| 名称             | 类型   | 说明    |
+| :--------------- | :----- | :------ |
+| opts.username    | String | 用户名，username、mobilePhone 和 email 必选一个 |
+| opts.email       | String | 邮箱，username、mobilePhone 和 email 必选一个 |
+| opts.mobilePhone | String | 手机号，username、mobilePhone 和 email 必选一个 |
+| opts.password    | String | 密码    |
 
 
 ### 通过邮箱注册
@@ -64,6 +65,22 @@ user 为 currentUser 对象，该对象的详细介绍请参考 [currentUser 小
 
 err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
+
+### 通过手机号注册
+
+**示例代码**
+{% ifanrxCodeTabs %}
+```javascript
+wx.BaaS.auth.register({mobilePhone: '15000000000', password: 'ifanrx123'}).then(user => {
+  console.log(user)
+})
+```
+{% endifanrxCodeTabs %}
+
+user 为 currentUser 对象，该对象的详细介绍请参考 [currentUser 小节](./account.md)
+
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
 ## 登录
 
 开发者可以通过 `BaaS.auth.login(opts)` API 来进行用户的通用登录
@@ -73,11 +90,12 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 opts 参数说明：
 
-| 名称      | 类型           | 说明 |
-| :------- | :------------  | :------ |
-| opts.username   | String  | 用户名，username 和 email 必选一个 |
-| opts.email      | String  | 邮箱，username 和 email 必选一个 |
-| opts.password   | String  | 密码 |
+| 名称             | 类型   | 说明    |
+| :--------------- | :----- | :------ |
+| opts.username    | String | 用户名，username、mobilePhone 和 email 必选一个 |
+| opts.email       | String | 邮箱，username、mobilePhone 和 email 必选一个 |
+| opts.mobilePhone | String | 手机号，username、mobilePhone 和 email 必选一个 |
+| opts.password    | String | 密码 |
 
 ### 用户名登录
 
@@ -111,6 +129,28 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 {% ifanrxCodeTabs %}
 ```javascript
 wx.BaaS.auth.login({email: 'ifanrx@ifanr.com', password: 'ifanrx123'}).then(user => {
+  console.log(user)
+}).catch(err => {
+  // HError
+})
+```
+{% endifanrxCodeTabs %}
+
+**返回结果**
+
+user 为 currentUser 对象，该对象的详细介绍请参考 [currentUser 小节](./account.md)
+
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+### 手机号登录
+
+用户可以通过手机号和密码登录
+
+**示例代码**
+
+{% ifanrxCodeTabs %}
+```javascript
+wx.BaaS.auth.login({mobilePhone: '15000000000', password: 'ifanrx123'}).then(user => {
   console.log(user)
 }).catch(err => {
   // HError
@@ -172,6 +212,39 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 {% endifanrxCodeTabs %}
 
 ## 其他方式登录
+
+### 手机号 + 短信验证码登录
+
+> **info**
+> 短信验证码 smsCode 通过接口 `BaaS.sendSmsCode()` 获取，请查看[文档](/js-sdk/sms.md)
+
+用户可以“手机号 + 短信验证码”进行登录
+
+`BaaS.auth.loginWithMobilePhoneSmsCode(mobilePhone, smsCode, {createUser})`
+
+参数说明：
+
+| 名称        | 类型   | 说明    |
+| :---------- | :----- | :------ |
+| mobilePhone | String | 手机号码 |
+| smsCode     | String | 短信验证码 |
+| createUser  | Boolean | 是否创建用户，默认为 `true`，可选 |
+
+`createUser` 参数决定了一个新手机号用户第一次登录时的服务端处理行为。
+默认为 `true`，服务端会有该用户创建一个知晓云用户记录。
+当 `createUser` 为 `false` 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见 [多平台用户统一登录](#多平台用户统一登录) 说明
+
+**示例代码**
+
+{% ifanrxCodeTabs %}
+```javascript
+wx.BaaS.auth.loginWithMobilePhoneSmsCode('15000000000', '123456').then(user => {
+  console.log(user)
+}).catch(err => {
+  // HError
+})
+```
+{% endifanrxCodeTabs %}
 
 ### 微信小程序登录
 请参考[微信小程序登录](./wechat/signin-signout.md)
