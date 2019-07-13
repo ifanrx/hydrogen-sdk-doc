@@ -163,8 +163,7 @@
       1. 赔偿标准
 
           根据用户某一知晓云账户下的某一应用的月度服务可用性，按照下表中的标准计算赔偿金额，赔偿方式仅限于用于购买知晓云服务的代金券，且赔偿总额不超过未达到服务可用性承诺当月用户就该账户下该一应用所支付的月度服务费用（不含用代金券或其他优惠形式抵扣的费用）。
-
-
+<!--
           | 应用套餐版本 | 服务可用性  |  赔偿代金券金额  |
           |:----------|:----------|:--------|
           | 教育版 | 低于 99.00% 但等于或高于 95.00% | 月度服务费用的 15% |
@@ -178,7 +177,74 @@
           | 企业版 | 低于 99.99% 但等于或高于 99.90% | 月度服务费用的 15% |
           | 企业版 | 低于 99.90% 但等于或高于 95.00% | 月度服务费用的 30% |
           | 企业版 | 低于 95.00% | 月度服务费用的 100% |
-
+-->
+         <table class="table table-striped table-bordered">
+         <thead>
+         <tr>
+         <th style="text-align:left">应用套餐版本</th>
+         <th style="text-align:left">服务可用性</th>
+         <th style="text-align:left">赔偿代金券金额</th>
+         </tr>
+         </thead>
+         <tbody>
+         <tr>
+         <td style="text-align:left">教育版</td>
+         <td style="text-align:left">低于 99.00% 但等于或高于 95.00%</td>
+         <td style="text-align:left">月度服务费用的 15%</td>
+         </tr>
+         <tr>
+         <td style="text-align:left">教育版</td>
+         <td style="text-align:left">低于 95.00%</td>
+         <td style="text-align:left">月度服务费用的 30%</td>
+         </tr>
+         <tr>
+         <td style="text-align:left">个人版</td>
+         <td style="text-align:left">低于 99.50% 但等于或高于 99.00%</td>
+         <td style="text-align:left">月度服务费用的 15%</td>
+         </tr>
+         <tr>
+         <td style="text-align:left">个人版</td>
+         <td style="text-align:left">低于 99.00% 但等于或高于 95.00%</td>
+         <td style="text-align:left">月度服务费用的 30%</td>
+         </tr>
+         <tr>
+         <td style="text-align:left">个人版</td>
+         <td style="text-align:left">低于 95.00%</td>
+         <td style="text-align:left">月度服务费用的 100%</td>
+         </tr>
+         <tr>
+         <td style="text-align:left">商用版</td>
+         <td style="text-align:left">低于 99.90% 但等于或高于 99.00%</td>
+         <td style="text-align:left">月度服务费用的 15%</td>
+         </tr>
+         <tr>
+         <td style="text-align:left">商用版</td>
+         <td style="text-align:left">低于 99.00% 但等于或高于 95.00%</td>
+         <td style="text-align:left">月度服务费用的 30%</td>
+         </tr>
+         <tr>
+         <td style="text-align:left">商用版</td>
+         <td style="text-align:left">低于 95.00%</td>
+         <td style="text-align:left">月度服务费用的 100%</td>
+         </tr>
+         <tr>
+         <td style="text-align:left">企业版</td>
+         <td style="text-align:left">低于 99.99% 但等于或高于 99.90%</td>
+         <td style="text-align:left">月度服务费用的 15%</td>
+         </tr>
+         <tr>
+         <td style="text-align:left">企业版</td>
+         <td style="text-align:left">低于 99.90% 但等于或高于 95.00%</td>
+         <td style="text-align:left">月度服务费用的 30%</td>
+         </tr>
+         <tr>
+         <td style="text-align:left">企业版</td>
+         <td style="text-align:left">低于 95.00%</td>
+         <td style="text-align:left">月度服务费用的 100%</td>
+         </tr>
+         </tbody>
+         </table>
+         
       2. 赔偿申请时限
 
           用户可以在每月第五（5）个工作日后对上个月没有达到可用性的应用提出赔偿申请。
