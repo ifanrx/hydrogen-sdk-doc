@@ -281,7 +281,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 > **info**
 > 匿名用户无法调用
 >
-> 重新设置手机号后，必须重新验证手机号。
+> 重新设置手机号后，需要重新验证手机号。
 
 `currentUser.setMobilePhone(mobilePhone)`
 
@@ -296,7 +296,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 {% ifanrxCodeTabs %}
 ```javascript
 wx.BaaS.auth.getCurrentUser().then(user => {
-  user.mobilePhone('15000000000').then(user => {
+  user.setMobilePhone('15000000000').then(user => {
     console.log(user)
   }).catch(err=>{
     // HError
@@ -332,7 +332,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 {% ifanrxCodeTabs %}
 ```javascript
 wx.BaaS.auth.getCurrentUser().then(user => {
-  user.verifyMobilePhone().then(user => {
+  user.verifyMobilePhone('123456').then(user => {
     console.log(user)
   }).catch(err=>{
     // HError

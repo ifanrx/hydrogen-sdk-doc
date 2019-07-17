@@ -220,7 +220,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 用户可以“手机号 + 短信验证码”进行登录
 
-`BaaS.auth.loginWithMobilePhoneSmsCode(mobilePhone, smsCode, {createUser})`
+`BaaS.auth.loginWithSmsVerificationCode(mobilePhone, smsCode, {createUser})`
 
 参数说明：
 
@@ -238,7 +238,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.loginWithMobilePhoneSmsCode('15000000000', '123456').then(user => {
+wx.BaaS.auth.loginWithSmsVerificationCode('15000000000', '123456').then(user => {
   console.log(user)
 }).catch(err => {
   // HError
