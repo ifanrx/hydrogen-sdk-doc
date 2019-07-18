@@ -13,9 +13,9 @@ opts 参数说明：
 
 | 名称             | 类型   | 说明    |
 | :--------------- | :----- | :------ |
-| opts.username    | String | 用户名，username、mobilePhone 和 email 必选一个 |
-| opts.email       | String | 邮箱，username、mobilePhone 和 email 必选一个 |
-| opts.mobilePhone | String | 手机号，username、mobilePhone 和 email 必选一个 |
+| opts.username    | String | 用户名，username、phone 和 email 必选一个 |
+| opts.email       | String | 邮箱，username、phone 和 email 必选一个 |
+| opts.phone | String | 手机号，username、phone 和 email 必选一个 |
 | opts.password    | String | 密码    |
 
 
@@ -71,7 +71,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 **示例代码**
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.register({mobilePhone: '15000000000', password: 'ifanrx123'}).then(user => {
+wx.BaaS.auth.register({phone: '15000000000', password: 'ifanrx123'}).then(user => {
   console.log(user)
 })
 ```
@@ -92,9 +92,9 @@ opts 参数说明：
 
 | 名称             | 类型   | 说明    |
 | :--------------- | :----- | :------ |
-| opts.username    | String | 用户名，username、mobilePhone 和 email 必选一个 |
-| opts.email       | String | 邮箱，username、mobilePhone 和 email 必选一个 |
-| opts.mobilePhone | String | 手机号，username、mobilePhone 和 email 必选一个 |
+| opts.username    | String | 用户名，username、phone 和 email 必选一个 |
+| opts.email       | String | 邮箱，username、phone 和 email 必选一个 |
+| opts.phone | String | 手机号，username、phone 和 email 必选一个 |
 | opts.password    | String | 密码 |
 
 ### 用户名登录
@@ -150,7 +150,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.login({mobilePhone: '15000000000', password: 'ifanrx123'}).then(user => {
+wx.BaaS.auth.login({phone: '15000000000', password: 'ifanrx123'}).then(user => {
   console.log(user)
 }).catch(err => {
   // HError
