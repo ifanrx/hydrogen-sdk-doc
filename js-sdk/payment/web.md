@@ -13,7 +13,7 @@
 
 `BaaS.payment.payWithWechat(options)`
 
-Web 端微信支付支持两种支付方式：
+Web 端微信支付支持三种支付方式：
 
 1. 电脑端扫码支付（gatewayType: `weixin_tenpay_native`）
 2. JSAPI 支付（微信客户端内置浏览器内使用）（gatewayType: `weixin_tenpay_js`）
