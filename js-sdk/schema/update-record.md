@@ -443,6 +443,8 @@ catch 回调中的 err 对象:
 
 ### 批量更新时不触发触发器
 
+SDK 1.9.1 及以上版本支持批量更新数据项时不触发触发器。该模式在批量更新数据时，不会触发设置好的触发器，会对查询条件匹配的数据全部更新，没有最多 1000 条的限制。
+
 {% ifanrxCodeTabs %}
 ```js
 let MyTableObject = new wx.BaaS.TableObject(tableName)
