@@ -13,7 +13,7 @@
 wx.BaaS.auth.getCurrentUser().then(user => {
   // user 为 currentUser 对象
 }).catch(err => {
-  // HError  
+  // HError
   if( err.code === 604 ){
     console.log('用户未登录')
   }
@@ -93,7 +93,7 @@ currentUser 代表了当前登录的用户，开发者可以通过浏览 current
 **示例代码**
 
 假设开发者在 _userprofile 表中定义了 `custom_name` 列，并设置当前用户的 `custom_name` 为 `ifanrx`。则在 SDK 中查询当前用户自定义字段代码如下：
- 
+
 {% ifanrxCodeTabs %}
 ```javascript
 wx.BaaS.auth.getCurrentUser().then(user => {
@@ -108,11 +108,11 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 
 **示例代码**
 假设开发者在 _userprofile 表中定义了 `custom_name` 列，并设置当前用户的 `custom_name` 为 `ifanrx`。则在 SDK 中查询当前用户自定义字段代码如下：
-  
+
 {% ifanrxCodeTabs %}
 ```javascript
 wx.BaaS.auth.getCurrentUser().then(user => {
-  console.log(user.toJSON()) 
+  console.log(user.toJSON())
 })
 ```
 {% endifanrxCodeTabs %}
@@ -243,7 +243,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 > **info**
 > 匿名用户无法调用
 
-> 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 
+> 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com
 
 `currentUser.setEmail(email, {sendVerificationEmail})`
 
@@ -265,6 +265,78 @@ wx.BaaS.auth.getCurrentUser().then(user => {
   }).catch(err=>{
       // HError
     })
+})
+```
+{% endifanrxCodeTabs %}
+
+**返回结果说明**
+
+user 为 currentUser 对象，该对象的说明见上文
+
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+
+### 设置手机号
+
+> **info**
+> 匿名用户无法调用
+>
+> 重新设置手机号后，需要重新验证手机号。
+
+`currentUser.setMobilePhone(mobilePhone)`
+
+**参数说明**
+
+| 名称                    | 类型        | 必填  | 说明      |
+| :-----------------------| :---------- | ----- | :-------- |
+| mobilePhone             | String      | Y     |  新手机号 |
+
+**示例代码**
+
+{% ifanrxCodeTabs %}
+```javascript
+wx.BaaS.auth.getCurrentUser().then(user => {
+  user.setMobilePhone('15000000000').then(user => {
+    console.log(user)
+  }).catch(err=>{
+    // HError
+  })
+})
+```
+{% endifanrxCodeTabs %}
+
+**返回结果说明**
+
+user 为 currentUser 对象，该对象的说明见上文
+
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+
+### 验证手机号
+
+> **info**
+> 匿名用户无法调用
+>
+> 短信验证码 smsCode 通过接口 `BaaS.sendSmsCode()` 获取，请查看[文档](/js-sdk/sms.md)
+
+`currentUser.verifyMobilePhone(smsCode)`
+
+**参数说明**
+
+| 名称                | 类型        | 必填  | 说明        |
+| :-------------------| :---------- | ----- | :---------- |
+| smsCode             | String      | Y     |  短信验证码 |
+
+**示例代码**
+
+{% ifanrxCodeTabs %}
+```javascript
+wx.BaaS.auth.getCurrentUser().then(user => {
+  user.verifyMobilePhone('123456').then(user => {
+    console.log(user)
+  }).catch(err=>{
+    // HError
+  })
 })
 ```
 {% endifanrxCodeTabs %}
@@ -299,7 +371,7 @@ wx.BaaS.auth.getCurrentUser().then(user =>{
     console.log(user)
   }).catch(err=>{
       // HError
-  })  
+  })
 })
 ```
 {% endifanrxCodeTabs %}
@@ -311,7 +383,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ### 更新用户自定义字段
 
-更新用户信息与[数据表更新数据项](schema/update-record.md)方法基本一致。这里只允许更新 _userprofile 表中自定义的字段。
+更新用户信息与[数据表更新数据项](schema/update-record.md)方法基本一致。这里只允许更新 `_userprofile` 表中自定义的字段。
 
 **请求示例**
 
@@ -323,7 +395,7 @@ wx.BaaS.auth.getCurrentUser().then(user =>{
      // success
    }, err => {
      // err 为 HError 对象
-   }) 
+   })
 })
 ```
 {% endifanrxCodeTabs %}
@@ -368,8 +440,8 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 # 同步第一层级用户信息
 
 2.x 支持多平台登录，第三方登录（微信小程序中使用微信登录与支付宝小程序中使用支付宝登录，都属于第三方登录）
-后获取到的用户信息保存在 userpofile 记录的 _provider 字段（参照上文 currentUser 中的 _provider 字段）中，
-而 1.x 的用户数据保存在与 _provider 用一层级（即第一层级）的字段中，为了使相关代码能平滑升级到 2.x，
+后获取到的用户信息保存在 userpofile 记录的 `_provider` 字段（参照上文 currentUser 中的 `_provider` 字段）中，
+而 1.x 的用户数据保存在与 `_provider` 用一层级（即第一层级）的字段中，为了使相关代码能平滑升级到 2.x，
 第一层级的用户信息字段被保留了下来，并提供了接口让开发者决定是否在用户授权的时候，同步第一层级的用户信息。
 
 支持的接口：

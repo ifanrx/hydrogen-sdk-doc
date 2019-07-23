@@ -128,33 +128,43 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% include "/js-sdk/frag/_sync_user_profile_param.md" %}
 
+**请求示例**
 
-```javascript
-// 必须在用户通过 login API 登录后才能进行绑定
-qq.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
-  // user 为 currentUser 对象
-  return user.linkQQ()
-}).then(res=>{
-  // success
-  // 用户可以通过 QQ 授权登录同一个账户了
-})
-```
+1. 不获取用户信息:
 
-```javascript
-// 必须在用户通过 login API 登录后才能进行绑定
-qq.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
-  // user 为 currentUser 对象
-
-  qq.getUserInfo({
-    success(info){
-      user.linkQQ(info).then(res=>{
-        // 关联成功
-        console.log(res.statusCode)
-      })
-    }
+  ```javascript
+  // 必须在用户通过 login API 登录后才能进行绑定
+  qq.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
+    // user 为 currentUser 对象
+    return user.linkQQ()
+  }).then(res=>{
+    // success
+    // 用户可以通过微信授权登录同一个账户了
   })
-})
-```
+  ```
+
+2. 获取用户信息:
+
+  ```html
+  <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
+  ```
+
+  ```js
+  Page({
+    // ...
+    userInfoHandler(data) {
+      // 必须在用户通过 login API 登录后才能进行绑定
+      qq.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
+        // user 为 currentUser 对象
+        user.linkQQ(data).then(res=>{
+          // 关联成功
+          console.log(res.statusCode)
+        })
+      })
+    },
+    // ...
+  })
+  ```
 
 **返回示例**
 ```JSON
