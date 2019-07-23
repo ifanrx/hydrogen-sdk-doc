@@ -13,16 +13,21 @@
 
 `BaaS.payment.payWithWechat(options)`
 
-Web 端微信支付支持两种支付方式：
+Web 端微信支付支持三种支付方式：
 
 1. 电脑端扫码支付（gatewayType: `weixin_tenpay_native`）
-2. 手机 H5 支付（gatewayType: `weixin_tenpay_wap`）
+2. JSAPI 支付（微信客户端内置浏览器内使用）（gatewayType: `weixin_tenpay_js`）
+3. 手机 H5 支付（gatewayType: `weixin_tenpay_wap`）
+
+> **info**
+> 使用 JSAPI 支付时，需要先通过公众号登录（[web 第三方登录](/js-sdk/web/signin-signout.md)，`providor` 为 `oauth-wechat-mp`），
+> 或通过已经关联了微信公众号登录用户的账号登录。
 
 **参数说明**
 
 | 参数                   | 类型    | 必填 | 参数描述 |
 | :--------------------- | :------ | :-- | :------ |
-| options.gatewayType            | String  | Y   | 支付方式，`weixin_tenpay_wap` / `weixin_tenpay_native` |
+| options.gatewayType            | String  | Y   | 支付方式，`weixin_tenpay_wap` / `weixin_tenpay_native` / `weixin_tenpay_js` |
 | options.totalCost              | Number  | Y   | 支付总额，单位：元 |
 | options.merchandiseDescription | String  | Y   | 微信支付凭证-商品详情的内容 |
 | options.merchandiseSchemaID    | Integer | N   | 商品数据表 ID，可用于定位用户购买的物品 |
@@ -34,12 +39,24 @@ Web 端微信支付支持两种支付方式：
 
 **返回参数说明**
 
-| 参数                      | 类型   | 说明 |
-| :-------------------------| :----- | :-- |
-| transaction_no | String   | 微信支付流水号 |
-| trade_no    | String | 微信支付交易 ID, 业务方在微信后台对账时可看到此字段 |
-| code_url    | String | gatewayType="`weixin_tenpay_native`" 时返回，用于生成支付二维码 |
-| mweb_url    | String | gatewayType="`weixin_tenpay_wap`"时返回，用户可通过访问该 url 来拉起微信客户端，完成支付 |
+1. JSAPI 支付：
+
+  | 参数           | 类型   | 说明 |
+  | :--------------| :----- | :-- |
+  | err_msg        | String | 错误信息 |
+  | transaction_no | String | 微信支付流水号 |
+  | trade_no       | String | 微信支付交易 ID, 业务方在微信后台对账时可看到此字段 |
+
+  当支付取消或发生错误时，会抛出错误（[HError 对象](/js-sdk/error-code.md)）
+
+2. 其他：
+
+  | 参数                      | 类型   | 说明 |
+  | :-------------------------| :----- | :-- |
+  | transaction_no | String   | 微信支付流水号 |
+  | trade_no    | String | 微信支付交易 ID, 业务方在微信后台对账时可看到此字段 |
+  | code_url    | String | gatewayType="`weixin_tenpay_native`" 时返回，用于生成支付二维码 |
+  | mweb_url    | String | gatewayType="`weixin_tenpay_wap`"时返回，用户可通过访问该 url 来拉起微信客户端，完成支付 |
 
 > **info**
 > 电脑端扫码支付时，开发者调用支付接口并成功获取到 `code_url` 后，需要将 `code_url` 转换为二维码。

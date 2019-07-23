@@ -92,3 +92,5 @@ try {
 `613`  third party auth denied  用户拒绝第三方授权
 
 `614`  third party auth failed  第三方授权失败
+
+`615`  gateway type "weixin_tenpay_js" works in WeChat builtin browser only  支付类型 "weixin_tenpay_js" 只能在微信内置浏览器用使用
