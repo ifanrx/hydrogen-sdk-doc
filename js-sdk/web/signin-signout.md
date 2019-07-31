@@ -7,6 +7,55 @@
 ## 第三方登录
 
 > **info**
+> 使用第三方登录前，请确保已经完成了[第三方授权配置](/js-sdk/web/third-party-auth-config.md)。
+
+### 登录步骤
+
+> **info**
+> 请先参阅了解 [loginWithThirdParty 接口](#第三方登录接口)以便更好地理解登录步骤。
+
+**1**. options.mode 为 'popup-window'（新窗口打开授权页面）或 'popup-iframe'（在 iframe 中打开授权页面）时，接口的调用过程：
+
+  ![弹窗模式时序图](/images/third-party-auth/popup.jpg)
+
+**step1**
+
+在登录页面调用 `BaaS.auth.loginWithThirdParty(provider, authPageUrl, options)` 接口第三方登录接口，接口会在新窗口或 iframe 中打开授权页面。接口参数说明、请求示例及授权页模板说明请参阅 [loginWithThirdParty 接口](#第三方登录接口)。
+
+**step2**
+
+在授权页面调用 `BaaS.auth.thirdPartyAuth()` 接口完成第三方授权。详细说明请参阅 [thirdPartyAuth 接口](#第三方授权)。附：[授权页模板](#附：授权页模板)
+
+**step3**
+
+授权登录成功或失败后，在登录页面的 `loginWithThirdParty` 接口返回结果中即可得到授权结果，完成登录流程。
+
+**2**. options.mode 为 'redirect'（在当前页面中跳转到授权页面）时，接口的调用过程：
+
+  ![重定向模式时序图](/images/third-party-auth/redirect.jpg)
+
+**step1**
+
+在登录页面调用 `BaaS.auth.loginWithThirdParty(provider, authPageUrl, options)` 接口第三方登录接口，接口会在当前登录页面中跳转到授权页面。接口参数说明、请求示例及授权页模板说明请参阅 [loginWithThirdParty 接口](#第三方登录接口)。
+
+**step2**
+
+在授权页面调用 `BaaS.auth.thirdPartyAuth()` 接口完成第三方授权。详细说明请参阅 [thirdPartyAuth 接口](#第三方授权)。附：[授权页模板](#附：授权页模板)
+
+**step3**
+
+授权登录成功或失败后，授权页面会重定向回到登录页面，在登录页面调用 `BaaS.auth.getRedirectResult()` 接口可以获取授权结果，完成登录流程。详细说明请参阅 [getRedirectResult 接口](#获取授权结果（optionsmode-为-redirect）)。附：[移动端调用页面示例](#附：移动端调用页面示例)
+
+## 关联第三方账号
+
+> **info**
+> **关联第三方账号（linkThirdParty）**步骤与第三方登录（loginWithThirdParty）步骤相同，详细说明请参阅 [linkThirdParty 接口](#关联第三方账号接口)。
+
+## 第三方登录 / 关联第三方账号相关接口列表
+
+### 第三方登录接口
+
+> **info**
 > 使用前，请确保已经完成了[第三方授权配置](/js-sdk/web/third-party-auth-config.md)。
 
 `BaaS.auth.loginWithThirdParty(provider, authPageUrl, options)`
@@ -30,8 +79,8 @@
 1. ** provider ** - 第三方平台。目前支持三个平台 `oauth-wechat-mp`(微信公众号)、`oauth-wechat-web`(微信网页)、`oauth-weibo`(新浪微博)
 
 2. ** authPageUrl  ** - 授权页面 URL。进行授权时，SDK 会打开一个新窗口（或 iframe，具体请查看参数 options.mode ），在该页面中跳转到第三方授权页面进行授权，
-并将结果返回给授权调用方（loginWithThirdParty 或 linkThirdParty 接口），所以该页面是整个授权过程的总控页面。页面不需要开发者自行开发，我们已经提供了[模版](#授权页模版)，只需要改一下配置项，
-并放到自己的服务器下即可。页面的内容请查看下方的授权页面模版。
+并将结果返回给授权调用方（loginWithThirdParty 或 linkThirdParty 接口），所以该页面是整个授权过程的总控页面。页面不需要开发者自行开发，我们已经提供了[授权页模板](#附：授权页模板)，只需要改一下配置项，
+并放到自己的服务器下即可。页面的内容请查看下方的授权页面模板。
 
   > **info**
   > 授权页必须与主页面同源。
@@ -99,7 +148,7 @@ BaaS.auth.loginWithThirdParty('oauth-wechat-web', '/auth.html')
 
 err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
-## 关联第三方账号
+### 关联第三方账号接口
 
 > **info**
 > 使用前，请确保已经完成了[第三方授权配置](/js-sdk/web/third-party-auth-config.md)。
@@ -137,7 +186,18 @@ BaaS.auth.getCurrentUser().then(user => {
 
 err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
-## 获取授权结果（options.mode 为 redirect）
+### 第三方授权
+
+`BaaS.auth.thirdPartyAuth()`
+
+调用该接口会跳转到第三方授权页面，用户操作后，会将结果回传给授权调用方。`popup-window` 模式会传给
+window.opener，`popup-iframe` 模式会传给 window.parent，`redirect` 模式会将结果拼到 URL 中，
+并重定向到调用页面（通过[获取授权结果](#获取授权结果（optionsmode-为-redirect）)接口可以获取到结果）。
+
+> **info**
+> 一般来说，该接口只在授权页中使用。
+
+### 获取授权结果（options.mode 为 redirect）
 
 `BaaS.auth.getRedirectResult()`
 
@@ -171,18 +231,7 @@ Result 数据结构：
 | action | String  | 操作。'login'(第三方登录) / 'associate'(关联第三方账号) |
 | user   | String  | 当前用户对象，仅 status 为 'success' 且 action 为 'login' 时返回 |
 
-## 第三方授权
-
-`BaaS.auth.thirdPartyAuth()`
-
-调用该接口会跳转到第三方授权页面，用户操作后，会将结果回传给授权调用方。`popup-window` 模式会传给
-window.opener，`popup-iframe` 模式会传给 window.parent，`redirect` 模式会将结果拼到 URL 中，
-并重定向到调用页面（通过[获取授权结果](#获取授权结果（optionsmode-为-redirect）)接口可以获取到结果）。
-
-> **info**
-> 一般来说，该接口只在授权页中使用。
-
-## 授权页模版
+## 附：授权页模板
 
 使用以下代码创建一个 html 文件，将该文件放置到服务器中（必须与调用授权的页面同源），
 并保证通过 url 能访问到该文件。
@@ -190,7 +239,7 @@ window.opener，`popup-iframe` 模式会传给 window.parent，`redirect` 模式
 代码中的 `<sdk-url>` 需要替换成知晓云 SDK 在服务器中的 URL，`<cilent-id>` 需要
 替换为应用的 clientId。
 
-单页应用的开发者，也可以不使用该模版，只要保证 authPageUrl 能访问到的对应的页面，
+单页应用的开发者，也可以不使用该模板，只要保证 authPageUrl 能访问到的对应的页面，
 并且进入页面立即调用 `BaaS.auth.thirdPartyAuth` 即可。
 
 > **info**
@@ -211,7 +260,7 @@ window.opener，`popup-iframe` 模式会传给 window.parent，`redirect` 模式
 </html>
 ```
 
-## 移动端示例
+## 附：移动端调用页面示例
 
 ```js
 // 授权完成后，页面会重定向回来，接口能从 URL 中获取到授权结果。
@@ -236,16 +285,3 @@ BaaS.auth.loginWithThirdParty('oauth-wechat-mp', '/auth.html', {
 ...
 
 ```
-
-## 时序图
-
-> **info**
-> 以 loginWithThirdParty 为例
-
-1. mode 为 'popup-window' 或 'popup-window' 时，接口的调用过程：
-
-  ![弹窗模式时序图](/images/third-party-auth/popup.jpg)
-
-2. mode 为 'redirect' 时，接口的调用过程：
-
-  ![重定向模式时序图](/images/third-party-auth/redirect.jpg)
