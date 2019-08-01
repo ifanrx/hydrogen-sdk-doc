@@ -13,11 +13,18 @@
 
 弹窗模式（在新窗口或 iframe 中打开授权页面）时序图：
 
-  ![弹窗模式时序图](/images/third-party-auth/popup.jpg)
+  ![弹窗模式时序图](/images/third-party-auth/popup.png)
 
 重定向模式（在当前登录页面中重定向到授权页面）时序图：
 
-  ![重定向模式时序图](/images/third-party-auth/redirect.jpg)
+  ![重定向模式时序图](/images/third-party-auth/redirect.png)
+
+> **info**
+> **登录页面**指开发者自行编写的，需要发起第三方授权登录（BaaS.auth.loginWithThirdParty）的页面，下文同。
+>
+> **授权页面**指开发者自行编写或复制下文步骤 2 授权页模板的，发起第三方授权（BaaS.auth.thirdPartyAuth）的页面，下文同。
+>
+> **第三方授权页面**指在授权页面发起第三方授权后，跳转到的第三方平台（微博、微信公众号、微信网页）授权页面，下文同。
 
 **1. 在登录页面调用 `BaaS.auth.loginWithThirdParty(provider, authPageUrl, options)` 接口，接口会根据 options.mode 参数在新窗口或 iframe 中打开授权页面，或在当前页面中跳转到授权页面。**
 
