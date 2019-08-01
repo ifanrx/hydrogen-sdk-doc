@@ -41,7 +41,7 @@ exports.main = function helloWorld(event, callback) {
 }
 ```
 
-可在小程序中通过以下方式进行调用云函数：
+可在小程序中通过以下方式调用云函数（默认同步执行）：
 
 {% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
 
@@ -60,8 +60,9 @@ wx.BaaS.invoke('helloWorld', {name: 'allen'}).then(res => {
 })
 ```
 
-
 {% endifanrxCodeTabs %}
+
+> HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 
 **返回参数**
 
@@ -73,7 +74,36 @@ wx.BaaS.invoke('helloWorld', {name: 'allen'}).then(res => {
 }
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
+对于不需要等待执行结果的云函数，调用时可选择异步执行（sync 参数设为 false），调用云函数后执行结果直接返回 {status: "ok"}：
+
+{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
+
+```js
+wx.BaaS.invoke('helloWorld', {name: 'allen'}, false).then(res => {
+  if (res.code === 0) {
+    // 调用成功后不等待执行结果，直接返回 {status: "ok"}
+    console.log(res.data)
+  } else {
+    // fail
+    console.log(res.error.message)
+  }
+}, err => {
+  // HError 对象
+  callback(err)
+})
+```
+
+{% endifanrxCodeTabs %}
+
+**返回参数**
+
+```json
+{
+  "error": {},
+  "code": 0,
+  "data": {"status": "ok"}
+}
+```
 
 ## <span style="color: #f04134;">`已废弃`</span> `wx.BaaS.invokeFunction(functionName, params, sync)`
 
