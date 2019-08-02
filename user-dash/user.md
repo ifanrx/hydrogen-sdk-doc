@@ -112,11 +112,11 @@ axios.get('https://cloud.minapp.com/userve/v2.0/miniapp/user_profile/36619758/')
 }
 ```
 
-## 批量修改用户自定义字段
+## 批量修改自定义字段
 
-`PUT https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/`
+`PUT https://cloud.minapp.com/userve/v2.1/miniapp/user_profile/`
 
-**参数说明**
+**Query 参数说明**
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :-- |
@@ -126,6 +126,12 @@ axios.get('https://cloud.minapp.com/userve/v2.0/miniapp/user_profile/36619758/')
 
 > **info**
 > where 字段的详细说明请查看：[数据模块：数据操作](https://doc.minapp.com/open-api/data/record.html#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE)。
+
+**参数说明**
+
+> **info**
+> 参数与更新数据表数据的参数一致，详细说明请查看：[数据模块：更新数据](https://doc.minapp.com/open-api/data/record.html#%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE)。
+> 支持数据原子性更新，详细说明请查看：[数据模块：数据原子性更新](https://doc.minapp.com/open-api/data/record.html#%E6%95%B0%E6%8D%AE%E5%8E%9F%E5%AD%90%E6%80%A7%E6%9B%B4%E6%96%B0)。
 
 **代码示例**
 
