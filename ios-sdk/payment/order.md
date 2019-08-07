@@ -53,16 +53,16 @@ query.status(.success)
 query.status(.pending)
 
 // 通过退款状态查询：退款状态为 complete
-query.status(.complete)
+query.refundStatus(.complete)
 
 // 通过退款状态查询：订单状态为 partial
-query.status(.partial)
+query.refundStatus(.partial)
 
 // 通过支付方式查询：支付方式为 weixin
-query.status(.weixin)
+query.gateWayType(.weixin)
 
 // 通过支付方式查询：订单状态为 alipay
-query.status(.alipay)
+query.gateWayType(.alipay)
 
 // 通过 trade_no 查询
 query.tradeNo("xxxxxxxxxxxxxx")
@@ -93,7 +93,7 @@ BaaSOrderQuery *query = [[BaaSOrderQuery alloc] init];
 2. 设置查询条件
 
 // 通过订单状态查询：订单状态为 success
-[query status:BaaSOrderStatusSuccess"];
+[query status:BaaSOrderStatusSuccess];
 
 // 通过订单状态查询：订单状态为 pending
 [query status:BaaSOrderStatusPending];
@@ -215,8 +215,8 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 | limit     |  Int  |  返回内容的最大个数   |
 | offset    | Int  |    返回内容的起始偏移值 |
 | totalCount   | Int   |   实际返回的内容总数 |
-| next      |  Int   |   下一页地址  |
-| previous  |  Int    |   上一页地址  |
+| next      |  String   |   下一页地址  |
+| previous  |  String    |   上一页地址  |
 | orders  |   Array<Order> | 内容列表，每个元素为 Order 类型   |
 
 ## 订单状态

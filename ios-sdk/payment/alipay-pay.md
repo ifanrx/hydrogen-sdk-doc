@@ -1,17 +1,24 @@
 # 支付宝支付
 
-## 知晓云配置 appid
+使用知晓云支付 SDK，需要先在知晓云控制台关联商户账号，以及在 XCode 完成相应配置。
+
+## 商户账号关联
+
+在知晓云控制台完成商户账号关联，步骤如下图所示：
+
+![账号关联](/images/ios/alipay_account.png)
 
 ## Xcode 配置
 
 1. 配置支付宝 APPID
 
 在 Xcode 中打开项目，设置项目属性中的 URL Schemes 为支付宝 APPID。如图所示
+
 ![设置 URLTYPE](/images/ios/alipay_scheme.png)
 
-<!-- 2. 设置白名单
+在 Xcode 中打开项目，在 info.plist 文件中添加 `LSApplicationQueriesSchemes` 数组，并在该数组中添加 `alipay` 字符串。如图所示：
 
-在 Xcode 中打开项目，在 info.plist 文件中添加 LSApplicationQueriesSchemes 数组，并在该数组中添加 alipay 字符串。如图所示： -->
+![设置白名单](/images/ios/query_scheme.png)
 
 2. 配置返回 url 处理方法
 
@@ -31,6 +38,11 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplication.Op
 {% endtabs %}
 
 ## 发起支付
+
+当用户选择商品后，发起一笔支付时，需要传入订单价格、订单描述等相关参数。后续如需查询订单状态，可以传入商品 ID 等信息，请参照参数说明。
+
+> **info**
+> 该接口只是创建订单，并发起支付宝支付。查询支付结果请查阅 **订单查询** 章节的 **单个订单查询** 小节。
 
 **示例代码**
 
