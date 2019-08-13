@@ -215,6 +215,8 @@
 * [云函数 Node.js SDK](cloud-function/node-sdk/README.md)
     * [使用必读](cloud-function/node-sdk/usage-notice.md)
     * [快速入门](cloud-function/quick-start.md)
+    * [命令行工具](cloud-function/cli.md)
+        * [代码打包](cloud-function/packaging.md)
     * [数据表](cloud-function/node-sdk/schema/README.md)
         * [数据表结构管理](cloud-function/node-sdk/schema/table.md)
         * [数据类型](cloud-function/node-sdk/schema/data-type.md)
@@ -261,8 +263,6 @@
     * [公众号发送红包](cloud-function/node-sdk/red-pack.md)
     * [短信验证码](cloud-function/node-sdk/sms.md)
     * [云函数技术细节](cloud-function/technical-notes.md)
-* [命令行工具](cloud-function/cli.md)
-    * [代码打包](cloud-function/packaging.md)
 
 ----
 
