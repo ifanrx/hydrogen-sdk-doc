@@ -6,8 +6,10 @@
 
 {% if platform == 'wechat' %}
 `BaaS.getTemplateMsgTicketCount({userID, submissionType})`
-{% else %}
+{% elif platform == 'alipay' %}
 `BaaS.alipay.getTemplateMsgTicketCount({userID, submissionType})`
+{% else %}
+`BaaS.qq.getTemplateMsgTicketCount({userID, submissionType})`
 {% endif %}
 
 
@@ -34,9 +36,21 @@ BaaS.getTemplateMsgTicketCount({
   // err
 })
 ```
-{% else %}
+{% elif platform == 'alipay' %}
 ```js
 BaaS.alipay.getTemplateMsgTicketCount({
+  userID: 12345,
+  submissionType: "form_id",
+}).then(num => {
+  // success
+  console.log(num)  // 10
+}).catch(e => {
+  // err
+})
+```
+{% else %}
+```js
+BaaS.qq.getTemplateMsgTicketCount({
   userID: 12345,
   submissionType: "form_id",
 }).then(num => {
