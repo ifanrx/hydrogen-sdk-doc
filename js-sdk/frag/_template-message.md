@@ -47,6 +47,12 @@
 
 # 模板消息
 
+{% if apiPrefix == "wx." %}
+请移步[这里](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/template-message.html)了解微信模板消息
+{% elif apiPrefix == "my." %}
+请移步[这里](https://docs.alipay.com/mini/introduce/message)了解支付宝模板消息
+{% endif %}
+
 {% if apiPrefix != "qq." %}
 
 ## 上报模版消息卡片点击事件

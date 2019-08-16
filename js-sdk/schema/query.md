@@ -11,7 +11,7 @@
 | boolean  | =, exists, notExists, isNull, isNotNull                                                 |      |
 | date     | =, >, >=, <, <=,  exists, notExists, isNull, isNotNull                                  |      |
 | file     | isNull, isNotNull, exists, notExists                                                    |      |
-| geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     | 请参考地理位置操作章节 |
+| geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     | 请参考[地理位置操作章节](/js-sdk/schema/geo.md) |
 | object   | =, hasKey, isNull, isNotNull, exists, notExists                                         |      |
 | pointer  | =, in, notIn, !=, isNull, isNotNull, exists, notExists                                  |      |
 
@@ -173,9 +173,9 @@ query.compare('amount', '<', 10)
 查询返回满足包含相应字符串的记录，如下示例：
 ```js
 // 例：{"name": "apple"}
-query.contains('name', 'apple')  // 查询name字段包含'apple'的记录，能正确匹配
-query.contains('name', 'app')  // 查询name字段包含'app'的记录，能正确匹配
-query.contains('name', 'apple123')  // 查询name字段包含'apple123'的记录，不能正确匹配
+query.contains('name', 'apple')  // 查询 name 字段包含 'apple' 的记录，能正确匹配
+query.contains('name', 'app')  // 查询 name 字段包含 'app' 的记录，能正确匹配
+query.contains('name', 'apple123')  // 查询 name 字段包含 'apple123' 的记录，不能正确匹配
 ```
 
 也支持正则匹配 ( <span style='color:red'>* sdk version >= v1.1.1，</span> [正则表达式相关知识](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions) )：
@@ -196,7 +196,7 @@ const regExp = /^abc/i
 const regExp = new RegExp('^abc', 'i')
 ```
 
-## 正则匹配示例
+正则匹配示例
 
 ```js
 /* 以查找名字为例，name 字段必须为 string 类型 */

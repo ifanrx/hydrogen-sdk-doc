@@ -51,6 +51,9 @@ b. 将下载解压后得到的 SDK js 文件放在项目目录中
 
 在[知晓云后台 - 我的应用](https://cloud.minapp.com/admin/profile/)页面获取要接入知晓云服务的 ClientID, 按照如下方式进行 SDK 初始化:
 
+![复制 clientID](/images/newbies/get-client-id1.jpeg)
+
+![复制 clientID](/images/newbies/get-client-id2.jpeg)
 
 ```javascript
 BaaS.init(clientID, {logLevel})

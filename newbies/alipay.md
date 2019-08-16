@@ -45,7 +45,7 @@
 
 ![知晓云服务器域名](/images/newbies/domain-name-config-alipay.png)
 
-登录[小程序后台](https://open.alipay.com/platform/mini.htm#/app/{{appid}}/setting)，进入 “设置 - 开发设置”页面，将知晓云提供给开发者的服务器域名配置到支付宝开发者后台的“服务器域名”配置项中。
+登录[小程序后台](https://open.alipay.com/platform/mini.htm#/app/{{appid}}/setting)，进入 “设置 - 开发设置”页面，将知晓云提供给开发者的服务器域名全部配置到支付宝开发者后台的“服务器域名”配置项中。
 
 ![小程序服务器域名配置](/images/newbies/hydrogen-domain-name-config-alipay.png)
 
