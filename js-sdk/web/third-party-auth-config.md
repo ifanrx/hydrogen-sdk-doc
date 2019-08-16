@@ -24,17 +24,17 @@
 
   ![](/images/third-party-auth-config/002.png)
 
-4. 创建应用成功后，设置 AppSecret 并将 AppID/AppSecert 妥善到本地
+4. 创建应用成功后，设置 AppSecret 并将 AppID/AppSecert 妥善保存到本地
 
   ![](/images/third-party-auth-config/003.png)
 
-5. 登录知晓云应用后台获取授权回调 URL 并将填入「开发信息」中
+5. 知晓云应用后台 -> 设置 -> 应用 -> 登录方法，找到「微信网页登录」，点击「开通」或「更新配置」，将应用详情中的 AppID / AppSecret 填写到知晓云的配置中
 
-  ![](/images/third-party-auth-config/004.png)
+  ![](/images/third-party-auth-config/weixin_web_setting.png)
 
-6. 将应用详情中的 AppID / AppSecret 填写到知晓云的配置中
+6. 知晓云应用后台 -> 设置 -> 应用 -> 第三方授权登录安全域名，获取授权回调 URL 并将填入第 4 步中的「开发信息」中
 
-  ![](/images/third-party-auth-config/005.png)
+  ![](/images/third-party-auth-config/weixin_web_domain.png)
 
 7. 完成以上配置后，你就可以开始在 Web 中接入微信登录（网站应用微信登录）服务啦，详见 [Web 接入指南](https://doc.minapp.com/newbies/web.html)
 
@@ -60,13 +60,13 @@
 
   ![](/images/third-party-auth-config/008.png)
 
-5. 登录知晓云应用后台获取将 AppID / AppSecret / MP_verify_xxx.txt（下载的文件）配置到知晓云
+5. 知晓云应用后台 -> 设置 -> 应用 -> 登录方法，找到「微信公众号登录」，点击「开通」或「更新配置」，将获取到的 AppID / AppSecret / MP_verify_xxx.txt（下载的文件）配置到知晓云
 
-  ![](/images/third-party-auth-config/009.png)
+  ![](/images/third-party-auth-config/weixin_mp_setting.png)
 
-6. 从知晓云应用后台获取网页授权域名，并将其填写到微信公众号平台的设置
+6. 知晓云应用后台 -> 设置 -> 应用 -> 第三方授权登录安全域名，获取网页授权域名，并将其填写到微信公众号平台的设置
 
-  ![](/images/third-party-auth-config/010.png)
+  ![](/images/third-party-auth-config/weixin_mp_domain.png)
 
   ![](/images/third-party-auth-config/011.png)
 
@@ -91,13 +91,13 @@
 
   ![](/images/third-party-auth-config/013.png)
 
-3. 登录知晓云应用后台获取将 App Key / App Secert 配置到知晓云
+3. 知晓云应用后台 -> 设置 -> 应用 -> 登录方法，找到「微博登录」，点击「开通」或「更新配置」，将获取到的 App Key / App Secert 配置到知晓云
 
-  ![](/images/third-party-auth-config/014.png)
+  ![](/images/third-party-auth-config/weibo_setting.png)
 
-4. 从知晓云应用后台获取网页授权域名，并将其填写到微博应用设置中的安全域名
+4. 知晓云应用后台 -> 设置 -> 应用 -> 第三方授权登录安全域名，获取网页授权域名，并将其填写到微博应用设置中的安全域名
 
-  ![](/images/third-party-auth-config/015.png)
+  ![](/images/third-party-auth-config/weibo_domain.png)
 
   ![](/images/third-party-auth-config/016.png)
 

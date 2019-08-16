@@ -7,7 +7,7 @@
 开发者可以使用 `BaaS.auth.register(opts)` API 来进行用户的通用注册。
 
 > **info**
-> 注册成功后会自动登录，调用注册方法之前需先前往[设置](https://cloud.minapp.com/dashboard/#/app/settings/sdk/)打开该登录方法
+> 注册成功后会自动登录，调用注册方法之前需先前往[设置](https://cloud.minapp.com/dashboard/#/app/settings/info/)打开该登录方法
 
 opts 参数说明：
 
