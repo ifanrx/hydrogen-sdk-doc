@@ -28,7 +28,7 @@
 
   ![](/images/third-party-auth-config/003.png)
 
-5. 登录知晓云应用后台 -> 设置 -> 应用 -> 登录方法，找到「微信网页登录」，点击「开通」或「更新配置」，将应用详情中的 AppID / AppSecret 填写到知晓云的配置中
+5. 知晓云应用后台 -> 设置 -> 应用 -> 登录方法，找到「微信网页登录」，点击「开通」或「更新配置」，将应用详情中的 AppID / AppSecret 填写到知晓云的配置中
 
   ![](/images/third-party-auth-config/weixin_web_setting.png)
 
@@ -60,7 +60,7 @@
 
   ![](/images/third-party-auth-config/008.png)
 
-5. 登录知晓云应用后台 -> 设置 -> 应用 -> 登录方法，找到「微信公众号登录」，点击「开通」或「更新配置」，将获取到的 AppID / AppSecret / MP_verify_xxx.txt（下载的文件）配置到知晓云
+5. 知晓云应用后台 -> 设置 -> 应用 -> 登录方法，找到「微信公众号登录」，点击「开通」或「更新配置」，将获取到的 AppID / AppSecret / MP_verify_xxx.txt（下载的文件）配置到知晓云
 
   ![](/images/third-party-auth-config/weixin_mp_setting.png)
 
@@ -91,7 +91,7 @@
 
   ![](/images/third-party-auth-config/013.png)
 
-3. 登录知晓云应用后台 -> 设置 -> 应用 -> 登录方法，找到「微博登录」，点击「开通」或「更新配置」，将获取到的 App Key / App Secert 配置到知晓云
+3. 知晓云应用后台 -> 设置 -> 应用 -> 登录方法，找到「微博登录」，点击「开通」或「更新配置」，将获取到的 App Key / App Secert 配置到知晓云
 
   ![](/images/third-party-auth-config/weibo_setting.png)
 
