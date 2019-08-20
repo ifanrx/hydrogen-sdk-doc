@@ -47,6 +47,8 @@
 
 # 模板消息
 
+{% if apiPrefix != "qq." %}
+
 ## 上报模版消息卡片点击事件
 
 {% if apiPrefix == "wx." %}
@@ -85,18 +87,25 @@
 ```
 {% endif %}
 
+{% endif %}
+
 ## 上报模版消息所需 formId
 {% if apiPrefix == "wx." %}
 {% set api = "wx.BaaS.wxReportTicket" %}
 {% elif apiPrefix == "my." %}
 {% set api = "my.BaaS.reportTicket" %}
+{% elif apiPrefix == "qq." %}
+{% set api = "qq.BaaS.reportTicket" %}
 {% endif %}
 
-### 方式一：获取到 formId 后，调用接口上报
 {% if apiPrefix == "wx." %}
+### 方式一：获取到 formId 后，调用接口上报
 `wx.BaaS.wxReportTicket(formID)`
 {% elif apiPrefix == "my." %}
+### 方式一：获取到 formId 后，调用接口上报
 `my.BaaS.reportTicket(formID)`
+{% elif apiPrefix == "qq." %}
+`qq.BaaS.reportTicket(formID)`
 {% endif %}
 
 **参数说明**
@@ -107,6 +116,7 @@
 
 当使用小程序的 `<form/>` 组件，且属性 report-submit 设为 true 时，此时表单是声明为需要要发模板消息的，当点击按钮提交表单即可获取 formID。
 
+{% if apiPrefix != "qq." %}
 ### 方式二：使用自定义组件自动上报（推荐）
 
 > **info**
@@ -175,6 +185,13 @@
 
 {% endif %}
 
+{% endif %}
+
+
+{% if apiPrefix != "qq." %}
+
 ## 发送模版消息
 
 通过 Trigger 触发器设定触发条件以发送模版消息，具体使用请参照 [Trigger 使用说明](http://support.minapp.com/hc/kb/article/1080135) 。
+
+{% endif %}

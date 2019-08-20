@@ -140,39 +140,51 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 | 参数    | 类型    | 说明         |
 | :------| :------ | :----------- |
-| data   | object | wx.getUserInfo() success 回调中收到的参数，可选 |
+| data            | object | bindgetuserinfo 事件回调返回的参数 |
 | syncUserProfile | String | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx` |
 
 {% include "/js-sdk/frag/_sync_user_profile_param.md" %}
 
 {{ userInfoAlert() }}
 
-```javascript
-// 必须在用户通过 login API 登录后才能进行绑定
-wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
-  // user 为 currentUser 对象
-  return user.linkWechat()
-}).then(res=>{
-  // success
-  // 用户可以通过微信授权登录同一个账户了
-})
-```
 
-```javascript
-// 必须在用户通过 login API 登录后才能进行绑定
-wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
-  // user 为 currentUser 对象
+**请求示例**
 
-  wx.getUserInfo({
-    success(info){
-      user.linkWechat(info).then(res=>{
-        // 关联成功
-        console.log(res.statusCode)
-      })
-    }
+1. 不获取用户信息:
+
+  ```javascript
+  // 必须在用户通过 login API 登录后才能进行绑定
+  wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
+    // user 为 currentUser 对象
+    return user.linkWechat()
+  }).then(res=>{
+    // success
+    // 用户可以通过微信授权登录同一个账户了
   })
-})
-```
+  ```
+
+2. 获取用户信息:
+
+  ```html
+  <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
+  ```
+
+  ```js
+  Page({
+    // ...
+    userInfoHandler(data) {
+      // 必须在用户通过 login API 登录后才能进行绑定
+      wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
+        // user 为 currentUser 对象
+        user.linkWechat(data).then(res=>{
+          // 关联成功
+          console.log(res.statusCode)
+        })
+      })
+    },
+    // ...
+  })
+  ```
 
 **返回示例**
 ```JSON

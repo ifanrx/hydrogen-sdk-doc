@@ -1,5 +1,8 @@
 #  Web 端 SDK 接入指南
 
+> **info**
+> Web 端 SDK 浏览器兼容性：IE10+
+
 ## 配置安全域名
 进入知晓云 [设置页面](https://cloud.minapp.com/dashboard/#/app/settings/app/) 配置安全域名，只有在指定域名下，才能正常的请求知晓云数据：
 ![配置安全域名](/images/newbies/web-sdk-secure-domain.png)

@@ -8,10 +8,13 @@
 ![模板消息示例](../../../../images/template-message/template-message.png)
 
 `BaaS.sendTemplateMessage(data)`
-{% else %}
+{% elif platform == 'alipay' %}
 ![模板消息示例](../../../../images/template-message/alipay-template-message.png)
 
 `BaaS.alipay.sendTemplateMessage(data)`
+{% else %}
+`BaaS.qq.sendTemplateMessage(data)`
+
 {% endif %}
 
 
@@ -36,9 +39,9 @@ data 是 Object 类型，它包括以下几个属性
 | :-------------- | :----- | :--- | :-- |
 | recipient_type  | String | 是   | 推送类型，可选值： user_id、user_list、user_group、schema_user  |
 | `<recipient_params>` | Array、Integer、String、Object | 是   | 根据recipient_type来填写不同的参数名， 详见下方表格说明 |
-| template_id     | String | 是   | 模板 ID (在支付宝小程序后台配置) |
+| template_id     | String | 是   | 模板 ID (在小程序后台配置) |
 | submission_type | String | 是   | 模板消息触发条件，`form_id` 或者 `trade_no` |
-| keywords        | Object | 是   | 关键字 (在支付宝小程序后台配置) |
+| keywords        | Object | 是   | 关键字 (在小程序后台配置) |
 | schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 | page            | String | 是   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
 {% endif %}
@@ -78,8 +81,14 @@ BaaS.sendTemplateMessage(data).then(res => {
 }, err => {
   // 发送失败
 })
-{% else %}
+{% elif platform == 'alipay' %}
 BaaS.alipay.sendTemplateMessage(data).then(res => {
+  // 发送成功
+}, err => {
+  // 发送失败
+})
+{% else %}
+BaaS.qq.sendTemplateMessage(data).then(res => {
   // 发送成功
 }, err => {
   // 发送失败
@@ -99,8 +108,10 @@ let data = {
 
 {% if platform == 'wechat' %}
 BaaS.sendTemplateMessage(data)
-{% else %}
+{% elif platform == 'alipay' %}
 BaaS.alipay.sendTemplateMessage(data)
+{% else %}
+BaaS.qq.sendTemplateMessage(data)
 {% endif %}
 ```
 
@@ -119,14 +130,21 @@ let data = {
 
 {% if platform == 'wechat' %}
 BaaS.sendTemplateMessage(data)
-{% else %}
+{% elif platform == 'alipay' %}
 BaaS.alipay.sendTemplateMessage(data)
+{% else %}
+BaaS.qq.sendTemplateMessage(data)
 {% endif %}
 ```
 
 **请求示例 - schema_user**
 
 schema_user 允许同时存在 user_profile_filters 和 user_group_name 参数
+
+> **info**
+> 如果 `recipient_type` 为 `schema_user` 且参数中包含 `user_group_name` 字段，
+> 则 `user_profile_filters` 字段中，最外层的 `$and` 或 `$or` 不能省略。
+
 
 ```js
 let data = {
@@ -153,8 +171,10 @@ let data = {
 
 {% if platform == 'wechat' %}
 BaaS.sendTemplateMessage(data)
-{% else %}
+{% elif platform == 'alipay' %}
 BaaS.alipay.sendTemplateMessage(data)
+{% else %}
+BaaS.qq.sendTemplateMessage(data)
 {% endif %}
 ```
 
@@ -166,13 +186,20 @@ BaaS.alipay.sendTemplateMessage(data)
 
 > **info**
 > 如果 `submission_type = 'form_id'`，请确保在调用 `BaaS.sendTemplateMessage` 前，已在小程序端调用 `wx.BaaS.wxReportTicket`上报模版消息所需的 `formId`
-{% else %}
+{% elif platform == 'alipay' %}
 其中 keyword1, keyword2 为支付宝后台中实际关键词对应的键值
 
 ![关键词对应键值示例](/images/template-message/alipay-template-message-keyword.png)
 
 > **info**
 > 如果 `submission_type = 'form_id'`，请确保在调用 `BaaS.alipay.sendTemplateMessage` 前，已在小程序端调用 `my.BaaS.reportTicket`上报模版消息所需的 `formId`
+{% else %}
+其中 keyword1, keyword2 为 QQ 后台中实际关键词对应的键值
+
+![关键词对应键值示例](/images/template-message/alipay-template-message-keyword.png)
+
+> **info**
+> 如果 `submission_type = 'form_id'`，请确保在调用 `BaaS.qq.sendTemplateMessage` 前，已在小程序端调用 `qq.BaaS.reportTicket`上报模版消息所需的 `formId`
 {% endif %}
 
 

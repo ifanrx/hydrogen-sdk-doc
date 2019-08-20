@@ -6,13 +6,10 @@
 | :--------------- | :----------- | :------- |
 | user_id           | integer      | 用户 ID |
 | avatar           | string      | 用户头像 |
-| token             | string       | User authentication token |
-| expires_in | integer | 过期时间，为时间戳，单位：秒 |
 | _username           | string       | 用户名 |
 | _email           | string       | 用户邮件地址 |
 | _email_verified       | boolean | 用户邮件地址是否已经验证 |
 | _provider | object | 用户在平台方的用户信息(见 `v2.0/user/info` 接口)以及其他 _userprofile 表的内置字段及用户自定义字段 |
-| _session | object | Cookies 信息 |
 | country | string | 用户所在的国家 |
 | province | string | 用户所在的省份 |
 | city | string | 用户所在城市 |
@@ -25,16 +22,8 @@
     "_email": "hgzchn@qq.com",
     "_email_verified": false,
     "_provider": {},
-    "_session": {
-        "ip_address": "183.61.109.***",
-        "login_method": "email",
-        "session_key": "bdvz5*********mobvqmbsloqj2*****7",
-        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36"
-    },
     "avatar": "https://media.ifanrusercontent.com/hydrogen/default_avatar.png",
-    "expires_in": 2592000,
     "id": 34719381111111,
-    "token": "bdvz5*********mobvqmbsloqj2*****7",
     "user_id": 3471938111111,
     "country": "China",
     "province": "Guangdong",
@@ -99,7 +88,12 @@ curl -X POST \
 
 **返回参数说明**
 
-参考[用户(user)](#user-object)
+|        参数       |      类型    |   说明    |
+| :--------------- | :----------- | :------- |
+| token             | string       | User authentication token |
+| expires_in | integer | token 的有效时间，最长为 30 天，单位：秒；token 过期时间 = 注册时间 + token 有效时间 |
+
+其余字段可参考[用户(user)](#user-object)
 
 **状态码说明**
 
@@ -163,7 +157,12 @@ curl -X POST \
 
 **返回示例**
 
-参考[用户(user)](#user-object)
+|        参数       |      类型    |   说明    |
+| :--------------- | :----------- | :------- |
+| token             | string       | User authentication token |
+| expires_in | integer | token 的有效时间，最长为 30 天，单位：秒；token 过期时间 = 登录时间 + token 有效时间 |
+
+其余字段可参考[用户(user)](#user-object)
 
 **状态码说明**
 

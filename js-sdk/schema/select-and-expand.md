@@ -62,17 +62,23 @@ Product.setQuery(query).select(['-created_at', '-created_by']).find()
 
 ### expand 返回结果示例
 
-注：`pointer_value` 为指向其他表的 pointer 类型字段
+`pointer_value` 为指向其他表的 pointer 类型字段
+
+> **info**
+> 未 expand 的情况下，created_by 的值是 int 类型，而其他 pointer 的值是 object
 
 不使用 expand
 ```json
 {
   "created_at": 1516118400,
-  "created_by": 1234,
+  "created_by": 62536607,
   "id": "5a2fa9b008443e59e0e67829",
   "name": "小米无线耳机",
   "price": 199,
-  "pointer_value": "5a2fa9xxxxxxxxxxxxxx"
+  "pointer_value": {
+    "id": "5a2fa9xxxxxxxxxxxxxx",
+    "_table": "table-name"
+  }
 }
 ```
 

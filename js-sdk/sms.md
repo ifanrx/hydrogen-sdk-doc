@@ -10,7 +10,7 @@
 > SDK 发送短信需要在知晓云控制台开通并开启发送短信权限，操作步骤请参考本页面末尾
 
 ## 发送短信验证码
-`wx.BaaS.sendSmsCode({phone})`
+`BaaS.sendSmsCode({phone})`
 
 ### 参数说明
 
@@ -19,7 +19,9 @@
 | phone | string | 手机号 |
 
 ### 示例代码
-```js
+
+{% ifanrxCodeTabs %}
+```javascript
 wx.BaaS.sendSmsCode({phone: '1328888888'}).then(res => {
   // success
   console.log(res.data) // { "status": "ok" }
@@ -28,6 +30,7 @@ wx.BaaS.sendSmsCode({phone: '1328888888'}).then(res => {
   console.log(e.code) // 错误状态码
 })
 ```
+{% endifanrxCodeTabs %}
 
 **错误状态码**
 
@@ -49,6 +52,7 @@ wx.BaaS.sendSmsCode({phone: '1328888888'}).then(res => {
 | code    | number   | 验证码 |
 
 ### 示例代码
+{% ifanrxCodeTabs %}
 ```js
 wx.BaaS.verifySmsCode({phone: '132888888', code: 123456}).then(res => {
     // success
@@ -58,6 +62,7 @@ wx.BaaS.verifySmsCode({phone: '132888888', code: 123456}).then(res => {
     console.log(e.code) // 错误状态码
 })
 ```
+{% endifanrxCodeTabs %}
 
 **错误状态码**
 
