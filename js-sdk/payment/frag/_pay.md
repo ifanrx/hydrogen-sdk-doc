@@ -6,7 +6,7 @@
 {% set platformName = "支付宝" %}
 # 支付宝支付
 {% elif apiPrefix == 'qq' %}
-{% set platformName = "QQ" %}
+{% set platformName = "QQ " %}
 # QQ 支付
 {% endif %}
 
