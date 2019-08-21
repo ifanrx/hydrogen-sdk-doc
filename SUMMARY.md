@@ -85,7 +85,7 @@
         * [微信小程序支付](js-sdk/payment/wechat-pay.md)
         * [支付宝小程序支付](js-sdk/payment/alipay-pay.md)
         * [QQ 小程序支付](js-sdk/payment/qq-pay.md)
-        * [网页微信、支付宝支付](js-sdk/payment/web.md)
+        * [网页微信、支付宝、QQ 支付](js-sdk/payment/web.md)
         * [订单查询](js-sdk/payment/order.md)
     * [调用云函数](js-sdk/invoke-function.md)
     * [短信验证码](js-sdk/sms.md)
