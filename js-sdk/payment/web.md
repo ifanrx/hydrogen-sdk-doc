@@ -39,24 +39,24 @@ Web 端微信支付支持三种支付方式：
 
 **返回参数说明**
 
-1. JSAPI 支付：
+1、 JSAPI 支付：
 
-  | 参数           | 类型   | 说明 |
-  | :--------------| :----- | :-- |
-  | err_msg        | String | 错误信息 |
-  | transaction_no | String | 微信支付流水号 |
-  | trade_no       | String | 微信支付交易 ID, 业务方在微信后台对账时可看到此字段 |
+| 参数           | 类型   | 说明 |
+| :--------------| :----- | :-- |
+| err_msg        | String | 错误信息 |
+| transaction_no | String | 微信支付流水号 |
+| trade_no       | String | 微信支付交易 ID, 业务方在微信后台对账时可看到此字段 |
 
-  当支付取消或发生错误时，会抛出错误（[HError 对象](/js-sdk/error-code.md)）
+当支付取消或发生错误时，会抛出错误（[HError 对象](/js-sdk/error-code.md)）
 
-2. 其他：
+2、 其他：
 
-  | 参数                      | 类型   | 说明 |
-  | :-------------------------| :----- | :-- |
-  | transaction_no | String   | 微信支付流水号 |
-  | trade_no    | String | 微信支付交易 ID, 业务方在微信后台对账时可看到此字段 |
-  | code_url    | String | gatewayType="`weixin_tenpay_native`" 时返回，用于生成支付二维码 |
-  | mweb_url    | String | gatewayType="`weixin_tenpay_wap`"时返回，用户可通过访问该 url 来拉起微信客户端，完成支付 |
+| 参数                      | 类型   | 说明 |
+| :-------------------------| :----- | :-- |
+| transaction_no | String   | 微信支付流水号 |
+| trade_no    | String | 微信支付交易 ID, 业务方在微信后台对账时可看到此字段 |
+| code_url    | String | gatewayType="`weixin_tenpay_native`" 时返回，用于生成支付二维码 |
+| mweb_url    | String | gatewayType="`weixin_tenpay_wap`"时返回，用户可通过访问该 url 来拉起微信客户端，完成支付 |
 
 > **info**
 > 电脑端扫码支付时，开发者调用支付接口并成功获取到 `code_url` 后，需要将 `code_url` 转换为二维码。
