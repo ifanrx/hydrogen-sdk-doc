@@ -122,7 +122,7 @@ User.find(query: query, completion: {_, _ in
 BaaSWhere *where = [BaaSWhere compareWithKey:@"price" operator:BaaSOperatorLessThan value:@25];
 BaaSQuery *query = [[BaaSQuery alloc] init];
 [query setWhere:where];
-[BaaSUser findWithQuery:query completion:^(BaaSUserListResult * _Nullable listResult, NSError * _Nullable error) {
+[BaaSUser findWithQuery:query completion:^(BaaSUserList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
@@ -138,14 +138,14 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| listResult  | UserListResult | 结果列表|
+| listResult  | UserList | 结果列表|
 | error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
-### UserListResult
+### UserList
 
-`UserListResult` 表示一次查询数据库所返回的用户列表以及元数据。
+`UserList` 表示一次查询数据库所返回的用户列表以及元数据。
 
 | 属性       |  类型    |  说明 |
 | :--------- | :--- | :----   |

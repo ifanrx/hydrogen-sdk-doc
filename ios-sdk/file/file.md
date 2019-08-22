@@ -176,7 +176,7 @@ FileManager.getCategoryList() { (result, error) in
 ```
 {% content "oc5" %}
 ```
-[BaaSFileManager getCategoryListWithQuery:nil completion:^(BaaSFileCategoryListResult * _Nullable listResult, NSError * _Nullable) {
+[BaaSFileManager getCategoryListWithQuery:nil completion:^(BaaSFileCategoryList * _Nullable listResult, NSError * _Nullable) {
 
 }];
 ```
@@ -192,7 +192,7 @@ FileManager.getCategoryList() { (result, error) in
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| listResult  | FileCategoryListResult | 文件分类列表结果，详见 **数据类型** 小节 |
+| listResult  | FileCategoryList | 文件分类列表结果，详见 **数据类型** 小节 |
 | error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
@@ -253,56 +253,6 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 ## 分页
 文件分类查询排序与[数据表分页](../schema/limit-and-order.md)方法一致。
-
-## 数据类型
-
-### File
-
-| 属性         |  类型   | 说明 |
-| :--------- | :---     | :--- |
-| id         |   String  | 文件 Id |
-| mimeType |  String    | 文件类型 |
-| name  |  String  | 文件名 |
-| cdnPath  |  String | cdn 路径 |
-| size  |  Int | 文件大小 |
-| category |  FileCategory  | 文件分类 |
-| localPath |  String   |   本地路径 |
-| createdAt | TimeInterval  |   创建日期 | 
-
-### FileCategory
-
-`FileCategory` 表示文件所属的分类。
-
-| 属性         |  类型   | 说明 |
-| :--------- | :---     | :--- |
-| Id  |   String  | 分类 Id |
-| mimeType |  String    | 文件类型 |
-| name  |  String  | 分类名 |
-| files  |  Int | 该分类的文件数量 |
-| updatedAt  |  TimeInterval | 更新日期 |
-| createdAt | TimeInterval  |   创建日期 | 
-
-### FileListResult
-
-`FileListResult` 表示一次查询数据库所返回的文件列表以及元数据。
-
-| 属性       |  类型    |  说明 |
-| :--------- | :--- | :----   |
-| limit     |  Int  |  返回文件的最大个数   |
-| offset    | Int  |    返回文件的起始偏移值 |
-| totalCount   | Int   |   实际返回的文件总数 |
-| files  |   Array<File> | 文件列表，每个元素为 File 类型   |
-
-### FileCategoryListResult
-
-`FileCategoryListResult` 表示一次查询数据库所返回的文件分类列表以及元数据。
-
-| 属性       |  类型    |  说明 |
-| :--------- | :--- | :----   |
-| limit     |  Int  |  返回文件分类的最大个数 |
-| offset    | Int  |    返回文件分类的起始偏移值 |
-| totalCount   | Int   |   实际返回的文件分类总数 |
-| fileCategorys  |   Array<FileCategory> | 文件分类列表，每个元素为 FileCategory 类型   |
 
 ## 图片云处理
 
@@ -590,3 +540,57 @@ streams 参数说明：
 | video_width   | Int | (视频流)视频宽度 |
 | audio_channels   | Int | (音频流)音频通道数 |
 | audio_samplerate   | Int | (音频流)音频采样率 |
+
+## 数据类型
+
+### File
+
+| 属性         |  类型   | 说明 |
+| :--------- | :---     | :--- |
+| id         |   String  | 文件 Id |
+| mimeType |  String    | 文件类型 |
+| name  |  String  | 文件名 |
+| cdnPath  |  String | cdn 路径 |
+| size  |  Int | 文件大小 |
+| category |  FileCategory  | 文件分类 |
+| localPath |  String   |   本地路径 |
+| createdAt | TimeInterval  |   创建日期 | 
+
+### FileCategory
+
+`FileCategory` 表示文件所属的分类。
+
+| 属性         |  类型   | 说明 |
+| :--------- | :---     | :--- |
+| Id  |   String  | 分类 Id |
+| mimeType |  String    | 文件类型 |
+| name  |  String  | 分类名 |
+| files  |  Int | 该分类的文件数量 |
+| updatedAt  |  TimeInterval | 更新日期 |
+| createdAt | TimeInterval  |   创建日期 | 
+
+### FileList
+
+`FileList` 表示一次查询数据库所返回的文件列表以及元数据。
+
+| 属性       |  类型    |  说明 |
+| :--------- | :--- | :----   |
+| limit     |  Int  |  返回文件的最大个数   |
+| offset    | Int  |    返回文件的起始偏移值 |
+| totalCount   | Int   |   实际返回的文件总数 |
+| next      | String  |   下一页地址 |
+| previous  | String  |    上一页地址 |
+| files  |   Array<File> | 文件列表，每个元素为 File 类型   |
+
+### FileCategoryList
+
+`FileCategoryList` 表示一次查询数据库所返回的文件分类列表以及元数据。
+
+| 属性       |  类型    |  说明 |
+| :--------- | :--- | :----   |
+| limit     |  Int  |  返回文件分类的最大个数 |
+| offset    | Int  |    返回文件分类的起始偏移值 |
+| totalCount   | Int   |   实际返回的文件分类总数 |
+| next      | String  |   下一页地址 |
+| previous  | String  |    上一页地址 |
+| fileCategorys  |   Array<FileCategory> | 文件分类列表，每个元素为 FileCategory 类型   |

@@ -108,7 +108,7 @@ BaaSTable *neighbourhood = [[BaaSTable alloc] initWithName:@"neighbourhoodTableN
 // geoField 为 neighbourhood 表中定义地理位置的字段名，point 为用户所在位置，为 GeoPoint 类型
 BaaSWhere *where = [BaaSWhere includeWithKey:"geoField" point:point];
 [query setWhere:where];
-[neighbourhood findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
+[neighbourhood findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
@@ -141,7 +141,7 @@ BaaSTable *restaurant = [[BaaSTable alloc] initWithName:@"restaurantTableName"];
 // geoField 为 restaurant 表中定义地理位置的字段名
 BaaSWhere *where = [BaaSWhere withinCircleWithKey:@"geoField" point: point radius: radius];
 [query setWhere:where];
-[restaurant findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
+[restaurant findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
@@ -174,7 +174,7 @@ BaaSTable *restaurant = [[BaaSTable alloc] initWithName:@"restaurantTableName"];
 // geoField 为 restaurant 表中定义地理位置的字段名，point 为圆点，minDistance 不指定默认为 0
 BaaSWhere *where = [BaaSWhere withinRegionWithKey: point:point minDistance:minDistance maxDistance:maxDistance];
 [query setWhere:where];
-[restaurant findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
+[restaurant findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
@@ -213,7 +213,7 @@ BaaSGeoPolygon *neighbourhoodPolygon;
 // restaurantGeoField 为 restaurant 表中定义地理位置的字段名
 BaaSWhere *where = [BaaSWhere withinWithKey: polygon:neighbourhoodPolygon];
 [query setWhere:where];
-[restaurant findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
+[restaurant findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
@@ -229,7 +229,7 @@ BaaSWhere *where = [BaaSWhere withinWithKey: polygon:neighbourhoodPolygon];
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| listResult  | RecordListResult | 结果列表，详见 [数据类型](./data-type.md) 章节|
+| listResult  | RecordList | 结果列表，详见 [数据类型](./data-type.md) 章节|
 | error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

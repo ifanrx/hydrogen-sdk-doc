@@ -106,7 +106,7 @@ contentGroup.getCategoryList { (listResult, error) in
 ```
 {% content "oc4" %}
 ```
-[contentGroup getCategoryListWithQuery:nil completion:^(BaaSContentCategoryListResult * _Nullable listResult, NSError * _Nullable error) {
+[contentGroup getCategoryListWithQuery:nil completion:^(BaaSContentCategoryList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
@@ -122,7 +122,7 @@ contentGroup.getCategoryList { (listResult, error) in
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| listResult  | ContentCategoryListResult | 内容分类列表结果，详见 **数据类型** 小节 |
+| listResult  | ContentCategoryList | 内容分类列表结果，详见 **数据类型** 小节 |
 | error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
@@ -161,24 +161,28 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 | haveChildren  |  Bool | 是否有子类 |
 | children | Array  |   子类列表，元素类型为 ContentCategory  | 
 
-### ContentListResult
+### ContentList
 
-`ContentListResult` 表示一次查询数据库所返回的内容列表以及元数据。
+`ContentList` 表示一次查询数据库所返回的内容列表以及元数据。
 
 | 属性       |  类型    |  说明 |
 | :--------- | :--- | :----   |
 | limit     |  Int  |  返回内容的最大个数   |
 | offset    | Int  |    返回内容的起始偏移值 |
 | totalCount   | Int   |   实际返回的内容总数 |
+| next      | String  |   下一页地址 |
+| previous  | String  |    上一页地址 |
 | contents  |   Array<Content> | 内容列表，每个元素为 Content 类型   |
 
-### ConetentCategoryListResult
+### ConetentCategoryList
 
-`ContentCategoryListResult` 表示一次查询数据库所返回的内容分类列表以及元数据。
+`ContentCategoryList` 表示一次查询数据库所返回的内容分类列表以及元数据。
 
 | 属性       |  类型    |  说明 |
 | :--------- | :--- | :----   |
 | limit     |  Int  |  返回内容分类的最大个数   |
 | offset    | Int  |    返回内容分类的起始偏移值 |
 | totalCount   | Int   |   实际返回的内容分类总数 |
+| next      | String  |   下一页地址 |
+| previous  | String  |    上一页地址 |
 | contentCategorys  |   Array<ContentCategory> | 内容分类列表，每个元素为 ContentCategory 类型   |
