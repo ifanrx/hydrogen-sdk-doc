@@ -5,6 +5,9 @@
 {% elif apiPrefix == 'my' %}
 {% set platformName = "支付宝" %}
 # 支付宝支付
+{% elif apiPrefix == 'qq' %}
+{% set platformName = "QQ " %}
+# QQ 支付
 {% endif %}
 
 `{{apiPrefix}}.BaaS.pay(OBJECT)`
@@ -17,19 +20,18 @@
 | merchandiseDescription | String  | Y   | {{platformName}}支付凭证-商品详情的内容 |
 | merchandiseSchemaID    | Integer | N   | 商品数据表 ID，可用于定位用户购买的物品 |
 | merchandiseRecordID    | String  | N   | 商品数据行 ID，可用于定位用户购买的物品 |
-| merchandiseSnapshot    | Object  | N   | 根据业务需求自定义的数据 |
 
 > **info**
 > 举例：开发者有一个 Article 表, 里面有免费 / 付费的文章, 当用户对一篇付费文章进行支付时, 则可以将 Article 表的 ID 作为 `merchandiseSchemaID`, 文章记录的 ID 作为你 `merchandiseRecordID` 传入到 `{{apiPrefix}}.BaaS.pay(object)` 写进支付订单记录。当用户阅读此付费文章时, 则可以通过 `merchandiseSchemaID`, `merchandiseRecordID` 来查询用户是否付费。
 
 **支付成功返回参数说明**
 
-{% if apiPrefix == 'wx' %}
+{% if apiPrefix == 'wx' or apiPrefix == 'qq' %}
 | 参数                      | 类型   | 说明 |
 | :-------------------------| :----- | :-- |
-| errMsg | String   | 微信支付状态信息 |
-| transaction_no | String   | 微信支付流水号 |
-| trade_no    | String | 微信支付交易 ID, 业务方在微信后台对账时可看到此字段 |
+| errMsg | String   | {{platformName}}支付状态信息 |
+| transaction_no | String   | {{platformName}}支付流水号 |
+| trade_no    | String | {{platformName}}支付交易 ID, 业务方在{{platformName}}后台对账时可看到此字段 |
 {% elif apiPrefix == 'my' %}
 | 参数                      | 类型   | 说明 |
 | :-------------------------| :----- | :-- |
@@ -63,7 +65,7 @@ let params = {
 
 **支付成功返回示例**
 
-{% if apiPrefix == 'wx' %}
+{% if apiPrefix == 'wx' or apiPrefix == 'qq' %}
 ```
 {
   errMsg: "requestPayment:ok",
@@ -147,6 +149,28 @@ PayError 对象结构请参考 [PayError 错误码详解](#payerror-错误码详
 
 `'99'`  用户点击忘记密码导致快捷界面退出（only iOS）
 
-{% else %}
+{% elif apiPrefix == 'qq' %}
+
+```js
+qq.BaaS.pay(params).then(res => {
+  // success. 支付请求成功响应。
+}, err => {
+  // HError 对象
+  if (err.code === 603) {
+    console.log('用户尚未授权')
+  } else if (err.code === 607) {
+    console.log('用户取消支付')
+  } else if (err.code === 608){
+    console.log(err.message)
+  }
+})
+```
+
+HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+**接口说明**
+
+`qq.BaaS.pay(object)` 实际上做了发起支付统一下单请求，及调用 `qq.requestPayment()` 接口等操作。开发者只需要调用 `qq.BaaS.pay(object)` , 传入必填参数即可发起微信支付。用户感知到的现象就是, 点击付款按钮，弹出支付弹框, 要求用户输入密码, 用户输入正确的密码后完成支付流程, 停在支付结果页。用户可在支付结果页点击返回商家按钮回到支付前界面。
+
 {% endif %}
 
