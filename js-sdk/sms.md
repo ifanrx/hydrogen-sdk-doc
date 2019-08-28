@@ -1,4 +1,4 @@
-# 短信验证码 
+# 短信验证码
 
 该接口支持向特定手机号码发送验证码，并校验验证码是否正确的功能，以此来完成一些需要确认用户身份的操作，比如：
 
@@ -10,19 +10,20 @@
 > SDK 发送短信需要在知晓云控制台开通并开启发送短信权限，操作步骤请参考本页面末尾
 
 ## 发送短信验证码
-`BaaS.sendSmsCode({phone})`
+`BaaS.sendSmsCode({phone, signatureID})`
 
 ### 参数说明
 
-| 参数名   | 类型   | 说明     |
-|----------|--------|----------|
-| phone | string | 手机号 |
+| 参数名      | 类型   | 说明          |
+|-------------|--------|---------------|
+| phone       | string | 手机号        |
+| signatureID | Integer | 短信签名 ID   |
 
 ### 示例代码
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.sendSmsCode({phone: '1328888888'}).then(res => {
+wx.BaaS.sendSmsCode({phone: '1328888888', signatureID: 1}).then(res => {
   // success
   console.log(res.data) // { "status": "ok" }
 }).catch(e => {
@@ -70,7 +71,7 @@ wx.BaaS.verifySmsCode({phone: '132888888', code: 123456}).then(res => {
 |----------|----------|
 | 400     | 验证码错误 / 参数错误 |
 
-## 验证码发送频次
+## 短信发送频次
 
 {% block tips1 %}
 
