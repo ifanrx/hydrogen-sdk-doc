@@ -47,6 +47,7 @@
 
 # 模板消息
 
+基于小程序平台的通知渠道，平台为开发者提供了可以高效触达用户的模板消息能力，以便实现服务的闭环并提供更佳的体验。
 {% if apiPrefix == "wx." %}
 请移步[这里](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/template-message.html)了解微信模板消息
 {% elif apiPrefix == "my." %}
@@ -55,7 +56,7 @@
 
 {% if apiPrefix != "qq." %}
 
-## 上报模版消息卡片点击事件
+## 上报模板消息卡片点击事件
 
 {% if apiPrefix == "wx." %}
 `wx.BaaS.reportTemplateMsgAnalytics(options)`
@@ -69,7 +70,7 @@
 | :----- | :----- | :--- | :-- |
 | options | Object | 是   | 与 onShow 中的参数 options 相同 |
 
-上报模版消息卡片点击事件，只需要在 `app.js` 的 `onShow` 中做一个埋点，其他的事情由 SDK 自动完成。
+上报模板消息卡片点击事件，只需要在 `app.js` 的 `onShow` 中做一个埋点，其他的事情由 SDK 自动完成。
 
 **示例代码**
 
@@ -95,7 +96,7 @@
 
 {% endif %}
 
-## 上报模版消息所需 formId
+## 上报模板消息所需 formId
 {% if apiPrefix == "wx." %}
 {% set api = "wx.BaaS.wxReportTicket" %}
 {% elif apiPrefix == "my." %}
@@ -193,11 +194,31 @@
 
 {% endif %}
 
+## 发送模板消息
 
-{% if apiPrefix != "qq." %}
+你可以通过以下方式向用户发送模板消息：
 
-## 发送模版消息
+- 在线发送
 
-通过 Trigger 触发器设定触发条件以发送模版消息，具体使用请参照 [Trigger 使用说明](http://support.minapp.com/hc/kb/article/1080135) 。
+{% if apiPrefix == "wx." %}
+在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/wechat-template-message/message/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
+{% elif apiPrefix == "my." %}
+在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/alipay-template-message/guide/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
+{% elif apiPrefix == "qq." %}
+在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/qq-template-message/guide/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
+{% endif %}
 
+- 触发器发送
+
+通过触发器，在指定触发条件下向用户推送模板消息。适用于抽奖、收付款通知等规律性的推送场景。具体使用请参照 [Trigger 使用说明](http://support.minapp.com/hc/kb/article/1080135) 。
+
+- 云函数发送
+
+通过云函数发送模板消息，适用业务逻辑复杂的场景，建议配合触发器一起使用。
+{% if apiPrefix == "wx." %}
+具体使用方式请移步[这里](/cloud-function/node-sdk/template-message/wechat/template-message.md)。
+{% elif apiPrefix == "my." %}
+具体使用方式请移步[这里](/cloud-function/node-sdk/template-message/alipay/template-message.md)。
+{% elif apiPrefix == "qq." %}
+具体使用方式请移步[这里](/cloud-function/node-sdk/template-message/qq/template-message.md)。
 {% endif %}
