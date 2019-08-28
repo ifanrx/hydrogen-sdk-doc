@@ -135,7 +135,7 @@ data 是 Object 类型，它包括以下几个属性
 | order_id      | Number | 订单 id |
 | refund_amount | String | 退款金额 |
 | refund_no     | String | 退款单号 |
-| status        | String | 订单支付状态 |
+| status        | String | 订单支付状态（succeed：成功；failed：失败） |
 
 **示例代码**
 
