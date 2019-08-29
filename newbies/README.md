@@ -14,6 +14,8 @@
 - [QQ 小程序接入指南](/js-sdk/qq/README.md)
 - [Web 接入指南](/js-sdk/web/README.md)
 - [支付宝小程序接入指南](/js-sdk/alipay/README.md)
+- [Android 应用接入指南](/android-sdk/install.md)
+- [iOS 应用接入指南](/ios-sdk/install.md)
 
 ## 使用场景介绍
 
