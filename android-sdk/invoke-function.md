@@ -44,7 +44,7 @@ exports.main = function helloWorld(event, callback) {
 可在小程序中通过以下方式进行调用云函数：
 
 ```java
-String funcName = "addFunc";
+String funcName = "helloWorld";
 String data = "{\"name\":\"allen\"}";
 BaaS.invokeCloudFunc(funcName, data, null, new BaseCallback<CloudFuncResp>() {
     @Override
