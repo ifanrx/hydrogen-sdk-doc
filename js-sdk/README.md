@@ -12,9 +12,12 @@
 
 [迁移指南](./migrate-from-v1.md)
 
+## 通用注册登录
+
+[登入登出](./auth.md)
+
 更多内容，可查看以下功能模块介绍：
 
-* [登入登出](./auth.md)
 * [用户](./user.md)
 * [数据表](./schema/README.md)
 * [内容库](./content/README.md)

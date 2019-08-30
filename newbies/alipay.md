@@ -33,7 +33,7 @@
 
 为了使用知晓云提供的后端服务，进入 dashboard 后，开发者首先需要为知晓云授权。
 
-知晓云在设置模块提供了**一键开通**功能，用户只需进入“设置 - 应用 - 平台设置”，在“支付宝小程序”一栏点击**立即开通**并在新开授权回调页填写配置信息完成授权即可。
+知晓云在设置模块提供了**一键授权**功能，用户只需在应用“导览”页中找到支付宝小程序平台，点击**立即接入**，接着在“设置-支付宝”页中填写配置信息完成授权即可。
 
 ![一键开通](/images/newbies/open-up-alipay.png)
 
@@ -45,7 +45,7 @@
 
 ![知晓云服务器域名](/images/newbies/domain-name-config-alipay.png)
 
-登录[小程序后台](https://open.alipay.com/platform/mini.htm#/app/{{appid}}/setting)，进入 “设置 - 开发设置”页面，将知晓云提供给开发者的服务器域名配置到支付宝开发者后台的“服务器域名”配置项中。
+登录[小程序后台](https://open.alipay.com/platform/mini.htm#/app/{{appid}}/setting)，进入 “设置 - 开发设置”页面，将知晓云提供给开发者的服务器域名全部配置到支付宝开发者后台的“服务器域名”配置项中。
 
 ![小程序服务器域名配置](/images/newbies/hydrogen-domain-name-config-alipay.png)
 
