@@ -1,6 +1,12 @@
 # 订单查询
 
-## 单个订单查询
+订单查询包括查询订单详情和获取订单列表。
+
+## 查询订单详情
+
+通过订单的流水号(transactionNo)，来查询该订单的详细信息。通常用于：
+1. 查询订单列表中某个订单的详细信息；
+2. 用户发起支付，并在微信或支付宝完成支付后，调用该接口获取订单的详细信息。开发者可以根据该订单的状态进行后续操作，比如订单状态(status)为 success 时，给用户发送商品。
 
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
@@ -12,7 +18,7 @@ Pay.shared.order(transactionNo) { (order, error) in
 ```
 {% content "oc1" %}
 ```
-NSString *transactionNo = @"transactionNo";
+NSString *transactionNo = @"xxxxxxxxxx";
 [BaaSPay.shared order:transactionNo completion:^(BaaSOrder * _Nullable order, NSError * _Nullable error) {
 
 }];
@@ -90,7 +96,7 @@ Pay.shared.orderList(query: query) { (result, error) in
 // 1. 创建查询条件
 BaaSOrderQuery *query = [[BaaSOrderQuery alloc] init];
 
-2. 设置查询条件
+// 2. 设置查询条件
 
 // 通过订单状态查询：订单状态为 success
 [query status:BaaSOrderStatusSuccess];
@@ -189,13 +195,13 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 | 属性         |  类型   | 说明 |
 | :--------- | :---     | :--- |
-| Id         |   Int64  | 订单 ID |
+| Id         |   String  | 订单 ID |
 | tradeNo |  String    | 真正的交易 ID, 业务方在微信后台对账时可看到此字段 |
 | transactionNo  |  String  | 知晓云平台所记录的流水号 |
 | currencyType  |  String | 货币类型 |
 | totalCost  |  CGFloat | 金额 |
 | status |  String  | 订单支付状态 |
-| createdBy |  Int64   |   创建订单的用户 ID |
+| createdBy |  String   |   创建订单的用户 ID |
 | createdAt | TimeInterval  |  订单创建时间 | 
 | updatedAt | TimeInterval  |  订单更新时间 | 
 | payAt  |  TimeInterval | 支付时间 |

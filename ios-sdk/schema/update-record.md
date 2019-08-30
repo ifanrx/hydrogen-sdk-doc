@@ -30,7 +30,7 @@ tableName 和 tableId 二选一
 
 | 名称     | 类型   | 说明                   |
 | :-----  | :-----  | :--- |
-| tableId   | Int   | 数据表的 Id             |
+| tableId   | String   | 数据表的 Id             |
 | tableName | String  | 数据表名 |
 
 2.通过数据行 id（以下用 `recordId` 参数名表示） 设置指定数据行

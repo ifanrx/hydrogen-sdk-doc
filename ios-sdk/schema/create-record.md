@@ -38,7 +38,7 @@ tableName 和 tableId 二选一
 
 | 名称     | 类型   |说明    |
 | :-----  | :----- | :--- |
-| Id   | Int  |  数据表的 Id |
+| Id   | String  |  数据表的 Id |
 | name | String |   数据表名 |
 
 ### 本地创建一条空记录

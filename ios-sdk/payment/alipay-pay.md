@@ -10,17 +10,19 @@
 
 ## Xcode 配置
 
-1. 配置支付宝 APPID
+### 1. 配置支付宝 APPID
 
 在 Xcode 中打开项目，设置项目属性中的 URL Schemes 为支付宝 APPID。如图所示
 
 ![设置 URLTYPE](/images/ios/alipay_scheme.png)
 
+### 2. 设置白名单
+
 在 Xcode 中打开项目，在 info.plist 文件中添加 `LSApplicationQueriesSchemes` 数组，并在该数组中添加 `alipay` 字符串。如图所示：
 
 ![设置白名单](/images/ios/query_scheme.png)
 
-2. 配置返回 url 处理方法
+### 3. 配置返回 url 处理方法
 
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
@@ -42,8 +44,7 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplication.Op
 当用户选择商品后，发起一笔支付时，需要传入订单价格、订单描述等相关参数。后续如需查询订单状态，可以传入商品 ID 等信息，请参照参数说明。
 
 > **info**
-> 该接口只是创建订单，并发起支付宝支付。查询支付结果请查阅 **订单查询** 章节的 **单个订单查询** 小节。
-
+> 该接口只是创建订单，并发起微信支付，不能以支付宝返回的结果作为知晓云 SDK 的支付结果。查询支付结果请查阅 [订单查询](./order.md) 章节的 **查询订单详情** 小节，以该接口返回的订单状态进行后续处理，比如发送商品。
 **示例代码**
 
 {% tabs swift2="Swift", oc2="Objective-C" %}
@@ -67,7 +68,7 @@ BaaSPay *pay = [BaaSPay.shared aliPayWithTotalCost:0.01 merchandiseDescription:@
 | :--------------------- | :------ | :-- | :------ |
 | totalCost              | Float   | Y   | 支付总额 |
 | merchandiseDescription | String  | Y   | {{platformName}}支付凭证-商品详情的内容 |
-| merchandiseSchemaID    | Int | N   | 商品数据表 ID，可用于定位用户购买的物品 |
+| merchandiseSchemaID    | String | N   | 商品数据表 ID，可用于定位用户购买的物品 |
 | merchandiseRecordID    | String  | N   | 商品记录 ID，可用于定位用户购买的物品 |
 | merchandiseSnapshot    | Dictionary  | N   | 根据业务需求自定义的数据 |
 

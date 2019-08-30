@@ -28,6 +28,9 @@ BaaSGEOPoint *point = [[BaaSGEOPoint alloc] initWithLongitude:10 latitude:10];
 
 * GeoPolygon 表示地理形状，可以通过以下两种方法创建一个地理形状
 
+> **info**
+> 创建一个地理形状时，第一个点和最后一个点必须重合，否则创建失败。
+
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
@@ -35,10 +38,11 @@ BaaSGEOPoint *point = [[BaaSGEOPoint alloc] initWithLongitude:10 latitude:10];
 let polygon = GeoPolygon(coordinates: [[10, 10], [20, 10], [30, 20], [10, 10]])
 
 // 2. 借助 GeoPoint
-let point1 = GeoPoint(longitude: 1, latitude: 1)
-let point2 = GeoPoint(longitude: 2, latitude: 2)
-let point3 = GeoPoint(longitude: 3, latitude: 3)
-let polygon = GeoPolygon(points: [point1, point2, point3])
+let point1 = GeoPoint(longitude: 10, latitude: 10)
+let point2 = GeoPoint(longitude: 20, latitude: 10)
+let point3 = GeoPoint(longitude: 30, latitude: 20)
+let point4 = GeoPoint(longitude: 10, latitude: 10)
+let polygon = GeoPolygon(points: [point1, point2, point3, point4])
 ```
 {% content "oc2" %}
 ```
@@ -46,10 +50,11 @@ let polygon = GeoPolygon(points: [point1, point2, point3])
 BaaSGeoPolygon *polygon = [[BaaSGeoPolygon alloc] initWithCoordinates:@[@[@1, @1], @[@2, @2], @[@3, @3]];
 
 // 2. 借助 GeoPoint
-BaaSGEOPoint *point1 = [[BaaSGEOPoint alloc] initWithLongitude:1 latitude:1];
-BaaSGEOPoint *point1 = [[BaaSGEOPoint alloc] initWithLongitude:2 latitude:2];
-BaaSGEOPoint *point1 = [[BaaSGEOPoint alloc] initWithLongitude:3 latitude:3];
-BAASGeoPolygon *polygon = [[BAASGeoPolygon alloc] initWithPoints:@[point1, point2, point3];
+BaaSGEOPoint *point1 = [[BaaSGEOPoint alloc] initWithLongitude:10 latitude:10];
+BaaSGEOPoint *point2 = [[BaaSGEOPoint alloc] initWithLongitude:20 latitude:10];
+BaaSGEOPoint *point3 = [[BaaSGEOPoint alloc] initWithLongitude:30 latitude:20];
+BaaSGEOPoint *point4 = [[BaaSGEOPoint alloc] initWithLongitude:10 latitude:10];
+BAASGeoPolygon *polygon = [[BAASGeoPolygon alloc] initWithPoints:@[point1, point2, point3, point4];
 ```
 {% endtabs %}
 
@@ -114,7 +119,7 @@ BaaSWhere *where = [BaaSWhere includeWithKey:"geoField" point:point];
 ```
 {% endtabs %}
 
-**`withinCircle` 在指定点集合中，查找包含在指定圆心和指定半径所构成的圆形区域中的点 (返回结果随机排序)**
+**`withinCircle` 在指定点集合中，查找包含在指定圆心和指定半径所构成的圆形区域中的点，半径单位为 千米(km)。 (返回结果随机排序)**
 
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
@@ -147,7 +152,7 @@ BaaSWhere *where = [BaaSWhere withinCircleWithKey:@"geoField" point: point radiu
 ```
 {% endtabs %}
 
-**`withinRegion` 在指定点集合中，查找包含在以指定点为圆点，以最大和最小距离为半径，所构成的圆环区域中的点（返回结果按从近到远排序）**
+**`withinRegion` 在指定点集合中，查找包含在以指定点为圆点，以最大和最小距离为半径，所构成的圆环区域中的点。半径单位为千米(km)。（返回结果按从近到远排序）**
 
 {% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}

@@ -10,7 +10,7 @@
 | city     | String | 用户所在城市 |
 | country  | String | 用户所在国家 |
 | gender   | String | 用户的性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知 |
-| id       | Number | 用户 ID (对应 _userprofile 表中的 id 字段) |
+| id       | String | 用户 ID (对应 _userprofile 表中的 id 字段) |
 | language | String | 用户的语言，简体中文为 zh_CN |
 | nickname | String | 用户昵称 |
 | openid   | String | 用户唯一标识，由微信生成 |
@@ -66,14 +66,14 @@ currentUser.get(key: "keyName")
 {% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
 ```
-let userId = 36845**9853014
+let userId = "36845**9853014"
 User.get(userId, select: ["nickname", "gender"]) { (user, error) in
 
 }
 ```
 {% content "oc3" %}
 ```
-long long userId = 36845**9853014;
+NSString *userId = @"36845**9853014";
 [BaaSUser get:userId select:@[@"nickname", @"gender"] expand:nil completion:^(BaaSUser * _Nullable user, NSError * _Nullable error) {
                         
 }];
