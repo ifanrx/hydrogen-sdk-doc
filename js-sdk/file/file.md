@@ -6,7 +6,7 @@
 `let MyFile = new wx.BaaS.File()`
 {% endifanrxCodeTabs %}
 
-### 文件上传
+## 文件上传
 
 `MyFile.upload(fileParams, metaData)`
 
@@ -42,6 +42,7 @@ file 参数说明：
 
 | 参数        |  类型  | 说明 |
 | :--------- | :----- | :------ |
+| path       | String | 上传后的文件地址 (v2.2.0 版本新增) |
 | cdn_path   | String | 文件在 cdn 上的路径 |
 | created_at | String | 文件上传时间 |
 | id         | Object | 文件 ID |
@@ -177,7 +178,7 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 > file 字段可用于含有 file 类型的数据表的数据操作，详细见 [新增数据项](../schema/create-record.md)
 
 
-### 获取文件详情
+## 获取文件详情
 
 `MyFile.get(fileID)`
 
@@ -199,6 +200,7 @@ res.data:
 | mime_type  | String | 文件媒体类型 |
 | name       | String | 文件名 |
 | path       | String | 文件在 cdn 上的路径 |
+| cdn_path   | String | cdn 中保存的路径 (v2.2.0 新增) |
 | size       | Number | 以字节为单位 |
 
 category 参数说明：
@@ -241,7 +243,7 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 ```
 
 
-### 删除文件
+## 删除文件
 
 `MyFile.delete(fileID)`
 
@@ -267,7 +269,7 @@ MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 > 删除单个文件，如果权限不足，会返回 401；删除多个文件，如果权限不足，则直接跳过该文件
 
 
-### 查询，获取文件列表
+## 查询，获取文件列表
 
 文件查询与[数据表查询](../schema/query.md)方法一致，但只支持以下指定字段的筛选
 
@@ -369,7 +371,7 @@ MyFile.limit(10).offset(5).find().then()
 }
 ```
 
-### 图片云处理
+## 图片云处理
 
 利用 CDN 图片云处理，可以快速便捷地完成图片缩放、裁切、打水印等操作，示例如下：
 
@@ -383,7 +385,7 @@ https://cloud-minapp-7894.cloud.ifanrusercontent.com/1eiuEUuISgOstoVZ.png!/water
 
 具体用法和更多功能可查看文档：[如何通过图片 URL 进行图片云处理？](http://support.minapp.com/hc/kb/article/1082737/)
 
-### 视频截图
+## 视频截图
 
 > **info**
 > SDK 版本要求 >= 1.16.0
@@ -462,7 +464,7 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 }
 ```
 
-### M3U8 视频拼接
+## M3U8 视频拼接
 
 > **info**
 > SDK 版本要求 >= 1.16.0
@@ -538,7 +540,7 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 }
 ```
 
-### M3U8 视频剪辑
+## M3U8 视频剪辑
 
 > **info**
 > SDK 版本要求 >= 1.16.0
@@ -620,7 +622,7 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 }
 ```
 
-### M3U8 时长和分片信息
+## M3U8 时长和分片信息
 
 > **info**
 > SDK 版本要求 >= 1.16.0
@@ -700,7 +702,7 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 }
 ```
 
-### 音视频的元信息
+## 音视频的元信息
 
 > **info**
 > SDK 版本要求 >= 1.16.0

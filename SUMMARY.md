@@ -9,7 +9,7 @@
 * [新手入门](newbies/README.md)
     * [新手入门 - 微信小程序](newbies/wechat.md)
     * [新手入门 - Web](newbies/web.md)
-    * [新手入门 - 支付宝](newbies/alipay.md)
+    * [新手入门 - 支付宝小程序](newbies/alipay.md)
 
 ----
 
@@ -35,8 +35,8 @@
         * [新增数据项](js-sdk/schema/create-record.md)
         * [更新数据项](js-sdk/schema/update-record.md)
         * [删除数据项](js-sdk/schema/delete-record.md)
-        * [获取数据项](js-sdk/schema/get-record-detail.md)
-        * [查询数据项](js-sdk/schema/query.md)
+        * [获取单条数据](js-sdk/schema/get-record-detail.md)
+        * [查询数据列表](js-sdk/schema/query.md)
         * [分页和排序](js-sdk/schema/limit-and-order.md)
         * [地理位置操作](js-sdk/schema/geo.md)
         * [字段过滤与扩展](js-sdk/schema/select-and-expand.md)
@@ -63,18 +63,29 @@
         * [微信加密数据解密](js-sdk/wechat/wechat-decrypt.md)
         * [检测违规图片、文本](js-sdk/wechat/censor.md)
         * [获取二维码](js-sdk/wechat/wxacode.md)
+    * [QQ 小程序](js-sdk/qq/README.md)
+        * [接入指南](js-sdk/qq/how-to.md)
+        * [QQ 登录](js-sdk/qq/signin-signout.md)
+        * [QQ 支付](js-sdk/qq/payment.md)
+        * [网络请求](js-sdk/qq/request.md)
+        * [模板消息](js-sdk/qq/template-message.md)
+        * [QQ 加密数据解密](js-sdk/qq/decrypt.md)
     * [Web](js-sdk/web/README.md)
         * [接入指南](js-sdk/web/how-to.md)
         * [登入登出](js-sdk/web/signin-signout.md)
-    * [支付宝小程序](js-sdk/alipay/README.md)            
+        * [支付](js-sdk/web/payment.md)
+        * [第三方授权配置](js-sdk/web/third-party-auth-config.md)
+    * [支付宝小程序](js-sdk/alipay/README.md)
         * [接入指南](js-sdk/alipay/how-to.md)
         * [支付宝登录](js-sdk/alipay/signin-signout.md)
         * [支付宝支付](js-sdk/alipay/payment.md)
         * [模板消息](js-sdk/alipay/template-message.md)
         * [获取二维码](js-sdk/alipay/alipay-qr-code.md)
     * [支付](js-sdk/payment/README.md)
-        * [微信支付](js-sdk/payment/wechat-pay.md)
-        * [支付宝支付](js-sdk/payment/alipay-pay.md)
+        * [微信小程序支付](js-sdk/payment/wechat-pay.md)
+        * [支付宝小程序支付](js-sdk/payment/alipay-pay.md)
+        * [QQ 小程序支付](js-sdk/payment/qq-pay.md)
+        * [网页微信、支付宝、QQ 支付](js-sdk/payment/web.md)
         * [订单查询](js-sdk/payment/order.md)
     * [调用云函数](js-sdk/invoke-function.md)
     * [短信验证码](js-sdk/sms.md)
@@ -138,7 +149,7 @@
     * Demo 下载
         * [iOS-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
         * [SwiftUI-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)
-    
+        
 ----
 
 * [知晓云开放 API](open-api/README.md)
@@ -162,6 +173,32 @@
         * [用户组与用户的操作](open-api/group/membership.md)
         * [组集操作](open-api/group/super-group.md)
     * [云函数](open-api/cloud-function.md)
+
+----
+
+* [知晓云 Web API](web-api/README.md)
+    * [用户](web-api/user.md)
+    * [数据表](web-api/data/README.md)
+        * [数据类型](web-api/data/data-type.md)
+        * [新增数据](web-api/data/create-record.md)
+        * [更新数据](web-api/data/update-record.md)
+        * [删除数据](web-api/data/delete-record.md)
+        * [查询数据](web-api/data/query-record.md)
+        * [分页与排序](web-api/data/limit-and-order.md)
+        * [字段过滤与扩展](web-api/data/query-keys-expand.md)
+        * [数据相关错误常见错误](web-api/data/operate-error.md)
+    * [内容库](web-api/content/README.md)
+        * [内容库操作](web-api/content/content-group.md)
+        * [内容分类操作](web-api/content/content-category.md)
+        * [内容操作](web-api/content/content.md)
+    * [文件](web-api/file/README.md)
+        * [文件上传](web-api/file/file-upload.md)
+        * [文件操作](web-api/file/file.md)
+        * [文件分类操作](web-api/file/file-category.md)
+    * [云函数](web-api/cloud-function.md)
+    * [支付](web-api/payment.md)
+    * [短信服务](web-api/sms.md)
+    * [错误响应](web-api/error-code.md)
 
 ----
 
@@ -190,6 +227,8 @@
 * [云函数 Node.js SDK](cloud-function/node-sdk/README.md)
     * [使用必读](cloud-function/node-sdk/usage-notice.md)
     * [快速入门](cloud-function/quick-start.md)
+    * [命令行工具](cloud-function/cli.md)
+        * [代码打包](cloud-function/packaging.md)
     * [数据表](cloud-function/node-sdk/schema/README.md)
         * [数据表结构管理](cloud-function/node-sdk/schema/table.md)
         * [数据类型](cloud-function/node-sdk/schema/data-type.md)
@@ -225,6 +264,9 @@
         * [支付宝](cloud-function/node-sdk/template-message/alipay/README.md)
             * [发送模板消息](cloud-function/node-sdk/template-message/alipay/template-message.md)
             * [获取可用 formId 数量](cloud-function/node-sdk/template-message/alipay/template-message-ticket.md)
+        * [QQ](cloud-function/node-sdk/template-message/qq/README.md)
+            * [发送模板消息](cloud-function/node-sdk/template-message/qq/template-message.md)
+            * [获取可用 formId 数量](cloud-function/node-sdk/template-message/qq/template-message-ticket.md)
     * [网络请求](cloud-function/node-sdk/request.md)
     * [检测违规图片、文本](cloud-function/node-sdk/censor.md)
     * [获取 ACCESS_TOKEN](cloud-function/node-sdk/access-token.md)
@@ -236,8 +278,6 @@
     * [公众号发送红包](cloud-function/node-sdk/red-pack.md)
     * [短信验证码](cloud-function/node-sdk/sms.md)
     * [云函数技术细节](cloud-function/technical-notes.md)
-* [命令行工具](cloud-function/cli.md)
-    * [代码打包](cloud-function/packaging.md)
 
 ----
 

@@ -7,21 +7,22 @@
 开发者可以使用 `BaaS.auth.register(opts)` API 来进行用户的通用注册。
 
 > **info**
-> 注册成功后会自动登录
+> 注册成功后会自动登录，调用注册方法之前需先前往[设置](https://cloud.minapp.com/dashboard/#/app/settings/info/)打开该登录方法
 
 opts 参数说明：
 
-| 名称      | 类型           | 说明 |
-| :------- | :------------  | :------ |
-| opts.username   | String  | 用户名，username 和 email 必选一个 |
-| opts.email      | String  | 邮箱，username 和 email 必选一个 |
-| opts.password   | String  | 密码 |
+| 名称             | 类型   | 说明    |
+| :--------------- | :----- | :------ |
+| opts.username    | String | 用户名，username、phone 和 email 必选一个 |
+| opts.email       | String | 邮箱，username、phone 和 email 必选一个 |
+| opts.phone | String | 手机号，username、phone 和 email 必选一个 |
+| opts.password    | String | 密码    |
 
 
 ### 通过邮箱注册
 
 > **info**
-> 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 
+> 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com
 
 **示例代码**
 
@@ -64,17 +65,37 @@ user 为 currentUser 对象，该对象的详细介绍请参考 [currentUser 小
 
 err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
+
+### 通过手机号注册
+
+**示例代码**
+{% ifanrxCodeTabs %}
+```javascript
+wx.BaaS.auth.register({phone: '15000000000', password: 'ifanrx123'}).then(user => {
+  console.log(user)
+})
+```
+{% endifanrxCodeTabs %}
+
+user 为 currentUser 对象，该对象的详细介绍请参考 [currentUser 小节](./account.md)
+
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
 ## 登录
 
 开发者可以通过 `BaaS.auth.login(opts)` API 来进行用户的通用登录
 
+> **info**
+> 调用登录方法之前需先前往[设置](https://cloud.minapp.com/dashboard/#/app/settings/sdk/)打开该登录方法
+
 opts 参数说明：
 
-| 名称      | 类型           | 说明 |
-| :------- | :------------  | :------ |
-| opts.username   | String  | 用户名，username 和 email 必选一个 |
-| opts.email      | String  | 邮箱，username 和 email 必选一个 |
-| opts.password   | String  | 密码 |
+| 名称             | 类型   | 说明    |
+| :--------------- | :----- | :------ |
+| opts.username    | String | 用户名，username、phone 和 email 必选一个 |
+| opts.email       | String | 邮箱，username、phone 和 email 必选一个 |
+| opts.phone | String | 手机号，username、phone 和 email 必选一个 |
+| opts.password    | String | 密码 |
 
 ### 用户名登录
 
@@ -108,6 +129,28 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 {% ifanrxCodeTabs %}
 ```javascript
 wx.BaaS.auth.login({email: 'ifanrx@ifanr.com', password: 'ifanrx123'}).then(user => {
+  console.log(user)
+}).catch(err => {
+  // HError
+})
+```
+{% endifanrxCodeTabs %}
+
+**返回结果**
+
+user 为 currentUser 对象，该对象的详细介绍请参考 [currentUser 小节](./account.md)
+
+err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+### 手机号登录
+
+用户可以通过手机号和密码登录
+
+**示例代码**
+
+{% ifanrxCodeTabs %}
+```javascript
+wx.BaaS.auth.login({phone: '15000000000', password: 'ifanrx123'}).then(user => {
   console.log(user)
 }).catch(err => {
   // HError
@@ -170,11 +213,50 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## 其他方式登录
 
+### 手机号 + 短信验证码登录
+
+> **info**
+> 短信验证码 smsCode 通过接口 `BaaS.sendSmsCode()` 获取，请查看[文档](/js-sdk/sms.md)
+
+用户可以“手机号 + 短信验证码”进行登录
+
+`BaaS.auth.loginWithSmsVerificationCode(mobilePhone, smsCode, {createUser})`
+
+参数说明：
+
+| 名称        | 类型   | 说明    |
+| :---------- | :----- | :------ |
+| mobilePhone | String | 手机号码 |
+| smsCode     | String | 短信验证码 |
+| createUser  | Boolean | 是否创建用户，默认为 `true`，可选 |
+
+`createUser` 参数决定了一个新手机号用户第一次登录时的服务端处理行为。
+默认为 `true`，服务端会有该用户创建一个知晓云用户记录。
+当 `createUser` 为 `false` 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见 [多平台用户统一登录](#多平台用户统一登录) 说明
+
+**示例代码**
+
+{% ifanrxCodeTabs %}
+```javascript
+wx.BaaS.auth.loginWithSmsVerificationCode('15000000000', '123456').then(user => {
+  console.log(user)
+}).catch(err => {
+  // HError
+})
+```
+{% endifanrxCodeTabs %}
+
 ### 微信小程序登录
 请参考[微信小程序登录](./wechat/signin-signout.md)
 
 ### 支付宝小程序登录
 请参考[支付宝小程序登录](./alipay/signin-signout.md)
+
+### Web 端第三方登录
+请参考[ Web 登录](./web/signin-signout.md)
+
+### QQ 小程序登录
+请参考[ QQ 小程序登录](./qq/signin-signout.md)
 
 ## 关联小程序账户
 用户在完成登录后，可以关联小程序账户，这样用户可以在下次通过多种方式登录同一账户。

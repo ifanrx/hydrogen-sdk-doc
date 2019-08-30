@@ -47,13 +47,72 @@
 
 # 模板消息
 
-## 上报模版消息所需 formId
-
-### 方式一：获取到 formId 后，调用接口上报
+基于小程序平台的通知渠道，平台为开发者提供了可以高效触达用户的模板消息能力，以便实现服务的闭环并提供更佳的体验。
 {% if apiPrefix == "wx." %}
+请移步[这里](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/template-message.html)了解微信模板消息
+{% elif apiPrefix == "my." %}
+请移步[这里](https://docs.alipay.com/mini/introduce/message)了解支付宝模板消息
+{% endif %}
+
+{% if apiPrefix != "qq." %}
+
+## 上报模板消息卡片点击事件
+
+{% if apiPrefix == "wx." %}
+`wx.BaaS.reportTemplateMsgAnalytics(options)`
+{% elif apiPrefix == "my." %}
+`my.BaaS.reportTemplateMsgAnalytics(options)`
+{% endif %}
+
+**参数说明**
+
+| 参数   | 类型   | 必填 | 说明 |
+| :----- | :----- | :--- | :-- |
+| options | Object | 是   | 与 onShow 中的参数 options 相同 |
+
+上报模板消息卡片点击事件，只需要在 `app.js` 的 `onShow` 中做一个埋点，其他的事情由 SDK 自动完成。
+
+**示例代码**
+
+{% if apiPrefix == "wx." %}
+```js
+// app.js
+...
+  onShow: function(options) {
+    wx.BaaS.reportTemplateMsgAnalytics(options)
+  },
+...
+```
+{% elif apiPrefix == "my." %}
+```js
+// app.js
+...
+   onShow: function(options) {
+    my.BaaS.reportTemplateMsgAnalytics(options)
+  },
+...
+```
+{% endif %}
+
+{% endif %}
+
+## 上报模板消息所需 formId
+{% if apiPrefix == "wx." %}
+{% set api = "wx.BaaS.wxReportTicket" %}
+{% elif apiPrefix == "my." %}
+{% set api = "my.BaaS.reportTicket" %}
+{% elif apiPrefix == "qq." %}
+{% set api = "qq.BaaS.reportTicket" %}
+{% endif %}
+
+{% if apiPrefix == "wx." %}
+### 方式一：获取到 formId 后，调用接口上报
 `wx.BaaS.wxReportTicket(formID)`
 {% elif apiPrefix == "my." %}
+### 方式一：获取到 formId 后，调用接口上报
 `my.BaaS.reportTicket(formID)`
+{% elif apiPrefix == "qq." %}
+`qq.BaaS.reportTicket(formID)`
 {% endif %}
 
 **参数说明**
@@ -64,14 +123,20 @@
 
 当使用小程序的 `<form/>` 组件，且属性 report-submit 设为 true 时，此时表单是声明为需要要发模板消息的，当点击按钮提交表单即可获取 formID。
 
+{% if apiPrefix != "qq." %}
 ### 方式二：使用自定义组件自动上报（推荐）
+
+> **info**
+> 组件中添加了节流逻辑进行频次限制，
+> 限制的规则为：** 1s 内最多触发 1 次，24h 内最多触发 20 次 **。也就是说，
+> 用户在 1 秒内无论点击组件多少次，formId 只会上报一次，一天之内最多只会上报 20 个 formId。
+>
+> 如有需要多次上报 formId，请使用方式一。
+
 {% if apiPrefix == "wx." %}
 
-插件版 SDK 提供了自定义组件 ticket-report-wrapper（插件版本尚未发布，即将在 2.0.5 以上版本提供，请先使用 npm 版），
+插件版 SDK 提供了自定义组件 ticket-report-wrapper（插件版 2.0.6 以上），
 文件版与 npm 版 SDK，可以通过 npm 获取该组件（包名为 minapp-ticket-wx）。
-
-使用 ticket-report-wrapper 组件包裹内容，相当于在内容之上盖一个透明的遮罩，因此会内容中的点击事件无法被触发。
-如果包裹大面积内容，且内容用有点击或其他交互事件的，请使用 disappear-after-click
 
 #### 引入组件
 {% tabs sdkplugin="小程序插件版", sdkfile="js 文件版", npm="npm 包" %}
@@ -95,16 +160,13 @@
 
 可以通过 npm 获取 ticket-report-wrapper 组件（包名为 minapp-ticket-my）。
 
-使用 ticket-report-wrapper 组件包裹内容，相当于在内容之上盖一个透明的遮罩，因此会内容中的点击事件无法被触发。
-如果包裹大面积内容，且内容用有点击或其他交互事件的，请使用 disappear-after-click
-
 #### 引入组件
 {{ importComponent("my.") }}
 {% endif %}
 
 #### 使用组件
 ```xml
-<ticket-report-wrapper disappear-after-click>
+<ticket-report-wrapper>
   ...
 </ticket-report-wrapper>
 ```
@@ -113,11 +175,8 @@
 
 {% if apiPrefix == "wx." %}
 
-| 参数   | 类型   | 必填 | 说明 |
-| :----- | :----- | :--- | :--- |
-| disappear-after-click | Boolean | 否   | 是否点击一次后遮罩层消失 |
-
-如果需要监听组件的点击事件，可以像使用内置组件一样指定事件回调函数。
+微信小程序可以像普通组件一样在自定义组件上监听事件、设置属性，
+所以此处没有做限制，详情请参考[微信小程序自定义组件文档](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/)。
 
 ```html
 <ticket-report-wrapper bind:tap="handleTap">
@@ -129,11 +188,37 @@
 
 | 参数   | 类型   | 必填 | 说明 |
 | :----- | :----- | :--- | :--- |
-| disappear-after-click | Boolean | 否   | 是否点击一次后遮罩层消失 |
 | onTap | String | 否   | 点击事件回调函数名 |
 
 {% endif %}
 
-## 发送模版消息
+{% endif %}
 
-通过 Trigger 触发器设定触发条件以发送模版消息，具体使用请参照 [Trigger 使用说明](http://support.minapp.com/hc/kb/article/1080135) 。
+## 发送模板消息
+
+你可以通过以下方式向用户发送模板消息：
+
+- 在线发送
+
+{% if apiPrefix == "wx." %}
+在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/wechat-template-message/message/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
+{% elif apiPrefix == "my." %}
+在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/alipay-template-message/guide/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
+{% elif apiPrefix == "qq." %}
+在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/qq-template-message/guide/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
+{% endif %}
+
+- 触发器发送
+
+通过触发器，在指定触发条件下向用户推送模板消息。适用于抽奖、收付款通知等规律性的推送场景。具体使用请参照 [Trigger 使用说明](http://support.minapp.com/hc/kb/article/1080135) 。
+
+- 云函数发送
+
+通过云函数发送模板消息，适用业务逻辑复杂的场景，建议配合触发器一起使用。
+{% if apiPrefix == "wx." %}
+具体使用方式请移步[这里](/cloud-function/node-sdk/template-message/wechat/template-message.md)。
+{% elif apiPrefix == "my." %}
+具体使用方式请移步[这里](/cloud-function/node-sdk/template-message/alipay/template-message.md)。
+{% elif apiPrefix == "qq." %}
+具体使用方式请移步[这里](/cloud-function/node-sdk/template-message/qq/template-message.md)。
+{% endif %}

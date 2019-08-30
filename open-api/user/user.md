@@ -594,6 +594,130 @@ if ($err) {
 
 `404`: 用户不存在。
 
+### 批量修改自定义字段
+
+`PUT https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/`
+
+**Query 参数说明**
+
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :-- |
+| where    | String | N   | 查询语句，参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码 |
+| limit    | Number | N   | 限制单次请求更新的用户数，默认为 20 条，最大可设置为 1000 |
+| offset   | Number | N   | 设置更新的偏移值，默认为 0 |
+
+> **info**
+> where 字段的详细说明请查看：[数据模块：数据操作](https://doc.minapp.com/open-api/data/record.html#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE)。
+
+**参数说明**
+
+> **info**
+> 参数与更新数据表数据的参数一致，详细说明请查看：[数据模块：更新数据](https://doc.minapp.com/open-api/data/record.html#%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE)。
+> 支持数据原子性更新，详细说明请查看：[数据模块：数据原子性更新](https://doc.minapp.com/open-api/data/record.html#%E6%95%B0%E6%8D%AE%E5%8E%9F%E5%AD%90%E6%80%A7%E6%9B%B4%E6%96%B0)。
+
+**代码示例**
+
+{% tabs  bulkUpdateUserInfoCurl="Curl", bulkUpdateUserInfoNode="Node", bulkUpdateUserInfoPHP="PHP" %}
+
+{% content "bulkUpdateUserInfoCurl"%}
+
+```shell
+curl -X PUT \
+  https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/ \
+  -H 'Authorization: Bearer 35919068aa799eccdef19160e1da4bf21381d2a2' \
+  -H 'Content-Type: application/json' \
+  -d '{"test": "test"}'
+```
+
+{% content "bulkUpdateUserInfoNode" %}
+
+```javascript
+var request = require("request");
+
+var options = {
+  method: 'PUT',
+  url: 'https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/',
+  headers:
+  {
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer 35919068aa799eccdef19160e1da4bf21381d2a2'
+  },
+  body: { "test": "test" },
+  json: true
+};
+
+var req = request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+  console.log(body);
+});
+```
+
+{% content "bulkUpdateUserInfoPHP"%}
+
+```php
+<?php
+$token = '35919068aa799eccdef19160e1da4bf21381d2a2';
+$url = "https://cloud.minapp.com/oserve/v2.1/miniapp/user_profile/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, "{\"test\": \"test\"}");
+
+$response = curl_exec($ch);
+$err = curl_error($ch);
+
+curl_close($ch);
+
+if ($err) {
+  echo "CURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```json
+{
+  "operation_result": [
+    {
+      "success": {
+        "id": "5a3c51cdceb616ccfc9d5f78",
+        "updated_at": 1564411939
+      }
+    }
+  ],
+  "succeed": 1,
+  "total_count": 1,
+  "offset": 0,
+  "limit": 1000,
+  "next": null
+}
+```
+
+> **info**
+> 返回参数的详细说明请查看：[数据模块：同步批量修改数据](https://doc.minapp.com/open-api/data/record.html#%E5%90%8C%E6%AD%A5%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE)。
+
+**状态码说明**
+
+`200`: 成功。
+
+`400`: 字段类型不匹配，更新非自定义字段或不存在的字段。
+
+`401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
+
 ### 修改用户登录信息
 
 **接口**
@@ -610,8 +734,7 @@ Content-Type: `application/json`
 | :----- | :----- | :-- | :-- |
 | username   | String | N   | 用户名，不区分大小写 |
 | email | String | N   | 邮箱，不区分大小写 |
-| password | String | N | 旧用户密码；第一次设置密码：不填，更新密码：必填 |
-| new_password | String | N | 新用户密码 |
+| password | String | N | 用户密码 |
 
 **代码示例**
 

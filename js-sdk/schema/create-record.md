@@ -316,15 +316,15 @@ let Comment = new wx.BaaS.TableObject('Comment')
 // 5bad87ab0769797b4fb27a1b 为 Comment 表中某行数据的 id
 let comment = Comment.getWithoutData('5bad87ab0769797b4fb27a1b')
 // 69147880 为 _userprofile 表中某行数据的 id
-let user = new wx.BaaS.User().getWithoutData(69147880)
+let user = new wx.BaaS.User().getWithoutData('69147880')
 
 // 在 city 表中创建一行数据
 let Article = new wx.BaaS.TableObject('Article')
 let article = Article.create()
 
 // 给 pointer 字段赋值
-Article.set('comment', comment)
-Article.set('user', user)
+article.set('comment', comment)
+article.set('user', user)
 
 article.save().then(res=>{
   // success

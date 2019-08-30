@@ -2,7 +2,7 @@
 
 # 调用云函数
 
-该模块允许用户创建、编写运行于知晓云云引擎上的代码。适用于一些对安全性有要求，功能复杂、需求个性化的业务场景。配合触发器可以帮助开发者实现功能复杂的小程序。
+该模块允许用户创建、编写运行于知晓云云引擎上的代码。适用于一些对安全性有要求，功能复杂、需求个性化的业务场景。配合触发器可以帮助开发者实现功能复杂的小程序。你只需编写简单的、目的单一的云函数，并将它与其他功能（如触发器、定时任务）产生的事件关联起来，即可在小程序上实现更加复杂的业务逻辑，如订单的自动化取消、抽奖等。使用云函数可以完成市面上全部类型的小程序实现，极大的降低了运维成本，在快速实现功能的基础上，仍然保留了极强的水平扩展能力。想了解更多有关于云函数的内容，请见[控制台操作-云函数](/dashboard/cloud-function.md)。
 
 ## `BaaS.invoke(functionName, params, sync)` 
 
@@ -16,7 +16,7 @@
 
 **参数说明**
 
-| 参数          | 类型   | 必填 | 说每个 |
+| 参数          | 类型   | 必填 | 说明 |
 | :----------- | :----- | :-- | :-- |
 | functionName | String | 是  | 云函数名 |
 | params       | Object | 否  | 传递给云函数的参数 |
@@ -41,7 +41,7 @@ exports.main = function helloWorld(event, callback) {
 }
 ```
 
-可在小程序中通过以下方式进行调用云函数：
+可在小程序中通过以下方式调用云函数（默认同步执行）：
 
 {% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
 
@@ -60,8 +60,9 @@ wx.BaaS.invoke('helloWorld', {name: 'allen'}).then(res => {
 })
 ```
 
-
 {% endifanrxCodeTabs %}
+
+> HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 
 **返回参数**
 
@@ -73,7 +74,36 @@ wx.BaaS.invoke('helloWorld', {name: 'allen'}).then(res => {
 }
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
+对于不需要等待执行结果的云函数，调用时可选择异步执行（sync 参数设为 false），调用云函数后执行结果直接返回 {status: "ok"}：
+
+{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
+
+```js
+wx.BaaS.invoke('helloWorld', {name: 'allen'}, false).then(res => {
+  if (res.code === 0) {
+    // 调用成功后不等待执行结果，直接返回 {status: "ok"}
+    console.log(res.data)
+  } else {
+    // fail
+    console.log(res.error.message)
+  }
+}, err => {
+  // HError 对象
+  callback(err)
+})
+```
+
+{% endifanrxCodeTabs %}
+
+**返回参数**
+
+```json
+{
+  "error": {},
+  "code": 0,
+  "data": {"status": "ok"}
+}
+```
 
 ## <span style="color: #f04134;">`已废弃`</span> `wx.BaaS.invokeFunction(functionName, params, sync)`
 

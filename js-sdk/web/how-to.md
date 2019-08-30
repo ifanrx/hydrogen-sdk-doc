@@ -1,5 +1,8 @@
 #  Web 端 SDK 接入指南
 
+> **info**
+> Web 端 SDK 浏览器兼容性：IE10+
+
 ## 配置安全域名
 进入知晓云 [设置页面](https://cloud.minapp.com/dashboard/#/app/settings/app/) 配置安全域名，只有在指定域名下，才能正常的请求知晓云数据：
 ![配置安全域名](/images/newbies/web-sdk-secure-domain.png)
@@ -46,8 +49,9 @@ b. 将下载解压后得到的 SDK js 文件放在项目目录中
 
 通过初始化 SDK ，知晓云服务可以验证当前的应用是否是有效合法的，只有通过验证的应用才能使用 SDK 提供的全部功能。
 
-在[知晓云后台 - 我的应用](https://cloud.minapp.com/admin/profile/)页面获取要接入知晓云服务的 ClientID, 按照如下方式进行 SDK 初始化:
+在[知晓云后台 - 设置 - 应用](https://cloud.minapp.com/dashboard/#/app/settings/info/)页面获取要接入知晓云服务的 ClientID, 按照如下方式进行 SDK 初始化:
 
+![复制 clientID](/images/newbies/get-client-id.png)
 
 ```javascript
 BaaS.init(clientID, {logLevel})

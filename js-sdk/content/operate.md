@@ -35,10 +35,15 @@
 | group_id    | Number       | 内容库 ID |
 | id          | Number       | 内容 ID |
 | title       | String       | 内容标题 |
-|  update_at  | Number       | 更新时间 |
+| update_at   | Number       | 更新时间 |
+| visit_count | Number       | 文章阅读数 |
 
 > **info**
 > 如果有自定义字段，则一并返回。
+
+> visit_count 字段，只有在已经开通了[“文章统计”（“阅读数支持”）功能](https://cloud.minapp.com/dashboard/#/app/settings/info/)，且该文章的阅读数大于 0 时，才会返回。
+
+> “文章阅读数统计”是一个异步的操作，统计结果略有延迟。
 
 **请求示例**
 
@@ -70,13 +75,18 @@ res.data:
   group_id: 1513076211190694,
   id: 1513076305938456,
   title: "iphone X",
-  updated_at: 1513076364
+  updated_at: 1513076364,
+  visit_count: 10
 }
 ```
 
 ### 查询，获取内容列表
 
 内容查询与[数据表查询](../schema/query.md)方法一致。
+
+
+> **info**
+> `MyContentGroup.find()` 接口返回的内容中，不包含 `content` 字段。
 
 **请求示例**
 
@@ -108,7 +118,7 @@ expand 使用方法可以参考[数据表 - 字段扩展](/js-sdk/schema/select-
 
 **请求示例 1**
 ```js
-MyContentGroup.select(['-title','-content']).expand('pointer_test_oder').getContent(1513076305938456).then(res => {
+MyContentGroup.select(['-title']).expand('pointer_test_oder').getContent(1513076305938456).then(res => {
   // success
 }, err => {
   // err
@@ -146,7 +156,7 @@ MyContentGroup.select(['-title','-content']).expand('pointer_test_oder').getCont
 
 **请求示例 2**
 ```js
-MyContentGroup.select(['title','content', 'pointer_test_oder']).expand('pointer_test_oder').find().then(res => {
+MyContentGroup.select(['title', 'pointer_test_oder']).expand('pointer_test_oder').find().then(res => {
   // success
 }, err => {
   // err
@@ -168,7 +178,6 @@ MyContentGroup.select(['title','content', 'pointer_test_oder']).expand('pointer_
     },
     "objects": [
       {
-        "content": "<p>\b 该片讲述了伊娅不满父亲的恶作剧</p>",
         "title": "iphone X",
         "pointer_test_order": {
           "created_at": 1538966895,

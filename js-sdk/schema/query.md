@@ -1,4 +1,4 @@
-# 查询
+# 查询数据
 
 ## 数据类型对应查询操作符表
 
@@ -11,7 +11,7 @@
 | boolean  | =, exists, notExists, isNull, isNotNull                                                 |      |
 | date     | =, >, >=, <, <=,  exists, notExists, isNull, isNotNull                                  |      |
 | file     | isNull, isNotNull, exists, notExists                                                    |      |
-| geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     | 请参考地理位置操作章节 |
+| geojson  | include, within, withinCircle, exists, notExists, isNull, isNotNull                     | 请参考[地理位置操作章节](/js-sdk/schema/geo.md) |
 | object   | =, hasKey, isNull, isNotNull, exists, notExists                                         |      |
 | pointer  | =, in, notIn, !=, isNull, isNotNull, exists, notExists                                  |      |
 
@@ -50,6 +50,26 @@ tableName 和 tableID 二选一，不能同时存在
 
 > **info**
 > 注意：知晓云的 api URL 长度限定为 16386，超出则返回 502，请在构造查询条件时注意长度控制，如 in 操作符后边的数组长度、match 操作符后边的字符串长度等。
+
+**返回数据结构说明**
+```json
+{
+  "statusCode": 200, 
+  "data": {
+    "meta": { // 数据列表的元信息
+      "limit": 20, // 最大返回数据条数，默认是 20，具体请参考 分页与排序 章节
+      "next": null, // 下一页的请求链接，null 表示没有下一页
+      "offset": 0, // 当前数据列表的分页信息，具体请参考 分页与排序 章节
+      "previous": null, // 上一页的请求链接，null 表示没有上一页
+      "total_count": 3 // 查询条件命中的总条数
+    },
+    "objects": [
+      {...},
+      ...
+    ]}
+}
+```
+
 
 ## 示例
 
@@ -153,9 +173,9 @@ query.compare('amount', '<', 10)
 查询返回满足包含相应字符串的记录，如下示例：
 ```js
 // 例：{"name": "apple"}
-query.contains('name', 'apple')  // 查询name字段包含'apple'的记录，能正确匹配
-query.contains('name', 'app')  // 查询name字段包含'app'的记录，能正确匹配
-query.contains('name', 'apple123')  // 查询name字段包含'apple123'的记录，不能正确匹配
+query.contains('name', 'apple')  // 查询 name 字段包含 'apple' 的记录，能正确匹配
+query.contains('name', 'app')  // 查询 name 字段包含 'app' 的记录，能正确匹配
+query.contains('name', 'apple123')  // 查询 name 字段包含 'apple123' 的记录，不能正确匹配
 ```
 
 也支持正则匹配 ( <span style='color:red'>* sdk version >= v1.1.1，</span> [正则表达式相关知识](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions) )：
@@ -176,7 +196,7 @@ const regExp = /^abc/i
 const regExp = new RegExp('^abc', 'i')
 ```
 
-## 正则匹配示例
+正则匹配示例
 
 ```js
 /* 以查找名字为例，name 字段必须为 string 类型 */

@@ -187,7 +187,113 @@ user.set('age', 30).update().then(res => {
 }, err => {
   // err
 })
-``` 
+```
+
+### 设置账号信息
+
+`UserRecord.setAccount({username, email, password})`
+
+通过微信、支付宝授权登录用户，可以设置用户名、邮箱、密码，以便下次通过用户名或邮箱登录。
+
+**参数说明**
+
+| 名称      | 类型    |  必填   | 说明 |
+| :-------- | :-------|-----  | :------ |
+| username  | String  | N | 用户名      |
+| email     | String  | N | 邮箱        |
+| password  | String  | N | 密码    |
+
+**示例代码**
+
+```javascript
+const MyUser = new BaaS.User()
+const userRecord = MyUser.getWithoutData(userID)
+userRecord.setAccount({
+  email: 'foo@gmail.com',
+  username: 'bar',
+  password: 'baz',
+}).then(res => {
+  // success
+}).catch(err => {
+  // err
+})
+```
+
+**返回示例**
+
+```json
+{
+  "status": 200,
+  "data": {
+    "email": "foo@gmail.com",
+    "email_verified": false,
+    "username": "bar"
+  }
+}
+```
+
+## 批量修改用户自定义字段
+
+通过设置自定义查询条件 Query，将符合条件的用户自定义字段进行批量更新操作
+
+> 注意：由于条件查询可能命中非常多的数据，默认情况下，限制为最多更新前 1000 条数据。
+> 如需要一次性更新更多数据，请通过维护分页来进行。
+
+其中：
+ - `Query` 对象的使用请查看 [查询数据项](./query.md) 章节
+
+ - `limit` 和 `offset` 的使用请查看 [分页和排序](./limit-and-order.md) 章节
+
+**请求示例**
+
+```js
+let User = new BaaS.User()
+
+let query = new BaaS.Query()
+
+// 设置查询条件（比较、字符串包含、组合等）
+...
+
+// limit、offset 可以指定按条件查询命中的数据分页
+let userRecords = User.limit(10).offset(0).getWithoutData(query)
+
+// 与更新特定记录一致
+userRecords.set(key1, value1)
+userRecords.incrementBy(key2, value2)
+userRecords.append(key3, value3)
+
+records.update().then(res => {}, err => {})
+```
+
+## 删除用户
+
+`MyUser.delete(userID)`
+
+**参数说明**
+
+| 名称      | 类型    | 必填    | 说明    |
+| :-------- | :------ | :------ | :------ |
+| userID    | Number  | Y       | 用户 ID |
+
+**示例代码**
+
+```javascript
+const MyUser = new BaaS.User()
+User.delete(userID).then(res => {
+  // success
+}).catch(err => {
+  // err
+})
+```
+
+**返回示例**
+
+```json
+{
+  "status": 204,
+  "data": ""
+}
+```
 
 ## 查询，获取用户列表
 

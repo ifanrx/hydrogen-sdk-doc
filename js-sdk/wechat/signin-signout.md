@@ -1,3 +1,12 @@
+{% macro userInfoAlert() %}
+> **info**
+> 由于 SDK 维护用户登录状态的需要，在用户授权时，并不会将开发者传入的 data 参数直接传给后端，
+> 而是会再调一次 wx.getUserInfo （由于开发者这之前已经进行了用户授权，所以这里能正常拿到授权的结果，
+> 请忽略微信开发者工具的提示）拿到 data，再传给后端。之前版本的 SDK 会导致用户信息的 country，province，city 字段始终为英文。
+> 从 **2.0.9** 起，country，province，city 所用的语言，将以用户传入的 data.detail.userInfo.language 为准。
+> 如果开发者需要更新之前已经授权用户的信息，请在用户授权时将 syncUserProfile 设置为 'overwrite'。
+{% endmacro %}
+
 # 登入登出
 
 ## 登入
@@ -73,6 +82,8 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% include "/js-sdk/frag/_sync_user_profile_param.md" %}
 
+{{ userInfoAlert() }}
+
 ```html
 <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
 ```
@@ -123,43 +134,59 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## 关联微信小程序
 
+通过此方法可将通用注册登录用户（在已登录状态下）关联微信小程序账号。
+
 `UserRecord.linkWechat(data, {syncUserProfile})`
 
 **参数说明**
 
 | 参数    | 类型    | 说明         |
 | :------| :------ | :----------- |
-| data   | object | wx.getUserInfo() success 回调中收到的参数，可选 |
+| data            | object | bindgetuserinfo 事件回调返回的参数 |
 | syncUserProfile | String | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx` |
 
 {% include "/js-sdk/frag/_sync_user_profile_param.md" %}
 
-```javascript
-// 必须在用户通过 login API 登录后才能进行绑定
-wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
-  // user 为 currentUser 对象
-  return user.linkWechat()
-}).then(res=>{
-  // success
-  // 用户可以通过微信授权登录同一个账户了
-})
-```
+{{ userInfoAlert() }}
 
-```javascript
-// 必须在用户通过 login API 登录后才能进行绑定
-wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
-  // user 为 currentUser 对象
 
-  wx.getUserInfo({
-    success(info){
-      user.linkWechat(info).then(res=>{
-        // 关联成功
-        console.log(res.statusCode)
-      })
-    }
+**请求示例**
+
+1. 不获取用户信息:
+
+  ```javascript
+  // 必须在用户通过 login API 登录后才能进行绑定
+  wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
+    // user 为 currentUser 对象
+    return user.linkWechat()
+  }).then(res=>{
+    // success
+    // 用户可以通过微信授权登录同一个账户了
   })
-})
-```
+  ```
+
+2. 获取用户信息:
+
+  ```html
+  <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
+  ```
+
+  ```js
+  Page({
+    // ...
+    userInfoHandler(data) {
+      // 必须在用户通过 login API 登录后才能进行绑定
+      wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
+        // user 为 currentUser 对象
+        user.linkWechat(data).then(res=>{
+          // 关联成功
+          console.log(res.statusCode)
+        })
+      })
+    },
+    // ...
+  })
+  ```
 
 **返回示例**
 ```JSON
