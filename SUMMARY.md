@@ -119,10 +119,11 @@
 
 ----
 
-* [iOS SDK （alpha 内测）](ios-sdk/README.md)
+* [iOS SDK （0.2.0-alpha 内测）](ios-sdk/README.md)
     * [上手指南](ios-sdk/install.md)
     * [用户](ios-sdk/user/README.md)
         * [登入登出](ios-sdk/user/auth.md)
+        * [用户](ios-sdk/user/user.md)
         * [当前用户](ios-sdk/user/account.md)
     * [数据表](ios-sdk/schema/README.md)
         * [数据类型](ios-sdk/schema/data-type.md)
@@ -133,14 +134,22 @@
         * [查询数据项](ios-sdk/schema/query.md)
         * [分页和排序](ios-sdk/schema/limit-and-order.md)
         * [字段过滤与扩展](ios-sdk/schema/select-and-expand.md)
+        * [地理位置操作](ios-sdk/schema/geo.md)
     * [内容库](ios-sdk/content/README.md)
         * [内容操作](ios-sdk/content/operate.md)
     * [文件](ios-sdk/file/README.md)
         * [文件操作](ios-sdk/file/file.md)
+    * [支付](ios-sdk/payment/README.md)
+        * [微信支付](ios-sdk/payment/wechat-pay.md)
+        * [支付宝支付](ios-sdk/payment/alipay-pay.md)
+        * [订单查询](ios-sdk/payment/order.md)
     * [调用云函数](ios-sdk/invoke-function.md)
+    * [短信验证码](ios-sdk/sms.md)
     * [错误码和错误对象](ios-sdk/error-code.md)
-    * [Demo 下载](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
-
+    * Demo 下载
+        * [iOS-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
+        * [SwiftUI-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)
+        
 ----
 
 * [知晓云开放 API](open-api/README.md)

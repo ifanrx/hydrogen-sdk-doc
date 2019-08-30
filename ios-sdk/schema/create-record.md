@@ -38,7 +38,7 @@ tableName 和 tableId 二选一
 
 | 名称     | 类型   |说明    |
 | :-----  | :----- | :--- |
-| Id   | Int  |  数据表的 Id |
+| Id   | String  |  数据表的 Id |
 | name | String |   数据表名 |
 
 ### 本地创建一条空记录
@@ -228,48 +228,49 @@ NSString *filePath = [[NSBundle mainBundle] pathForResource:@"cover" ofType:@"pn
 
 关于 `file` 类型查看 [文件](../file/file.md) 章节
 
-<!--
-
 ## 添加 geojson 类型数据
 
-表中有名称为 location，polygon 的两列，类型都为 geojson。
-
-{% tabs swift8_1="Swift", oc8_1="Objective-C" %}
-{% content "swift8_1" %}
-```
-// Point 类型
-let point = GeoPoint(latitude: 2, longitude: 10)
-record.set(key: "location", value: point.geoJson)
-
-// GeoPolygon
-let polygon = GeoPolygon(coordinates: [[30, 10], [40, 40], [20, 40], [10, 20], [30, 10]])
-record.set(key: "polygon", value: polygon.geoJson)
-```
-{% content "oc8_1" %}
-```
-// Point类型
-BAASGeoPoint *point = [[BAASGeoPoint alloc] initWithLatitude:10 longitude:2];
-[record setWithKey:@"location" value:point.geoJson];
-
-// GeoPolygon
-BAASGeoPolygon *polygon = [[BAASGeoPolygon alloc] initWithCoordinates:@[@[30, 10], @[40, 40], @[20, 40], @[10, 20], @[30, 10]]];
-[record setWithKey:@"polygon" value:polygon.geoJson];
-```
-{% endtabs %}
-
-关于 geojson 类型查看 [地理位置操作](./geo.md) 章节
-
--->
+详见 [地理位置操作](./geo.md) 设置地理信息小节
 
 ## 添加 object 类型数据
 
-对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的
+对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的。
+
+**示例**
+
+Book 表中的 publish_info 为 object 类型，表示出版商，其中有两个字段信息：name 表示出版商名称，location 为出版商地址。
+
+{% tabs swift8_2="Swift", oc8_2="Objective-C" %}
+{% content "swift8_2" %}
+```
+book.set(key: "publish_info", value: ["name": "efg出版社", "location": "广东省广州市天河区五山路 100 号"])
+```
+{% content "oc8_2" %}
+```
+[book setWithKey:@"publish_info" value: @{@"name": @"efg出版社", @"location": @"广东省广州市天河区五山路 100 号"}];
+```
+{% endtabs %}
 
 ## 添加 array 类型数据
 
 添加 array 类型数据的方法与添加其他类型数据的方法基本一致。区别在于，array 类型数据是将一个的数组赋值给某个字段。
 
 array 类型数据中的元素类型，要与预先在知晓云平台设定的字段类型一致。否则创建的数据将不包含该 array 类型的字段。
+
+**示例**
+
+Book 表中的 recommender 为 array 类型，表示推荐者。
+
+{% tabs swift8_3="Swift", oc8_3="Objective-C" %}
+{% content "swift8_2" %}
+```
+book.set(key: "recommender", value: ["yuminghong", "hua")
+```
+{% content "oc8_3" %}
+```
+[book setWithKey:@"recommender" value: @[@"yuminghong", @"hua"]];
+```
+{% endtabs %}
 
 ## 添加 pointer 类型数据 
 
@@ -326,7 +327,7 @@ NSDictionary *options = @{@"enable_trigger": @YES};
 
 | 参数名    | 类型    | 说明              |  必填  |
 |-----------|---------|-------------------|----|
-| records   | Dictionary  |   符合表结构的对象| Y |
+| records   | Dictionary  |   符合表结构的记录数据| Y |
 | options | Dictionary    |   批量操作选项 ，目前支持支持 enable_trigger, true 为触发触发器 |  N |
 
 **返回结果**

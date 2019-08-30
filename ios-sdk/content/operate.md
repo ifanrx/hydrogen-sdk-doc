@@ -17,14 +17,14 @@ BaaSContentGroup *contentGroup = [[BaaSContentGroup alloc] initId: 155331****380
 
 | 参数           | 类型    | 必填 | 说明 |
 | :------------- | :----- | :-- | :-- |
-| Id | Int64 | 是  | 内容库 ID |
+| Id | String | 是  | 内容库 ID |
 
 ## 获取内容详情
 
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-let contentId = 155332****126641
+let contentId = “155332****126641”
 let select = ["title", "name", "created_by"]
 let expand = ["created_by"]
 contentGroup.get(contentId, select: select, expand: expand) { (content, error) in
@@ -33,7 +33,7 @@ contentGroup.get(contentId, select: select, expand: expand) { (content, error) i
 ```
 {% content "oc2" %}
 ```
-long long = 155332****126641;
+NSString *contentId = 155332****126641;
 NSArray *select = @[@"title", @"created_by"];
 NSArray *expand = @[@"created_by"];
 [contentGroup get:contentId select:select expand:expand completion:^(BaaSContent * _Nullable content, NSError * _Nullable error) {
@@ -46,7 +46,7 @@ NSArray *expand = @[@"created_by"];
 
 | 参数名      | 类型   | 必填  | 说明 |
 | :--------- | :----- | :--- | :-- |
-| Id | Int64 | 是   | 内容 ID |
+| Id | String | 是   | 内容 ID |
 | select | Array<String> |  N  | 指定筛选的字段，详见[数据表 - 字段过滤](../schema/select-and-expand.md)章节 |
 | expand | Array<String> |  N  | 指定扩展的字段，详见[数据表 - 字段扩展](../schema/select-and-expand.md)章节 |
 
@@ -84,7 +84,7 @@ contentGroup.getCategory(Id: categoryId) { (category, error) in
 
 | 参数        | 类型   | 必填 | 说明 |
 | :--------- | :----  | :-- | :-- |
-| categoryID | Int64 |  是 | 分类 ID |
+| categoryID | String |  是 | 分类 ID |
 
 **返回结果**
 
@@ -106,7 +106,7 @@ contentGroup.getCategoryList { (listResult, error) in
 ```
 {% content "oc4" %}
 ```
-[contentGroup getCategoryListWithQuery:nil completion:^(BaaSContentCategoryListResult * _Nullable listResult, NSError * _Nullable error) {
+[contentGroup getCategoryListWithQuery:nil completion:^(BaaSContentCategoryList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
@@ -122,7 +122,7 @@ contentGroup.getCategoryList { (listResult, error) in
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| listResult  | ContentCategoryListResult | 内容分类列表结果，详见 **数据类型** 小节 |
+| listResult  | ContentCategoryList | 内容分类列表结果，详见 **数据类型** 小节 |
 | error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
@@ -136,7 +136,7 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 | 属性         |  类型   | 说明 |
 | :--------- | :---     | :--- |
-| Id         |   Int64  | 内容 Id |
+| Id         |   String  | 内容 Id |
 | title |  String    | 名称 |
 | desc  |  String  | 描述 |
 | cover  |  String | 封面 路径 |
@@ -156,29 +156,33 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 | 属性         |  类型   | 说明 |
 | :--------- | :---     | :--- |
-| Id  |   Int64  | 分类 Id |
+| Id  |   String  | 分类 Id |
 | name  |  String  | 分类名 |
 | haveChildren  |  Bool | 是否有子类 |
 | children | Array  |   子类列表，元素类型为 ContentCategory  | 
 
-### ContentListResult
+### ContentList
 
-`ContentListResult` 表示一次查询数据库所返回的内容列表以及元数据。
+`ContentList` 表示一次查询数据库所返回的内容列表以及元数据。
 
 | 属性       |  类型    |  说明 |
 | :--------- | :--- | :----   |
 | limit     |  Int  |  返回内容的最大个数   |
 | offset    | Int  |    返回内容的起始偏移值 |
 | totalCount   | Int   |   实际返回的内容总数 |
+| next      | String  |   下一页地址 |
+| previous  | String  |    上一页地址 |
 | contents  |   Array<Content> | 内容列表，每个元素为 Content 类型   |
 
-### ConetentCategoryListResult
+### ConetentCategoryList
 
-`ContentCategoryListResult` 表示一次查询数据库所返回的内容分类列表以及元数据。
+`ContentCategoryList` 表示一次查询数据库所返回的内容分类列表以及元数据。
 
 | 属性       |  类型    |  说明 |
 | :--------- | :--- | :----   |
 | limit     |  Int  |  返回内容分类的最大个数   |
 | offset    | Int  |    返回内容分类的起始偏移值 |
 | totalCount   | Int   |   实际返回的内容分类总数 |
+| next      | String  |   下一页地址 |
+| previous  | String  |    上一页地址 |
 | contentCategorys  |   Array<ContentCategory> | 内容分类列表，每个元素为 ContentCategory 类型   |
