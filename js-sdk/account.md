@@ -193,8 +193,8 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 ```javascript
 // ...
 wx.BaaS.auth.getCurrentUser()
-  .then(currentUser => {
-    return currentUser.setAccount({username: 'hello', email: 'hello@ifanr.com', password: '111111'})
+  .then(user => {
+    return user.setAccount({username: 'hello', email: 'hello@ifanr.com', password: '111111'})
   }).then(user => {
     console.log(user)
   }).catch(err => {
@@ -223,8 +223,8 @@ wx.BaaS.auth.getCurrentUser()
 {% ifanrxCodeTabs %}
 ```javascript
 wx.BaaS.auth.getCurrentUser()
-  .then(currentUser => {
-    return currentUser.setUsername('ifanrx_new')
+  .then(user => {
+    return user.setUsername('ifanrx_new')
   }).then(user => {
     console.log(user)
   }).catch(err => {
@@ -262,8 +262,8 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 {% ifanrxCodeTabs %}
 ```javascript
 wx.BaaS.auth.getCurrentUser()
-  .then(currentUser => {
-    return currentUser.setEmail('ifanrx_new@ifanr.com', {sendVerificationEmail: true})
+  .then(user => {
+    return user.setEmail('ifanrx_new@ifanr.com', {sendVerificationEmail: true})
   }).then(user => {
     console.log(user)
   }).catch(err => {
@@ -299,8 +299,8 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 {% ifanrxCodeTabs %}
 ```javascript
 wx.BaaS.auth.getCurrentUser()
-  .then(currentUser => {
-    return currentUser.setMobilePhone('15000000000')
+  .then(user => {
+    return user.setMobilePhone('15000000000')
   }).then(user => {
     console.log(user)
   }).catch(err => {
@@ -336,8 +336,8 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 {% ifanrxCodeTabs %}
 ```javascript
 wx.BaaS.auth.getCurrentUser()
-  .then(currentUser => {
-    return currentUser.verifyMobilePhone('123456')
+  .then(user => {
+    return user.verifyMobilePhone('123456')
   }).then(user => {
     console.log(user)
   }).catch(err => {
@@ -372,8 +372,8 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 {% ifanrxCodeTabs %}
 ```javascript
 wx.BaaS.auth.getCurrentUser()
-  .then(currentUser => {
-    return currentUser.updatePassword({password: '111111', newPassword: '222222'})
+  .then(user => {
+    return user.updatePassword({password: '111111', newPassword: '222222'})
   }).then(user => {
     console.log(user)
   }).catch(err => {
@@ -396,10 +396,10 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 {% ifanrxCodeTabs %}
 ```js
 wx.BaaS.auth.getCurrentUser()
-  .then(currentUser => {
+  .then(user => {
     // age 为自定义字段
-    return currentUser.set('age', 30).update()
-  }).then(res => {
+    return user.set('age', 30).update()
+  }).then(user => {
     // success
   }).catch(err => {
     // err 为 HError 对象
@@ -423,8 +423,8 @@ wx.BaaS.auth.getCurrentUser()
 {% ifanrxCodeTabs %}
 ```js
 wx.BaaS.auth.getCurrentUser()
-  .then(currentUser => {
-    return currentUser.requestEmailVerification()
+  .then(user => {
+    return user.requestEmailVerification()
   }).then(res => {
     console.log(res)
   }).catch(err => {
