@@ -65,11 +65,11 @@ App({
 
 ## 使用 SDK
 
-成功初始化 SDK 后，即可使用 SDK 完成数据操作，内容操作等功能了。如下，在控制台创建一张表（参考[控制台操作-数据表](../dashboard/schema.md) 一节），获取其 tableID ，并插入一条数据。
+成功初始化 SDK 后，即可使用 SDK 完成数据操作，内容操作等功能了。如下，在控制台创建一张表（参考[控制台操作-数据表](../dashboard/schema.md) 一节），获取其 tableName ，并插入一条数据。
 
 ```js
-let tableID = 10
-let Product = new swan.BaaS.TableObject(tableID)
+let tableName = 'product'
+let Product = new swan.BaaS.TableObject(tableName)
 let product = Product.create()
 
 let apple = {
