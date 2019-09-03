@@ -15,7 +15,7 @@ b. 将下载解压后得到的 SDK js 文件放在小程序项目目录中
 App({
   onLaunch() {
     // require SDK
-    require('./sdk-v{{ book.latestVersionWechat }}')
+    require('./sdk-v{{ book.latestVersionQQ }}')
   }
 })
 </code>
@@ -49,7 +49,7 @@ qq.BaaS.init(clientID, {autoLogin, logLevel})
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-v{{ book.latestVersionWechat }}')
+    require('./sdk-v{{ book.latestVersionQQ }}')
      let clientID = '知晓云管理后台获取到的 ClientID'
      qq.BaaS.init(clientID)
   }
