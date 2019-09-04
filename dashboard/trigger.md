@@ -1,5 +1,7 @@
 # 触发器
 
+[触发器（Trigger）](https://cloud.minapp.com/dashboard/#/app/engine/trigger/table/)的执行不是由程序调用，也不是手工启动，而是由事件来触发，比如当对一个表进行操作（ create，delete， update）时就会激活它执行。使用触发器，你可以更加方便的实现业务逻辑。
+
 ## 概览
 ### 触发器配置卡片
 
@@ -7,13 +9,15 @@
 
 此面板配置一些触发器的基本信息，或者进行查阅触发器触发日志等操作。
 
-触发类型目前有五种：
+触发类型目前有七种：
 
 - [数据表](#数据表)
 - [微信支付回调](#微信支付回调)
 - [定时任务](#定时任务)
 - [文件操作](#文件操作)
 - [IncomingWebhook](#IncomingWebhook)
+- [微信消息推送](#微信消息推送)
+- [支付宝支付回调](#支付宝支付回调)
 
 ### 条件卡片
 
@@ -37,13 +41,13 @@
 
 不同的触发类型对应可选的动作类型不同，总结如下：
 
-| 动作类型     |触发类型：数据表  | 触发类型：微信支付回调 |触发类型：定时任务|
-| ----------  | :------------ | :------------------ | ----------------- |
-| 邮件        | Y️             | Y                    | Y                |
-| 微信模板消息 | Y️             | Y️                    | Y                |
-| webhook     | Y️             | Y️                   | N                |
-| 数据表操作   | Y️             | Y️                   | N                |
-| 云函数      | Y️              | Y                   | Y                 |
+| 动作类型↓ \ 触发类型→ | 数据表  | 微信支付回调 | 定时任务 | 文件操作 | IncomingWebhook | 微信消息推送 | 支付宝支付回调 |
+| ------------------ | :----- | :--------- | :------ | :----- | :----------------| :-------- | :----------- |
+| 邮件                | Y️      | Y          | Y       | Y      | Y               | Y          | Y            |
+| 微信模板消息         | Y️      | Y️           | Y       | Y     | Y                | Y           | Y          |
+| webhook            | Y️      | Y️           | N       | Y     | Y                | Y           | Y          |
+| 数据表操作           | Y️      | Y️           | N       | Y     | Y                | Y            | Y         |
+| 云函数              | Y️      | Y           | Y       | Y     | Y                | Y            | Y          |
 
 ## 触发类型
 
@@ -84,6 +88,21 @@
 
 在动作中可以使用的跟订单相关的模板变量如下：
 > trade_no, created_by, merchandise_schema_id, merchandise_record_id, merchandise_description, merchandise_snapshot, total_cost, paid_at, created_at, updated_at, transaction_no
+
+### 支付宝支付回调
+触发条件：当用户支付宝支付成功时。
+
+使用场景：用户支付宝支付成功，支付宝模板消息提醒用户订单详情。
+
+在动作中可以使用的跟订单相关的模板变量如下：
+> trade_no, created_by, merchandise_schema_id, merchandise_record_id, merchandise_description, merchandise_snapshot, total_cost, paid_at, created_at, updated_at, transaction_no
+
+### 微信消息推送
+触发条件：当接收到微信推送的所有类型消息时，比如用户在小程序或公众号中发送客服消息的时候触发。
+
+使用场景：当用户在小程序中向开发者发送客服消息的时候，开发者可判断消息关键词并作出相应的动作，比如发送邮件、执行云函数等。
+
+设置条件触发器参数规则请参考[微信文档](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1451025274)。
 
 ### 定时任务
 触发条件：根据 cron 规则周期性的触发。

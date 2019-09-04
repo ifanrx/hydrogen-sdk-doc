@@ -134,6 +134,8 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## 关联微信小程序
 
+通过此方法可将通用注册登录用户（在已登录状态下）关联微信小程序账号。
+
 `UserRecord.linkWechat(data, {syncUserProfile})`
 
 **参数说明**

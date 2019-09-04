@@ -192,13 +192,14 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 {% ifanrxCodeTabs %}
 ```javascript
 // ...
-let currentUser = wx.BaaS.auth.getCurrentUser()
-
-currentUser.setAccount({username: 'hello', email: 'hello@ifanr.com', password: '111111'}).then(user => {
-  console.log(user)
-}).catch(err=>{
-  // HError
-})
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    return user.setAccount({username: 'hello', email: 'hello@ifanr.com', password: '111111'})
+  }).then(user => {
+    console.log(user)
+  }).catch(err => {
+    // HError
+  })
 ```
 {% endifanrxCodeTabs %}
 
@@ -221,13 +222,14 @@ currentUser.setAccount({username: 'hello', email: 'hello@ifanr.com', password: '
 
 {% ifanrxCodeTabs %}
 ```javascript
-let currentUser = wx.BaaS.auth.getCurrentUser()
-
-currentUser.setUsername('ifanrx_new').then(user => {
-  console.log(user)
-}).catch(err=>{
-  // HError
-})
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    return user.setUsername('ifanrx_new')
+  }).then(user => {
+    console.log(user)
+  }).catch(err => {
+    // HError
+  })
 ```
 {% endifanrxCodeTabs %}
 
@@ -259,13 +261,14 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.getCurrentUser().then(user => {
-  user.setEmail('ifanrx_new@ifanr.com', {sendVerificationEmail: true}).then(user => {
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    return user.setEmail('ifanrx_new@ifanr.com', {sendVerificationEmail: true})
+  }).then(user => {
     console.log(user)
-  }).catch(err=>{
-      // HError
-    })
-})
+  }).catch(err => {
+    // HError
+  })
 ```
 {% endifanrxCodeTabs %}
 
@@ -295,13 +298,14 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.getCurrentUser().then(user => {
-  user.setMobilePhone('15000000000').then(user => {
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    return user.setMobilePhone('15000000000')
+  }).then(user => {
     console.log(user)
-  }).catch(err=>{
+  }).catch(err => {
     // HError
   })
-})
 ```
 {% endifanrxCodeTabs %}
 
@@ -331,13 +335,14 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.getCurrentUser().then(user => {
-  user.verifyMobilePhone('123456').then(user => {
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    return user.verifyMobilePhone('123456')
+  }).then(user => {
     console.log(user)
-  }).catch(err=>{
+  }).catch(err => {
     // HError
   })
-})
 ```
 {% endifanrxCodeTabs %}
 
@@ -366,13 +371,14 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.getCurrentUser().then(user =>{
-  user.updatePassword({password: '111111', newPassword: '222222'}).then(user => {
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    return user.updatePassword({password: '111111', newPassword: '222222'})
+  }).then(user => {
     console.log(user)
-  }).catch(err=>{
-      // HError
+  }).catch(err => {
+    // HError
   })
-})
 ```
 {% endifanrxCodeTabs %}
 
@@ -389,14 +395,15 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```js
-wx.BaaS.auth.getCurrentUser().then(user =>{
-   // age 为自定义字段
-   user.set('age', 30).update().then(res => {
-     // success
-   }, err => {
-     // err 为 HError 对象
-   })
-})
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    // age 为自定义字段
+    return user.set('age', 30).update()
+  }).then(user => {
+    // success
+  }).catch(err => {
+    // err 为 HError 对象
+  })
 ```
 {% endifanrxCodeTabs %}
 
@@ -415,13 +422,14 @@ wx.BaaS.auth.getCurrentUser().then(user =>{
 
 {% ifanrxCodeTabs %}
 ```js
-wx.BaaS.auth.getCurrentUser().then(user =>{
-  user.requestEmailVerification().then(res => {
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    return user.requestEmailVerification()
+  }).then(res => {
     console.log(res)
-  }).catch(err=>{
+  }).catch(err => {
     // HError
   })
-})
 ```
 {% endifanrxCodeTabs %}
 

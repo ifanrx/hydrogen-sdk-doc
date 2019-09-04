@@ -29,17 +29,25 @@
 >**danger**
 > 如果注册或邮件激活失败，请开发者根据失败提示进行后续操作。如果开发者认为是服务提供方方面导致的失败，请邮件联系 `mincloud@ifanr.com`，我们会第一时间处理您的邮件。
 
-### 小程序第三方授权以及服务器域名配置
+## 小程序第三方授权
 
 为了使用知晓云提供的后端服务，进入 dashboard 后，开发者首先需要为知晓云授权。
 
-知晓云在设置模块提供了**一键授权**功能，用户只需点击**立即授权**并在新开授权回调页完成授权即可。
+知晓云在设置模块提供了**一键授权**功能，用户只需在应用“导览”页中找到微信小程序平台，点击**立即接入**，接着在“设置-微信”页中点击**立即授权**并在新开授权回调页完成授权即可。
+
+![开通微信小程序平台](/images/newbies/open-up-wechat.png)
 
 ![一键授权](/images/newbies/one-key-authorization.png)
 
-{% tabs SDKPluginConfig="SDK 插件版接入", SDKFileConfig="SDK 文件版接入" %}
+至此，我们就完成了微信小程序对知晓云的第三方授权。
+
+{% tabs SDKPluginConfig="SDK 插件版接入（推荐）", SDKFileConfig="SDK 文件版接入" %}
 
 {% content "SDKPluginConfig" %}
+
+插件版 SDK 将占用一个小程序插件名额（同一个小程序同时仅可使用 5 个插件）。
+
+插件版 SDK 1.5.1 以上需小程序基础库 2.1.0 及以上。
 
 ## 第一个接入知晓云的小程序
 
@@ -149,7 +157,7 @@ Page({
 
 {% content "SDKFileConfig" %}
 
-完成授权后，接下来用户需要进行服务器域名配置，以解锁小程序 [SDK](/js-sdk/download-sdk.md) 服务。
+完成授权后，使用本地文件版 SDK 的用户需要进行服务器域名配置，以解锁小程序 SDK 服务。[SDK 文件下载](/js-sdk/download-sdk.md)
 
 ![知晓云服务器域名](/images/newbies/hydrogen-domain-name1.png)
 
