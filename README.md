@@ -282,6 +282,9 @@
           <a href="/cloud-function/quick-start.md/">快速入门</a>
         </li>
         <li>
+          <a href="/cloud-function/cli.md/">命令行工具</a>
+        </li>
+        <li>
           <a href="/cloud-function/node-sdk/schema/README.md">数据表</a>
         </li>
         <li>
@@ -318,9 +321,6 @@
         </li>
         <li>
           <a href="/cloud-function/node-sdk/sms.md">短信验证码</a>
-        </li>
-        <li>
-          <a href="/cloud-function/cli.md/">命令行工具</a>
         </li>
       </ul>
     </li>

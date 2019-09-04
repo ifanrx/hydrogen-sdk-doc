@@ -24,7 +24,7 @@ table.find(query: query) { (listResult, error) in
 BaaSQuery *query = [[BaaSQuery alloc] init];
 [query offset:1];
 [query limit:10];
-[table findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
+[table findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
@@ -40,7 +40,7 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| listResult  | RecordListResult | 结果列表，详见 [数据类型](./data-type.md) 章节|
+| listResult  | RecordList | 结果列表，详见 [数据类型](./data-type.md) 章节|
 | error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
@@ -78,7 +78,7 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 // 多重排序
 [query orderBy:@[@"created_at", @"created_by"]];
 
-[table findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
+[table findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
@@ -94,7 +94,7 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| listResult  | RecordListResult | ，详见 [数据类型](./data-type.md) 章节 |
+| listResult  | RecordList | ，详见 [数据类型](./data-type.md) 章节 |
 | error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
