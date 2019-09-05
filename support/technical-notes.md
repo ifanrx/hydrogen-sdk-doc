@@ -15,4 +15,6 @@
 
 以上限制条件可满足绝大部分用户的正常工作负载，若有更高的 RPM 需求，请通过工单联系知晓云客服。
 
+## 云函数
+
 {% include "/cloud-function/frag/cloud-function-technical-notes.md" %}
