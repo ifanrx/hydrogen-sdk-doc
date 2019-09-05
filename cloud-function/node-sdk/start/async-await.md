@@ -1,6 +1,6 @@
 # 支持 async/await
 
-在正式支持 async/await 之前，在调用云函数时，是通过 callback 函数来将执行结果返回给调用方的，不管是否是 async 函数。
+在正式支持 async/await 之前，在调用云函数（不管是否是 async 函数）时，通过 callback 函数来将执行结果返回给调用方。
 而现在 async 函数可以直接使用 return 将结果返回。
 
 > **info**
