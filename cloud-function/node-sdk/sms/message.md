@@ -40,7 +40,7 @@ data 是 Object 类型，它包括以下几个属性
 let data = {
   recipient_type: 'phone_number',
   phone_number: '150********',
-  template_id: 1,
+  template_name: 'test',
   keywords: {
     name: "书籍",
     price: "50.5",
@@ -59,7 +59,7 @@ BaaS.sendSmsMessage(data).then(res => {
 let data = {
   recipient_type: 'user_list',
   user_list: [123, 456, 789],
-  template_id: 1,
+  template_name: 'test',
   keywords: {
     name: "书籍",
     price: "50.5",
@@ -81,7 +81,7 @@ BaaS.sendSmsMessage(data).then(res => {
 let data = {
   recipient_type: 'user_group',
   user_group_name: '运营人员',
-  template_id: 1,
+  template_name: 'test',
   keywords: {
     name: "书籍",
     price: "50.5",
@@ -121,7 +121,7 @@ let data = {
       }
     ]
   },
-  template_id: 1,
+  template_name: 'test',
   keywords: {
     name: "书籍",
     price: "50.5",
