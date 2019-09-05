@@ -18,28 +18,28 @@ data 是 Object 类型，它包括以下几个属性
 
 | 参数             | 类型   | 必填  | 说明 |
 | :-------------- | :----- | :--- | :-- |
-| recipient_type  | String | 是   | 推送类型，可选值： 'user_id'、'user_list'、'user_group'、'schema_user'  |
+| recipient_type  | String | 是   | 推送类型，可选值： 'phone_number'、'user_list'、'user_group'、'schema_user'  |
 | `<recipient_params>` | Array、Integer、String、Object | 是   | 根据recipientType来填写不同的参数名， 详见下方表格说明 |
-| template_id     | Integer | 是   | 模板 ID |
+| template_name     | String | 是   | 模板名称 |
 | keywords        | Object | 是   | 关键字（可在 [知晓云-模板消息](https://cloud.minapp.com/dashboard/#/app/template-message/template) 配置）|
 | schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 
 
-| recipient_type 类型 | recipient_params     | 类型            | 说明                          |
-|:------------------|:---------------------|:--------------|:----------------------------|
-| 'user_id'           | user_id              | Integer       | 推送单个用户，传入用户 ID (对应 _userprofile 表中的 id 字段)              |
+| recipient_type 类型 | recipient_params     | 类型          | 说明                        |
+|:--------------------|:---------------------|:--------------|:----------------------------|
+| 'phone_number'      | phone_number         | String        | 推送单个用户                |
 | 'user_list'         | user_list            | Integer Array | 推送批量用户，传入用户 id 列表           |
 | 'user_group'        | user_group_name      | String        | 用户组名，注意这里是提交用户组名称，而不是用户组 id |
 | 'schema_user'       | user_profile_filters | String        | 对指定数据表的查询条件，用于筛选用户        |
 
 ### 示例代码
 
-**请求示例 - user__id**
+**请求示例 - phone_number**
 
 ```javascript
 let data = {
-  recipient_type: 'user_id',
-  userID: 23425,
+  recipient_type: 'phone_number',
+  phone_number: '150********',
   template_id: 1,
   keywords: {
     name: "书籍",
