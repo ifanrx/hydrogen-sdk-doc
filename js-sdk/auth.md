@@ -253,10 +253,13 @@ wx.BaaS.auth.loginWithSmsVerificationCode('15000000000', '123456').then(user => 
 请参考[支付宝小程序登录](./alipay/signin-signout.md)
 
 ### Web 端第三方登录
-请参考[ Web 登录](./web/signin-signout.md)
+请参考 [Web 登录](./web/signin-signout.md)
 
 ### QQ 小程序登录
-请参考[ QQ 小程序登录](./qq/signin-signout.md)
+请参考 [QQ 小程序登录](./qq/signin-signout.md)
+
+### 百度小程序登录
+请参考[百度小程序登录](./baidu/signin-signout.md)
 
 ## 关联小程序账户
 用户在完成登录后，可以关联小程序账户，这样用户可以在下次通过多种方式登录同一账户。

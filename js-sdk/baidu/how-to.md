@@ -1,4 +1,4 @@
-# QQ 小程序接入指南
+# 百度小程序接入指南
 
 ## 引入 SDK 并初始化
 
@@ -15,7 +15,7 @@ b. 将下载解压后得到的 SDK js 文件放在小程序项目目录中
 App({
   onLaunch() {
     // require SDK
-    require('./sdk-v{{ book.latestVersionQQ }}')
+    require('./sdk-v{{ book.latestVersionBaidu }}')
   }
 })
 </code>
@@ -24,7 +24,7 @@ App({
 ### 初始化 SDK
 
 ```javascript
-qq.BaaS.init(clientID, {autoLogin, logLevel})
+swan.BaaS.init(clientID, {autoLogin, logLevel})
 ```
 
 **参数说明**
@@ -49,9 +49,9 @@ qq.BaaS.init(clientID, {autoLogin, logLevel})
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-v{{ book.latestVersionQQ }}')
+    require('./sdk-v{{ book.latestVersionBaidu }}')
      let clientID = '知晓云管理后台获取到的 ClientID'
-     qq.BaaS.init(clientID)
+     swan.BaaS.init(clientID)
   }
 })
 </code>
@@ -65,11 +65,11 @@ App({
 
 ## 使用 SDK
 
-通过 `qq.BaaS.init(clientID)` 成功初始化 SDK 后，即可使用 SDK 完成数据操作，内容操作等功能了。如下，在控制台创建一张表（参考[控制台操作-数据表](../dashboard/schema.md) 一节），获取其 tableName ，并插入一条数据。
+通过 `swan.BaaS.init(clientID)` 成功初始化 SDK 后，即可使用 SDK 完成数据操作，内容操作等功能了。如下，在控制台创建一张表（参考[控制台操作-数据表](../dashboard/schema.md) 一节），获取其 tableName ，并插入一条数据。
 
 ```js
 let tableName = 'product'
-let Product = new qq.BaaS.TableObject(tableName)
+let Product = new swan.BaaS.TableObject(tableName)
 let product = Product.create()
 
 let apple = {

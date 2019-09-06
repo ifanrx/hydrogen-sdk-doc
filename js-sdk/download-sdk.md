@@ -7,6 +7,7 @@
 - [支付宝小程序 SDK v{{ book.latestVersionAlipay }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-alipay.{{book.latestVersionAlipay}}.zip)
 - [微信小程序 SDK v{{ book.latestVersionWechat }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-wechat.{{book.latestVersionWechat}}.zip)
 - [QQ 小程序 SDK v{{ book.latestVersionQQ }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-qq.{{book.latestVersionQQ}}.zip)
+- [百度小程序 SDK v{{ book.latestVersionBaidu }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-baidu.{{book.latestVersionBaidu}}.zip)
 - [微信小程序插件版 SDK v{{ book.latestVersionWechatPlugin }}](https://mp.weixin.qq.com/wxopen/pluginbasicprofile?action=intro&appid=wxc6b86e382a1e3294)
 - [Web SDK v{{ book.latestVersionWeb }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-web.{{book.latestVersionWeb}}.zip)
 - [Web SDK npm 版](https://www.npmjs.com/package/minapp-sdk)
