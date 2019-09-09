@@ -97,6 +97,14 @@
 在动作中可以使用的跟订单相关的模板变量如下：
 > trade_no, created_by, merchandise_schema_id, merchandise_record_id, merchandise_description, merchandise_snapshot, total_cost, paid_at, created_at, updated_at, transaction_no
 
+### QQ 支付回调
+触发条件：当用户 QQ 支付成功时。
+
+使用场景：用户 QQ 支付成功，QQ 模板消息提醒用户订单详情。
+
+在动作中可以使用的跟订单相关的模板变量如下：
+> trade_no, created_by, merchandise_schema_id, merchandise_record_id, merchandise_description, merchandise_snapshot, total_cost, paid_at, created_at, updated_at, transaction_no
+
 ### 微信消息推送
 触发条件：当接收到微信推送的所有类型消息时，比如用户在小程序或公众号中发送客服消息的时候触发。
 
@@ -206,6 +214,47 @@ formId 使用限制说明：
 - 表单提交场景的 formId 可使用发送 1 次，支付场景的 formId 可使用发送 3 次
 - 跳转路径请按照“pages/...“格式填写，“/pages/....“可能会导致发送错误
 
+### 支付宝模板消息
+
+>**info**
+>注：发送支付宝模板消息时，pointer 数据不进行数据展开，即模板变量中 pointer 只能获取到对应数据 ID。
+
+执行结果：向指定用户发送一条支付宝模板消息。
+
+使用前要在[支付宝小程序后台](https://openhome.alipay.com/platform/miniIndex.htm#/)添加消息模板。
+
+支付宝模板消息需要配合小程序来触发，无法单独在后台触发。具体触发方法为：在小程序页面中添加 form 组件，在提交表单的回调中取得 formId，调用 [qq.BaaS.reportTicket](../js-sdk/alipay/template-message.md) 保存 formId，保存成功后，当触发器被触发后，这时用户就可以在手机收到通知。
+注意这里 form 组件需要添加 **report-submit** 属性，否则在回调事件对象中无法获取 formId。
+
+formId 使用限制说明：
+
+- 发送前必须已有真机提交 formId （开发者工具无效）或已支付成功
+- formId 仅供其提交者使用，即你无法使用 A 提交的 formId 给 B 发送模板消息
+- formId 自提交日 7 天内有效
+- 表单提交场景的 formId 和支付场景的 formId 可使用发送 3 次
+- 跳转路径请按照“pages/...“格式填写，“/pages/....“可能会导致发送错误
+
+### QQ 模板消息
+
+>**info**
+>注：发送 QQ 模板消息时，pointer 数据不进行数据展开，即模板变量中 pointer 只能获取到对应数据 ID。
+
+执行结果：向指定用户发送一条 QQ 模板消息。
+
+使用前要在[QQ 小程序后台](https://q.qq.com/#/home/steps)添加消息模板。
+
+QQ 模板消息需要配合小程序来触发，无法单独在后台触发。具体触发方法为：在小程序页面中添加 form 组件，在提交表单的回调中取得 formId，调用 [BaaS.wxReportTicket](../js-sdk/qq/template-message.md) 保存 formId，保存成功后，当触发器被触发后，这时用户就可以在手机收到通知。
+注意这里 form 组件需要添加 **report-submit** 属性，否则在回调事件对象中无法获取 formId。
+
+formId 使用限制说明：
+
+- 发送前必须已有真机提交 formId （开发者工具无效）或已支付成功
+- formId 仅供其提交者使用，即你无法使用 A 提交的 formId 给 B 发送模板消息
+- formId 自提交日 7 天内有效
+- 表单提交场景的 formId 可使用发送 1 次
+- 由于 qq 方面的 bug，支付场景的 form_id 目前暂时无法用于发送模板消息
+- 跳转路径请按照“pages/...“格式填写，“/pages/....“可能会导致发送错误
+
 ### WebHook
 执行结果：向指定 URL 发送一个 POST 请求。
 
@@ -305,6 +354,16 @@ event.data 参数内容：
 - 若触发类型为数据表：数据表记录，参考[数据表操作](#数据表操作)小节
 - 若触发类型为微信支付回调：为订单记录，参考[微信支付回调](#微信支付回调)小节
 
+### 发送短信
+
+>**info**
+>注：发送短信消息时，pointer 数据不进行数据展开，即模板变量中 pointer 只能获取到对应数据 ID。
+
+执行结果： 向指定用户发送对应的短信
+
+使用前要先在 控制台 - 短信 开通短信服务，并先创建一个短信签名，等待审核通过后再创建一个短信模版并通过审核
+
+短信发送的对象可以是：指定手机号码的用户、指定分组用户及自定义筛选条件的指定用户
 
 ## 定时任务
 创建一个触发类型为定时任务的触发器后，该触发器将被周期性的触发。
