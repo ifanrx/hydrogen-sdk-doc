@@ -8,7 +8,7 @@ BaaS 提供 `swan.BaaS.request(OBJECT)` 接口用于调用 API。
 
 - 支持 `Promise` 规范
 - 方便 BaaS 分析接口调用状况
-- 无需关心微信 `swan.request()` 方法是否更新
+- 无需关心 `swan.request()` 方法是否更新
 - 自动配置必要的参数
 
 **OBJECT 参数说明**
@@ -68,5 +68,3 @@ BaaS 提供的 API 遵循 RESTful 规范，返回的状态码与对应的请求�
 > 当请求知晓云提供的接口返回 401 状态码时，SDK 会清除本地的客户端认证 `Token`、BaaS 登录状态和BaaS 用户信息（与调用 `swan.BaaS.auth.logout()` 退出 BaaS 一样）
 
 > 请求外部域名接口时，将不会进行上述处理。在发起请求前一定要确认小程序域名配置已经完成。
-
-> 受小程序业务域名配置的限制，插件版的 swan.BaaS.request 不支持请求自定义 URL （即只能访问知晓云服务相关的 URL）
