@@ -320,7 +320,7 @@ query.hasKey('publisherInfo', 'abc.location')
 ```
 
 
-## pointer 查询 
+## pointer 查询
 
 > **info**
 > 目前 pointer 仅支持针对 pointer 本身的查询，不支持嵌套查询（即查询 pointer 指向的数据行的字段）
@@ -331,14 +331,14 @@ query.hasKey('publisherInfo', 'abc.location')
 
 order 表部分字段结构如下：
 
-| 字段名          | 字段类型          | 说明                 |
-|----------------|------------------|----------------------|
+| 字段名         | 字段类型         | 说明                     |
+|----------------|------------------|--------------------------|
 | customer       |  pointer         | 指向了 `customer` 表     |
-| user           |  pointer         | 指向了 `_userprofile` 表     |
+| user           |  pointer         | 指向了 `_userprofile` 表 |
 
 现在需要查询 order 表中，同时满足以下条件的数据行：
 
-- customer 字段指向 customer 表中 id 为 `5bad87ab0769797b4fb27a1b` 的数据行 
+- customer 字段指向 customer 表中 id 为 `5bad87ab0769797b4fb27a1b` 的数据行
 - user 字段指向了 _userprofile 表中 id 为 `69147880` 的数据行
 
 ```js
@@ -351,7 +351,7 @@ query.compare('customer', '=', Customer.getWithoutData('5bad87ab0769797b4fb27a1b
 query.compare('user', '=', User.getWithoutData(69147880))
 
 Order.setQuery(query).expand(['customer', 'user']).find().then(res => {
-  
+
 })
 ```
 **返回示例**
@@ -394,7 +394,7 @@ res 结构如下:
         "is_authorized": false,
         "created_at": 1532921460,
         "updated_at": 1539683851
-      },  
+      },
       "read_perm": ["user:*"],
       "updated_at": 1541666168,
       "write_perm": ["user:*"]
@@ -407,7 +407,7 @@ res 结构如下:
 ```js
 // 不使用 expand() 方法， customer 字段不会扩展
 Order.setQuery(query).find().then(res => {
-  
+
 })
 ```
 

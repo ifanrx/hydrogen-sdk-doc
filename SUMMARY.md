@@ -229,8 +229,11 @@
 ----
 
 * [云函数 Node.js SDK](cloud-function/node-sdk/README.md)
-    * [使用必读](cloud-function/node-sdk/usage-notice.md)
-    * [快速入门](cloud-function/quick-start.md)
+    * [入门必读](cloud-function/node-sdk/start/README.md)
+        * [使用示例](cloud-function/node-sdk/start/quick-start.md)
+        * [代码格式](cloud-function/node-sdk/start/code-format.md)
+        * [async/await](cloud-function/node-sdk/start/async-await.md)
+        * [技术细节](cloud-function/node-sdk/start/technical-notes.md)
     * [命令行工具](cloud-function/cli.md)
         * [代码打包](cloud-function/packaging.md)
     * [数据表](cloud-function/node-sdk/schema/README.md)
@@ -281,7 +284,6 @@
     * [错误码和 HError 对象](cloud-function/node-sdk/error.md)
     * [公众号发送红包](cloud-function/node-sdk/red-pack.md)
     * [短信验证码](cloud-function/node-sdk/sms.md)
-    * [云函数技术细节](cloud-function/technical-notes.md)
 
 ----
 

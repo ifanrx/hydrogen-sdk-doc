@@ -1,4 +1,4 @@
-# 快速入门
+# 使用示例
 
 ## 如何使用
 
@@ -76,30 +76,4 @@ exports.main = function getArticles(event, callback) {
 wx.BaaS.invokeFunction('getArticles').then(res => {
   console.log(res.data) // articles
 })
-```
-
-### 云函数中 event 包含的可用参数
-
-参数说明
-
-| 参数      | 类型   | 描述 | 示例 |
-| :-------- | :----- | :--- | :--- |
-| data      | Object | 触发云函数的 data，若从 SDK 触发，则为 invokeFunction 中的 params, 若为触发器触发，则为触发触发器的数据行。| {"id": "SnHzr40rtAufDke2r6FJ7xxE"} |
-| eventType | String | 触发云函数的类型 | SDK |
-| jobId     | String | 云函数任务的唯一标记 ID | "a83ec181e20c4d50b83093157c8283a1" |
-| request   | Object | 如果云函数由小程序端触发，此处记录请求用户的信息 | 见下面 request 示例 |
-
-request 示例
-```json
-{
-  "meta": {
-    "ip_address": "123.61.205.211",
-    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15"
-  },
-  "user": {
-    "avatar_url": "http://cdn.ifanr.cn/ifanr/default_avatar.png",
-    "id": 135570997,
-    "nickname": "ifanr"
-  }
-}
 ```
