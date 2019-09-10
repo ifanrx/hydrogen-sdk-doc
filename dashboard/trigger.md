@@ -320,6 +320,7 @@ event.data 参数内容：
   "date": "2019-09-09T17:56:38.758000+08:00",
   "file": {
     "cdn_path": "1g50PgtbHMNWFntB.png",
+    "path": "https://cloud-minapp-0000.cloud.ifanrusercontent.com/1g50PgtbHMNWFntB.png",
     "created_at": 1537932176,
     "id": "5baafb906e73240d2acfb67e",
     "mime_type": "image/png",
@@ -371,6 +372,7 @@ event.data 参数内容：
   "array_file": [
     {
       "cdn_path": "1g50PgtbHMNWFntB.png",
+      "path": "https://cloud-minapp-0000.cloud.ifanrusercontent.com/1g50PgtbHMNWFntB.png",
       "created_at": 1537932176,
       "id": "5baafb906e73240d2acfb67e",
       "mime_type": "image/png",
