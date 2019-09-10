@@ -16,6 +16,7 @@
 - [支付宝小程序接入指南](/js-sdk/alipay/README.md)
 - [Android 应用接入指南](/android-sdk/install.md)
 - [iOS 应用接入指南](/ios-sdk/install.md)
+- [百度小程序接入指南](/js-sdk/baidu/README.md)
 
 ## 使用场景介绍
 
