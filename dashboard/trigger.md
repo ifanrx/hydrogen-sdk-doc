@@ -306,7 +306,7 @@ event.data 参数内容：
 
 - 定时任务：空。
 - IncomingWebhook：请求信息，参考 [IncomingWebhook](#incomingwebhook) 小节。
-- 数据表：数据表记录，File 类型的数据可以直接赋值给数据表的 File 类型的字段。
+- 数据表：数据表记录，File 类型的数据可以直接赋值给数据表 File 类型的字段。
 
 示例：
 
