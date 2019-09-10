@@ -286,7 +286,6 @@
     * [企业付款](cloud-function/node-sdk/wx-promotion-transfer.md)
     * [错误码和 HError 对象](cloud-function/node-sdk/error.md)
     * [公众号发送红包](cloud-function/node-sdk/red-pack.md)
-    * [短信验证码](cloud-function/node-sdk/sms.md)
 
 ----
 
