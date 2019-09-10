@@ -78,7 +78,7 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 // 不返回特定字段
 [query select:@[@"-created_at", @"-created_by"]];
 
-[_table findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
+[_table findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
@@ -94,7 +94,7 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| listResult  | RecordListResult | 结果列表，详见 [数据类型](./data-type.md) 章节|
+| listResult  | RecordList | 结果列表，详见 [数据类型](./data-type.md) 章节|
 | error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
@@ -211,7 +211,7 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 // 返回特定字段
 [query expand:@[@"created_by", @"pointer_value"]];
 
-[_table findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
+[_table findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
@@ -227,7 +227,7 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| listResult  | RecordListResult | 结果列表，详见 [数据类型](./data-type.md) 章节|
+| listResult  | RecordList | 结果列表，详见 [数据类型](./data-type.md) 章节|
 | error   |  NSError |  错误信息  |
 
 error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

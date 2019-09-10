@@ -171,7 +171,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 {
   "statusCode": 200,
   "data": {
-    "message": "QQ associate succeed.",
+    "message": "User associated.",
     "openid": "ofo380BgVHDSf3gxxx",
     "status": "ok",
     "user_id": 22051668672912

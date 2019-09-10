@@ -9,7 +9,7 @@
 * [新手入门](newbies/README.md)
     * [新手入门 - 微信小程序](newbies/wechat.md)
     * [新手入门 - Web](newbies/web.md)
-    * [新手入门 - 支付宝](newbies/alipay.md)
+    * [新手入门 - 支付宝小程序](newbies/alipay.md)
 
 ----
 
@@ -70,6 +70,10 @@
         * [网络请求](js-sdk/qq/request.md)
         * [模板消息](js-sdk/qq/template-message.md)
         * [QQ 加密数据解密](js-sdk/qq/decrypt.md)
+    * [百度小程序](js-sdk/baidu/README.md)
+        * [接入指南](js-sdk/baidu/how-to.md)
+        * [百度登录](js-sdk/baidu/signin-signout.md)
+        * [网络请求](js-sdk/baidu/request.md)
     * [Web](js-sdk/web/README.md)
         * [接入指南](js-sdk/web/how-to.md)
         * [登入登出](js-sdk/web/signin-signout.md)
@@ -119,10 +123,11 @@
 
 ----
 
-* [iOS SDK （alpha 内测）](ios-sdk/README.md)
+* [iOS SDK （0.2.0-alpha 内测）](ios-sdk/README.md)
     * [上手指南](ios-sdk/install.md)
     * [用户](ios-sdk/user/README.md)
         * [登入登出](ios-sdk/user/auth.md)
+        * [用户](ios-sdk/user/user.md)
         * [当前用户](ios-sdk/user/account.md)
     * [数据表](ios-sdk/schema/README.md)
         * [数据类型](ios-sdk/schema/data-type.md)
@@ -133,14 +138,22 @@
         * [查询数据项](ios-sdk/schema/query.md)
         * [分页和排序](ios-sdk/schema/limit-and-order.md)
         * [字段过滤与扩展](ios-sdk/schema/select-and-expand.md)
+        * [地理位置操作](ios-sdk/schema/geo.md)
     * [内容库](ios-sdk/content/README.md)
         * [内容操作](ios-sdk/content/operate.md)
     * [文件](ios-sdk/file/README.md)
         * [文件操作](ios-sdk/file/file.md)
+    * [支付](ios-sdk/payment/README.md)
+        * [微信支付](ios-sdk/payment/wechat-pay.md)
+        * [支付宝支付](ios-sdk/payment/alipay-pay.md)
+        * [订单查询](ios-sdk/payment/order.md)
     * [调用云函数](ios-sdk/invoke-function.md)
+    * [短信验证码](ios-sdk/sms.md)
     * [错误码和错误对象](ios-sdk/error-code.md)
-    * [Demo 下载](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
-
+    * Demo 下载
+        * [iOS-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
+        * [SwiftUI-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)
+        
 ----
 
 * [知晓云开放 API](open-api/README.md)
@@ -216,8 +229,13 @@
 ----
 
 * [云函数 Node.js SDK](cloud-function/node-sdk/README.md)
-    * [使用必读](cloud-function/node-sdk/usage-notice.md)
-    * [快速入门](cloud-function/quick-start.md)
+    * [入门必读](cloud-function/node-sdk/start/README.md)
+        * [使用示例](cloud-function/node-sdk/start/quick-start.md)
+        * [代码格式](cloud-function/node-sdk/start/code-format.md)
+        * [async/await](cloud-function/node-sdk/start/async-await.md)
+        * [技术细节](cloud-function/node-sdk/start/technical-notes.md)
+    * [命令行工具](cloud-function/cli.md)
+        * [代码打包](cloud-function/packaging.md)
     * [数据表](cloud-function/node-sdk/schema/README.md)
         * [数据表结构管理](cloud-function/node-sdk/schema/table.md)
         * [数据类型](cloud-function/node-sdk/schema/data-type.md)
@@ -268,9 +286,7 @@
     * [企业付款](cloud-function/node-sdk/wx-promotion-transfer.md)
     * [错误码和 HError 对象](cloud-function/node-sdk/error.md)
     * [公众号发送红包](cloud-function/node-sdk/red-pack.md)
-    * [云函数技术细节](cloud-function/technical-notes.md)
-* [命令行工具](cloud-function/cli.md)
-    * [代码打包](cloud-function/packaging.md)
+    * [短信验证码](cloud-function/node-sdk/sms.md)
 
 ----
 
