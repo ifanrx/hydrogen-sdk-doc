@@ -56,7 +56,7 @@ data 是 Object 类型，它包括以下几个属性
 
 
 
-**请求示例 - user__id**
+**请求示例 - user_id**
 
 ```js
 let data = {
