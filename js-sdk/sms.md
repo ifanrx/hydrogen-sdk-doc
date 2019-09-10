@@ -17,7 +17,10 @@
 | 参数名      | 类型   | 说明          |
 |-------------|--------|---------------|
 | phone       | string | 手机号        |
-| signatureID | Integer | 短信签名 ID   |
+| signatureID (v2.6.0) | Integer | 短信签名 ID   |
+
+> **info**
+> 如果短信签名 ID (signatureID) 未指定，后端默认会选用**最新审核通过**的签名发送短信。
 
 ### 示例代码
 
@@ -83,5 +86,7 @@ wx.BaaS.verifySmsCode({phone: '132888888', code: 123456}).then(res => {
 >对同一手机号码在 1 天内不能发送超过 10 条短信
 
 {% endblock tips1 %}
+
+## 开通短信验证码功能
 
 {% include "/js-sdk/frag/_enable_sms.md" %}

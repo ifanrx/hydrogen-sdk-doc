@@ -165,4 +165,10 @@ BaaS.sendSmsMessage(data).then(res => {
 
 > 对同一手机号码在 1 天内不能发送超过 10 条短信
 
+## 开通短信通知功能
+
 {% include "/js-sdk/frag/_enable_sms.md" %}
+
+### 配置短信模版
+
+![](/images/dashboard/sms-message-config.png)

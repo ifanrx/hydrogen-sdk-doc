@@ -18,4 +18,6 @@
 
 {% endblock tips1 %}
 
+## 开通短信通知功能
+
 {% include "/js-sdk/frag/_enable_sms.md" %}

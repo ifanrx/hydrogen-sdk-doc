@@ -1,5 +1,3 @@
-## 开通短信验证码功能
-
 ### 配置短信签名
 
 ![](/images/dashboard/first-enable-sms.png)
