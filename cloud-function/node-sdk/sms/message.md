@@ -1,10 +1,6 @@
 # 短信通知
 
-该接口支持向特定手机号码发送验证码，并校验验证码是否正确的功能，以此来完成一些需要确认用户身份的操作，比如：
-
-* 使用手机号码和验证码进行登录
-* 通过手机号码和验证码的方式重置密码
-* 进行重要操作的验证确认等
+该接口支持向特定手机号码发送短信通知。
 
 > **info**
 > SDK 发送短信需要在知晓云控制台开通并开启发送短信权限，操作步骤请参考本页面末尾
@@ -21,7 +17,7 @@ data 是 Object 类型，它包括以下几个属性
 | recipient_type  | String | 是   | 推送类型，可选值： 'phone_number'、'user_list'、'user_group'、'schema_user'  |
 | `<recipient_params>` | Array、Integer、String、Object | 是   | 根据recipientType来填写不同的参数名， 详见下方表格说明 |
 | template_name     | String | 是   | 模板名称 |
-| keywords        | Object | 是   | 关键字（可在 [知晓云-模板消息](https://cloud.minapp.com/dashboard/#/app/template-message/template) 配置）|
+| keywords        | Object | 是   | 关键字（可在 [知晓云-短信](https://cloud.minapp.com/dashboard/#/app/sms/setting) 配置）|
 | schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 
 
@@ -159,8 +155,6 @@ BaaS.sendSmsMessage(data).then(res => {
 ## 短信发送频次
 
 > **info**
-> 同一企业在 1 分钟内只能发送 30 条短信，如有更高频次需求，请联系客服上调
-
 > 对同一手机号码在 1 分钟内只能发送 1 条短信
 
 > 对同一手机号码在 1 天内不能发送超过 10 条短信
