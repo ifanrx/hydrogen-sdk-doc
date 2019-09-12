@@ -26,7 +26,7 @@ curl -X POST \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"phone": "12345678910", "signature_id": 1}' \
-  https://{{服务器域名}}/hserve/v1.8/sms-verification-code/
+  https://{{服务器域名}}/hserve/v2.2/sms-verification-code/
 ```
 
 **返回示例**
