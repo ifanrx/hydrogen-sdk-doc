@@ -306,7 +306,7 @@ event.data 参数内容：
 
 - 定时任务：空。
 - IncomingWebhook：请求信息，参考 [IncomingWebhook](#incomingwebhook) 小节。
-- 数据表：数据表记录，File 类型的数据可以直接赋值给数据表 File 类型的字段。
+- 数据表：数据表记录，File 类型的数据可以直接赋值给数据表 File 类型的字段。数据类型信息请查看[数据表中支持的数据类型](https://doc.minapp.com/js-sdk/schema/data-type.html#%E6%95%B0%E6%8D%AE%E8%A1%A8%E4%B8%AD%E6%94%AF%E6%8C%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B)。
 
 示例：
 
