@@ -177,6 +177,7 @@
         * [用户组与用户的操作](open-api/group/membership.md)
         * [组集操作](open-api/group/super-group.md)
     * [云函数](open-api/cloud-function.md)
+    * [短信服务](open-api/sms.md)
 
 ----
 
@@ -225,6 +226,7 @@
         * [用户组与用户的操作](user-dash/group/membership.md)
         * [组集操作](user-dash/group/super-group.md)
     * [云函数](user-dash/cloud-function.md)
+    * [短信服务](user-dash/sms.md)
 
 ----
 
