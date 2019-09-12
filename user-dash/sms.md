@@ -29,7 +29,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/oserve/v2.1/sms-verification-code/',
+axios.post('https://cloud.minapp.com/userve/v2.1/sms-verification-code/',
   {
     phone: "12345678910",
     signature_id: 1
