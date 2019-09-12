@@ -15,7 +15,7 @@
 - [微信支付回调](#微信支付回调)
 - [定时任务](#定时任务)
 - [文件操作](#文件操作)
-- [IncomingWebhook](#IncomingWebhook)
+- [IncomingWebhook](#Incomingwebhook)
 - [微信消息推送](#微信消息推送)
 - [支付宝支付回调](#支付宝支付回调)
 
@@ -346,13 +346,332 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIn0.FGhYH5IF-PkNV8b4SNh-1WK
 >注：append, append_unique, remove, inc_by 为原子操作符，相关文档请[参考这里](../js-sdk/schema/update-record.md)
 
 ### 云函数
+
 执行结果：执行对应的云函数 
 
-不同的触发类型下的云函数动作被触发时，云函数接收到的参数也会有所不同
+不同的触发类型下的云函数动作被触发时，云函数接收到的参数也会有所不同。
+
 event.data 参数内容：
-- 若触发类型为定时任务：空
-- 若触发类型为数据表：数据表记录，参考[数据表操作](#数据表操作)小节
-- 若触发类型为微信支付回调：为订单记录，参考[微信支付回调](#微信支付回调)小节
+
+- 定时任务：空。
+- IncomingWebhook：请求信息，参考 [IncomingWebhook](#incomingwebhook) 小节。
+- 数据表：数据表记录，File 类型的数据可以直接赋值给数据表 File 类型的字段。数据类型信息请查看[数据表中支持的数据类型](https://doc.minapp.com/js-sdk/schema/data-type.html#%E6%95%B0%E6%8D%AE%E8%A1%A8%E4%B8%AD%E6%94%AF%E6%8C%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B)。
+
+示例：
+
+```json
+{
+  "id": "5d76230f1db94f6cf2aa7ae1",
+  "num": 1314.52,
+  "int": 520,
+  "str": "This is a string.",
+  "bool": false,
+  "date": "2019-09-09T17:56:38.758000+08:00",
+  "file": {
+    "cdn_path": "1g50PgtbHMNWFntB.png",
+    "path": "https://cloud-minapp-0000.cloud.ifanrusercontent.com/1g50PgtbHMNWFntB.png",
+    "created_at": 1537932176,
+    "id": "5baafb906e73240d2acfb67e",
+    "mime_type": "image/png",
+    "name": "file1.png",
+    "size": 105224
+  },
+  "object": {
+    "key": "value"
+  },
+  "pointer_userprofile": {
+    "_table": "_userprofile",
+    "id": 88950987673979
+  },
+  "geo_polygon": "{\"coordinates\": [[[10.123, 10], [20.12453, 10], [30.564654, 20], [20.654, 30], [10.123, 10]]], \"type\": \"Polygon\"}",
+  "geo_point": "{\"coordinates\": [10.123, 8.543], \"type\": \"Point\"}",
+    "array_geo": [
+    "{\"coordinates\": [10.123, 8.543], \"type\": \"Point\"}",
+    "{\"coordinates\": [10.123, 8.543], \"type\": \"Point\"}"
+  ],
+  "array_bool": [
+    true,
+    false
+  ],
+  "array_integer": [
+    1,
+    2
+  ],
+  "array_string": [
+    "This is a string."
+  ],
+  "array_date": [
+    "2018-12-04T16:59:37.153000+08:00",
+    "2018-12-03T16:52:44.413000+08:00",
+    "2018-12-02T16:52:40.023000+08:00",
+    "2018-12-01T16:52:36.028000+08:00"
+  ],
+  "array_number": [
+    1314.52,
+    520.1314
+  ],
+  "array_object": [
+    {
+      "key1": "value"
+    },
+    {
+      "key1": "value"
+    }
+  ],
+  "array_file": [
+    {
+      "cdn_path": "1g50PgtbHMNWFntB.png",
+      "path": "https://cloud-minapp-0000.cloud.ifanrusercontent.com/1g50PgtbHMNWFntB.png",
+      "created_at": 1537932176,
+      "id": "5baafb906e73240d2acfb67e",
+      "mime_type": "image/png",
+      "name": "file1.png",
+      "size": 105224
+    }
+  ],
+  "array_geomars": [
+    "{\"coordinates\": [10.123, 8.543], \"type\": \"Point\"}",
+    "{\"coordinates\": [10.123, 8.543], \"type\": \"Point\"}"
+  ],
+  "array_geoearth": [
+    "{\"coordinates\": [10.123, 8.543], \"type\": \"Point\"}",
+    "{\"coordinates\": [10.123, 8.543], \"type\": \"Point\"}"
+  ],
+  "updated_at": 1568023357,
+  "created_by": 62689516,
+  "created_at": 1568023260,
+  "_write_perm": [
+    "user:anonymous"
+  ],
+  "_read_perm": [
+    "user:anonymous"
+  ]
+}
+```
+
+- 支付回调：订单记录。
+
+| 字段                     |  字段名                        |  类型                          | 枚举值                     |
+| :----------------------- | :---------------------------- | :---------------------------- | :------------------------ |
+| id                       | 订单记录 ID                    |   integer           | 不可枚举 |
+| miniapp                  | 小程序 ID |integer | 不可枚举 |
+| gateway_type             | 支付类型 | string | 枚举值见表格下方 |
+| currency_type            | 货币类型 | string | 人民币：CNY |
+| trade_no                 | 订单号 | string |  不可枚举 |
+| transaction_no           | 流水号 | string | 不可枚举 |
+| status                   | 支付状态 | string | 待支付：pending，支付失败：failed，支付成功：success |
+| refund_status            | 退款状态 | string | 退款成功：complete， 部分退款：partial |
+| merchandise_schema_id    | 表 ID | integer | 不可枚举 |
+| merchandise_record_id    | 记录 ID | integer | 不可枚举 |
+| merchandise_description  | 商品描述 | string | 不可枚举 |
+| merchandise_snapshot     | 商品快照 | object | 不可枚举 |
+| total_cost               | 金额 | number | 不可枚举 |
+| ip_address               | 发起订单的 IP 地址 | string | 不可枚举 |
+| paid_at                  | 支付时间（时间戳） | integer | 不可枚举 |
+| created_by               | 创建者（支付用户）ID | integer | 不可枚举 |
+| created_at               | 创建时间（时间戳） | integer | 不可枚举 |
+| updated_at               | 最近一次更新时间（时间戳） | integer | 不可枚举 |
+
+gateway_type 枚举值:
+
+  - 微信支付回调:
+  
+    - 微信小程序：weixin_tenpay
+    - 微信 H5：weixin_tenpay_wap
+    - 微信 Native：weixin_tenpay_native
+    - 微信 App：weixin_tenpay_app
+    - 微信 JSAPI：weixin_tenpay_js
+  
+  - 支付宝支出回调：
+  
+    - 支付宝小程序：alipay
+    - 支付宝手机网页：alipay_wap
+    - 支付宝网页：alipay_page
+    - 支付宝移动：alipay_app
+  
+  - QQ 支付回调：
+  
+    - QQ 小程序：qpay
+    - QQ Native：qpay_native
+
+示例：
+
+```json
+{
+  "trade_no": "1i7HJ1t6UZdyQ2fLNHrgDQHQrlbgm2g8",
+  "status": "success",
+  "merchandise_record_id": null,
+  "gateway_type": "weixin_tenpay",
+  "refund_status": null,
+  "currency_type": "CNY",
+  "merchandise_snapshot": {},
+  "created_at": 1568026439,
+  "updated_at": 1568026488,
+  "merchandise_schema_id": null,
+  "transaction_no": "lVBtmjssROOwbLraez5WpeGKFmfcbK2w",
+  "total_cost": 0.01,
+  "created_by": 83909082304832,
+  "merchandise_description": "一条支付描述",
+  "miniapp": 7894,
+  "ip_address": "14.17.86.113",
+  "id": "1i7HJ1t6UZdyQ2fLNHrgDQHQrlbgm2g8",
+  "paid_at": 1568026488
+}
+```
+
+- 微信消息推送：微信推送的[消息](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1451025274)，已自动转换为 JSON 数据，此外会增加一个字段：`_AppId` 表示消息所属的公众号或小程序 appid。
+
+示例：卡券未通过审核
+
+```json
+{
+  "CardId": "Wzq1bxvtOD",
+  "CreateTime": 1568019887,
+  "Event": "card_not_pass_check",
+  "FromUserName": "CL2qIPYwrr",
+  "MsgType": "event",
+  "RefuseReason": "4W9ltUWdtT",
+  "ToUserName": "0VeUo2Kh4l",
+  "_AppId": "wxO1x6SwAEC"
+}
+```
+
+文件记录字段解释：
+
+| 字段       | 字段名                 | 类型    | 枚举值 |
+| :--------- | :------------------- | :------ | :------ | 
+| id         | 文件 ID              | string  |  不可枚举 |
+| name       | 文件名称              | string  |  不可枚举 |
+| status     | 文件状态              | string  |  等待上传：pending，上传成功：success，正在处理：running |
+| categories | 文件所属分类           | array   |  不可枚举  |
+| size       | 文件大小（单位：Byte） | integer |  不可枚举 |
+| media_type | 媒体类型              | string  |  图像：image，音乐：music，录音：voice，视频：video，其他：other |
+| mime_type  | MIME 类型            | string   |  [标准 MIME 类型](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types) |
+| reference  | 最近一次引用信息       | object  |  不可枚举，具体解释见表格下方 |
+| cdn_path   | 文件在 CDN 中的路径     | string  | 不可枚举 |
+| path       | 文件路径               | string  | 不可枚举  |
+| created_at | 创建时间（时间戳）       | integer | 不可枚举  |
+| updated_at | 最近一次更新时间（时间戳）| integer | 不可枚举  |
+| created_by | 创建人 ID              |  integer | 不可枚举 |
+
+reference:
+
+| 字段      | 字段名     | 类型 | 枚举值 |
+| :-------- | :-------- | :-------- | :------  | 
+| schema_id | 表 ID     | integer | 不可枚举 |
+| field     | 字段名     | string | 不可枚举 |
+| record_id | 记录 ID    | string | 不可枚举 |
+
+
+- 文件上传成功：文件记录。
+
+示例：
+
+```json
+{
+  "status": "success",
+  "cdn_path": "1i7HWTgtd80LDaUj.PNG",
+  "name": "WW.PNG",
+  "reference": "",
+  "created_at": 1568027273,
+  "updated_at": 1568027274,
+  "created_by": 62689516,
+  "mime_type": "image/jpeg",
+  "media_type": "image",
+  "path": null,
+  "id": "5d7632891db94f23bd68f2b7",
+  "categories": [],
+  "size": 34283
+}
+```
+
+- 文件上传失败：文件记录。
+
+示例：
+
+```json
+{
+  "status": "pending",
+  "cdn_path": "1i7HWTgtd80LDaUj.PNG",
+  "name": "WW.PNG",
+  "reference": "",
+  "created_at": 1568027273,
+  "updated_at": 1568027274,
+  "created_by": 62689516,
+  "mime_type": null,
+  "media_type": null,
+  "path": null,
+  "id": "5d7632891db94f23bd68f2b7",
+  "categories": [],
+  "size": null
+}
+```
+
+- 敏感图片校验（通过）：文件记录。
+
+示例：
+
+```json
+{
+  "status": "success",
+  "cdn_path": "1i7HWTgtd80LDaUj.PNG",
+  "name": "WW.PNG",
+  "reference": "",
+  "created_at": 1568027273,
+  "updated_at": 1568027274,
+  "created_by": 62689516,
+  "mime_type": "image/jpeg",
+  "media_type": "image",
+  "path": null,
+  "id": "5d7632891db94f23bd68f2b7",
+  "categories": [],
+  "size": 34283
+}
+```
+
+- 敏感图片校验（失败）：文件记录。
+
+示例：
+
+```json
+{
+  "status": "success",
+  "cdn_path": "1i7HWTgtd80LDaUj.PNG",
+  "name": "WW.PNG",
+  "reference": "",
+  "created_at": 1568027273,
+  "updated_at": 1568027274,
+  "created_by": 62689516,
+  "mime_type": "image/jpeg",
+  "media_type": "image",
+  "path": null,
+  "id": "5d7632891db94f23bd68f2b7",
+  "categories": [],
+  "size": 34283
+}
+```
+
+- 文件删除成功：文件记录。
+
+示例：
+
+```json
+{
+  "status": "running",
+  "cdn_path": "1i7HWTgtd80LDaUj.PNG",
+  "name": "WW.PNG",
+  "reference": "",
+  "created_at": 1568027273,
+  "updated_at": 1568027497,
+  "created_by": 62689516,
+  "mime_type": "image/jpeg",
+  "media_type": "image",
+  "path": null,
+  "id": "5d7632891db94f23bd68f2b7",
+  "categories": [],
+  "size": 34283
+}
+```
 
 ### 发送短信
 
@@ -378,7 +697,7 @@ event.data 参数内容：
 | 每天  | `0 0 * * *` | 每天的 00:00  |
 | 每小时| `0 * * * *` | 每天整点时间，如 18：00、19：00 ... |
 
-[​Cron 表达式简介](http://support.minapp.com/hc/kb/article/1109371/)
+[Cron 表达式简介](http://support.minapp.com/hc/kb/article/1109371/)
 
 > **info**
 > 注：触发周期最小时间粒度为 1 分钟
