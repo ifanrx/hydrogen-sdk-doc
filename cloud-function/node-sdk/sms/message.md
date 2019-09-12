@@ -102,6 +102,7 @@ schema_user 允许同时存在 user_profile_filters 和 user_group_name 参数
 let data = {
   recipient_type: 'schema_user',
   user_group_name: '运营人员',
+  schema_name: 'bookshelf',
   user_profile_filters: {
     "$and": [
       {
