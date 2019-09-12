@@ -97,3 +97,27 @@
     data: null,
   }
   ```
+
+  > **info**
+  > async 函数中单独写 return 或 return undefined，将会被忽略。例如：
+
+  ```js
+  // 该云函数会执行超时
+  exports.main = async function (event) {
+    return
+  }
+  ```
+
+  ```js
+  // 该云函数会执行超时
+  exports.main = async function (event) {
+    return undefined
+  }
+  ```
+
+  ```js
+  // 该云函数会执行并返回 {error: {}, code: 0, data: null}
+  exports.main = async function (event) {
+    return null
+  }
+  ```

@@ -10,7 +10,7 @@
 > SDK 发送短信需要在知晓云控制台开通并开启发送短信权限，操作步骤请参考本页面末尾
 
 ## 发送短信验证码
-`BaaS.sendSmsCode({phone, userID})`
+`BaaS.sendSmsCode({phone, userID, signatureID})`
 
 ### 参数说明
 
@@ -18,7 +18,10 @@
 |----------|--------|----------|
 | phone | String | 手机号码 |
 | userID | Number | 用户 ID (对应 _userprofile 表中的 id 字段) |
+| signatureID | Integer | 短信签名 ID   |
 
+> **info**
+> 如果短信签名 ID (signatureID) 未指定，后端默认会选用**最新审核通过**的签名发送短信。
 
 ### 示例代码
 ```javascript
@@ -75,10 +78,10 @@ BaaS.verifySmsCode({
 ## 验证码发送频次
 
 > **info**
->同一企业在 1 分钟内只能发送 30 条短信，如有更高频次需求，请联系客服上调
-
 >对同一手机号码在 1 分钟内只能发送 1 条短信
 
 >对同一手机号码在 1 天内不能发送超过 10 条短信
+
+## 开通短信验证码功能
 
 {% include "/js-sdk/frag/_enable_sms.md" %}
