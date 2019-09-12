@@ -400,7 +400,51 @@ event.data 参数内容：
 }
 ```
 
-- 微信支付回调：订单记录。
+- 支付回调：订单记录。
+
+| 字段                     |  字段名                        |  类型                          | 枚举值                     |
+| :----------------------- | :---------------------------- | :---------------------------- | :------------------------ |
+| id                       | 订单记录 ID                    |   integer           | 不可枚举 |
+| miniapp                  | 小程序 ID |integer | 不可枚举 |
+| gateway_type             | 支付类型 | string | 枚举值见表格下方 |
+| currency_type            | 货币类型 | string | 人民币：CNY |
+| trade_no                 | 订单号 | string |  不可枚举 |
+| transaction_no           | 流水号 | string | 不可枚举 |
+| status                   | 支付状态 | string | 待支付：pending，支付失败：failed，支付成功：success |
+| refund_status            | 退款状态 | string | 退款成功：complete， 部分退款：partial |
+| merchandise_schema_id    | 表 ID | integer | 不可枚举 |
+| merchandise_record_id    | 记录 ID | integer | 不可枚举 |
+| merchandise_description  | 商品描述 | string | 不可枚举 |
+| merchandise_snapshot     | 商品快照 | object | 不可枚举 |
+| total_cost               | 金额 | number | 不可枚举 |
+| ip_address               | 发起订单的 IP 地址 | string | 不可枚举 |
+| paid_at                  | 支付时间（时间戳） | integer | 不可枚举 |
+| created_by               | 创建者（支付用户）ID | integer | 不可枚举 |
+| created_at               | 创建时间（时间戳） | integer | 不可枚举 |
+| updated_at               | 最近一次更新时间（时间戳） | integer | 不可枚举 |
+
+
+gateway_type 枚举值:
+
+  - 微信支付回调:
+  
+    - 微信小程序：weixin_tenpay
+    - 微信 H5：weixin_tenpay_wap
+    - 微信 Native：weixin_tenpay_native
+    - 微信 App：weixin_tenpay_app
+    - 微信 JSAPI：weixin_tenpay_js
+  
+  - 支付宝支出回调：
+  
+    - 支付宝小程序：alipay
+    - 支付宝手机网页：alipay_wap
+    - 支付宝网页：alipay_page
+    - 支付宝移动：alipay_app
+  
+  - QQ 支付回调：
+  
+    - QQ 小程序：qpay
+    - QQ Native：qpay_native
 
 示例：
 
@@ -427,61 +471,7 @@ event.data 参数内容：
 }
 ```
 
-- 支付宝支付回调：订单记录。
-
-示例：
-
-```json
-{
-  "trade_no": "2019090922001434730549812841",
-  "status": "success",
-  "merchandise_record_id": "7890",
-  "gateway_type": "alipay",
-  "refund_status": null,
-  "currency_type": "CNY",
-  "merchandise_snapshot": {},
-  "created_at": 1568026198,
-  "updated_at": 1568026198,
-  "merchandise_schema_id": 123456,
-  "transaction_no": "TJY7zDDuhs9dlnlnn9clLfwr9t1Zr1SQ",
-  "total_cost": 0.02,
-  "created_by": 80232209408420,
-  "merchandise_description": "一条支付描述",
-  "miniapp": 7894,
-  "ip_address": "14.17.86.113",
-  "id": "2019090922001434730549812841",
-  "paid_at": 1568026212
-}
-```
-
-- QQ 支付回调：订单记录。
-
-示例：
-
-```json
-{
-  "trade_no": "1i7H5ufZEhx5iMBUw50Qrh57GBS02XuH",
-  "status": "success",
-  "merchandise_record_id": "7890",
-  "gateway_type": "qpay",
-  "refund_status": null,
-  "currency_type": "CNY",
-  "merchandise_snapshot": {},
-  "created_at": 1568025626,
-  "updated_at": 1568025650,
-  "merchandise_schema_id": 123456,
-  "transaction_no": "XrP9hMOUz5ITUHioiQdvEDwtGB8n43Ew",
-  "total_cost": 0.02,
-  "created_by": 75105352200507,
-  "merchandise_description": "一条支付描述",
-  "miniapp": 7894,
-  "ip_address": "223.104.64.185",
-  "id": "1i7H5ufZEhx5iMBUw50Qrh57GBS02XuH",
-  "paid_at": 1568025651
-}
-```
-
-- 微信消息推送：微信推送的[消息](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1451025274)，已自动转换为 JSON 数据，此外会增加一个字段：_AppId 表示消息所属的公众号或小程序 appid。
+- 微信消息推送：微信推送的[消息](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1451025274)，已自动转换为 JSON 数据，此外会增加一个字段：`_AppId` 表示消息所属的公众号或小程序 appid。
 
 示例：卡券未通过审核
 
@@ -497,6 +487,33 @@ event.data 参数内容：
   "_AppId": "wxO1x6SwAEC"
 }
 ```
+
+文件记录字段解释：
+
+| 字段       | 字段名                 | 类型    | 枚举值 |
+| :--------- | :------------------- | :------ | :------ | 
+| id         | 文件 ID              | string  |  不可枚举 |
+| name       | 文件名称              | string  |  不可枚举 |
+| status     | 文件状态              | string  |  等待上传：pending，上传成功：success，正在处理：running |
+| categories | 文件所属分类           | array   |  不可枚举  |
+| size       | 文件大小（单位：Byte） | integer |  不可枚举 |
+| media_type | 媒体类型              | string  |  图像：image，音乐：music，录音：voice，视频：video，其他：other |
+| mime_type  | MIME 类型            | string   |  [标准 MIME 类型](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types) |
+| reference  | 最近一次引用信息       | object  |  不可枚举，具体解释见表格下方 |
+| cdn_path   | 文件在 CDN 中的路径     | string  | 不可枚举 |
+| path       | 文件路径               | string  | 不可枚举  |
+| created_at | 创建时间（时间戳）       | integer | 不可枚举  |
+| updated_at | 最近一次更新时间（时间戳）| integer | 不可枚举  |
+| created_by | 创建人 ID              |  integer | 不可枚举 |
+
+reference:
+
+| 字段      | 字段名     | 类型 | 枚举值 |
+| :-------- | :-------- | :-------- | :------  | 
+| schema_id | 表 ID     | integer | 不可枚举 |
+| field     | 字段名     | string | 不可枚举 |
+| record_id | 记录 ID    | string | 不可枚举 |
+
 
 - 文件上传成功：文件记录。
 

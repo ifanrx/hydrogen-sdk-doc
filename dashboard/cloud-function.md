@@ -63,6 +63,7 @@ exports.main = function functionName(event, callback) {
 - 参数
 
   方法默认传递两个参数：`event` 和 `callback`。`event` 对象包含了函数调用的相关信息，包括触发源、参数等。`callback` 是一个回调方法，它接收两个参数，第一个参数是：`Error` 错误信息，第二个参数是返回的运行结果。可以使用 `callback` 为下一云函数或者其他操作传递数据。
+  触发器触发的云函数，`event.data` 参数示例及解释可在 [触发器：云函数](https://doc.minapp.com/dashboard/trigger.html#%E4%BA%91%E5%87%BD%E6%95%B0) 中查看。
 
 <span class="attention">注：</span> callback 代表着云函数运行的结束，是在云函数中必须要调用的，如果没有正常调用 callback 将会导致云函数一直运行直至超时被杀（超时时间：同步云函数 5 s/ 异步云函数 5 min），而如果一个云函数的任务一直超时被杀将可能导致云函数被禁用。
 
