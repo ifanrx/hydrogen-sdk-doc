@@ -200,6 +200,9 @@ order.wechatPay.multiProfitSharing({
 
 `BaaS.refund(data)`
 
+> **info**
+> 使用了分账的订单，需要先调用分账回退接口将钱回退到订单商户号中，否则可能会退款失败
+
 **参数说明**
 
 data 是 Object 类型，它包括以下几个属性
