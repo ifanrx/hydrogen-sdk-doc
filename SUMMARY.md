@@ -262,6 +262,7 @@
         * [文件操作](cloud-function/node-sdk/file/file.md)
         * [文件分类操作](cloud-function/node-sdk/file/file-category.md)
     * [支付订单操作](cloud-function/node-sdk/order.md)
+    * [微信服务商分账](cloud-function/node-sdk/wechat-profit-sharing.md)
     * [获取微信小程序二维码](cloud-function/node-sdk/wxacode.md)
     * [获取支付宝小程序二维码](cloud-function/node-sdk/alipay-qr-code.md)
     * [调用云函数](cloud-function/node-sdk/cloud-function.md)
