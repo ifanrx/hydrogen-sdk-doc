@@ -14,6 +14,14 @@
 ----
 
 * [控制台操作](dashboard/README.md)
+    * [基础服务](dashboard/basic-services/README.md)
+        * [数据](dashboard/basic-services/data.md)
+        * [内容](dashboard/basic-services/content.md)
+        * [文件](dashboard/basic-services/file.md)
+        * [用户](dashboard/basic-services/user.md)
+        * [支付](dashboard/basic-services/payment.md)
+        * [触发器](dashboard/basic-services/trigger.md)
+        * [云函数](dashboard/basic-services/cloud-function.md)
     * [数据管理](dashboard/schema.md)
     * [内容管理](dashboard/content.md)
     * [文件管理](dashboard/file.md)
