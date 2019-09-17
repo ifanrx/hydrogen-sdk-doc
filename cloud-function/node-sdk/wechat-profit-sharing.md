@@ -139,6 +139,9 @@ order.finish({
 
 `BaaS.wechat.profitSharing.Order#refund(options)`
 
+> **info**
+> 此功能需要接收方在商户平台-交易中心-分账-分账接收设置下，开启同意分账回退后，才能使用。
+
 **参数说明**
 
 options 是 Object 类型，它包括以下几个属性
