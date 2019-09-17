@@ -16,7 +16,7 @@ Receiver 类型说明:
 | :---------- | :----- | :--- | :------------- |
 | type        | ReceiverType | 是   | 分账接收方类型 |
 | account     | String | 是   | 分账接收方账户 |
-| amount      | Number | 是   | 分账金额       |
+| amount      | Number | 是   | 分账金额，单位为分，只能为整数，不能超过原订单支付金额及最大分账比例金额 |
 | description | String | 是   | 分账描述       |
 
 {{receiver.receiverType()}}
