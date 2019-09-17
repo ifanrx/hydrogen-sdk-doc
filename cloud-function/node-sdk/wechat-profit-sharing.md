@@ -45,6 +45,7 @@ ReceiverRelationType 可选值说明:
 ```js
 BaaS.wechat.profitSharing.addReceiver({
   mch_id: '...',
+  appid: '...',
   type: '...',
   account: '...',
   relation_type: '...',
@@ -55,6 +56,22 @@ BaaS.wechat.profitSharing.addReceiver({
 }).catch(e=>{
   // HError 对象
 })
+```
+
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    return_code: 'SUCCESS',
+    appid: '...',
+    receiver: '{"type":"...","account":"...","relation_type":"..."}',
+    mch_id: '...'
+  },
+  "status": 200
+}
 ```
 
 ## 删除分账接收方
@@ -79,6 +96,7 @@ options 是 Object 类型，它包括以下几个属性
 ```js
 BaaS.wechat.profitSharing.removeReceiver({
   mch_id: '...',
+  appid: '...',
   type: '...',
   account: '...',
 }).then(res => {
@@ -86,6 +104,22 @@ BaaS.wechat.profitSharing.removeReceiver({
 }).catch(e=>{
   // HError 对象
 })
+```
+
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    return_code: 'SUCCESS',
+    appid: '...',
+    receiver: '{"type": "...", "account": "..."}',
+    mch_id: '...'
+  },
+  "status": 200
+}
 ```
 
 ## 分账订单操作
@@ -105,6 +139,33 @@ order.offset(20).limit(20).getOrderList().then(res => {
 }).catch(e=>{
   // HError 对象
 })
+```
+
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    "meta": {
+      "limit": 99,
+      "next": null,
+      "offset": 0,
+      "previous": null,
+      "total_count": 15
+    },
+    "objects": [{
+      "created_by_name": "...",
+      "order_type": "finish",
+      "payment_order_id": 1026,
+      "receiver": null,
+      "status": "accepted",
+      "trade_no": "..."
+    }],
+  },
+  "status": 200
+}
 ```
 
 ### 完结分账
@@ -127,12 +188,30 @@ options 是 Object 类型，它包括以下几个属性
 var order = new BaaS.wechat.profitSharing.Order()
 order.finish({
   trade_no: '...',
+  appid: '...',
   description: '...',
 }).then(res => {
   // success
 }).catch(e=>{
   // HError 对象
 })
+```
+
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    wechat_order_no: '...',
+    mch_id: '...',
+    trade_no: '...',
+    return_code: 'SUCCESS',
+    appid: '...'
+  },
+  "status": 200
+}
 ```
 
 ### 分账回退
@@ -164,6 +243,7 @@ options 是 Object 类型，它包括以下几个属性
 var order = new BaaS.wechat.profitSharing.Order()
 order.refund({
   trade_no: '...',
+  appid: '...',
   refund_no: '...',
   type: '...',
   account: '...',
@@ -174,6 +254,30 @@ order.refund({
 }).catch(e=>{
   // HError 对象
 })
+```
+
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    fail_reason: null,
+    result: 'SUCCESS',
+    refund_no: '...',
+    wechat_refund_no: '...',
+    appid: '...',
+    description: '...',
+    return_code: 'SUCCESS',
+    amount: 1,
+    mch_id: '...',
+    finish_time: '...',
+    account_type: '...',
+    account: '...'
+  },
+  "status": 200
+}
 ```
 
 ### 分账回退结果查询
@@ -196,10 +300,35 @@ options 是 Object 类型，它包括以下几个属性
 var order = new BaaS.wechat.profitSharing.Order()
 order.getRefundmentOrder({
   trade_no: '...',
+  appid: '...',
   refund_no: '...',
 }).then(res => {
   // success
 }).catch(e=>{
   // HError 对象
 })
+```
+
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    mch_id: '...',
+    fail_reason: null,
+    description: '...',
+    refund_no: '...',
+    result: 'SUCCESS',
+    return_code: 'SUCCESS',
+    appid: '...',
+    account_type: '...',
+    amount: 1,
+    finish_time: '...',
+    wechat_refund_no: '...',
+    account: '...'
+  },
+  "status": 200
+}
 ```

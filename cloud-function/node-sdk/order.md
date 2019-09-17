@@ -156,6 +156,7 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 var order = new BaaS.Order()
 order.wechatPay.profitSharing({
   trade_no: '...',
+  appid: '...',
   receivers: [{
     type: '...',
     account: '...',
@@ -167,6 +168,23 @@ order.wechatPay.profitSharing({
 }).catch(e=>{
   // HError 对象
 })
+```
+
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    return_code: 'SUCCESS',
+    appid: '...',
+    mch_id: '...',
+    trade_no: '...',
+    wechat_order_no: '...'
+  },
+  "status": 200
+}
 ```
 
 ### 订单多次分账
@@ -183,6 +201,7 @@ order.wechatPay.profitSharing({
 var order = new BaaS.Order()
 order.wechatPay.multiProfitSharing({
   trade_no: '...',
+  appid: '...',
   receivers: [{
     type: '...',
     account: '...',
@@ -194,6 +213,23 @@ order.wechatPay.multiProfitSharing({
 }).catch(e=>{
   // HError 对象
 })
+```
+
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    return_code: 'SUCCESS',
+    appid: '...',
+    mch_id: '...',
+    trade_no: '...',
+    wechat_order_no: '...'
+  },
+  "status": 200
+}
 ```
 
 ## 退款
