@@ -177,11 +177,11 @@ order.wechatPay.profitSharing({
 ```json
 {
   "data": {
-    return_code: 'SUCCESS',
-    appid: '...',
-    mch_id: '...',
-    trade_no: '...',
-    wechat_order_no: '...'
+    "return_code": "SUCCESS",
+    "appid": "...",
+    "mch_id": "...",
+    "trade_no": "...",
+    "wechat_order_no": "..."
   },
   "status": 200
 }
@@ -222,11 +222,11 @@ order.wechatPay.multiProfitSharing({
 ```json
 {
   "data": {
-    return_code: 'SUCCESS',
-    appid: '...',
-    mch_id: '...',
-    trade_no: '...',
-    wechat_order_no: '...'
+    "return_code": "SUCCESS",
+    "appid": "...",
+    "mch_id": "...",
+    "trade_no": "...",
+    "wechat_order_no": "..."
   },
   "status": 200
 }

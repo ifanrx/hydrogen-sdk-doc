@@ -65,10 +65,10 @@ BaaS.wechat.profitSharing.addReceiver({
 ```json
 {
   "data": {
-    return_code: 'SUCCESS',
-    appid: '...',
-    receiver: '{"type":"...","account":"...","relation_type":"..."}',
-    mch_id: '...'
+    "return_code": "SUCCESS",
+    "appid": "...",
+    "receiver": "{\"type\":\"...\",\"account\":\"...\",\"relation_type\":\"...\"}",
+    "mch_id": "..."
   },
   "status": 200
 }
@@ -113,10 +113,10 @@ BaaS.wechat.profitSharing.removeReceiver({
 ```json
 {
   "data": {
-    return_code: 'SUCCESS',
-    appid: '...',
-    receiver: '{"type": "...", "account": "..."}',
-    mch_id: '...'
+    "return_code": "SUCCESS",
+    "appid": "...",
+    "receiver": "{\"type\": \"...\", \"account\": \"...\"}",
+    "mch_id": "..."
   },
   "status": 200
 }
@@ -204,11 +204,11 @@ order.finish({
 ```json
 {
   "data": {
-    wechat_order_no: '...',
-    mch_id: '...',
-    trade_no: '...',
-    return_code: 'SUCCESS',
-    appid: '...'
+    "wechat_order_no": "...",
+    "mch_id": "...",
+    "trade_no": "...",
+    "return_code": "SUCCESS",
+    "appid": "..."
   },
   "status": 200
 }
@@ -263,18 +263,18 @@ order.refund({
 ```json
 {
   "data": {
-    fail_reason: null,
-    result: 'SUCCESS',
-    refund_no: '...',
-    wechat_refund_no: '...',
-    appid: '...',
-    description: '...',
-    return_code: 'SUCCESS',
-    amount: 1,
-    mch_id: '...',
-    finish_time: '...',
-    account_type: '...',
-    account: '...'
+    "fail_reason": null,
+    "result": "SUCCESS",
+    "refund_no": "...",
+    "wechat_refund_no": "...",
+    "appid": "...",
+    "description": "...",
+    "return_code": "SUCCESS",
+    "amount": 1,
+    "mch_id": "...",
+    "finish_time": "...",
+    "account_type": "...",
+    "account": "..."
   },
   "status": 200
 }
@@ -316,18 +316,18 @@ order.getRefundmentOrder({
 ```json
 {
   "data": {
-    mch_id: '...',
-    fail_reason: null,
-    description: '...',
-    refund_no: '...',
-    result: 'SUCCESS',
-    return_code: 'SUCCESS',
-    appid: '...',
-    account_type: '...',
-    amount: 1,
-    finish_time: '...',
-    wechat_refund_no: '...',
-    account: '...'
+    "mch_id": "...",
+    "fail_reason": null,
+    "description": "...",
+    "refund_no": "...",
+    "result": "SUCCESS",
+    "return_code": "SUCCESS",
+    "appid": "...",
+    "account_type": "...",
+    "amount": 1,
+    "finish_time": "...",
+    "wechat_refund_no": "...",
+    "account": "..."
   },
   "status": 200
 }
