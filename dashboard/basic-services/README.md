@@ -7,3 +7,5 @@
 * [支付](/dashboard/basic-services/payment.md)
 * [触发器](/dashboard/basic-services/trigger.md)
 * [云函数](/dashboard/basic-services/cloud-function.md)
+* [设置](/dashboard/basic-services/set-up.md)
+* [ACL 简介](dashboard/basic-services/acl.md)
