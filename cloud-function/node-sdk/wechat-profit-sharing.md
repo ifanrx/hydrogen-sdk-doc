@@ -29,7 +29,7 @@ ReceiverRelationType 可选值说明:
 | 值                 | 说明     |
 | :----------------- | :------- |
 | 'SERVICE_PROVIDER' | 服务商   |
-| 'STORE'            | 分账     |
+| 'STORE'            | 门店     |
 | 'STAFF'            | 员工     |
 | 'STORE_OWNER'      | 店主     |
 | 'PARTNER'          | 合作伙伴 |
