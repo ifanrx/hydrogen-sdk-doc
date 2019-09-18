@@ -1,8 +1,8 @@
 {% import "./macro/profit-sharing-receiver.md" as receiver %}
 
-# 微信服务商分账
+# 微信直连商户分账
 
-对某一订单进行分账，请查看[订单操作文档](/cloud-function/node-sdk/order.html#微信服务商分账)
+对某一订单进行分账，请查看[订单操作文档](/cloud-function/node-sdk/order.html#微信直连商户分账)
 
 ## 添加分账接收方
 
@@ -12,15 +12,15 @@
 
 options 是 Object 类型，它包括以下几个属性
 
-| 参数            | 类型   | 必填 | 说明                                             |
-| :-------------- | :----- | :--- | :----------------------------------------------- |
-| mch_id          | String |  是  | 商户号                                           |
-| appid           | String |  是  | 微信分配的公众账号 ID                            |
-| type            | ReceiverType |  是  | 分账接收方类型                             |
-| account         | String |  是  | 分账接收方账户 id                                |
-| relation_type   | ReceiverRelationType |  是  | 与分账商户的关系类型               |
-| name            | String |  否  | 分账接收方全称，type 为 `MERCHANT_ID` 或 `PERSONAL_WECHATID` 时必填 |
-| custom_relation | String |  否  | relation_type 为 CUSTOM 时必填                   |
+| 参数            | 类型   | 必填 | 说明                                               |
+| :-------------- | :----- | :--- | :------------------------------------------------- |
+| mch_id          | String |  是  | 商户号                                             |
+| appid           | String |  是  | 微信分配的公众账号 ID                              |
+| type            | ReceiverType |  是  | 分账接收方类型                               |
+| account         | String |  是  | 分账接收方账户 id                                  |
+| relation_type   | ReceiverRelationType |  是  | 与分账商户的关系类型                 |
+| name            | String |  否  | 分账接收方全称，type 不为 `PERSONAL_OPENID` 时必填 |
+| custom_relation | String |  否  | relation_type 为 CUSTOM 时必填                     |
 
 {{receiver.receiverType()}}
 
@@ -29,7 +29,7 @@ ReceiverRelationType 可选值说明:
 | 值                 | 说明     |
 | :----------------- | :------- |
 | 'SERVICE_PROVIDER' | 服务商   |
-| 'STORE'            | 商户 ID  |
+| 'STORE'            | 分账     |
 | 'STAFF'            | 员工     |
 | 'STORE_OWNER'      | 店主     |
 | 'PARTNER'          | 合作伙伴 |

@@ -6,5 +6,4 @@ ReceiverType 可选值说明:
 | 'MERCHANT_ID'         | 商户 ID                                |
 | 'PERSONAL_WECHATID'   | 个人微信号                             |
 | 'PERSONAL_OPENID'     | 个人openid（由父商户APPID转换得到）    |
-| 'PERSONAL_SUB_OPENID' | 个人sub_openid（由子商户APPID转换得到）|
 {% endmacro %}

@@ -22,7 +22,7 @@
 | merchandiseSchemaID    | Integer | N   | 商品数据表 ID，可用于定位用户购买的物品 |
 | merchandiseRecordID    | String  | N   | 商品数据行 ID，可用于定位用户购买的物品 |
 | merchandiseSnapshot    | Object  | N   | 根据业务需求自定义的数据 |
-| profitSharing          | Boolean | N   | 当前订单是否需要分账。分账操作，请查看[微信服务商分账](/cloud-function/node-sdk/order.html#微信服务商分账) |
+| profitSharing          | Boolean | N   | 当前订单是否需要分账。分账操作，请查看[微信直连商户分账](/cloud-function/node-sdk/order.html#微信直连商户分账) |
 {% else %}
 | 参数                   | 类型    | 必填 | 参数描述 |
 | :--------------------- | :------ | :-- | :------ |

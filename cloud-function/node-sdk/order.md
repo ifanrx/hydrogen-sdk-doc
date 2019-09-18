@@ -131,13 +131,13 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 }
 ```
 
-## 微信服务商分账
+## 微信直连商户分账
 
-产品介绍，详见[微信服务商分账官方文档](https://pay.weixin.qq.com/wiki/doc/api/allocation_sl.php?chapter=24_1&index=1)。
+产品介绍，详见[微信直连商户分账官方文档](https://pay.weixin.qq.com/wiki/doc/api/allocation_sl.php?chapter=24_1&index=1)。
 
-“分账接收方操作”、“分账账单操作”，请查看[微信服务商分账文档](/cloud-function/node-sdk/wechat-profit-sharing.md)
+“分账接收方操作”、“分账账单操作”，请查看[微信直连商户分账文档](/cloud-function/node-sdk/wechat-profit-sharing.md)
 
-为了支持“微信服务商分账”，在创建支付订单时，需要添加参数 `profitSharing`（值为 `true`），具体请参考 [JS SDK 支付接口文档](/js-sdk/payment/)中微信支付部分。
+为了支持“微信微信直连商户分账”，在创建支付订单时，需要添加参数 `profitSharing`（值为 `true`），具体请参考 [JS SDK 支付接口文档](/js-sdk/payment/)中微信支付部分。
 
 > **info**
 > 只支持使用微信支付的订单
