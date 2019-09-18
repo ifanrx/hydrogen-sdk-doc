@@ -8,9 +8,26 @@
 {% elif apiPrefix == 'qq' %}
 {% set platformName = "QQ " %}
 # QQ 支付
+{% elif apiPrefix == 'swan' %}
+{% set platformName = "百度" %}
+# 百度支付
 {% endif %}
 
+{% if apiPrefix == 'swan' %}
+`{{apiPrefix}}.BaaS.pay(OBJECT, bannedChannels)`
+{% else %}
 `{{apiPrefix}}.BaaS.pay(OBJECT)`
+{% endif %}
+
+{% if apiPrefix == 'swan' %}
+**参数说明**
+
+| 参数                    | 类型    | 必填 | 参数描述 |
+| :--------------------- | :------ | :-- | :------ |
+| OBJECT                 | Object  | Y   | 订单相关信息，具体参考下面 OBJECT 参数说明 |
+| bannedChannels         | StringArray  | N   | 需要隐藏的支付方式 |
+{% else %}
+{% endif %}
 
 **OBJECT 参数说明**
 
@@ -24,9 +41,20 @@
 > **info**
 > 举例：开发者有一个 Article 表, 里面有免费 / 付费的文章, 当用户对一篇付费文章进行支付时, 则可以将 Article 表的 ID 作为 `merchandiseSchemaID`, 文章记录的 ID 作为你 `merchandiseRecordID` 传入到 `{{apiPrefix}}.BaaS.pay(object)` 写进支付订单记录。当用户阅读此付费文章时, 则可以通过 `merchandiseSchemaID`, `merchandiseRecordID` 来查询用户是否付费。
 
+{% if apiPrefix == 'swan' %}
+**bannedChannels 参数说明**
+
+| channel                | 说明      |
+| :--------------------- | :------  |
+| Alipay                 | 支付宝    |
+| BDWallet               | 百度钱包  |
+| Wechat                 | 微信支付  |
+{% else %}
+{% endif %}
+
 **支付成功返回参数说明**
 
-{% if apiPrefix == 'wx' or apiPrefix == 'qq' %}
+{% if apiPrefix == 'wx' or apiPrefix == 'qq' or apiPrefix == 'swan' %}
 | 参数                      | 类型   | 说明 |
 | :-------------------------| :----- | :-- |
 | errMsg | String   | {{platformName}}支付状态信息 |
@@ -65,7 +93,7 @@ let params = {
 
 **支付成功返回示例**
 
-{% if apiPrefix == 'wx' or apiPrefix == 'qq' %}
+{% if apiPrefix == 'wx' or apiPrefix == 'qq' or apiPrefix == 'swan' %}
 ```
 {
   errMsg: "requestPayment:ok",
@@ -171,6 +199,19 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 **接口说明**
 
 `qq.BaaS.pay(object)` 实际上做了发起支付统一下单请求，及调用 `qq.requestPayment()` 接口等操作。开发者只需要调用 `qq.BaaS.pay(object)` , 传入必填参数即可发起微信支付。用户感知到的现象就是, 点击付款按钮，弹出支付弹框, 要求用户输入密码, 用户输入正确的密码后完成支付流程, 停在支付结果页。用户可在支付结果页点击返回商家按钮回到支付前界面。
+
+{% elif apiPrefix == 'swan' %}
+
+```js
+swan.BaaS.pay(params).then(res => {
+  // success. 支付请求成功响应。
+}, err => {
+  // HError 对象
+  if (err.code === 608) {
+    console.log(err.message)
+  }
+})
+```
 
 {% endif %}
 
