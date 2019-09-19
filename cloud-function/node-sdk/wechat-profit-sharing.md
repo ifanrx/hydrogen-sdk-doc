@@ -130,11 +130,38 @@ BaaS.wechat.profitSharing.removeReceiver({
 
 支持分页操作 `offset`、`limit`
 
+params 是 Object 类型，为订单过滤条件，你可以参考后面的返回参数说明，进行筛选。
+
+**参数说明**
+
+| 参数            | 类型   | 说明     |
+| :-------------- | :----- | :------- |
+| params.trade_no | String | 分账单号 |
+| params.status   | Status | 分账单状态 |
+| params.order_type | Type | 分账单类型 |
+
+Status 可选值说明:
+
+| 值           | 说明       |
+| :----------- | :--------- |
+| 'accepted'   | 受理成功   |
+| 'processing' | 处理中     |
+| 'finish'     | 处理完成   |
+| 'closed'     | 处理失败，已关单 |
+
+Type 可选值说明:
+
+| 值                     | 说明       |
+| :--------------------- | :--------- |
+| 'profit_sharing'       | 单次分账单 |
+| 'multi_profit_sharing' | 多次分账单 |
+| 'finish'               | 完结分账单 |
+
 **示例代码**
 
 ```js
 var order = new BaaS.wechat.profitSharing.Order()
-order.offset(20).limit(20).getOrderList().then(res => {
+order.offset(20).limit(20).getOrderList({trade_no: '...'}).then(res => {
   // success
 }).catch(e=>{
   // HError 对象
