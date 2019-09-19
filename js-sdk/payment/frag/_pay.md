@@ -54,7 +54,7 @@
 
 **支付成功返回参数说明**
 
-{% if apiPrefix == 'wx' or apiPrefix == 'qq' or apiPrefix == 'swan' %}
+{% if apiPrefix == 'wx' or apiPrefix == 'qq' %}
 | 参数                      | 类型   | 说明 |
 | :-------------------------| :----- | :-- |
 | errMsg | String   | {{platformName}}支付状态信息 |
@@ -71,7 +71,11 @@
 > `resultCode`是支付宝返回的状态码，
 `resultCode: '9000'` 为支付成功，`resultCode: '8000'` 为正在处理中，
 具体以知晓云后台支付订单的状态为准。请参考[订单查询接口文档](/js-sdk/payment/order.md)。
-{% else %}
+{% elif apiPrefix == 'swan' %}
+| 参数                      | 类型   | 说明 |
+| :-------------------------| :----- | :-- |
+| transaction_no | String   | {{platformName}}支付流水号 |
+| trade_no    | String | {{platformName}}支付交易 ID, 业务方在{{platformName}}后台对账时可看到此字段 |
 {% endif %}
 
 **示例代码**
@@ -93,7 +97,7 @@ let params = {
 
 **支付成功返回示例**
 
-{% if apiPrefix == 'wx' or apiPrefix == 'qq' or apiPrefix == 'swan' %}
+{% if apiPrefix == 'wx' or apiPrefix == 'qq' %}
 ```
 {
   errMsg: "requestPayment:ok",
@@ -112,7 +116,14 @@ let params = {
 }
 ```
 
-{% else %}
+{% elif apiPrefix == 'swan' %}
+```
+{
+  transaction_no: "MDUhtNmacdYBKokJbCXhvYuoJnHXzpeN",
+  trade_no: '4DySOWgNssfu5XsiTH9Ek2f5m9jWTwTw'
+}
+```
+
 {% endif %}
 
 为了方便开发者清楚区分用户取消支付还是支付失败，我们为其增加了错误类型，你可以通过像以下操作，对支付状态进行判断：
