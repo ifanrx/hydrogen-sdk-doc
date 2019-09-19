@@ -146,7 +146,7 @@ Status 可选值说明:
 | :----------- | :--------- |
 | 'accepted'   | 受理成功   |
 | 'processing' | 处理中     |
-| 'finish'     | 处理完成   |
+| 'finished'     | 处理完成   |
 | 'closed'     | 处理失败，已关单 |
 
 Type 可选值说明:
