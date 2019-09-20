@@ -13,7 +13,8 @@
 
 ----
 
-* [用户操作](dashboard/README.md)
+* [知晓云用户指南](dashboard/README.md)
+    * [导览](dashboard/guide.md)
     * [基础服务](dashboard/basic-services/README.md)
         * [数据](dashboard/basic-services/schema.md)
         * [内容](dashboard/basic-services/content.md)
@@ -31,14 +32,6 @@
         * [知晓推送](dashboard/miniapp/template-message.md)
         * [小程序码](dashboard/miniapp/qrcode.md)
         * [客服消息](dashboard/miniapp/customer-message.md)
-    * [数据管理](dashboard/schema.md)
-    * [内容管理](dashboard/content.md)
-    * [文件管理](dashboard/file.md)
-    * [用户管理](dashboard/user.md)
-    * [支付](dashboard/payment.md)
-    * [触发器](dashboard/trigger.md)
-    * [云函数](dashboard/cloud-function.md)
-    * [ACL 简介](dashboard/acl.md)
 
 ----
 
