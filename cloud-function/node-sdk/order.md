@@ -1,5 +1,5 @@
-{% import "./macro/profit-sharing-receiver.md" as receiver %}
-{% macro profitSharing() %}
+{% import "./macro/profit-sharing.md" as profitSharing %}
+{% macro profitSharingCommon() %}
 **参数说明**
 
 options 是 Object 类型，它包括以下几个属性:
@@ -19,7 +19,7 @@ Receiver 类型说明:
 | amount      | Number | 是   | 分账金额，单位为分，只能为整数，不能超过原订单支付金额及最大分账比例金额 |
 | description | String | 是   | 分账描述       |
 
-{{receiver.receiverType()}}
+{{profitSharing.receiverType()}}
 {% endmacro %}
 
 # 支付订单操作
@@ -146,9 +146,11 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ### 订单单次分账
 
+{{ profitSharing.warning() }}
+
 `Order#wechatPay.profitSharing(options)`
 
-{{ profitSharing() }}
+{{ profitSharingCommon() }}
 
 **示例代码**
 
@@ -191,9 +193,11 @@ order.wechatPay.profitSharing({
 
 ### 订单多次分账
 
+{{ profitSharing.warning() }}
+
 `Order#wechatPay.multiProfitSharing(options)`
 
-{{ profitSharing() }}
+{{ profitSharingCommon() }}
 
 **示例代码**
 

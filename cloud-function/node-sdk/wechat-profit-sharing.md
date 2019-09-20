@@ -1,4 +1,4 @@
-{% import "./macro/profit-sharing-receiver.md" as receiver %}
+{% import "./macro/profit-sharing.md" as profitSharing %}
 
 # 微信直连商户分账
 
@@ -22,7 +22,7 @@ options 是 Object 类型，它包括以下几个属性
 | name            | String |  否  | 分账接收方全称，type 不为 `PERSONAL_OPENID` 时必填 |
 | custom_relation | String |  否  | relation_type 为 CUSTOM 时必填                     |
 
-{{receiver.receiverType()}}
+{{profitSharing.receiverType()}}
 
 ReceiverRelationType 可选值说明:
 
@@ -89,7 +89,7 @@ options 是 Object 类型，它包括以下几个属性
 | type            | ReceiverType |  是  | 分账接收方类型  |
 | account         | String |  是  | 分账接收方账户 id |
 
-{{receiver.receiverType()}}
+{{profitSharing.receiverType()}}
 
 **示例代码**
 
@@ -199,6 +199,8 @@ order.offset(20).limit(20).getOrderList({trade_no: '...'}).then(res => {
 
 `BaaS.wechat.profitSharing.Order#finish(options)`
 
+{{ profitSharing.warning() }}
+
 **参数说明**
 
 options 是 Object 类型，它包括以下几个属性
@@ -248,6 +250,10 @@ order.finish({
 > **info**
 > 此功能需要接收方在商户平台-交易中心-分账-分账接收设置下，开启同意分账回退后，才能使用。
 
+[]() <!-- 分隔上下两个 info，请不要删除 -->
+
+{{ profitSharing.warning() }}
+
 **参数说明**
 
 options 是 Object 类型，它包括以下几个属性
@@ -262,7 +268,7 @@ options 是 Object 类型，它包括以下几个属性
 | amount          | Number |  是  | 分账金额，单位为分，只能为整数，不能超过原订单支付金额及最大分账比例金额 |
 | description     | String |  是  | 分账回退描述                       |
 
-{{receiver.receiverType()}}
+{{profitSharing.receiverType()}}
 
 **示例代码**
 
