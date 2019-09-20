@@ -1,6 +1,6 @@
 # 基础服务
 
-* [数据](/dashboard/basic-services/data.md)
+* [数据](/dashboard/basic-services/schema.md)
 * [内容](/dashboard/basic-services/content.md)
 * [文件](/dashboard/basic-services/file.md)
 * [用户](/dashboard/basic-services/user.md)
@@ -8,4 +8,4 @@
 * [触发器](/dashboard/basic-services/trigger.md)
 * [云函数](/dashboard/basic-services/cloud-function.md)
 * [设置](/dashboard/basic-services/set-up.md)
-* [ACL 简介](dashboard/basic-services/acl.md)
+* [ACL 简介](/dashboard/basic-services/acl.md)

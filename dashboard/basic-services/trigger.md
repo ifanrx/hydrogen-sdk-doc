@@ -2,13 +2,11 @@
 
 [触发器（Trigger）](https://cloud.minapp.com/dashboard/#/app/engine/trigger/table/)的执行不是由程序调用，也不是手工启动，而是由事件来触发，比如当对一个表进行操作（ create，delete， update）时就会激活它执行。使用触发器，你可以更加方便的实现业务逻辑。
 
-## 相关概念
-
 ## 触发器配置
 
 ![触发器配置](/images/dashboard/trigger-config.png)
 
-触发类型：即触发源，每个触发器都只能选定一种触发类型，不同的触发类型可执行的动作选项也不一样。知晓云目前支持的触发类型有：[数据表](#数据表)、[微信支付回调](#微信支付回调)、[定时任务](#定时任务)、[文件操作](#文件操作)、[IncomingWebhook](#Incomingwebhook)、[微信消息推送](#微信消息推送)、[支付宝支付回调](#支付宝支付回调)。
+触发类型：即触发源，每个触发器都只能选定一种触发类型，不同的触发类型可执行的动作选项也不一样。知晓云目前支持的触发类型有：[数据表](#数据表)、[微信支付回调](#微信支付回调)、[定时任务](#定时任务)、[文件操作](#文件操作)、[IncomingWebhook](#incomingwebhook)、[微信消息推送](#微信消息推送)、[支付宝支付回调](#支付宝支付回调)。
 
 执行状态：用于控制触发器的开关，默认为开启。
 
@@ -16,7 +14,7 @@
 
 ![触发器条件](/images/dashboard/trigger-condition.png)
 
-当选定触发类型后，开发者需要指定触发条件来触发后续动作的执行，触发条件与触发类型一一相关，详见[触发类型 & 条件示例](#触发类型 & 条件示例)。
+当选定触发类型后，开发者需要指定触发条件来触发后续动作的执行，触发条件与触发类型一一相关，详见[触发类型 & 条件示例](#触发类型--条件示例)。
 
 ## 动作
 
@@ -66,7 +64,7 @@
 如需插入微信用户信息，请输入`{{created_by.***}}`。   
 例：`尊敬的{{created_by.nickname}}，您购买的产品{{product}}已经发货，请注意查收。`
 
-对于 date 类型的变量，可以自定义输出的格式，格式为 `{{created_at | date:"format"}}`，其中 format 为输出的格式，例如需要 2017-09-20 16:05:14 这样的输出格式，变量的格式为 `{{created_at | date:"Y-m-d H:i:s"}}`，具体 format 的意义可参考「[date 格式参数说明]()」
+对于 date 类型的变量，可以自定义输出的格式，格式为 `{{created_at | date:"format"}}`，其中 format 为输出的格式，例如需要 2017-09-20 16:05:14 这样的输出格式，变量的格式为 `{{created_at | date:"Y-m-d H:i:s"}}`，具体 format 的意义可参考「[date 格式参数说明](http://support.minapp.com/hc/kb/article/1085622/?from=draft)」
 
 对于 object 类型，可以输入 `{{<OBJECT_FIELD>.<PROP_NAME>[.<PROP_NAME>]}}` 格式，例如 `{{obj.name}}` 或 `{{obj.foo.bar}}`
 
@@ -220,6 +218,12 @@
 
 设置条件触发器参数规则请参考[微信文档](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1451025274)。
 
+#### 微信支付回调
+
+![微信支付回调](/images/dashboard/basic-services/trigger-alipay-payment.png)
+
+当用户使用微信支付支付成功时，可以触发指定动作。
+
 #### 支付宝支付回调
 
 ![支付宝支付回调](/images/dashboard/basic-services/trigger-alipay-payment.png)
@@ -238,13 +242,13 @@
 
 ![发送邮件](/images/dashboard/basic-services/trigger-send-email.png)
 
-**收件人、邮件标题、邮件内容均可使用模板变量，其中可选变量可以将鼠标移至动作类型右侧的「查看范例」来查看。**
+收件人、邮件标题、邮件内容均可使用模板变量，其中可选变量可以将鼠标移至动作类型右侧的「查看范例」来查看。
 
 #### 发送微信模板消息
 
 ![发送微信模板消息](/images/dashboard/basic-services/trigger-send-template.png)
 
-发送微信模板消息前需要先完成小程序授权并`添加消息模板`，并完成 [formid 收集](https://cloud.minapp.com/dashboard/#/app/wechat-template-message/library/)。
+发送微信模板消息前需要先完成小程序授权并[添加消息模板]()，并完成 [formid 收集](/js-sdk/wechat/template-message.md)。
 
 收件人支持类型如下：
 
@@ -331,8 +335,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIn0.FGhYH5IF-PkNV8b4SNh-1WK
 | 操作 | 被触发时动作说明 |
 | :-- | :------------ |
 | 创建 | 创建一行数据 |
-| 更新 | 修改符合条件的数据行 |
-| 删除 | 删除符合条件的数据行 |
+| 更新 | 修改符合条件的数据行，需要配置查询条件，筛选出指定的数据行。数据表查询条件相关文档请[参考这里](/dashboard/schema.md)。 |
+| 删除 | 删除符合条件的数据行，需要配置查询条件，筛选出指定的数据行。数据表查询条件相关文档请[参考这里](/dashboard/schema.md)。 |
 
 > **info**
 > 注：若使用类型为 object 的模板变量来进行赋值，则被赋值的字段必须为 string 类型。例如：在动作中赋值给 _userprofile 表的 gender 字段是错误的，只能赋值给 nickname 等 string 类型的字段。
@@ -350,7 +354,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIn0.FGhYH5IF-PkNV8b4SNh-1WK
 | geojson | = |
 
 >**info**
->注：append, append_unique, remove, inc_by 为原子操作符，相关文档请[参考这里](../js-sdk/schema/update-record.md)
+>注：append, append_unique, remove, inc_by 为原子操作符，相关文档请[参考这里](/js-sdk/schema/update-record.md)
 
 #### 执行云函数
 
@@ -360,10 +364,10 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIn0.FGhYH5IF-PkNV8b4SNh-1WK
 vent.data 参数为空。
 
 **IncomingWebhook**
-event.data 参数请求信息，参考 [IncomingWebhook]() 小节。
+event.data 参数请求信息，参考 [IncomingWebhook](#incomingwebhook) 小节。
 
 **数据表**
-event.data 参数为数据表记录，File 类型的数据可以直接赋值给数据表 File 类型的字段。数据类型信息请查看[数据表中支持的数据类型]()。
+event.data 参数为数据表记录，File 类型的数据可以直接赋值给数据表 File 类型的字段。数据类型信息请查看[数据表中支持的数据类型](/js-sdk/schema/data-type.md#数据表中支持的数据类型)。
 
 {% ifanrxfold summary="示例:" %}
 ```json
@@ -678,7 +682,7 @@ event.data 参数为文件记录。
 
 ![发送支付宝模板消息](/images/dashboard/basic-services/trigger-send-alipay-message.png)
 
-发送支付宝模板消息前需要先完成小程序授权并添加消息模板，并完成 [formid 收集]()。
+发送支付宝模板消息前需要先完成小程序授权并[添加消息模板]()，并完成 [formid 收集](/js-sdk/alipay/template-message.md)。
 
 > **info**
 > 注：下发消息需绑定生活号（重要）：开发者需要绑定上线可运营的生活号，由生活号来承接服务提醒的消息；   
@@ -700,7 +704,7 @@ event.data 参数为文件记录。
 
 **发送 QQ 模板消息**
 
-发送 QQ 模板消息前需要先完成小程序授权并添加消息模板，并完成 [formid 收集]()。
+发送 QQ 模板消息前需要先完成小程序授权并[添加消息模板]()，并完成 [formid 收集](/js-sdk/qq/template-message.md)。
 
 > **info**
 > 注：表单类：当用户在小程序内发生过提交表单行为且该表单声明为要发模板消息的，开发者需要向用户提供服务时，可允许开发者向用户在 7 天内推送有限条数的模板消息（ 1 次提交表单可下发 1 条，多次提交下发条数独立，相互不影响）
@@ -723,9 +727,9 @@ event.data 参数为文件记录。
 ![发送短信](/images/dashboard/basic-services/trigger-send-sms.png)
 
 > **info**
-> 注：在发送短信前，开发者需要先开通短信服务并通过短信签名和模板的审核，具体请查看[短信]()章节。   
-> 系统会自动过滤没有手机的用户。
-> 短信服务单价为 ¥0.05/条。
+> 注：在发送短信前，开发者需要先开通短信服务并通过短信签名和模板的审核，具体请查看[短信](/dashboard/operation/sms.md)章节。   
+> 系统会自动过滤没有手机的用户。   
+> 短信服务单价为 ¥0.05/条。  
 
 收件人支持类型如下：
 
@@ -737,4 +741,4 @@ event.data 参数为文件记录。
 
 ### 实战教程
 
-[触发器实战教程请移步这里](../support/practice/trigger.md)
+[触发器实战教程请移步这里](/support/practice/trigger.md)

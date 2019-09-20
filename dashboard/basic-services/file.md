@@ -38,7 +38,7 @@ CDN：**CDN** 的全称是Content Delivery Network，即内容分发网络。 **
 
 ### URL 作图
 
-知晓云支持通过 URL 访问图片时，对图片进行处理，并把处理后的图片返回，使用说明详见[帮助文档]()。
+知晓云支持通过 URL 访问图片时，对图片进行处理，并把处理后的图片返回，使用说明详见[帮助文档](http://support.minapp.com/hc/kb/article/1082737/)。
 
 ### 刷新 CDN
 

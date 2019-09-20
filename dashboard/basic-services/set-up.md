@@ -7,7 +7,7 @@
 
 ![切换套餐版本](/images/dashboard/basic-services/set-up-switch-package.png)
 
-知晓云为不同阶段的小程序定制了专属优惠套餐，你可以按需挑选。应用默认为先使用后付费的日结方式计费。建议开发者[购买包年套餐]()，最高可享 5 折优惠。
+知晓云为不同阶段的小程序定制了专属优惠套餐，你可以按需挑选。应用默认为先使用后付费的日结方式计费。建议开发者[购买包年套餐](https://cloud.minapp.com/pricing/)，最高可享 5 折优惠。
 
 > **info**
 > 注：因为存在硬件成本，升级套餐后需使用满 30 天才可降级， 升级套餐将在您保存后实时生效，降级套餐将在您保存后次日00:00生效。   
@@ -63,13 +63,13 @@
 
 知晓云为开发者提供了多种登录方法，开发者可以在设置页面随时开启或关闭这些登录方法。
 
-### SDK 设置
+## SDK 设置
 
 ![SDK 设置](/images/dashboard/basic-services/set-up-sdk.png)
 
 部分 SDK 功能支持权限控制，开发者可以在 SDK 设置页面对其进行管理。
 
-### 平台设置
+## 平台设置
 
 ![平台设置](/images/dashboard/basic-services/set-up-platform.png)
 
