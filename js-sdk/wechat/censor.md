@@ -1,4 +1,6 @@
-# 检测违规图片、文本
+{% block pageTitile %}
+# 检测违规图片、音频、文本
+{% endblock pageTitile %}
 
 当小程序中有允许用户上传图片或输入文本的场景时，SDK 封装了微信小程序“内容安全”检测图片、文本的合法性的 API。
 
@@ -22,15 +24,15 @@
 
 `wx.BaaS.wxCensorImage(filePath)`
 
-### 参数说明
+**参数说明**
 
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
-| filePath | string | 文件路径 |
+| filePath | String | 文件路径 |
 
 {% endblock censorImageSign %}
 
-### 返回示例
+**返回示例**
 
 ```javascript
 {
@@ -40,7 +42,7 @@
 
 {% block censorImageCode %}
 
-### 示例代码
+**示例代码**
 ```javascript
 wx.chooseImage({
   success: function(res) {
@@ -63,20 +65,20 @@ HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 `wx.BaaS.wxCensorText(text)`
 {% endblock censorTextSign %}
 
-### 参数说明
+**参数说明**
 
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
-| text | string | 要检测的文本 |
+| text     | String | 要检测的文本 |
 
-### 返回示例
+**返回示例**
 
 ```javascript
 {
   risky: true
 }
 ```
-### 示例代码
+**示例代码**
 
 {% block censorTextCode %}
 
@@ -91,3 +93,112 @@ HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 
 {% endblock censorTextCode %}
+
+{% block censorAsync %}
+
+{% macro returns() %}
+**返回参数说明**
+
+| 参数名   | 类型   | 说明     |
+|----------|--------|----------|
+| id            | String | 文件 ID  |
+| error_code    | String | 错误码，=0 时不返回此字段  |
+| error_message | String | 错误信息，error_code=0 时不返回此字段  |
+| status_code   | Number | 默认为：0，4294966288(-1008)为链接无法下载  |
+| risky         | Boolean | 是否为违规内容，true 为风险，false 为未检测到风险，null 为微信尚未推送检查结果  |
+{% endmacro %}
+
+## 异步检测图片、音频
+
+异步校验图片/音频是否含有违法违规内容。
+
+### 检测请求
+
+`wx.BaaS.censorAsync(fileID)`
+
+**参数说明**
+
+| 参数名   | 类型   | 说明     |
+|----------|--------|----------|
+| fileID   | String | 文件 ID  |
+
+{{returns()}}
+
+**返回示例**
+
+```json
+{
+  "error_message": "ok",
+  "error_code": 0,
+  "risky": null,
+  "status_code": null,
+  "id": 1
+}
+```
+
+**状态码**
+
+| 状态码   | 说明     |
+|----------|----------|
+| 201      | 成功     |
+| 400      | 失败（参数错误）|
+| 402      | 当前应用已欠费  |
+| 404      | 文件不存在      |
+| 500      | 服务错误        |
+
+HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
+
+**示例代码**
+
+```javascript
+wx.BaaS.censorAsync("...").then(res => {
+  console.log(res.data.risky)
+}, err => {
+  // HError 对象
+})
+```
+
+### 获取异步检测结果
+
+`wx.BaaS.getCensorResult(id)`
+
+**参数说明**
+
+| 参数名   | 类型   | 说明     |
+|----------|--------|----------|
+| id       | String | 检查记录 id |
+
+{{returns()}}
+
+**返回示例**
+
+```json
+{
+  "error_message": "ok",
+  "error_code": 0,
+  "risky": null,
+  "status_code": null,
+  "id": 1
+}
+```
+
+**状态码**
+
+| 状态码   | 说明     |
+|----------|----------|
+| 200      | 成功     |
+| 404      | 推送结果不存在 |
+
+HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
+
+**示例代码**
+
+```javascript
+wx.BaaS.getCensorResult("...").then(res => {
+  console.log(res.data.risky)
+}, err => {
+  // HError 对象
+})
+```
+
+{% endblock censorAsync %}
