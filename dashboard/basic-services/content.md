@@ -57,4 +57,4 @@
 
 ![开通阅读数统计](/images/dashboard/basic-services/open-content-visit-count.png)
 
-知晓云提供了文章阅读数统计功能，开发者无需额外开发，开通后即可通过[获取内容接口](js-sdk/content/operate.html#获取内容详情)实时获取文章的阅读数。该服务目前仅提供给个人版及以上版本用户。
+知晓云提供了文章阅读数统计功能，开发者无需额外开发，开通后即可通过[获取内容接口](/js-sdk/content/operate.md#获取内容详情)实时获取文章的阅读数。该服务目前仅提供给个人版及以上版本用户。
