@@ -166,7 +166,7 @@ wx.BaaS.censorAsync("...").then(res => {
 
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
-| id       | String | 检查记录 id |
+| id       | String | 检测记录 id |
 
 {{returns()}}
 
@@ -187,7 +187,7 @@ wx.BaaS.censorAsync("...").then(res => {
 | 状态码   | 说明     |
 |----------|----------|
 | 200      | 成功     |
-| 404      | 推送结果不存在 |
+| 404      | 检测记录不存在 |
 
 HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 
