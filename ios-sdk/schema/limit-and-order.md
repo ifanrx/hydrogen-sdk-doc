@@ -2,12 +2,12 @@
 
 ## 分页
 
-使用 limit 和 offset 来控制分页数据：
+使用 `limit` 和 `offset` 来控制分页数据：
 
 - `limit`  指定该请求返回的结果个数
 - `offset`  偏移量，指定该请求返回的结果的起始位置
 
-默认 limit 为 20, offset 为 0，我们也可以手动指定 limit 和 offset 来控制。例如，每页展示 100 条数据，需要获取第五页的数据，将 limit 设置为 100、offset 设置为 400 即可。limit 最大可设置为 1000。
+默认 `limit` 为 `20`, `offset` 为 `0`，我们也可以手动指定 `limit` 和 `offset` 来控制。例如，每页展示 `100` 条数据，需要获取第 `5` 页的数据，将 `limit` 设置为 `100`、`offset` 设置为 `400` 即可。`limit` 最大可设置为 1000。
 
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
@@ -34,20 +34,18 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 
 |  参数  |  类型   | 必填 | 说明 |
 | :----- | :---- | :-- | :-- |
-| query | Query |  N  | 查询条件 |
+| query | Query |  N  | 查询条件，详见[数据表 - 查询](./query.md) |
 
 **返回结果**
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | listResult  | RecordList | 结果列表，详见 [数据类型](./data-type.md) 章节|
-| error   |  NSError |  错误信息  |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
 ## 排序
 
-使用 orderBy 来控制使用升序或降序获取数据列表。
+使用 `orderBy` 来控制使用升序或降序获取数据列表，设置需要排序的字段名，升序为字段名，降序在字段名前加 '-'。
 
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
@@ -88,13 +86,11 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 
 |  参数  |  类型   | 必填 | 说明 |
 | :----- | :---- | :-- | :-- |
-| query | Query |  N  | 查询条件 |
+| query | Query |  N  | 查询条件，详见[数据表 - 查询](./query.md)  |
 
 **返回结果**
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| listResult  | RecordList | ，详见 [数据类型](./data-type.md) 章节 |
-| error   |  NSError |  错误信息  |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| listResult  | RecordList  | 详见 [数据类型](./data-type.md) 章节 |
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |

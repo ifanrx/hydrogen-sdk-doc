@@ -2,7 +2,7 @@
 
 ## Record 类型
 
-`Record` 表示数据库中的一条记录，包括 id、创建时间等，其中 recordInfo 包含该记录的所有信息。
+`Record` 表示数据库中的一条记录，包括 `id`、创建时间等，其中 `recordInfo` 包含该记录的所有信息。
 
 | 属性         |  类型   | 说明 |
 | :--------- | :---     | :--- |
@@ -24,4 +24,4 @@
 | totalCount   | Int   |   实际返回的记录总数 |
 | next      | String  |   下一页地址 |
 | previous  | String  |    上一页地址 |
-| records  |   Array<Record> | 记录列表，每个元素为 Record 类型   |
+| records  |   [Record] | 记录数组，每个元素为 Record 类型   |
