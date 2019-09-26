@@ -13,15 +13,25 @@
 
 ----
 
-* [控制台操作](dashboard/README.md)
-    * [数据管理](dashboard/schema.md)
-    * [内容管理](dashboard/content.md)
-    * [文件管理](dashboard/file.md)
-    * [用户管理](dashboard/user.md)
-    * [支付](dashboard/payment.md)
-    * [触发器](dashboard/trigger.md)
-    * [云函数](dashboard/cloud-function.md)
-    * [ACL 简介](dashboard/acl.md)
+* [知晓云用户指南](dashboard/README.md)
+    * [导览](dashboard/guide.md)
+    * [基础服务](dashboard/basic-services/README.md)
+        * [数据](dashboard/basic-services/schema.md)
+        * [内容](dashboard/basic-services/content.md)
+        * [文件](dashboard/basic-services/file.md)
+        * [用户](dashboard/basic-services/user.md)
+        * [支付](dashboard/basic-services/payment.md)
+        * [触发器](dashboard/basic-services/trigger.md)
+        * [云函数](dashboard/basic-services/cloud-function.md)
+        * [设置](dashboard/basic-services/set-up.md)
+        * [ACL 简介](dashboard/basic-services/acl.md)
+    * [运营](dashboard/operation/README.md)
+        * [运营后台](dashboard/operation/user-dash.md)
+        * [短信](dashboard/operation/sms.md)
+    * [小程序](dashboard/miniapp/README.md)
+        * [知晓推送](dashboard/miniapp/template-message.md)
+        * [小程序码](dashboard/miniapp/qrcode.md)
+        * [客服消息](dashboard/miniapp/customer-message.md)
 
 ----
 
