@@ -160,9 +160,8 @@
     * [调用云函数](ios-sdk/invoke-function.md)
     * [短信验证码](ios-sdk/sms.md)
     * [错误码和错误对象](ios-sdk/error-code.md)
-    * Demo 下载
-        * [iOS-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
-        * [SwiftUI-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)
+    * [iOS-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
+    * [SwiftUI-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)
         
 ----
 
@@ -272,6 +271,7 @@
         * [文件操作](cloud-function/node-sdk/file/file.md)
         * [文件分类操作](cloud-function/node-sdk/file/file-category.md)
     * [支付订单操作](cloud-function/node-sdk/order.md)
+    * [微信直连商户分账](cloud-function/node-sdk/wechat-profit-sharing.md)
     * [获取微信小程序二维码](cloud-function/node-sdk/wxacode.md)
     * [获取支付宝小程序二维码](cloud-function/node-sdk/alipay-qr-code.md)
     * [调用云函数](cloud-function/node-sdk/cloud-function.md)

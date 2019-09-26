@@ -1,8 +1,9 @@
 # 数据管理
 
-创建数据表、存储和管理数据。
+作为知晓云提供的核心功能之一，通过[数据存储引擎](https://cloud.minapp.com/dashboard/#/app/schema/)可以省去您自己搭建数据库、优化数据库查询、编写数据接口等麻烦操作。同时知晓云数据库支持多种类型的数据，如数组类型、地理位置类型、文件类型、对象类型等，并且支持原子操作、批量操作等高级功能。SDK 提供了多种复杂查询支持，包括正则匹配查询，数组查询，甚至是与或的组合查询以及匿名读写功能。
 
 ## 创建数据表
+
 * **创建表**
 
   此过程要求开发者具备基本的数据库知识。
@@ -64,6 +65,8 @@
   * **表记录** 表记录为当前数据表存储的数据
   * **翻页组件** 当数据表存储的数据超过数据表每页默认展示的记录条数时，开发者可以使用翻页功能查看更多表记录。也可自行设置每页展示的数据记录和跳转到特定页码位置
 
+![查看数据表](/images/dashboard/schema-data-management.png)
+
 ## 管理数据表
 * **添加列**
 
@@ -78,13 +81,21 @@
   > **info**
   > 自定义字段设置为创建者可见时，接口不会返回自定义字段
 
+![添加列](/images/dashboard/schema-add-column.png)
+
 * **控制列展示**
 
   允许开发者控制数据表字段的展示和隐藏，在数据表字段较多时十分有用。
 
+![控制列展示](/images/dashboard/schema-show-column.png)
+
 * **导入 / 导出**
 
   开发者可导入 **CSV** 或 **JSON** 格式的数据，可导出 **JSON** 格式数据。导入或导出操作并非实时，会先在知晓云服务端创建定时任务，该任务被执行后才会真正执行导入或导出任务。任务执行完成后用户将会在通知中心和邮件收到相应的提醒和数据。
+
+![导入数据](/images/dashboard/schema-import-data.png)
+
+![导出数据](/images/dashboard/schema-export-data.png)
 
 * **唯一索引设置**
 
@@ -96,12 +107,14 @@
 
   也就是说，唯一索引可以保证数据记录的唯一性。事实上，在许多场合，人们创建唯一索引的目的往往不是为了提高访问速度，而只是为了避免数据出现重复。
 
+![唯一索引设置](/images/dashboard/schema-index-setting.png)
+
 * **查询**
 
   数据表会根据字段类型、字段含义，为该字段提供可用的查询操作符。一般情况下，不同类型对应的可用查询操作符如下表所示
 
 
-  | 字段类型 | 支持的查询操 |
+  | 字段类型 | 支持的查询操作符 |
   | ------- | ------ |
   | id      | =, in, range, !=, not in      |
   | string  | =, in, contains, !=, isnull, not in, regex       |
@@ -139,16 +152,21 @@
   | intersects |  请参考[include](../js-sdk/schema/geo.md)         |
   | nearsphere |  请参考[withinRegion](../js-sdk/schema/geo.md)       |
 
+![数据查询](/images/dashboard/schema-data-query.png)
 
 * **编辑表**
 
   可对已创建的数据表进行**重命名**、**重置数据表录入权限**、**更新数据行的读写权限**。
 
+![编辑表](/images/dashboard/schema-edit.png)
+
 * **删除表**
 
   键入数据表名称来删除不再需要的数据表，删除表操作不可恢复。
 
+![删除表](/images/dashboard/schema-delete.png)
+
 ## 访问数据表
 * **使用表**
 
-  已创建的数据表需要配合 [Hydrogen SDK](/js-sdk/download-sdk.md) 来使用。对开发者而言，在控制台读取到 ``tableID``，即可以配合 SDK 来对该数据表进行符合权限的操作。
+  已创建的数据表需要配合 [Hydrogen SDK](/js-sdk/download-sdk.md) 来使用。对开发者而言，在控制台读取到 ``tableID`` 或者 ``tableName``，即可以配合 SDK 来对该数据表进行符合权限的操作。

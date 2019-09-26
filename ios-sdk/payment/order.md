@@ -4,7 +4,7 @@
 
 ## 查询订单详情
 
-通过订单的流水号(transactionNo)，来查询该订单的详细信息。通常用于：
+通过订单的流水号(`transactionNo`)，来查询该订单的详细信息。通常用于：
 1. 查询订单列表中某个订单的详细信息；
 2. 用户发起支付，并在微信或支付宝完成支付后，调用该接口获取订单的详细信息。开发者可以根据该订单的状态进行后续操作，比如订单状态(status)为 success 时，给用户发送商品。
 
@@ -36,12 +36,11 @@ NSString *transactionNo = @"xxxxxxxxxx";
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | order  |   Order           | 订单信息，详见 **数据类型** 小节 |
-| error   |  NSError |  错误信息  |
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+## 订单查询
 
-## 订单列表查询
-
+`OrderQuery` 继承 `Query`， 并定义了订单状态、退款状态、支付方式、`trade_no`、`transaction_no`、`merchandise_record_id`、`merchandise_schema_id` 等 7 种查询条件。
 
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
@@ -143,20 +142,18 @@ BaaSOrderQuery *query = [[BaaSOrderQuery alloc] init];
 
 |  参数  |  类型   | 必填 | 说明 |
 | :----- | :---- | :-- | :-- |
-| query | Query |  N  | 查询条件 |
+| query | OrderQuery |  N  | 查询条件 |
 
-订单状态 OrderStatus、退款状态 RefundStatus、支付类型 GateWayType，详见 **数据类型** 小节
+可以设置的查询条件，有订单状态： `OrderStatus`、退款状态 `RefundStatus`、支付类型 `GateWayType`，详见 **数据类型** 小节
 
 **返回结果**
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | listResult  | OrderList | 文件分类列表结果，详见 **数据类型** 小节 |
-| error   |  NSError |  错误信息  |
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
-
-# 重新支付
+<!-- # 重新支付
 
 {% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
@@ -186,10 +183,10 @@ Pay.shared.repay(self.order) { (result, error) in
 | order  |   Order           | 订单信息，详见 **数据类型** 小节 |
 | error   |  NSError |  错误信息  |
 
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md) -->
 
-# 数据类型
-## Order
+## 数据类型
+### Order
 
 订单信息
 
@@ -212,7 +209,7 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 | merchandiseDescription|   String    | 商品详情描述 |
 | gatewayExtraInfo  |  Dictionary  | 自定义信息 |
 
-## OrderList
+### OrderList
 
 `OrderList` 表示一次查询数据库所返回的订单列表以及元数据。
 
@@ -225,12 +222,12 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 | previous  |  String    |   上一页地址  |
 | orders  |   Array<Order> | 内容列表，每个元素为 Order 类型   |
 
-## 订单状态
+### 订单状态
 
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 
- OrderStatus：
+ `OrderStatus`
 
 | 类型            | 说明      |
 | :--------------| :-----------------|
@@ -239,7 +236,7 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 {% content "oc4" %}
 
-BaaSOrderStatus：
+`BaaSOrderStatus`
 
 | 类型            | 说明      |
 | :--------------| :-----------------|
@@ -248,12 +245,12 @@ BaaSOrderStatus：
 
 {% endtabs %}
 
-## 退款状态
+### 退款状态
 
-{% tabs swift5="Swift", oc4="Objective-C" %}
+{% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}
 
- RefundStatus
+ `RefundStatus`
 
 | 类型            | 说明      |
 | :--------------| :-----------------|
@@ -262,7 +259,7 @@ BaaSOrderStatus：
 
 {% content "oc5" %}
 
-BaaSRefundStatus：
+`BaaSRefundStatus`
 
 | 类型            | 说明      |
 | :--------------| :-----------------|
@@ -271,12 +268,12 @@ BaaSRefundStatus：
 
 {% endtabs %}
 
-## 支付方式
+### 支付方式
 
 {% tabs swift6="Swift", oc6="Objective-C" %}
 {% content "swift6" %}
 
- GateWayType
+ `GateWayType`
 
 | 类型            | 说明      |
 | :--------------| :-----------------|
@@ -285,7 +282,7 @@ BaaSRefundStatus：
 
 {% content "oc6" %}
 
-BaaSGateWayType：
+`BaaSGateWayType`
 
 | 类型            | 说明      |
 | :--------------| :-----------------|
