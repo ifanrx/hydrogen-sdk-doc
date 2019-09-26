@@ -2,7 +2,7 @@
 
 ## 添加地理位置
 
-为地理位置（geojson）类型字段添加数据和为普通字段添加数据的操作方式是一致的，可参考以下示例。
+为地理位置 `geojson` 类型字段添加数据和为普通字段添加数据的操作方式是一致的，可参考以下示例。
 
 **参数说明**
 
@@ -11,9 +11,9 @@
 | key   | String  | 是   | 在数据表中的类型必须是 geojson |
 | value | GeoPoint 或 GeoPolygon   | 是   | - |
 
-geojson 类型字段支持使用 GeoPoint 或 GeoPolygon 类型数据进行赋值：
+`geojson` 类型字段支持使用 `GeoPoint` 或 `GeoPolygon` 类型数据进行赋值：
 
-* GeoPoint 表示坐标点，经度（longitude）在前，纬度（latitude）在后，创建一个点：
+* `GeoPoint` 表示坐标点，经度 `longitude` 在前，纬度 `latitude` 在后，创建一个点：
 
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
@@ -26,7 +26,7 @@ BaaSGEOPoint *point = [[BaaSGEOPoint alloc] initWithLongitude:10 latitude:10];
 ```
 {% endtabs %}
 
-* GeoPolygon 表示地理形状，可以通过以下两种方法创建一个地理形状
+* `GeoPolygon` 表示地理形状，可以通过以下两种方法创建一个地理形状
 
 > **info**
 > 创建一个地理形状时，第一个点和最后一个点必须重合，否则创建失败。
@@ -60,7 +60,7 @@ BAASGeoPolygon *polygon = [[BAASGeoPolygon alloc] initWithPoints:@[point1, point
 
 ## 设置地理位置信息
 
-表中有名称为 location，polygon 的两列，类型都为 geojson。
+表中有名称为 `location`，`polygon` 的两列，类型都为 `geojson`。
 
 {% tabs swift2_1="Swift", oc2_1="Objective-C" %}
 {% content "swift2_1" %}
@@ -228,13 +228,11 @@ BaaSWhere *where = [BaaSWhere withinWithKey: polygon:neighbourhoodPolygon];
 
 |  参数  |  类型   | 必填 | 说明 |
 | :----- | :---- | :-- | :-- |
-| query | Query |  Y  | 查询条件 |
+| query | Query |  Y  | 查询条件，详见[数据表 - 查询](/ios-sdk/schema/query.md) |
 
 **返回结果**
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | listResult  | RecordList | 结果列表，详见 [数据类型](./data-type.md) 章节|
-| error   |  NSError |  错误信息  |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
