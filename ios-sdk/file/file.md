@@ -217,7 +217,7 @@ FileManager.getCategory("5ca489bb8c374f5039a8062b") {category, error in
 | category  | FileCategory | 文件分类，详见**数据类型** 小节|
 | error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
-### 获取指定分类下的文件
+### 查询指定分类下的文件
 
 {% tabs swift6="Swift", oc6="Objective-C" %}
 {% content "swift6" %}
@@ -248,7 +248,7 @@ FileManager.find(categoryId: "5ca489bb8c374f5039a8****") { (result, error) in
 | listResult  | FileList | 文件列表结果，详见 **数据类型** 小节 |
 | error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md)  |
 
-### 查询文件分类列表
+### 查询文件分类
 
 文件分类查询与[数据表查询](../schema/query.md)方法一致，但只支持对以下指定字段进行查询：
 

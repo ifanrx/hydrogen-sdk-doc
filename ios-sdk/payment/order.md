@@ -38,7 +38,7 @@ NSString *transactionNo = @"xxxxxxxxxx";
 | order  |   Order           | 订单信息，详见 **数据类型** 小节 |
 | error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
-## 订单列表查询
+## 订单查询
 
 `OrderQuery` 继承 `Query`， 并定义了订单状态、退款状态、支付方式、`trade_no`、`transaction_no`、`merchandise_record_id`、`merchandise_schema_id` 等 7 种查询条件。
 

@@ -53,7 +53,7 @@ NSArray *select = @[@"title", @"created_by"];
 | content  |   Content           | 内容详情，详见 **数据类型** 小节 |
 | error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
-## 查询内容列表
+## 查询内容
 
 {% tabs swift3_0="Swift", oc3_0="Objective-C" %}
 {% content "swift3_0" %}
@@ -83,7 +83,7 @@ contentGroup.find(completion: { (listResult, error) in
 | listResult  | ContentList | 内容列表，详见 **数据类型** 小节 |
 | error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
-## 获取指定分类下的内容列表
+## 获取指定分类下的内容
 
 {% tabs swift2_1="Swift", oc2_1="Objective-C" %}
 {% content "swift2_1" %}
@@ -144,7 +144,7 @@ contentGroup.getCategory(Id: categoryId) { (category, error) in
 | contentCategory  |   ContentCategory           | 内容分类详情，详见 **数据类型** 小节 |
 | error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
-## 获取内容库分类列表
+## 获取内容库分类
 
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
