@@ -2,7 +2,7 @@
 
 ## 字段过滤
 
-使用 select 来筛选请求返回的字段，设置需要返回的字段名，不需要返回的字段名前加 "-"。
+使用 `select` 来筛选请求返回的字段，设置需要返回的字段名，不需要返回的字段名前加 `-`。
 
 **在 get 方法中使用**
 
@@ -47,9 +47,7 @@ NSArray *select = @[@"-created_at", @"-created_by"];
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | record   | Record     | 数据项实例, 关于 `Record` 类型查看 [数据类型](./data-type.md) 章节|
-| error     | NSError | 错误信息   |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| error     | NSError | 错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)   |
 
 **在 find 方法中使用**
 
@@ -95,27 +93,26 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | listResult  | RecordList | 结果列表，详见 [数据类型](./data-type.md) 章节|
-| error   |  NSError |  错误信息  |
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
-<span class="attention">注：</span>
-
-通过数组控制请求返回字段时，若数组内元素同时存在“规定返回”和“规定不返回”的字段，如：`['-created_at', 'created_by']`。后端服务会忽略掉此次操作，直接返回所有字段。
+> **info**
+> 通过数组控制请求返回字段时，若数组内元素同时存在“规定返回”和“规定不返回”的字段，如：`['-created_at', 'created_at']`。后端服务会忽略掉此次操作，直接返回所有字段。
 
 ## 字段扩展
 
-开发者可以通过 expand pointer 来查询该字段的更多信息,返回结果中的 pointer 字段会被替换为这个字段对应的完整的数据行对象。
+开发者可以通过 `expand pointer` 来查询该字段的更多信息,返回结果中的 `pointer` 字段会被替换为这个字段对应的完整的数据行对象。
 
 > **info**
-> created_by 字段是一个特殊的 pointer，开发者无需配置，默认指向了 _userpofile 表。
-> 使用 expand 方法会增加一次数据表查询，api call 计费 +1
+> `created_by` 字段是一个特殊的 `pointer`，开发者无需配置，默认指向了 `_userpofile` 表。
+> 使用 `expand` 方法会增加一次数据表查询，`api call` 计费 +1
 
 ### expand 返回结果示例
 
 注：`pointer_value` 为指向其他表的 pointer 类型字段
 
-不使用 expand
+* 不使用 expand
+
 ```json
 {
   "created_at": 1516118400,
@@ -127,7 +124,8 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 }
 ```
 
-使用 expand
+* 使用 expand
+
 ```json
 {
   "created_at": 1516118400,
@@ -186,9 +184,7 @@ NSString *recordId = @"5ca09074be20d6749023****";
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | record   | Record     | 数据项实例, 关于 `Record` 类型查看 [数据类型](./data-type.md) 章节|
-| error     | NSError | 错误信息   |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| error     | NSError | 错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)   |
 
 **在 find 方法中使用**
 
@@ -228,6 +224,4 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | listResult  | RecordList | 结果列表，详见 [数据类型](./data-type.md) 章节|
-| error   |  NSError |  错误信息  |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |

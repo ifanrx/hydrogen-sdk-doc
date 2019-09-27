@@ -29,7 +29,7 @@
 {% content "swift1" %}
 ```
 // 通过 tableId 创建数据表实例 
-let table = Table(Id: 1236)
+let table = Table(Id: "1236")
 
 // 通过 tablename 创建数据表实例
 let table = Table(name: "Book")
@@ -37,7 +37,7 @@ let table = Table(name: "Book")
 {% content "oc1" %}
 ```
 // 通过 tableId 创建数据表实例
-BaaSTable *table = [[BaaSTable alloc] initWithId:1236**];
+BaaSTable *table = [[BaaSTable alloc] initWithId: @"1236"];
 
 // 通过 tablename 创建数据表实例
 BaaSTable *table = [[BaaSTable alloc] initWithName:@"Book"];
@@ -100,9 +100,7 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | listResult  | RecordList | 结果列表，详见 [数据类型](./data-type.md) 章节|
-| error   |  NSError |  错误信息  |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
 > **info**
 > 注意：知晓云的 api URL 长度限定为 16386，超出则返回 502，请在构造查询条件时注意长度控制，如 in 操作符后边的数组长度、match 操作符后边的字符串长度等。
@@ -184,8 +182,8 @@ operator 说明：
 // name 列包含 apple
 let whereargs = Where.contains(key: "name", value: "apple")
 
-// name 列不包含 app
-let whereargs = Where.contains(key: "name", value: "app")
+// name 列包含 apple (不区分大小写)
+let whereargs = Where.icontains(key: "name", value: "apple")
 ```
 {% content "oc7" %}
 ```
@@ -271,7 +269,9 @@ BaaSWhere *where = [BaaSWhere matchesWithKey:@"phoneNumber" regx: regx];
 
 ## 数组查询
 
-field 的类型不限制，field 的 value 含有 array 中的一个或多个
+* inList
+
+数据表中的 field 的类型不限制，field 的 value 含有 array 中的一个或多个
 
 {% tabs swift8="Swift", oc8="Objective-C" %}
 {% content "swift8" %}
@@ -284,7 +284,9 @@ BaaSWhere *where = [BaaSWhere inListWithKey: @"fieldname" list: array];
 ```
 {% endtabs %}
 
-field 的类型不限制，field 的 value 不含有 array 中的任何一个
+* notInList
+
+数据表中的 field 的类型不限制，field 的 value 不含有 array 中的任何一个
 {% tabs swift9="Swift", oc9="Objective-C" %}
 {% content "swift9" %}
 ```
@@ -296,7 +298,9 @@ BaaSWhere *where = [BaaSWhere notInListWithKey: @"fieldname" list: array];
 ```
 {% endtabs %}
 
-field 的类型必须为数组, field 的 value 包含 array 中的每一个  
+* arrayContains
+
+数据表中的 field 的类型必须为数组, field 的 value 包含 array 中的每一个  
 {% tabs swift10="Swift", oc10="Objective-C" %}
 {% content "swift10" %}
 ```

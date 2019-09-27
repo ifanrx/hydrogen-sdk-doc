@@ -1,8 +1,12 @@
- # currentUser
+ # 当前用户
+
+ ## CurrentUser 类
+
+`CurrentUser` 继承于 `User`。`currentUser` 实例代表了当前登录的用户，开发者可以通过访问 `currentUser` 上的属性来获取当前用户的信息，通过调用 `currentUser` 上的方法来更新用户信息。
 
 ## 获取 currentUser 对象
 
-通过当前用户对象进而对当前用户进行管理，开发者只能通过两种方式获取到当前用户对象：
+通过当前用户对象进而对当前用户进行管理，为了保证本地当前用户信息与服务器的用户信息一致，开发者只能通过两种方式获取到当前用户对象：
 
 1. 通过注册、登录后将获取当前用户对象。
 2. 通过以下方法获取当前用户：
@@ -23,12 +27,6 @@ Auth.getCurrentUser { (currentUser, error) in
 }];
 ```
 {% endtabs %}
-
-## currentUser 对象说明
-
-CurrentUser 继承于 User，即 currentUser 拥有所有 User 对象上的属性。
-
-currentUser 代表了当前登录的用户，开发者可以通过浏览 currentUser 上的字段来获取当前用户的信息，通过调用 currentUser 上的方法来更新用户信息。
 
 ## 设置用户信息
 
@@ -75,9 +73,7 @@ currentUser.updateUsername("test_new") { (result, error) in
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | result   | Dictionary           | 被更新的信息 |
-| error   |  NSError |  错误信息     |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)     |
 
 ### 设置邮箱
 
@@ -114,16 +110,12 @@ currentUser.updateEmail("test_new@ifanr.com") { (result, error) in
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | result   | Dictionary           | 被更新的信息 |
-| error   |  NSError |  错误信息     |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)     |
 
 ### 设置密码
 
 > **info**
 > 匿名用户无法调用
-
-> 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 。
 
 **示例代码**
 {% tabs swift3="Swift", oc3="Objective-C" %}
@@ -155,14 +147,9 @@ currentUser.updatePassword("111", newPassword: "1111") { (result, error) in
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | result   | Dictionary           | 被更新的信息 |
-| error   |  NSError |  错误信息     |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)     |
 
 ### 更新用户自定义字段
-
-> **info**
-> 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 。
 
 **示例代码**
 
@@ -195,9 +182,7 @@ currentUser.updateUserInfo(["age": 18]) { (result, error) in
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | result   | Dictionary           | 被更新的信息 |
-| error   |  NSError |  错误信息     |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)     |
 
 ### 邮箱验证
 
@@ -228,11 +213,7 @@ currentUser.requestEmailVerification() { (success, error) in
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | success   | Bool           | 是否已发送邮件 |
-| error   |  NSError |  错误信息     |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
-
-## 忘记密码
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)     |
 
 ### 通过邮件重置密码
 
@@ -263,6 +244,4 @@ currentUser.resetPassword(email: "test@ifanr.com") { (success, error) in
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | success   | Bool           | 是否已发送邮件 |
-| error   |  NSError |  错误信息     |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)     |

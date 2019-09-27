@@ -10,18 +10,29 @@
     * [新手入门 - 微信小程序](newbies/wechat.md)
     * [新手入门 - Web](newbies/web.md)
     * [新手入门 - 支付宝小程序](newbies/alipay.md)
+    * [新手入门 - SwiftUI](newbies/swiftui.md)
 
 ----
 
-* [控制台操作](dashboard/README.md)
-    * [数据管理](dashboard/schema.md)
-    * [内容管理](dashboard/content.md)
-    * [文件管理](dashboard/file.md)
-    * [用户管理](dashboard/user.md)
-    * [支付](dashboard/payment.md)
-    * [触发器](dashboard/trigger.md)
-    * [云函数](dashboard/cloud-function.md)
-    * [ACL 简介](dashboard/acl.md)
+* [控制台使用指南](dashboard/README.md)
+    * [导览](dashboard/guide.md)
+    * [基础服务](dashboard/basic-services/README.md)
+        * [数据](dashboard/basic-services/schema.md)
+        * [内容库](dashboard/basic-services/content.md)
+        * [文件存储](dashboard/basic-services/file.md)
+        * [用户](dashboard/basic-services/user.md)
+        * [支付](dashboard/basic-services/payment.md)
+        * [触发器](dashboard/basic-services/trigger.md)
+        * [云函数](dashboard/basic-services/cloud-function.md)
+        * [设置](dashboard/basic-services/set-up.md)
+        * [ACL 简介](dashboard/basic-services/acl.md)
+    * [运营](dashboard/operation/README.md)
+        * [运营后台](dashboard/operation/user-dash.md)
+        * [短信](dashboard/operation/sms.md)
+    * [小程序](dashboard/miniapp/README.md)
+        * [知晓推送](dashboard/miniapp/template-message.md)
+        * [小程序码](dashboard/miniapp/qrcode.md)
+        * [客服消息](dashboard/miniapp/customer-message.md)
 
 ----
 
@@ -74,6 +85,7 @@
         * [接入指南](js-sdk/baidu/how-to.md)
         * [百度登录](js-sdk/baidu/signin-signout.md)
         * [网络请求](js-sdk/baidu/request.md)
+        * [百度支付](js-sdk/baidu/payment.md)
     * [Web](js-sdk/web/README.md)
         * [接入指南](js-sdk/web/how-to.md)
         * [登入登出](js-sdk/web/signin-signout.md)
@@ -89,6 +101,7 @@
         * [微信小程序支付](js-sdk/payment/wechat-pay.md)
         * [支付宝小程序支付](js-sdk/payment/alipay-pay.md)
         * [QQ 小程序支付](js-sdk/payment/qq-pay.md)
+        * [百度小程序支付](js-sdk/payment/baidu-pay.md)
         * [网页微信、支付宝、QQ 支付](js-sdk/payment/web.md)
         * [订单查询](js-sdk/payment/order.md)
     * [调用云函数](js-sdk/invoke-function.md)
@@ -150,9 +163,8 @@
     * [调用云函数](ios-sdk/invoke-function.md)
     * [短信验证码](ios-sdk/sms.md)
     * [错误码和错误对象](ios-sdk/error-code.md)
-    * Demo 下载
-        * [iOS-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
-        * [SwiftUI-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)
+    * [iOS-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
+    * [SwiftUI-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)
         
 ----
 

@@ -1,0 +1,12 @@
+{
+  "name": "gitbook-plugin-hydrogen-fold",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "gitbook-markdown": "^2.0.1"
+  },
+  "engines": {
+    "gitbook": ">1.x.x"
+  }
+}
