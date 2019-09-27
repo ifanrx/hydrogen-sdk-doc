@@ -1,6 +1,7 @@
 # 触发器
 
-[触发器（Trigger）](https://cloud.minapp.com/dashboard/#/app/engine/trigger/table/)的执行不是由程序调用，也不是手工启动，而是由事件来触发，比如当对一个表进行操作（ create，delete， update）时就会激活它执行。使用触发器，你可以更加方便的实现业务逻辑。
+[触发器（Trigger）](https://cloud.minapp.com/dashboard/#/app/engine/trigger/table/)是知晓云平台的事件驱动引擎，配置好事件源和触发动作，引擎就会在事件发生时自动触发动作。例如，触发器 A 的事件源是数据表新增了数据，触发动作是发送短信给管理员，那么当新增数据时，引擎就会触发短信的发送。    
+使用触发器，可以将复杂的业务流程串联起来，形成自动化的处理机制，大大简化开发。
 
 ## 触发器配置
 

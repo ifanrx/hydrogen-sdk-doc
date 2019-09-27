@@ -6,7 +6,7 @@
 ## 相关概念
 使用数据服务前，你需要了解以下概念。
 
-* tableID： 数据表 ID，配合 Hydrogen SDK 使用。
+* tableName： 数据表名称，配合 Hydrogen SDK 使用。
 * _userprofile：系统内置的用户表，用于存储用户信息。
 * _richtextcontent：系统内置的内容表，可配合知晓云提供的 CMS 后台使用。
 * _id：系统内置字段，是每一行数据的唯一标识。
@@ -68,9 +68,9 @@ fields 详细参数
 
 开发者可以通过**添加行**操作来手动添加数据，如图所示。
 
-### 索引设置
+### 唯一索引设置
 
-![索引设置](/images/dashboard/basic-services/set-up-index.png)
+![唯一索引设置](/images/dashboard/basic-services/set-up-index.png)
 
 知晓云会实时分析数据量级和查询效率，自动为数据表字段增加索引以优化查询效率。因此，开发者不需关心普通索引的创建。在实际业务中，有时需要单个字段的唯一性，甚至多个字段的联合唯一性，此时，就需要对该字段或字段们创建唯一索引。如，报名表，只允许每个用户报名一次，则需要为 created_by 字段创建唯一索引。
 
