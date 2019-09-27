@@ -10,6 +10,7 @@
     * [新手入门 - 微信小程序](newbies/wechat.md)
     * [新手入门 - Web](newbies/web.md)
     * [新手入门 - 支付宝小程序](newbies/alipay.md)
+    * [新手入门 - SwiftUI](newbies/swiftui.md)
 
 ----
 
