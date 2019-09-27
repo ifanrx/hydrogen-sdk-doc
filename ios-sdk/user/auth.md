@@ -1,16 +1,18 @@
 # 通用注册登录
 
- `Auth` 模块集合了和平台无关的用户注册登录相关操作。
+ `Auth` 模块集合了用户注册登录相关操作。
 
 ## 注册
 
 > **info**
-> 注册成功后会自动登录
+> 注册成功后会自动登录。
+>
+> 登录成功后，会保持登录状态，直到用户登出或 `token` 过期。
 
 ### 通过邮箱注册
 
 > **info**
-> 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 
+> 邮箱中的英文字母会被强制转换为小写。例如 `iFanrX@Hello.com` 会被转换成 `ifanrx@hello.com`
 
 **示例代码**
 
@@ -23,7 +25,7 @@ Auth.register(email: "test@ifanr.com", password: "111") { (currentUser, error) i
 ```
 {% content "oc1" %}
 ```
-[BaaSAuth registerWithEmail:@"test@ifanr.com" password:@"111" completion:^(BAASUser * _Nullable currentUser, NSError * _Nullable error) {
+[BaaSAuth registerWithEmail:@"test@ifanr.com" password:@"111" completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
 
 }];
 ```
@@ -40,10 +42,8 @@ Auth.register(email: "test@ifanr.com", password: "111") { (currentUser, error) i
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| currentUser| CurrentUser         | 当前用户 |
-| error   |  NSError |  错误信息     |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| currentUser| CurrentUser         | 当前用户实例，详见 [当前用户](./account.md) |
+| error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md)|
 
 ### 通过用户名注册
 
@@ -57,7 +57,7 @@ Auth.register(username: "test", password: "111") { (currentUser, error) in
 ```
 {% content "oc2" %}
 ```
-[BaaSAuth registerWithUsername:@"test" password:@"111" completion:^(BAASUser * _Nullable currentUser, NSError * _Nullable error) {
+[BaaSAuth registerWithUsername:@"test" password:@"111" completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
 
 }];
 ```
@@ -74,10 +74,8 @@ Auth.register(username: "test", password: "111") { (currentUser, error) in
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| currentUser    | CurrentUser         | 当前用户|
-| error   |  NSError |  错误信息     |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| currentUser    | CurrentUser         | 当前用户实例，详见 [当前用户](./account.md)|
+| error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md)    |
 
 ## 登录
 
@@ -93,7 +91,7 @@ Auth.login(email: "test@ifanr.com", password: "111") { (currentUser, error) in
 ```
 {% content "oc3" %}
 ```
-[BaaSAuth loginWithEmail:@"test@ifanr.com" password:@"111" completion:^(BAASUser * _Nullable currentUser, NSError * _Nullable error) {
+[BaaSAuth loginWithEmail:@"test@ifanr.com" password:@"111" completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
 
 }];
 ```
@@ -111,10 +109,8 @@ Auth.login(email: "test@ifanr.com", password: "111") { (currentUser, error) in
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| currentUser    | CurrentUser         | 当前用户|
-| error   |  NSError |  错误信息     |
-
-err 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| currentUser    | CurrentUser         | 当前用户实例，详见 [当前用户](./account.md)|
+| error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md)     |
 
 ### 通过用户名登录
 
@@ -128,7 +124,7 @@ Auth.login(username: "test", password: "111") { (currentUser, error) in
 ```
 {% content "oc4" %}
 ```
-[BaaSAuth loginWithUsername:@"test" password:@"111" completion:^(BAASUser * _Nullable currentUser, NSError * _Nullable error) {
+[BaaSAuth loginWithUsername:@"test" password:@"111" completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
 
 }];
 ```
@@ -141,20 +137,18 @@ Auth.login(username: "test", password: "111") { (currentUser, error) in
 | username    | String      | 用户名 |
 | password | String         | 密码     |
 
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
-
 **返回结果**
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| currentUser    | CurrentUser         | 当前用户 |
-| error   |  NSError |  错误信息     |
+| currentUser    | CurrentUser         | 当前用户实例，详见 [当前用户](./account.md) |
+| error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md)     |
 
 ### 匿名登录
 
 往数据表里添加数据，需要有一个用户身份（这样才能保障数据来源可回溯）。
 如果不希望强制用户在一开始就进行注册，可以使用匿名用户，让应用不提供注册步骤也能创建临时用户。
-以使得当前用户可以往 ACL 权限设置为“允许所有人（匿名用户 + 登录用户）可写” 的数据表内添加数据。
+以使得当前用户可以往 `ACL` 权限设置为“允许所有人（匿名用户 + 登录用户）可写” 的数据表内添加数据。
 
 > 匿名登录使用场景举例：假如开发者希望应用内的文章，所有人可以在登录前阅读、点赞，
 > 而且仅在调用特定接口时才需要登录，比如发布文章、评论文章。这时可以先使用匿名登录，
@@ -164,12 +158,12 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 
 1. 不需要进行用户数据合并
 
-    匿名登录后，使用用户名注册返回的 user_id 与之前匿名登录的 user_id 是一致的
+    匿名登录后，使用用户名注册返回的 `user_id` 与之前匿名登录的 `user_id` 是一致的
     （也就是直接把匿名用户转变为了正式用户），所以不需要数据合并。
 
 2. 需要进行用户数据合并
 
-    匿名登录后，使用用户名登录，登录成功后，返回的 user_id 必定与之前匿名登录的 user_id 不一致，所以需要数据合并。
+    匿名登录后，使用用户名登录，登录成功后，返回的 `user_id` 必定与之前匿名登录的 `user_id` 不一致，所以需要数据合并。
 
 > **info**
 > 最终进不进行数据合并，由开发者自己考量决定。合并操作需要开发者自己进行。
@@ -178,13 +172,13 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
 {% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}
 ```
-Auth.anonymousLogin { (user, error) in
+Auth.anonymousLogin { (currentUser, error) in
 
 }
 ```
 {% content "oc5" %}
 ```
-[BaaSAuth anonymousLogin:^(BAASUser * _Nullable user, NSError * _Nullable error) {
+[BaaSAuth anonymousLogin:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
 
 }];
 ```
@@ -194,10 +188,8 @@ Auth.anonymousLogin { (user, error) in
 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| currentUser    | CurrentUser         | 当前用户 |
-| error   |  NSError |  错误信息     |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| currentUser    | CurrentUser         | 当前用户实例，详见 [当前用户](./account.md) |
+| error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md)     |
 
 ### 登出
 
@@ -224,6 +216,4 @@ Auth.logout { (success, error) in
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | success  | Bool           | 是否登出成功 |
-| error   |  NSError |  错误信息  |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md)  |

@@ -37,7 +37,7 @@ BaaS.sendSmsCode(phone: "1508805****") { (success, error) in
 | 参数   | 类型                   | 描述 |
 | :---- | :--------------------- | :-- |
 | success  | Bool | 是否发送成功 |
-| error | NSError                 | 返回的错误信息，成功则返回空对象 |
+| error | NSError                 | 错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md) |
 
 **错误状态码**
 
@@ -77,7 +77,7 @@ BaaS.verifySmsCode(phone: "1508805****", code: "11111") { (success, error) in
 | 参数   | 类型                   | 描述 |
 | :---- | :--------------------- | :-- |
 | success  | Bool | 是否验证成功 |
-| error | NSError                 | 返回的错误信息，成功则返回空对象 |
+| error | NSError                 | 错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md) |
 
 **错误状态码**
 

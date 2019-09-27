@@ -31,12 +31,24 @@
 
 **OBJECT 参数说明**
 
-| 参数                    | 类型    | 必填 | 参数描述 |
+{% if apiPrefix == 'wx' %}
+| 参数                   | 类型    | 必填 | 参数描述 |
 | :--------------------- | :------ | :-- | :------ |
 | totalCost              | Number  | Y   | 支付总额，单位：元 |
 | merchandiseDescription | String  | Y   | {{platformName}}支付凭证-商品详情的内容 |
 | merchandiseSchemaID    | Integer | N   | 商品数据表 ID，可用于定位用户购买的物品 |
 | merchandiseRecordID    | String  | N   | 商品数据行 ID，可用于定位用户购买的物品 |
+| merchandiseSnapshot    | Object  | N   | 根据业务需求自定义的数据 |
+| profitSharing          | Boolean | N   | 当前订单是否需要分账。分账操作，请查看[微信直连商户分账](/cloud-function/node-sdk/order.html#微信直连商户分账) |
+{% else %}
+| 参数                   | 类型    | 必填 | 参数描述 |
+| :--------------------- | :------ | :-- | :------ |
+| totalCost              | Number  | Y   | 支付总额，单位：元 |
+| merchandiseDescription | String  | Y   | {{platformName}}支付凭证-商品详情的内容 |
+| merchandiseSchemaID    | Integer | N   | 商品数据表 ID，可用于定位用户购买的物品 |
+| merchandiseRecordID    | String  | N   | 商品数据行 ID，可用于定位用户购买的物品 |
+| merchandiseSnapshot    | Object  | N   | 根据业务需求自定义的数据 |
+{% endif %}
 
 > **info**
 > 举例：开发者有一个 Article 表, 里面有免费 / 付费的文章, 当用户对一篇付费文章进行支付时, 则可以将 Article 表的 ID 作为 `merchandiseSchemaID`, 文章记录的 ID 作为你 `merchandiseRecordID` 传入到 `{{apiPrefix}}.BaaS.pay(object)` 写进支付订单记录。当用户阅读此付费文章时, 则可以通过 `merchandiseSchemaID`, `merchandiseRecordID` 来查询用户是否付费。

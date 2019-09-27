@@ -17,7 +17,7 @@
 {% content "swift1" %}
 ```
 // 通过 tableId 创建数据表实例 
-let table = Table(Id: 1236**)
+let table = Table(Id: "1236")
 
 // 通过 tablename 创建数据表实例
 let table = Table(name: "Book")
@@ -25,7 +25,7 @@ let table = Table(name: "Book")
 {% content "oc1" %}
 ```
 // 通过 tableId 创建数据表实例
-BaaSTable *table = [[BaaSTable alloc] initId:1236**];
+BaaSTable *table = [[BaaSTable alloc] initId:@"1236"];
 
 // 通过 tablename 创建数据表实例
 BaaSTable *table = [[BaaSTable alloc] initWithName:@"Book"];
@@ -34,7 +34,7 @@ BaaSTable *table = [[BaaSTable alloc] initWithName:@"Book"];
 
 **参数说明**
 
-tableName 和 tableId 二选一
+`tableName` 和 `tableId` 二选一
 
 | 名称     | 类型   |说明    |
 | :-----  | :----- | :--- |
@@ -100,6 +100,8 @@ record.set(key: "price", value: 10)
 
 > **info**
 > 对同一字段进行多次 `set` 操作，后面的数据会覆盖掉前面的数据
+>
+> 在通过 `set(key:value:)` 和 `set(record: )` 设置数据时，value 支持的类型包括 `Int`、`String`、`Array`、`Dictionary` 等基本数据类型，同时也支持 `GeoPoint` 、`GeoPolygon`、`User`、`Record`。
 
 ### 将创建的记录保存到服务器
 
@@ -123,11 +125,10 @@ record.save { (success, error) in
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | success  | Bool           | 是否新增数据成功 |
-| error   |  NSError |  错误信息  |
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
-success 写入数据成功后，**记录对象 record 的数据将被更新**。
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+> **info**
+> 若 `success` 为 `true`，本地记录实例 `record` 的数据将被更新。此时访问 `record.get(key: "color")` 为 `red`。
 
 **通过上面的四个步骤，即完成了一条记录的插入，具体操作阅读以下内容。**
 
@@ -182,51 +183,59 @@ BaaSRecord *book = [bookTable createRecord];
 
 ## 添加日期时间 Date 类型的数据
 
-数据表允许添加时间日期类型的列，为该类型的记录赋值，需要使用 ISO Date 格式的字符串，如 Book 表定义一个时间日期类型的列 publish_date，创建一条记录时，该字段的赋值操作如下：
+数据表允许添加时间日期类型的字段，为该类型的记录赋值，需要使用 ISO Date 格式的字符串，如 Book 表定义一个时间日期类型的列 publish_date，创建一条记录时，该字段的赋值操作如下：
 
 {% tabs swift7="Swift", oc7="Objective-C" %}
 {% content "swift7" %}
 ```
 let dateISO = ISO8601DateFormatter().string(from: Date())
 book.set(key: "publish_date", value: dateISO)
+book.save { (success, error) in
+
+}
 ```
 {% content "oc7" %}
 ```
 NSISO8601DateFormatter *dateFormatter = [[NSISO8601DateFormatter alloc] init];
 NSString *dateISO = [dateFormatter stringFromDate:[NSDate date]];
 [book setWithKey:@"publish_date" value:dateISO];
+[book save:^(BOOL success, NSError * _Nullable error) {
+
+}];
 ```
 {% endtabs %}
 
 ## 添加 file 类型数据
 
 > **info**
->  为 file 类型字段设置值时，必须以 json 格式提供特定的文件信息。通过使用 `fileInfo` 可方便获取文件信息。
+>  为 file 类型字段设置值时，必须以 json 格式提供特定的文件信息。通过使用 `File` 实例的属性 `fileInfo` 可方便获取文件信息。
 
-如 Book 表定义 file 类型的列 cover，表示书的封面。示例：将一个文件上传到知晓云后，将该文件设置为书的封面。
+如 Book 表定义 file 类型的列 cover，表示书的封面。示例：获取 `id` 为 `5c98b065d575a97d5f878225` 的文件，将该文件设置为书的封面。
+
+**实例代码**
 
 {% tabs swift8="Swift", oc8="Objective-C" %}
 {% content "swift8" %}
 ```
-let filePath = Bundle.main.path(forResource: "cover", ofType: "png")!
-fileManager.upload(filename: "cover", localPath: filePath, categoryName: "Book", progressBlock: { progress in
-                
-    }) { (file, error) in
+FileManager.get("@"5c98b065d575a97d5f878225"") { (file, error) in
     book.set(key: "cover", value: file?.fileInfo)
+    book.save { (success, error) in
+
+    }
 }
 ```
 {% content "oc8" %}
 ```
-NSString *filePath = [[NSBundle mainBundle] pathForResource:@"cover" ofType:@"png"];
-[fileManager uploadWithFilename:@"cover" localPath:filePath categoryName:@"Book" progressBlock:^(NSProgress * _Nullable progress) {
+[BaaSFileManager get:@"5c98b065d575a97d5f878225", completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
+    [book setWithKey:@"cover" value:file.fileInfo];
+    [book save:^(BOOL success, NSError * _Nullable error) {
 
-    } completion:^(BAASFile * _Nullable file, NSError * _Nullable error) {
-        [book setWithKey:@"cover" value:file.fileInfo];
+    }];
 }];
 ```
 {% endtabs %}
 
-关于 `file` 类型查看 [文件](../file/file.md) 章节
+关于 `File` 类型查看 [文件](../file/file.md) 章节
 
 ## 添加 geojson 类型数据
 
@@ -238,44 +247,58 @@ NSString *filePath = [[NSBundle mainBundle] pathForResource:@"cover" ofType:@"pn
 
 **示例**
 
-Book 表中的 publish_info 为 object 类型，表示出版商，其中有两个字段信息：name 表示出版商名称，location 为出版商地址。
+假如 `Book` 表中的 `publish_info` 为 `object` 类型，表示出版商，其中有两个字段信息：`name` 表示出版商名称，`location` 为出版商地址。
 
 {% tabs swift8_2="Swift", oc8_2="Objective-C" %}
 {% content "swift8_2" %}
 ```
+let table = Table(name: "Book")
+let book = table.createRecord()
 book.set(key: "publish_info", value: ["name": "efg出版社", "location": "广东省广州市天河区五山路 100 号"])
+book.save { (success, error) in
+
+}
 ```
 {% content "oc8_2" %}
 ```
 [book setWithKey:@"publish_info" value: @{@"name": @"efg出版社", @"location": @"广东省广州市天河区五山路 100 号"}];
+[book save:^(BOOL success, NSError * _Nullable error) {
+
+}];
 ```
 {% endtabs %}
 
 ## 添加 array 类型数据
 
-添加 array 类型数据的方法与添加其他类型数据的方法基本一致。区别在于，array 类型数据是将一个的数组赋值给某个字段。
+添加 `array` 类型数据的方法与添加其他类型数据的方法基本一致。区别在于，`array` 类型数据是将一个的数组赋值给某个字段。
 
-array 类型数据中的元素类型，要与预先在知晓云平台设定的字段类型一致。否则创建的数据将不包含该 array 类型的字段。
+`array` 类型数据中的元素类型，要与预先在知晓云平台设定的字段类型一致。否则创建的数据将不包含该 `array` 类型的字段。
 
 **示例**
 
-Book 表中的 recommender 为 array 类型，表示推荐者。
+`Book` 表中的 `recommender` 为 array 类型，表示推荐者。
 
 {% tabs swift8_3="Swift", oc8_3="Objective-C" %}
 {% content "swift8_2" %}
 ```
 book.set(key: "recommender", value: ["yuminghong", "hua")
+book.save { (success, error) in
+
+}
 ```
 {% content "oc8_3" %}
 ```
 [book setWithKey:@"recommender" value: @[@"yuminghong", @"hua"]];
+[book save:^(BOOL success, NSError * _Nullable error) {
+
+}];
 ```
 {% endtabs %}
 
 ## 添加 pointer 类型数据 
 
 > **info**
-> 每张表最多能建立 3 个 pointer 类型的字段。如有更多需求，请提交工单说明  
+> 每张表最多能建立 3 个 `pointer` 类型的字段。如有更多需求，请提交工单说明  
 > pointer 指向的数据表，不能改名或删除
 
 假设现在有一张 Book 表, Book 表部分字段如下:
@@ -293,16 +316,23 @@ comment 字段指向了 Comment 表中 id 为 5bad87ab0769797b4fb27a1b 的数据
 ```
 let comment = table.getWithoutData(recordId: "5bad87ab0769797b4fb27a1b")
 book.set(key: "comment", value: comment)
+book.save { (success, error) in
+
 }
 ```
 {% content "oc9" %}
 ```
 BaaSRecord *comment = [table getWithoutDataWithRecordId:@"5bad87ab0769797b4fb27a1b"];
 [book setWithKey:@"comment" value:comment];
+[book save:^(BOOL success, NSError * _Nullable error) {
+
+}];
 ```
 {% endtabs %}
 
 ## 批量新增数据项
+
+一次创建多条记录，同时根据需要设置是否触发触发器。
 
 {% tabs swift10="Swift", oc10="Objective-C" %}
 {% content "swift10" %}
@@ -323,6 +353,9 @@ NSDictionary *options = @{@"enable_trigger": @YES};
 ```
 {% endtabs %}
 
+> **info**
+> 在通过 `createMany` 方法新增记录时，记录值支持的类型包括 `Int`、`Float`、`String`、`Array`、`Dictionary` 等基本数据类型，同时也支持 `GeoPoint` 、`GeoPolygon`、`User`、`Record`。
+
 **参数说明**
 
 | 参数名    | 类型    | 说明              |  必填  |
@@ -335,10 +368,10 @@ NSDictionary *options = @{@"enable_trigger": @YES};
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | result  |  Dictionary           | 新增的数据结果 |
-| error   |  NSError |  错误信息  |
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
 > **info**
-> error 为 nil 不说明批量写入数据完全成功，仅代表服务端已收到并处理了这个请求，只有当返回的结果中 operation_result 列表中不存在 error 元素时，才可以认为所有数据均写入成功。
+> `error` 为 `nil` 不说明批量写入数据完全成功，仅代表服务端已收到并处理了这个请求，只有当返回的结果中 `operation_result` 列表中不存在 `error` 元素时，才可以认为所有数据均写入成功。
 
  **返回示例**
  ```
@@ -358,13 +391,11 @@ NSDictionary *options = @{@"enable_trigger": @YES};
  ```
 
 **参数说明**
-* succeed:	成功创建记录数
-* total_count:	总的待创建记录数
-* operation_result: 批量写入每一条数据的结果
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+* `succeed`:	成功创建记录数
+* `total_count`:	总的待创建记录数
+* `operation_result`: 批量写入每一条数据的结果
 
 **常见错误码**
-* 201：成功写入
-* 400：非法数据
-* 403：无权限写入（表权限）
+* `201`：成功写入
+* `400`：非法数据
+* `403`：无权限写入（表权限）

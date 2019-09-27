@@ -10,18 +10,29 @@
     * [新手入门 - 微信小程序](newbies/wechat.md)
     * [新手入门 - Web](newbies/web.md)
     * [新手入门 - 支付宝小程序](newbies/alipay.md)
+    * [新手入门 - SwiftUI](newbies/swiftui.md)
 
 ----
 
-* [控制台操作](dashboard/README.md)
-    * [数据管理](dashboard/schema.md)
-    * [内容管理](dashboard/content.md)
-    * [文件管理](dashboard/file.md)
-    * [用户管理](dashboard/user.md)
-    * [支付](dashboard/payment.md)
-    * [触发器](dashboard/trigger.md)
-    * [云函数](dashboard/cloud-function.md)
-    * [ACL 简介](dashboard/acl.md)
+* [控制台使用指南](dashboard/README.md)
+    * [导览](dashboard/guide.md)
+    * [基础服务](dashboard/basic-services/README.md)
+        * [数据](dashboard/basic-services/schema.md)
+        * [内容库](dashboard/basic-services/content.md)
+        * [文件存储](dashboard/basic-services/file.md)
+        * [用户](dashboard/basic-services/user.md)
+        * [支付](dashboard/basic-services/payment.md)
+        * [触发器](dashboard/basic-services/trigger.md)
+        * [云函数](dashboard/basic-services/cloud-function.md)
+        * [设置](dashboard/basic-services/set-up.md)
+        * [ACL 简介](dashboard/basic-services/acl.md)
+    * [运营](dashboard/operation/README.md)
+        * [运营后台](dashboard/operation/user-dash.md)
+        * [短信](dashboard/operation/sms.md)
+    * [小程序](dashboard/miniapp/README.md)
+        * [知晓推送](dashboard/miniapp/template-message.md)
+        * [小程序码](dashboard/miniapp/qrcode.md)
+        * [客服消息](dashboard/miniapp/customer-message.md)
 
 ----
 
@@ -61,7 +72,7 @@
         * [网络请求](js-sdk/wechat/request.md)
         * [模板消息](js-sdk/wechat/template-message.md)
         * [微信加密数据解密](js-sdk/wechat/wechat-decrypt.md)
-        * [检测违规图片、文本](js-sdk/wechat/censor.md)
+        * [检测违规图片、音频、文本](js-sdk/wechat/censor.md)
         * [获取二维码](js-sdk/wechat/wxacode.md)
     * [QQ 小程序](js-sdk/qq/README.md)
         * [接入指南](js-sdk/qq/how-to.md)
@@ -152,9 +163,8 @@
     * [调用云函数](ios-sdk/invoke-function.md)
     * [短信验证码](ios-sdk/sms.md)
     * [错误码和错误对象](ios-sdk/error-code.md)
-    * Demo 下载
-        * [iOS-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
-        * [SwiftUI-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)
+    * [iOS-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
+    * [SwiftUI-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)
         
 ----
 
@@ -264,6 +274,7 @@
         * [文件操作](cloud-function/node-sdk/file/file.md)
         * [文件分类操作](cloud-function/node-sdk/file/file-category.md)
     * [支付订单操作](cloud-function/node-sdk/order.md)
+    * [微信直连商户分账](cloud-function/node-sdk/wechat-profit-sharing.md)
     * [获取微信小程序二维码](cloud-function/node-sdk/wxacode.md)
     * [获取支付宝小程序二维码](cloud-function/node-sdk/alipay-qr-code.md)
     * [调用云函数](cloud-function/node-sdk/cloud-function.md)
