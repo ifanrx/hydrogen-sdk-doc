@@ -14,12 +14,12 @@
 
 ----
 
-* [知晓云用户指南](dashboard/README.md)
+* [控制台使用指南](dashboard/README.md)
     * [导览](dashboard/guide.md)
     * [基础服务](dashboard/basic-services/README.md)
         * [数据](dashboard/basic-services/schema.md)
-        * [内容](dashboard/basic-services/content.md)
-        * [文件](dashboard/basic-services/file.md)
+        * [内容库](dashboard/basic-services/content.md)
+        * [文件存储](dashboard/basic-services/file.md)
         * [用户](dashboard/basic-services/user.md)
         * [支付](dashboard/basic-services/payment.md)
         * [触发器](dashboard/basic-services/trigger.md)
