@@ -87,7 +87,6 @@
 | 参数                      | 类型   | 说明 |
 | :-------------------------| :----- | :-- |
 | transaction_no | String   | {{platformName}}支付流水号 |
-| trade_no    | String | {{platformName}}支付交易 ID, 业务方在{{platformName}}后台对账时可看到此字段 |
 {% endif %}
 
 **示例代码**
@@ -132,7 +131,6 @@ let params = {
 ```
 {
   transaction_no: "MDUhtNmacdYBKokJbCXhvYuoJnHXzpeN",
-  trade_no: '4DySOWgNssfu5XsiTH9Ek2f5m9jWTwTw'
 }
 ```
 
