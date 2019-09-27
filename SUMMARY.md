@@ -72,7 +72,7 @@
         * [网络请求](js-sdk/wechat/request.md)
         * [模板消息](js-sdk/wechat/template-message.md)
         * [微信加密数据解密](js-sdk/wechat/wechat-decrypt.md)
-        * [检测违规图片、文本](js-sdk/wechat/censor.md)
+        * [检测违规图片、音频、文本](js-sdk/wechat/censor.md)
         * [获取二维码](js-sdk/wechat/wxacode.md)
     * [QQ 小程序](js-sdk/qq/README.md)
         * [接入指南](js-sdk/qq/how-to.md)
