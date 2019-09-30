@@ -80,7 +80,7 @@
           <a href="/js-sdk/file/README.md/">文件</a>
         </li>
         <li>
-          <a href="/js-sdk/wechat/payment/README.md/">微信支付</a>
+          <a href="/js-sdk/payment/wechat-pay.md/">微信支付</a>
         </li>
         <li>
           <a href="/js-sdk/local-storage.md/">本地存储</a>
@@ -107,9 +107,6 @@
         </li>
         <li>
           <a href="/js-sdk/error-code.md/">错误码详解</a>
-        </li>
-        <li>
-          <a href="/js-sdk/wechat/bugout.md/">异常上报</a>
         </li>
         <li>
           <a href="/js-sdk/download-sdk.md/">SDK 下载</a>
@@ -207,9 +204,6 @@
           <a href="/open-api/file/README.md/">文件模块</a>
         </li>
         <li>
-          <a href="/open-api/group/README.md/">分组模块</a>
-        </li>
-        <li>
           <a href="/open-api/user/README.md">用户模块</a>
         </li>
         <li>
@@ -263,9 +257,6 @@
           <a href="/user-dash/file/README.md/">文件模块</a>
         </li>
         <li>
-          <a href="/user-dash/group/README.md/">分组模块</a>
-        </li>
-        <li>
           <a href="/user-dash/user.md/">用户模块</a>
         </li>
         <li>
@@ -279,7 +270,7 @@
       </h3>
       <ul class="doc-cloud-function doc-detail-item">
         <li>
-          <a href="/cloud-function/quick-start.md/">快速入门</a>
+          <a href="/cloud-function/node-sdk/start/README.md/">快速入门</a>
         </li>
         <li>
           <a href="/cloud-function/cli.md/">命令行工具</a>
@@ -320,7 +311,7 @@
           <a href="/cloud-function/node-sdk/wx-promotion-transfer.md">企业付款</a>
         </li>
         <li>
-          <a href="/cloud-function/node-sdk/sms.md">短信验证码</a>
+          <a href="/cloud-function/node-sdk/sms/code.md">短信验证码</a>
         </li>
       </ul>
     </li>
