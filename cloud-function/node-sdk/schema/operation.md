@@ -36,16 +36,32 @@ tableID 和 tableName 二选一，不能同时存在
 | part    |  导出部分数据 |
 
 **示例代码**
-
+{% tabs exportDataAsync="async/await", exportDataPromise="promise" %}
+{% content "exportDataAsync" %}
 ```js
-
-let MyTableObject = new BaaS.TableObject(tableName)
-MyTableObject.exportData('json', 'all').then(res => {
-  // success
-}, err => {
-  // err
-})
+async function exportData() {
+  try {
+    let MyTableObject = new BaaS.TableObject(tableName)
+    let res = await MyTableObject.exportData('json', 'all')
+    // success
+  } catch(err) {
+    // error
+  }
+}
 ```
+
+{% content "exportDataPromise" %}
+```js
+function exportData() {
+  let MyTableObject = new BaaS.TableObject(tableName)
+  MyTableObject.exportData('json', 'all').then(res => {
+    // success
+  }).catch(err => {
+    // error
+  })
+}
+```
+{% endtabs %}
 
 **返回示例** (res.status === 200)
 
@@ -70,40 +86,74 @@ res.data:
 | fileType    | String  |  是 | 导入文件的格式，支持 csv、json 格式 |
 
 **示例代码**
-
+{% tabs importDataAsync="async/await", importDataPromise="promise" %}
+{% content "importDataAsync" %}
 ```js
-/* url */
-let MyTableObject = new BaaS.TableObject(tableName)
-MyTableObject.importData({dataFileUrl: dataUrl}, 'csv').then(res => {
-  // success
-}, err => {
-  // err
-})
-
-/* 本地文件路径 */
-const fs = require('fs')
-const file = fs.createWriteStream('/tmp/data.csv')
-BaaS.request.get(dataUrl).then(res => {
-  file.write(res.data)
-  file.end()
-  let MyTable = new BaaS.TableObject(tableID)
-  MyTable.importData({dataFile: '/tmp/data.csv'}, 'csv').then(res => {
+async function importData() {
+  try {
+    /* url */
+    let MyTableObject = new BaaS.TableObject(tableName)
+    let res = await MyTableObject.importData({dataFileUrl: dataUrl}, 'csv')
     // success
-  }, err => {
-    // err
-  })
-})
 
-/* Buffer */
-BaaS.request.get(dataUrl).then(res => {
-  let MyTable = new BaaS.TableObject(tableName)
-  MyTable.importData({dataFile: Buffer.from(res.data)}, 'csv').then(res => {
+    /* 本地文件路径 */
+    const fs = require('fs')
+    const file = fs.createWriteStream('/tmp/data.csv')
+    let res = await BaaS.request.get(dataUrl)
+    file.write(res.data)
+    file.end()
+    let MyTable = new BaaS.TableObject(tableID)
+    let importRes = await MyTable.importData({dataFile: '/tmp/data.csv'}, 'csv')
     // success
-  }, err => {
-    // err
-  })
-})
+
+    /* Buffer */
+    let res = await BaaS.request.get(dataUrl)
+    let MyTable = new BaaS.TableObject(tableName)
+    let importRes = await MyTable.importData({dataFile: Buffer.from(res.data)}, 'csv')
+    // success
+  } catch(err) {
+    // error
+  }
+}
 ```
+
+{% content "importDataPromise" %}
+```js
+function importData() {
+  /* url */
+  let MyTableObject = new BaaS.TableObject(tableName)
+  MyTableObject.importData({dataFileUrl: dataUrl}, 'csv').then(res => {
+    // success
+  }).catch(err => {
+    // error
+  })
+
+  /* 本地文件路径 */
+  const fs = require('fs')
+  const file = fs.createWriteStream('/tmp/data.csv')
+  BaaS.request.get(dataUrl).then(res => {
+    file.write(res.data)
+    file.end()
+    let MyTable = new BaaS.TableObject(tableID)
+    MyTable.importData({dataFile: '/tmp/data.csv'}, 'csv').then(res => {
+      // success
+    }).catch(err => {
+    // error
+    })
+  })
+
+  /* Buffer */
+  BaaS.request.get(dataUrl).then(res => {
+    let MyTable = new BaaS.TableObject(tableName)
+    MyTable.importData({dataFile: Buffer.from(res.data)}, 'csv').then(res => {
+      // success
+    }).catch(err => {
+    // error
+    })
+  })
+}
+```
+{% endtabs %}
 
 **返回示例** (res.status === 200)
 

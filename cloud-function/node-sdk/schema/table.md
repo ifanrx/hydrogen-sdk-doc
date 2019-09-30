@@ -125,7 +125,10 @@ let tableSchema = new BaaS.TableSchema()
 
 **代码示例**
 
-```js
+{% tabs async="async/await", promise="promise" %}
+{% content "async" %}
+
+```javascript
 const schemaInfo = {
   "name": "Table199",
   "schema": {
@@ -147,31 +150,55 @@ const schemaInfo = {
   ]
 }
 
-// 使用 promise
-function createSchema() {
-  let tableSchema = new BaaS.TableSchema()
-  tableSchema.createSchema(schemaInfo).then(res=>{
-    // success
-  }).catch(e=>{
-    // error
-  })
-}
-
-// 使用 async/await
 async function createSchema() {
   try {
     let tableSchema = new BaaS.TableSchema()
     let res = await tableSchema.createSchema(schemaInfo)
     // success
-  } catch(e) {
+  } catch(err) {
     // error
   }
 }
 ```
+{% content "promise" %}
+
+```javascript
+const schemaInfo = {
+  "name": "Table199",
+  "schema": {
+    "fields": [
+      {
+        "name": "String",
+        "type": "string"
+      }
+    ]
+  },
+  "row_read_perm": [
+    "user:anonymous"
+  ],
+  "row_write_perm": [
+    "user:*"
+  ],
+  "write_perm": [
+    "user:*"
+  ]
+}
+
+function createSchema() {
+  let tableSchema = new BaaS.TableSchema()
+  tableSchema.createSchema(schemaInfo).then(res=>{
+    // success
+  }).catch(err => {
+    // error
+  })
+}
+```
+
+{% endtabs %}
 
 **返回示例**
 
-res.data 结构如下
+{% ifanrxfold summary="res.data 结构如下" %}
 
 ```json
 {
@@ -222,6 +249,7 @@ res.data 结构如下
   "updated_at": 1519640477
 }
 ```
+{% endifanrxfold %}
 
 > **info**
 > 字段如 id、created_by、created_at、updated_at 为自动添加的内置字段
@@ -254,26 +282,30 @@ res.data 结构如下
 
 **代码示例**
 
+{% tabs getSchemaAsync="async/await", getSchemaPromise="promise" %}
+{% content "getSchemaAsync" %}
 ```js
-// 使用 promise
-function getSchema() {
-  tableSchema.getSchema(1).then(res=>{
-    // success
-  }).catch(e=>{
-    // error
-  })
-}
-
-// 使用 async/await
 async function getSchema() {
   try {
     let res = await tableSchema.getSchema(1)
     // success
-  } catch(e) {
+  } catch(err) {
     // error
   }
 }
 ```
+
+{% content "getSchemaPromise" %}
+```js
+function getSchema() {
+  tableSchema.getSchema(1).then(res=>{
+    // success
+  }).catch(err => {
+    // error
+  })
+}
+```
+{% endtabs %}
 
 **返回示例**
 
@@ -326,26 +358,30 @@ res.data 结构如下
 
 **代码示例**
 
+{% tabs getSchemaListAsync="async/await", getSchemaListPromise="promise" %}
+{% content "getSchemaListAsync" %}
 ```js
-// 使用 promise
-function getSchemaList() {
-  tableSchema.getSchemaList({limit:20, offset: 0}).then(res=>{
-    // success
-  }).catch(e=>{
-    // error
-  })
-}
-
-// 使用 async/await
 async funnction getSchemaList() {
   try {
     let res = await tableSchema.getSchemaList({limit:20, offset: 0})
     // success
-  } catch(e) {
+  } catch(err) {
     // error
   }
 }
 ```
+
+{% content "getSchemaListPromise" %}
+```js
+function getSchemaList() {
+  tableSchema.getSchemaList({limit:20, offset: 0}).then(res=>{
+    // success
+  }).catch(err => {
+    // error
+  })
+}
+```
+{% endtabs %}
 
 **返回示例**
 
@@ -405,30 +441,38 @@ res.data 结构如下
 
 **代码示例**
 
+{% tabs updateSchemaAsync="async/await", updateSchemaPromise="promise" %}
+{% content "updateSchemaAsync" %}
 ```js
 const schemaInfo = {
   name: "table"
 }
 
-// 使用 promise
-function updateSchema() {
-  tableSchema.updateSchema(1, schemaInfo).then(res=>{
-    // success
-  }).catch(e=>{
-    // error
-  })
-}
-
-// 使用 async/await
 async function updateSchema() {
   try {
     let res = await tableSchema.updateSchema(1, schemaInfo)
     // success
-  } catch(e) {
+  } catch(err) {
     // error
   }
 }
 ```
+
+{% content "updateSchemaPromise" %}
+```js
+const schemaInfo = {
+  name: "table"
+}
+
+function updateSchema() {
+  tableSchema.updateSchema(1, schemaInfo).then(res=>{
+    // success
+  }).catch(err => {
+    // error
+  })
+}
+```
+{% endtabs %}
 
 **返回示例**
 
@@ -475,26 +519,30 @@ res.data 接口如下
 
 **代码示例**
 
+{% tabs deleteSchemaAsync="async/await", deleteSchemaPromise="promise" %}
+{% content "deleteSchemaAsync" %}
 ```js
-// 使用 promise
-function deleteSchema() {
-  tableSchema.deleteSchema(1).then(res=>{
-    // success
-  }).catch(e=>{
-    // error
-  })
-}
-
-// 使用 async/await
 async function deleteSchema() {
   try {
     let res = await tableSchema.deleteSchema(1)
     // success
-  } catch(e) {
+  } catch(err) {
     // error
   }
 }
 ```
+
+{% content "deleteSchemaPromise" %}
+```js
+function deleteSchema() {
+  tableSchema.deleteSchema(1).then(res=>{
+    // success
+  }).catch(err => {
+    // error
+  })
+}
+```
+{% endtabs %}
 
 **状态码说明**
 

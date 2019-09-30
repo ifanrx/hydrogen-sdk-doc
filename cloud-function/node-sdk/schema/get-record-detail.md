@@ -29,23 +29,9 @@ tableID 和 tableName 二选一，不能同时存在
 ## 示例
 
 **请求示例**
-
+{% tabs getRecordAsync="async/await", getRecordPromise="promise" %}
+{% content "getRecordAsync" %}
 ```js
-// 使用 promise
-funnction getRecord() {
-  let tableName = 'product'
-  let recordID = '59897882ff650c0477f00485'
-
-  let Product = new BaaS.TableObject(tableName)
-
-  Product.get(recordID).then(res => {
-    // success
-  }, err => {
-    // err
-  })
-}
-
-// 使用 async/await
 async function getRecord() {
   try {
     let tableName = 'product'
@@ -56,10 +42,27 @@ async function getRecord() {
     let res = await Product.get(recordID)
     // success
   } catch(err) {
-    // err
+    // error
   }
 }
 ```
+
+{% content "getRecordPromise" %}
+```js
+funnction getRecord() {
+  let tableName = 'product'
+  let recordID = '59897882ff650c0477f00485'
+
+  let Product = new BaaS.TableObject(tableName)
+
+  Product.get(recordID).then(res => {
+    // success
+  }).catch(err => {
+    // error
+  })
+}
+```
+{% endtabs %}
 
 **返回示例** 
 

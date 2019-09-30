@@ -89,25 +89,10 @@ MyRecord.set(key2, value2)
 
 **请求示例**
 
+{% tabs updateRecordAsync="async/await", updateRecordPromise="promise" %}
+{% content "updateRecordAsync" %}
 ```js
 // 更新 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项的 price 字段
-// 使用 promise
-function updateRecord() {
-  let tableID = 10
-  let recordID = '59897882ff650c0477f00485'
-
-  let Product = new BaaS.TableObject(tableID)
-  let product = Product.getWithoutData(recordID)
-
-  product.set('price', 11)
-  product.update().then(res => {
-    // success
-  }, err => {
-    // err
-  })
-}
-
-// 使用 async/await
 async function updateRecord() {
   try {
     let tableID = 10
@@ -124,6 +109,26 @@ async function updateRecord() {
   }
 }
 ```
+
+{% content "updateRecordPromise" %}
+```js
+// 更新 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项的 price 字段
+function updateRecord() {
+  let tableID = 10
+  let recordID = '59897882ff650c0477f00485'
+
+  let Product = new BaaS.TableObject(tableID)
+  let product = Product.getWithoutData(recordID)
+
+  product.set('price', 11)
+  product.update().then(res => {
+    // success
+  }).catch(err => {
+    // error
+  })
+}
+```
+{% endtabs %}
 
 **返回示例**
 
@@ -143,7 +148,6 @@ async function updateRecord() {
   }
 }
 ```
-
 
 err 对象结构请参考[错误码和 HError 对象](../error.md)
 
@@ -191,30 +195,9 @@ product.update().then(res => {}, err => {})
 现在需要更新 product 表中 id 为 `5bdfaf068asd123123asd` 的数据行
 
 **示例代码**
-
+{% tabs updatePointerAsync="async/await", updatePointerPromise="promise" %}
+{% content "updatePointerAsync" %}
 ```js
-// 使用 promise
-function updatePointer() {
-  // 获取一个 tableRecord 实例
-  let Customer = new BaaS.TableObject('customer')
-  let customer = Customer.getWithoutData('5bdfaf068b155c0891d064ad')
-
-  // 获取要修改的数据行的实例
-  let Product = new BaaS.TableObject('product')
-  let product = Product.getWithoutData('5bdfaf068asd123123asd')
-  // 69147880 为 _userprofile 表中某行数据的 id
-  let user = new BaaS.User().getWithoutData(69147880)
-
-  // 给 pointer 字段赋值
-  product.set('customer', customer)
-  product.set('user', user)
-
-  product.update().then(res=>{
-    // success
-  })
-}
-
-// 使用 async/await
 async function updatePointer() {
   try {
     // 获取一个 tableRecord 实例
@@ -238,6 +221,30 @@ async function updatePointer() {
   }
 }
 ```
+
+{% content "updatePointerPromise" %}
+```js
+function updatePointer() {
+  // 获取一个 tableRecord 实例
+  let Customer = new BaaS.TableObject('customer')
+  let customer = Customer.getWithoutData('5bdfaf068b155c0891d064ad')
+
+  // 获取要修改的数据行的实例
+  let Product = new BaaS.TableObject('product')
+  let product = Product.getWithoutData('5bdfaf068asd123123asd')
+  // 69147880 为 _userprofile 表中某行数据的 id
+  let user = new BaaS.User().getWithoutData(69147880)
+
+  // 给 pointer 字段赋值
+  product.set('customer', customer)
+  product.set('user', user)
+
+  product.update().then(res=>{
+    // success
+  })
+}
+```
+{% endtabs %}
 
 **返回示例**
 ```json
@@ -367,29 +374,9 @@ order.update()
  - `limit` 和 `offset` 的使用请查看 [分页和排序](./limit-and-order.md) 章节
 
 **请求示例**
-
+{% tabs updateDataAsync="async/await", updateDataPromise="promise" %}
+{% content "updateDataAsync" %}
 ```js
-// 使用 promise
-function updateData() {
-  let MyTableObject = new BaaS.TableObject(tableName)
-
-  let query = new BaaS.Query()
-
-  // 设置查询条件（比较、字符串包含、组合等）
-  ...
-
-  // limit、offset 可以指定按条件查询命中的数据分页
-  let records = MyTableObject.limit(10).offset(0).getWithoutData(query)
-
-  // 与更新特定记录一致
-  records.set(key1, value1)
-  records.incrementBy(key2, value2)
-  records.append(key3, value3)
-
-  records.update().then(res => {}, err => {})
-}
-
-// 使用 async/await
 async function updateData() {
   try {
     let MyTableObject = new BaaS.TableObject(tableName)
@@ -414,6 +401,29 @@ async function updateData() {
   }
 }
 ```
+
+{% content "updateDataPromise" %}
+```js
+function updateData() {
+  let MyTableObject = new BaaS.TableObject(tableName)
+
+  let query = new BaaS.Query()
+
+  // 设置查询条件（比较、字符串包含、组合等）
+  ...
+
+  // limit、offset 可以指定按条件查询命中的数据分页
+  let records = MyTableObject.limit(10).offset(0).getWithoutData(query)
+
+  // 与更新特定记录一致
+  records.set(key1, value1)
+  records.incrementBy(key2, value2)
+  records.append(key3, value3)
+
+  records.update().then(res => {}).catch(err => {})
+}
+```
+{% endtabs %}
 
 **返回示例**
 
@@ -458,6 +468,53 @@ async function updateData() {
 200 更新成功，400 请求数据非法
 
 ### 按条件批量更新时不触发触发器
+
+{% tabs batchUpdateAsync="async/await", batchUpdatePromise="promise" %}
+{% content "batchUpdateAsync" %}
+```js
+async function batchUpdate() {
+  try {
+    let MyTableObject = new BaaS.TableObject(tableName)
+
+    let query = new BaaS.Query()
+
+    // 设置查询条件（比较、字符串包含、组合等）
+    //...
+
+    let records = MyTableObject.getWithoutData(query)
+
+    // 与更新特定记录一致
+    // 设置更新内容 ...
+
+    // 知晓云后台设置的触发器将不会被触发
+    let res = await records.update({enableTrigger: false})
+    // success
+  } catch(err) {
+    // error
+  }
+}
+```
+
+{% content "batchUpdatePromise" %}
+```js
+function batchUpdate() {
+  let MyTableObject = new BaaS.TableObject(tableName)
+
+  let query = new BaaS.Query()
+
+  // 设置查询条件（比较、字符串包含、组合等）
+  //...
+
+  let records = MyTableObject.getWithoutData(query)
+
+  // 与更新特定记录一致
+  // 设置更新内容 ...
+
+  // 知晓云后台设置的触发器将不会被触发
+  records.update({enableTrigger: false}).then(res => {}).catch(err => {})
+}
+```
+{% endtabs %}
 
 ```js
 let MyTableObject = new BaaS.TableObject(tableName)
@@ -530,24 +587,9 @@ record.patchObject('obj1', patch)
 `write_perm` 和 `read_perm` 的可选值请参考 [数据表操作-创建数据表](./table.md) 小节
 
 **示例代码**
- 
-```javascript
-// 使用 promise
-function updateACL() {
-  let Product = new BaaS.TableObject('product')
-  let record = Product.getWithoutData('5bffbab54b30640ba8135650')
-  
-  record.set('write_perm', [ "gid:656", "user:37087886"])
-  record.set('read_perm', [ "user:37087886" ])
-  
-  record.update().then(res=>{
-    // success
-  }).catch(e=>{
-    // error
-  })
-}
-
-// 使用 async/await
+{% tabs updateACLAsync="async/await", updateACLPromise="promise" %}
+{% content "updateACLAsync" %}
+```js
 async function updateACL() {
   try {
     let Product = new BaaS.TableObject('product')
@@ -562,7 +604,25 @@ async function updateACL() {
     // error
   }
 }
- ```
+```
+
+{% content "updateACLPromise" %}
+```js
+function updateACL() {
+  let Product = new BaaS.TableObject('product')
+  let record = Product.getWithoutData('5bffbab54b30640ba8135650')
+  
+  record.set('write_perm', [ "gid:656", "user:37087886"])
+  record.set('read_perm', [ "user:37087886" ])
+  
+  record.update().then(res=>{
+    // success
+  }).catch(e=>{
+    // error
+  })
+}
+```
+{% endtabs %}
  
  **返回示例**
  
