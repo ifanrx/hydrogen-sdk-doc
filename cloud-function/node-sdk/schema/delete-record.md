@@ -28,22 +28,48 @@ tableName 二选一，不能同时存在
 ## 示例
 
 **请求示例**
+{% tabs deleteRecordAsync="async/await", deleteRecordPromise="promise" %}
+{% content "deleteRecordAsync" %}
 ```js
 // 删除 tableName 为 product 的数据表中数据行 id 为 '59897882ff650c0477f00485' 的数据项
-let tableName = 'product'
-let recordID = '59897882ff650c0477f00485'
+async function deleteRecord() {
+  try {
+    let tableName = 'product'
+    let recordID = '59897882ff650c0477f00485'
 
-let Product = new BaaS.TableObject(tableName)
-Product.delete(recordID).then(res => {
-  // success
-}, err => {
-  // err
-})
+    let Product = new BaaS.TableObject(tableName)
+    let res = await Product.delete(recordID)
+    // success
+    return res
+  } catch(err) {
+    // error
+    throw err
+  }
+}
 ```
+
+{% content "deleteRecordPromise" %}
+```js
+// 删除 tableName 为 product 的数据表中数据行 id 为 '59897882ff650c0477f00485' 的数据项
+function deleteRecord() {
+  let tableName = 'product'
+  let recordID = '59897882ff650c0477f00485'
+
+  let Product = new BaaS.TableObject(tableName)
+  Product.delete(recordID).then(res => {
+    // success
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
+}
+```
+{% endtabs %}
 
 **返回示例**
 
-then 回调中的 res 对象结构如下：
+回调中的 res 对象结构如下：
 
 ```json
 {
@@ -72,25 +98,52 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
  - `limit` 和 `offset` 的使用请查看 [分页和排序](./limit-and-order.md) 章节
 
 **请求示例**
-
+{% tabs deleteRecordsAsync="async/await", deleteRecordsPromise="promise" %}
+{% content "deleteRecordsAsync" %}
 ```js
-let MyTableObject = new BaaS.TableObject(tableName)
+async function deleteRecords() {
+  try {
+    let MyTableObject = new BaaS.TableObject(tableName)
 
-let query = new BaaS.Query()
+    let query = new BaaS.Query()
 
-// 设置查询条件（比较、字符串包含、组合等）
-//...
+    // 设置查询条件（比较、字符串包含、组合等）
+    //...
 
-MyTableObject.limit(10).offset(0).delete(query).then(res => {
-  // success
-}, err => {
-  // error
-})
+    let res = await MyTableObject.limit(10).offset(0).delete(query)
+    // success
+    return res
+  } catch(err) {
+    // error
+    throw err
+  }
+}
 ```
+
+{% content "deleteRecordsPromise" %}
+```js
+function deleteRecords() {
+  let MyTableObject = new BaaS.TableObject(tableName)
+
+  let query = new BaaS.Query()
+
+  // 设置查询条件（比较、字符串包含、组合等）
+  //...
+
+  MyTableObject.limit(10).offset(0).delete(query).then(res => {
+    // success
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
+}
+```
+{% endtabs %}
 
 **返回示例**
 
-then 回调中的 res 对象结构如下：
+回调中的 res 对象结构如下：
 
 ```json
 {
@@ -117,11 +170,33 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
 
 #### 批量删除时不触发触发器
 
+{% tabs batchDeleteAsync="async/await", batchDeletePromise="promise" %}
+{% content "batchDeleteAsync" %}
+```js
+async function batchDelete() {
+  try {
+    let res = await MyTableObject.delete(query, {enableTrigger: false})
+    console.log(res)
+    // success
+    return res
+  } catch(err) {
+    //err 为 HError 对象
+    throw err
+  }
+}
+```
+
+{% content "batchDeletePromise" %}
 ```js
 // 知晓云后台设置的触发器将不会被触发
-MyTableObject.delete(query, {enableTrigger: false}).then(res => {
-   console.log(res)
-}, err => {
-  //err 为 HError 对象
-})
+function batchDelete() {
+  MyTableObject.delete(query, {enableTrigger: false}).then(res => {
+    console.log(res)
+    callback(null, res)
+  }).catch(err => {
+    //err 为 HError 对象
+    callback(err)
+  })
+}
 ```
+{% endtabs %}
