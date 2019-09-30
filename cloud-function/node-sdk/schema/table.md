@@ -147,11 +147,26 @@ const schemaInfo = {
   ]
 }
 
-tableSchema.createSchema(schemaInfo).then(res=>{
-  // success
-}).catch(e=>{
-  // error
-})
+// 使用 promise
+function createSchema() {
+  let tableSchema = new BaaS.TableSchema()
+  tableSchema.createSchema(schemaInfo).then(res=>{
+    // success
+  }).catch(e=>{
+    // error
+  })
+}
+
+// 使用 async/await
+async function createSchema() {
+  try {
+    let tableSchema = new BaaS.TableSchema()
+    let res = await tableSchema.createSchema(schemaInfo)
+    // success
+  } catch(e) {
+    // error
+  }
+}
 ```
 
 **返回示例**
@@ -240,11 +255,24 @@ res.data 结构如下
 **代码示例**
 
 ```js
-tableSchema.getSchema(1).then(res=>{
-  // success
-}).catch(e=>{
-  // error
-})
+// 使用 promise
+function getSchema() {
+  tableSchema.getSchema(1).then(res=>{
+    // success
+  }).catch(e=>{
+    // error
+  })
+}
+
+// 使用 async/await
+async function getSchema() {
+  try {
+    let res = await tableSchema.getSchema(1)
+    // success
+  } catch(e) {
+    // error
+  }
+}
 ```
 
 **返回示例**
@@ -299,11 +327,24 @@ res.data 结构如下
 **代码示例**
 
 ```js
-tableSchema.getSchemaList({limit:20, offset: 0}).then(res=>{
-  // success
-}).catch(e=>{
-  // error
-})
+// 使用 promise
+function getSchemaList() {
+  tableSchema.getSchemaList({limit:20, offset: 0}).then(res=>{
+    // success
+  }).catch(e=>{
+    // error
+  })
+}
+
+// 使用 async/await
+async funnction getSchemaList() {
+  try {
+    let res = await tableSchema.getSchemaList({limit:20, offset: 0})
+    // success
+  } catch(e) {
+    // error
+  }
+}
 ```
 
 **返回示例**
@@ -369,11 +410,24 @@ const schemaInfo = {
   name: "table"
 }
 
-tableSchema.updateSchema(1, schemaInfo).then(res=>{
-  // success
-}).catch(e=>{
-  // error
-})
+// 使用 promise
+function updateSchema() {
+  tableSchema.updateSchema(1, schemaInfo).then(res=>{
+    // success
+  }).catch(e=>{
+    // error
+  })
+}
+
+// 使用 async/await
+async function updateSchema() {
+  try {
+    let res = await tableSchema.updateSchema(1, schemaInfo)
+    // success
+  } catch(e) {
+    // error
+  }
+}
 ```
 
 **返回示例**
@@ -422,11 +476,24 @@ res.data 接口如下
 **代码示例**
 
 ```js
-tableSchema.deleteSchema(1).then(res=>{
-  // success
-}).catch(e=>{
-  // error
-})
+// 使用 promise
+function deleteSchema() {
+  tableSchema.deleteSchema(1).then(res=>{
+    // success
+  }).catch(e=>{
+    // error
+  })
+}
+
+// 使用 async/await
+async function deleteSchema() {
+  try {
+    let res = await tableSchema.deleteSchema(1)
+    // success
+  } catch(e) {
+    // error
+  }
+}
 ```
 
 **状态码说明**

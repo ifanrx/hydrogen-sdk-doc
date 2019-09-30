@@ -30,20 +30,37 @@ tableName 二选一，不能同时存在
 **请求示例**
 ```js
 // 删除 tableName 为 product 的数据表中数据行 id 为 '59897882ff650c0477f00485' 的数据项
-let tableName = 'product'
-let recordID = '59897882ff650c0477f00485'
+// 使用 promise
+function deleteRecord() {
+  let tableName = 'product'
+  let recordID = '59897882ff650c0477f00485'
 
-let Product = new BaaS.TableObject(tableName)
-Product.delete(recordID).then(res => {
-  // success
-}, err => {
-  // err
-})
+  let Product = new BaaS.TableObject(tableName)
+  Product.delete(recordID).then(res => {
+    // success
+  }, err => {
+    // err
+  })
+}
+
+// 使用 async/await
+async function deleteRecord() {
+  try {
+    let tableName = 'product'
+    let recordID = '59897882ff650c0477f00485'
+
+    let Product = new BaaS.TableObject(tableName)
+    let res = await Product.delete(recordID)
+    // success
+  } catch(err) {
+    // error
+  }
+}
 ```
 
 **返回示例**
 
-then 回调中的 res 对象结构如下：
+回调中的 res 对象结构如下：
 
 ```json
 {
@@ -74,23 +91,43 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
 **请求示例**
 
 ```js
-let MyTableObject = new BaaS.TableObject(tableName)
+// 使用 promise
+function deleteRecords() {
+  let MyTableObject = new BaaS.TableObject(tableName)
 
-let query = new BaaS.Query()
+  let query = new BaaS.Query()
 
-// 设置查询条件（比较、字符串包含、组合等）
-//...
+  // 设置查询条件（比较、字符串包含、组合等）
+  //...
 
-MyTableObject.limit(10).offset(0).delete(query).then(res => {
-  // success
-}, err => {
-  // error
-})
+  MyTableObject.limit(10).offset(0).delete(query).then(res => {
+    // success
+  }, err => {
+    // error
+  })
+}
+
+// 使用 async/await
+async function deleteRecords() {
+  try {
+    let MyTableObject = new BaaS.TableObject(tableName)
+
+    let query = new BaaS.Query()
+
+    // 设置查询条件（比较、字符串包含、组合等）
+    //...
+
+    let res = await MyTableObject.limit(10).offset(0).delete(query)
+    // success
+  } catch(err) {
+    // error
+  }
+}
 ```
 
 **返回示例**
 
-then 回调中的 res 对象结构如下：
+回调中的 res 对象结构如下：
 
 ```json
 {

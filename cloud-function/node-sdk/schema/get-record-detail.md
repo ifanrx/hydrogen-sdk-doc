@@ -31,16 +31,34 @@ tableID 和 tableName 二选一，不能同时存在
 **请求示例**
 
 ```js
-let tableName = 'product'
-let recordID = '59897882ff650c0477f00485'
+// 使用 promise
+funnction getRecord() {
+  let tableName = 'product'
+  let recordID = '59897882ff650c0477f00485'
 
-let Product = new BaaS.TableObject(tableName)
+  let Product = new BaaS.TableObject(tableName)
 
-Product.get(recordID).then(res => {
-  // success
-}, err => {
-  // err
-})
+  Product.get(recordID).then(res => {
+    // success
+  }, err => {
+    // err
+  })
+}
+
+// 使用 async/await
+async function getRecord() {
+  try {
+    let tableName = 'product'
+    let recordID = '59897882ff650c0477f00485'
+
+    let Product = new BaaS.TableObject(tableName)
+
+    let res = await Product.get(recordID)
+    // success
+  } catch(err) {
+    // err
+  }
+}
 ```
 
 **返回示例** 

@@ -91,23 +91,43 @@ MyRecord.set(key2, value2)
 
 ```js
 // 更新 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项的 price 字段
-let tableID = 10
-let recordID = '59897882ff650c0477f00485'
+// 使用 promise
+function updateRecord() {
+  let tableID = 10
+  let recordID = '59897882ff650c0477f00485'
 
-let Product = new BaaS.TableObject(tableID)
-let product = Product.getWithoutData(recordID)
+  let Product = new BaaS.TableObject(tableID)
+  let product = Product.getWithoutData(recordID)
 
-product.set('price', 11)
-product.update().then(res => {
-  // success
-}, err => {
-  // err
-})
+  product.set('price', 11)
+  product.update().then(res => {
+    // success
+  }, err => {
+    // err
+  })
+}
+
+// 使用 async/await
+async function updateRecord() {
+  try {
+    let tableID = 10
+    let recordID = '59897882ff650c0477f00485'
+
+    let Product = new BaaS.TableObject(tableID)
+    let product = Product.getWithoutData(recordID)
+
+    product.set('price', 11)
+    let res = await product.update()
+    // success
+  } catch(err) {
+    // err
+  }
+}
 ```
 
 **返回示例**
 
-then 回调中的 res 对象结构如下：
+回调中的 res 对象结构如下：
 
 ```json
 {
@@ -173,23 +193,50 @@ product.update().then(res => {}, err => {})
 **示例代码**
 
 ```js
-// 获取一个 tableRecord 实例
-let Customer = new BaaS.TableObject('customer')
-let customer = Customer.getWithoutData('5bdfaf068b155c0891d064ad')
+// 使用 promise
+function updatePointer() {
+  // 获取一个 tableRecord 实例
+  let Customer = new BaaS.TableObject('customer')
+  let customer = Customer.getWithoutData('5bdfaf068b155c0891d064ad')
 
-// 获取要修改的数据行的实例
-let Product = new BaaS.TableObject('product')
-let product = Product.getWithoutData('5bdfaf068asd123123asd')
-// 69147880 为 _userprofile 表中某行数据的 id
-let user = new BaaS.User().getWithoutData(69147880)
+  // 获取要修改的数据行的实例
+  let Product = new BaaS.TableObject('product')
+  let product = Product.getWithoutData('5bdfaf068asd123123asd')
+  // 69147880 为 _userprofile 表中某行数据的 id
+  let user = new BaaS.User().getWithoutData(69147880)
 
-// 给 pointer 字段赋值
-product.set('customer', customer)
-product.set('user', user)
+  // 给 pointer 字段赋值
+  product.set('customer', customer)
+  product.set('user', user)
 
-product.update().then(res=>{
-  // success
-})
+  product.update().then(res=>{
+    // success
+  })
+}
+
+// 使用 async/await
+async function updatePointer() {
+  try {
+    // 获取一个 tableRecord 实例
+    let Customer = new BaaS.TableObject('customer')
+    let customer = Customer.getWithoutData('5bdfaf068b155c0891d064ad')
+
+    // 获取要修改的数据行的实例
+    let Product = new BaaS.TableObject('product')
+    let product = Product.getWithoutData('5bdfaf068asd123123asd')
+    // 69147880 为 _userprofile 表中某行数据的 id
+    let user = new BaaS.User().getWithoutData(69147880)
+
+    // 给 pointer 字段赋值
+    product.set('customer', customer)
+    product.set('user', user)
+
+    let res = await product.update()
+    // success
+  } catch(err) {
+    // error
+  }
+}
 ```
 
 **返回示例**
@@ -322,27 +369,55 @@ order.update()
 **请求示例**
 
 ```js
-let MyTableObject = new BaaS.TableObject(tableName)
+// 使用 promise
+function updateData() {
+  let MyTableObject = new BaaS.TableObject(tableName)
 
-let query = new BaaS.Query()
+  let query = new BaaS.Query()
 
-// 设置查询条件（比较、字符串包含、组合等）
-...
+  // 设置查询条件（比较、字符串包含、组合等）
+  ...
 
-// limit、offset 可以指定按条件查询命中的数据分页
-let records = MyTableObject.limit(10).offset(0).getWithoutData(query)
+  // limit、offset 可以指定按条件查询命中的数据分页
+  let records = MyTableObject.limit(10).offset(0).getWithoutData(query)
 
-// 与更新特定记录一致
-records.set(key1, value1)
-records.incrementBy(key2, value2)
-records.append(key3, value3)
+  // 与更新特定记录一致
+  records.set(key1, value1)
+  records.incrementBy(key2, value2)
+  records.append(key3, value3)
 
-records.update().then(res => {}, err => {})
+  records.update().then(res => {}, err => {})
+}
+
+// 使用 async/await
+async function updateData() {
+  try {
+    let MyTableObject = new BaaS.TableObject(tableName)
+
+    let query = new BaaS.Query()
+
+    // 设置查询条件（比较、字符串包含、组合等）
+    ...
+
+    // limit、offset 可以指定按条件查询命中的数据分页
+    let records = MyTableObject.limit(10).offset(0).getWithoutData(query)
+
+    // 与更新特定记录一致
+    records.set(key1, value1)
+    records.incrementBy(key2, value2)
+    records.append(key3, value3)
+
+    let res = await records.update()
+    // success
+  } catch(err) {
+    // error
+  }
+}
 ```
 
 **返回示例**
 
-then 回调中的 res 对象结构如下：
+回调中的 res 对象结构如下：
 
 ```json
 {
@@ -446,28 +521,47 @@ record.patchObject('obj1', patch)
 
 ## 修改数据行 ACL
 
-  有时候我们需要设置特定数据行的 ACL 权限，之前只能在知晓云控制台修改数据行 ACL，现在云函数中支持通过代码来完该操作了。 
+有时候我们需要设置特定数据行的 ACL 权限，之前只能在知晓云控制台修改数据行 ACL，现在云函数中支持通过代码来完该操作了。 
 
- 假设 product 表中有一行 id 为 5bffbab54b30640ba8135650 的数据行，目前其 acl 为 所有人可读，所有人可写，现在需要将其修改为 `用户组【开发人员】和创建者可写` 、`创建者可读`。
+假设 product 表中有一行 id 为 5bffbab54b30640ba8135650 的数据行，目前其 acl 为 所有人可读，所有人可写，现在需要将其修改为 `用户组【开发人员】和创建者可写` 、`创建者可读`。
+
+其中用户组 `开发人员` 的 group_id 为 `656`、创建者的 user_id (对应 _userprofile 表中的 `id` 列) 为 `37087886`。
+
+`write_perm` 和 `read_perm` 的可选值请参考 [数据表操作-创建数据表](./table.md) 小节
+
+**示例代码**
  
- 其中用户组 `开发人员` 的 group_id 为 `656`、创建者的 user_id (对应 _userprofile 表中的 `id` 列) 为 `37087886`。
- 
- `write_perm` 和 `read_perm` 的可选值请参考 [数据表操作-创建数据表](./table.md) 小节
- 
- **示例代码**
- 
- ```javascript
- let Product = new BaaS.TableObject('product')
- let record = Product.getWithoutData('5bffbab54b30640ba8135650')
- 
- record.set('write_perm', [ "gid:656", "user:37087886"])
- record.set('read_perm', [ "user:37087886" ])
- 
- record.update().then(res=>{
-   // success
- }).catch(e=>{
-   // error
- })
+```javascript
+// 使用 promise
+function updateACL() {
+  let Product = new BaaS.TableObject('product')
+  let record = Product.getWithoutData('5bffbab54b30640ba8135650')
+  
+  record.set('write_perm', [ "gid:656", "user:37087886"])
+  record.set('read_perm', [ "user:37087886" ])
+  
+  record.update().then(res=>{
+    // success
+  }).catch(e=>{
+    // error
+  })
+}
+
+// 使用 async/await
+async function updateACL() {
+  try {
+    let Product = new BaaS.TableObject('product')
+    let record = Product.getWithoutData('5bffbab54b30640ba8135650')
+    
+    record.set('write_perm', [ "gid:656", "user:37087886"])
+    record.set('read_perm', [ "user:37087886" ])
+
+    let res = record.update()
+    // success
+  } catch(e) {
+    // error
+  }
+}
  ```
  
  **返回示例**
