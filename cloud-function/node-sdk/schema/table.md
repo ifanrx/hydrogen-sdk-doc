@@ -155,8 +155,10 @@ async function createSchema() {
     let tableSchema = new BaaS.TableSchema()
     let res = await tableSchema.createSchema(schemaInfo)
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -188,8 +190,10 @@ function createSchema() {
   let tableSchema = new BaaS.TableSchema()
   tableSchema.createSchema(schemaInfo).then(res=>{
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```
@@ -287,10 +291,13 @@ function createSchema() {
 ```js
 async function getSchema() {
   try {
+    let tableSchema = new BaaS.TableSchema()
     let res = await tableSchema.getSchema(1)
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -298,10 +305,13 @@ async function getSchema() {
 {% content "getSchemaPromise" %}
 ```js
 function getSchema() {
-  tableSchema.getSchema(1).then(res=>{
+  let tableSchema = new BaaS.TableSchema()
+  tableSchema.getSchema(1).then(res => {
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```
@@ -365,8 +375,10 @@ async funnction getSchemaList() {
   try {
     let res = await tableSchema.getSchemaList({limit:20, offset: 0})
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -376,8 +388,10 @@ async funnction getSchemaList() {
 function getSchemaList() {
   tableSchema.getSchemaList({limit:20, offset: 0}).then(res=>{
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```
@@ -452,8 +466,10 @@ async function updateSchema() {
   try {
     let res = await tableSchema.updateSchema(1, schemaInfo)
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -467,8 +483,10 @@ const schemaInfo = {
 function updateSchema() {
   tableSchema.updateSchema(1, schemaInfo).then(res=>{
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```
@@ -526,8 +544,10 @@ async function deleteSchema() {
   try {
     let res = await tableSchema.deleteSchema(1)
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -535,10 +555,12 @@ async function deleteSchema() {
 {% content "deleteSchemaPromise" %}
 ```js
 function deleteSchema() {
-  tableSchema.deleteSchema(1).then(res=>{
+  tableSchema.deleteSchema(1).then(res => {
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```

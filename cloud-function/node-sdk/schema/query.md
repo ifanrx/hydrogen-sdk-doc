@@ -61,12 +61,15 @@ asynnc function query() {
     let Product = new BaaS.TableObject(tableName)
     let res = await Product.setQuery(query).find()
     // success
+    return res
 
     // 不设置查询条件
     let res = Product.find()
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -83,15 +86,19 @@ function query() {
   let Product = new BaaS.TableObject(tableName)
   Product.setQuery(query).find().then(res => {
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 
   // 不设置查询条件
   Product.find().then(res => {
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```
@@ -383,8 +390,11 @@ async function queryPointer() {
 
     let res = await Order.setQuery(query).expand(['customer', 'user']).find()
     // success
+    return res
   } catch(err) {
     // error
+    throw err
+
   }
 }
 ```
@@ -402,8 +412,10 @@ function queryPointer() {
 
   Order.setQuery(query).expand(['customer', 'user']).find().then(res => {
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```
@@ -558,8 +570,10 @@ async function queryTotal() {
     let num = await Product.setQuery(query).count()
     // success
     console.log(num)  // 10
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -576,8 +590,10 @@ function queryTotal() {
   Product.setQuery(query).count().then(num => {
     // success
     console.log(num)  // 10
+    callback(null, res)
   }, err => {
     // err
+    callback(err)
   })
 }
 ```

@@ -40,8 +40,10 @@ async function deleteRecord() {
     let Product = new BaaS.TableObject(tableName)
     let res = await Product.delete(recordID)
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -56,8 +58,10 @@ function deleteRecord() {
   let Product = new BaaS.TableObject(tableName)
   Product.delete(recordID).then(res => {
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```
@@ -108,8 +112,10 @@ async function deleteRecords() {
 
     let res = await MyTableObject.limit(10).offset(0).delete(query)
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -126,8 +132,10 @@ function deleteRecords() {
 
   MyTableObject.limit(10).offset(0).delete(query).then(res => {
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```
@@ -170,8 +178,10 @@ async function batchDelete() {
     let res = await MyTableObject.delete(query, {enableTrigger: false})
     console.log(res)
     // success
+    return res
   } catch(err) {
     //err 为 HError 对象
+    throw err
   }
 }
 ```
@@ -182,8 +192,10 @@ async function batchDelete() {
 function batchDelete() {
   MyTableObject.delete(query, {enableTrigger: false}).then(res => {
     console.log(res)
+    callback(null, res)
   }).catch(err => {
     //err 为 HError 对象
+    callback(err)
   })
 }
 ```

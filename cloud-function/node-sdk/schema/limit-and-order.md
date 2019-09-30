@@ -21,8 +21,10 @@ async function paging() {
 
     let res = await Product.setQuery(query).limit(10).offset(0).find()
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -37,8 +39,10 @@ function paging() {
 
   Product.setQuery(query).limit(10).offset(0).find().then(res => {
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```
@@ -72,8 +76,10 @@ async function sorting() {
     let res = await Product.setQuery(query).orderBy(['-created_at', 'created_by']).find()
     // 👆先按照 created_at 降序，再按照 created_by 升序排列
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -97,8 +103,12 @@ function sorting() {
   Product.setQuery(query).orderBy(['-created_at']).find()
 
   // 多重排序
-  Product.setQuery(query).orderBy(['-created_at', 'created_by']).find()
-  // 👆先按照 created_at 降序，再按照 created_by 升序排列
+  Product.setQuery(query).orderBy(['-created_at', 'created_by']).find().then(res => {
+    // 👆先按照 created_at 降序，再按照 created_by 升序排列
+    callback(null, res)
+  }).catch(err => {
+    callback(err)
+  })
 }
 ```
 {% endtabs %}

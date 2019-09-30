@@ -41,8 +41,10 @@ async function getRecord() {
 
     let res = await Product.get(recordID)
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -57,8 +59,10 @@ funnction getRecord() {
 
   Product.get(recordID).then(res => {
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```

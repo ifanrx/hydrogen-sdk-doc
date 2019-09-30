@@ -86,8 +86,10 @@ async function createProduct() {
     let res = await product.save()
     //success
     console.log(res)
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -108,9 +110,10 @@ function createProduct() {
   }
   product.set(apple).save().then(res => {
     // success
-    console.log(res)
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 
   // 设置方式二
@@ -121,9 +124,10 @@ function createProduct() {
 
   product.save().then(res => {
     // success
-    console.log(res)
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```
@@ -191,8 +195,10 @@ async function addFile() {
     product.set('manual', res.data.file)
     let res = await product.save()
     console.log(res)
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -205,8 +211,10 @@ function addFile() {
     product.set('manual', res.data.file)
     product.save().then(res=>{
       console.log(res)
+      callback(null, res)
     }).catch(err => {
       // error
+      callback(err)
     })
   })
 }
@@ -354,8 +362,10 @@ async function addPointer() {
 
     let res = await article.save()
     // success
+    return res
   } catch (err) {
     // error
+    throw err
   }
 }
 ```
@@ -380,8 +390,10 @@ function addPointer() {
 
   article.save().then(res=>{
     // success
+    callback(null, res)
   }).catch(e => {
     // error
+    callback(err)
   })
 }
 ```
@@ -445,8 +457,10 @@ async function createMany() {
 
     let res = await MyTableObject.createMany(records)
     console.log(res.data.succeed)
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -470,8 +484,10 @@ function createMany() {
   
   MyTableObject.createMany(records).then(res => {
     console.log(res.data.succeed)
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```
@@ -555,8 +571,10 @@ async function setACL() {
 
     let res = await record.save()
     // success
+    return res
   } catch(e) {
     // error
+    throw err
   }
 }
 ```
@@ -572,8 +590,10 @@ function setACL() {
 
   record.save().then(res=>{
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```

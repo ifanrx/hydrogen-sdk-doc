@@ -104,8 +104,10 @@ async function updateRecord() {
     product.set('price', 11)
     let res = await product.update()
     // success
+    return res
   } catch(err) {
     // err
+    throw err
   }
 }
 ```
@@ -123,8 +125,10 @@ function updateRecord() {
   product.set('price', 11)
   product.update().then(res => {
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```
@@ -216,8 +220,10 @@ async function updatePointer() {
 
     let res = await product.update()
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -241,6 +247,7 @@ function updatePointer() {
 
   product.update().then(res=>{
     // success
+    callback(null, res)
   })
 }
 ```
@@ -396,8 +403,10 @@ async function updateData() {
 
     let res = await records.update()
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -420,7 +429,13 @@ function updateData() {
   records.incrementBy(key2, value2)
   records.append(key3, value3)
 
-  records.update().then(res => {}).catch(err => {})
+  records.update().then(res => {
+    // success
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
 }
 ```
 {% endtabs %}
@@ -489,8 +504,10 @@ async function batchUpdate() {
     // 知晓云后台设置的触发器将不会被触发
     let res = await records.update({enableTrigger: false})
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -511,7 +528,11 @@ function batchUpdate() {
   // 设置更新内容 ...
 
   // 知晓云后台设置的触发器将不会被触发
-  records.update({enableTrigger: false}).then(res => {}).catch(err => {})
+  records.update({enableTrigger: false}).then(res => {
+    callback(null, res)
+  }).catch(err => {
+    callback(err)
+  })
 }
 ```
 {% endtabs %}
@@ -600,8 +621,10 @@ async function updateACL() {
 
     let res = record.update()
     // success
+    return res
   } catch(e) {
     // error
+    throw err
   }
 }
 ```
@@ -617,8 +640,10 @@ function updateACL() {
   
   record.update().then(res=>{
     // success
+    callback(null, res)
   }).catch(e=>{
     // error
+    callback(err)
   })
 }
 ```

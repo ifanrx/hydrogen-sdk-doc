@@ -44,8 +44,10 @@ async function exportData() {
     let MyTableObject = new BaaS.TableObject(tableName)
     let res = await MyTableObject.exportData('json', 'all')
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -56,8 +58,10 @@ function exportData() {
   let MyTableObject = new BaaS.TableObject(tableName)
   MyTableObject.exportData('json', 'all').then(res => {
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 }
 ```
@@ -105,14 +109,17 @@ async function importData() {
     let MyTable = new BaaS.TableObject(tableID)
     let importRes = await MyTable.importData({dataFile: '/tmp/data.csv'}, 'csv')
     // success
+    return res
 
     /* Buffer */
     let res = await BaaS.request.get(dataUrl)
     let MyTable = new BaaS.TableObject(tableName)
     let importRes = await MyTable.importData({dataFile: Buffer.from(res.data)}, 'csv')
     // success
+    return res
   } catch(err) {
     // error
+    throw err
   }
 }
 ```
@@ -124,8 +131,10 @@ function importData() {
   let MyTableObject = new BaaS.TableObject(tableName)
   MyTableObject.importData({dataFileUrl: dataUrl}, 'csv').then(res => {
     // success
+    callback(null, res)
   }).catch(err => {
     // error
+    callback(err)
   })
 
   /* 本地文件路径 */
@@ -137,8 +146,10 @@ function importData() {
     let MyTable = new BaaS.TableObject(tableID)
     MyTable.importData({dataFile: '/tmp/data.csv'}, 'csv').then(res => {
       // success
+      callback(null, res)
     }).catch(err => {
     // error
+    callback(err)
     })
   })
 
@@ -147,8 +158,10 @@ function importData() {
     let MyTable = new BaaS.TableObject(tableName)
     MyTable.importData({dataFile: Buffer.from(res.data)}, 'csv').then(res => {
       // success
+      callback(null, res)
     }).catch(err => {
     // error
+    callback(err)
     })
   })
 }
