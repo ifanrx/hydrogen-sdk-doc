@@ -154,7 +154,6 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 **示例代码**
 
-查找微信支付订单
 
 ```js
 var order = new BaaS.Order()
@@ -201,7 +200,6 @@ order.wechatPay.profitSharing({
 
 **示例代码**
 
-查找微信支付订单
 
 ```js
 var order = new BaaS.Order()
@@ -237,6 +235,79 @@ order.wechatPay.multiProfitSharing({
   "status": 200
 }
 ```
+
+## 支付宝商家分账
+
+产品介绍，详见[支付宝商家分账官方文档](https://docs.alipay.com/mini/introduce/splitbill)。
+
+“分账接收方操作”、“分账账单操作”，请查看[支付宝商家分账文档](/cloud-function/node-sdk/alipay-profit-sharing.md)
+
+
+> **info**
+> 1. 只支持使用支付宝支付的订单
+
+> 2. 需要先添加分账接收方才能分账
+
+### 订单分账
+
+`Order#alipay.profitSharing(options)`
+
+**参数说明**
+
+options 是 Object 类型，它包括以下几个属性:
+
+| 参数          | 类型            | 必填 | 说明 |
+| :------------ | :-------------- | :--- | :--- |
+| trade_no      | String          | 是   | 支付订单订单号(必须为支付宝支付订单) |
+| receivers     | Array<Receiver> | 是   | 分账接收方列表   |
+
+Receiver 类型说明:
+
+| 参数        | 类型   | 必填 | 说明           |
+| :---------- | :----- | :--- | :------------- |
+| type        | ReceiverType | 是   | 分账接收方类型 |
+| account     | String | 是   | 分账接收方账户 |
+| amount      | Number | 是   | 分账金额，单位为分，只能为整数，不能超过原订单支付金额 |
+| description | String | 是   | 分账描述       |
+
+{{profitSharing.receiverTypeAlipay()}}
+
+**示例代码**
+
+
+```js
+var order = new BaaS.Order()
+order.alipay.profitSharing({
+  trade_no: '...',
+  receivers: [{
+    type: '...',
+    account: '...',
+    amount: 10,
+    description: '...',
+  }],
+}).then(res => {
+  // success
+}).catch(e=>{
+  // HError 对象
+})
+```
+
+<!-- **返回示例** -->
+<!--  -->
+<!-- 成功时 res 对象结构如下 -->
+<!--  -->
+<!-- ```json -->
+<!-- { -->
+<!--   "data": { -->
+<!--     "return_code": "SUCCESS", -->
+<!--     "appid": "...", -->
+<!--     "mch_id": "...", -->
+<!--     "trade_no": "...", -->
+<!--     "wechat_order_no": "..." -->
+<!--   }, -->
+<!--   "status": 200 -->
+<!-- } -->
+<!-- ``` -->
 
 ## 退款
 
