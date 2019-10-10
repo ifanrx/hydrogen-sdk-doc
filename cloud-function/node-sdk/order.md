@@ -292,22 +292,19 @@ order.alipay.profitSharing({
 })
 ```
 
-<!-- **返回示例** -->
-<!--  -->
-<!-- 成功时 res 对象结构如下 -->
-<!--  -->
-<!-- ```json -->
-<!-- { -->
-<!--   "data": { -->
-<!--     "return_code": "SUCCESS", -->
-<!--     "appid": "...", -->
-<!--     "mch_id": "...", -->
-<!--     "trade_no": "...", -->
-<!--     "wechat_order_no": "..." -->
-<!--   }, -->
-<!--   "status": 200 -->
-<!-- } -->
-<!-- ``` -->
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    "return_code": "10000",
+    "trade_no": "1iIUfhTxivu6RxvyQgkRRwp9VklswK46"
+  },
+  "status": 200
+}
+```
 
 ## 退款
 

@@ -29,7 +29,7 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 currentUser 代表了当前登录的用户，开发者可以通过浏览 currentUser 上的字段来获取当前用户的信息，通过调用 currentUser 上的方法来更新用户信息。
 该对象关联 `_userprofile` 表中 id 为当前用户 ID 的数据行。currentUser 字段包含了 `_userprofile`表的所有的*内置字段*，自定义字段可以通过 `currentUser.get(key)` 来获取。
 
-```js
+```javascript
 // currentUser 数据结构
 {
   avatar: "...",
@@ -43,11 +43,11 @@ currentUser 代表了当前登录的用户，开发者可以通过浏览 current
   is_authorized: true,
   language: "...",
   nickname: "...",
-  openid: "...",
+  openid: "...",  // 微信小程序用户的唯一标识，非微信用户将返回空值
   province: "...",
   session_expires_at": 1561283491,
   toJSON: function () {},
-  unionid: "...",
+  unionid: "...",  // 微信开发平台用户的唯一标识，非微信用户将返回空值
   updated_at: 1558691521,
   user_id: 45768973992321,
   _anonymous: false,

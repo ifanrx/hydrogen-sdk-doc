@@ -48,21 +48,19 @@ BaaS.alipay.profitSharing.addReceiver({
 })
 ```
 
-<!-- **返回示例** -->
-<!--  -->
-<!-- 成功时 res 对象结构如下 -->
-<!--  -->
-<!-- ```json -->
-<!-- { -->
-<!--   "data": { -->
-<!--     "return_code": "SUCCESS", -->
-<!--     "appid": "...", -->
-<!--     "receiver": "{\"type\":\"...\",\"account\":\"...\",\"relation_type\":\"...\"}", -->
-<!--     "mch_id": "..." -->
-<!--   }, -->
-<!--   "status": 200 -->
-<!-- } -->
-<!-- ``` -->
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    "result_code": "SUCCESS",
+    "return_code": "10000"
+  },
+  "status": 200
+}
+```
 
 ## 删除分账接收方
 
@@ -87,21 +85,19 @@ BaaS.alipay.profitSharing.removeReceiver({
 })
 ```
 
-<!-- **返回示例** -->
-<!--  -->
-<!-- 成功时 res 对象结构如下 -->
-<!--  -->
-<!-- ```json -->
-<!-- { -->
-<!--   "data": { -->
-<!--     "return_code": "SUCCESS", -->
-<!--     "appid": "...", -->
-<!--     "receiver": "{\"type\": \"...\", \"account\": \"...\"}", -->
-<!--     "mch_id": "..." -->
-<!--   }, -->
-<!--   "status": 200 -->
-<!-- } -->
-<!-- ``` -->
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    "result_code": "SUCCESS",
+    "return_code": "10000"
+  },
+  "status": 200
+}
+```
 
 ## 查询分账接收关系集
 
@@ -113,7 +109,7 @@ options 是 Object 类型，它包括以下几个属性:
 
 | 参数          | 类型            | 必填 | 说明 |
 | :------------ | :-------------- | :--- | :--- |
-| request_no    | String          | 是   | 分账接收关系集修改请求号 |
+| request_no    | String          | 是   | 分账接收关系集查询请求号，用户自己生成自己维护 |
 | page_num      | Number          | 否   | 第几页，从1开始。不填默认为1   |
 | page_size     | Number          | 否   | 页面大小。每页记录数，取值范围是(0,100]。不填默认为20   |
 
@@ -129,32 +125,33 @@ BaaS.alipay.profitSharing.receiverQuery({
 })
 ```
 
-<!-- **返回示例** -->
-<!--  -->
-<!-- 成功时 res 对象结构如下 -->
-<!--  -->
-<!-- ```json -->
-<!-- { -->
-<!--   "data": { -->
-<!--     "meta": { -->
-<!--       "limit": 99, -->
-<!--       "next": null, -->
-<!--       "offset": 0, -->
-<!--       "previous": null, -->
-<!--       "total_count": 15 -->
-<!--     }, -->
-<!--     "objects": [{ -->
-<!--       "created_by_name": "...", -->
-<!--       "order_type": "finish", -->
-<!--       "payment_order_id": 1026, -->
-<!--       "receiver": null, -->
-<!--       "status": "accepted", -->
-<!--       "trade_no": "..." -->
-<!--     }], -->
-<!--   }, -->
-<!--   "status": 200 -->
-<!-- } -->
-<!-- ``` -->
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    "current_page_num": 1,
+    "current_page_size": 20,
+    "receiver_list": [
+      {
+        "account": "...",
+        "type": "userId"
+      },
+      {
+        "account": "...",
+        "type": "userId"
+      }
+    ],
+    "result_code": "SUCCESS",
+    "return_code": "10000",
+    "total_page_num": 1,
+    "total_record_num": 2
+  },
+  "status": 200
+}
+```
 
 ## 分账订单操作
 
@@ -193,29 +190,38 @@ order.offset(20).limit(20).getOrderList({trade_no: '...'}).then(res => {
 })
 ```
 
-<!-- **返回示例** -->
-<!--  -->
-<!-- 成功时 res 对象结构如下 -->
-<!--  -->
-<!-- ```json -->
-<!-- { -->
-<!--   "data": { -->
-<!--     "meta": { -->
-<!--       "limit": 99, -->
-<!--       "next": null, -->
-<!--       "offset": 0, -->
-<!--       "previous": null, -->
-<!--       "total_count": 15 -->
-<!--     }, -->
-<!--     "objects": [{ -->
-<!--       "created_by_name": "...", -->
-<!--       "order_type": "finish", -->
-<!--       "payment_order_id": 1026, -->
-<!--       "receiver": null, -->
-<!--       "status": "accepted", -->
-<!--       "trade_no": "..." -->
-<!--     }], -->
-<!--   }, -->
-<!--   "status": 200 -->
-<!-- } -->
-<!-- ``` -->
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    "meta": {
+      "limit": 20,
+      "next": null,
+      "offset": 0,
+      "previous": null,
+      "total_count": 1
+    },
+    "objects": [
+      {
+        "created_by_name": "...",
+        "order_type": "profit_sharing",
+        "payment_order_id": 1058,
+        "receiver": [
+          {
+            "account": "...",
+            "amount": 1,
+            "description": "分账1分钱",
+            "type": "userId"
+          }
+        ],
+        "status": "finished",
+        "trade_no": "1iITyzXl8q9HYJIp0NaiHPxOB4x9zjto"
+      }
+    ]
+  },
+  "status": 200
+}
+```
