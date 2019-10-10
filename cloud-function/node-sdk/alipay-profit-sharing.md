@@ -5,12 +5,18 @@
 
 options 是 Object 类型，它包括以下几个属性
 
+| 参数            | 类型            | 必填 | 说明                                               |
+| :-------------- | :-------------- | :--- | :------------------------------------------------- |
+| request_no      | String          |  是  | 分账接收关系集修改请求号，用户自己生成自己维护     |
+| receivers       | Receiver[] |  是  | 待添加的分账接收方列表     |
+
+Receiver 类型包括以下几个属性：
+
 | 参数            | 类型   | 必填 | 说明                                               |
 | :-------------- | :----- | :--- | :------------------------------------------------- |
 | type            | ReceiverType |  是  | 分账接收方类型                               |
 | account         | String |  是  | 分账接收方账户 id                                  |
 | name            | String |  是  | 分账接收方全称                                     |
-| request_no      | String |  是  | 分账接收关系集修改请求号，用户自己生成自己维护     |
 
 {{profitSharing.receiverTypeAlipay()}}
 {% endmacro %}
@@ -29,9 +35,11 @@ options 是 Object 类型，它包括以下几个属性
 
 ```js
 BaaS.alipay.profitSharing.addReceiver({
-  type: '...',
-  account: '...',
-  name: '...',
+  receivers: [{
+    type: '...',
+    account: '...',
+    name: '...',
+  }],
   request_no: '...',
 }).then(res => {
   // success
@@ -66,9 +74,11 @@ BaaS.alipay.profitSharing.addReceiver({
 
 ```js
 BaaS.alipay.profitSharing.removeReceiver({
-  type: '...',
-  account: '...',
-  name: '...',
+  receivers: [{
+    type: '...',
+    account: '...',
+    name: '...',
+  }],
   request_no: '...',
 }).then(res => {
   // success
