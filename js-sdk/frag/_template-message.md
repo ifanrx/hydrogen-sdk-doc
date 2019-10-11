@@ -52,6 +52,8 @@
 请移步[这里](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/template-message.html)了解微信模板消息
 {% elif apiPrefix == "my." %}
 请移步[这里](https://docs.alipay.com/mini/introduce/message)了解支付宝模板消息
+{% elif apiPrefxi == "swan." %}
+请移步[这里](https://smartprogram.baidu.com/docs/develop/serverapi/open_infomation/#sendTemplateMessage/)
 {% endif %}
 
 {% if apiPrefix != "qq." %}
@@ -62,6 +64,8 @@
 `wx.BaaS.reportTemplateMsgAnalytics(options)`
 {% elif apiPrefix == "my." %}
 `my.BaaS.reportTemplateMsgAnalytics(options)`
+{% elif apiPrefix == "swan." %}
+`swan.BaaS.reportTemplateMsgAnalytics(options)`
 {% endif %}
 
 **参数说明**
@@ -92,6 +96,17 @@
   },
 ...
 ```
+{% elif apiPrefix == "swan." %}
+```js
+// app.js
+...
+  onShow: function(options) {
+    swan.BaaS.reportTemplateMsgAnalytics(options)
+  },
+...
+```
+> **info**
+> 由于百度小程序的生命周期和其他平台小程序的有些差异，onShow 在 onLaunch 之后执行，故不要把引入 SDK 的代码放到 onLaunch 中，否则会导致执行到 onShow 的时候 swan.Baas 为 undefine 导致程序报错，建议将引入 SDK 的代码放在文件的头部，即 App({}) 执行之前。
 {% endif %}
 
 {% endif %}
@@ -103,6 +118,8 @@
 {% set api = "my.BaaS.reportTicket" %}
 {% elif apiPrefix == "qq." %}
 {% set api = "qq.BaaS.reportTicket" %}
+{% elif apiPrefix == "swan." %}
+{% set api = "swan.BaaS.reportTicket" %}
 {% endif %}
 
 {% if apiPrefix == "wx." %}
@@ -113,6 +130,8 @@
 `my.BaaS.reportTicket(formID)`
 {% elif apiPrefix == "qq." %}
 `qq.BaaS.reportTicket(formID)`
+{% elif apiPrefix == "swan." %}
+`swan.BaaS.reportTicket(formID)`
 {% endif %}
 
 **参数说明**
@@ -123,7 +142,7 @@
 
 当使用小程序的 `<form/>` 组件，且属性 report-submit 设为 true 时，此时表单是声明为需要要发模板消息的，当点击按钮提交表单即可获取 formID。
 
-{% if apiPrefix != "qq." %}
+{% if apiPrefix != "qq." and apiPrefix != "swan." %}
 ### 方式二：使用自定义组件自动上报（推荐）
 
 > **info**
@@ -206,6 +225,8 @@
 在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/alipay-template-message/guide/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
 {% elif apiPrefix == "qq." %}
 在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/qq-template-message/guide/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
+{% elif apiPrefix == "swan." %}
+在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/baidu-template-message/guide/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
 {% endif %}
 
 - 触发器发送
@@ -221,4 +242,6 @@
 具体使用方式请移步[这里](/cloud-function/node-sdk/template-message/alipay/template-message.md)。
 {% elif apiPrefix == "qq." %}
 具体使用方式请移步[这里](/cloud-function/node-sdk/template-message/qq/template-message.md)。
+{% elif apiPrefix == "swan." %}
+具体使用方式请移步[这里](/cloud-function/node-sdk/template-message/baidu/template-message.md)。
 {% endif %}
