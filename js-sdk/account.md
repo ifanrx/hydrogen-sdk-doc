@@ -43,7 +43,7 @@ currentUser 代表了当前登录的用户，开发者可以通过浏览 current
   is_authorized: true,
   language: "...",
   nickname: "...",
-  openid: "...",  // 微信小程序用户的唯一标识，非微信用户将返回空值
+  openid: "...",  // 微信小程序用户的唯一标识，非微信用户将返回空值。同时，微信小程序 openid 也会和其他平台一样，在 _provider 里存储一份。
   province: "...",
   session_expires_at": 1561283491,
   toJSON: function () {},
