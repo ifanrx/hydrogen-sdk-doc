@@ -6,7 +6,7 @@
 
 ## 添加分账接收方
 
-`BaaS.wechat.profitSharing.addReceiver(addReceiverOptions)`
+`BaaS.wechat.profitSharing.addReceiver(options)`
 
 **参数说明**
 
