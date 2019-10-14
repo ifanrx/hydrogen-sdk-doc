@@ -12,11 +12,11 @@
 
 ## 小程序注册指引
 
-在使用**知晓云**之前，请先确保按照支付宝小程序官方指引完成[小程序注册流程](https://docs.alipay.com/mini/introduce)。
+在使用**知晓云**之前，请先确保按照百度小程序官方指引完成[小程序注册流程](https://smartprogram.baidu.com/docs/introduction/enter_application/)。
 
 ## 知晓云账号注册
 
-开发者按照支付宝小程序官方的指引申请到自己的小程序后，接下来就可注册并获取知晓云账号，完成相关信息绑定与服务配置后，即可使用知晓云提供的后端服务。
+开发者按照百度小程序官方的指引申请到自己的小程序后，接下来就可注册并获取知晓云账号，完成相关信息绑定与服务配置后，即可使用知晓云提供的后端服务。
 
 ### 注册并完成相关信息绑定
 
@@ -35,19 +35,19 @@
 
 知晓云在设置模块提供了**一键授权**功能，用户只需在应用“导览”页中找到支付宝小程序平台，点击**立即接入**，接着在“设置-支付宝”页中填写配置信息完成授权即可。
 
-![一键开通](/images/newbies/open-up-alipay.png)
+![一键开通](/images/newbies/open-up-baidu.png)
 
-![填写配置信息完成授权](/images/newbies/alipay-setting.png)
+![一键授权](/images/newbies/baidu-setting.png)
 
 ### SDK 文件版接入
 
 完成授权后，接下来用户需要进行服务器域名配置，以解锁小程序 [SDK](/js-sdk/download-sdk.md) 服务。
 
-![知晓云服务器域名](/images/newbies/domain-name-config-alipay.png)
+![知晓云服务器域名](/images/newbies/hydrogen-domain-name1.png)
 
-登录[小程序后台](https://open.alipay.com/platform/mini.htm#/app/{{appid}}/setting)，进入 “设置 - 开发设置”页面，将知晓云提供给开发者的服务器域名全部配置到支付宝开发者后台的“服务器域名”配置项中。
+![知晓云服务器域名](/images/newbies/domain-name-config-qq.png)
 
-![小程序服务器域名配置](/images/newbies/hydrogen-domain-name-config-alipay.png)
+登录[小程序后台](https://smartprogram.baidu.com/developer/index.html)，进入 “设置 - 开发设置”页面，将知晓云提供给开发者的服务器域名全部配置到百度开发者后台的“服务器域名”配置项中。
 
 ## 第一个接入知晓云的小程序
 
@@ -55,13 +55,13 @@
 
 ### 1、 知晓云的初始化配置
 
-首先，打开[支付宝开发者工具](https://docs.alipay.com/mini/ide/download)，将先前下载好的[演示 demo](https://github.com/ifanrx/hydrogen-demo.git) 的 `alipay-sdk-demo` 文件夹添加入小程序项目中。
+首先，打开[百度开发者工具](https://smartprogram.baidu.com/docs/develop/devtools/history/)，将先前下载好的[演示 demo](https://github.com/ifanrx/hydrogen-demo.git) 的 `baidu-sdk-demo` 文件夹添加入小程序项目中。
 
-![创建小程序项目](/images/newbies/minapp-creation-alipay.png)
+![创建小程序项目](/images/newbies/minapp-creation-baidu.png)
 
-进入项目后，在开发者工具左上角选择关联应用，选择在小程序开放平台已建立的小程序项目或创建新应用，完成应用关联。
+进入项目后，在开发者工具右上角进入项目信息设置，填写 APPID，其中 `APPID` 为小程序的 ID，在 百度小程序后台**设置 >> 开发设置** 中可获取，知晓云也在[**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/baidu/)提供了快速通道获取小程序 ID。。
 
-![开发者 ID](/images/newbies/link-alipay-minapp.png)
+![开发者 ID](/images/newbies/link-baidu-minapp.png)
 
 接下来，在 `app.js` 中引入 [SDK js 文件](/js-sdk/download-sdk.md)。
 
@@ -71,8 +71,8 @@
 
 App({
   onLaunch() {
-    // 引入 SDK
-    require('./sdk-alipay.js')
+    // require SDK
+    require('./sdk-baidu.2.8.1.js')
   }
 })
 </code>
@@ -86,14 +86,13 @@ App({
 <pre>
 <code class="lang-js">
 // app.js
+
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-alipay.js')
-
-    // 初始化 SDK
-    let clientID = '知晓云管理后台获取到的 ClientID'
-    my.BaaS.init(clientID)
+    require('./sdk-baidu.2.8.1.js')
+     let clientID = '知晓云管理后台获取到的 ClientID'
+     swan.BaaS.init(clientID)
   }
 })
 </code>
@@ -125,8 +124,7 @@ Page({
   // 绑定添加书目的提交按钮点击事件，向服务器发送数据
   createBook(e) {
     let bookName = this.data.creatingBookName // 缓存在 data 对象中的输入框输入的书名
-    let tableID = '1' // 从知晓云后台的数据表中获取到的对应数据表的 ID
-    let Books = new my.BaaS.TableObject(tableID) //实例化对应 tableID 的数据表对象
+    let Books = new swan.BaaS.TableObject('bookshelf') //实例化对应 tableName 的数据表对象
     let book = Books.create() // 创建一条记录
 
   // 调用创建数据项接口，进行数据的持久化存储，详见：https://doc.minapp.com/js-sdk/schema/create-record.html
@@ -140,10 +138,10 @@ Page({
 ```
 
 > **info**
-> 注意，上述代码可能和 `alipay-sdk-demo` 源码有一定的差异，但是代码的逻辑和接口的调用方式基本上是一样。
+> 注意，上述代码可能和 `我的书架` 源码有一定的差异，但是代码的逻辑和接口的调用方式基本上是一样。
 
 同时，我们可以在数据管理模块看到新增的数据项。
 
 ![bookshelf 数据表](/images/newbies/bookshelf-schema.jpeg)
 
-至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo/tree/master/alipay-sdk-demo)的源码。
+至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo/tree/master/baidu-sdk-demo)的源码。
