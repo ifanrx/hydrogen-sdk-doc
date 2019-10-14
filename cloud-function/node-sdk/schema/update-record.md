@@ -484,6 +484,9 @@ function updateData() {
 
 ### 按条件批量更新时不触发触发器
 
+> **info**
+> 不触发触发器，limit <= 1000 时，操作记录为同步执行。超过则会转为异步执行并移除限制，变成操作全部
+
 {% tabs batchUpdateAsync="async/await", batchUpdatePromise="promise" %}
 {% content "batchUpdateAsync" %}
 ```js

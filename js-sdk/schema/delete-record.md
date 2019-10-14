@@ -129,6 +129,14 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ### 批量删除时不触发触发器
 
+SDK 1.9.1 及以上版本支持批量删除数据项时不触发触发器。该模式在批量删除数据时，不会触发设置好的触发器，会对查询条件匹配的数据全部更新，没有最多 1000 条的限制。
+
+SDK 3.0.0 及以上版本，在 enableTrigger 为 false 时，SDK 将不会设置默认的 limit （值为 20），如果用户没有设置 limit，则为全量删除。
+
+
+> **info**
+> 不触发触发器，limit <= 1000 时，操作记录为同步执行。超过则会转为异步执行并移除限制，变成操作全部
+
 ```js
 // 知晓云后台设置的触发器将不会被触发
 MyTableObject.delete(query, {enableTrigger: false}).then(res => {

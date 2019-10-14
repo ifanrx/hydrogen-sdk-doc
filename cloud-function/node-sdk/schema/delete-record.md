@@ -168,7 +168,10 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
 | 404            | 数据行不存在      |
 | 403            | 没有权限删除数据   |
 
-#### 批量删除时不触发触发器
+### 批量删除时不触发触发器
+
+> **info**
+> 不触发触发器，limit <= 1000 时，操作记录为同步执行。超过则会转为异步执行并移除限制，变成操作全部
 
 {% tabs batchDeleteAsync="async/await", batchDeletePromise="promise" %}
 {% content "batchDeleteAsync" %}

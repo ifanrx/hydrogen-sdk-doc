@@ -246,24 +246,131 @@ userRecord.setAccount({
 
 **请求示例**
 
+{% tabs batchUpdateAsync="async/await", batchUpdatePromise="promise" %}
+{% content "batchUpdateAsync" %}
 ```js
-let User = new BaaS.User()
+async function batchUpdate() {
+  try {
+    let User = new BaaS.User()
+    let query = new BaaS.Query()
 
-let query = new BaaS.Query()
+    // 设置查询条件（比较、字符串包含、组合等）
+    ...
 
-// 设置查询条件（比较、字符串包含、组合等）
-...
+    // limit、offset 可以指定按条件查询命中的数据分页
+    let userRecords = User.limit(10).offset(0).getWithoutData(query)
 
-// limit、offset 可以指定按条件查询命中的数据分页
-let userRecords = User.limit(10).offset(0).getWithoutData(query)
+    // 与更新特定记录一致
+    userRecords.set(key1, value1)
+    userRecords.incrementBy(key2, value2)
+    userRecords.append(key3, value3)
 
-// 与更新特定记录一致
-userRecords.set(key1, value1)
-userRecords.incrementBy(key2, value2)
-userRecords.append(key3, value3)
+    let res = await userRecords.update().then(res => {}, err => {})
 
-records.update().then(res => {}, err => {})
+    console.log(res)
+    // success
+    return res
+  } catch(err) {
+    //err 为 HError 对象
+    throw err
+  }
+}
 ```
+
+{% content "batchUpdatePromise" %}
+```js
+// 知晓云后台设置的触发器将不会被触发
+function batchUpdate() {
+  let User = new BaaS.User()
+  let query = new BaaS.Query()
+
+  // 设置查询条件（比较、字符串包含、组合等）
+  ...
+
+  // limit、offset 可以指定按条件查询命中的数据分页
+  let userRecords = User.limit(10).offset(0).getWithoutData(query)
+
+  // 与更新特定记录一致
+  userRecords.set(key1, value1)
+  userRecords.incrementBy(key2, value2)
+  userRecords.append(key3, value3)
+
+  userRecords.update().then(res => {
+    console.log(res)
+    callback(null, res)
+  }, err => {
+    //err 为 HError 对象
+    callback(err)
+  })
+}
+```
+{% endtabs %}
+
+
+### 批量修改用户自定义字段不触发触发器
+
+> **info**
+> 不触发触发器，limit <= 1000 时，操作记录为同步执行。超过则会转为异步执行并移除限制，变成操作全部
+
+{% tabs batchUpdateWithoutTriggerAsync="async/await", batchUpdateWithoutTriggerPromise="promise" %}
+{% content "batchUpdateWithoutTriggerAsync" %}
+```js
+async function batchUpdate() {
+  try {
+    let User = new BaaS.User()
+    let query = new BaaS.Query()
+
+    // 设置查询条件（比较、字符串包含、组合等）
+    ...
+
+    // limit、offset 可以指定按条件查询命中的数据分页
+    let userRecords = User.limit(10).offset(0).getWithoutData(query)
+
+    // 与更新特定记录一致
+    userRecords.set(key1, value1)
+    userRecords.incrementBy(key2, value2)
+    userRecords.append(key3, value3)
+
+    let res = await userRecords.update({enableTrigger: false}).then(res => {}, err => {})
+
+    console.log(res)
+    // success
+    return res
+  } catch(err) {
+    //err 为 HError 对象
+    throw err
+  }
+}
+```
+
+{% content "batchUpdateWithoutTriggerPromise" %}
+```js
+// 知晓云后台设置的触发器将不会被触发
+function batchUpdate() {
+  let User = new BaaS.User()
+  let query = new BaaS.Query()
+
+  // 设置查询条件（比较、字符串包含、组合等）
+  ...
+
+  // limit、offset 可以指定按条件查询命中的数据分页
+  let userRecords = User.limit(10).offset(0).getWithoutData(query)
+
+  // 与更新特定记录一致
+  userRecords.set(key1, value1)
+  userRecords.incrementBy(key2, value2)
+  userRecords.append(key3, value3)
+
+  userRecords.update({enableTrigger: false}).then(res => {
+    console.log(res)
+    callback(null, res)
+  }, err => {
+    //err 为 HError 对象
+    callback(err)
+  })
+}
+```
+{% endtabs %}
 
 ## 删除用户
 

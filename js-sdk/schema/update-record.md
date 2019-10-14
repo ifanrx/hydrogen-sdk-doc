@@ -445,6 +445,13 @@ catch 回调中的 err 对象:
 
 SDK 1.9.1 及以上版本支持批量更新数据项时不触发触发器。该模式在批量更新数据时，不会触发设置好的触发器，会对查询条件匹配的数据全部更新，没有最多 1000 条的限制。
 
+SDK 3.0.0 及以上版本，在 enableTrigger 为 false 时，SDK 将不会设置默认的 limit （值为 20），如果用户没有设置 limit，则为全量更新。
+
+
+> **info**
+> 不触发触发器，limit <= 1000 时，操作记录为同步执行。超过则会转为异步执行并移除限制，变成操作全部
+
+
 {% ifanrxCodeTabs %}
 ```js
 let MyTableObject = new wx.BaaS.TableObject(tableName)

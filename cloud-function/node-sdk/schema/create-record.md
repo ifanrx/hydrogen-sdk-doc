@@ -537,6 +537,9 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
 
 ### 批量创建时不触发触发器
 
+> **info**
+> 不触发触发器，创建记录数量为 1000 时，操作记录为同步执行。超过则会转为异步执行
+
 ```js
 // 知晓云后台设置的触发器将不会被触发
 MyTableObject.createMany(records, {enableTrigger: false}).then(res => {
