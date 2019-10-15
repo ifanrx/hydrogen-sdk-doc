@@ -72,7 +72,7 @@
 App({
   onLaunch() {
     // require SDK
-    require('./sdk-baidu.2.8.1.js')
+    require('./sdk-baidu.{{ book.latestVersionBaidu }}.js')
   }
 })
 </code>
@@ -90,9 +90,9 @@ App({
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-baidu.2.8.1.js')
-     let clientID = '知晓云管理后台获取到的 ClientID'
-     swan.BaaS.init(clientID)
+    require('./sdk-baidu.{{ book.latestVersionBaidu }}.js')
+    let clientID = '知晓云管理后台获取到的 ClientID'
+    swan.BaaS.init(clientID)
   }
 })
 </code>

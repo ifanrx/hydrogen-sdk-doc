@@ -72,7 +72,7 @@
 App({
   onLaunch() {
     // require SDK
-    require('./sdk-qq.2.8.1.js')
+    require('./sdk-qq.{{ book.latestVersionQQ }}.js')
   }
 })
 </code>
@@ -90,9 +90,9 @@ App({
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-qq.2.8.1.js')
-     let clientID = '知晓云管理后台获取到的 ClientID'
-     qq.BaaS.init(clientID)
+    require('./sdk-qq.{{ book.latestVersionQQ }}.js')
+    let clientID = '知晓云管理后台获取到的 ClientID'
+    qq.BaaS.init(clientID)
   }
 })
 </code>
