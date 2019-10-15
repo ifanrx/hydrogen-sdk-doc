@@ -81,6 +81,7 @@
         * [网络请求](js-sdk/qq/request.md)
         * [模板消息](js-sdk/qq/template-message.md)
         * [QQ 加密数据解密](js-sdk/qq/decrypt.md)
+        * [检测违规图片、文本](js-sdk/qq/censor.md)
     * [百度小程序](js-sdk/baidu/README.md)
         * [接入指南](js-sdk/baidu/how-to.md)
         * [百度登录](js-sdk/baidu/signin-signout.md)
