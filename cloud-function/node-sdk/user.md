@@ -306,6 +306,30 @@ function batchUpdate() {
 ```
 {% endtabs %}
 
+**返回示例**
+
+回调中的 res 对象结构如下：
+
+```json
+{
+  "status": 200,
+  "data": {
+    "limit": 1,
+    "next": "/dserve/v2.1/miniapp/user_profile/?where=%7B%7D&enable_trigger=1&limit=1&offset=1",
+    "offset": 0,
+    "operation_result": [
+      {
+        "success": {
+          "id": "5a3c51cdceb616ccfc9d5f78",
+          "updated_at": 1571044054
+        }
+      }
+    ],
+    "succeed": 1,
+    "total_count": 402
+  }
+}
+```
 
 ### 批量修改用户自定义字段不触发触发器
 
@@ -371,6 +395,46 @@ function batchUpdate() {
 }
 ```
 {% endtabs %}
+
+**返回示例**
+
+limit <= 1000 时，回调中的 res 对象结构如下：
+
+```json
+{
+  "status": 200,
+  "data": {
+    "limit": 1,
+    "next": "/dserve/v2.1/miniapp/user_profile/?where=%7B%7D&enable_trigger=1&limit=1&offset=1",
+    "offset": 0,
+    "operation_result": [
+      {
+        "success": {
+          "id": "5a3c51cdceb616ccfc9d5f78",
+          "updated_at": 1571044054
+        }
+      }
+    ],
+    "succeed": 1,
+    "total_count": 402
+  }
+}
+```
+
+limit > 1000 时，回调中的 res 对象结构如下：
+
+```json
+{
+  "status": 200,
+  "data": {
+    "statys": "ok",
+    "operation_id": 1 // 可以用来查询到最终执行的结果
+  }
+}
+```
+
+> **info**
+> 获取异步执行结果，请查看接口[文档](/cloud-function/node-sdk/async-job.md)
 
 ## 删除用户
 

@@ -105,6 +105,7 @@
         * [网页微信、支付宝、QQ 支付](js-sdk/payment/web.md)
         * [订单查询](js-sdk/payment/order.md)
     * [调用云函数](js-sdk/invoke-function.md)
+    * [获取异步任务结果](js-sdk/async-job.md)
     * [短信验证码](js-sdk/sms.md)
     * [错误码和 HError 对象](js-sdk/error-code.md)
     * [本地存储](js-sdk/local-storage.md)
@@ -302,6 +303,7 @@
     * [企业付款](cloud-function/node-sdk/wx-promotion-transfer.md)
     * [错误码和 HError 对象](cloud-function/node-sdk/error.md)
     * [公众号发送红包](cloud-function/node-sdk/red-pack.md)
+    * [获取异步任务结果](cloud-function/node-sdk/async-job.md)
 
 ----
 

@@ -203,3 +203,37 @@ function batchDelete() {
 }
 ```
 {% endtabs %}
+
+**返回示例**
+
+limit <= 1000 时，回调中的 res 对象结构如下：
+
+```json
+{
+  "status": 200,
+  "statusText": "OK",
+  "data": {
+    "succeed": 8, // 成功删除记录数
+    "total_count": 10, // where 匹配的记录数，包括无权限操作记录
+    "offset": 0,
+    "limit": 10,
+    "next": null // 下一次删除 url，若为 null 则表示全部删除完毕
+  }
+}
+```
+
+limit > 1000 时，回调中的 res 对象结构如下：
+
+```json
+{
+  "status": 200,
+  "statusText": "OK",
+  "data": {
+    "statys": "ok",
+    "operation_id": 1 // 可以用来查询到最终执行的结果
+  }
+}
+```
+
+> **info**
+> 获取异步执行结果，请查看接口[文档](/cloud-function/node-sdk/async-job.md)
