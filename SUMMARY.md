@@ -11,6 +11,7 @@
     * [新手入门 - Web](newbies/web.md)
     * [新手入门 - 支付宝小程序](newbies/alipay.md)
     * [新手入门 - iOS](newbies/swiftui.md)
+    * [新手入门 - Android](newbies/android.md)
 
 ----
 
