@@ -4,6 +4,7 @@
 
 1. [微信网页支付](#微信网页支付)
 2. [支付宝网页支付](#支付宝网页支付)
+3. [QQ 网页支付](#qq-网页支付)
 
 **客户端支付结果判断：**
 
@@ -32,31 +33,32 @@ Web 端微信支付支持三种支付方式：
 | options.merchandiseDescription | String  | Y   | 微信支付凭证-商品详情的内容 |
 | options.merchandiseSchemaID    | Integer | N   | 商品数据表 ID，可用于定位用户购买的物品 |
 | options.merchandiseRecordID    | String  | N   | 商品数据行 ID，可用于定位用户购买的物品 |
-| options.merchandiseSnapshot    | Object  | N   | 根据业务需求自定义的数据 |
+| merchandiseSnapshot            | Object  | N   | 根据业务需求自定义的数据 |
+| profitSharing                  | Boolean | N   | 当前订单是否需要分账。分账操作，请查看[微信直连商户分账](/cloud-function/node-sdk/order.html#微信直连商户分账) |
 
 > **info**
-> 举例：开发者有一个 Article 表, 里面有免费 / 付费的文章, 当用户对一篇付费文章进行支付时, 则可以将 Article 表的 ID 作为 `merchandiseSchemaID`, 文章记录的 ID 作为你 `merchandiseRecordID` 传入到 `{{apiPrefix}}.BaaS.pay(object)` 写进支付订单记录。当用户阅读此付费文章时, 则可以通过 `merchandiseSchemaID`, `merchandiseRecordID` 来查询用户是否付费。
+> 举例：开发者有一个 Article 表, 里面有免费 / 付费的文章, 当用户对一篇付费文章进行支付时, 则可以将 Article 表的 ID 作为 `merchandiseSchemaID`, 文章记录的 ID 作为你 `merchandiseRecordID` 传入到 `BaaS.pay(object)` 写进支付订单记录。当用户阅读此付费文章时, 则可以通过 `merchandiseSchemaID`, `merchandiseRecordID` 来查询用户是否付费。
 
 **返回参数说明**
 
-1. JSAPI 支付：
+1、 JSAPI 支付：
 
-  | 参数           | 类型   | 说明 |
-  | :--------------| :----- | :-- |
-  | err_msg        | String | 错误信息 |
-  | transaction_no | String | 微信支付流水号 |
-  | trade_no       | String | 微信支付交易 ID, 业务方在微信后台对账时可看到此字段 |
+| 参数           | 类型   | 说明 |
+| :--------------| :----- | :-- |
+| err_msg        | String | 错误信息 |
+| transaction_no | String | 微信支付流水号 |
+| trade_no       | String | 微信支付交易 ID, 业务方在微信后台对账时可看到此字段 |
 
-  当支付取消或发生错误时，会抛出错误（[HError 对象](/js-sdk/error-code.md)）
+当支付取消或发生错误时，会抛出错误（[HError 对象](/js-sdk/error-code.md)）
 
-2. 其他：
+2、 其他：
 
-  | 参数                      | 类型   | 说明 |
-  | :-------------------------| :----- | :-- |
-  | transaction_no | String   | 微信支付流水号 |
-  | trade_no    | String | 微信支付交易 ID, 业务方在微信后台对账时可看到此字段 |
-  | code_url    | String | gatewayType="`weixin_tenpay_native`" 时返回，用于生成支付二维码 |
-  | mweb_url    | String | gatewayType="`weixin_tenpay_wap`"时返回，用户可通过访问该 url 来拉起微信客户端，完成支付 |
+| 参数                      | 类型   | 说明 |
+| :-------------------------| :----- | :-- |
+| transaction_no | String   | 微信支付流水号 |
+| trade_no    | String | 微信支付交易 ID, 业务方在微信后台对账时可看到此字段 |
+| code_url    | String | gatewayType="`weixin_tenpay_native`" 时返回，用于生成支付二维码 |
+| mweb_url    | String | gatewayType="`weixin_tenpay_wap`"时返回，用户可通过访问该 url 来拉起微信客户端，完成支付 |
 
 > **info**
 > 电脑端扫码支付时，开发者调用支付接口并成功获取到 `code_url` 后，需要将 `code_url` 转换为二维码。
@@ -148,13 +150,13 @@ Web 端支付宝支付支持两种支付方式：
 | options.merchandiseSnapshot    | Object  | N   | 根据业务需求自定义的数据 |
 
 > **info**
-> 举例：开发者有一个 Article 表, 里面有免费 / 付费的文章, 当用户对一篇付费文章进行支付时, 则可以将 Article 表的 ID 作为 `merchandiseSchemaID`, 文章记录的 ID 作为你 `merchandiseRecordID` 传入到 `{{apiPrefix}}.BaaS.pay(object)` 写进支付订单记录。当用户阅读此付费文章时, 则可以通过 `merchandiseSchemaID`, `merchandiseRecordID` 来查询用户是否付费。
+> 举例：开发者有一个 Article 表, 里面有免费 / 付费的文章, 当用户对一篇付费文章进行支付时, 则可以将 Article 表的 ID 作为 `merchandiseSchemaID`, 文章记录的 ID 作为你 `merchandiseRecordID` 传入到 `BaaS.pay(object)` 写进支付订单记录。当用户阅读此付费文章时, 则可以通过 `merchandiseSchemaID`, `merchandiseRecordID` 来查询用户是否付费。
 
 **返回参数说明**
 
 | 参数                      | 类型   | 说明 |
 | :-------------------------| :----- | :-- |
-| transaction_no | String   | 微信支付流水号 |
+| transaction_no | String   | 支付宝支付流水号 |
 | trade_no    | String | 支付宝支付交易 ID, 业务方在微信后台对账时可看到此字段 |
 | payment_url    | String | 用户可通过访问该 url 来拉起支付宝支付收银台的中间页面，完成支付 |
 
@@ -207,6 +209,67 @@ BaaS.payment.payWithAlipay(params).then(res => {
 ```
 {
   payment_url: 'https://***',
+  transaction_no: "MDUhtNmacdYBKokJbCXhvYuoJnHXzpeN",
+  trade_no: '4DySOWgNssfu5XsiTH9Ek2f5m9jWTwTw'
+}
+```
+
+## QQ 网页支付
+
+Web 端 QQ 支付支持电脑端扫码支付：
+
+`BaaS.payment.payWithQQ(options)`
+
+**参数说明**
+
+| 参数                   | 类型    | 必填 | 参数描述 |
+| :--------------------- | :------ | :-- | :------ |
+| options.gatewayType            | String  | Y   | 支付方式，`qpay_native` |
+| options.totalCost              | Number  | Y   | 支付总额，单位：元 |
+| options.merchandiseDescription | String  | Y   | 支付宝支付凭证-商品详情的内容 |
+| options.merchandiseSchemaID    | Integer | N   | 商品数据表 ID，可用于定位用户购买的物品 |
+| options.merchandiseRecordID    | String  | N   | 商品数据行 ID，可用于定位用户购买的物品 |
+| options.merchandiseSnapshot    | Object  | N   | 根据业务需求自定义的数据 |
+
+> **info**
+> 举例：开发者有一个 Article 表, 里面有免费 / 付费的文章, 当用户对一篇付费文章进行支付时, 则可以将 Article 表的 ID 作为 `merchandiseSchemaID`, 文章记录的 ID 作为你 `merchandiseRecordID` 传入到 `BaaS.pay(object)` 写进支付订单记录。当用户阅读此付费文章时, 则可以通过 `merchandiseSchemaID`, `merchandiseRecordID` 来查询用户是否付费。
+
+**返回参数说明**
+
+| 参数                      | 类型   | 说明 |
+| :-------------------------| :----- | :-- |
+| transaction_no | String   | QQ 支付流水号 |
+| trade_no    | String | QQ 支付交易 ID, 业务方在QQ 后台对账时可看到此字段 |
+| code_url    | String | 用于生成支付二维码 |
+
+> **info**
+> 开发者调用支付接口并成功获取到 `code_url` 后，需要将 `code_url` 转换为二维码。
+
+**示例代码**
+
+```js
+let params = {
+  gatewayType: 'qpay_native',
+  totalCost: 0.1,
+  merchandiseDescription: '深蓝色秋裤'
+}
+
+BaaS.payment.payWithQQ(params).then(res => {
+  /**
+   * success.
+   * res.data.code_url 用于生成支付二维码
+   */
+}, err => {
+  // 未完成用户授权或发生网络异常等
+  console.log(err)
+})
+```
+
+**支付成功返回示例**
+
+```
+{
+  code_url: 'https://***',
   transaction_no: "MDUhtNmacdYBKokJbCXhvYuoJnHXzpeN",
   trade_no: '4DySOWgNssfu5XsiTH9Ek2f5m9jWTwTw'
 }

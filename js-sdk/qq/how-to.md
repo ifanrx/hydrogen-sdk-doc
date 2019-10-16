@@ -15,7 +15,7 @@ b. 将下载解压后得到的 SDK js 文件放在小程序项目目录中
 App({
   onLaunch() {
     // require SDK
-    require('./sdk-v{{ book.latestVersionWechat }}')
+    require('./sdk-v{{ book.latestVersionQQ }}')
   }
 })
 </code>
@@ -49,7 +49,7 @@ qq.BaaS.init(clientID, {autoLogin, logLevel})
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-v{{ book.latestVersionWechat }}')
+    require('./sdk-v{{ book.latestVersionQQ }}')
      let clientID = '知晓云管理后台获取到的 ClientID'
      qq.BaaS.init(clientID)
   }
@@ -65,11 +65,11 @@ App({
 
 ## 使用 SDK
 
-成功初始化 SDK 后，即可使用 SDK 完成数据操作，内容操作等功能了。如下，在控制台创建一张表（参考[控制台操作-数据表](../dashboard/schema.md) 一节），获取其 tableID ，并插入一条数据。
+通过 `qq.BaaS.init(clientID)` 成功初始化 SDK 后，即可使用 SDK 完成数据操作，内容操作等功能了。如下，在控制台创建一张表（参考[控制台操作-数据表](../dashboard/schema.md) 一节），获取其 tableName ，并插入一条数据。
 
 ```js
-let tableID = 10
-let Product = new qq.BaaS.TableObject(tableID)
+let tableName = 'product'
+let Product = new qq.BaaS.TableObject(tableName)
 let product = Product.create()
 
 let apple = {

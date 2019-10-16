@@ -1,8 +1,32 @@
+{% import "./macro/profit-sharing.md" as profitSharing %}
+{% macro profitSharingCommon() %}
+**参数说明**
+
+options 是 Object 类型，它包括以下几个属性:
+
+| 参数          | 类型            | 必填 | 说明 |
+| :------------ | :-------------- | :--- | :--- |
+| trade_no      | String          | 是   | 支付订单订单号(必须为微信支付订单，并且在创建支付订单时，添加参数 `profitSharing`（值为 `true`）) |
+| receivers     | Array<Receiver> | 是   | 分账接收方列表   |
+| appid         | String          | 是   | 微信分配的公众账号ID   |
+
+Receiver 类型说明:
+
+| 参数        | 类型   | 必填 | 说明           |
+| :---------- | :----- | :--- | :------------- |
+| type        | ReceiverType | 是   | 分账接收方类型 |
+| account     | String | 是   | 分账接收方账户 |
+| amount      | Number | 是   | 分账金额，单位为分，只能为整数，不能超过原订单支付金额及最大分账比例金额 |
+| description | String | 是   | 分账描述       |
+
+{{profitSharing.receiverType()}}
+{% endmacro %}
+
 # 支付订单操作
 
 ## 获取订单
 
-`Order.getOrderList(params)`
+`Order#getOrderList(params)`
 
 **参数说明**
 
@@ -107,9 +131,187 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 }
 ```
 
+## 微信直连商户分账
+
+产品介绍，详见[微信直连商户分账官方文档](https://pay.weixin.qq.com/wiki/doc/api/allocation_sl.php?chapter=24_1&index=1)。
+
+“分账接收方操作”、“分账账单操作”，请查看[微信直连商户分账文档](/cloud-function/node-sdk/wechat-profit-sharing.md)
+
+为了支持“微信微信直连商户分账”，在创建支付订单时，需要添加参数 `profitSharing`（值为 `true`），具体请参考 [JS SDK 支付接口文档](/js-sdk/payment/)中微信支付部分。
+
+> **info**
+> 1. 只支持使用微信支付的订单
+
+> 2. 需要先添加分账接收方才能分账
+
+### 订单单次分账
+
+{{ profitSharing.warning() }}
+
+`Order#wechatPay.profitSharing(options)`
+
+{{ profitSharingCommon() }}
+
+**示例代码**
+
+
+```js
+var order = new BaaS.Order()
+order.wechatPay.profitSharing({
+  trade_no: '...',
+  appid: '...',
+  receivers: [{
+    type: '...',
+    account: '...',
+    amount: 10,
+    description: '...',
+  }],
+}).then(res => {
+  // success
+}).catch(e=>{
+  // HError 对象
+})
+```
+
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    "return_code": "SUCCESS",
+    "appid": "...",
+    "mch_id": "...",
+    "trade_no": "...",
+    "wechat_order_no": "..."
+  },
+  "status": 200
+}
+```
+
+### 订单多次分账
+
+{{ profitSharing.warning() }}
+
+`Order#wechatPay.multiProfitSharing(options)`
+
+{{ profitSharingCommon() }}
+
+**示例代码**
+
+
+```js
+var order = new BaaS.Order()
+order.wechatPay.multiProfitSharing({
+  trade_no: '...',
+  appid: '...',
+  receivers: [{
+    type: '...',
+    account: '...',
+    amount: 10,
+    description: '...',
+  }],
+}).then(res => {
+  // success
+}).catch(e=>{
+  // HError 对象
+})
+```
+
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    "return_code": "SUCCESS",
+    "appid": "...",
+    "mch_id": "...",
+    "trade_no": "...",
+    "wechat_order_no": "..."
+  },
+  "status": 200
+}
+```
+
+## 支付宝商家分账
+
+产品介绍，详见[支付宝商家分账官方文档](https://docs.alipay.com/mini/introduce/splitbill)。
+
+“分账接收方操作”、“分账账单操作”，请查看[支付宝商家分账文档](/cloud-function/node-sdk/alipay-profit-sharing.md)
+
+
+> **info**
+> 1. 只支持使用支付宝支付的订单
+
+> 2. 需要先添加分账接收方才能分账
+
+### 订单分账
+
+`Order#alipay.profitSharing(options)`
+
+**参数说明**
+
+options 是 Object 类型，它包括以下几个属性:
+
+| 参数          | 类型            | 必填 | 说明 |
+| :------------ | :-------------- | :--- | :--- |
+| trade_no      | String          | 是   | 支付订单订单号(必须为支付宝支付订单) |
+| receivers     | Array<Receiver> | 是   | 分账接收方列表   |
+
+Receiver 类型说明:
+
+| 参数        | 类型   | 必填 | 说明           |
+| :---------- | :----- | :--- | :------------- |
+| type        | ReceiverType | 是   | 分账接收方类型 |
+| account     | String | 是   | 分账接收方账户 |
+| amount      | Number | 是   | 分账金额，单位为分，只能为整数，不能超过原订单支付金额 |
+| description | String | 是   | 分账描述       |
+
+{{profitSharing.receiverTypeAlipay()}}
+
+**示例代码**
+
+
+```js
+var order = new BaaS.Order()
+order.alipay.profitSharing({
+  trade_no: '...',
+  receivers: [{
+    type: '...',
+    account: '...',
+    amount: 10,
+    description: '...',
+  }],
+}).then(res => {
+  // success
+}).catch(e=>{
+  // HError 对象
+})
+```
+
+**返回示例**
+
+成功时 res 对象结构如下
+
+```json
+{
+  "data": {
+    "return_code": "10000",
+    "trade_no": "1iIUfhTxivu6RxvyQgkRRwp9VklswK46"
+  },
+  "status": 200
+}
+```
+
 ## 退款
 
 `BaaS.refund(data)`
+
+> **info**
+> 使用了分账的订单，需要先调用分账回退接口将钱回退到订单商户号中，否则可能会退款失败
 
 **参数说明**
 
@@ -135,11 +337,11 @@ data 是 Object 类型，它包括以下几个属性
 | order_id      | Number | 订单 id |
 | refund_amount | String | 退款金额 |
 | refund_no     | String | 退款单号 |
-| status        | String | 订单支付状态 |
+| status        | String | 订单支付状态（succeed：成功；failed：失败） |
 
 **示例代码**
 
-调用退款接口，需要先通过上文的 `Order.getOrderList` API，拿取返回数据中的 id 字段作为 order_id 的值，来进行退款操作
+调用退款接口，需要先通过上文的 `Order#getOrderList` API，拿取返回数据中的 id 字段作为 order_id 的值，来进行退款操作
 也可以通过 `trade_no` 和 `transaction_no` 来退款。
 
 ```js

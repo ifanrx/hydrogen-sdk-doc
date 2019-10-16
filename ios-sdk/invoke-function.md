@@ -53,7 +53,7 @@ BaaS.invoke(name: "helloWorld", data: ["name": "BaaS"], sync: true) { (result, e
 | 参数   | 类型                   | 描述 |
 | :---- | :--------------------- | :-- |
 | result  | 由云函数返回的数据类型决定 | 函数通过 callback 返回的数据 |
-| error | Object                 | 返回的错误信息，成功则返回空对象 |
+| error | NSError                 | 错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md) |
 
 **返回参数**
 
@@ -61,8 +61,6 @@ BaaS.invoke(name: "helloWorld", data: ["name": "BaaS"], sync: true) { (result, e
 {
   "error": {},
   "code": 0,
-  "data": "hello allen"
+  "data": "hello BaaS"
 }
 ```
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)

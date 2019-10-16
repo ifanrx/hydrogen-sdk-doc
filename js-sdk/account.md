@@ -29,7 +29,7 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 currentUser 代表了当前登录的用户，开发者可以通过浏览 currentUser 上的字段来获取当前用户的信息，通过调用 currentUser 上的方法来更新用户信息。
 该对象关联 `_userprofile` 表中 id 为当前用户 ID 的数据行。currentUser 字段包含了 `_userprofile`表的所有的*内置字段*，自定义字段可以通过 `currentUser.get(key)` 来获取。
 
-```js
+```javascript
 // currentUser 数据结构
 {
   avatar: "...",
@@ -43,11 +43,11 @@ currentUser 代表了当前登录的用户，开发者可以通过浏览 current
   is_authorized: true,
   language: "...",
   nickname: "...",
-  openid: "...",
+  openid: "...",  // 微信小程序用户的唯一标识，非微信用户将返回空值。同时，微信小程序 openid 也会和其他平台一样，在 _provider 里存储一份。
   province: "...",
   session_expires_at": 1561283491,
   toJSON: function () {},
-  unionid: "...",
+  unionid: "...",  // 微信开发平台用户的唯一标识，非微信用户将返回空值
   updated_at: 1558691521,
   user_id: 45768973992321,
   _anonymous: false,
@@ -192,13 +192,14 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 {% ifanrxCodeTabs %}
 ```javascript
 // ...
-let currentUser = wx.BaaS.auth.getCurrentUser()
-
-currentUser.setAccount({username: 'hello', email: 'hello@ifanr.com', password: '111111'}).then(user => {
-  console.log(user)
-}).catch(err=>{
-  // HError
-})
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    return user.setAccount({username: 'hello', email: 'hello@ifanr.com', password: '111111'})
+  }).then(user => {
+    console.log(user)
+  }).catch(err => {
+    // HError
+  })
 ```
 {% endifanrxCodeTabs %}
 
@@ -221,13 +222,14 @@ currentUser.setAccount({username: 'hello', email: 'hello@ifanr.com', password: '
 
 {% ifanrxCodeTabs %}
 ```javascript
-let currentUser = wx.BaaS.auth.getCurrentUser()
-
-currentUser.setUsername('ifanrx_new').then(user => {
-  console.log(user)
-}).catch(err=>{
-  // HError
-})
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    return user.setUsername('ifanrx_new')
+  }).then(user => {
+    console.log(user)
+  }).catch(err => {
+    // HError
+  })
 ```
 {% endifanrxCodeTabs %}
 
@@ -259,13 +261,14 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.getCurrentUser().then(user => {
-  user.setEmail('ifanrx_new@ifanr.com', {sendVerificationEmail: true}).then(user => {
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    return user.setEmail('ifanrx_new@ifanr.com', {sendVerificationEmail: true})
+  }).then(user => {
     console.log(user)
-  }).catch(err=>{
-      // HError
-    })
-})
+  }).catch(err => {
+    // HError
+  })
 ```
 {% endifanrxCodeTabs %}
 
@@ -295,13 +298,14 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.getCurrentUser().then(user => {
-  user.setMobilePhone('15000000000').then(user => {
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    return user.setMobilePhone('15000000000')
+  }).then(user => {
     console.log(user)
-  }).catch(err=>{
+  }).catch(err => {
     // HError
   })
-})
 ```
 {% endifanrxCodeTabs %}
 
@@ -331,13 +335,14 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.getCurrentUser().then(user => {
-  user.verifyMobilePhone('123456').then(user => {
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    return user.verifyMobilePhone('123456')
+  }).then(user => {
     console.log(user)
-  }).catch(err=>{
+  }).catch(err => {
     // HError
   })
-})
 ```
 {% endifanrxCodeTabs %}
 
@@ -366,13 +371,14 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.auth.getCurrentUser().then(user =>{
-  user.updatePassword({password: '111111', newPassword: '222222'}).then(user => {
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    return user.updatePassword({password: '111111', newPassword: '222222'})
+  }).then(user => {
     console.log(user)
-  }).catch(err=>{
-      // HError
+  }).catch(err => {
+    // HError
   })
-})
 ```
 {% endifanrxCodeTabs %}
 
@@ -389,14 +395,15 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 {% ifanrxCodeTabs %}
 ```js
-wx.BaaS.auth.getCurrentUser().then(user =>{
-   // age 为自定义字段
-   user.set('age', 30).update().then(res => {
-     // success
-   }, err => {
-     // err 为 HError 对象
-   })
-})
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    // age 为自定义字段
+    return user.set('age', 30).update()
+  }).then(user => {
+    // success
+  }).catch(err => {
+    // err 为 HError 对象
+  })
 ```
 {% endifanrxCodeTabs %}
 
@@ -415,13 +422,14 @@ wx.BaaS.auth.getCurrentUser().then(user =>{
 
 {% ifanrxCodeTabs %}
 ```js
-wx.BaaS.auth.getCurrentUser().then(user =>{
-  user.requestEmailVerification().then(res => {
+wx.BaaS.auth.getCurrentUser()
+  .then(user => {
+    return user.requestEmailVerification()
+  }).then(res => {
     console.log(res)
-  }).catch(err=>{
+  }).catch(err => {
     // HError
   })
-})
 ```
 {% endifanrxCodeTabs %}
 

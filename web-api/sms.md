@@ -4,15 +4,19 @@
 
 **接口**
 
-`POST /hserve/v1.8/sms-verification-code/`
+`POST /hserve/v2.2/sms-verification-code/`
 
-发送短信前请先进行[短信签名审核](https://cloud.minapp.com/dashboard/#/app/sms/setting)，审核通过后才能发送短信
+支持指定短信签名向指定手机号发送短信验证码。
+
+> **info**
+> 发送短信前请先进行[短信签名审核](https://cloud.minapp.com/dashboard/#/app/sms/setting)，审核通过后才能发送短信
 
 **请求参数**
 
 |       参数     |       类型    | 必填 | 说明 |
 | :------------  | :----------- | :---| :--- |
 | phone           | string   |  是 | 发送短信验证码的手机 |
+| signature_id    | integer  |  否 | 发送短信验证码使用的签名 ID，若不指定，将选择最新的过审签名进行发送 |
 
 **请求示例**
 
@@ -21,8 +25,8 @@ curl -X POST \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  -d '{"phone": "12345678910"}' \
-  https://{{服务器域名}}/hserve/v1.8/sms-verification-code/
+  -d '{"phone": "12345678910", "signature_id": 1}' \
+  https://{{服务器域名}}/hserve/v2.2/sms-verification-code/
 ```
 
 **返回示例**

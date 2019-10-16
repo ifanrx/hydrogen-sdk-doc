@@ -30,7 +30,7 @@
 
 ## 第一个接入知晓云的 Web 应用
 
-下面，我们以[**我的书架** demo](https://github.com/ifanrx/hydrogen-demo/tree/master/web-sdk-demo) 为例，讲解如何在 web 中接入知晓云 SDK。你可以[点击这里体验示例应用](https://codesandbox.io/s/zq3q291wo3)
+下面，我们以[**我的书架** demo](https://github.com/ifanrx/hydrogen-demo/tree/master/web-sdk-demo) 为例，讲解如何在 web 中接入知晓云 SDK。你可以[点击这里体验示例应用](https://codesandbox.io/s/zq3q291wo3)（需要先在 dashboard 中[配置相应安全域名](https://cloud.minapp.com/dashboard/#/app/settings/sdk/)，比如对于此示例应用需填入 `https://zq3q291wo3.csb.app`，并在示例应用中填写 ClientID，ClientID 可在 dashboard [设置-应用页](https://cloud.minapp.com/dashboard/#/app/settings/info/)中获取）。
 
 ### 知晓云的初始化配置
 

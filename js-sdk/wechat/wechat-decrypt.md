@@ -20,7 +20,7 @@
 - 通过调用 [`wx.getShareInfo`](https://mp.weixin.qq.com/debug/wxadoc/dev/api/share.html#wxgetshareinfoobject) 获取到的转发详细信息，此时设置 type = 'open-gid'
 
 > **danger**
-> 该功能涉及到敏感数据接口使用，需前往 [知晓云管理后台-小程序设置页面-SDK 功能设置](https://cloud.minapp.com/admin/profile/) 手动开启。
+> 该功能涉及到敏感数据接口使用，需前往 [知晓云管理后台-小程序设置页面-SDK 功能设置](https://cloud.minapp.com/dashboard/#/app/settings/sdk/) 手动开启。
 
 **请求示例**
 

@@ -1,4 +1,4 @@
-# 短信验证码 
+# 短信验证码
 
 该接口支持向特定手机号码发送验证码，并校验验证码是否正确的功能，以此来完成一些需要确认用户身份的操作，比如：
 
@@ -7,22 +7,26 @@
 * 进行重要操作的验证确认等
 
 > **info**
-> SDK 发送短信需要在知晓云控制台开通并开启发送短信权限，操作步骤请参考本页面末尾
+> SDK 发送短信需要在[知晓云控制台](https://cloud.minapp.com/dashboard/#/app/sms/setting)开通并开启发送短信权限，操作步骤请参考本页面末尾
 
 ## 发送短信验证码
-`BaaS.sendSmsCode({phone})`
+`BaaS.sendSmsCode({phone, signatureID})`
 
 ### 参数说明
 
-| 参数名   | 类型   | 说明     |
-|----------|--------|----------|
-| phone | string | 手机号 |
+| 参数名      | 类型   | 说明          |
+|-------------|--------|---------------|
+| phone       | string | 手机号        |
+| signatureID (v2.6.0) | Integer | 短信签名 ID   |
+
+> **info**
+> 如果短信签名 ID (signatureID) 未指定，后端默认会选用**最新审核通过**的签名发送短信。
 
 ### 示例代码
 
 {% ifanrxCodeTabs %}
 ```javascript
-wx.BaaS.sendSmsCode({phone: '1328888888'}).then(res => {
+wx.BaaS.sendSmsCode({phone: '1328888888', signatureID: 1}).then(res => {
   // success
   console.log(res.data) // { "status": "ok" }
 }).catch(e => {
@@ -70,17 +74,17 @@ wx.BaaS.verifySmsCode({phone: '132888888', code: 123456}).then(res => {
 |----------|----------|
 | 400     | 验证码错误 / 参数错误 |
 
-## 验证码发送频次
+## 短信发送频次
 
 {% block tips1 %}
 
 > **info**
->同一企业在 1 分钟内只能发送 30 条短信，如有更高频次需求，请联系客服上调
-
 >对同一手机号码在 1 分钟内只能发送 1 条短信
 
 >对同一手机号码在 1 天内不能发送超过 10 条短信
 
 {% endblock tips1 %}
+
+## 开通短信验证码功能
 
 {% include "/js-sdk/frag/_enable_sms.md" %}

@@ -46,29 +46,63 @@ tableID 和 tableName 二选一，不能同时存在
 ## 示例
 
 **请求示例**
-
+{% tabs queryAsync="async/await", queryPromise="promise" %}
+{% content "queryAsync" %}
 ```js
-// 实例化查询对象
-let query = new BaaS.Query()
+asynnc function query() {
+  try {
+    // 实例化查询对象
+    let query = new BaaS.Query()
 
-// 设置查询条件（比较、字符串包含、组合等）
-//...
+    // 设置查询条件（比较、字符串包含、组合等）
+    //...
 
-// 应用查询对象
-let Product = new BaaS.TableObject(tableName)
-Product.setQuery(query).find().then(res => {
-  // success
-}, err => {
-  // err
-})
+    // 应用查询对象
+    let Product = new BaaS.TableObject(tableName)
+    let res = await Product.setQuery(query).find()
+    // success
+    return res
 
-// 不设置查询条件
-Product.find().then(res => {
-  // success
-}, err => {
-  // err
-})
+    // 不设置查询条件
+    let res = Product.find()
+    // success
+    return res
+  } catch(err) {
+    // error
+    throw err
+  }
+}
 ```
+
+{% content "queryPromise" %}
+```js
+function query() {
+  let query = new BaaS.Query()
+
+  // 设置查询条件（比较、字符串包含、组合等）
+  //...
+
+  // 应用查询对象
+  let Product = new BaaS.TableObject(tableName)
+  Product.setQuery(query).find().then(res => {
+    // success
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
+
+  // 不设置查询条件
+  Product.find().then(res => {
+    // success
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
+}
+```
+{% endtabs %}
 
 **返回示例**
 
@@ -320,7 +354,7 @@ query.hasKey('publisherInfo', 'abc.location')
 ```
 
 
-## pointer 查询 
+## pointer 查询
 
 > **info**
 > 目前 pointer 仅支持针对 pointer 本身的查询，不支持嵌套查询（即查询 pointer 指向的数据行的字段）
@@ -331,33 +365,65 @@ query.hasKey('publisherInfo', 'abc.location')
 
 order 表部分字段结构如下：
 
-| 字段名          | 字段类型          | 说明                 |
-|----------------|------------------|----------------------|
+| 字段名         | 字段类型         | 说明                     |
+|----------------|------------------|--------------------------|
 | customer       |  pointer         | 指向了 `customer` 表     |
-| user           |  pointer         | 指向了 `_userprofile` 表     |
+| user           |  pointer         | 指向了 `_userprofile` 表 |
 
 现在需要查询 order 表中，同时满足以下条件的数据行：
 
-- customer 字段指向 customer 表中 id 为 `5bad87ab0769797b4fb27a1b` 的数据行 
+- customer 字段指向 customer 表中 id 为 `5bad87ab0769797b4fb27a1b` 的数据行
 - user 字段指向了 _userprofile 表中 id 为 `69147880` 的数据行
 
+{% tabs queryPointerAsync="async/await", queryPointerPromise="promise" %}
+{% content "queryPointerAsync" %}
 ```js
-var query = new wx.BaaS.Query()
-var Customer = new BaaS.TableObject('customer')
-var Order = new BaaS.TableObject('order')
-var User = new BaaS.User()
+async function queryPointer() {
+  try {
+    var query = new wx.BaaS.Query()
+    var Customer = new BaaS.TableObject('customer')
+    var Order = new BaaS.TableObject('order')
+    var User = new BaaS.User()
 
-query.compare('customer', '=', Customer.getWithoutData('5bad87ab0769797b4fb27a1b'))
-query.compare('user', '=', User.getWithoutData(69147880))
+    query.compare('customer', '=', Customer.getWithoutData('5bad87ab0769797b4fb27a1b'))
+    query.compare('user', '=', User.getWithoutData(69147880))
 
-Order.setQuery(query).expand(['customer', 'user']).find().then(res => {
-  
-})
+    let res = await Order.setQuery(query).expand(['customer', 'user']).find()
+    // success
+    return res
+  } catch(err) {
+    // error
+    throw err
+
+  }
+}
 ```
+
+{% content "queryPointerPromise" %}
+```js
+function queryPointer() {
+  var query = new wx.BaaS.Query()
+  var Customer = new BaaS.TableObject('customer')
+  var Order = new BaaS.TableObject('order')
+  var User = new BaaS.User()
+
+  query.compare('customer', '=', Customer.getWithoutData('5bad87ab0769797b4fb27a1b'))
+  query.compare('user', '=', User.getWithoutData(69147880))
+
+  Order.setQuery(query).expand(['customer', 'user']).find().then(res => {
+    // success
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
+}
+```
+{% endtabs %}
+
 **返回示例**
 
-res 结构如下:
-
+{% ifanrxfold summary="res 结构如下:" %}
 ```json
 {
   "status": 200,
@@ -394,7 +460,7 @@ res 结构如下:
         "is_authorized": false,
         "created_at": 1532921460,
         "updated_at": 1539683851
-      },  
+      },
       "read_perm": ["user:*"],
       "updated_at": 1541666168,
       "write_perm": ["user:*"]
@@ -402,12 +468,13 @@ res 结构如下:
   }
 }
 ```
+{% endifanrxfold %}
 
 **不使用 expand 方法的示例**
 ```js
 // 不使用 expand() 方法， customer 字段不会扩展
 Order.setQuery(query).find().then(res => {
-  
+
 })
 ```
 
@@ -489,17 +556,45 @@ let orQuery = BaaS.Query.or(andQuery, query3)
 ```
 
 ## 获取符合筛选条件的数据总数
-```javascript
-let Product = new BaaS.TableObject(tableName)
-let query = new BaaS.Query()
+{% tabs queryTotalAsync="async/await", queryTotalPromise="promise" %}
+{% content "queryTotalAsync" %}
+```js
+async function queryTotal() {
+  try {
+    let Product = new BaaS.TableObject(tableName)
+    let query = new BaaS.Query()
 
-// 设置查询条件
-// ...
+    // 设置查询条件
+    // ...
 
-Product.setQuery(query).count().then(num => {
-  // success
-  console.log(num)  // 10
-}, err => {
-  // err
-})
+    let num = await Product.setQuery(query).count()
+    // success
+    console.log(num)  // 10
+    return res
+  } catch(err) {
+    // error
+    throw err
+  }
+}
 ```
+
+{% content "queryTotalPromise" %}
+```js
+function queryTotal() {
+  let Product = new BaaS.TableObject(tableName)
+  let query = new BaaS.Query()
+
+  // 设置查询条件
+  // ...
+
+  Product.setQuery(query).count().then(num => {
+    // success
+    console.log(num)  // 10
+    callback(null, res)
+  }, err => {
+    // err
+    callback(err)
+  })
+}
+```
+{% endtabs %}

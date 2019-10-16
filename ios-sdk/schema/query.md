@@ -29,7 +29,7 @@
 {% content "swift1" %}
 ```
 // 通过 tableId 创建数据表实例 
-let table = Table(Id: 1236)
+let table = Table(Id: "1236")
 
 // 通过 tablename 创建数据表实例
 let table = Table(name: "Book")
@@ -37,7 +37,7 @@ let table = Table(name: "Book")
 {% content "oc1" %}
 ```
 // 通过 tableId 创建数据表实例
-BaaSTable *table = [[BaaSTable alloc] initWithId:1236**];
+BaaSTable *table = [[BaaSTable alloc] initWithId: @"1236"];
 
 // 通过 tablename 创建数据表实例
 BaaSTable *table = [[BaaSTable alloc] initWithName:@"Book"];
@@ -50,7 +50,7 @@ tableName 和 tableID 二选一
 
 | 名称     | 类型   | 说明  |
 | :-----  | :----- | :--- |
-| tableId   | Int  | 数据表的 Id |
+| tableId   | String  | 数据表的 Id |
 | tableName | String |  数据表名 |
 
 2.创建 `Where` 对象，在该对象上添加查询条件
@@ -83,20 +83,24 @@ table.find(query: query) { (listResult, error) in
 ```
 BaaSQuery *query = [[BaaSQuery alloc] init];
 [query setWhere:where];
-[table findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
+[table findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
 {% endtabs %}
 
+**参数说明**
+
+|  参数  |  类型   | 必填 | 说明 |
+| :----- | :---- | :-- | :-- |
+| query | Query |  N  | 查询条件 |
+
 **返回结果**
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| listResult  | RecordListResult | 结果列表，详见 [数据类型](./data-type.md) 章节|
-| error   |  NSError |  错误信息  |
-
-error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md)
+| listResult  | RecordList | 结果列表，详见 [数据类型](./data-type.md) 章节|
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
 > **info**
 > 注意：知晓云的 api URL 长度限定为 16386，超出则返回 502，请在构造查询条件时注意长度控制，如 in 操作符后边的数组长度、match 操作符后边的字符串长度等。
@@ -126,7 +130,7 @@ BaaSWhere *where = [BaaSWhere icontainsWithKey:@"color" value:@"red"];
 // 应用查询条件
 BaaSQuery *query = [[BaaSQuery alloc] init];
 [query setWhere:where];
-[table findWithQuery:query completion:^(BaaSRecordListResult * _Nullable listResult, NSError * _Nullable error) {
+[table findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
 ```
@@ -178,8 +182,8 @@ operator 说明：
 // name 列包含 apple
 let whereargs = Where.contains(key: "name", value: "apple")
 
-// name 列不包含 app
-let whereargs = Where.contains(key: "name", value: "app")
+// name 列包含 apple (不区分大小写)
+let whereargs = Where.icontains(key: "name", value: "apple")
 ```
 {% content "oc7" %}
 ```
@@ -265,7 +269,9 @@ BaaSWhere *where = [BaaSWhere matchesWithKey:@"phoneNumber" regx: regx];
 
 ## 数组查询
 
-field 的类型不限制，field 的 value 含有 array 中的一个或多个
+* inList
+
+数据表中的 field 的类型不限制，field 的 value 含有 array 中的一个或多个
 
 {% tabs swift8="Swift", oc8="Objective-C" %}
 {% content "swift8" %}
@@ -278,7 +284,9 @@ BaaSWhere *where = [BaaSWhere inListWithKey: @"fieldname" list: array];
 ```
 {% endtabs %}
 
-field 的类型不限制，field 的 value 不含有 array 中的任何一个
+* notInList
+
+数据表中的 field 的类型不限制，field 的 value 不含有 array 中的任何一个
 {% tabs swift9="Swift", oc9="Objective-C" %}
 {% content "swift9" %}
 ```
@@ -290,7 +298,9 @@ BaaSWhere *where = [BaaSWhere notInListWithKey: @"fieldname" list: array];
 ```
 {% endtabs %}
 
-field 的类型必须为数组, field 的 value 包含 array 中的每一个  
+* arrayContains
+
+数据表中的 field 的类型必须为数组, field 的 value 包含 array 中的每一个  
 {% tabs swift10="Swift", oc10="Objective-C" %}
 {% content "swift10" %}
 ```
@@ -425,7 +435,6 @@ BaaSWhere *where = [BaaSWhere hasKey:@"publisherInfo" fieldName:@"abc.location"]
 ```
 {% endtabs %}
 
-<!--
 ## pointer 查询 
 
 > **info**
@@ -433,41 +442,39 @@ BaaSWhere *where = [BaaSWhere hasKey:@"publisherInfo" fieldName:@"abc.location"]
 
 **示例代码**
 
-假设现在有两张表： order 表和 customer 表。
+假设现在有两张表： Book 表和 Author 表。
 
 order 表部分字段结构如下：
 
 | 字段名          | 字段类型          | 说明                 |
 |----------------|------------------|----------------------|
-| customer       |  pointer         | 指向了 `customer` 表     |
-| user           |  pointer         | 指向了 `_userprofile` 表     |
+| author       |  pointer         | 指向了 `Author` 表     |
 
-现在需要查询 order 表中，同时满足以下条件的数据行：
+现在需要查询 Book 表中，同时满足以下条件的数据行：
 
-- customer 字段指向 customer 表中 id 为 `5bad87ab0769797b4fb27a1b` 的数据行 
-- user 字段指向了 _userprofile 表中 id 为 `69147880` 的数据行
+- author 字段指向 Author 表中 id 为 `5bad87ab0769797b4fb27a1b` 的数据行 
 
 {% tabs swift16="Swift", oc16="Objective-C" %}
 {% content "swift16" %}
 ```
-let Order = Table(name: "Book")
-let query1 = Query.compare(key: "customer", operator: "=", value: "5bad87ab0769797b4fb27a1b")
-let query2 = Query.compare(key: "user", operator: "=", value: 69147880)
-let whereargs = Where.and(querys:[query1, query2])
-Order.setQuery(query)
+let bookTable = Table(name: "Book")
+let authorTable = Table(name: "Author")
+
+let author = authorTable.getWithoutData(recordId: "5bad87ab0769797b4fb27a1b")
+
+let whereArgs = Where.compare(key: "customer", operator: .equalTo, value: author)
 ```
 {% content "oc16" %}
 ```
 // 通过 tableId 创建数据表实例
-BaaSTable *Order = [[BaaSTable alloc] initWithId:1236**];
-BaaSQuery *query1 = [BaaSQuery compareWithKey:@"customer" operator:@"=" value:@"5bad87ab0769797b4fb27a1b"];
-BaaSQuery *query2 = [BaaSQuery compareWithKey:@"user" operator:@"=" value:@69147880];
-BaaSWhere *where = [BaaSWhere andWithQuerys:@[query1, query2]];
-[Order setQuery: query];
+BaaSTable *bookTable = [[BaaSTable alloc] initWithId: "Book"];
+BaaSTable *authorTable = [[BaaSTable alloc] initWithId: "Author"];
+
+BaaSRecord *author = [authorTable getWithoutDataWithRecordId:@"5bad87ab0769797b4fb27a1b"];
+
+BaaSWhere *where = [BaaSWhere compareWithKey:@"customer" operator:BaaSOperatoEqualThan value: author];
 ```
 {% endtabs %}
-
--->
 
 ## 组合查询
 

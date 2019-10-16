@@ -1,5 +1,9 @@
 {% extends "/js-sdk/wechat/censor.md" %}
 
+{% block pageTitile %}
+# 检测违规图片、文本
+{% endblock pageTitile %}
+
 {% block tips1 %}
 
 > **info**
@@ -14,7 +18,7 @@
 
 `BaaS.wxCensorImage(fileID)`
 
-### 参数说明
+**参数说明**
 
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
@@ -24,7 +28,7 @@
 
 {% block censorImageCode %}
 
-### 示例代码
+**示例代码**
 ```javascript
 exports.main = async function (event, callback) {
   callback(null, await BaaS.wxCensorImage('5b71568674f0e509bb5ecc30'))
@@ -50,3 +54,6 @@ exports.main = async function (event, callback) {
 ```
 
 {% endblock censorTextCode %}
+
+{% block censorAsync %}
+{% endblock censorAsync %}

@@ -1,9 +1,25 @@
 <!-- ex_nonav -->
 
-# 控制台操作
+# 知晓云用户指南
 
-![知晓云官网](/images/dashboard/index-landing-page.png)
+知晓云是个好用、顺手的小程序开发工具。它免去了小程序开发中服务器搭建、域名备案、数据接口实现等繁琐流程。让您专注于业务逻辑的实现，使用知晓云开发小程序，门槛更低，效率更高。
 
-![应用选择](/images/dashboard/index-app-page.png)
+在后面的章节中，我们将逐一为您讲述产品个各个功能模块。
 
-![控制台](/images/dashboard/index-dashboard-page.png)
+## 应用面板
+
+![应用面板](/images/dashboard/application-panel.png)
+
+开发者可以在应用面板查看所有应用的用户数量、消费情况。如果你有很多应用，可以尝试切换为列表模式来管理。
+
+## 财务
+
+![财务](/images/dashboard/financial.png)
+
+开发者可以在财务模块查看账户余额、账单明细、发票、资源包及优惠券信息。
+
+## 企业与团队
+
+![企业与团队](/images/dashboard/enterprise-team.png)
+
+团队管理支持你为企业添加多个管理员，同时开发者可以为这些管理员分配不同的权限。
