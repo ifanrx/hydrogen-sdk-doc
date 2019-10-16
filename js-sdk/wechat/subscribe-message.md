@@ -12,13 +12,15 @@
 
 > 只需要上报订阅结果为 `accept` 的模版 ID
 
-`wx.BaaS.subscribeMessage(subscriptions)`
+`wx.BaaS.subscribeMessage(options)`
 
 **参数说明**
 
+options:
+
 | 参数          | 类型   | 必填 | 说明 |
 | :------------ | :----- | :--- | :-- |
-| subscriptions | Subscription[] | 是   | 订阅关系列表 |
+| subscription | Subscription[] | 是   | 订阅关系列表 |
 
 Subscription:
 
@@ -35,18 +37,28 @@ Subscription:
 wx.requestSubscribeMessage({
   tmplIds: [this.data.id],
   success: (res) => {
-    let subscriptions = []
+    let subscription = []
     if (res[this.data.id] === 'accept') {
-      subscriptions.push({
+      subscription.push({
         template_id: this.data.id,
         subscription_type: 'once',
       })
     }
-    app.BaaS.subscribeMessage(subscriptions).then(res => {
+    app.BaaS.subscribeMessage({subscription}).then(res => {
       // success
     }, err => {
       // fail
     })
   },
 })
+```
+
+**返回示例**
+```JSON
+{
+  "statusCode": 201,
+  "data": {
+    "status": "ok"
+  }
+}
 ```
