@@ -4,6 +4,7 @@
 
 关于这两个接口的频次限制及效果说明，请参阅 QQ 官方文档：[内容安全-小程序](https://q.qq.com/wiki/develop/miniprogram/server/open_port/port_safe.html)。
 
+{% block censorImageSign %}
 
 ## 检测违规图片
 
@@ -15,6 +16,8 @@
 |----------|--------|----------|
 | filePath | String | 文件路径 |
 
+{% endblock censorImageSign %}
+
 
 **返回示例**
 
@@ -23,6 +26,8 @@
   risky: true
 }
 ```
+
+{% block censorImageCode %}
 
 **示例代码**
 ```javascript
@@ -37,13 +42,18 @@ qq.chooseImage({
 })
 ```
 
+{% endblock censorImageCode %}
+
 HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 
 
+{% block censorTextSign %}
 
 ## 检测违规文本
 
 `qq.BaaS.censorText(text)`
+
+{% endblock censorTextSign %}
 
 **参数说明**
 
@@ -60,6 +70,7 @@ HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 ```
 **示例代码**
 
+{% block censorTextCode %}
 
 ```javascript
 qq.BaaS.censorText("测试文本").then(res => {
@@ -68,6 +79,8 @@ qq.BaaS.censorText("测试文本").then(res => {
   // HError 对象
 })
 ```
+
+{% endblock censorTextCode %}
 
 HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 
