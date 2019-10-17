@@ -484,6 +484,9 @@ function updateData() {
 
 ### 按条件批量更新时不触发触发器
 
+> **info**
+> 不触发触发器，limit <= 1000 时，操作记录为同步执行。超过则会转为异步执行并移除限制，变成操作全部
+
 {% tabs batchUpdateAsync="async/await", batchUpdatePromise="promise" %}
 {% content "batchUpdateAsync" %}
 ```js
@@ -537,24 +540,62 @@ function batchUpdate() {
 ```
 {% endtabs %}
 
-```js
-let MyTableObject = new BaaS.TableObject(tableName)
+**返回示例**
 
-let query = new BaaS.Query()
+limit <= 1000 时，回调中的 res 对象结构如下：
 
-// 设置查询条件（比较、字符串包含、组合等）
-//...
-
-let records = MyTableObject.getWithoutData(query)
-
-// 与更新特定记录一致
-// 设置更新内容 ...
-
-// 知晓云后台设置的触发器将不会被触发
-records.update({enableTrigger: false}).then(res => {}, err => {})
+```json
+{
+  "status": 200, // 200 表示更新成功, 注意这不代表所有数据都更新成功，具体要看 operation_result 字段
+  "statusText": "OK",
+  "data": {
+    "succeed": 8, // 成功更新记录数
+    "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
+    "offset": 0,
+    "limit": 1000,
+    "next": null, // 下一次更新 url，若为 null 则表示全部更新完毕
+    "operation_result": [  // 创建的详细结果
+       {
+         "success": {      // 成功时会有 success 字段
+           "id": "5bffbab54b30640ba8135650",
+           "updated_at": 1543486133
+         }
+       },
+       {
+         "success": {
+           "id": "5bffbab54b30640ba8135651",
+           "updated_at": 1543486133
+         }
+       },
+       {
+         "error": {     // 失败时会有 error 字段
+           "code": 16837,
+           "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
+         }
+       }
+     ] 
+  }
+}
 ```
 
+limit > 1000 时，回调中的 res 对象结构如下：
+
+```json
+{
+  "status": 200,
+  "statusText": "OK",
+  "data": {
+    "statys": "ok",
+    "operation_id": 1 // 可以用来查询到最终执行的结果
+  }
+}
+```
+
+> **info**
+> 获取异步执行结果，请查看接口[文档](/cloud-function/node-sdk/async-job.md)
+
 ## 更新 object 类型内的属性
+
 ```javascript
 product.patchObject('obj1', {name: '123'})
 ```
