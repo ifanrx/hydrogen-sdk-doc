@@ -9,40 +9,106 @@
 
 默认 limit 为 20, offset 为 0，我们也可以手动指定 limit 和 offset 来控制。例如，每页展示 100 条数据，需要获取第五页的数据，将 limit 设置为 100、offset 设置为 400 即可。limit 最大可设置为 1000。
 
+{% tabs pagingAsync="async/await", pagingPromise="promise" %}
+{% content "pagingAsync" %}
 ```js
-var Product = new BaaS.TableObject(tableName)
+async function paging() {
+  try {
+    var Product = new BaaS.TableObject(tableName)
 
-var query = new BaaS.Query()
-query.compare('amount', '>', 0)
+    var query = new BaaS.Query()
+    query.compare('amount', '>', 0)
 
-Product.setQuery(query).limit(10).offset(0).find().then(res => {
-  // success
-}, err => {
-  // err
-})
+    let res = await Product.setQuery(query).limit(10).offset(0).find()
+    // success
+    return res
+  } catch(err) {
+    // error
+    throw err
+  }
+}
 ```
+
+{% content "pagingPromise" %}
+```js
+function paging() {
+  var Product = new BaaS.TableObject(tableName)
+
+  var query = new BaaS.Query()
+  query.compare('amount', '>', 0)
+
+  Product.setQuery(query).limit(10).offset(0).find().then(res => {
+    // success
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
+}
+```
+{% endtabs %}
 
 ## 排序
 
 使用 orderBy 来控制使用升序或降序获取数据列表。
 
+{% tabs sortingAsync="async/await", sortingPromise="promise" %}
+{% content "sortingAsync" %}
 ```js
-var Product = new BaaS.TableObject(tableName)
+async function sorting() {
+  try {
+    var Product = new BaaS.TableObject(tableName)
 
-var query = new BaaS.Query()
-query.compare('amount', '>', 0)
+    var query = new BaaS.Query()
+    query.compare('amount', '>', 0)
 
-// 升序
-Product.setQuery(query).orderBy('created_at').find()
-// or
-Product.setQuery(query).orderBy(['created_at']).find()
+    // 升序
+    Product.setQuery(query).orderBy('created_at').find()
+    // or
+    Product.setQuery(query).orderBy(['created_at']).find()
 
-// 降序
-Product.setQuery(query).orderBy('-created_at').find()
-// or
-Product.setQuery(query).orderBy(['-created_at']).find()
+    // 降序
+    Product.setQuery(query).orderBy('-created_at').find()
+    // or
+    Product.setQuery(query).orderBy(['-created_at']).find()
 
-// 多重排序
-Product.setQuery(query).orderBy(['-created_at', 'created_by']).find()
-// 👆先按照 created_at 降序，再按照 created_by 升序排列
+    // 多重排序
+    let res = await Product.setQuery(query).orderBy(['-created_at', 'created_by']).find()
+    // 👆先按照 created_at 降序，再按照 created_by 升序排列
+    // success
+    return res
+  } catch(err) {
+    // error
+    throw err
+  }
+}
 ```
+
+{% content "sortingPromise" %}
+```js
+function sorting() {
+  var Product = new BaaS.TableObject(tableName)
+
+  var query = new BaaS.Query()
+  query.compare('amount', '>', 0)
+
+  // 升序
+  Product.setQuery(query).orderBy('created_at').find()
+  // or
+  Product.setQuery(query).orderBy(['created_at']).find()
+
+  // 降序
+  Product.setQuery(query).orderBy('-created_at').find()
+  // or
+  Product.setQuery(query).orderBy(['-created_at']).find()
+
+  // 多重排序
+  Product.setQuery(query).orderBy(['-created_at', 'created_by']).find().then(res => {
+    // 👆先按照 created_at 降序，再按照 created_by 升序排列
+    callback(null, res)
+  }).catch(err => {
+    callback(err)
+  })
+}
+```
+{% endtabs %}

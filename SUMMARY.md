@@ -10,7 +10,9 @@
     * [新手入门 - 微信小程序](newbies/wechat.md)
     * [新手入门 - Web](newbies/web.md)
     * [新手入门 - 支付宝小程序](newbies/alipay.md)
-    * [新手入门 - SwiftUI](newbies/swiftui.md)
+    * [新手入门 - QQ 小程序](newbies/qq.md)
+    * [新手入门 - 百度小程序](newbies/baidu.md)
+    * [新手入门 - iOS](newbies/swiftui.md)
 
 ----
 
@@ -71,6 +73,7 @@
         * [微信支付](js-sdk/wechat/payment.md)
         * [网络请求](js-sdk/wechat/request.md)
         * [模板消息](js-sdk/wechat/template-message.md)
+        * [订阅消息](js-sdk/wechat/subscribe-message.md)
         * [微信加密数据解密](js-sdk/wechat/wechat-decrypt.md)
         * [检测违规图片、音频、文本](js-sdk/wechat/censor.md)
         * [获取二维码](js-sdk/wechat/wxacode.md)
@@ -81,11 +84,13 @@
         * [网络请求](js-sdk/qq/request.md)
         * [模板消息](js-sdk/qq/template-message.md)
         * [QQ 加密数据解密](js-sdk/qq/decrypt.md)
+        * [检测违规图片、文本](js-sdk/qq/censor.md)
     * [百度小程序](js-sdk/baidu/README.md)
         * [接入指南](js-sdk/baidu/how-to.md)
         * [百度登录](js-sdk/baidu/signin-signout.md)
         * [网络请求](js-sdk/baidu/request.md)
         * [百度支付](js-sdk/baidu/payment.md)
+        * [模板消息](js-sdk/baidu/template-message.md)
     * [Web](js-sdk/web/README.md)
         * [接入指南](js-sdk/web/how-to.md)
         * [登入登出](js-sdk/web/signin-signout.md)
@@ -105,6 +110,7 @@
         * [网页微信、支付宝、QQ 支付](js-sdk/payment/web.md)
         * [订单查询](js-sdk/payment/order.md)
     * [调用云函数](js-sdk/invoke-function.md)
+    * [获取异步任务结果](js-sdk/async-job.md)
     * [短信验证码](js-sdk/sms.md)
     * [错误码和 HError 对象](js-sdk/error-code.md)
     * [本地存储](js-sdk/local-storage.md)
@@ -275,6 +281,7 @@
         * [文件分类操作](cloud-function/node-sdk/file/file-category.md)
     * [支付订单操作](cloud-function/node-sdk/order.md)
     * [微信直连商户分账](cloud-function/node-sdk/wechat-profit-sharing.md)
+    * [支付宝商家分账](cloud-function/node-sdk/alipay-profit-sharing.md)
     * [获取微信小程序二维码](cloud-function/node-sdk/wxacode.md)
     * [获取支付宝小程序二维码](cloud-function/node-sdk/alipay-qr-code.md)
     * [调用云函数](cloud-function/node-sdk/cloud-function.md)
@@ -292,6 +299,7 @@
         * [百度](cloud-function/node-sdk/template-message/baidu/README.md)
             * [发送模板消息](cloud-function/node-sdk/template-message/baidu/template-message.md)
             * [获取可用 formId 数量](cloud-function/node-sdk/template-message/baidu/template-message-ticket.md)
+    * [发送微信订阅消息](cloud-function/node-sdk/wechat-subscribe-message.md)
     * [短信](cloud-function/node-sdk/sms/README.md)
         * [短信验证码](cloud-function/node-sdk/sms/code.md)
         * [短信通知](cloud-function/node-sdk/sms/message.md)
@@ -304,6 +312,7 @@
     * [企业付款](cloud-function/node-sdk/wx-promotion-transfer.md)
     * [错误码和 HError 对象](cloud-function/node-sdk/error.md)
     * [公众号发送红包](cloud-function/node-sdk/red-pack.md)
+    * [获取异步任务结果](cloud-function/node-sdk/async-job.md)
 
 ----
 

@@ -148,7 +148,7 @@ func fetch() {
 
 其中，`BookStore` 是一个可观察对象 `ObservableObject`。`BookList` 为书籍列表界面，为了显示书籍信息，在该类创建一个 `BookStore` 实例，命名为 `store`，并声明 `store` 为 `@ObservedObject` 观察对象，这就完成了数据和界面的绑定，即每当 `store.books` 有变化时，系统会自动根据 `store.books` 新的数据来更新 `BookList`。无需手动去更新相关的界面。更多关于 `SwiftUI` 的使用，请查阅 [SwiftUI](https://developer.apple.com/xcode/swiftui/)
 
-![书籍列表](/images/newbies/swiftui-booklist.png)
+![书籍列表](/images/newbies/swiftui-booklist.jpeg)
 
 至此， 接入 `MinCloud` 的 `SwiftUI`应用，已经完成了，完整的代码可以从[这里](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)下载。
 

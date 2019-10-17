@@ -89,25 +89,54 @@ MyRecord.set(key2, value2)
 
 **请求示例**
 
+{% tabs updateRecordAsync="async/await", updateRecordPromise="promise" %}
+{% content "updateRecordAsync" %}
 ```js
 // 更新 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项的 price 字段
-let tableID = 10
-let recordID = '59897882ff650c0477f00485'
+async function updateRecord() {
+  try {
+    let tableID = 10
+    let recordID = '59897882ff650c0477f00485'
 
-let Product = new BaaS.TableObject(tableID)
-let product = Product.getWithoutData(recordID)
+    let Product = new BaaS.TableObject(tableID)
+    let product = Product.getWithoutData(recordID)
 
-product.set('price', 11)
-product.update().then(res => {
-  // success
-}, err => {
-  // err
-})
+    product.set('price', 11)
+    let res = await product.update()
+    // success
+    return res
+  } catch(err) {
+    // err
+    throw err
+  }
+}
 ```
+
+{% content "updateRecordPromise" %}
+```js
+// 更新 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项的 price 字段
+function updateRecord() {
+  let tableID = 10
+  let recordID = '59897882ff650c0477f00485'
+
+  let Product = new BaaS.TableObject(tableID)
+  let product = Product.getWithoutData(recordID)
+
+  product.set('price', 11)
+  product.update().then(res => {
+    // success
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
+}
+```
+{% endtabs %}
 
 **返回示例**
 
-then 回调中的 res 对象结构如下：
+回调中的 res 对象结构如下：
 
 ```json
 {
@@ -123,7 +152,6 @@ then 回调中的 res 对象结构如下：
   }
 }
 ```
-
 
 err 对象结构请参考[错误码和 HError 对象](../error.md)
 
@@ -171,26 +199,59 @@ product.update().then(res => {}, err => {})
 现在需要更新 product 表中 id 为 `5bdfaf068asd123123asd` 的数据行
 
 **示例代码**
-
+{% tabs updatePointerAsync="async/await", updatePointerPromise="promise" %}
+{% content "updatePointerAsync" %}
 ```js
-// 获取一个 tableRecord 实例
-let Customer = new BaaS.TableObject('customer')
-let customer = Customer.getWithoutData('5bdfaf068b155c0891d064ad')
+async function updatePointer() {
+  try {
+    // 获取一个 tableRecord 实例
+    let Customer = new BaaS.TableObject('customer')
+    let customer = Customer.getWithoutData('5bdfaf068b155c0891d064ad')
 
-// 获取要修改的数据行的实例
-let Product = new BaaS.TableObject('product')
-let product = Product.getWithoutData('5bdfaf068asd123123asd')
-// 69147880 为 _userprofile 表中某行数据的 id
-let user = new BaaS.User().getWithoutData(69147880)
+    // 获取要修改的数据行的实例
+    let Product = new BaaS.TableObject('product')
+    let product = Product.getWithoutData('5bdfaf068asd123123asd')
+    // 69147880 为 _userprofile 表中某行数据的 id
+    let user = new BaaS.User().getWithoutData(69147880)
 
-// 给 pointer 字段赋值
-product.set('customer', customer)
-product.set('user', user)
+    // 给 pointer 字段赋值
+    product.set('customer', customer)
+    product.set('user', user)
 
-product.update().then(res=>{
-  // success
-})
+    let res = await product.update()
+    // success
+    return res
+  } catch(err) {
+    // error
+    throw err
+  }
+}
 ```
+
+{% content "updatePointerPromise" %}
+```js
+function updatePointer() {
+  // 获取一个 tableRecord 实例
+  let Customer = new BaaS.TableObject('customer')
+  let customer = Customer.getWithoutData('5bdfaf068b155c0891d064ad')
+
+  // 获取要修改的数据行的实例
+  let Product = new BaaS.TableObject('product')
+  let product = Product.getWithoutData('5bdfaf068asd123123asd')
+  // 69147880 为 _userprofile 表中某行数据的 id
+  let user = new BaaS.User().getWithoutData(69147880)
+
+  // 给 pointer 字段赋值
+  product.set('customer', customer)
+  product.set('user', user)
+
+  product.update().then(res=>{
+    // success
+    callback(null, res)
+  })
+}
+```
+{% endtabs %}
 
 **返回示例**
 ```json
@@ -320,29 +381,68 @@ order.update()
  - `limit` 和 `offset` 的使用请查看 [分页和排序](./limit-and-order.md) 章节
 
 **请求示例**
-
+{% tabs updateDataAsync="async/await", updateDataPromise="promise" %}
+{% content "updateDataAsync" %}
 ```js
-let MyTableObject = new BaaS.TableObject(tableName)
+async function updateData() {
+  try {
+    let MyTableObject = new BaaS.TableObject(tableName)
 
-let query = new BaaS.Query()
+    let query = new BaaS.Query()
 
-// 设置查询条件（比较、字符串包含、组合等）
-...
+    // 设置查询条件（比较、字符串包含、组合等）
+    ...
 
-// limit、offset 可以指定按条件查询命中的数据分页
-let records = MyTableObject.limit(10).offset(0).getWithoutData(query)
+    // limit、offset 可以指定按条件查询命中的数据分页
+    let records = MyTableObject.limit(10).offset(0).getWithoutData(query)
 
-// 与更新特定记录一致
-records.set(key1, value1)
-records.incrementBy(key2, value2)
-records.append(key3, value3)
+    // 与更新特定记录一致
+    records.set(key1, value1)
+    records.incrementBy(key2, value2)
+    records.append(key3, value3)
 
-records.update().then(res => {}, err => {})
+    let res = await records.update()
+    // success
+    return res
+  } catch(err) {
+    // error
+    throw err
+  }
+}
 ```
+
+{% content "updateDataPromise" %}
+```js
+function updateData() {
+  let MyTableObject = new BaaS.TableObject(tableName)
+
+  let query = new BaaS.Query()
+
+  // 设置查询条件（比较、字符串包含、组合等）
+  ...
+
+  // limit、offset 可以指定按条件查询命中的数据分页
+  let records = MyTableObject.limit(10).offset(0).getWithoutData(query)
+
+  // 与更新特定记录一致
+  records.set(key1, value1)
+  records.incrementBy(key2, value2)
+  records.append(key3, value3)
+
+  records.update().then(res => {
+    // success
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
+}
+```
+{% endtabs %}
 
 **返回示例**
 
-then 回调中的 res 对象结构如下：
+回调中的 res 对象结构如下：
 
 ```json
 {
@@ -384,24 +484,118 @@ then 回调中的 res 对象结构如下：
 
 ### 按条件批量更新时不触发触发器
 
+> **info**
+> 不触发触发器，limit <= 1000 时，操作记录为同步执行。超过则会转为异步执行并移除限制，变成操作全部
+
+{% tabs batchUpdateAsync="async/await", batchUpdatePromise="promise" %}
+{% content "batchUpdateAsync" %}
 ```js
-let MyTableObject = new BaaS.TableObject(tableName)
+async function batchUpdate() {
+  try {
+    let MyTableObject = new BaaS.TableObject(tableName)
 
-let query = new BaaS.Query()
+    let query = new BaaS.Query()
 
-// 设置查询条件（比较、字符串包含、组合等）
-//...
+    // 设置查询条件（比较、字符串包含、组合等）
+    //...
 
-let records = MyTableObject.getWithoutData(query)
+    let records = MyTableObject.getWithoutData(query)
 
-// 与更新特定记录一致
-// 设置更新内容 ...
+    // 与更新特定记录一致
+    // 设置更新内容 ...
 
-// 知晓云后台设置的触发器将不会被触发
-records.update({enableTrigger: false}).then(res => {}, err => {})
+    // 知晓云后台设置的触发器将不会被触发
+    let res = await records.update({enableTrigger: false})
+    // success
+    return res
+  } catch(err) {
+    // error
+    throw err
+  }
+}
 ```
 
+{% content "batchUpdatePromise" %}
+```js
+function batchUpdate() {
+  let MyTableObject = new BaaS.TableObject(tableName)
+
+  let query = new BaaS.Query()
+
+  // 设置查询条件（比较、字符串包含、组合等）
+  //...
+
+  let records = MyTableObject.getWithoutData(query)
+
+  // 与更新特定记录一致
+  // 设置更新内容 ...
+
+  // 知晓云后台设置的触发器将不会被触发
+  records.update({enableTrigger: false}).then(res => {
+    callback(null, res)
+  }).catch(err => {
+    callback(err)
+  })
+}
+```
+{% endtabs %}
+
+**返回示例**
+
+limit <= 1000 时，回调中的 res 对象结构如下：
+
+```json
+{
+  "status": 200, // 200 表示更新成功, 注意这不代表所有数据都更新成功，具体要看 operation_result 字段
+  "statusText": "OK",
+  "data": {
+    "succeed": 8, // 成功更新记录数
+    "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
+    "offset": 0,
+    "limit": 1000,
+    "next": null, // 下一次更新 url，若为 null 则表示全部更新完毕
+    "operation_result": [  // 创建的详细结果
+       {
+         "success": {      // 成功时会有 success 字段
+           "id": "5bffbab54b30640ba8135650",
+           "updated_at": 1543486133
+         }
+       },
+       {
+         "success": {
+           "id": "5bffbab54b30640ba8135651",
+           "updated_at": 1543486133
+         }
+       },
+       {
+         "error": {     // 失败时会有 error 字段
+           "code": 16837,
+           "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
+         }
+       }
+     ] 
+  }
+}
+```
+
+limit > 1000 时，回调中的 res 对象结构如下：
+
+```json
+{
+  "status": 200,
+  "statusText": "OK",
+  "data": {
+    "statys": "ok",
+    "operation_id": 1 // 可以用来查询到最终执行的结果
+  }
+}
+```
+
+> **info**
+> 获取异步执行结果，请查看接口[文档](/cloud-function/node-sdk/async-job.md)
+
 ## 更新 object 类型内的属性
+
 ```javascript
 product.patchObject('obj1', {name: '123'})
 ```
@@ -446,29 +640,55 @@ record.patchObject('obj1', patch)
 
 ## 修改数据行 ACL
 
-  有时候我们需要设置特定数据行的 ACL 权限，之前只能在知晓云控制台修改数据行 ACL，现在云函数中支持通过代码来完该操作了。 
+有时候我们需要设置特定数据行的 ACL 权限，之前只能在知晓云控制台修改数据行 ACL，现在云函数中支持通过代码来完该操作了。 
 
- 假设 product 表中有一行 id 为 5bffbab54b30640ba8135650 的数据行，目前其 acl 为 所有人可读，所有人可写，现在需要将其修改为 `用户组【开发人员】和创建者可写` 、`创建者可读`。
- 
- 其中用户组 `开发人员` 的 group_id 为 `656`、创建者的 user_id (对应 _userprofile 表中的 `id` 列) 为 `37087886`。
- 
- `write_perm` 和 `read_perm` 的可选值请参考 [数据表操作-创建数据表](./table.md) 小节
- 
- **示例代码**
- 
- ```javascript
- let Product = new BaaS.TableObject('product')
- let record = Product.getWithoutData('5bffbab54b30640ba8135650')
- 
- record.set('write_perm', [ "gid:656", "user:37087886"])
- record.set('read_perm', [ "user:37087886" ])
- 
- record.update().then(res=>{
-   // success
- }).catch(e=>{
-   // error
- })
- ```
+假设 product 表中有一行 id 为 5bffbab54b30640ba8135650 的数据行，目前其 acl 为 所有人可读，所有人可写，现在需要将其修改为 `用户组【开发人员】和创建者可写` 、`创建者可读`。
+
+其中用户组 `开发人员` 的 group_id 为 `656`、创建者的 user_id (对应 _userprofile 表中的 `id` 列) 为 `37087886`。
+
+`write_perm` 和 `read_perm` 的可选值请参考 [数据表操作-创建数据表](./table.md) 小节
+
+**示例代码**
+{% tabs updateACLAsync="async/await", updateACLPromise="promise" %}
+{% content "updateACLAsync" %}
+```js
+async function updateACL() {
+  try {
+    let Product = new BaaS.TableObject('product')
+    let record = Product.getWithoutData('5bffbab54b30640ba8135650')
+    
+    record.set('write_perm', [ "gid:656", "user:37087886"])
+    record.set('read_perm', [ "user:37087886" ])
+
+    let res = record.update()
+    // success
+    return res
+  } catch(e) {
+    // error
+    throw err
+  }
+}
+```
+
+{% content "updateACLPromise" %}
+```js
+function updateACL() {
+  let Product = new BaaS.TableObject('product')
+  let record = Product.getWithoutData('5bffbab54b30640ba8135650')
+  
+  record.set('write_perm', [ "gid:656", "user:37087886"])
+  record.set('read_perm', [ "user:37087886" ])
+  
+  record.update().then(res=>{
+    // success
+    callback(null, res)
+  }).catch(e=>{
+    // error
+    callback(err)
+  })
+}
+```
+{% endtabs %}
  
  **返回示例**
  
