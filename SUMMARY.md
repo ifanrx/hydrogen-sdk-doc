@@ -90,6 +90,7 @@
         * [百度登录](js-sdk/baidu/signin-signout.md)
         * [网络请求](js-sdk/baidu/request.md)
         * [百度支付](js-sdk/baidu/payment.md)
+        * [模板消息](js-sdk/baidu/template-message.md)
     * [Web](js-sdk/web/README.md)
         * [接入指南](js-sdk/web/how-to.md)
         * [登入登出](js-sdk/web/signin-signout.md)
