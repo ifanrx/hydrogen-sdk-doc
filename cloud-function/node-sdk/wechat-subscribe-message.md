@@ -4,6 +4,11 @@
 
 该接口给特定的用户发送一个特定的订阅消息
 
+> **info**
+> 可以通过查询接口在发送前查询可用订阅
+
+> 智能过滤需要`个人版`及以上套餐版本
+
 `BaaS.wechat.sendSubscribeMessage(data)`
 
 
@@ -11,11 +16,12 @@
 
 data 是 Object 类型，它包括以下几个属性
 
-| 参数             | 类型   | 必填  | 说明 |
+| 参数            | 类型   | 必填  | 说明 |
 | :-------------- | :----- | :--- | :-- |
+| recipient_type  | String | 是   | 目前只支持 `user_id` |
 | user_id         | String | 是   | 用户 ID |
-| template_id     | String | 是   | 模板 ID |
-| keywords        | Object | 是   | 关键字（可在 [知晓云-模板消息](https://cloud.minapp.com/dashboard/#/app/template-message/template) 配置）|
+| template_id     | String | 是   | 模板 ID （微信后台配置）|
+| keywords        | Object | 是   | 关键字 |
 | schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 | page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
 
@@ -36,7 +42,6 @@ let data = {
   recipient_type: 'user_id',
   user_id: 23425,
   template_id: "tadfDf23asdi8dfd",
-  submission_type: "form_id",
   page: "pages/index/index",
   keywords: {
     keyword1: {
