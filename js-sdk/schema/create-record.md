@@ -460,7 +460,6 @@ MyTableObject.createMany(records, {enableTrigger: false}).then(res => {
 
 **返回示例**
 
-创建记录数量为 1000 以内时，then 回调中 res 结构如下:
 ```json
 {
   "statusCode": 201, // 201 表示创建成功, 注意这不代表所有数据都插入成功，具体要看 operation_result 字段
@@ -487,19 +486,6 @@ MyTableObject.createMany(records, {enableTrigger: false}).then(res => {
          }
        }
      ]
-  }
-}
-```
-
-创建记录数量大于 1000 时，then 回调中 res 结构如下:
-```json
-{
-  "statusCode": 200
-  "data": {
-    {
-      "statys": "ok",
-      "operation_id": 1 // 可以用来查询到最终执行的结果
-    }
   }
 }
 ```

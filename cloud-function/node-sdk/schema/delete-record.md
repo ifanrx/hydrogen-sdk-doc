@@ -171,7 +171,13 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
 ### 批量删除时不触发触发器
 
 > **info**
-> 不触发触发器，limit <= 1000 时，操作记录为同步执行。超过则会转为异步执行并移除限制，变成操作全部
+> 不触发触发器的情况下:
+
+> limit <= 1000 时，操作记录为同步执行
+
+> limit > 1000 时，则会转为异步执行并移除限制，变成操作全部
+
+> limit 未设置时，为操作全部的异步操作
 
 {% tabs batchDeleteAsync="async/await", batchDeletePromise="promise" %}
 {% content "batchDeleteAsync" %}
@@ -206,7 +212,7 @@ function batchDelete() {
 
 **返回示例**
 
-limit <= 1000 时，回调中的 res 对象结构如下：
+同步操作时，回调中的 res 对象结构如下：
 
 ```json
 {
@@ -222,7 +228,7 @@ limit <= 1000 时，回调中的 res 对象结构如下：
 }
 ```
 
-limit > 1000 时，回调中的 res 对象结构如下：
+异步操作时，回调中的 res 对象结构如下：
 
 ```json
 {
