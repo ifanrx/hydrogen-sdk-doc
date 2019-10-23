@@ -1,3 +1,5 @@
+{% import "/cloud-function/node-sdk/macro/total_count.md" as totalCount %}
+
 # 获取用户信息
 
 `let MyUser = new BaaS.User()`
@@ -233,6 +235,19 @@ userRecord.setAccount({
 ```
 
 ## 批量修改用户自定义字段
+
+`BaaS.UserRecord#update(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| enableTrigger | boolean |  否  | true | 是否触发触发器 |
+| withCount     | boolean |  否  | true | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
 
 通过设置自定义查询条件 Query，将符合条件的用户自定义字段进行批量更新操作
 
@@ -471,8 +486,37 @@ User.delete(userID).then(res => {
   "data": ""
 }
 ```
+## 获取符合筛选条件的用户总数
+
+`BaaS.User#count()`
+
+```js
+let MyUser = new BaaS.User()
+let query = new BaaS.Query()
+query.contains('nickname', 'like')
+MyUser.setQuery(query).count().then(num => {
+  // success
+  console.log(num)  // 10
+  callback(null, res)
+}, err => {
+  // err
+  callback(err)
+})
+```
 
 ## 查询，获取用户列表
+
+`BaaS.User#find(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| withCount     | boolean |  否  | true | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
 
 用户查询与[数据表查询](./schema/query.md)方法一致
 

@@ -1,4 +1,18 @@
+{% import "/cloud-function/node-sdk/macro/total_count.md" as totalCount %}
+
 # 查询
+
+`BaaS.TableObject#find(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| withCount     | boolean |  否  | true | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
 
 ## 数据类型对应查询操作符表
 
@@ -556,6 +570,9 @@ let orQuery = BaaS.Query.or(andQuery, query3)
 ```
 
 ## 获取符合筛选条件的数据总数
+
+`BaaS.TableObject#count()`
+
 {% tabs queryTotalAsync="async/await", queryTotalPromise="promise" %}
 {% content "queryTotalAsync" %}
 ```js

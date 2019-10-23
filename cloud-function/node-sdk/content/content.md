@@ -1,3 +1,5 @@
+{% import "/cloud-function/node-sdk/macro/total_count.md" as totalCount %}
+
 # 内容操作
 
 以下操作都需指明操作的内容库，方法如下：
@@ -145,7 +147,37 @@ res.data:
 }
 ```
 
+## 获取符合筛选条件的内容总数
+
+`BaaS.Content#count()`
+
+```js
+let query = new BaaS.Query()
+query.arrayContains('categories', [1513076252710475])
+MyContent.setQuery(query).count().then(num => {
+  // success
+  console.log(num)  // 10
+  callback(null, res)
+}, err => {
+  // err
+  callback(err)
+})
+```
+
 ## 查询，获取内容列表
+
+`BaaS.Content#find(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| withCount     | boolean |  否  | true | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
+
 
 内容查询与[数据表查询](../schema/query.md)方法一致
 
