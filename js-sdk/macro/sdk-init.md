@@ -13,22 +13,27 @@
 {% endif %}
 
 ```javascript
-{{apiPrefix}}BaaS.init(clientID, {autoLogin, logLevel})
+{{apiPrefix}}BaaS.init(clientID, options)
 ```
 
 **参数说明**
 
+| 参数          | 类型       | 必填 | 说明         |
+| :------------ | :--------- | ---- | :----------- |
+| clientID      | String     |   Y   | 知晓云管理后台获取到的 ClientID |
+| options       | InitOption |   N   | 知晓云管理后台获取到的 ClientID |
+
+InitOption:
+
 {% if platform != 'web' %}
 | 参数          | 类型    | 必填 | 说明         |
 | :------------ | :------| ---- | :----------- |
-| clientID      | String |   Y   | 知晓云管理后台获取到的 ClientID |
 | autoLogin     | Boolean |   N   | 请求知晓云接口时，是否自动静默登录，默认为 false |
 | logLevel      | String |   N   | 日志输出级别，共支持 debug、info、warn、error 4 个级别，默认为 error|
 | host          | String |   N   | 自定义域名 |
 {% else %}
 | 参数          | 类型    | 必填 | 说明         |
 | :------------ | :------| ---- | :----------- |
-| clientID      | String |   Y   | 知晓云管理后台获取到的 ClientID |
 | logLevel      | String |   N   | 日志输出级别，共支持 debug、info、warn、error 4 个级别，默认为 error|
 | host          | String |   N   | 自定义域名 |
 {% endif %}

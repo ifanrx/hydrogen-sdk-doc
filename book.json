@@ -38,7 +38,7 @@
     "hydrogen-landing@./_ifrx_plugin/gitbook-plugin-hydrogen-landing",
     "hydrogen-fold@./_ifrx_plugin/gitbook-plugin-hydrogen-fold"
   ],
-  "title": "知晓云平台开发文档 2.0",
+  "title": "知晓云平台开发文档 2.0+",
   "variables": {
     "latestVersionWechat": "2.8.1",
     "latestVersionAlipay": "2.8.1",
