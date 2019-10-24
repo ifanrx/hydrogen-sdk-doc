@@ -1,5 +1,32 @@
+{% import "/js-sdk/macro/total_count.md" as totalCount %}
+
 # 删除数据项
 
+删除单条数据：
+
+`BaaS.TableObject#delete(recordID, options)`
+
+删除多条数据：
+
+`BaaS.TableObject#delete(query, options)`
+
+**参数说明**
+
+| 参数     | 类型   | 必填 | 说明    |
+| :------- | :----- | :--- |:------- |
+| recordID | string |  是  | 记录 ID |
+| query    | Query  |  是  | Query 查询条件对象 |
+
+options（批量删除时需要设置）:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| enableTrigger | boolean |  否  | true | 是否触发触发器 |
+| withCount     | boolean |  否  | `false` (SDK v3.x) / `true` (SDK v2.x) | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
+
+<!-- 分隔两个 info -->
 > **info**
 > 匿名用户删除数据，请先查看[数据表匿名读写权限特别说明](/js-sdk/schema/#数据表匿名读写权限特别说明)
 

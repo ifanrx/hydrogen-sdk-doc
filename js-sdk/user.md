@@ -1,3 +1,5 @@
+{% import "/js-sdk/macro/total_count.md" as totalCount %}
+
 # 获取用户信息
 
 {% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
@@ -203,7 +205,42 @@ MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_oder']).f
 }
 ```
 
+## 获取符合筛选条件的用户总数
+
+`BaaS.User#count()`
+
+{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
+```js
+let MyUser = new wx.BaaS.User()
+
+// 查找所有用户
+MyUser.find()
+
+// 查询 nickname 中包含 like 的用户
+let query = new wx.BaaS.Query()
+query.contains('nickname', 'like')
+MyUser.setQuery(query).count().then(num => {
+  // success
+  console.log(num)  // 10
+}, err => {
+  // err
+})
+```
+{% endifanrxCodeTabs %}
+
 ## 查询，获取用户列表
+
+`BaaS.User#find(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| withCount     | boolean |  否  | `false` (SDK v3.x) / `true` (SDK v2.x) | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
 
 用户查询与[数据表查询](./schema/query.md)方法一致
 

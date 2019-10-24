@@ -1,5 +1,21 @@
+{% import "/js-sdk/macro/total_count.md" as totalCount %}
+
 # 更新数据项
 
+`BaaS.TableRecord#update(options)`
+
+**参数说明**
+
+options（批量更新时需要设置）:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| enableTrigger | boolean |  否  | true | 是否触发触发器 |
+| withCount     | boolean |  否  | `false` (SDK v3.x) / `true` (SDK v2.x) | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
+
+<!-- 分隔两个 info -->
 > **info**
 > 匿名用户更新数据，请先查看[数据表匿名读写权限特别说明](/js-sdk/schema/#数据表匿名读写权限特别说明)
 

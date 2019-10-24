@@ -1,3 +1,5 @@
+{% import "/js-sdk/macro/total_count.md" as totalCount %}
+
 # 文件分类操作
 
 实例化一个 `BaaS.FileCategory` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
@@ -76,7 +78,38 @@ MyFileCategory.getFileList('5a2fe91508443e3123dbe1cb').then(res => {
 > **info**
 > 如需对分类下的文件进行更多条件的筛选，可使用 [File](./file.md) 的查询接口
 
+## 获取符合条件的文件分类总数
+
+`BaaS.FileCategory#count()`
+
+{% ifanrxCodeTabs %}
+```js
+let MyFileCategory = new wx.BaaS.FileCategory()
+
+let query = new wx.BaaS.Query()
+query.contains('name', substr)
+let num = MyFileCategory.setQuery(query).count().then(num => {
+  // success
+  console.log(num)  // 10
+}, err => {
+  // err
+})
+```
+{% endifanrxCodeTabs %}
+
 ## 查询，获取分类列表
+
+`BaaS.FileCategory#find(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| withCount     | boolean |  否  | `false` (SDK v3.x) / `true` (SDK v2.x) | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
 
 文件分类查询与[数据表查询](../schema/query.md)方法一致，但只支持以下指定字段的筛选：
 

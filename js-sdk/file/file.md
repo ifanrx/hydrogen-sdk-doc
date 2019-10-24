@@ -1,3 +1,18 @@
+{% import "/js-sdk/macro/total_count.md" as totalCount %}
+
+{% macro filter() %}
+文件查询与[数据表查询](../schema/query.md)方法一致，但只支持以下指定字段的筛选
+
+| 支持字段       |  类型  | 说明 |
+| :------------ | :----- | :--- |
+| id            | String | 文件 id |
+| name          | String | 文件名 |
+| size          | Number | 文件大小，以字节为单位 |
+| category_id   | String | 文件分类 id |
+| category_name | String | 文件分类名 |
+| created_at    | Integer| 创建时间 （格式为 unix 时间戳） |
+{% endmacro %}
+
 # 文件操作
 
 实例化一个 `BaaS.File` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
@@ -268,8 +283,42 @@ MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 > **info**
 > 删除单个文件，如果权限不足，会返回 401；删除多个文件，如果权限不足，则直接跳过该文件
 
+## 获取符合条件的文件总数
+
+`BaaS.File#count()`
+
+{{filter()}}
+
+{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
+```js
+let MyFile = new wx.BaaS.File()
+let query = new wx.BaaS.Query()
+query.compare('category_name', '=', categoryName)
+query.contains('name', substr)
+MyFile.setQuery(query).count().then(num => {
+  // success
+  console.log(num)  // 10
+}, err => {
+  // err
+})
+```
+{% endifanrxCodeTabs %}
 
 ## 查询，获取文件列表
+
+`BaaS.File#find(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| withCount     | boolean |  否  | `false` (SDK v3.x) / `true` (SDK v2.x) | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
+
+{{filter()}}
 
 文件查询与[数据表查询](../schema/query.md)方法一致，但只支持以下指定字段的筛选
 
