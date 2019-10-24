@@ -140,7 +140,7 @@ MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 
 ## 获取符合条件的文件总数
 
-`BaaS.ContentCategory#count()`
+`BaaS.File#count()`
 
 {{filter()}}
 

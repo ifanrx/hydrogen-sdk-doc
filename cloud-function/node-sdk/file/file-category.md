@@ -171,7 +171,7 @@ MyFileCategory.delete(categoryID).then(res => {
 
 ## 获取符合条件的文件分类总数
 
-`BaaS.ContentCategory#count()`
+`BaaS.FileCategory#count()`
 
 {% tabs getFileCategoryCountAsync="async/await", getFileCategoryCountPromise="promise" %}
 {% content "getFileCategoryCountAsync" %}
