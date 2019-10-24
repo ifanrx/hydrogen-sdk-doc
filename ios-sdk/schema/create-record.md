@@ -207,9 +207,6 @@ NSString *dateISO = [dateFormatter stringFromDate:[NSDate date]];
 
 ## 添加 file 类型数据
 
-> **info**
->  为 file 类型字段设置值时，必须以 json 格式提供特定的文件信息。通过使用 `File` 实例的属性 `fileInfo` 可方便获取文件信息。
-
 如 Book 表定义 file 类型的列 cover，表示书的封面。示例：获取 `id` 为 `5c98b065d575a97d5f878225` 的文件，将该文件设置为书的封面。
 
 **实例代码**
@@ -218,7 +215,7 @@ NSString *dateISO = [dateFormatter stringFromDate:[NSDate date]];
 {% content "swift8" %}
 ```
 FileManager.get("@"5c98b065d575a97d5f878225"") { (file, error) in
-    book.set(key: "cover", value: file?.fileInfo)
+    book.set(key: "cover", value: file)
     book.save { (success, error) in
 
     }
@@ -227,7 +224,36 @@ FileManager.get("@"5c98b065d575a97d5f878225"") { (file, error) in
 {% content "oc8" %}
 ```
 [BaaSFileManager get:@"5c98b065d575a97d5f878225", completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
-    [book setWithKey:@"cover" value:file.fileInfo];
+    [book setWithKey:@"cover" value:file];
+    [book save:^(BOOL success, NSError * _Nullable error) {
+
+    }];
+}];
+```
+{% endtabs %}
+
+关于 `File` 类型查看 [文件](../file/file.md) 章节
+
+## 添加 file 数组类型数据
+
+如 Book 表定义 file 数组类型的列 photos。示例：获取 `id` 为 `5c98b065d575a97d5f878225` 的文件，将该文件作为数组的一个元素添加到 photos 中。
+
+**实例代码**
+
+{% tabs swift8_1="Swift", oc8_1="Objective-C" %}
+{% content "swift8_1" %}
+```
+FileManager.get("@"5c98b065d575a97d5f878225"") { (file, error) in
+    book.set(key: "photos", value: [file])
+    book.save { (success, error) in
+
+    }
+}
+```
+{% content "oc8_1" %}
+```
+[BaaSFileManager get:@"5c98b065d575a97d5f878225", completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
+    [book setWithKey:@"photos" value:@[file]];
     [book save:^(BOOL success, NSError * _Nullable error) {
 
     }];
