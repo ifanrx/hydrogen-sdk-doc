@@ -151,6 +151,16 @@ res.data:
 
 `BaaS.Content#count()`
 
+{% tabs getContentCountAsync="async/await", getContentCountPromise="promise" %}
+{% content "getContentCountAsync" %}
+```js
+let query = new BaaS.Query()
+query.arrayContains('categories', [1513076252710475])
+let num = await MyContent.setQuery(query).count()
+console.log(num)  // 10
+```
+
+{% content "getContentCountPromise" %}
 ```js
 let query = new BaaS.Query()
 query.arrayContains('categories', [1513076252710475])
@@ -163,6 +173,7 @@ MyContent.setQuery(query).count().then(num => {
   callback(err)
 })
 ```
+{% endtabs %}
 
 ## 查询，获取内容列表
 

@@ -486,10 +486,23 @@ User.delete(userID).then(res => {
   "data": ""
 }
 ```
+
 ## 获取符合筛选条件的用户总数
 
 `BaaS.User#count()`
 
+
+{% tabs getUserCountAsync="async/await", getUserCountPromise="promise" %}
+{% content "getUserCountAsync" %}
+```js
+let MyUser = new BaaS.User()
+let query = new BaaS.Query()
+query.contains('nickname', 'like')
+let num = await MyUser.setQuery(query).count()
+console.log(num)  // 10
+```
+
+{% content "getUserCountPromise" %}
 ```js
 let MyUser = new BaaS.User()
 let query = new BaaS.Query()
@@ -503,6 +516,7 @@ MyUser.setQuery(query).count().then(num => {
   callback(err)
 })
 ```
+{% endtabs %}
 
 ## 查询，获取用户列表
 

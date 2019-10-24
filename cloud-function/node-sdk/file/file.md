@@ -144,6 +144,18 @@ MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 
 {{filter()}}
 
+{% tabs getFileCountAsync="async/await", getFileCountPromise="promise" %}
+{% content "getFileCountAsync" %}
+```js
+let MyFile = new BaaS.File()
+let query = new BaaS.Query()
+query.compare('category_name', '=', categoryName)
+query.contains('name', substr)
+let num = await MyFile.setQuery(query).count()
+console.log(num)  // 10
+```
+
+{% content "getFileCountPromise" %}
 ```js
 let MyFile = new BaaS.File()
 let query = new BaaS.Query()
@@ -158,6 +170,8 @@ MyFile.setQuery(query).count().then(num => {
   callback(err)
 })
 ```
+{% endtabs %}
+
 
 ## 查询，获取文件列表
 

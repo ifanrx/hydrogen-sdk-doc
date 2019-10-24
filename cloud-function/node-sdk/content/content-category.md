@@ -114,6 +114,14 @@ res.data:
 
 `BaaS.ContentCategory#count()`
 
+{% tabs getContentCategoryCountAsync="async/await", getContentCategoryCountPromise="promise" %}
+{% content "getContentCategoryCountAsync" %}
+```js
+let num = await MyContentCategory.count()
+console.log(num)  // 10
+```
+
+{% content "getContentCategoryCountPromise" %}
 ```js
 MyContentCategory.count().then(num => {
   // success
@@ -124,6 +132,7 @@ MyContentCategory.count().then(num => {
   callback(err)
 })
 ```
+{% endtabs %}
 
 ## 查询，获取内容分类列表
 

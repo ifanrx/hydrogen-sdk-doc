@@ -173,6 +173,17 @@ MyFileCategory.delete(categoryID).then(res => {
 
 `BaaS.ContentCategory#count()`
 
+{% tabs getFileCategoryCountAsync="async/await", getFileCategoryCountPromise="promise" %}
+{% content "getFileCategoryCountAsync" %}
+```js
+let MyFileCategory = new BaaS.FileCategory()
+let query = new BaaS.Query()
+query.contains('name', substr)
+let num = await MyFileCategory.setQuery(query).count()
+console.log(num)  // 10
+```
+
+{% content "getFileCategoryCountPromise" %}
 ```js
 let MyFileCategory = new BaaS.FileCategory()
 let query = new BaaS.Query()
@@ -180,12 +191,11 @@ query.contains('name', substr)
 MyFileCategory.setQuery(query).count().then(num => {
   // success
   console.log(num)  // 10
-  callback(null, res)
 }, err => {
   // err
-  callback(err)
 })
 ```
+{% endtabs %}
 
 ## 查询，获取分类列表
 
