@@ -6,9 +6,13 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/table/:table_id/record/`
+`GET https://cloud.minapp.com/userve/v2.2/table/:table_id/record/`
 
 其中 `:table_id` 需替换为你的数据表 ID
+
+> **info**
+> 该接口支持通过参数 return_total_count 指定是否返回查询对象总数，以协助不关心对象总数只关心查询结果列表的开发者提升接口响应速度。
+同时，从 v2.2 版本开始该接口默认不返回查询对象总数，欲获取总数的开发者需要显式指定 return_total_count 参数。
 
 **参数说明**
 
@@ -20,6 +24,7 @@ Content-Type: `application/json`
 | order_by | String | N   | 对资源进行字段排序 |
 | limit    | Number | N   | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
 | offset   | Number | N   | 设置返回资源的起始偏移值，默认为 0 |
+| return_total_count   | Number | N   | 返回结果 meta 中是否返回 total_count，1 为返回，0 为不返回，默认不返回 |
 
 例如需要查询价格为 10 元的物品时，我们应该这样构造查询语句:
 
@@ -36,7 +41,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/table/1/record/', {params: {where: {price: {$eq: 10}}}}).then(res => {
+axios.get('https://cloud.minapp.com/userve/v2.2/table/1/record/', {params: {where: {price: {$eq: 10}}}}).then(res => {
   console.log(res.data)
 })
 ```
@@ -79,6 +84,14 @@ axios.get('https://cloud.minapp.com/userve/v1/table/1/record/', {params: {where:
 }
 ```
 
+若开发者只需要获取对象总数，则可以通过设置 `limit=1` 以及 `return_total_count=1` 来达到该效果，total_count 可从返回的 meta 中获取
+
+请求示例：
+
+```
+https://cloud.minapp.com/userve/v2.2/table/:table_id/record/?limit=1&return_total_count=1
+``` 
+
 ## 排序返回查询数据
 
 查询接口默认按**创建时间倒序**的顺序来返回数据列表，你也可以通过设置 `order_by` 参数来实现。
@@ -87,10 +100,10 @@ axios.get('https://cloud.minapp.com/userve/v1/table/1/record/', {params: {where:
 
 ```
 # 顺序
-https://cloud.minapp.com/userve/v1/table/:table_id/record/?order_by=created_at
+https://cloud.minapp.com/userve/v2.2/table/:table_id/record/?order_by=created_at
 
 # 倒序
-https://cloud.minapp.com/userve/v1/table/:table_id/record/?order_by=-created_at
+https://cloud.minapp.com/userve/v2.2/table/:table_id/record/?order_by=-created_at
 ```
 
 ## 获取数据项

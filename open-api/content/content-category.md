@@ -106,18 +106,33 @@ curl_close($ch);
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/content/:content_group_id/category/`
+`GET https://cloud.minapp.com/oserve/v2.2/content/:content_group_id/category/`
+
+> **info**
+> 该接口支持通过参数 return_total_count 指定是否返回查询对象总数，以协助不关心对象总数只关心查询结果列表的开发者提升接口响应速度。
+同时，从 v2.2 版本开始该接口默认不返回查询对象总数，欲获取总数的开发者需要显式指定 return_total_count 参数。
 
 **提交参数**
 
 - parent 内容分类父分类列表查询
 
-  `https://cloud.minapp.com/oserve/v1/content/:content_group_id/category/?parent__isnull=true`
+  `https://cloud.minapp.com/oserve/v2.2/content/:content_group_id/category/?parent__isnull=true`
 
 - name 内容分类名称的等值查询
 
-  `https://cloud.minapp.com/oserve/v1/content/:content_group_id/category/?name=category`
+  `https://cloud.minapp.com/oserve/v2.2/content/:content_group_id/category/?name=category`
 
+- return_total_count 指定是否在 meta 中返回 total_count
+
+  `https://cloud.minapp.com/oserve/v2.2/content/:content_group_id/category/?return_total_count=0`
+
+若开发者只需要获取对象总数，则可以通过设置 `limit=1` 以及 `return_total_count=1` 来达到该效果，total_count 可从返回的 meta 中获取
+
+请求示例：
+
+```
+https://cloud.minapp.com/oserve/v2.2/content/:content_group_id/category/?limit=1&return_total_count=1
+``` 
 
 **代码示例**
 
@@ -129,7 +144,7 @@ curl_close($ch);
 curl -X GET \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/content/1/category/
+https://cloud.minapp.com/oserve/v2.2/content/1/category/
 ```
 
 {% content "getContentCategoryListNode" %}
@@ -138,7 +153,7 @@ https://cloud.minapp.com/oserve/v1/content/1/category/
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://cloud.minapp.com/oserve/v1/content/1/category/',
+  url: 'https://cloud.minapp.com/oserve/v2.2/content/1/category/',
   headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
@@ -155,7 +170,7 @@ request(options, function (error, response, body) {
 ```php
 <?php
 $content_group_id = 1;// 内容库的 ID
-$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/category/";
+$url = "https://cloud.minapp.com/oserve/v2.2/content/{$content_group_id}/category/";
 
 $ch = curl_init();
 $header = array(
