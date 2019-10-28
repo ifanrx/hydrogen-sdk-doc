@@ -42,7 +42,7 @@ https://{{服务器域名}}/hserve/v1/content/group/1/
 请求示例：
 
 ```
-https://cloud.minapp.com/hserve/v2.2/content/group/?limit=1&return_total_count=1
+https://{{服务器域名}}/hserve/v2.2/content/group/?limit=1&return_total_count=1
 ``` 
 
 **请求示例**

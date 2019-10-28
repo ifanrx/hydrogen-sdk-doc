@@ -14,8 +14,6 @@
 
 | 参数        | 类型   | 必填 | 说明 |
 | :--------- | :----- | :-- | :-- |
-| 参数      | 类型   | 必填 | 说明 |
-| :------- | :----- | :-- | :-- |
 | where    | String | N   | 查询语句，参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码 |
 | order_by | String | N   | 以下字段不支持排序：gender, country, province, city, language |
 | limit    | Number | N   | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
@@ -137,7 +135,7 @@ axios.get('https://cloud.minapp.com/userve/v2.0/miniapp/user_profile/36619758/')
 | where    | String | N   | 查询语句，参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码 |
 | limit    | Number | N   | 限制单次请求更新的用户数，默认为 20 条，最大可设置为 1000 |
 | offset   | Number | N   | 设置更新的偏移值，默认为 0 |
-| return_total_count   | Integer | N   | 返回结果中是否包含 total_count，1 为包含，0 为不包含，默认不包含 |
+| return_total_count   | Number | N   | 返回结果中是否包含 total_count，1 为包含，0 为不包含，默认不包含 |
 
 > **info**
 > where 字段的详细说明请查看：[数据模块：数据操作](https://doc.minapp.com/user-dash/data/record.html#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE)。

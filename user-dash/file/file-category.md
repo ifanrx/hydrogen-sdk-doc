@@ -71,6 +71,10 @@ axios.get('https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d
 
 `GET https://cloud.minapp.com/userve/v2.2/file-category/`
 
+> **info**
+> 该接口支持通过参数 return_total_count 指定是否返回查询对象总数，以协助不关心对象总数只关心查询结果列表的开发者提升接口响应速度。
+同时，从 v2.2 版本开始该接口默认不返回查询对象总数，欲获取总数的开发者需要显式指定 return_total_count 参数。
+
 **参数说明**
 
 Content-Type: `application/json`
