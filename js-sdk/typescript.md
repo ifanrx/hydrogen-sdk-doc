@@ -1,6 +1,8 @@
 # TypeScript
 
-SDK 由 v3.x 开始支持 TypeScript。
+SDK 由 v3.x 开始支持 TypeScript 与自动补全。
+
+![自动补全](/images/typescript/auto-completion.gif)
 
 ## 两个使用场景：
 
@@ -39,9 +41,9 @@ SDK 由 v3.x 开始支持 TypeScript。
     yarn add -D miniprogram-api-typings
     ```
 
-  2. 使用 baas-cp.d.ts 文件
+  2. 使用 baas.d.ts 文件
 
-    1. 前往 SDK 下载页面下载类型定义文件 `baas-cp.d.ts`
+    1. 前往 SDK 下载页面下载类型定义文件 `baas.d.ts`
 
     2. 将文件放至开发工具能识别到的目录，具体请查看自己使用的编辑器的说明文档。
 

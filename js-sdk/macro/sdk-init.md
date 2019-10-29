@@ -21,7 +21,7 @@
 | 参数          | 类型       | 必填 | 说明         |
 | :------------ | :--------- | ---- | :----------- |
 | clientID      | String     |   Y   | 知晓云管理后台获取到的 ClientID |
-| options       | InitOption |   N   | 知晓云管理后台获取到的 ClientID |
+| options       | InitOption |   N   | 其他选项 |
 
 InitOption:
 

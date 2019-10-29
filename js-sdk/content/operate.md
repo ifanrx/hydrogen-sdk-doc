@@ -84,7 +84,10 @@ res.data:
 
 ## 获取符合筛选条件的内容总数
 
-`BaaS.Content#count()`
+`MyContentGroup.count()`
+
+> **info**
+> SDK v3.0 新增
 
 {% ifanrxCodeTabs %}
 ```js
@@ -101,7 +104,7 @@ MyContentGroup.setQuery(query).count().then(num => {
 
 ## 查询，获取内容列表
 
-`BaaS.ContentGroup#find(options)`
+`MyContentGroup.find(options)`
 
 **参数说明**
 
@@ -109,7 +112,7 @@ options:
 
 | 参数          | 类型    | 必填 | 默认 | 说明 |
 | :------------ | :------ | :--- | :--- |:--- |
-| withCount     | boolean |  否  | `false` (SDK v3.x) / `true` (SDK v2.x) | 是否返回 total_count |
+| withCount     | boolean |  否  | `false` | 是否返回 total_count |
 
 {{totalCount.withCountTips()}}
 

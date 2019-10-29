@@ -7,7 +7,7 @@
 ### 不兼容的更新：
 
 批量操作接口默认不返回 `total_count`（v3.x 之前的版本默认返回），
-这样可以提高接口的响应速度，如果需要 `total_count`，可以设置参数 `withCount` 为 `true`。
+这样可以显著提高接口的响应速度，如果需要 `total_count`，可以设置参数 `withCount` 为 `true`。
 另外，推荐使用 `count` 方法来获取数据的总数。
 
 **受影响的接口**：
@@ -52,4 +52,9 @@
 
   ![配置自定义域名](/images/host-config.png)
 
-2. [支持 TypeScript](/js-sdk/typescript.md)
+2. 支持 TypeScript
+
+  SDK v3.x 提供了 baas.d.ts 类型定义文件，
+  可以在微信开发者工具与 vscode（或其他支持使用 `*.d.ts` 文件做类型提示的开发工具）中更好地使用知晓云 SDK 进行开发。 
+
+  具体使用方式，请查看[文档](/js-sdk/typescript.md)

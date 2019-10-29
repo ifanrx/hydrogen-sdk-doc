@@ -80,7 +80,10 @@ MyFileCategory.getFileList('5a2fe91508443e3123dbe1cb').then(res => {
 
 ## 获取符合条件的文件分类总数
 
-`BaaS.FileCategory#count()`
+`MyFileCategory.count()`
+
+> **info**
+> SDK v3.0 新增
 
 {% ifanrxCodeTabs %}
 ```js
@@ -99,7 +102,7 @@ let num = MyFileCategory.setQuery(query).count().then(num => {
 
 ## 查询，获取分类列表
 
-`BaaS.FileCategory#find(options)`
+`MyFileCategory.find(options)`
 
 **参数说明**
 
@@ -107,7 +110,7 @@ options:
 
 | 参数          | 类型    | 必填 | 默认 | 说明 |
 | :------------ | :------ | :--- | :--- |:--- |
-| withCount     | boolean |  否  | `false` (SDK v3.x) / `true` (SDK v2.x) | 是否返回 total_count |
+| withCount     | boolean |  否  | `false` | 是否返回 total_count |
 
 {{totalCount.withCountTips()}}
 
