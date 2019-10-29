@@ -287,6 +287,9 @@ MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
 
 `BaaS.File#count()`
 
+> **info**
+> SDK v3.0 新增
+
 {{filter()}}
 
 {% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}

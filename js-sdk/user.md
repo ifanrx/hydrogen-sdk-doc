@@ -207,7 +207,10 @@ MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_oder']).f
 
 ## 获取符合筛选条件的用户总数
 
-`BaaS.User#count()`
+`MyUser.count()`
+
+> **info**
+> SDK v3.0 新增
 
 {% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
 ```js
@@ -230,7 +233,7 @@ MyUser.setQuery(query).count().then(num => {
 
 ## 查询，获取用户列表
 
-`BaaS.User#find(options)`
+`MyUser.find(options)`
 
 **参数说明**
 
