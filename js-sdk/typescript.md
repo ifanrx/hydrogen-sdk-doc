@@ -8,7 +8,7 @@ SDK 由 v3.x 开始支持 TypeScript 与自动补全。
 
 ### 1. 微信小程序开发工具
 
-  1. 前往 SDK 下载页面下载类型定义文件 `baas-wx.d.ts`
+  1. 前往[ SDK 下载页面](/js-sdk/download-sdk.md)下载类型定义文件 `baas-wx.d.ts`
 
   2. 将类型定义文件放至微信小程序 TypeScript 项目的 typings 目录中。
 
@@ -43,7 +43,7 @@ SDK 由 v3.x 开始支持 TypeScript 与自动补全。
 
   2. 使用 baas.d.ts 文件
 
-    1. 前往 SDK 下载页面下载类型定义文件 `baas.d.ts`
+    1. 前往[ SDK 下载页面](/js-sdk/download-sdk.md)下载类型定义文件 `baas.d.ts`
 
     2. 将文件放至开发工具能识别到的目录，具体请查看自己使用的编辑器的说明文档。
 
