@@ -12,9 +12,10 @@
 ![模板消息示例](../../../../images/template-message/alipay-template-message.png)
 
 `BaaS.alipay.sendTemplateMessage(data)`
+{% elif platform == 'baidu' %}
+`BaaS.baidu.sendTemplateMessage(data)`
 {% else %}
 `BaaS.qq.sendTemplateMessage(data)`
-
 {% endif %}
 
 
@@ -34,6 +35,16 @@ data 是 Object 类型，它包括以下几个属性
 | schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 | page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
 | emphasis_keyword| String | 否   | 模板需要放大的关键词，不填则默认无放大，例：keyword1.DATA|
+{% elif platform == 'baidu' %}
+| 参数             | 类型   | 必填  | 说明 |
+| :-------------- | :----- | :--- | :-- |
+| recipient_type  | String | 是   | 推送类型，可选值： user_id、user_list、user_group、schema_user  |
+| `<recipient_params>` | Array、Integer、String、Object | 是   | 根据recipient_type来填写不同的参数名， 详见下方表格说明 |
+| template_id     | String | 是   | 模板 ID |
+| submission_type | String | 是   | 模板消息触发条件，`form_id` 或者 `order_id` |
+| keywords        | Object | 是   | 关键字（可在 [知晓云-模板消息](https://cloud.minapp.com/dashboard/#/app/template-message/template) 配置）|
+| schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
+| page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
 {% else %}
 | 参数             | 类型   | 必填  | 说明 |
 | :-------------- | :----- | :--- | :-- |
@@ -87,6 +98,12 @@ BaaS.alipay.sendTemplateMessage(data).then(res => {
 }, err => {
   // 发送失败
 })
+{% elif platform == 'baidu' %}
+BaaS.baidu.sendTemplateMessage(data).then(res => {
+  // 发送成功
+}, err => {
+  // 发送失败
+})
 {% else %}
 BaaS.qq.sendTemplateMessage(data).then(res => {
   // 发送成功
@@ -110,6 +127,8 @@ let data = {
 BaaS.sendTemplateMessage(data)
 {% elif platform == 'alipay' %}
 BaaS.alipay.sendTemplateMessage(data)
+{% elif platform == 'baidu' %}
+BaaS.baidu.sendTemplateMessage(data)
 {% else %}
 BaaS.qq.sendTemplateMessage(data)
 {% endif %}
@@ -132,6 +151,8 @@ let data = {
 BaaS.sendTemplateMessage(data)
 {% elif platform == 'alipay' %}
 BaaS.alipay.sendTemplateMessage(data)
+{% elif platform == 'baidu' %}
+BaaS.baidu.sendTemplateMessage(data)
 {% else %}
 BaaS.qq.sendTemplateMessage(data)
 {% endif %}
@@ -173,6 +194,8 @@ let data = {
 BaaS.sendTemplateMessage(data)
 {% elif platform == 'alipay' %}
 BaaS.alipay.sendTemplateMessage(data)
+{% elif platform == 'baidu' %}
+BaaS.baidu.sendTemplateMessage(data)
 {% else %}
 BaaS.qq.sendTemplateMessage(data)
 {% endif %}
@@ -193,10 +216,13 @@ BaaS.qq.sendTemplateMessage(data)
 
 > **info**
 > 如果 `submission_type = 'form_id'`，请确保在调用 `BaaS.alipay.sendTemplateMessage` 前，已在小程序端调用 `my.BaaS.reportTicket`上报模版消息所需的 `formId`
+{% elif platform == 'baidu' %}
+其中 keyword1, keyword2 为百度后台中实际关键词对应的键值
+
+> **info**
+> 如果 `submission_type = 'form_id'`，请确保在调用 `BaaS.baidu.sendTemplateMessage` 前，已在小程序端调用 `swan.BaaS.reportTicket`上报模版消息所需的 `formId`
 {% else %}
 其中 keyword1, keyword2 为 QQ 后台中实际关键词对应的键值
-
-![关键词对应键值示例](/images/template-message/alipay-template-message-keyword.png)
 
 > **info**
 > 如果 `submission_type = 'form_id'`，请确保在调用 `BaaS.qq.sendTemplateMessage` 前，已在小程序端调用 `qq.BaaS.reportTicket`上报模版消息所需的 `formId`

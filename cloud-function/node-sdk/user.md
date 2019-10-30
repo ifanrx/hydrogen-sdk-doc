@@ -246,24 +246,201 @@ userRecord.setAccount({
 
 **请求示例**
 
+{% tabs batchUpdateAsync="async/await", batchUpdatePromise="promise" %}
+{% content "batchUpdateAsync" %}
 ```js
-let User = new BaaS.User()
+async function batchUpdate() {
+  try {
+    let User = new BaaS.User()
+    let query = new BaaS.Query()
 
-let query = new BaaS.Query()
+    // 设置查询条件（比较、字符串包含、组合等）
+    ...
 
-// 设置查询条件（比较、字符串包含、组合等）
-...
+    // limit、offset 可以指定按条件查询命中的数据分页
+    let userRecords = User.limit(10).offset(0).getWithoutData(query)
 
-// limit、offset 可以指定按条件查询命中的数据分页
-let userRecords = User.limit(10).offset(0).getWithoutData(query)
+    // 与更新特定记录一致
+    userRecords.set(key1, value1)
+    userRecords.incrementBy(key2, value2)
+    userRecords.append(key3, value3)
 
-// 与更新特定记录一致
-userRecords.set(key1, value1)
-userRecords.incrementBy(key2, value2)
-userRecords.append(key3, value3)
+    let res = await userRecords.update().then(res => {}, err => {})
 
-records.update().then(res => {}, err => {})
+    console.log(res)
+    // success
+    return res
+  } catch(err) {
+    //err 为 HError 对象
+    throw err
+  }
+}
 ```
+
+{% content "batchUpdatePromise" %}
+```js
+// 知晓云后台设置的触发器将不会被触发
+function batchUpdate() {
+  let User = new BaaS.User()
+  let query = new BaaS.Query()
+
+  // 设置查询条件（比较、字符串包含、组合等）
+  ...
+
+  // limit、offset 可以指定按条件查询命中的数据分页
+  let userRecords = User.limit(10).offset(0).getWithoutData(query)
+
+  // 与更新特定记录一致
+  userRecords.set(key1, value1)
+  userRecords.incrementBy(key2, value2)
+  userRecords.append(key3, value3)
+
+  userRecords.update().then(res => {
+    console.log(res)
+    callback(null, res)
+  }, err => {
+    //err 为 HError 对象
+    callback(err)
+  })
+}
+```
+{% endtabs %}
+
+**返回示例**
+
+回调中的 res 对象结构如下：
+
+```json
+{
+  "status": 200,
+  "data": {
+    "limit": 1,
+    "next": "/dserve/v2.1/miniapp/user_profile/?where=%7B%7D&enable_trigger=1&limit=1&offset=1",
+    "offset": 0,
+    "operation_result": [
+      {
+        "success": {
+          "id": "5a3c51cdceb616ccfc9d5f78",
+          "updated_at": 1571044054
+        }
+      }
+    ],
+    "succeed": 1,
+    "total_count": 402
+  }
+}
+```
+
+### 批量修改用户自定义字段不触发触发器
+
+> **info**
+> 不触发触发器的情况下:
+
+> limit <= 1000 时，操作记录为同步执行
+
+> limit > 1000 时，则会转为异步执行并移除限制，变成操作全部
+
+> limit 未设置时，为操作全部的异步操作
+
+{% tabs batchUpdateWithoutTriggerAsync="async/await", batchUpdateWithoutTriggerPromise="promise" %}
+{% content "batchUpdateWithoutTriggerAsync" %}
+```js
+async function batchUpdate() {
+  try {
+    let User = new BaaS.User()
+    let query = new BaaS.Query()
+
+    // 设置查询条件（比较、字符串包含、组合等）
+    ...
+
+    // limit、offset 可以指定按条件查询命中的数据分页
+    let userRecords = User.limit(10).offset(0).getWithoutData(query)
+
+    // 与更新特定记录一致
+    userRecords.set(key1, value1)
+    userRecords.incrementBy(key2, value2)
+    userRecords.append(key3, value3)
+
+    let res = await userRecords.update({enableTrigger: false}).then(res => {}, err => {})
+
+    console.log(res)
+    // success
+    return res
+  } catch(err) {
+    //err 为 HError 对象
+    throw err
+  }
+}
+```
+
+{% content "batchUpdateWithoutTriggerPromise" %}
+```js
+// 知晓云后台设置的触发器将不会被触发
+function batchUpdate() {
+  let User = new BaaS.User()
+  let query = new BaaS.Query()
+
+  // 设置查询条件（比较、字符串包含、组合等）
+  ...
+
+  // limit、offset 可以指定按条件查询命中的数据分页
+  let userRecords = User.limit(10).offset(0).getWithoutData(query)
+
+  // 与更新特定记录一致
+  userRecords.set(key1, value1)
+  userRecords.incrementBy(key2, value2)
+  userRecords.append(key3, value3)
+
+  userRecords.update({enableTrigger: false}).then(res => {
+    console.log(res)
+    callback(null, res)
+  }, err => {
+    //err 为 HError 对象
+    callback(err)
+  })
+}
+```
+{% endtabs %}
+
+**返回示例**
+
+同步操作时，回调中的 res 对象结构如下：
+
+```json
+{
+  "status": 200,
+  "data": {
+    "limit": 1,
+    "next": "/dserve/v2.1/miniapp/user_profile/?where=%7B%7D&enable_trigger=1&limit=1&offset=1",
+    "offset": 0,
+    "operation_result": [
+      {
+        "success": {
+          "id": "5a3c51cdceb616ccfc9d5f78",
+          "updated_at": 1571044054
+        }
+      }
+    ],
+    "succeed": 1,
+    "total_count": 402
+  }
+}
+```
+
+异步操作时，回调中的 res 对象结构如下：
+
+```json
+{
+  "status": 200,
+  "data": {
+    "statys": "ok",
+    "operation_id": 1 // 可以用来查询到最终执行的结果
+  }
+}
+```
+
+> **info**
+> 获取异步执行结果，请查看接口[文档](/cloud-function/node-sdk/async-job.md)
 
 ## 删除用户
 

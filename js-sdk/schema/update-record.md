@@ -445,6 +445,19 @@ catch 回调中的 err 对象:
 
 SDK 1.9.1 及以上版本支持批量更新数据项时不触发触发器。该模式在批量更新数据时，不会触发设置好的触发器，会对查询条件匹配的数据全部更新，没有最多 1000 条的限制。
 
+SDK 2.9.0 及以上版本，在 enableTrigger 为 false 时，SDK 将不会设置默认的 limit （值为 20），如果用户没有设置 limit，则为全量更新。
+
+
+> **info**
+> 不触发触发器的情况下:
+
+> limit <= 1000 时，操作记录为同步执行
+
+> limit > 1000 时，则会转为异步执行并移除限制，变成操作全部
+
+> limit 未设置时，为操作全部的异步操作
+
+
 {% ifanrxCodeTabs %}
 ```js
 let MyTableObject = new wx.BaaS.TableObject(tableName)
@@ -464,3 +477,55 @@ records.update({enableTrigger: false}).then(res => {}, err => {})
 ```
 
 {% endifanrxCodeTabs %}
+
+**返回示例**
+
+同步操作时，then 回调中的 res 对象结构如下：
+
+```json
+{
+  "statusCode": 200, // 200 表示更新成功, 注意这不代表所有数据都更新成功，具体要看 operation_result 字段
+  "data": {
+    "succeed": 8, // 成功更新记录数
+    "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
+    "offset": 0,
+    "limit": 1000,
+    "next": null, // 下一次更新 url，若为 null 则表示全部更新完毕
+    "operation_result": [  // 创建的详细结果
+       {
+         "success": {      // 成功时会有 success 字段
+           "id": "5bffbab54b30640ba8135650",
+           "updated_at": 1543486133
+         }
+       },
+       {
+         "success": {
+           "id": "5bffbab54b30640ba8135651",
+           "updated_at": 1543486133
+         }
+       },
+       {
+         "error": {     // 失败时会有 error 字段
+           "code": 16837,
+           "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
+         }
+       }
+     ]
+  }
+}
+```
+
+异步操作时，then 回调中的 res 对象结构如下：
+
+```json
+{
+  "statusCode": 200, // 200 表示更新成功, 注意这不代表所有数据都更新成功，具体要看 operation_result 字段
+  "data": {
+    "statys": "ok",
+    "operation_id": 1 // 可以用来查询到最终执行的结果
+  }
+}
+```
+
+> **info**
+> 获取异步执行结果，请查看接口[文档](/js-sdk/async-job.md)
