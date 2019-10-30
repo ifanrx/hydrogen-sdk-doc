@@ -105,7 +105,7 @@
         * [百度小程序支付](js-sdk/payment/baidu-pay.md)
         * [网页微信、支付宝、QQ 支付](js-sdk/payment/web.md)
         * [订单查询](js-sdk/payment/order.md)
-    * [TypeScript](js-sdk/typescript.md)
+    * [TypeScript/自动补全](js-sdk/typescript.md)
     * [调用云函数](js-sdk/invoke-function.md)
     * [短信验证码](js-sdk/sms.md)
     * [错误码和 HError 对象](js-sdk/error-code.md)
