@@ -222,7 +222,7 @@ contentGroup.getCategoryList { (listResult, error) in
 | contents  |   Array<Content> | 内容列表，每个元素为 Content 类型   |
 
 > **info**
-> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount(true)` 来获取 totalCount。详见[获取记录总数](../schema/limit-and-order.md)
+> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount = true` 来获取 totalCount。详见[获取记录总数](../schema/limit-and-order.md)
 
 ### ConetentCategoryList
 
@@ -238,4 +238,4 @@ contentGroup.getCategoryList { (listResult, error) in
 | contentCategorys  |   Array<ContentCategory> | 内容分类列表，每个元素为 `ContentCategory` 类型  |
 
 > **info**
-> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount(true)` 来获取 totalCount。详见[获取记录总数](../schema/limit-and-order.md)
+> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount = true` 来获取 totalCount。详见[获取记录总数](../schema/limit-and-order.md)
