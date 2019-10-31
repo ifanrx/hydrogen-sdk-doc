@@ -31,8 +31,8 @@ SDK 由 v3.x 开始支持 TypeScript 与自动补全。
 
   1. 使用 npm 包
 
-    只需要安装 `minapp-sdk-typings`。如果开发微信小程序项目，
-    还可以安装微信提供的类型定义文件 `miniprogram-api-typings`。
+    在 vscode 中只需要安装 [minapp-sdk-typings](https://www.npmjs.com/package/minapp-sdk-typings)。如果开发微信小程序项目，
+    还可以安装微信提供的类型定义文件 [miniprogram-api-typings](https://www.npmjs.com/package/miniprogram-api-typings)。
 
     如果编辑器不支持通过 npm 包中的类型定义文件来显示类型提示，
     请参考对应编辑器的文档，并使用情况 2 中的类型定义文件。
