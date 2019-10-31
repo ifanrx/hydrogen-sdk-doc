@@ -26,9 +26,9 @@
 
 | 参数   | 类型                   | 描述 |
 | :---- | :--------------------- | :-- |
-| code  | Integer                                          | code 为 0 时表示成功执行云函数，否则为执行云函数失败 |
+| code  | Integer                                          | code 为 0 表示正常返回，1 表示异常返回 |
 | data  | 由云函数返回的数据类型决定（sdk 序列化为 JsonElement） | 函数通过 callback 返回的数据 |
-| error | JosnElement                                      | 返回的错误信息，成功则返回空对象 |
+| error | JosnElement                                      | 返回的错误信息，正常返回则返回空对象 |
 
 **请求示例**
 

@@ -60,7 +60,7 @@ AlipayComponent.getOrderInfo("v4WoZ7aNyZPaZbNlFffOZLvagUKqDcOw", new BaseCallbac
 
 | 参数                    | 类型    | 说明 |
 | :---------------------- | :----- | :-- |
-| created_at              | Number | 调用 wx.BaaS.pay(object) 的时刻 |
+| created_at              | Number | 调用 AlipayComponent.pay()/WechatComponent.pay() 的时刻，格式为 unix 时间戳 |
 | merchandise_description | String | 微信支付-微信支付凭证-商品详情上的文字描述 |
 | paid_at                 | Number | 付款时间, 未支付的话为 null |
 | status                  | String | 订单支付状态 |
