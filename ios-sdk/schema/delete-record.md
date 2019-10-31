@@ -33,14 +33,18 @@ record.delete { (success, error) in
 其中：
  - `Where` 对象的使用请查看 [查询数据项](./query.md) 章节
 
- - `limit` 和 `offset` 的使用请查看 [分页和排序](./limit-and-order.md) 章节
+ - `limit`：设置一次删除符合条件记录的数量
+
+ - `offset`：待删除记录的起始偏移量
 
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-let whereArgs = Where.contains(key: "color", value: "brown")
+let whereArgs = Where.contains("color", value: "brown")
 let query = Query()
-query.setWhere(whereArgs)
+query.where = whereArgs
+query.limit = 10
+query.offset = 0
 let options = ["enable_trigger": true]
 table.delete(query: query, options:  completion: { (result, error) in
 
@@ -48,9 +52,11 @@ table.delete(query: query, options:  completion: { (result, error) in
 ```
 {% content "oc2" %}
 ```
-BaaSWhere *where = [BaaSWhere containsWithKey:@"color" value:@"brown"];
+BaaSWhere *where = [BaaSWhere contains:@"color" value:@"brown"];
 BaaSQuery *query = [[BaaSQuery alloc] init];
-[query setWhere:where];
+query.where = where;
+query.limit = 10;
+[query.offset = 0;
 NSDictionary *options = @{@"enable_trigger": @true};
 [table deleteWithQuery:query options:options completion:^(NSDictionary<NSString *,id> * _Nullable result, NSError * _Nullable error) {
 
@@ -84,8 +90,18 @@ NSDictionary *options = @{@"enable_trigger": @true};
  ```
 
 **参数说明**
-* `succeed`:	成功删除记录数
-* `total_count`:	query 条件匹配的记录数，包括无权限操作记录
-* `offset`: 与传入参数 offset 一致
-* `limit`: 与传入参数 limit 一致
-* `next`: 下一次的更新链接，若待更新记录数超过上限，可通过该链接继续更新
+
+| 参数 | 类型 | 说明  |
+| :---- | :----- | :----- |
+| succeed | Int  | 成功创建记录数 |
+| total_count | Int  | 总的删除记录数 |
+| offset | Int  | 与传入参数 `offset` 一致 |
+| limit | Int  | 与传入参数 `limit` 一致 |
+| next | String  | 下一页待删除记录地址，若值为 `null`，表示已删除完成 |
+
+**常见错误码**
+* `201`：成功写入
+* `400`：非法数据
+
+> **info**
+> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount(true)` 来获取 totalCount。详见[获取记录总数](./limit-and-order.md)

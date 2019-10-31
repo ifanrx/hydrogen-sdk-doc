@@ -52,38 +52,38 @@ let query = OrderQuery()
 // 2. 设置查询条件
 
 // 通过订单状态查询：订单状态为 success
-query.status(.success)
+query.status = .success
 
 // 通过订单状态查询：订单状态为 pending
-query.status(.pending)
+query.status = .pending
 
 // 通过退款状态查询：退款状态为 complete
-query.refundStatus(.complete)
+query.refundStatus = .complete
 
 // 通过退款状态查询：订单状态为 partial
-query.refundStatus(.partial)
+query.refundStatus = .partial
 
 // 通过支付方式查询：支付方式为 weixin
-query.gateWayType(.weixin)
+query.gateWayType = .weixin
 
 // 通过支付方式查询：订单状态为 alipay
-query.gateWayType(.alipay)
+query.gateWayType = .alipay
 
 // 通过 trade_no 查询
-query.tradeNo("xxxxxxxxxxxxxx")
+query.tradeNo = "xxxxxxxxxxxxxx"
 
 // 通过 transaction_no 查询
-query.transactionNo("xxxxxxxxxxxxxx")
+query.transactionNo = "xxxxxxxxxxxxxx"
 
 // 通过 merchandise_record_id 查询
-query.merchandiseRecordId("xxxxxxxxxxxxxx")
+query.merchandiseRecordId = "xxxxxxxxxxxxxx"
 
 // 通过 merchandise_schema_id 查询
-query.merchandiseSchemaId("xxxxxxxxxxxxxx")
+query.merchandiseSchemaId = "xxxxxxxxxxxxxx"
 
 // 设置分页
-query.limit(10)
-query.offset(0)
+query.limit = 10
+query.offset = 0
 
 // 3. 开始查询
 Pay.shared.orderList(query: query) { (result, error) in
@@ -98,38 +98,38 @@ BaaSOrderQuery *query = [[BaaSOrderQuery alloc] init];
 // 2. 设置查询条件
 
 // 通过订单状态查询：订单状态为 success
-[query status:BaaSOrderStatusSuccess];
+query.status = BaaSOrderStatusSuccess;
 
 // 通过订单状态查询：订单状态为 pending
-[query status:BaaSOrderStatusPending];
+query.status = BaaSOrderStatusPending;
 
 // 通过退款状态查询：退款状态为 complete
-[query status:BaaSRefundStatusComplete];
+query.status = BaaSRefundStatusComplete;
 
 // 通过订单状态查询：退款状态为 partial
-[query status:BaaSRefundStatusPartial];
+query.status = BaaSRefundStatusPartial;
 
 // 通过支付方式查询：支付方式为  weixin
-[query status:BaaSGateWayTypeWeixin];
+query.status = BaaSGateWayTypeWeixin;
 
 // 通过支付方式查询：支付方式为 alipay
-[query status:BaaSGateWayTypeAlipay];
+query.status = BaaSGateWayTypeAlipay;
 
 // 通过 trade_no 查询
-[query tradeNo:@"xxxxxxxxxxxxxx"];
+query.tradeNo = @"xxxxxxxxxxxxxx";
 
 // 通过 transaction_no 查询
-[query transactionNo:@"xxxxxxxxxxxxxx"];
+query.transactionNo = @"xxxxxxxxxxxxxx";
 
 // 通过 merchandise_record_id 查询
-[query merchandiseRecordId:@"xxxxxxxxxxxxxx"];
+query.merchandiseRecordId = @"xxxxxxxxxxxxxx";
 
 // 通过 merchandise_schema_id 查询
-[query merchandiseSchemaId:@"xxxxxxxxxxxxxx"];
+query.merchandiseSchemaId = @"xxxxxxxxxxxxxx";
 
 // 设置分页
-[query limit:10];
-[query offset:0];
+query.limit = 10;
+query.offset = 0;
 
 // 3. 开始查询
 [BaaSPay.shared orderListWithQuery:query completion:^(BaaSOrderList * _Nullable orders, NSError * _Nullable error) {
@@ -233,6 +233,7 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md) --
 | :--------------| :-----------------|
 | success         | 支付成功      |
 | pending         |    待支付   |
+| all             |   全部，默认  |
 
 {% content "oc4" %}
 
@@ -242,6 +243,7 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md) --
 | :--------------| :-----------------|
 | BaaSOrderStatusSuccess         | 支付成功      |
 | BaaSOrderStatusPending         |    待支付   |
+| BaaSOrderStatusAll             |    全部支付状态，默认  |
 
 {% endtabs %}
 
@@ -256,6 +258,7 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md) --
 | :--------------| :-----------------|
 | complete         | 退款成功      |
 | partial         |  部分退款     |
+| all             |  全部退款状态，默认   |
 
 {% content "oc5" %}
 
@@ -265,6 +268,7 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md) --
 | :--------------| :-----------------|
 | BaaSRefundStatusComplete         | 退款成功      |
 | BaaSRefundStatusPartial        |    部分退款   |
+| BaaSRefundStatusAll        |    全部退款状态，默认   |
 
 {% endtabs %}
 
@@ -279,6 +283,7 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md) --
 | :--------------| :-----------------|
 | weixin         | 微信支付      |
 | alipay         |  支付宝     |
+| all         |  全部支付方式，默认     |
 
 {% content "oc6" %}
 
@@ -288,5 +293,6 @@ error 对象结构请参考[错误处理和错误码](/ios-sdk/error-code.md) --
 | :--------------| :-----------------|
 | BaaSGateWayTypeWeixin         | 微信支付      |
 | BaaSGateWayTypeAlipay        |    支付宝   |
+| BaaSGateWayTypeAll        |    全部支付方式，默认   |
 
 {% endtabs %}

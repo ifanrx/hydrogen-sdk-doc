@@ -49,11 +49,11 @@ currentUser.city      // 城市
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-currentUser.get(key: "keyName")
+currentUser.get("keyName")
 ```
 {% content "oc2" %}
 ```
-[currentUser getWithKey:@"keyName"];
+[currentUser get:@"keyName"];
 ```
 {% endtabs %}
 
@@ -107,18 +107,18 @@ NSString *userId = @"36845**9853014";
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 ```
-let whereArgs = Where.compare(key: "age", operator: .equalTo, value: 25)
+let whereArgs = Where.compare("age", operator: .equalTo, value: 25)
 let query = Query()
-query.setWhere(whereArgs)
+query.where = whereArgs
 User.find(query: query, completion: { (userList, error) in
 
 })
 ```
 {% content "oc4" %}
 ```
-BaaSWhere *where = [BaaSWhere compareWithKey:@"price" operator:BaaSOperatorLessThan value:@25];
+BaaSWhere *where = [BaaSWhere compare:@"price" operator:BaaSOperatorLessThan value:@25];
 BaaSQuery *query = [[BaaSQuery alloc] init];
-[query setWhere:where];
+query.where = where;
 [BaaSUser findWithQuery:query completion:^(BaaSUserList * _Nullable userList, NSError * _Nullable error) {
 
 }];
@@ -146,7 +146,10 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 | :--------- | :--- | :----   |
 | limit     |  Int  |  一次请求返回记录的最大个数   |
 | offset    | Int  |    返回记录的起始偏移值 |
-| totalCount   | Int   |   实际返回的记录总数 |
-| next      | String  |   下一页地址 |
-| previous  | String  |    上一页地址 |
+| totalCount   | Int   |   记录总数，默认为 -1，表示该属性无效 |
+| next      | String  |   下一页地址，若值为 `null`，表示当前为最后一页 |
+| previous  | String  |    上一页地址，若值为 `null`，表示当前为第一页 |
 | users  |   [User] | 用户数组，每个元素为 User 类型 |
+
+> **info**
+> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount(true)` 来获取 totalCount。详见[获取记录总数](../schema/limit-and-order.md)

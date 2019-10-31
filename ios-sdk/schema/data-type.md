@@ -21,7 +21,10 @@
 | :--------- | :--- | :----   |
 | limit     |  Int  |  返回记录的最大个数   |
 | offset    | Int  |    返回记录的起始偏移值 |
-| totalCount   | Int   |   实际返回的记录总数 |
-| next      | String  |   下一页地址 |
-| previous  | String  |    上一页地址 |
+| totalCount  | Int   |   记录总数，默认为 -1，表示该属性无效 |
+| next      | String  |   下一页地址，若值为 `null`，表示当前为最后一页 |
+| previous  | String  |    上一页地址，若值为 `null`，表示当前为第一页 |
 | records  |   [Record] | 记录数组，每个元素为 Record 类型   |
+
+> **info**
+> 查询结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount(true)` 来获取 totalCount。详见[获取记录总数](./limit-and-order.md)
