@@ -1,3 +1,5 @@
+{% import "/js-sdk/macro/total_count.md" as totalCount %}
+
 # 内容操作
 
 以下操作都需指明操作的内容库，方法如下：
@@ -12,7 +14,7 @@
 | :------------- | :----- | :-- | :-- |
 | contentGroupID | Number | 是  | 内容库 ID |
 
-### 获取内容详情
+## 获取内容详情
 
 `MyContentGroup.getContent(richTextID)`
 
@@ -80,7 +82,39 @@ res.data:
 }
 ```
 
-### 查询，获取内容列表
+## 获取符合筛选条件的内容总数
+
+`MyContentGroup.count()`
+
+> **info**
+> SDK v3.0 新增
+
+{% ifanrxCodeTabs %}
+```js
+let query = new wx.BaaS.Query()
+query.arrayContains('categories', [1513076252710475])
+MyContentGroup.setQuery(query).count().then(num => {
+  // success
+  console.log(num)  // 10
+}, err => {
+  // err
+})
+```
+{% endifanrxCodeTabs %}
+
+## 查询，获取内容列表
+
+`MyContentGroup.find(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| withCount     | boolean |  否  | `false` | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
 
 内容查询与[数据表查询](../schema/query.md)方法一致。
 
@@ -106,11 +140,11 @@ MyContentGroup.setQuery(query).find().then(res => {
 ```
 {% endifanrxCodeTabs %}
 
-#### 筛选字段 
+### 筛选字段 
 
 select 使用方法可以参考[数据表 - 字段过滤](/js-sdk/schema/select-and-expand.md)小节
 
-#### 扩展字段 
+### 扩展字段 
 
 expand 使用方法可以参考[数据表 - 字段扩展](/js-sdk/schema/select-and-expand.md)小节
 
@@ -200,7 +234,7 @@ MyContentGroup.select(['title', 'pointer_test_oder']).expand('pointer_test_oder'
 
 ```
 
-### 获取分类详情
+## 获取分类详情
 
 `MyContentGroup.getCategory(categoryID)`
 
@@ -249,7 +283,7 @@ res.data:
 ```
 
 
-### 获取内容库分类列表
+## 获取内容库分类列表
 
 `MyContentGroup.getCategoryList()`
 
@@ -264,7 +298,7 @@ MyContentGroup.getCategoryList().then(res => {
 ```
 
 
-### 分页与排序
+## 分页与排序
 内容查询的分页与排序操作和[数据表分页与排序](../schema/limit-and-order.md)方法一致。
 
 **请求示例**

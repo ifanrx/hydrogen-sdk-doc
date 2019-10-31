@@ -1,3 +1,5 @@
+{% import "../macro/sdk-init.md" as sdkInit %}
+
 #  Web 端 SDK 接入指南
 
 > **info**
@@ -47,22 +49,7 @@ b. 将下载解压后得到的 SDK js 文件放在项目目录中
 
 ## 初始化 SDK
 
-通过初始化 SDK ，知晓云服务可以验证当前的应用是否是有效合法的，只有通过验证的应用才能使用 SDK 提供的全部功能。
-
-在[知晓云后台 - 设置 - 应用](https://cloud.minapp.com/dashboard/#/app/settings/info/)页面获取要接入知晓云服务的 ClientID, 按照如下方式进行 SDK 初始化:
-
-![复制 clientID](/images/newbies/get-client-id.png)
-
-```javascript
-BaaS.init(clientID, {logLevel})
-```
-
-**参数说明**
-
-| 参数          | 类型   | 必填  | 说明         |
-| :------------ | :------| ----- | :----------- |
-| clientID      | String |   Y   | 知晓云管理后台获取到的 ClientID |
-| logLevel      | String |   N   | 日志输出级别，共支持 `debug`、`info`、`warn`、`error` 4 个级别，默认为 `error`|
+{{ sdkInit.renderIntoPlatform('web') }}
 
 更多内容，可查看以下功能模块介绍：
 

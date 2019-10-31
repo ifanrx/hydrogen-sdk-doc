@@ -39,7 +39,8 @@
 ----
 
 * [JS SDK](js-sdk/README.md)
-    * [1.x 迁移指南](js-sdk/migrate-from-v1.md)
+    * [2.x -> 3.x 迁移指南](js-sdk/migrate-from-v2.md)
+    * [1.x -> 2.x 迁移指南](js-sdk/migrate-from-v1.md)
     * [用户](js-sdk/user.md)
         * [登入登出](js-sdk/auth.md)
         * [当前用户](js-sdk/account.md)
@@ -109,6 +110,7 @@
         * [百度小程序支付](js-sdk/payment/baidu-pay.md)
         * [网页微信、支付宝、QQ 支付](js-sdk/payment/web.md)
         * [订单查询](js-sdk/payment/order.md)
+    * [TypeScript/自动补全](js-sdk/typescript.md)
     * [调用云函数](js-sdk/invoke-function.md)
     * [获取异步任务结果](js-sdk/async-job.md)
     * [短信验证码](js-sdk/sms.md)
