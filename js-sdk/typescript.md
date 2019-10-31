@@ -2,7 +2,13 @@
 
 SDK 由 v3.x 开始支持 TypeScript 与自动补全。
 
-![自动补全](/images/typescript/auto-completion.gif)
+![自动补全 - VS Code](/images/typescript/auto-completion-vscode.gif)
+
+![自动补全 - Sublime](/images/typescript/auto-completion-sublime.gif)
+
+![自动补全 - 微信开发者工具](/images/typescript/auto-completion-wx.gif)
+
+![自动补全 - vim](/images/typescript/auto-completion-vim.gif)
 
 ## 两个使用场景：
 
