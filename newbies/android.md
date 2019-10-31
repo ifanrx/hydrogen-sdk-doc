@@ -54,7 +54,7 @@
 ```gradle
 dependencies {
     ...
-    implementation "com.minapp.android:sdk:0.1.8"
+    implementation "com.minapp.android:sdk:1.0.0"
 }
 ```
 然后同步项目

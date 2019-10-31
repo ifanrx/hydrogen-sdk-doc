@@ -152,7 +152,7 @@
     </li>
     <li>
       <h3>
-        <a href="/android-sdk/README.md">Android SDK（alpha 内测版）</a>
+        <a href="/android-sdk/README.md">Android SDK</a>
       </h3>
       <ul class="doc-js-sdk doc-detail-item">
         <li>

@@ -122,7 +122,7 @@
 
 ----
 
-* [Android SDK (alpha 内测版)](android-sdk/README.md)
+* [Android SDK](android-sdk/README.md)
     * [用户](android-sdk/user.md)
         * [注册登录](android-sdk/auth.md)
         * [当前用户](android-sdk/account.md)
@@ -149,6 +149,7 @@
     * [短信验证码](android-sdk/sms.md)
     * [调用云函数](android-sdk/invoke-function.md)
     * [异常](android-sdk/error-code.md)
+    * [查询异步数据库操作](android-sdk/async-job.md)
     * [安装 sdk](android-sdk/install.md)
     * [demo 的编译和安装](android-sdk/demo.md)
 
