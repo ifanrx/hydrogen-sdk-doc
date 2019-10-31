@@ -54,7 +54,7 @@
 
 2. 支持 TypeScript 与自动补全
 
-  ![自动补全](/images/typescript/auto-completion.gif)
+  ![自动补全](/images/typescript/auto-completion-vscode.gif)
 
   SDK v3.x 提供了 baas.d.ts 类型定义文件，
   可以在微信开发者工具与 vscode（或其他支持使用 `*.d.ts` 文件做类型提示的开发工具）中更好地使用知晓云 SDK 进行开发。 
