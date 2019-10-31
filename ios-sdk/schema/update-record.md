@@ -55,11 +55,11 @@ a.一次性赋值：
 {% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
 ```
-record.set(record: ["name": "bookname", "color": "red", "price": 19])
+record.set(["name": "bookname", "color": "red", "price": 19])
 ```
 {% content "oc3" %}
 ```
-[record setWithRecord:@{@"name": @"bookname", @"color": @"red", @"price": @10}];
+[record set:@{@"name": @"bookname", @"color": @"red", @"price": @10}];
 ```
 {% endtabs %}
 
@@ -75,13 +75,13 @@ b.逐个赋值：
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 ```
-record.set(key: "color", value: "red")
-record.set(key: "price", value: 10)
+record.set("color", value: "red")
+record.set("price", value: 10)
 ```
 {% content "oc4" %}
 ```
-[record setWithKey:@"color" value:@"red"];
-[record setWithKey:@"price" value:@10];
+[record set:@"color" value:@"red"];
+[record set:@"price" value:@10];
 ```
 {% endtabs %}
 
@@ -97,11 +97,11 @@ c. unset 操作
 {% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}
 ```
-book.unset(key: "color")
+book.unset("color")
 ```
 {% content "oc5" %}
 ```
-[record unsetWithKey:@"color"];
+[record unset:@"color"];
 ```
 {% endtabs %}
 
@@ -161,11 +161,11 @@ Book 表中的 publish_info 为 object 类型，表示出版商，其中有两�
 {% tabs swift6_1="Swift", oc6_1="Objective-C" %}
 {% content "swift6_1" %}
 ```
-book.updateObject(key: "publish_info", value: ["name": "efg出版社", "location": "广东省广州市天河区五山路 100 号"])
+book.updateObject("publish_info", value: ["name": "efg出版社", "location": "广东省广州市天河区五山路 100 号"])
 ```
 {% content "oc6_1" %}
 ```
-[book updateObjectWithKey:@"publish_info" value: @{@"name": @"efg出版社", @"location": @"广东省广州市天河区五山路 100 号"}];
+[book updateObject:@"publish_info" value: @{@"name": @"efg出版社", @"location": @"广东省广州市天河区五山路 100 号"}];
 ```
 {% endtabs %}
 
@@ -186,11 +186,11 @@ book.updateObject(key: "publish_info", value: ["name": "efg出版社", "location
 {% tabs swift7="Swift", oc7="Objective-C" %}
 {% content "swift7" %}
 ```
-book.incrementBy(key: "price", value: 10.5)
+book.incrementBy("price", value: 10.5)
 ```
 {% content "oc7" %}
 ```
-[book incrementByKey:@"price" value:@10.5];
+[book incrementBy:@"price" value:@10.5];
 ```
 {% endtabs %}
 
@@ -210,11 +210,11 @@ book.incrementBy(key: "price", value: 10.5)
 {% tabs swift8="Swift", oc8="Objective-C" %}
 {% content "swift8" %}
 ```
-book.append(key: "recommender", value: ["xiaoming"])
+book.append("recommender", value: ["xiaoming"])
 ```
 {% content "oc8" %}
 ```
-[book appendWithKey:@"recommender" value:@[@"xiaoming"]];
+[book append:@"recommender" value:@[@"xiaoming"]];
 ```
 {% endtabs %}
 
@@ -234,11 +234,11 @@ book.append(key: "recommender", value: ["xiaoming"])
 {% tabs swift9="Swift", oc9="Objective-C" %}
 {% content "swift9" %}
 ```
-book.uAppend(key: @"author", value: ["xiaoming", "xiaohong"])
+book.uAppend(@"author", value: ["xiaoming", "xiaohong"])
 ```
 {% content "oc9" %}
 ```
-[book uAppengWithKey:"author" value:@[@"xiaoming", @"xiaohong"]];
+[book uAppeng:"author" value:@[@"xiaoming", @"xiaohong"]];
 ```
 {% endtabs %}
 
@@ -258,7 +258,7 @@ book.uAppend(key: @"author", value: ["xiaoming", "xiaohong"])
 {% tabs swift10="Swift", oc10="Objective-C" %}
 {% content "swift10" %}
 ```
-book.remove(key: "author", value: ["xiaohong"])
+book.remove("author", value: ["xiaohong"])
 ```
 {% content "oc10" %}
 ```
@@ -293,16 +293,16 @@ book.remove(key: "author", value: ["xiaohong"])
 {% content "swift11" %}
 ```
 // 设置查询条件
-let whereArgs = Where.compare(key: "price", operator: .lessThan, value: 15)
+let whereArgs = Where.compare("price", operator: .lessThan, value: 15)
 let query = Query()
-query.setWhere(whereArgs)
+query.where = whereArgs
 
 // 设置选项
 let options = ["enable_trigger": true]
 
 // 创建一个空记录，用于设置需要更新的操作
 let record = table.createRecord()
-record.incrementBy(key: "price", value: 1)
+record.incrementBy("price", value: 1)
 
 // 更新操作
 table.update(record: record, query: query, options: options) { (result, error) in
@@ -312,16 +312,16 @@ table.update(record: record, query: query, options: options) { (result, error) i
 {% content "oc11" %}
 ```
 // 设置查询条件
-BaaSWhere *where = [BaaSWhere compareWithKey:@"price" operator:BaaSOperatorLessThan value:@15];
+BaaSWhere *where = [BaaSWhere compare:@"price" operator:BaaSOperatorLessThan value:@15];
 BaaSQuery *query = [[BaaSQuery alloc] init];
-[query setWhere:where];
+query.where = where;
 
 // 设置选项
 NSDictionary *options = @{@"enable_trigger": @YES};
 
 // 创建一个空记录，用于设置需要更新的操作
 BaaSRecord *record = [_table createRecord];
-[record incrementByKey:@"price" value:@1];
+[record incrementBy:@"price" value:@1];
 
 // 更新操作
 [_table updateWithRecord:record query:query options: options completion:^(NSDictionary<NSString *,id> * _Nullable result, NSError * _Nullable error) {
@@ -368,14 +368,20 @@ BaaSRecord *record = [_table createRecord];
 }
  ```
 
-**参数说明**
-* `succeed`:	成功创建记录数
-* `total_count`:	总的待创建记录数
-* `offset`: 与传入参数 `offset` 一致
-* `limit`: 与传入参数 `limit` 一致
-* `next`: 下一次的更新链接，若待更新记录数超过上限，可通过该链接继续更新
-* `operation_result`: 批量写入每一条数据的结果
+**返回参数**
+
+| 参数 | 类型 | 说明  |
+| :---- | :----- | :----- |
+| succeed | Int  | 成功创建记录数 |
+| total_count | Int  | 总的待创建记录数 |
+| offset | Int  | 与传入参数 `offset` 一致 |
+| limit | Int  | 与传入参数 `limit` 一致 |
+| next | String  | 下一页待更新记录地址，若值为 `null`，表示已更新完成 |
+| operation_result | Int  | 批量写入每一条数据的结果 |
 
 **常见错误码**
 * `201`：成功写入
 * `400`：非法数据
+
+> **info**
+> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount = true` 来获取 totalCount。详见[获取记录总数](./limit-and-order.md)

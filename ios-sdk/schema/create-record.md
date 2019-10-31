@@ -65,7 +65,7 @@ a.一次性赋值：
 {% tabs swift3="Swift", oc3="Objective-C" %}
 {% content "swift3" %}
 ```
-record.set(record: ["name": "bookname", "color": "red", "price": 19])
+record.set(["name": "bookname", "color": "red", "price": 19])
 ```
 **参数说明**
 
@@ -74,7 +74,7 @@ record.set(record: ["name": "bookname", "color": "red", "price": 19])
 | record    | Dictionary     | 记录信息，key 为字段名称   |
 {% content "oc3" %}
 ```
-[record setWithRecord:@{@"name": @"bookname", @"color": @"red", @"price": @10}];
+[record set:@{@"name": @"bookname", @"color": @"red", @"price": @10}];
 ```
 **参数说明**
 
@@ -88,13 +88,13 @@ b.逐个赋值：
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 ```
-record.set(key: "color", value: "red")
-record.set(key: "price", value: 10)
+record.set("color", value: "red")
+record.set("price", value: 10)
 ```
 {% content "oc4" %}
 ```
-[record setWithKey:@"color" value:@"red"];
-[record setWithKey:@"price" value:@10];
+[record set:@"color" value:@"red"];
+[record set:@"price" value:@10];
 ```
 {% endtabs %}
 
@@ -148,12 +148,12 @@ let bookTable = Table(name: "Book")
 let book = bookTable.createRecord()
 
 // 设置方式一
-book.set(record: ["name": "老人与海", "author": "海明威", "price": 49])
+book.set(["name": "老人与海", "author": "海明威", "price": 49])
 
 // 设置方式二
-book.set(key: "name", value: "老人与海");
-book.set(key: "author", value: "海明威")
-book.set(key: "price", value: 49)
+book.set("name", value: "老人与海");
+book.set("author", value: "海明威")
+book.set("price", value: 49)
 
 book.save { (success, error) in
 
@@ -168,12 +168,12 @@ BaaSTable *bookTable = [[BaaSTable alloc] initWithName:@"Book"];
 BaaSRecord *book = [bookTable createRecord];
 
 // 设置方式一
-[book setWithRecord:@{@"name": @"老人与海", @"author": @"海明威" @"price": 49}];
+[book set:@{@"name": @"老人与海", @"author": @"海明威" @"price": 49}];
 
 // 设置方式二
-[book setWithKey:@"name" value:@"老人与海"];
-[book setWithKey:@"author" value:@"海明威"];
-[book setWithKey:@"price" value:49];
+[book set:@"name" value:@"老人与海"];
+[book set:@"author" value:@"海明威"];
+[book set:@"price" value:49];
 
 [book save:^(BOOL success, NSError * _Nullable error) {
 
@@ -189,7 +189,7 @@ BaaSRecord *book = [bookTable createRecord];
 {% content "swift7" %}
 ```
 let dateISO = ISO8601DateFormatter().string(from: Date())
-book.set(key: "publish_date", value: dateISO)
+book.set("publish_date", value: dateISO)
 book.save { (success, error) in
 
 }
@@ -198,7 +198,7 @@ book.save { (success, error) in
 ```
 NSISO8601DateFormatter *dateFormatter = [[NSISO8601DateFormatter alloc] init];
 NSString *dateISO = [dateFormatter stringFromDate:[NSDate date]];
-[book setWithKey:@"publish_date" value:dateISO];
+[book set:@"publish_date" value:dateISO];
 [book save:^(BOOL success, NSError * _Nullable error) {
 
 }];
@@ -206,9 +206,6 @@ NSString *dateISO = [dateFormatter stringFromDate:[NSDate date]];
 {% endtabs %}
 
 ## 添加 file 类型数据
-
-> **info**
->  为 file 类型字段设置值时，必须以 json 格式提供特定的文件信息。通过使用 `File` 实例的属性 `fileInfo` 可方便获取文件信息。
 
 如 Book 表定义 file 类型的列 cover，表示书的封面。示例：获取 `id` 为 `5c98b065d575a97d5f878225` 的文件，将该文件设置为书的封面。
 
@@ -218,7 +215,7 @@ NSString *dateISO = [dateFormatter stringFromDate:[NSDate date]];
 {% content "swift8" %}
 ```
 FileManager.get("@"5c98b065d575a97d5f878225"") { (file, error) in
-    book.set(key: "cover", value: file?.fileInfo)
+    book.set("cover", value: file)
     book.save { (success, error) in
 
     }
@@ -227,7 +224,36 @@ FileManager.get("@"5c98b065d575a97d5f878225"") { (file, error) in
 {% content "oc8" %}
 ```
 [BaaSFileManager get:@"5c98b065d575a97d5f878225", completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
-    [book setWithKey:@"cover" value:file.fileInfo];
+    [book set:@"cover" value:file];
+    [book save:^(BOOL success, NSError * _Nullable error) {
+
+    }];
+}];
+```
+{% endtabs %}
+
+关于 `File` 类型查看 [文件](../file/file.md) 章节
+
+## 添加 file 数组类型数据
+
+如 Book 表定义 file 数组类型的列 photos。示例：获取 `id` 为 `5c98b065d575a97d5f878225` 的文件，将该文件作为数组的一个元素添加到 photos 中。
+
+**实例代码**
+
+{% tabs swift8_1="Swift", oc8_1="Objective-C" %}
+{% content "swift8_1" %}
+```
+FileManager.get("@"5c98b065d575a97d5f878225"") { (file, error) in
+    book.set("photos", value: [file])
+    book.save { (success, error) in
+
+    }
+}
+```
+{% content "oc8_1" %}
+```
+[BaaSFileManager get:@"5c98b065d575a97d5f878225", completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
+    [book set:@"photos" value:@[file]];
     [book save:^(BOOL success, NSError * _Nullable error) {
 
     }];
@@ -254,14 +280,14 @@ FileManager.get("@"5c98b065d575a97d5f878225"") { (file, error) in
 ```
 let table = Table(name: "Book")
 let book = table.createRecord()
-book.set(key: "publish_info", value: ["name": "efg出版社", "location": "广东省广州市天河区五山路 100 号"])
+book.set("publish_info", value: ["name": "efg出版社", "location": "广东省广州市天河区五山路 100 号"])
 book.save { (success, error) in
 
 }
 ```
 {% content "oc8_2" %}
 ```
-[book setWithKey:@"publish_info" value: @{@"name": @"efg出版社", @"location": @"广东省广州市天河区五山路 100 号"}];
+[book set:@"publish_info" value: @{@"name": @"efg出版社", @"location": @"广东省广州市天河区五山路 100 号"}];
 [book save:^(BOOL success, NSError * _Nullable error) {
 
 }];
@@ -281,14 +307,14 @@ book.save { (success, error) in
 {% tabs swift8_3="Swift", oc8_3="Objective-C" %}
 {% content "swift8_2" %}
 ```
-book.set(key: "recommender", value: ["yuminghong", "hua")
+book.set("recommender", value: ["yuminghong", "hua")
 book.save { (success, error) in
 
 }
 ```
 {% content "oc8_3" %}
 ```
-[book setWithKey:@"recommender" value: @[@"yuminghong", @"hua"]];
+[book set:@"recommender" value: @[@"yuminghong", @"hua"]];
 [book save:^(BOOL success, NSError * _Nullable error) {
 
 }];
@@ -315,7 +341,7 @@ comment 字段指向了 Comment 表中 id 为 5bad87ab0769797b4fb27a1b 的数据
 {% content "swift9" %}
 ```
 let comment = table.getWithoutData(recordId: "5bad87ab0769797b4fb27a1b")
-book.set(key: "comment", value: comment)
+book.set("comment", value: comment)
 book.save { (success, error) in
 
 }
@@ -323,7 +349,7 @@ book.save { (success, error) in
 {% content "oc9" %}
 ```
 BaaSRecord *comment = [table getWithoutDataWithRecordId:@"5bad87ab0769797b4fb27a1b"];
-[book setWithKey:@"comment" value:comment];
+[book set:@"comment" value:comment];
 [book save:^(BOOL success, NSError * _Nullable error) {
 
 }];

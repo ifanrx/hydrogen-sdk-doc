@@ -428,6 +428,9 @@ res 结构如下
 
 `TableObject.createMany([item,...])`
 
+> **info**
+> 批量创建记录的数量，最大限制为 1000
+
 **参数说明**
 
 | 参数名    | 类型    | 说明              |
@@ -537,6 +540,9 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
 
 ### 批量创建时不触发触发器
 
+> **info**
+> 批量创建记录的数量，最大限制为 1000
+
 ```js
 // 知晓云后台设置的触发器将不会被触发
 MyTableObject.createMany(records, {enableTrigger: false}).then(res => {
@@ -544,6 +550,38 @@ MyTableObject.createMany(records, {enableTrigger: false}).then(res => {
 }, err => {
   //err 为 HError 对象
 })
+```
+
+**返回示例**
+
+```json
+{
+  "status": 201, // 201 表示创建成功, 注意这不代表所有数据都插入成功，具体要看 operation_result 字段
+  "data": {
+    "succeed": 10, // 成功插入记录数
+    "total_count": 10, // 总的待插入记录数
+    "operation_result": [  // 创建的详细结果
+       {
+         "success": {      // 成功时会有 success 字段
+           "id": "5bffbab54b30640ba8135650",
+           "created_at": 1543486133
+         }
+       },
+       {
+         "success": {
+           "id": "5bffbab54b30640ba8135651",
+           "created_at": 1543486133
+         }
+       },
+       {
+         "error": {     // 失败时会有 error 字段
+           "code": 16837,
+           "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
+         }
+       }
+     ] 
+  }
+}
 ```
 
 ## 设置数据行 ACL

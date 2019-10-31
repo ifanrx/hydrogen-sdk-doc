@@ -216,10 +216,13 @@ contentGroup.getCategoryList { (listResult, error) in
 | :--------- | :--- | :----   |
 | limit     |  Int  |  返回内容的最大个数   |
 | offset    | Int  |    返回内容的起始偏移值 |
-| totalCount   | Int   |   实际返回的内容总数 |
-| next      | String  |   下一页地址 |
-| previous  | String  |    上一页地址 |
+| totalCount   | Int   |   内容总数，默认为 -1，表示该字段无效 |
+| next      | String  |   下一页地址，若值为 `null`，表示当前为最后一页 |
+| previous  | String  |    上一页地址，若值为 `null`，表示当前为第一页 |
 | contents  |   Array<Content> | 内容列表，每个元素为 Content 类型   |
+
+> **info**
+> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount = true` 来获取 totalCount。详见[获取记录总数](../schema/limit-and-order.md)
 
 ### ConetentCategoryList
 
@@ -229,7 +232,10 @@ contentGroup.getCategoryList { (listResult, error) in
 | :--------- | :--- | :----   |
 | limit     |  Int  |  返回内容分类的最大个数   |
 | offset    | Int  |    返回内容分类的起始偏移值 |
-| totalCount   | Int   |   实际返回的内容分类总数 |
-| next      | String  |   下一页地址 |
-| previous  | String  |    上一页地址 |
-| contentCategorys  |   Array<ContentCategory> | 内容分类列表，每个元素为 ContentCategory 类型   |
+| totalCount   | Int   |   内容分类总数，默认为 -1，表示该字段无效 |
+| next      | String  |   下一页地址，若值为 `null`，表示当前为最后一页 |
+| previous  | String  |    上一页地址，若值为 `null`，表示当前为第一页 |
+| contentCategorys  |   Array<ContentCategory> | 内容分类列表，每个元素为 `ContentCategory` 类型  |
+
+> **info**
+> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount = true` 来获取 totalCount。详见[获取记录总数](../schema/limit-and-order.md)

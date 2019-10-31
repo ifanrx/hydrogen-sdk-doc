@@ -58,11 +58,11 @@ tableName 和 tableID 二选一
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-let whereargs = Where.contains(key: "color", value: "red")
+let whereargs = Where.contains("color", value: "red")
 ```
 {% content "oc2" %}
 ```
-BaaSWhere *where = [BaaSWhere containsWithKey:@"color" value:@"red"];
+BaaSWhere *where = [BaaSWhere contains:@"color" value:@"red"];
 ```
 {% endtabs %}
 
@@ -74,7 +74,7 @@ BaaSWhere *where = [BaaSWhere containsWithKey:@"color" value:@"red"];
 {% content "swift3" %}
 ```
 let query = Query()
-query.setWhere(whereargs)
+query.where = whereargs
 table.find(query: query) { (listResult, error) in
                     
 }
@@ -82,7 +82,7 @@ table.find(query: query) { (listResult, error) in
 {% content "oc3" %}
 ```
 BaaSQuery *query = [[BaaSQuery alloc] init];
-[query setWhere:where];
+query.where = where;
 [table findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
@@ -113,11 +113,11 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 {% content "swift4" %}
 ```
 // 设置查询条件
-let whereargs = Where.contains(key: "color", value: "red")
+let whereargs = Where.contains("color", value: "red")
 
 // 应用查询条件
 let query = Query()
-query.setWhere(whereargs)
+query.where = whereargs
 table.find(query: query) { (listResult, error) in
                     
 }
@@ -125,11 +125,11 @@ table.find(query: query) { (listResult, error) in
 {% content "oc4" %}
 ```
 // 设置查询条件
-BaaSWhere *where = [BaaSWhere icontainsWithKey:@"color" value:@"red"];
+BaaSWhere *where = [BaaSWhere icontains:@"color" value:@"red"];
 
 // 应用查询条件
 BaaSQuery *query = [[BaaSQuery alloc] init];
-[query setWhere:where];
+query.where = where;
 [table findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
 }];
@@ -142,7 +142,7 @@ BaaSQuery *query = [[BaaSQuery alloc] init];
 {% content "swift5" %}
 ```
 // 价钱小于等于 10
-let whereargs = Where.compare(key: "price", operator: .greaterThanOrEqualTo, value: 10)
+let whereargs = Where.compare("price", operator: .greaterThanOrEqualTo, value: 10)
 ```
 
 operator 说明：
@@ -159,7 +159,7 @@ operator 说明：
 {% content "oc5" %}
 ```
 // 价钱小于等于 10
-BaaSWhere *where = [BaaSWhere compareWithKey:@"price" operator: BaaSOperatorGreaterThanOrEqualTo value:@10];
+BaaSWhere *where = [BaaSWhere compare:@"price" operator: BaaSOperatorGreaterThanOrEqualTo value:@10];
 ```
 operator 说明：
 
@@ -180,18 +180,18 @@ operator 说明：
 {% content "swift7" %}
 ```
 // name 列包含 apple
-let whereargs = Where.contains(key: "name", value: "apple")
+let whereargs = Where.contains("name", value: "apple")
 
 // name 列包含 apple (不区分大小写)
-let whereargs = Where.icontains(key: "name", value: "apple")
+let whereargs = Where.icontains("name", value: "apple")
 ```
 {% content "oc7" %}
 ```
 // name 列包含 apple
-BaaSWhere *where = [BaaSWhere containsWithKey:@"name" value:@"apple"];
+BaaSWhere *where = [BaaSWhere contains:@"name" value:@"apple"];
 
 // name 列不包含 app
-BaaSWhere *where = [BaaSWhere icontainsWithKey:@"color" value:@"app"];
+BaaSWhere *where = [BaaSWhere icontains:@"color" value:@"app"];
 ```
 {% endtabs %}
 
@@ -228,7 +228,7 @@ regex = "/pattern/flags"
 // 查找 以 foo 开头的名字，并且对大小写不敏感
 let regExp = "/^foo/i"
 
-let whereargs = Where.matches(key: "name", regx: regExp)
+let whereargs = Where.matches("name", regx: regExp)
 
 /* 以查找手机号码为例，phoneNumber 字段必须为 string 类型 */
 
@@ -241,7 +241,7 @@ let regx = "/708$/"
 // 查找 以 188 开头的手机号码，以 708 结尾的手机号码
 let regx = "/^188\d+708$/"
 
-let whereargs = Where.matches(key: 'phoneNumber', regx: regx)
+let whereargs = Where.matches('phoneNumber', regx: regx)
 ```
 {% content "oc8_1" %}
 ```
@@ -250,7 +250,7 @@ let whereargs = Where.matches(key: 'phoneNumber', regx: regx)
 // 查找 以 foo 开头的名字，并且对大小写不敏感
 NSString *regx = @"/^foo/i";
 
-BaaSWhere *where = [BaaSWhere matchesWithKey:@"name" regx: regx];
+BaaSWhere *where = [BaaSWhere matches:@"name" regx: regx];
 
 /* 以查找手机号码为例，phoneNumber 字段必须为 NSString 类型 */
 
@@ -263,7 +263,7 @@ NSString *regx = @"/708$/";
 // 查找 以 188 开头的手机号码，以 708 结尾的手机号码
 NSString *regx = @"/^188\d+708$/";
 
-BaaSWhere *where = [BaaSWhere matchesWithKey:@"phoneNumber" regx: regx];
+BaaSWhere *where = [BaaSWhere matches:@"phoneNumber" regx: regx];
 ```
 {% endtabs %}
 
@@ -276,11 +276,11 @@ BaaSWhere *where = [BaaSWhere matchesWithKey:@"phoneNumber" regx: regx];
 {% tabs swift8="Swift", oc8="Objective-C" %}
 {% content "swift8" %}
 ```
-let whereargs = Where.inList(key: "fieldname", list: array)
+let whereargs = Where.inList("fieldname", list: array)
 ```
 {% content "oc8" %}
 ```
-BaaSWhere *where = [BaaSWhere inListWithKey: @"fieldname" list: array];
+BaaSWhere *where = [BaaSWhere inList: @"fieldname" list: array];
 ```
 {% endtabs %}
 
@@ -290,11 +290,11 @@ BaaSWhere *where = [BaaSWhere inListWithKey: @"fieldname" list: array];
 {% tabs swift9="Swift", oc9="Objective-C" %}
 {% content "swift9" %}
 ```
-let whereargs = Where.notInList(key: "fieldname", list: array)
+let whereargs = Where.notInList("fieldname", list: array)
 ```
 {% content "oc9" %}
 ```
-BaaSWhere *where = [BaaSWhere notInListWithKey: @"fieldname" list: array];
+BaaSWhere *where = [BaaSWhere notInList: @"fieldname" list: array];
 ```
 {% endtabs %}
 
@@ -304,11 +304,11 @@ BaaSWhere *where = [BaaSWhere notInListWithKey: @"fieldname" list: array];
 {% tabs swift10="Swift", oc10="Objective-C" %}
 {% content "swift10" %}
 ```
-let whereargs = Where.arrayContains(key: "fieldname", list: array)
+let whereargs = Where.arrayContains("fieldname", list: array)
 ```
 {% content "oc10" %}
 ```
-BaaSWhere *where = [BaaSWhere arrayContainsWithKey: @"fieldname" list: array];
+BaaSWhere *where = [BaaSWhere arrayContains: @"fieldname" list: array];
 ```
 {% endtabs %}
 
@@ -316,11 +316,11 @@ BaaSWhere *where = [BaaSWhere arrayContainsWithKey: @"fieldname" list: array];
 {% tabs swift11="Swift", oc11="Objective-C" %}
 {% content "swift11" %}
 ```
-let whereargs = Where.compare(key: "fieldname", operator: .equalTo, value: array)
+let whereargs = Where.compare("fieldname", operator: .equalTo, value: array)
 ```
 {% content "oc11" %}
 ```
-BaaSWhere *where = [BaaSWhere compareWithKey:@"keyname" operator:BaaSOperatorEqualTo value: array]
+BaaSWhere *where = [BaaSWhere compare:@"keyname" operator:BaaSOperatorEqualTo value: array]
 ```
 {% endtabs %}
 
@@ -331,13 +331,13 @@ BaaSWhere *where = [BaaSWhere compareWithKey:@"keyname" operator:BaaSOperatorEqu
 {% tabs swift12="Swift", oc12="Objective-C" %}
 {% content "swift12" %}
 ```
-let whereargs = Where.isNull(key: "name")
-let whereargs = Where.isNotNull(key: "name")
+let whereargs = Where.isNull("name")
+let whereargs = Where.isNotNull("name")
 ```
 {% content "oc12" %}
 ```
-BaaSWhere *where = [BaaSWhere isNullWithKey:@"name"];
-BaaSWhere *where = [BaaSWhere isNotNullWithKey:@"name"];
+BaaSWhere *where = [BaaSWhere isNull:@"name"];
+BaaSWhere *where = [BaaSWhere isNotNull:@"name"];
 ```
 {% endtabs %}
 
@@ -348,13 +348,13 @@ BaaSWhere *where = [BaaSWhere isNotNullWithKey:@"name"];
 {% tabs swift13="Swift", oc13="Objective-C" %}
 {% content "swift13" %}
 ```
-let whereargs = Where.exists(key: "name")
-let whereargs = Where.notExists(key: "name")
+let whereargs = Where.exists("name")
+let whereargs = Where.notExists("name")
 ```
 {% content "oc13" %}
 ```
-BaaSWhere *where = [BaaSWhere existsWith:@"name"];
-BaaSWhere *where = [BaaSWhere notExistsWithKey:@"name"];
+BaaSWhere *where = [BaaSWhere exists:@"name"];
+BaaSWhere *where = [BaaSWhere notExists:@"name"];
 ```
 {% endtabs %}
 
@@ -462,7 +462,7 @@ let authorTable = Table(name: "Author")
 
 let author = authorTable.getWithoutData(recordId: "5bad87ab0769797b4fb27a1b")
 
-let whereArgs = Where.compare(key: "customer", operator: .equalTo, value: author)
+let whereArgs = Where.compare("customer", operator: .equalTo, value: author)
 ```
 {% content "oc16" %}
 ```
@@ -472,7 +472,7 @@ BaaSTable *authorTable = [[BaaSTable alloc] initWithId: "Author"];
 
 BaaSRecord *author = [authorTable getWithoutDataWithRecordId:@"5bad87ab0769797b4fb27a1b"];
 
-BaaSWhere *where = [BaaSWhere compareWithKey:@"customer" operator:BaaSOperatoEqualThan value: author];
+BaaSWhere *where = [BaaSWhere compare:@"customer" operator:BaaSOperatoEqualThan value: author];
 ```
 {% endtabs %}
 
@@ -483,8 +483,8 @@ BaaSWhere *where = [BaaSWhere compareWithKey:@"customer" operator:BaaSOperatoEqu
 {% tabs swift17="Swift", oc17="Objective-C" %}
 {% content "swift17" %}
 ```
-let args1 = Where.compare(key: "price", operator:.lessThan , value: 10)
-let args2 = Where.isNull(key: "name")
+let args1 = Where.compare("price", operator:.lessThan , value: 10)
+let args2 = Where.isNull("name")
 
 // and 查询
 let whereargs = Where.and(wheres: [args1, args2])
@@ -495,13 +495,13 @@ let whereargs.or(wheres: [args1, args2])
 ```
 {% content "oc17" %}
 ```
-BaaSWhere *args1 = [BaaSWhere isNullWithKey:@"name"];
-BaaSWhere *args2 = [BaaSWhere compareWithKey:@"price" operator:BaaSOperatorLessThan value:@10];
+BaaSWhere *args1 = [BaaSWhere isNull:@"name"];
+BaaSWhere *args2 = [BaaSWhere compare:@"price" operator:BaaSOperatorLessThan value:@10];
 
 // and 查询
-BaaSWhere *where = [BaaSWhere andWithWheres:@[args1, args2]];
+BaaSWhere *where = [BaaSWhere and:@[args1, args2]];
 
 // or 查询
-BaaSWhere *where = [BaaSWhere orWithWheres:@[args1, args2]];
+BaaSWhere *where = [BaaSWhere or:@[args1, args2]];
 ```
 {% endtabs %}

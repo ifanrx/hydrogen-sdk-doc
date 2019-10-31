@@ -168,7 +168,16 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
 | 404            | 数据行不存在      |
 | 403            | 没有权限删除数据   |
 
-#### 批量删除时不触发触发器
+### 批量删除时不触发触发器
+
+> **info**
+> 不触发触发器的情况下:
+
+> limit <= 1000 时，操作记录为同步执行
+
+> limit > 1000 时，则会转为异步执行并移除限制，变成操作全部
+
+> limit 未设置时，为操作全部的异步操作
 
 {% tabs batchDeleteAsync="async/await", batchDeletePromise="promise" %}
 {% content "batchDeleteAsync" %}
@@ -200,3 +209,37 @@ function batchDelete() {
 }
 ```
 {% endtabs %}
+
+**返回示例**
+
+同步操作时，回调中的 res 对象结构如下：
+
+```json
+{
+  "status": 200,
+  "statusText": "OK",
+  "data": {
+    "succeed": 8, // 成功删除记录数
+    "total_count": 10, // where 匹配的记录数，包括无权限操作记录
+    "offset": 0,
+    "limit": 10,
+    "next": null // 下一次删除 url，若为 null 则表示全部删除完毕
+  }
+}
+```
+
+异步操作时，回调中的 res 对象结构如下：
+
+```json
+{
+  "status": 200,
+  "statusText": "OK",
+  "data": {
+    "statys": "ok",
+    "operation_id": 1 // 可以用来查询到最终执行的结果
+  }
+}
+```
+
+> **info**
+> 获取异步执行结果，请查看接口[文档](/cloud-function/node-sdk/async-job.md)
