@@ -67,21 +67,21 @@ BAASGeoPolygon *polygon = [[BAASGeoPolygon alloc] initWithPoints:@[point1, point
 ```
 // Point 类型
 let point = GeoPoint(longitude: 2, latitude: 10)
-record.set(key: "location", value: point)
+record.set("location", value: point)
 
 // GeoPolygon
 let polygon = GeoPolygon(coordinates: [[30, 10], [40, 40], [20, 40], [10, 20], [30, 10]])
-record.set(key: "polygon", value: polygon)
+record.set("polygon", value: polygon)
 ```
 {% content "oc2_1" %}
 ```
 // Point类型
 BaaSGeoPoint *point = [[BaaSGeoPoint alloc] initWithLongitude:2 latitude:10];
-[record setWithKey:@"location" value:point];
+[record set:@"location" value:point];
 
 // GeoPolygon
 BaaSGeoPolygon *polygon = [[BaaSGeoPolygon alloc] initWithCoordinates:@[@[30, 10], @[40, 40], @[20, 40], @[10, 20], @[30, 10]]];
-[record setWithKey:@"polygon" value:polygon];
+[record set:@"polygon" value:polygon];
 ```
 {% endtabs %}
 
@@ -97,7 +97,7 @@ BaaSGeoPolygon *polygon = [[BaaSGeoPolygon alloc] initWithCoordinates:@[@[30, 10
 let neighbourhood = Table(name: "neighbourhoodTableName")
 
 // geoField 为 neighbourhood 表中定义地理位置的字段名，point 为用户所在位置，为 GeoPoint 类型
-let whereArgs = Where.include(key: "geoField", point: point)
+let whereArgs = Where.include("geoField", point: point)
 let query = Query()
 query.setWhere(whereArgs)
 neighbourhood.find(query: query, completion: {listResult, error in
@@ -111,7 +111,7 @@ neighbourhood.find(query: query, completion: {listResult, error in
 BaaSTable *neighbourhood = [[BaaSTable alloc] initWithName:@"neighbourhoodTableName"];
 
 // geoField 为 neighbourhood 表中定义地理位置的字段名，point 为用户所在位置，为 GeoPoint 类型
-BaaSWhere *where = [BaaSWhere includeWithKey:"geoField" point:point];
+BaaSWhere *where = [BaaSWhere include:"geoField" point:point];
 [query setWhere:where];
 [neighbourhood findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
@@ -129,7 +129,7 @@ BaaSWhere *where = [BaaSWhere includeWithKey:"geoField" point:point];
 let restaurant = Table(name: "restaurantTableName")
 
 // geoField 为 restaurant 表中定义地理位置的字段名
-let whereArgs = Where.withinCircle(key: "geoField", point: point, radius: radius)
+let whereArgs = Where.withinCircle("geoField", point: point, radius: radius)
 restaurant.setQuery(query)
 let query = Query()
 query.setWhere(whereArgs)
@@ -144,7 +144,7 @@ restaurant.find(query: query, completion: {listResult, error in
 BaaSTable *restaurant = [[BaaSTable alloc] initWithName:@"restaurantTableName"];
 
 // geoField 为 restaurant 表中定义地理位置的字段名
-BaaSWhere *where = [BaaSWhere withinCircleWithKey:@"geoField" point: point radius: radius];
+BaaSWhere *where = [BaaSWhere withinCircle:@"geoField" point: point radius: radius];
 [query setWhere:where];
 [restaurant findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
@@ -162,7 +162,7 @@ BaaSWhere *where = [BaaSWhere withinCircleWithKey:@"geoField" point: point radiu
 let restaurant = Table(name: "restaurantTableName")
 
 // geoField 为 restaurant 表中定义地理位置的字段名，point 为圆点，minDistance 不指定默认为 0
-let whereArgs = Where.withinRegion(key:"geoField", point: point, minDistance: minDistance, maxDistance: maxDistance)
+let whereArgs = Where.withinRegion("geoField", point: point, minDistance: minDistance, maxDistance: maxDistance)
 restaurant.setQuery(query)
 let query = Query()
 query.setWhere(whereArgs)
@@ -177,7 +177,7 @@ restaurant.find(query: query, completion: {listResult, error in
 BaaSTable *restaurant = [[BaaSTable alloc] initWithName:@"restaurantTableName"];
 
 // geoField 为 restaurant 表中定义地理位置的字段名，point 为圆点，minDistance 不指定默认为 0
-BaaSWhere *where = [BaaSWhere withinRegionWithKey: point:point minDistance:minDistance maxDistance:maxDistance];
+BaaSWhere *where = [BaaSWhere withinRegion: point:point minDistance:minDistance maxDistance:maxDistance];
 [query setWhere:where];
 [restaurant findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
@@ -198,7 +198,7 @@ let restaurant = Table(name: "restaurantTableName")
 let neighbourhoodPolygon: GeoPolygon
 
 // restaurantGeoField 为 restaurant 表中定义地理位置的字段名
-let whereArgs = Where.within(key:"restaurantGeoField", polygon: neighbourhoodPolygon)
+let whereArgs = Where.within("restaurantGeoField", polygon: neighbourhoodPolygon)
 restaurant.setQuery(query)
 let query = Query()
 query.setWhere(whereArgs)
@@ -216,7 +216,7 @@ BaaSTable *restaurant = [[BaaSTable alloc] initWithName:@"restaurantTableName"];
 BaaSGeoPolygon *neighbourhoodPolygon;
 
 // restaurantGeoField 为 restaurant 表中定义地理位置的字段名
-BaaSWhere *where = [BaaSWhere withinWithKey: polygon:neighbourhoodPolygon];
+BaaSWhere *where = [BaaSWhere within: polygon:neighbourhoodPolygon];
 [query setWhere:where];
 [restaurant findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
