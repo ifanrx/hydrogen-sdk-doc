@@ -57,10 +57,10 @@ NSArray *select = @[@"-created_at", @"-created_by"];
 let query = Query()
 
 // 返回特定字段
-query.select(["created_at", "created_by"])
+query.select = ["created_at", "created_by"]
 
 // 返回特定字段
-query.select(["-created_at", "-created_by"])
+query.select = ["-created_at", "-created_by"]
 
 table.find(query: query) { (listResult, error) in
                     
@@ -71,10 +71,10 @@ table.find(query: query) { (listResult, error) in
 BaaSQuery *query = [[BaaSQuery alloc] init];
 
 // 返回特定字段
-[query select:@[@"created_at", @"created_by"]];
+query.select = @[@"created_at", @"created_by"];
 
 // 不返回特定字段
-[query select:@[@"-created_at", @"-created_by"]];
+query.select = @[@"-created_at", @"-created_by"];
 
 [_table findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 
@@ -194,7 +194,7 @@ NSString *recordId = @"5ca09074be20d6749023****";
 let query = Query()
 
 // 扩展的字段
-table.expand(["created_by", "pointer_value"])
+table.expand = ["created_by", "pointer_value"]
 
 table.find(query: query) { (listResult, error) in
                     
@@ -205,7 +205,7 @@ table.find(query: query) { (listResult, error) in
 BaaSQuery *query = [[BaaSQuery alloc] init];
 
 // 返回特定字段
-[query expand:@[@"created_by", @"pointer_value"]];
+query.expand = @[@"created_by", @"pointer_value"];
 
 [_table findWithQuery:query completion:^(BaaSRecordList * _Nullable listResult, NSError * _Nullable error) {
 

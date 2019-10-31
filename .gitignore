@@ -1,4 +1,4 @@
 _book/
 node_modules/
-images/.DS_Store
+.DS_Store
 .idea/*

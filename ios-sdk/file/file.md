@@ -610,10 +610,13 @@ streams 参数说明：
 | :--------- | :--- | :----   |
 | limit     |  Int  |  返回文件的最大个数   |
 | offset    | Int  |    返回文件的起始偏移值 |
-| totalCount   | Int   |   实际返回的文件总数 |
-| next      | String  |   下一页地址 |
-| previous  | String  |    上一页地址 |
+| totalCount   | Int   |   文件总数，默认为 -1，表示该属性无效 |
+| next      | String  |   下一页地址，若值为 `null`，表示当前为最后一页 |
+| previous  | String  |    上一页地址，若值为 `null`，表示当前为第一页 |
 | files  |   Array<File> | 文件列表，每个元素为 File 类型   |
+
+> **info**
+> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount = true` 来获取 totalCount。详见[获取记录总数](../schema/limit-and-order.md)
 
 ### FileCategoryList
 
@@ -623,7 +626,10 @@ streams 参数说明：
 | :--------- | :--- | :----   |
 | limit     |  Int  |  返回文件分类的最大个数 |
 | offset    | Int  |    返回文件分类的起始偏移值 |
-| totalCount   | Int   |   实际返回的文件分类总数 |
-| next      | String  |   下一页地址 |
-| previous  | String  |    上一页地址 |
-| fileCategorys  |   Array<FileCategory> | 文件分类列表，每个元素为 FileCategory 类型   |
+| totalCount   | Int   |   文件分类总数，默认为 -1，表示该属性无效 |
+| next      | String  |   下一页地址，若值为 `null`，表示当前为最后一页 |
+| previous  | String  |    上一页地址，若值为 `null`，表示当前为第一页 |
+| fileCategorys  |   Array<FileCategory> | 文件分类列表，每个元素为 FileCategory 类型  |
+
+> **info**
+> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount true` 来获取 totalCount。详见[获取记录总数](../schema/limit-and-order.md)

@@ -114,11 +114,11 @@ record.created_at
 {% tabs swift4="Swift", oc4="Objective-C" %}
 {% content "swift4" %}
 ```
-record.get(key: "keyName")
+record.get("keyName")
 ```
 {% content "oc4" %}
 ```
-[record getWithKey:@"keyName"];
+[record get:@"keyName"];
 ```
 {% endtabs %}
 

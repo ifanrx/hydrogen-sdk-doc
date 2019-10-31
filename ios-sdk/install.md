@@ -43,13 +43,20 @@ import MinCloud
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
-BaaS.register(clientID: "f86c1******45d1152a1")
+BaaS.register(clientID: "f86c1******45d1152a1", serverURLString: "com.example")
 ```
 {% content "oc1" %}
 ```
-[BaaS registerWithClientID:@"f86c1******45d1152a1"];
+[BaaS registerWithClientID:@"f86c1******45d1152a1" serverURLString:@"com.example"];
 ```
 {% endtabs %}
+
+**参数说明**
+
+| 名称       | 类型           | 说明        |
+| :-------- | :------------  | :------    |
+| clientID  | String         | 应用 ID   |
+| serverURLString | String   | 自定义域名  |  
 
 # 打印调试信息
 

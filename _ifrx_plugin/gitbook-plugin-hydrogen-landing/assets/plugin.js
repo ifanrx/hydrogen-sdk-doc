@@ -12,7 +12,7 @@ function addHeader() {
   let el = document.querySelector('.book-summary')
   let node = document.createElement('div')
   node.id = 'ifanrx-summary-header'
-  node.innerHTML = '知晓云文档 2.0'
+  node.innerHTML = '知晓云文档 2.0+'
   el.insertBefore(node, el.firstChild)
 }
 
