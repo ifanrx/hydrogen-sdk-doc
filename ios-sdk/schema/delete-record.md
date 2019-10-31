@@ -104,4 +104,4 @@ NSDictionary *options = @{@"enable_trigger": @true};
 * `400`：非法数据
 
 > **info**
-> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount(true)` 来获取 totalCount。详见[获取记录总数](./limit-and-order.md)
+> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount = true` 来获取 totalCount。详见[获取记录总数](./limit-and-order.md)

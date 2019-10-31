@@ -27,4 +27,4 @@
 | records  |   [Record] | 记录数组，每个元素为 Record 类型   |
 
 > **info**
-> 查询结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount(true)` 来获取 totalCount。详见[获取记录总数](./limit-and-order.md)
+> 查询结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount = true` 来获取 totalCount。详见[获取记录总数](./limit-and-order.md)
