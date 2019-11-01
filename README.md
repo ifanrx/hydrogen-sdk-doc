@@ -118,7 +118,7 @@
     </li>
     <li>
         <h3>
-        <a href="/ios-sdk/README.md/">iOS SDK（alpha 内测）</a>
+        <a href="/ios-sdk/README.md/">iOS SDK</a>
       </h3>
       <ul class="doc-ios-sdk doc-detail-item">
         <li>
