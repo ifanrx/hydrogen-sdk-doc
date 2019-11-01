@@ -155,7 +155,7 @@
 
 ----
 
-* [iOS SDK （0.2.0-alpha 内测）](ios-sdk/README.md)
+* [iOS SDK](ios-sdk/README.md)
     * [上手指南](ios-sdk/install.md)
     * [用户](ios-sdk/user/README.md)
         * [登入登出](ios-sdk/user/auth.md)
