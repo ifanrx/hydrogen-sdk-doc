@@ -1,3 +1,5 @@
+{% import "./macro/weixin-tenpay.md" as WeixinTenpay %}
+
 # 公众号发送红包
 
 
@@ -16,7 +18,7 @@
 `redPack.sendRedPack(params)`
 
 **参数说明**
-   
+ 
 | 参数名                      | 类型   | 说明     |
 |----------------------------|--------|----------|
 | params.type                | string | 红包类型，普通红包：normal，裂变红包：fission；必填 |
@@ -30,6 +32,9 @@
 | params.wishing             | string | 红包祝福语；必填 |
 | params.scene_id            | string | 场景 id， 可选 |
 | params.risk_info           | string | 活动信息， 可选 |
+| params.gateway_type        | GatewayType | 微信支付商户类型，可选，默认为微信小程序 |
+
+{{WeixinTenpay.getGatewayType()}}
 
 **示例代码**
 ```javascript
@@ -47,7 +52,8 @@ redPack.sendRedPack({
   "act_name": "新年红包",
   "remark": "新年红包",
   "scene_id": "PRODUCT_2",
-  "risk_info": "posttime%3d123123412%26clientversion%3d234134%26mobile%3d122344545%26deviceid%3dIOS"
+  "risk_info": "posttime%3d123123412%26clientversion%3d234134%26mobile%3d122344545%26deviceid%3dIOS",
+  "gateway_type": "weixin_tenpay_wap",
 }).then(res => {
   console.log(res.data.return_code === 'SUCCESS')
 }).catch(err=>{
