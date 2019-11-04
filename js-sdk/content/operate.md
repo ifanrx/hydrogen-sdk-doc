@@ -306,3 +306,29 @@ MyContentGroup.getCategoryList().then(res => {
 ```js
 MyContentGroup.orderBy('-created_by').limit(5).offset(10).find().then()
 ```
+
+### 获取内容库列表
+
+{% ifanrxCodeTabs %}
+`wx.BaaS.ContentGroup.find(options)`
+{% endifanrxCodeTabs %}
+
+**参数说明**
+opions
+| 参数           | 类型     | 必填 |默认  | 说明                 |
+| :------------- | :-----  | :-- | :--  | :---                |
+| withCount      | boolean | 否  |false  | 是否返回 total_count |
+| offset         | number  | 否  |0      | 偏移量               |
+| limit          | number  | 否  |20     | 最大返回条数          |
+
+### 获取内容库详情
+
+{% ifanrxCodeTabs %}
+`wx.BaaS.ContentGroup.get(contentGroupID)`
+{% endifanrxCodeTabs %}
+
+**参数说明**
+
+| 参数           | 类型    | 必填 | 说明 |
+| :------------- | :----- | :-- | :-- |
+| contentGroupID | Number | 是  | 内容库 ID |
