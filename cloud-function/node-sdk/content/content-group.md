@@ -2,13 +2,167 @@
 
 # 内容库操作
 
+## 获取内容库详情
+
+`BaaS.ContentGroup.get(contentGroupID)`
+
+**参数说明**
+
+| 参数           | 类型   | 必填 | 说明 |
+| :------------- | :----- | :-- | :-- |
+| contentGroupID | Number | 是  | 内容库 ID |
+
+**请求示例**
+
+{% tabs contentGroupGetAsync="async/await", contentGroupGetPromise="promise" %}
+{% content "contentGroupGetAsync" %}
+```js
+let contentGroupID = 1522726888567906
+try {
+  let res = await BaaS.ContentGroup.get(contentGroupID)
+  // success
+} catch (err) {
+  // err
+}
+```
+
+{% content "contentGroupGetPromise" %}
+```js
+let contentGroupID = 1522726888567906
+BaaS.ContentGroup.get(contentGroupID).then(res => {
+  // success
+}, err => {
+  // err
+})
+```
+{% endtabs %}
+
+**返回示例**
+
+res.data:
+
+``` js
+{
+  acl_gids: [ 9 ],
+  anonymous_read: false,
+  created_at: 1522726888,
+  id: 1522726888567906,
+  name: '资讯',
+  updated_at: 1548913710
+}
+```
+
+## 获取内容库列表
+
+`BaaS.ContentGroup.find(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| withCount     | boolean |  否  | true | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
+
+**请求示例**
+
+{% tabs contentGroupFindAsync="async/await", contentGroupFindPromise="promise" %}
+{% content "contentGroupFindAsync" %}
+```js
+try {
+  let res = await BaaS.ContentGroup.find({withCount: false})
+  // success
+} catch (err) {
+  // err
+}
+```
+
+{% content "contentGroupFindPromise" %}
+```js
+BaaS.ContentGroup.find({withCount: false}).then(res => {
+  // success
+}, err => {
+  // err
+})
+```
+{% endtabs %}
+
+**返回示例**
+
+
+res.data:
+
+``` js
+// withCount 为 false
+
+{
+  meta: {
+    limit: 20,
+    next: null,
+    offset: 0,
+    previous: null,
+  },
+  objects: [
+    {
+      acl_gids: [ 9 ],
+      anonymous_read: false,
+      created_at: 1550471827,
+      id: 1550471827796573,
+      name: "新闻",
+      updated_at: 1559806752
+    },
+    {
+      acl_gids: [ 9 ],
+      anonymous_read: false,
+      created_at: 1550471301,
+      id: 1550471301605859,
+      name: "文章",
+      updated_at: 1550471301
+    }
+  ]
+}
+
+// withCount 为 true
+{
+  meta: {
+    limit: 20,
+    next: null,
+    offset: 0,
+    previous: null,
+    total_count: 2
+  },
+  objects: [
+    {
+      acl_gids: [ 9 ],
+      anonymous_read: false,
+      created_at: 1550471827,
+      id: 1550471827796573,
+      name: "新闻",
+      updated_at: 1559806752
+    },
+    {
+      acl_gids: [ 9 ],
+      anonymous_read: false,
+      created_at: 1550471301,
+      id: 1550471301605859,
+      name: "文章",
+      updated_at: 1550471301
+    }
+  ]
+}
+```
+
+## 内容操作（已废弃，请查看[内容操作](./content.md)）
+
 以下操作都需指明操作的内容库，方法如下：
 
 `let MyContentGroup = new BaaS.ContentGroup(contentGroupID)`
 
 **参数说明**
 
- | 参数           | 类型   | 必填 | 说明 |
+| 参数           | 类型   | 必填 | 说明 |
 | :------------- | :----- | :-- | :-- |
 | contentGroupID | Number | 是  | 内容库 ID |
 
