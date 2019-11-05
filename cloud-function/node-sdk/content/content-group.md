@@ -1,3 +1,5 @@
+{% import "/cloud-function/node-sdk/macro/total_count.md" as totalCount %}
+
 # 内容库操作
 
 以下操作都需指明操作的内容库，方法如下：
@@ -69,6 +71,18 @@ res.data:
 
 ## 查询，获取内容列表（已废弃，请查看[内容操作](./content.md#查询，获取内容列表)）
 
+`BaaS.ContentGroup#find(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| withCount     | boolean |  否  | true | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
+
 内容查询与[数据表查询](../schema/query.md)方法一致
 
 **请求示例**
@@ -138,7 +152,17 @@ res.data:
 
 ## 获取内容库分类列表（已废弃，请查看[内容分类操作](./content-category.md#查询，获取内容分类列表)）
 
-`MyContentGroup.getCategoryList()`
+`BaaS.ContentGroup#getCategoryList(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| withCount     | boolean |  否  | true | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
 
 **请求示例**
 
