@@ -61,8 +61,10 @@ res.data:
 options:
 
 | 参数          | 类型    | 必填 | 默认 | 说明 |
-| :------------ | :------ | :--- | :--- |:--- |
+| :------------ | :------ | :--- | :--- |:---- |
 | withCount     | boolean |  否  | true | 是否返回 total_count |
+| offset        | number  |  否  | true | 偏移量 |
+| limit         | number  |  否  | true | 数量限制 |
 
 {{totalCount.withCountTips()}}
 
