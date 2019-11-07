@@ -29,6 +29,13 @@ function addCustomerBtn() {
   document.body.appendChild(node)
 }
 
+function addRecordNumber() {
+  let linkEle = document.querySelector('.gitbook-link')
+  linkEle.innerText = '粤 ICP 备 10211557 号-25'
+  linkEle.href = 'http://beian.miit.gov.cn'
+  linkEle.target = '_blank'
+}
+
 require(["gitbook", "jQuery"], function (gitbook, $) {
   gitbook.events.bind('start', function (e, config) {
     setTimeout(() => {
@@ -61,6 +68,13 @@ require(["gitbook", "jQuery"], function (gitbook, $) {
   })
 
   gitbook.events.bind('page.change', function () {
+    addRecordNumber()
+    const href_prod = 'https://doc.minapp.com/'
+    const href_dev = 'http://localhost:4000/'
+    if (location.href === href_prod || location.href === href_dev) {
+      const page = document.querySelector('.page-inner')
+      page.classList.add('index-page-inner')
+    }
     setTimeout(sidebarScrollIntoView, 300)
   })
 })
