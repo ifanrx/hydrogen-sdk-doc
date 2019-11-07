@@ -5,8 +5,14 @@ var uid = 1
 module.exports = {
   book: {
     assets: './assets',
-    js: ['plugin.js'],
-    css: ["plugin.css"],
+    js: [
+      // 'https://cdn.jsdelivr.net/vue/1.0.28/vue.min.js',
+      'vue-1.0.28.min.js',
+      'plugin.js',
+    ],
+    css: [
+      'plugin.css',
+    ],
   },
   blocks: {
     'ifanrxCodeTabs': {
