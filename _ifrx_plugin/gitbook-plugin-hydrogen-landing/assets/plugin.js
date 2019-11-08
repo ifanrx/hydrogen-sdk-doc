@@ -37,6 +37,8 @@ function initVueInstance(Vue, $) {
 
   const EventBus = new Vue()
 
+  let observer = null
+
   new Vue({
     el: '.book-header',
 
@@ -73,6 +75,7 @@ function initVueInstance(Vue, $) {
           this.addCloseCascaderTrigger()
           setTimeout(this.syncRenderData, 0)
         } else {
+          this.requestLocked = true
           this.getMiniappList()
         }
       },
@@ -145,6 +148,24 @@ function initVueInstance(Vue, $) {
 
       handleShowCascader() {
         this.showCascader = !this.showCascader
+        // 企业列表 html 插入交叉观察者用于触底分页请求
+        if (!observer) {
+          observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting && this.hasNextPage && !this.requestLocked) {
+                  this.requestLocked = true
+                  this.getMiniappList()
+                }
+              })
+            },
+            {
+              root: document.querySelector('.observer-ul'),
+              rootMargin: '0px 0px 0px 0px'
+            }
+          )
+          observer.observe(document.querySelector('.observer-li'))
+        }
       },
 
       handleHoverEnterprise(enterprise) {
@@ -192,12 +213,13 @@ function addMiniappCascader() {
 
 <div class="miniapp-selecter-cascader [[showCascader ? 'selecting' : '']]">
 
-<ul class="cascader-list">
+<ul class="cascader-list observer-ul">
 <li v-for="item in miniappList" key="[[item.id]]"
 class="[[item.id === selectedEnterprise.id ? 'selected' : '']]"
 @mouseenter="handleHoverEnterprise(item)">
 [[item.enterprise_name]]<i></i>
 </li>
+<li class="observer-li"></li>
 </ul>
 
 <ul class="cascader-list">
