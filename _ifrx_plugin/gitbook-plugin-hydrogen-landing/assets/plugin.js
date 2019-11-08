@@ -69,9 +69,7 @@ require(["gitbook", "jQuery"], function (gitbook, $) {
 
   gitbook.events.bind('page.change', function () {
     addRecordNumber()
-    const href_prod = 'https://doc.minapp.com/'
-    const href_dev = 'http://localhost:4000/'
-    if (location.href === href_prod || location.href === href_dev) {
+    if (location.pathname === '/') {
       const page = document.querySelector('.page-inner')
       page.classList.add('index-page-inner')
     }

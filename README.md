@@ -2,9 +2,9 @@
   <div class="index-doc-header">
     <div class="index-doc-header-text">
       <strong class="index-doc-title">知晓云文档中心</strong>
-      <em class="index-doc-desc"
-        >知晓云是个好用、顺手的小程序开发工具。它免去了小程序开发中服务器搭建、域名备案、数据接口实现等繁琐流程。让您专注于业务逻辑的实现，使用知晓云开发小程序，门槛更低，效率更高。</em
-      >
+      <em class="index-doc-desc">
+        知晓云是个好用、顺手的小程序开发工具。它免去了小程序开发中服务器搭建、域名备案、数据接口实现等繁琐流程。让您专注于业务逻辑的实现，使用知晓云开发小程序，门槛更低，效率更高。
+      </em>
     </div>
     <div class="index-doc-header-video">
       <video src="https://dl.ifanr.cn/hydrogen/landing-page/ifanr-products-introduce-v1.1.mp4" poster="https://mcache.ifanr.cn/static/hydrogen-landing-v2/dist/img/video_poster.a21bb231534ceb770dcf5d776dc9b9ed.png" controls="controls" playsinline=""></video>
@@ -15,10 +15,9 @@
       <strong class="directory-item-title">
         <a href="/newbies/README.md/">新手开发入门</a>
       </strong>
-      <em class="directory-item-desc"
-        >开发者可以通过新手教程中提供的不同平台 DEMO
-        示例，熟悉如何使用知晓云进行开发。</em
-      >
+      <em class="directory-item-desc">
+        开发者可以通过新手教程中提供的不同平台 DEMO 示例，熟悉如何使用知晓云进行开发。
+      </em>
       <div class="directory-item-section">
         <em class="directory-item-section-title">小程序</em>
         <ul class="directory-item-section-list">
@@ -41,9 +40,9 @@
       <strong class="directory-item-title">
         <a href="/dashboard/README.md">控制台使用指南</a>
       </strong>
-      <em class="directory-item-desc"
-        >控制台使用指南中简单介绍了知晓云控制台的一些常规操作。</em
-      >
+      <em class="directory-item-desc">
+        控制台使用指南中简单介绍了知晓云控制台的一些常规操作。
+      </em>
       <div class="directory-item-section">
         <em class="directory-item-section-title">开发设置</em>
         <ul class="directory-item-section-list">
@@ -80,12 +79,10 @@
       <strong class="directory-item-title">
         <a href="/js-sdk/README.md">JS SDK</a>
       </strong>
-      <em class="directory-item-desc"
-        >知晓云 SDK
-        是方便开发者结合知晓云后端云服务，进行应用开发的工具包，通过该
-        SDK，你可以在小程序、App
-        或网页中操作存储在知晓云中的数据表、内容库、媒体文件，以及调用云函数进行后端逻辑的执行。</em
-      >
+      <em class="directory-item-desc">
+        知晓云 SDK 是方便开发者结合知晓云后端云服务，进行应用开发的工具包，通过该 SDK，你可以在小程序、App
+        或网页中操作存储在知晓云中的数据表、内容库、媒体文件，以及调用云函数进行后端逻辑的执行。
+      </em>
       <div class="directory-item-section">
         <em class="directory-item-section-title">开发入门</em>
         <ul class="directory-item-section-list">
@@ -124,10 +121,9 @@
       <strong class="directory-item-title">
         <a href="/open-api/README.md">Open API</a>
       </strong>
-      <em class="directory-item-desc"
-        >知晓云开放 API 服务提供了无需小程序授权即可使用的知晓云
-        API，开发者可结合开放 API 来完成更加复杂应用的构建。</em
-      >
+      <em class="directory-item-desc">
+        知晓云开放 API 服务提供了无需小程序授权即可使用的知晓云 API，开发者可结合开放 API 来完成更加复杂应用的构建。
+      </em>
       <div class="directory-item-section">
         <em class="directory-item-section-title">基础服务</em>
         <ul class="directory-item-section-list">
@@ -147,9 +143,9 @@
       <strong class="directory-item-title">
         <a href="/cloud-function/node-sdk/README.md">云函数</a>
       </strong>
-      <em class="directory-item-desc"
-        >云函数可以帮助你在没有购买和管理服务器时仍能运行代码。你只需要进行核心代码的编写及设置代码运行的条件，代码即可在知晓云云基础设施上自动、安全地运行。</em
-      >
+      <em class="directory-item-desc">
+        云函数可以帮助你在没有购买和管理服务器时仍能运行代码。你只需要进行核心代码的编写及设置代码运行的条件，代码即可在知晓云云基础设施上自动、安全地运行。
+      </em>
       <div class="directory-item-section">
         <em class="directory-item-section-title">入门</em>
         <ul class="directory-item-section-list">
@@ -202,10 +198,9 @@
       <strong class="directory-item-title">
         <a href="/user-dash/README.md">运营 API</a>
       </strong>
-      <em class="directory-item-desc"
-        >知晓云支持开发者结合 User Dash API
-        按需编写一套独立的运营后台，供非开发者的用户使用。</em
-      >
+      <em class="directory-item-desc">
+        知晓云支持开发者结合 User Dash API 按需编写一套独立的运营后台，供非开发者的用户使用。
+      </em>
       <div class="directory-item-section">
         <em class="directory-item-section-title">基础服务</em>
         <ul class="directory-item-section-list">
@@ -225,10 +220,9 @@
       <strong class="directory-item-title">
         <a href="/web-api/README.md">Web API</a>
       </strong>
-      <em class="directory-item-desc"
-        >知晓云 Web API 可以让你用任何支持发送 HTTP
-        请求的设备来与知晓云进行交互，如用户注册、密码找回、上传文件等。</em
-      >
+      <em class="directory-item-desc">
+        知晓云 Web API 可以让你用任何支持发送 HTTP 请求的设备来与知晓云进行交互，如用户注册、密码找回、上传文件等。
+      </em>
       <div class="directory-item-section">
         <em class="directory-item-section-title">基础服务</em>
         <ul class="directory-item-section-list">
@@ -246,11 +240,11 @@
       <strong class="directory-item-title">
         <a href="/android-sdk/README.md">Android SDK</a>
       </strong>
-      <em class="directory-item-desc"
-        >知晓云 Android SDK 是方便开发者结合知晓云后端云服务，进行 Android
+      <em class="directory-item-desc">
+        知晓云 Android SDK 是方便开发者结合知晓云后端云服务，进行 Android
         应用开发的工具包，通过该 SDK，你可以在 App
-        中操作存储在知晓云中的数据表、内容库、媒体文件，以及调用云函数进行后端逻辑的执行。</em
-      >
+        中操作存储在知晓云中的数据表、内容库、媒体文件，以及调用云函数进行后端逻辑的执行。
+      </em>
       <div class="directory-item-section">
         <em class="directory-item-section-title">开发入门</em>
         <ul class="directory-item-section-list">
@@ -279,11 +273,11 @@
       <strong class="directory-item-title">
         <a href="/ios-sdk/README.md">iOS SDK</a>
       </strong>
-      <em class="directory-item-desc"
-        >知晓云 iOS SDK 是方便开发者结合知晓云产品，进行 iOS
+      <em class="directory-item-desc">
+        知晓云 iOS SDK 是方便开发者结合知晓云产品，进行 iOS
         应用开发的工具包，通过该 SDK，你可以在 App
-        中操作存储在知晓云中的数据表、内容库、媒体文件，以及调用云函数进行后端逻辑的执行。</em
-      >
+        中操作存储在知晓云中的数据表、内容库、媒体文件，以及调用云函数进行后端逻辑的执行。
+      </em>
       <div class="directory-item-section">
         <em class="directory-item-section-title">开发入门</em>
         <ul class="directory-item-section-list">
