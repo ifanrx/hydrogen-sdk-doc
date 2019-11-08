@@ -71,8 +71,6 @@ function initVueInstance(Vue, $) {
           this.selectedMiniapp = cacheData.selectedMiniapp
           this.curEnterprise = cacheData.selectedEnterprise
           this.addCloseCascaderTrigger()
-          const loginBtn = document.querySelector('.ifrx-btn-login')
-          loginBtn.parentNode.removeChild(loginBtn)
           setTimeout(this.syncRenderData, 0)
         } else {
           this.getMiniappList()
@@ -100,6 +98,9 @@ function initVueInstance(Vue, $) {
             this.miniappList = [...this.miniappList, ...filterMiniapplist]
             this.hasNextPage = !!res.meta.next
             this.offset = !!res.meta.next ? this.offset + 20 : this.offset
+
+            if (filterMiniapplist.length === 0 && !!res.meta.next) this.getMiniappList()
+
             if (this.miniappList.length > 0) {
               if (!this.selectedEnterprise) {
                 this.selectedEnterprise = this.miniappList[0]
@@ -109,9 +110,9 @@ function initVueInstance(Vue, $) {
                 this.selectedMiniapp = this.miniappList[0].miniapps[0]
                 this.addCloseCascaderTrigger()
                 this.syncRenderData()
-                replaceLoginBtn()
               }
             }
+            if (!document.querySelector('.ifrx-btn-login')) addLoginStatusBtn(!!this.selectedMiniapp)
             this.syncStorageData()
             this.requestLocked = false
           },
@@ -181,7 +182,6 @@ function initVueInstance(Vue, $) {
   })
 }
 
-// <el-cascader v-model="value" :options="options" :props="{ expandTrigger: 'hover' }" @change="handleChange"></el-cascader>
 function addMiniappCascader() {
   let el = document.querySelector('.ifrx-btn-miniapp')
   el.innerHTML = `<div class="ifrx-btn-miniapp-container" v-if="selectedMiniapp">
@@ -212,18 +212,19 @@ class="[[item.id === selectedMiniapp.id ? 'selected' : '']]"
 </div>`
 }
 
-function replaceLoginBtn() {
-  const loginBtn = document.querySelector('.ifrx-btn-login')
-  loginBtn.parentNode.removeChild(loginBtn)
-  // gitbook.toolbar.removeButton('btn-2')
+function addLoginStatusBtn(isLogined) {
   const host = 'https://cloud.minapp.com'
   gitbook.toolbar.createButton({
-    className: 'ifrx-btn',
-    text: '进入控制台',
-    label: 'ifrx-btn-console',
+    className: 'ifrx-btn ifrx-btn-login',
+    text: isLogined ? '进入控制台' : '登录',
+    label: 'ifrx-btn-login',
     position: 'right',
     onClick: function () {
-      window.open(host + '/dashboard/')
+      if (isLogined) window.open(host + '/dashboard/')
+      else {
+        const href = encodeURIComponent(location.href)
+        location.href = `${host}/login/?next=${href}`
+      }
     }
   })
 }
@@ -244,18 +245,6 @@ require(["gitbook", "jQuery"], function (gitbook, $) {
         position: 'right',
         onClick: function () {
           window.open(host)
-        }
-      })
-
-      gitbook.toolbar.createButton({
-        className: 'ifrx-btn ifrx-btn-login',
-        text: '登录',
-        label: 'ifrx-btn-login',
-        position: 'right',
-        onClick: function () {
-          // window.open(host + '/dashboard/')
-          const href = encodeURIComponent(location.href)
-          location.href = `${host}/login/?next=${href}`
         }
       })
 

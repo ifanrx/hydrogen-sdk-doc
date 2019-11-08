@@ -6,7 +6,6 @@ module.exports = {
   book: {
     assets: './assets',
     js: [
-      // 'https://cdn.jsdelivr.net/vue/1.0.28/vue.min.js',
       'vue-1.0.28.min.js',
       'plugin.js',
     ],
