@@ -46,6 +46,7 @@ function initVueInstance(Vue, $) {
 
   let observer = null
 
+  /* eslint-disable no-new */
   new Vue({
     el: '.book-header',
 
@@ -73,7 +74,7 @@ function initVueInstance(Vue, $) {
         let cacheData = sessionStorage.getItem('cacheData')
         if (cacheData) {
           cacheData = JSON.parse(cacheData)
-          this.miniappList = cacheData.miniappList,
+          this.miniappList = cacheData.miniappList
           this.offset = cacheData.offset
           this.hasNextPage = cacheData.hasNextPage
           this.selectedEnterprise = cacheData.selectedEnterprise
