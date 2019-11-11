@@ -19,7 +19,7 @@ function addHeader() {
 function addCustomerBtn() {
   if (document.querySelector('#ifanrx-customer-btn')) return false
 
-  let el = document.querySelector('.book-summary')
+  // let el = document.querySelector('.book-summary')
   let node = document.createElement('a')
   node.id = 'ifanrx-customer-btn'
   node.title = '提工单'
@@ -29,9 +29,16 @@ function addCustomerBtn() {
   document.body.appendChild(node)
 }
 
+function addRecordNumber() {
+  let linkEle = document.querySelector('.gitbook-link')
+  linkEle.innerText = '粤 ICP 备 10211557 号-25'
+  linkEle.href = 'http://beian.miit.gov.cn'
+  linkEle.target = '_blank'
+}
+
 function initVueInstance(Vue, $) {
   Vue.config.delimiters = ['[[', ']]'] // 替换 {{}}，花括号与 markdown 有冲突
-  Vue.filter('addSlashPostfixIfNotEmpty', function (value) {
+  Vue.filter('addSlashPostfixIfNotEmpty', function(value) {
     return /^\{\{[\w_]+\}\}$/.test(value) ? '' : value + '/'
   })
 
@@ -64,7 +71,7 @@ function initVueInstance(Vue, $) {
     methods: {
       init() {
         let cacheData = sessionStorage.getItem('cacheData')
-        if (!!cacheData) {
+        if (cacheData) {
           cacheData = JSON.parse(cacheData)
           this.miniappList = cacheData.miniappList,
           this.offset = cacheData.offset
@@ -100,7 +107,7 @@ function initVueInstance(Vue, $) {
             })
             this.miniappList = [...this.miniappList, ...filterMiniapplist]
             this.hasNextPage = !!res.meta.next
-            this.offset = !!res.meta.next ? this.offset + 20 : this.offset
+            this.offset = res.meta.next ? this.offset + 20 : this.offset
 
             if (filterMiniapplist.length === 0 && !!res.meta.next) this.getMiniappList()
 
@@ -138,7 +145,7 @@ function initVueInstance(Vue, $) {
       },
 
       syncRenderData() {
-        EventBus.$emit("syncData", {
+        EventBus.$emit('syncData', {
           app_id: this.selectedMiniapp.id,
           app_name: this.selectedMiniapp.name,
           client_id: this.selectedMiniapp.client_id,
@@ -151,7 +158,7 @@ function initVueInstance(Vue, $) {
         // 企业列表 html 插入交叉观察者用于触底分页请求
         if (!observer) {
           observer = new IntersectionObserver(
-            (entries) => {
+            entries => {
               entries.forEach(entry => {
                 if (entry.isIntersecting && this.hasNextPage && !this.requestLocked) {
                   this.requestLocked = true
@@ -161,7 +168,7 @@ function initVueInstance(Vue, $) {
             },
             {
               root: document.querySelector('.observer-ul'),
-              rootMargin: '0px 0px 0px 0px'
+              rootMargin: '0px 0px 0px 0px',
             }
           )
           observer.observe(document.querySelector('.observer-li'))
@@ -236,25 +243,24 @@ class="[[item.id === selectedMiniapp.id ? 'selected' : '']]"
 
 function addLoginStatusBtn(isLogined) {
   const host = 'https://cloud.minapp.com'
-  gitbook.toolbar.createButton({
+  window.gitbook.toolbar.createButton({
     className: 'ifrx-btn ifrx-btn-login',
     text: isLogined ? '进入控制台' : '登录',
     label: 'ifrx-btn-login',
     position: 'right',
-    onClick: function () {
+    onClick: function() {
       if (isLogined) window.open(host + '/dashboard/')
       else {
         const href = encodeURIComponent(location.href)
         location.href = `${host}/login/?next=${href}`
       }
-    }
+    },
   })
 }
 
-require(["gitbook", "jQuery"], function (gitbook, $) {
-
-  gitbook.events.bind('start', function (e, config) {
-    sessionStorage.clear()  // 刷新页面时清空 sessionStorage
+require(['gitbook', 'jQuery'], function(gitbook, $) {
+  gitbook.events.bind('start', function(e, config) {
+    sessionStorage.clear() // 刷新页面时清空 sessionStorage
 
     setTimeout(() => {
       gitbook.toolbar.removeButtons(['btn-1', 'btn-2', 'btn-3'])
@@ -265,9 +271,9 @@ require(["gitbook", "jQuery"], function (gitbook, $) {
         text: '知晓云',
         label: 'ifrx-btn-landing',
         position: 'right',
-        onClick: function () {
+        onClick: function() {
           window.open(host)
-        }
+        },
       })
 
       gitbook.toolbar.createButton({
@@ -281,11 +287,16 @@ require(["gitbook", "jQuery"], function (gitbook, $) {
     }, 300)
   })
 
-  gitbook.events.bind('page.change', function () {
+  gitbook.events.bind('page.change', function() {
+    addRecordNumber()
+    if (location.pathname === '/') {
+      const page = document.querySelector('.page-inner')
+      page.classList.add('index-page-inner')
+    }
     setTimeout(() => {
       addMiniappCascader()
       sidebarScrollIntoView()
-      initVueInstance(Vue, $)
+      initVueInstance(window.Vue, $)
     }, 300)
   })
 })

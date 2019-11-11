@@ -1,5 +1,90 @@
 {% import "/js-sdk/macro/total_count.md" as totalCount %}
 
+#内容库操作
+
+## 获取内容库列表
+
+{% ifanrxCodeTabs %}
+`wx.BaaS.ContentGroup.find(options)`
+{% endifanrxCodeTabs %}
+
+**参数说明**
+
+opions:
+
+| 参数           | 类型     | 必填 |默认  | 说明                 |
+| :------------- | :-----  | :-- | :--  | :---                |
+| withCount      | boolean | 否  |false  | 是否返回 total_count |
+| offset         | number  | 否  |0      | 偏移量               |
+| limit          | number  | 否  |20     | 最大返回条数          |
+
+**请求示例**
+
+{% ifanrxCodeTabs %}
+```js
+wx.BaaS.ContentGroup.find({withCount: true, offset: 0, limit: 20}).then(res => {
+  // success
+}, err => {
+  // err
+})
+```
+{% endifanrxCodeTabs %}
+
+**返回示例**
+
+res.data:
+``` js
+{
+  meta: {
+    limit: 20,
+    offset: 0,
+    total_count: 1,
+    next: null,
+    previous: null,
+  },
+  objects: [{
+    id: 1234567890,
+    name: '测试内容库',
+  }],
+}
+```
+
+## 获取内容库详情
+
+{% ifanrxCodeTabs %}
+`wx.BaaS.ContentGroup.get(contentGroupID)`
+{% endifanrxCodeTabs %}
+
+**参数说明**
+
+| 参数           | 类型    | 必填 | 说明 |
+| :------------- | :----- | :-- | :-- |
+| contentGroupID | Number | 是  | 内容库 ID |
+
+**请求示例**
+
+{% ifanrxCodeTabs %}
+```js
+let contentGroupID = 1513076211190694
+
+wx.BaaS.ContentGroup.getContent(contentGroupID).then(res => {
+  // success
+}, err => {
+  // err
+})
+```
+{% endifanrxCodeTabs %}
+
+**返回示例**
+
+res.data:
+``` js
+{
+  id: 1234567890,
+  name: '测试内容库',
+}
+```
+
 # 内容操作
 
 以下操作都需指明操作的内容库，方法如下：
@@ -299,6 +384,7 @@ MyContentGroup.getCategoryList().then(res => {
 
 
 ## 分页与排序
+
 内容查询的分页与排序操作和[数据表分页与排序](../schema/limit-and-order.md)方法一致。
 
 **请求示例**

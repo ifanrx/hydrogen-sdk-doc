@@ -1,3 +1,5 @@
+{% import "/cloud-function/node-sdk/macro/total_count.md" as totalCount %}
+
 # 内容分类操作
 
 以下操作都需指明操作的内容库，方法如下：
@@ -108,9 +110,43 @@ res.data:
 }
 ```
 
+## 获取内容分类总数
+
+`BaaS.ContentCategory#count()`
+
+{% tabs getContentCategoryCountAsync="async/await", getContentCategoryCountPromise="promise" %}
+{% content "getContentCategoryCountAsync" %}
+```js
+let num = await MyContentCategory.count()
+console.log(num)  // 10
+```
+
+{% content "getContentCategoryCountPromise" %}
+```js
+MyContentCategory.count().then(num => {
+  // success
+  console.log(num)  // 10
+  callback(null, res)
+}, err => {
+  // err
+  callback(err)
+})
+```
+{% endtabs %}
+
 ## 查询，获取内容分类列表
 
-`MyContentCategory.find()`
+`BaaS.ContentCategory#find(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| withCount     | boolean |  否  | true | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
 
 **排序**
 

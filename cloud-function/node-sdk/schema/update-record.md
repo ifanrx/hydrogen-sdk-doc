@@ -1,4 +1,19 @@
+{% import "/cloud-function/node-sdk/macro/total_count.md" as totalCount %}
+
 # 更新数据项
+
+`BaaS.TableRecord#update(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| enableTrigger | boolean |  否  | true | 是否触发触发器 |
+| withCount     | boolean |  否  | true | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
 
 ## 操作步骤
 

@@ -16,7 +16,7 @@
     * [新手入门 - Android](newbies/android.md)
 
 ----
-
+<!-- 
 * [控制台使用指南](dashboard/README.md)
     * [导览](dashboard/guide.md)
     * [基础服务](dashboard/basic-services/README.md)
@@ -337,4 +337,4 @@
     * [插件](support/plugin.md)
     * [常见问题](support/qA.md)
     * [服务协议](support/terms.md)
-    * [技术细节](support/technical-notes.md)
+    * [技术细节](support/technical-notes.md) -->
