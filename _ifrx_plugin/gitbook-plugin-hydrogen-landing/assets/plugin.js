@@ -1,3 +1,6 @@
+import './plugin.css'
+import Vue from './vue-1.0.28.min.js'
+
 function sidebarScrollIntoView() {
   let el = document.querySelector('.book-summary .active')
   if (el) {
@@ -36,7 +39,7 @@ function addRecordNumber() {
   linkEle.target = '_blank'
 }
 
-function initVueInstance(Vue, $) {
+function initVueInstance($) {
   Vue.config.delimiters = ['[[', ']]'] // 替换 {{}}，花括号与 markdown 有冲突
   Vue.filter('addSlashPostfixIfNotEmpty', function(value) {
     return /^\{\{[\w_]+\}\}$/.test(value) ? '' : value + '/'
@@ -259,6 +262,12 @@ function addLoginStatusBtn(isLogined) {
   })
 }
 
+function isPC() {
+  let ua = navigator.userAgent
+  let reg = /Android|iPhone|SymbianOS|Windows Phone|iPad|iPod|Mobile/gi
+  return !reg.test(ua)
+}
+
 require(['gitbook', 'jQuery'], function(gitbook, $) {
   gitbook.events.bind('start', function(e, config) {
     sessionStorage.clear() // 刷新页面时清空 sessionStorage
@@ -277,11 +286,13 @@ require(['gitbook', 'jQuery'], function(gitbook, $) {
         },
       })
 
-      gitbook.toolbar.createButton({
-        className: 'ifrx-btn-miniapp',
-        label: 'ifrx-btn-miniapp',
-        position: 'left',
-      })
+      if (isPC()) {
+        gitbook.toolbar.createButton({
+          className: 'ifrx-btn-miniapp',
+          label: 'ifrx-btn-miniapp',
+          position: 'left',
+        })
+      }
 
       addCustomerBtn()
       addHeader()
@@ -295,9 +306,9 @@ require(['gitbook', 'jQuery'], function(gitbook, $) {
       page.classList.add('index-page-inner')
     }
     setTimeout(() => {
-      addMiniappCascader()
+      if (isPC()) addMiniappCascader()
       sidebarScrollIntoView()
-      initVueInstance(window.Vue, $)
+      initVueInstance($)
     }, 300)
   })
 })
