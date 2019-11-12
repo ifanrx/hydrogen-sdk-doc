@@ -1,45 +1,57 @@
 let path = require('path')
 // let webpack = require('webpack')
 const ManifestPlugin = require('webpack-manifest-plugin')
+// const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = {
   entry: {
-    index: './assets/plugin.js',
+    index: './src/plugin',
   },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].[hash].js',
   },
   module: {
-    rules: [
+    loaders: [
       {
         test: /\.css$/,
         include: [
-          path.resolve(__dirname, 'assets'),
+          path.resolve(__dirname, 'src'),
         ],
-        use: ['style-loader', 'css-loader'],
+        loader: 'style-loader!css-loader',
       },
       {
         test: /\.js$/,
         // include: [
-        //   path.resolve(__dirname, 'assets'),
+        //   path.resolve(__dirname, 'src'),
         // ],
         exclude: /node_modules/,
-        use: 'babel-loader',
+        loader: 'babel-loader',
       },
       {
         test: /\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot|svg|swf)$/,
         exclude: /node_modules/,
-        use: [
-          'url-loader?limit=10000',
-        ],
+        loader: 'url-loader?limit=10000',
+      },
+      {
+        test: /\.vue$/,
+        exclude: /node_modules/,
+        loader: 'vue-loader',
       },
     ],
   },
   plugins: [
     new ManifestPlugin(),
+    // new VueLoaderPlugin(),
   ],
   externals: {
-    jQuery: 'jQuery',
-    gitbook: 'gitbook',
+    // jQuery: 'jQuery',
+    // gitbook: 'gitbook',
+  },
+  resolve: {
+    // extensions: ['.js', '.vue', '.scss', '.png', '.jpg'],
+    // modules: [path.resolve(__dirname, './src'), 'node_modules'],
+    alias: {
+      // vue: 'vue/dist/vue.esm',
+    },
   },
 }

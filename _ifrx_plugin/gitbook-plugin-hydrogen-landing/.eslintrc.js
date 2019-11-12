@@ -14,9 +14,7 @@ module.exports = {
     allowImportExportEverywhere: true,
   },
   globals: {
-    __: true,
-    IFR: true,
-    Raven: true,
+    $: true,
   },
   plugins: [
   ],

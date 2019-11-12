@@ -7,13 +7,8 @@ module.exports = {
   book: {
     assets: './dist',
     js: [
-      // 'vue-1.0.28.min.js',
-      // 'plugin.js',
       manifest['index.js'],
     ],
-    // css: [
-    //   'plugin.css',
-    // ],
   },
   blocks: {
     'ifanrxCodeTabs': {

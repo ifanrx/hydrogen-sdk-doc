@@ -139,7 +139,7 @@
     position: absolute;
     width: 14px;
     height: 14px;
-    background-image: url('./images/arrow.svg');
+    background-image: url('../images/arrow.svg');
     background-size: 100% 100%;
     right: 10px;
     top: 50%;
@@ -215,7 +215,7 @@
     position: absolute;
     width: 14px;
     height: 14px;
-    background-image: url('./images/arrow.svg');
+    background-image: url('../images/arrow.svg');
     background-size: 100% 100%;
     right: 8px;
     top: 50%;
