@@ -81,7 +81,11 @@ curl_close($ch);
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/content/`
+`GET https://cloud.minapp.com/oserve/v2.2/content/`
+
+> **info**
+> 该接口支持通过参数 return_total_count 指定是否返回查询对象总数，以协助不关心对象总数只关心查询结果列表的开发者提升接口响应速度。
+同时，从 v2.2 版本开始该接口默认不返回查询对象总数，欲获取总数的开发者需要显式指定 return_total_count 参数。
 
 **提交参数**
 
@@ -89,9 +93,21 @@ curl_close($ch);
 
   例：查询内容库名称为 "内容库1" 的内容库
 
-  `https://cloud.minapp.com/oserve/v1/content/?name=内容库1`
+  `https://cloud.minapp.com/oserve/v2.2/content/?name=内容库1`
 
+- return_total_count 指定是否在 meta 中返回 total_count
 
+  例：指定返回 total_count
+
+  `https://cloud.minapp.com/oserve/v2.2/content/?return_total_count=1`
+
+若开发者只需要获取对象总数，则可以通过设置 `limit=1` 以及 `return_total_count=1` 来达到该效果，total_count 可从返回的 meta 中获取
+
+请求示例：
+
+```
+https://cloud.minapp.com/oserve/v2.2/content/?limit=1&return_total_count=1
+``` 
 
 **代码示例**
 
@@ -103,7 +119,7 @@ curl_close($ch);
 curl -X GET \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/content/
+https://cloud.minapp.com/oserve/v2.2/content/
 ```
 
 {% content "getContentGroupListNode" %}
@@ -112,7 +128,7 @@ https://cloud.minapp.com/oserve/v1/content/
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://cloud.minapp.com/oserve/v1/content/',
+  url: 'https://cloud.minapp.com/oserve/v2.2/content/',
   headers: 
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
@@ -128,7 +144,7 @@ request(options, function (error, response, body) {
 
 ```php
 <?php
-$url = "https://cloud.minapp.com/oserve/v1/content/";
+$url = "https://cloud.minapp.com/oserve/v2.2/content/";
 
 $ch = curl_init();
 $header = array(
