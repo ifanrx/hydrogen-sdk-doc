@@ -104,11 +104,6 @@
 	  dataInjector.init();
 	}
 
-	function addMiniappCascader() {
-	  var el = document.querySelector('.ifrx-btn-miniapp');
-	  el.innerHTML = '<app-selector />';
-	}
-
 	require(['gitbook', 'jQuery'], function (gitbook, $) {
 	  gitbook.events.bind('start', function (e, config) {
 	    sessionStorage.clear();
@@ -150,7 +145,6 @@
 	    addRecordNumber();
 
 	    setTimeout(function () {
-	      addMiniappCascader();
 	      sidebarScrollIntoView();
 	      initVueInstance();
 	    }, 300);
@@ -554,8 +548,8 @@
 	exports.init = function () {
 	  Vue.config.delimiters = ['[[', ']]'];
 	  new Vue({
-	    el: '.book-header',
-
+	    el: '.ifrx-btn-miniapp',
+	    template: '<app-selector />',
 	    replace: false,
 	    components: {
 	      'app-selector': appSelector

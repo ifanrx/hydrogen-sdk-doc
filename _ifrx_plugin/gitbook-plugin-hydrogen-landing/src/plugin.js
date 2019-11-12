@@ -56,11 +56,6 @@ function initVueInstance() {
   dataInjector.init()
 }
 
-function addMiniappCascader() {
-  let el = document.querySelector('.ifrx-btn-miniapp')
-  el.innerHTML = '<app-selector />'
-}
-
 __non_webpack_require__(['gitbook', 'jQuery'], function(gitbook, $) {
   gitbook.events.bind('start', function(e, config) {
     sessionStorage.clear() // 刷新页面时清空 sessionStorage
@@ -102,7 +97,6 @@ __non_webpack_require__(['gitbook', 'jQuery'], function(gitbook, $) {
     addRecordNumber()
 
     setTimeout(() => {
-      addMiniappCascader()
       sidebarScrollIntoView()
       initVueInstance()
     }, 300)
