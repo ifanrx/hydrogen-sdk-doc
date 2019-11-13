@@ -57,6 +57,8 @@ module.exports = {
         .then(data => {
           this.upvote = data.upvote
           this.downvote = data.downvote
+          this.hasAddUpvote = data.voted === 1
+          this.hasAddDownvote = data.voted === 0
         })
     },
 
@@ -65,10 +67,28 @@ module.exports = {
         location.href = utils.getLoginUrl()
         return
       }
-      voteApi.vote(this.pageId, type)
+      if ((this.hasAddUpvote && type === 'up') || (this.hasAddDownvote && type === 'down')) {
+        voteApi.deleteVoteRecord(this.pageId)
+          .always(res => {
+            console.log('res', res)
+            if (!res) {
+              return this.getVoteData()
+            }
+            if (res.status == 401) {
+              location.href = utils.getLoginUrl()
+              return
+            }
+          })
+        return
+      }
+      voteApi.addVoteRecord(this.pageId, type)
         .always(res => {
           if (res.status == 201) {
             return this.getVoteData()
+          }
+          if (res.status == 401) {
+            location.href = utils.getLoginUrl()
+            return
           }
         })
     },
@@ -81,7 +101,9 @@ module.exports = {
   border: solid 1px lightgrey;
   margin-top: 40px;
   padding: 20px;
+  border-radius: 5px;
   font-size: 14px;
+  color: #333;
 }
 
 #vote img {

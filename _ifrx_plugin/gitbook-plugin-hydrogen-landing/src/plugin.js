@@ -61,6 +61,7 @@ function initVueInstance() {
 
 __non_webpack_require__(['gitbook', 'jQuery'], function(gitbook, $) {
   gitbook.events.bind('start', function(e, config) {
+    window.isBaasLogined = false
     sessionStorage.clear() // 刷新页面时清空 sessionStorage
 
     setTimeout(() => {
@@ -91,7 +92,6 @@ __non_webpack_require__(['gitbook', 'jQuery'], function(gitbook, $) {
   })
 
   gitbook.events.bind('page.change', function() {
-    window.isBaasLogined = false
     $(".book-body .page-inner").append('<div id="vote-container"></div>')
     if (location.pathname === '/') {
       const page = document.querySelector('.page-inner')
