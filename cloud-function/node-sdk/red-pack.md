@@ -4,7 +4,7 @@
 ## 准备工作
 
 1. 阅读[微信文档](https://pay.weixin.qq.com/wiki/doc/api/tools/cash_coupon.php?chapter=13_1)，了解发送红包发放前的准备事项
-2. 若开发者尚未在知晓云配置支付证书，请前往[知晓云-支付证书页面](https://cloud.minapp.com/dashboard/#/app/payment/config/) 配置支付证书
+2. 若开发者尚未在知晓云配置支付证书，请前往[知晓云-支付证书页面](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]payment/config/) 配置支付证书
 3. 确保你账户里的资金充足
 
 > **info**

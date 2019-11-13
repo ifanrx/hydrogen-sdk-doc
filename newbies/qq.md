@@ -59,7 +59,7 @@
 
 ![创建小程序项目](/images/newbies/minapp-creation-qq.png)
 
-其中 `AppID` 为小程序的 ID，在 QQ 小程序后台**设置 >> 开发设置** 中可获取，知晓云也在[**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/qq/)提供了快速通道获取小程序 ID。
+其中 `AppID` 为小程序的 ID，在 QQ 小程序后台**设置 >> 开发设置** 中可获取，知晓云也在[**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/qq/)提供了快速通道获取小程序 ID。
 
 ![开发者 ID](/images/newbies/developer-id.png)
 
@@ -81,7 +81,7 @@ App({
 
 最后，通过初始化 [SDK](/js-sdk/download-sdk.md)，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 [SDK](/js-sdk/download-sdk.md) 提供的全部功能。
 
-在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/settings/info/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
+在知晓云后台 - [**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/info/)，可获取要接入知晓云服务的小程序 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
 
 <pre>
 <code class="lang-js">

@@ -48,8 +48,9 @@
 
 	__webpack_require__(1);
 	var header = __webpack_require__(6);
-	var dataInjector = __webpack_require__(69);
-	var utils = __webpack_require__(70);
+	var dataInjector = __webpack_require__(71);
+	var vote = __webpack_require__(72);
+	var utils = __webpack_require__(82);
 
 	function sidebarScrollIntoView() {
 	  var el = document.querySelector('.book-summary .active');
@@ -102,6 +103,7 @@
 	function initVueInstance() {
 	  header.init();
 	  dataInjector.init();
+	  vote.init();
 	}
 
 	require(['gitbook', 'jQuery'], function (gitbook, $) {
@@ -136,6 +138,7 @@
 	  });
 
 	  gitbook.events.bind('page.change', function () {
+	    $(".book-body .page-inner").append('<div id="vote-container"></div>');
 	    if (location.pathname === '/') {
 	      var page = document.querySelector('.page-inner');
 	      page.classList.add('index-page-inner');
@@ -11000,7 +11003,7 @@
 	__vue_script__ = __webpack_require__(10)
 	if (Object.keys(__vue_script__).some(function (key) { return key !== "default" && key !== "__esModule" })) {
 	  console.warn("[vue-loader] src/js/components/app-selector.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(68)
+	__vue_template__ = __webpack_require__(70)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -11041,6 +11044,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var eventBus = __webpack_require__(67);
+	var enterpriseApi = __webpack_require__(68);
 	var observer = null;
 	module.exports = {
 	  name: "app-selector",
@@ -11094,40 +11098,38 @@
 	    getMiniappList: function getMiniappList() {
 	      var _this2 = this;
 
-	      $.ajax({
-	        url: "https://cloud.minapp.com/dserve/v1/enterprise/?limit=20&offset=" + this.offset + "&for_nav=true",
-	        xhrFields: {
-	          withCredentials: true
-	        },
-	        success: function success(res) {
-	          var filterMiniapplist = res.objects.filter(function (item) {
-	            return item.miniapps.length > 0;
-	          });
-	          _this2.miniappList = [].concat((0, _toConsumableArray3.default)(_this2.miniappList), (0, _toConsumableArray3.default)(filterMiniapplist));
-	          _this2.hasNextPage = !!res.meta.next;
-	          _this2.offset = res.meta.next ? _this2.offset + 20 : _this2.offset;
+	      enterpriseApi.getEnterpriseList(this.offset).then(function (res) {
+	        var filterMiniapplist = res.objects.filter(function (item) {
+	          return item.miniapps.length > 0;
+	        });
+	        _this2.miniappList = [].concat((0, _toConsumableArray3.default)(_this2.miniappList), (0, _toConsumableArray3.default)(filterMiniapplist));
+	        _this2.hasNextPage = !!res.meta.next;
+	        _this2.offset = res.meta.next ? _this2.offset + 20 : _this2.offset;
 
-	          if (filterMiniapplist.length === 0 && !!res.meta.next) _this2.getMiniappList();
+	        if (filterMiniapplist.length === 0 && !!res.meta.next) _this2.getMiniappList();
 
-	          if (_this2.miniappList.length > 0) {
-	            if (!_this2.selectedEnterprise) {
-	              _this2.selectedEnterprise = _this2.miniappList[0];
-	              _this2.curEnterprise = _this2.miniappList[0];
-	            }
-	            if (!_this2.selectedMiniapp) {
-	              _this2.selectedMiniapp = _this2.miniappList[0].miniapps[0];
-	              _this2.addCloseCascaderTrigger();
-	              _this2.syncRenderData();
-	            }
+	        if (_this2.miniappList.length > 0) {
+	          if (!_this2.selectedEnterprise) {
+	            _this2.selectedEnterprise = _this2.miniappList[0];
+	            _this2.curEnterprise = _this2.miniappList[0];
 	          }
-	          if (!document.querySelector(".ifrx-btn-login")) _this2.addLoginStatusBtn(!!_this2.selectedMiniapp);
-	          _this2.syncStorageData();
-	          _this2.requestLocked = false;
-	        },
-	        error: function error(err) {
-	          console.log(err);
-	          _this2.requestLocked = false;
+	          if (!_this2.selectedMiniapp) {
+	            _this2.selectedMiniapp = _this2.miniappList[0].miniapps[0];
+
+	            _this2.addCloseCascaderTrigger();
+	            _this2.syncRenderData();
+	          }
 	        }
+
+	        if (!document.querySelector(".ifrx-btn-login")) _this2.addLoginStatusBtn(true);
+	        _this2.syncStorageData();
+	        _this2.requestLocked = false;
+	        window.isBaaSLogin = true;
+	        eventBus.emit("baas-login");
+	      }, function (err) {
+	        console.log(err);
+	        if (!document.querySelector(".ifrx-btn-login")) _this2.addLoginStatusBtn(false);
+	        _this2.requestLocked = false;
 	      });
 	    },
 	    addLoginStatusBtn: function addLoginStatusBtn(isLogined) {
@@ -12186,12 +12188,42 @@
 
 /***/ }),
 /* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var config = __webpack_require__(69);
+
+	module.exports = {
+	  getEnterpriseList: function getEnterpriseList(offset) {
+	    return $.ajax({
+	      url: config.apiHost + '/dserve/v1/enterprise/?limit=20&offset=' + offset + '&for_nav=true',
+
+	      xhrFields: {
+	        withCredentials: true
+	      }
+	    });
+	  }
+	};
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	module.exports = {
+	  apiHost: /localhost:4000|127\.0\.0\.1:4000/.test(location.host) ? '//localhost:8000' : '//cloud.minapp.com'
+	};
+
+/***/ }),
+/* 70 */
 /***/ (function(module, exports) {
 
 	module.exports = "\n<div class=\"ifrx-btn-miniapp-container\"\n  v-if=\"selectedMiniapp\">\n  <div class=\"miniapp-selecter-input\"\n    @click=\"handleShowCascader\">\n    [[selectedMiniapp.name]]\n    <i class=\"miniapp-selecter-input-arrow [[showCascader ? 'selecting' : '']]\"></i>\n  </div>\n\n  <div class=\"miniapp-selecter-cascader [[showCascader ? 'selecting' : '']]\">\n    <ul class=\"cascader-list observer-ul\">\n      <li v-for=\"item in miniappList\"\n        key=\"[[item.id]]\"\n        class=\"[[item.id === selectedEnterprise.id ? 'selected' : '']]\"\n        @mouseenter=\"handleHoverEnterprise(item)\">\n        [[item.enterprise_name]]<i></i>\n      </li>\n      <li class=\"observer-li\"></li>\n    </ul>\n\n    <ul class=\"cascader-list\">\n      <li v-for=\"item in curEnterprise.miniapps\"\n        key=\"[[item.id]]\"\n        class=\"[[item.id === selectedMiniapp.id ? 'selected' : '']]\"\n        @click=\"handleSelectMiniapp(item)\">\n        [[item.name]]\n      </li>\n    </ul>\n\n  </div>\n</div>\n";
 
 /***/ }),
-/* 69 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12229,7 +12261,441 @@
 	};
 
 /***/ }),
-/* 70 */
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var Vue = __webpack_require__(7);
+	var vote = __webpack_require__(73);
+
+	exports.init = function () {
+	  if (location.pathname === '/') return;
+	  Vue.config.delimiters = ['[[', ']]'];
+	  window.voteVm = new Vue({
+	    el: '#vote-container',
+	    replace: false,
+	    data: function data() {
+	      return {
+	        id: location.pathname.replace(/^\/|\.html$|\/$/g, '').replace(/\//g, '-')
+	      };
+	    },
+	    template: '<vote v-bind:page-id="id" />',
+	    components: {
+	      'vote': vote
+	    }
+	  });
+	};
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
+	__webpack_require__(74)
+	__vue_script__ = __webpack_require__(77)
+	if (Object.keys(__vue_script__).some(function (key) { return key !== "default" && key !== "__esModule" })) {
+	  console.warn("[vue-loader] src/js/components/vote.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(81)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+	if (__vue_template__) {
+	__vue_options__.template = __vue_template__
+	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-0aa2ceee/vote.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(75);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(76)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-0aa2ceee&scoped=true!../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./vote.vue", function() {
+				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-0aa2ceee&scoped=true!../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./vote.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#vote[_v-0aa2ceee] {\n  border: solid 1px lightgrey;\n  margin-top: 40px;\n  padding: 20px;\n  font-size: 14px;\n}\n\n#vote img[_v-0aa2ceee] {\n  width: 25px;\n  height: 25px;\n}\n\n#vote .title[_v-0aa2ceee] {\n  font-size: 18px;\n  font-weight: bold;\n}\n\n#vote .vote-info[_v-0aa2ceee] {\n  margin: 20px 0;\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0,
+		styleElementsInsertedAtTop = [];
+
+	module.exports = function(list, options) {
+		if(false) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+
+		// By default, add <style> tags to the bottom of <head>.
+		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
+	}
+
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+
+	function insertStyleElement(options, styleElement) {
+		var head = getHeadElement();
+		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+		if (options.insertAt === "top") {
+			if(!lastStyleElementInsertedAtTop) {
+				head.insertBefore(styleElement, head.firstChild);
+			} else if(lastStyleElementInsertedAtTop.nextSibling) {
+				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+			} else {
+				head.appendChild(styleElement);
+			}
+			styleElementsInsertedAtTop.push(styleElement);
+		} else if (options.insertAt === "bottom") {
+			head.appendChild(styleElement);
+		} else {
+			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+		}
+	}
+
+	function removeStyleElement(styleElement) {
+		styleElement.parentNode.removeChild(styleElement);
+		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+		if(idx >= 0) {
+			styleElementsInsertedAtTop.splice(idx, 1);
+		}
+	}
+
+	function createStyleElement(options) {
+		var styleElement = document.createElement("style");
+		styleElement.type = "text/css";
+		insertStyleElement(options, styleElement);
+		return styleElement;
+	}
+
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement(options));
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else {
+			styleElement = createStyleElement(options);
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+			};
+		}
+
+		update(obj);
+
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+
+	var replaceText = (function () {
+		var textStore = [];
+
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
+
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+		var sourceMap = obj.sourceMap;
+
+		if (media) {
+			styleElement.setAttribute("media", media);
+		}
+
+		if (sourceMap) {
+			// https://developer.chrome.com/devtools/docs/javascript-debugging
+			// this makes source maps inside style tags work properly in Chrome
+			css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */';
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
+
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var voteApi = __webpack_require__(78);
+	var upvoteIcon = __webpack_require__(79);
+	var downvoteIcon = __webpack_require__(80);
+
+	module.exports = {
+	  name: 'vote',
+	  delimiters: ['[[', ']]'],
+	  props: ['pageId'],
+	  data: function data() {
+	    return {
+	      upvote: 0,
+	      downvote: 0,
+	      upvoteIcon: upvoteIcon,
+	      downvoteIcon: downvoteIcon,
+	      supportUrl: 'http://support.minapp.com/hc/'
+	    };
+	  },
+	  created: function created() {
+	    this.init();
+	  },
+
+
+	  methods: {
+	    init: function init() {
+	      this.getVoteData();
+	    },
+	    getVoteData: function getVoteData() {
+	      var _this = this;
+
+	      voteApi.getVote(this.pageId).then(function (data) {
+	        _this.upvote = data.upvote;
+	        _this.downvote = data.downvote;
+	      });
+	    },
+	    vote: function vote(type) {
+	      var _this2 = this;
+
+	      voteApi.vote(this.pageId, type).always(function (res) {
+	        if (res.status == 201) {
+	          return _this2.getVoteData();
+	        }
+	      });
+	    }
+	  }
+	};
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _stringify = __webpack_require__(11);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var config = __webpack_require__(69);
+
+	module.exports = {
+	  getVote: function getVote(id) {
+	    return $.ajax({
+	      url: config.apiHost + '/api/v2/hydrogen/doc/vote/' + id + '/',
+	      xhrFields: {
+	        withCredentials: true
+	      }
+	    });
+	  },
+
+	  vote: function vote(id, type) {
+	    return $.ajax({
+	      url: config.apiHost + '/api/v2/hydrogen/doc/vote/',
+	      data: (0, _stringify2.default)({
+	        documentation_path: id,
+	        operation: type === 'down' ? 'downvote' : 'upvote'
+	      }),
+	      method: 'POST',
+	      dataType: 'json',
+	      contentType: 'application/json; charset=utf-8',
+	      xhrFields: {
+	        withCredentials: true
+	      }
+	    });
+	  }
+	};
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports) {
+
+	module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTczNjE0OTI4MjM2IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjUzNjciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTI0NC4yMjQgMTAyMS45NTJIMTEyLjY0Yy0yMi4wMTYgMC01NC43ODQtMTQuODQ4LTU1LjI5Ni01NS4yOTZMMjUuNiA0NTAuMDQ4di0xLjUzNkMyNi4xMTIgNDI2LjQ5NiA0MC45NiAzOTQuMjQgODAuMzg0IDM5NC4yNGgxNTIuMDY0YzIuNTYgMCAyNy4xMzYgMCA0NC41NDQgMTcuOTIgNy42OCA3LjY4IDE2Ljg5NiAyMi4wMTYgMTYuODk2IDQ0LjU0NHY1MjAuMTkyYzAgMy41ODQtMS4wMjQgMTguNDMyLTEyLjggMzAuNzItNi4xNDQgNi42NTYtMTcuNDA4IDE0LjMzNi0zNi44NjQgMTQuMzM2eiBtNC4wOTYtNDUuNTY4djB6TTcxLjY4IDQ0OC41MTJsMzEuMjMyIDUxNS41ODR2MS41MzZjMCAzLjU4NCAwIDkuMjE2IDkuNzI4IDkuNzI4aDEzMS4wNzJjMi4wNDggMCAzLjA3MiAwIDQuMDk2LTAuNTEyVjQ1Ni43MDRjMC04LjE5Mi0yLjU2LTEwLjc1Mi0zLjA3Mi0xMS4yNjQtNC4wOTYtNC4wOTYtMTEuNzc2LTQuNjA4LTEyLjI4OC00LjYwOEg4MC4zODRjLTMuMDcyIDAtOC4xOTIgMC04LjcwNCA3LjY4ek04MTIuNTQ0IDEwMjEuOTUySDQzMS4xMDRjLTQwLjk2IDAtMTE3LjI0OC0yNy4xMzYtMTE3LjI0OC05Mi4xNlY0MTcuMjhjMC03LjE2OCAzLjU4NC0xNC4zMzYgOS4yMTYtMTguOTQ0IDEuNTM2LTEuNTM2IDE3OS4yLTEzNy4yMTYgMTc5LjItMzAzLjYxNiAwLTIuNTYgMC41MTItNS42MzIgMS41MzYtOC4xOTIgMC0xLjAyNCAwLTIuNTYgMC41MTItNC42MDggMS4wMjQtMTguOTQ0IDUuMTItNzYuOCA4Mi40MzItNzYuOGgyLjU2YzIuMDQ4IDAgNDcuNjE2IDYuMTQ0IDgxLjkyIDU2LjgzMiA0NS41NjggNjcuNTg0IDQ5LjY2NCAxNzkuMiAxMy4zMTIgMzMxLjI2NGgyMjMuMjMyYzcuMTY4LTAuNTEyIDM4LjkxMi0xLjAyNCA2Mi45NzYgMjEuNTA0IDExLjI2NCAxMC43NTIgMjQuNTc2IDMwLjIwOCAyNC41NzYgNjQgMS4wMjQgMTQuMzM2LTIuNTYgNDAuOTYtMTEuNzc2IDkzLjY5Ni0xMC43NTIgNTkuOTA0LTMzLjc5MiAxNjYuOTEyLTgyLjk0NCAzMzYuMzg0djAuNTEyYy0xMS4yNjQgMzQuMzA0LTQwLjQ0OCAxMTIuNjQtODguMDY0IDExMi42NHpNMzU5LjkzNiA0MjguNTQ0djUwMS4yNDhjMCAzMS4yMzIgNTEuNzEyIDQ1LjU2OCA3MS4xNjggNDUuNTY4aDM4MS40NGMxMC4yNC0yLjU2IDMxLjc0NC00MS40NzIgNDMuMDA4LTc5LjM2IDkwLjExMi0zMTEuMjk2IDkzLjE4NC00MTEuMTM2IDkzLjE4NC00MTYuMjU2di0wLjUxMmMwLTEzLjMxMi0zLjA3Mi0yMy41NTItOS43MjgtMjkuNjk2LTkuMjE2LTguNzA0LTI0LjA2NC05LjcyOC0yOS4xODQtOS4yMTZoLTI1NS40ODhjLTcuMTY4IDAtMTMuODI0LTMuNTg0LTE4LjQzMi05LjIxNi00LjYwOC01LjYzMi01LjYzMi0xMy4zMTItNC4wOTYtMjAuNDggNTAuNjg4LTE4OS40NCAyOC42NzItMjc5LjA0IDIuMDQ4LTMyMS4wMjQtMTkuOTY4LTMwLjcyLTQ0LjAzMi0zNy4zNzYtNDkuMTUyLTM4LjQtMzIuNzY4IDAuNTEyLTMzLjI4IDE0LjMzNi0zNC44MTYgMzMuMjgtMC41MTIgNC42MDgtMC41MTIgOS4yMTYtMS41MzYgMTMuMzEyLTIuNTYgMTY3LjQyNC0xNDkuNTA0IDI5OC40OTYtMTg4LjQxNiAzMzAuNzUyeiBtNTE3LjYzMiA0NzQuNjI0ek01MDUuMzQ0IDgyLjk0NHoiIHAtaWQ9IjUzNjgiPjwvcGF0aD48L3N2Zz4="
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports) {
+
+	module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTczNjE0OTQ3MjQ5IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjU2ODEiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTI4MS4wODggMTkuNDU2YzExLjc3NiAxMi4yODggMTIuOCAyNy4xMzYgMTIuOCAzMC43MnY1MjAuMTkyYzAgMjIuNTI4LTkuMjE2IDM2Ljg2NC0xNi44OTYgNDQuNTQ0LTE3LjQwOCAxNy45Mi00MS45ODQgMTcuOTItNDQuNTQ0IDE3LjkySDgwLjM4NEM0MC45NiA2MzIuODMyIDI2LjExMiA2MDAuNTc2IDI1LjYgNTc4LjU2di0xLjUzNkw1Ny4zNDQgNjAuNDE2QzU3Ljg1NiAxOS45NjggOTAuNjI0IDUuMTIgMTEyLjY0IDUuMTJoMTMxLjU4NGMxOS40NTYgMCAzMC43MiA3LjY4IDM2Ljg2NCAxNC4zMzZ6IG0tMzIuNzY4IDMxLjIzMnYtMC41MTIgMC41MTJ6TTgwLjM4NCA1ODYuMjRoMTUyLjA2NGMwLjUxMiAwIDguMTkyLTAuNTEyIDEyLjI4OC00LjYwOCAwLjUxMi0wLjUxMiAzLjA3Mi0zLjA3MiAzLjA3Mi0xMS4yNjRWNTIuMjI0Yy0xLjAyNC0wLjUxMi0yLjA0OC0wLjUxMi00LjA5Ni0wLjUxMkgxMTIuNjRjLTkuNzI4IDAuNTEyLTkuNzI4IDYuMTQ0LTkuNzI4IDkuNzI4djEuNTM2TDcxLjY4IDU3OC41NmMwLjUxMiA3LjY4IDUuNjMyIDcuNjggOC43MDQgNy42OHpNOTAwLjYwOCAxMTcuNzZ2MC41MTJjNDkuMTUyIDE2OS40NzIgNzIuMTkyIDI3Ni40OCA4Mi45NDQgMzM2LjM4NCA5LjIxNiA1Mi43MzYgMTIuOCA3OS4zNiAxMS43NzYgOTMuNjk2IDAgMzMuNzkyLTEzLjMxMiA1My4yNDgtMjQuNTc2IDY0LTI0LjA2NCAyMi41MjgtNTUuODA4IDIyLjAxNi02Mi45NzYgMjEuNTA0aC0yMjMuMjMyYzM2LjM1MiAxNTIuMDY0IDMyLjI1NiAyNjMuNjgtMTMuMzEyIDMzMS4yNjQtMzQuMzA0IDUwLjY4OC03OS44NzIgNTYuODMyLTgxLjkyIDU2LjgzMmgtMi41NmMtNzcuMzEyIDAtODEuNDA4LTU3Ljg1Ni04Mi40MzItNzYuOC0wLjUxMi0yLjA0OC0wLjUxMi0zLjU4NC0wLjUxMi00LjYwOC0xLjAyNC0yLjU2LTEuNTM2LTUuNjMyLTEuNTM2LTguMTkyIDAtMTY2LjQtMTc3LjY2NC0zMDIuMDgtMTc5LjItMzAzLjYxNi01LjYzMi00LjYwOC05LjIxNi0xMS43NzYtOS4yMTYtMTguOTQ0Vjk3LjI4YzAtNjUuMDI0IDc2LjI4OC05Mi4xNiAxMTcuMjQ4LTkyLjE2aDM4MS40NGM0Ny42MTYgMCA3Ni44IDc4LjMzNiA4OC4wNjQgMTEyLjY0eiBtLTM1Mi4yNTYgODExLjUyYzEuMDI0IDQuMDk2IDEuMDI0IDguNzA0IDEuNTM2IDEzLjMxMiAxLjUzNiAxOC45NDQgMi4wNDggMzIuNzY4IDM0LjgxNiAzMy4yOCA1LjEyLTEuMDI0IDI5LjE4NC03LjY4IDQ5LjE1Mi0zOC40IDI2LjYyNC00MS45ODQgNDguNjQtMTMxLjU4NC0yLjA0OC0zMjEuMDI0LTEuNTM2LTcuMTY4LTAuNTEyLTE0Ljg0OCA0LjA5Ni0yMC40OHMxMS4yNjQtOS4yMTYgMTguNDMyLTkuMjE2aDI1NS40ODhjNS4xMiAwLjUxMiAxOS45NjgtMC41MTIgMjkuMTg0LTkuMjE2IDYuNjU2LTYuMTQ0IDkuNzI4LTE2LjM4NCA5LjcyOC0yOS42OTZ2LTAuNTEyYzAtNS4xMi0zLjA3Mi0xMDQuOTYtOTMuMTg0LTQxNi4yNTYtMTEuMjY0LTM3Ljg4OC0zMi43NjgtNzYuOC00My4wMDgtNzkuMzZINDMxLjEwNGMtMTkuNDU2IDAtNzEuMTY4IDE0LjMzNi03MS4xNjggNDUuNTY4djUwMS4yNDhjMzguOTEyIDMyLjI1NiAxODUuODU2IDE2My4zMjggMTg4LjQxNiAzMzAuNzUyeiBtMzI5LjIxNi04MDUuMzc2ek01MDUuMzQ0IDk0NC4xMjh6IiBwLWlkPSI1NjgyIj48L3BhdGg+PC9zdmc+"
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports) {
+
+	module.exports = "\n<div id=\"vote\" _v-0aa2ceee=\"\">\n  <p class=\"title\" _v-0aa2ceee=\"\">文档对你是否有帮助？</p>\n  <p class=\"vote-info\" _v-0aa2ceee=\"\">\n    <span @click=\"vote('up')\" _v-0aa2ceee=\"\"><img :src=\"upvoteIcon\" _v-0aa2ceee=\"\"> [[upvote]]</span>\n    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n    <span @click=\"vote('down')\" _v-0aa2ceee=\"\"><img :src=\"downvoteIcon\" _v-0aa2ceee=\"\"> [[downvote]]</span></p>\n  <p class=\"help\" _v-0aa2ceee=\"\">如果开发遇到问题，你可以<a :href=\"suportUrl\" target=\"_blank\" _v-0aa2ceee=\"\">提交工单</a>寻求帮助。</p>\n</div>\n";
+
+/***/ }),
+/* 82 */
 /***/ (function(module, exports) {
 
 	"use strict";

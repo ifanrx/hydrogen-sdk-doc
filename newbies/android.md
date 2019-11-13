@@ -61,7 +61,7 @@ dependencies {
 
 ### 初始化 `Android SDK`
 
-在应用启动时，需要注册知晓云 `clientId`，`clientID` 可在 dashboard [设置-应用页](https://cloud.minapp.com/dashboard/#/app/settings/info/)中获取。
+在应用启动时，需要注册知晓云 `clientId`，`clientID` 可在 dashboard [设置-应用页](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/info/)中获取。
 
 ![复制 clientID](/images/newbies/get-client-id.png)
 

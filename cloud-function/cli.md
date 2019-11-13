@@ -54,7 +54,7 @@
    ```
 
    请到
-   [知晓云控制台](https://cloud.minapp.com/dashboard/#/app/settings/app/)
+   [知晓云控制台](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/app/)
    查看 `client_id` 和 `client_secret`；如果登录失败，请检查
    `client_id` 和 `client_secret` 是否已经改变。
 
@@ -205,7 +205,7 @@ $ mincloud list
 
 ### 登录
 
-使用知晓云[客户端凭证](https://cloud.minapp.com/dashboard/#/app/settings/app/)登录，令牌将保存在本地文件 `.mincloudrc` 中；若过期，请重新登录。
+使用知晓云[客户端凭证](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/app/)登录，令牌将保存在本地文件 `.mincloudrc` 中；若过期，请重新登录。
 
 ```
 $ mincloud login <client_id> <client_secret>

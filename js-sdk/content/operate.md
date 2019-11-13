@@ -128,7 +128,7 @@ res.data:
 > **info**
 > 如果有自定义字段，则一并返回。
 
-> visit_count 字段，只有在已经开通了[“文章统计”（“阅读数支持”）功能](https://cloud.minapp.com/dashboard/#/app/settings/info/)，且该文章的阅读数大于 0 时，才会返回。
+> visit_count 字段，只有在已经开通了[“文章统计”（“阅读数支持”）功能](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/info/)，且该文章的阅读数大于 0 时，才会返回。
 
 > “文章阅读数统计”是一个异步的操作，统计结果略有延迟。
 

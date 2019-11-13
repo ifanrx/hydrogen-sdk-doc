@@ -33,6 +33,7 @@
 
 <script>
 const eventBus = require("../eventBus");
+const enterpriseApi = require("../io/enterprise");
 let observer = null;
 module.exports = {
   name: "app-selector",
@@ -84,14 +85,8 @@ module.exports = {
     },
 
     getMiniappList() {
-      $.ajax({
-        url: `https://cloud.minapp.com/dserve/v1/enterprise/?limit=20&offset=${
-          this.offset
-        }&for_nav=true`,
-        xhrFields: {
-          withCredentials: true
-        },
-        success: res => {
+      enterpriseApi.getEnterpriseList(this.offset).then(
+        res => {
           let filterMiniapplist = res.objects.filter(item => {
             return item.miniapps.length > 0;
           });
@@ -109,20 +104,26 @@ module.exports = {
             }
             if (!this.selectedMiniapp) {
               this.selectedMiniapp = this.miniappList[0].miniapps[0];
+
               this.addCloseCascaderTrigger();
               this.syncRenderData();
             }
           }
+
           if (!document.querySelector(".ifrx-btn-login"))
-            this.addLoginStatusBtn(!!this.selectedMiniapp);
+            this.addLoginStatusBtn(true);
           this.syncStorageData();
           this.requestLocked = false;
+          window.isBaaSLogin = true;
+          eventBus.emit("baas-login");
         },
-        error: err => {
+        err => {
           console.log(err);
+          if (!document.querySelector(".ifrx-btn-login"))
+            this.addLoginStatusBtn(false);
           this.requestLocked = false;
         }
-      });
+      );
     },
 
     addLoginStatusBtn(isLogined) {
