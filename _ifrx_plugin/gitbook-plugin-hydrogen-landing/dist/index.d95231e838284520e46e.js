@@ -11098,39 +11098,43 @@
 	    getMiniappList: function getMiniappList() {
 	      var _this2 = this;
 
-	      enterpriseApi.getEnterpriseList(this.offset).then(function (res) {
-	        var filterMiniapplist = res.objects.filter(function (item) {
-	          return item.miniapps.length > 0;
+	      try {
+	        enterpriseApi.getEnterpriseList(this.offset).then(function (res) {
+	          window.isBaaSLogin = true;
+	          eventBus.$emit("baas-login");
+	          var filterMiniapplist = res.objects.filter(function (item) {
+	            return item.miniapps.length > 0;
+	          });
+	          _this2.miniappList = [].concat((0, _toConsumableArray3.default)(_this2.miniappList), (0, _toConsumableArray3.default)(filterMiniapplist));
+	          _this2.hasNextPage = !!res.meta.next;
+	          _this2.offset = res.meta.next ? _this2.offset + 20 : _this2.offset;
+
+	          if (filterMiniapplist.length === 0 && !!res.meta.next) _this2.getMiniappList();
+
+	          if (_this2.miniappList.length > 0) {
+	            if (!_this2.selectedEnterprise) {
+	              _this2.selectedEnterprise = _this2.miniappList[0];
+	              _this2.curEnterprise = _this2.miniappList[0];
+	            }
+	            if (!_this2.selectedMiniapp) {
+	              _this2.selectedMiniapp = _this2.miniappList[0].miniapps[0];
+
+	              _this2.addCloseCascaderTrigger();
+	              _this2.syncRenderData();
+	            }
+	          }
+
+	          if (!document.querySelector(".ifrx-btn-login")) _this2.addLoginStatusBtn(true);
+	          _this2.syncStorageData();
+	          _this2.requestLocked = false;
+	        }, function (err) {
+	          console.log(err);
+	          if (!document.querySelector(".ifrx-btn-login")) _this2.addLoginStatusBtn(false);
+	          _this2.requestLocked = false;
 	        });
-	        _this2.miniappList = [].concat((0, _toConsumableArray3.default)(_this2.miniappList), (0, _toConsumableArray3.default)(filterMiniapplist));
-	        _this2.hasNextPage = !!res.meta.next;
-	        _this2.offset = res.meta.next ? _this2.offset + 20 : _this2.offset;
-
-	        if (filterMiniapplist.length === 0 && !!res.meta.next) _this2.getMiniappList();
-
-	        if (_this2.miniappList.length > 0) {
-	          if (!_this2.selectedEnterprise) {
-	            _this2.selectedEnterprise = _this2.miniappList[0];
-	            _this2.curEnterprise = _this2.miniappList[0];
-	          }
-	          if (!_this2.selectedMiniapp) {
-	            _this2.selectedMiniapp = _this2.miniappList[0].miniapps[0];
-
-	            _this2.addCloseCascaderTrigger();
-	            _this2.syncRenderData();
-	          }
-	        }
-
-	        if (!document.querySelector(".ifrx-btn-login")) _this2.addLoginStatusBtn(true);
-	        _this2.syncStorageData();
-	        _this2.requestLocked = false;
-	        window.isBaaSLogin = true;
-	        eventBus.emit("baas-login");
-	      }, function (err) {
+	      } catch (err) {
 	        console.log(err);
-	        if (!document.querySelector(".ifrx-btn-login")) _this2.addLoginStatusBtn(false);
-	        _this2.requestLocked = false;
-	      });
+	      }
 	    },
 	    addLoginStatusBtn: function addLoginStatusBtn(isLogined) {
 	      var host = "https://cloud.minapp.com";

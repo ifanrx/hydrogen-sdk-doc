@@ -85,45 +85,49 @@ module.exports = {
     },
 
     getMiniappList() {
-      enterpriseApi.getEnterpriseList(this.offset).then(
-        res => {
-          let filterMiniapplist = res.objects.filter(item => {
-            return item.miniapps.length > 0;
-          });
-          this.miniappList = [...this.miniappList, ...filterMiniapplist];
-          this.hasNextPage = !!res.meta.next;
-          this.offset = res.meta.next ? this.offset + 20 : this.offset;
+      try {
+        enterpriseApi.getEnterpriseList(this.offset).then(
+          res => {
+            window.isBaaSLogin = true;
+            eventBus.$emit("baas-login");
+            let filterMiniapplist = res.objects.filter(item => {
+              return item.miniapps.length > 0;
+            });
+            this.miniappList = [...this.miniappList, ...filterMiniapplist];
+            this.hasNextPage = !!res.meta.next;
+            this.offset = res.meta.next ? this.offset + 20 : this.offset;
 
-          if (filterMiniapplist.length === 0 && !!res.meta.next)
-            this.getMiniappList();
+            if (filterMiniapplist.length === 0 && !!res.meta.next)
+              this.getMiniappList();
 
-          if (this.miniappList.length > 0) {
-            if (!this.selectedEnterprise) {
-              this.selectedEnterprise = this.miniappList[0];
-              this.curEnterprise = this.miniappList[0];
+            if (this.miniappList.length > 0) {
+              if (!this.selectedEnterprise) {
+                this.selectedEnterprise = this.miniappList[0];
+                this.curEnterprise = this.miniappList[0];
+              }
+              if (!this.selectedMiniapp) {
+                this.selectedMiniapp = this.miniappList[0].miniapps[0];
+
+                this.addCloseCascaderTrigger();
+                this.syncRenderData();
+              }
             }
-            if (!this.selectedMiniapp) {
-              this.selectedMiniapp = this.miniappList[0].miniapps[0];
 
-              this.addCloseCascaderTrigger();
-              this.syncRenderData();
-            }
+            if (!document.querySelector(".ifrx-btn-login"))
+              this.addLoginStatusBtn(true);
+            this.syncStorageData();
+            this.requestLocked = false;
+          },
+          err => {
+            console.log(err);
+            if (!document.querySelector(".ifrx-btn-login"))
+              this.addLoginStatusBtn(false);
+            this.requestLocked = false;
           }
-
-          if (!document.querySelector(".ifrx-btn-login"))
-            this.addLoginStatusBtn(true);
-          this.syncStorageData();
-          this.requestLocked = false;
-          window.isBaaSLogin = true;
-          eventBus.emit("baas-login");
-        },
-        err => {
-          console.log(err);
-          if (!document.querySelector(".ifrx-btn-login"))
-            this.addLoginStatusBtn(false);
-          this.requestLocked = false;
-        }
-      );
+        );
+      } catch (err) {
+        console.log(err);
+      }
     },
 
     addLoginStatusBtn(isLogined) {
