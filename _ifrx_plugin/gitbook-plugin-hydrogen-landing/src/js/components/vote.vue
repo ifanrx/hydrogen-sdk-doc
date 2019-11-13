@@ -1,18 +1,27 @@
 <template>
   <div id="vote">
-    <p class="title">文档对你是否有帮助？</p>
-    <p class="vote-info">
-      <span @click="vote('up')"><img :src="upvoteIcon" /> [[upvote]]</span>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <span @click="vote('down')"><img :src="downvoteIcon" /> [[downvote]]</span></p>
-    <p class="help">如果开发遇到问题，你可以<a :href="suportUrl" target="_blank">提交工单</a>寻求帮助。</p>
+    <div class="title">文档对你是否有帮助？</div>
+    <div class="vote-info">
+      <div class="vote up-vote" @click="vote('up')">
+        <i class="iconfont" :class="{'icon-up-vote': !hasAddUpvote, 'icon-up-vote-active': hasAddUpvote}"></i>
+        <div class="vote-count">[[upvote]]</div>
+      </div>
+      <div class="vote down-vote" @click="vote('down')">
+        <i class="iconfont" :class="{'icon-down-vote': !hasAddDownvote, 'icon-down-vote-active': hasAddDownvote}"></i>
+        <div class="vote-count">[[downvote]]</div>
+      </div>
+    </div>
+    <div class="help">如果开发遇到问题，你可以<a :href="suportUrl" target="_blank">提交工单</a>寻求帮助。</div>
   </div>
 </template>
 
 <script>
+const eventBus = require("../eventBus");
 const voteApi = require('../io/vote')
 const upvoteIcon = require('../../images/up-vote.svg')
 const downvoteIcon = require('../../images/down-vote.svg')
+const constants = require('../constants')
+const utils = require('../utils')
 
 module.exports = {
   name: 'vote',
@@ -20,8 +29,11 @@ module.exports = {
   props: ['pageId'],
   data() {
     return {
+      isBaasLogined: window.isBaasLogined,
       upvote: 0,
       downvote: 0,
+      hasAddUpvote: false,
+      hasAddDownvote: false,
       upvoteIcon,
       downvoteIcon,
       supportUrl: 'http://support.minapp.com/hc/',
@@ -29,7 +41,10 @@ module.exports = {
   },
 
   created() {
-    this.init();
+    this.init()
+    eventBus.$on(constants.BAAS_LOGINED, () => {
+      this.isBaasLogined = true
+    })
   },
 
   methods: {
@@ -46,6 +61,10 @@ module.exports = {
     },
 
     vote(type) {
+      if (!this.isBaasLogined) {
+        location.href = utils.getLoginUrl()
+        return
+      }
       voteApi.vote(this.pageId, type)
         .always(res => {
           if (res.status == 201) {
@@ -77,5 +96,29 @@ module.exports = {
 
 #vote .vote-info {
   margin: 20px 0;
+  display: flex;
+}
+
+#vote .vote-info .vote {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#vote .vote-info .down-vote {
+  margin-left: 30px;
+}
+
+#vote .vote-count {
+  margin-left: 5px;
+}
+
+#vote .iconfont {
+  font-size: 25px;
+}
+
+#vote .iconfont.icon-up-vote-active,
+#vote .iconfont.icon-down-vote-active {
+  color: #128bf8;
 }
 </style>

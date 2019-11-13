@@ -34,7 +34,10 @@
 <script>
 const eventBus = require('../eventBus')
 const enterpriseApi = require('../io/enterprise')
-let observer = null
+const constants = require('../constants')
+const utils = require('../utils')
+let observer = null;
+
 module.exports = {
   name: 'app-selector',
   delimiters: ['[[', ']]'],
@@ -88,8 +91,8 @@ module.exports = {
       try {
         enterpriseApi.getEnterpriseList(this.offset).then(
           res => {
-            window.isBaaSLogin = true
-            eventBus.$emit('baas-login')
+            window.isBaasLogined = true;
+            eventBus.$emit(constants.BAAS_LOGINED);
             let filterMiniapplist = res.objects.filter(item => {
               return item.miniapps.length > 0
             })
@@ -128,7 +131,6 @@ module.exports = {
     },
 
     addLoginStatusBtn(isLogined) {
-      const host = 'https://cloud.minapp.com'
       window.gitbook.toolbar.createButton({
         className: 'ifrx-btn ifrx-btn-login',
         text: isLogined ? '进入控制台' : '登录',
@@ -137,8 +139,8 @@ module.exports = {
         onClick: function() {
           if (isLogined) window.open(host + '/dashboard/')
           else {
-            const href = encodeURIComponent(location.href)
-            location.href = `${host}/login/?next=${href}`
+            const href = encodeURIComponent(location.href);
+            location.href = utils.getLoginUrl()
           }
         }
       })

@@ -1,8 +1,9 @@
+require('./css/iconfont.css')
 require('./css/plugin.css')
 const header = require('./js/header')
 const dataInjector = require('./js/dataInjector')
 const vote = require('./js/vote')
-const utils = require('./utils')
+const utils = require('./js/utils')
 
 function sidebarScrollIntoView() {
   let el = document.querySelector('.book-summary .active')
@@ -90,7 +91,8 @@ __non_webpack_require__(['gitbook', 'jQuery'], function(gitbook, $) {
   })
 
   gitbook.events.bind('page.change', function() {
-    $('.book-body .page-inner').append('<div id="vote-container"></div>')
+    window.isBaasLogined = false
+    $(".book-body .page-inner").append('<div id="vote-container"></div>')
     if (location.pathname === '/') {
       const page = document.querySelector('.page-inner')
       page.classList.add('index-page-inner')
