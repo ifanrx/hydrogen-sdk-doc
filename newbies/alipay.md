@@ -92,7 +92,7 @@ App({
     require('./sdk-alipay.js')
 
     // 初始化 SDK
-    let clientID = '知晓云管理后台获取到的 ClientID'
+    let clientID = '[[client_id]]'
     my.BaaS.init(clientID)
   }
 })

@@ -91,7 +91,7 @@ App({
   onLaunch() {
     // 引入 SDK
     require('./sdk-baidu.{{ book.latestVersionBaidu }}.js')
-    let clientID = '知晓云管理后台获取到的 ClientID'
+    let clientID = '[[client_id]]'
     swan.BaaS.init(clientID)
   }
 })
