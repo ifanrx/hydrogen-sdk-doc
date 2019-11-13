@@ -1,7 +1,7 @@
 let path = require('path')
 // let webpack = require('webpack')
-const ManifestPlugin = require('webpack-manifest-plugin')
 // const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const WebpackAssetsManifest = require('webpack-assets-manifest')
 module.exports = {
   entry: {
     index: './src/plugin',
@@ -40,7 +40,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new ManifestPlugin(),
+    new WebpackAssetsManifest(),
     // new VueLoaderPlugin(),
   ],
   externals: {
