@@ -7,7 +7,7 @@ const utils = require('./utils')
 function sidebarScrollIntoView() {
   let el = document.querySelector('.book-summary .active')
   if (el) {
-    el.scrollIntoView({behavior: 'smooth', block: 'center'})
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }
 }
 
@@ -64,7 +64,7 @@ __non_webpack_require__(['gitbook', 'jQuery'], function(gitbook, $) {
 
     setTimeout(() => {
       gitbook.toolbar.removeButtons(['btn-1', 'btn-2', 'btn-3'])
-      
+
       const host = 'https://cloud.minapp.com'
       gitbook.toolbar.createButton({
         className: 'ifrx-btn ifrx-btn-landing',
@@ -90,7 +90,7 @@ __non_webpack_require__(['gitbook', 'jQuery'], function(gitbook, $) {
   })
 
   gitbook.events.bind('page.change', function() {
-    $(".book-body .page-inner").append('<div id="vote-container"></div>')
+    $('.book-body .page-inner').append('<div id="vote-container"></div>')
     if (location.pathname === '/') {
       const page = document.querySelector('.page-inner')
       page.classList.add('index-page-inner')

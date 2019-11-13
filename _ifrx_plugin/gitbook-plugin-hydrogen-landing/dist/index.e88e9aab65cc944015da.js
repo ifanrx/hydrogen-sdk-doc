@@ -138,7 +138,7 @@
 	  });
 
 	  gitbook.events.bind('page.change', function () {
-	    $(".book-body .page-inner").append('<div id="vote-container"></div>');
+	    $('.book-body .page-inner').append('<div id="vote-container"></div>');
 	    if (location.pathname === '/') {
 	      var page = document.querySelector('.page-inner');
 	      page.classList.add('index-page-inner');
@@ -11031,7 +11031,7 @@
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _stringify = __webpack_require__(11);
 
@@ -11047,8 +11047,8 @@
 	var enterpriseApi = __webpack_require__(68);
 	var observer = null;
 	module.exports = {
-	  name: "app-selector",
-	  delimiters: ["[[", "]]"],
+	  name: 'app-selector',
+	  delimiters: ['[[', ']]'],
 	  data: function data() {
 	    return {
 	      miniappList: [],
@@ -11070,7 +11070,7 @@
 
 	  methods: {
 	    init: function init() {
-	      var cacheData = sessionStorage.getItem("cacheData");
+	      var cacheData = sessionStorage.getItem('cacheData');
 	      if (cacheData) {
 	        cacheData = JSON.parse(cacheData);
 	        this.miniappList = cacheData.miniappList;
@@ -11089,9 +11089,9 @@
 	    addCloseCascaderTrigger: function addCloseCascaderTrigger() {
 	      var _this = this;
 
-	      var bodyEle = document.querySelector("body");
-	      var miniappEle = document.querySelector(".ifrx-btn-miniapp");
-	      bodyEle.addEventListener("click", function (e) {
+	      var bodyEle = document.querySelector('body');
+	      var miniappEle = document.querySelector('.ifrx-btn-miniapp');
+	      bodyEle.addEventListener('click', function (e) {
 	        if (!miniappEle.contains(e.target)) _this.showCascader = false;
 	      });
 	    },
@@ -11101,7 +11101,7 @@
 	      try {
 	        enterpriseApi.getEnterpriseList(this.offset).then(function (res) {
 	          window.isBaaSLogin = true;
-	          eventBus.$emit("baas-login");
+	          eventBus.$emit('baas-login');
 	          var filterMiniapplist = res.objects.filter(function (item) {
 	            return item.miniapps.length > 0;
 	          });
@@ -11124,12 +11124,12 @@
 	            }
 	          }
 
-	          if (!document.querySelector(".ifrx-btn-login")) _this2.addLoginStatusBtn(true);
+	          if (!document.querySelector('.ifrx-btn-login')) _this2.addLoginStatusBtn(true);
 	          _this2.syncStorageData();
 	          _this2.requestLocked = false;
 	        }, function (err) {
 	          console.log(err);
-	          if (!document.querySelector(".ifrx-btn-login")) _this2.addLoginStatusBtn(false);
+	          if (!document.querySelector('.ifrx-btn-login')) _this2.addLoginStatusBtn(false);
 	          _this2.requestLocked = false;
 	        });
 	      } catch (err) {
@@ -11137,16 +11137,16 @@
 	      }
 	    },
 	    addLoginStatusBtn: function addLoginStatusBtn(isLogined) {
-	      var host = "https://cloud.minapp.com";
+	      var host = 'https://cloud.minapp.com';
 	      window.gitbook.toolbar.createButton({
-	        className: "ifrx-btn ifrx-btn-login",
-	        text: isLogined ? "进入控制台" : "登录",
-	        label: "ifrx-btn-login",
-	        position: "right",
+	        className: 'ifrx-btn ifrx-btn-login',
+	        text: isLogined ? '进入控制台' : '登录',
+	        label: 'ifrx-btn-login',
+	        position: 'right',
 	        onClick: function onClick() {
-	          if (isLogined) window.open(host + "/dashboard/");else {
+	          if (isLogined) window.open(host + '/dashboard/');else {
 	            var href = encodeURIComponent(location.href);
-	            location.href = host + "/login/?next=" + href;
+	            location.href = host + '/login/?next=' + href;
 	          }
 	        }
 	      });
@@ -11159,10 +11159,10 @@
 	        selectedEnterprise: this.selectedEnterprise,
 	        selectedMiniapp: this.selectedMiniapp
 	      };
-	      sessionStorage.setItem("cacheData", (0, _stringify2.default)(cacheData));
+	      sessionStorage.setItem('cacheData', (0, _stringify2.default)(cacheData));
 	    },
 	    syncRenderData: function syncRenderData() {
-	      eventBus.$emit("syncData", {
+	      eventBus.$emit('syncData', {
 	        app_id: this.selectedMiniapp.id,
 	        app_name: this.selectedMiniapp.name,
 	        client_id: this.selectedMiniapp.client_id,
@@ -11183,10 +11183,10 @@
 	            }
 	          });
 	        }, {
-	          root: document.querySelector(".observer-ul"),
-	          rootMargin: "0px 0px 0px 0px"
+	          root: document.querySelector('.observer-ul'),
+	          rootMargin: '0px 0px 0px 0px'
 	        });
-	        observer.observe(document.querySelector(".observer-li"));
+	        observer.observe(document.querySelector('.observer-li'));
 	      }
 	    },
 	    handleHoverEnterprise: function handleHoverEnterprise(enterprise) {
@@ -12224,7 +12224,7 @@
 /* 70 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<div class=\"ifrx-btn-miniapp-container\"\n  v-if=\"selectedMiniapp\">\n  <div class=\"miniapp-selecter-input\"\n    @click=\"handleShowCascader\">\n    [[selectedMiniapp.name]]\n    <i class=\"miniapp-selecter-input-arrow [[showCascader ? 'selecting' : '']]\"></i>\n  </div>\n\n  <div class=\"miniapp-selecter-cascader [[showCascader ? 'selecting' : '']]\">\n    <ul class=\"cascader-list observer-ul\">\n      <li v-for=\"item in miniappList\"\n        key=\"[[item.id]]\"\n        class=\"[[item.id === selectedEnterprise.id ? 'selected' : '']]\"\n        @mouseenter=\"handleHoverEnterprise(item)\">\n        [[item.enterprise_name]]<i></i>\n      </li>\n      <li class=\"observer-li\"></li>\n    </ul>\n\n    <ul class=\"cascader-list\">\n      <li v-for=\"item in curEnterprise.miniapps\"\n        key=\"[[item.id]]\"\n        class=\"[[item.id === selectedMiniapp.id ? 'selected' : '']]\"\n        @click=\"handleSelectMiniapp(item)\">\n        [[item.name]]\n      </li>\n    </ul>\n\n  </div>\n</div>\n";
+	module.exports = "\n<div class=\"ifrx-btn-miniapp-container\" v-if=\"selectedMiniapp\">\n  <div class=\"miniapp-selecter-input\" @click=\"handleShowCascader\">\n    [[selectedMiniapp.name]]\n    <i class=\"miniapp-selecter-input-arrow [[showCascader ? 'selecting' : '']]\"></i>\n  </div>\n\n  <div class=\"miniapp-selecter-cascader [[showCascader ? 'selecting' : '']]\">\n    <ul class=\"cascader-list observer-ul\">\n      <li\n        v-for=\"item in miniappList\"\n        :key=\"item.id\"\n        :class=\"item.id === selectedEnterprise.id ? 'selected' : ''\"\n        @mouseenter=\"handleHoverEnterprise(item)\"\n      >\n        [[item.enterprise_name]]\n        <i></i>\n      </li>\n      <li class=\"observer-li\"></li>\n    </ul>\n\n    <ul class=\"cascader-list\">\n      <li\n        v-for=\"item in curEnterprise.miniapps\"\n        :key=\"item.id\"\n        :class=\"item.id === selectedMiniapp.id ? 'selected' : ''\"\n        @click=\"handleSelectMiniapp(item)\"\n      >[[item.name]]</li>\n    </ul>\n  </div>\n</div>\n";
 
 /***/ }),
 /* 71 */
