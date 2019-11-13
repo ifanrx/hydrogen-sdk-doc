@@ -1,6 +1,7 @@
 require('./css/plugin.css')
 const header = require('./js/header')
 const dataInjector = require('./js/dataInjector')
+const vote = require('./js/vote')
 const utils = require('./utils')
 
 function sidebarScrollIntoView() {
@@ -54,6 +55,7 @@ function addPlanningBtn() {
 function initVueInstance() {
   header.init()
   dataInjector.init()
+  vote.init()
 }
 
 __non_webpack_require__(['gitbook', 'jQuery'], function(gitbook, $) {
@@ -88,6 +90,7 @@ __non_webpack_require__(['gitbook', 'jQuery'], function(gitbook, $) {
   })
 
   gitbook.events.bind('page.change', function() {
+    $(".book-body .page-inner").append('<div id="vote-container"></div>')
     if (location.pathname === '/') {
       const page = document.querySelector('.page-inner')
       page.classList.add('index-page-inner')
