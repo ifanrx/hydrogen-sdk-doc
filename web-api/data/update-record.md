@@ -2,7 +2,7 @@
 
 **接口**
 
-`PUT /hserve/v2.0/table/:table_name/record/:record_id/`
+`PUT /hserve/v2.2/table/:table_name/record/:record_id/`
 
 其中 `:table_name` 需替换为你的数据表名称，`record_id` 需替换为你的记录 ID
 
@@ -28,7 +28,7 @@ curl -X PUT \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"$set": {"nickname": "cool"}, "$unset": {"gender": ""}}' \
-  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/5cbe89e7f1ec740af442a1fa/
+  https://{{服务器域名}}/hserve/v2.2/table/test_table/record/5cbe89e7f1ec740af442a1fa/
 ```
 
 **返回参数说明**
@@ -69,7 +69,7 @@ curl -X PUT \
 
 **接口**
 
-`PUT /hserve/v2.0/table/:table_name/record/:record_id/`
+`PUT /hserve/v2.2/table/:table_name/record/:record_id/`
 
 其中 `:table_name` 需替换为你的数据表名称，`record_id` 需替换为你的记录 ID
 
@@ -89,7 +89,7 @@ curl -X PUT \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"user":"5cbecc548b155c0b6d1da762"}' \
-  https://{{服务器域名}}/hserve/v2.0/table/product/record/1bdfaf068asd123123asd/
+  https://{{服务器域名}}/hserve/v2.2/table/product/record/1bdfaf068asd123123asd/
 ```
 
 **返回参数说明**
@@ -137,7 +137,7 @@ curl -X PUT \
 
 **接口**
 
-`PUT /hserve/v2.0/table/:table_name/record/:record_id/`
+`PUT /hserve/v2.2/table/:table_name/record/:record_id/`
 
 其中 `:table_name` 需替换为你的数据表名称，`record_id` 需替换为你的记录 ID
 
@@ -215,7 +215,7 @@ curl -X PUT \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"desc": {"$append": ["atomic data"]}, "price": {"$incr_by": -1}}' \
-  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/5cbe89e7f1ec740af442a1fa/
+  https://{{服务器域名}}/hserve/v2.2/table/test_table/record/5cbe89e7f1ec740af442a1fa/
 ```
 
 **返回参数说明**

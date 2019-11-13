@@ -4,7 +4,7 @@
 
 **接口**
 
-`GET /hserve/v1/content/category/:category_id/`
+`GET /hserve/v2.2/content/category/:category_id/`
 
 其中 `category_id` 是内容分类的 ID
 
@@ -14,7 +14,7 @@ curl -X GET \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v1/content/category/1/
+  https://{{服务器域名}}/hserve/v2.2/content/category/1/
 ```
 
 **返回示例**

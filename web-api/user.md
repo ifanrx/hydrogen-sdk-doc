@@ -36,7 +36,7 @@
 
 **接口**
 
-`POST /hserve/v2.0/register/:register-type/`
+`POST /hserve/v2.1/register/:register-type/`
 
 **:register-type** 有两种:
 
@@ -62,7 +62,7 @@ curl -X POST \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Content-Type: application/json" \
   -d '{"email":"hegz@qq.com","password":"mbbmb*cb"}' \
-  https://{{服务器域名}}/hserve/v2.0/register/email/
+  https://{{服务器域名}}/hserve/v2.1/register/email/
 ```
 
 {% content "createTableUsername" %}
@@ -81,7 +81,7 @@ curl -X POST \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Content-Type: application/json" \
   -d '{"username":"hegz","password":"mbbmb*cb"}' \
-  https://{{服务器域名}}/hserve/v2.0/register/username/
+  https://{{服务器域名}}/hserve/v2.1/register/username/
 ```
 
 {% endtabs %}
@@ -105,7 +105,7 @@ curl -X POST \
 
 **接口**
 
-`POST /hserve/v2.0/login/:login-type/`
+`POST /hserve/v2.1/login/:login-type/`
 
 **:login-type** 有两种:
 
@@ -131,7 +131,7 @@ curl -X POST \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Content-Type: application/json" \
   -d '{"email":"hegz@qq.com","password":"mbbmb*cb"}' \
-  https://{{服务器域名}}/hserve/v2.0/login/email/
+  https://{{服务器域名}}/hserve/v2.1/login/email/
 ```
 
 {% content "createTableUsernameLogin" %}
@@ -150,7 +150,7 @@ curl -X POST \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Content-Type: application/json" \
   -d '{"username":"hegz","password":"mbbmb*cb"}' \
-  https://{{服务器域名}}/hserve/v2.0/login/username/
+  https://{{服务器域名}}/hserve/v2.1/login/username/
 ```
 
 {% endtabs %}
@@ -174,7 +174,7 @@ curl -X POST \
 
 **接口**
 
-`GET /hserve/v2.0/user/info/:user_id/`
+`GET /hserve/v2.2/user/info/:user_id/`
 
 **:user_id** 为[用户(user)](#user-object)中的 user_id 
 
@@ -185,7 +185,7 @@ curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.0/user/info/72818312393/
+  https://{{服务器域名}}/hserve/v2.2/user/info/72818312393/
 ```
 
 **返回示例**
@@ -354,11 +354,11 @@ curl -X POST \
 
 
 # 修改用户信息
-可更改密码、用户名、邮箱
+可更改密码、用户名、邮箱、手机号
 
 **接口**
 
-`PUT /hserve/v2.0/user/account/`
+`PUT /hserve/v2.1/user/account/`
 
 
 **请求参数**
@@ -379,7 +379,7 @@ curl -X PUT \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"password": "oldpassword", "new_password": "new_password"}' \
-  https://{{服务器域名}}/hserve/v2.0/user/account/
+  https://{{服务器域名}}/hserve/v2.1/user/account/
 ```
 
 

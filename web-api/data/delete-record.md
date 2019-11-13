@@ -4,7 +4,7 @@
 
 **接口**
 
-`DELETE /hserve/v2.0/table/:table_name/record/:record_id/`
+`DELETE /hserve/v2.2/table/:table_name/record/:record_id/`
 
 其中 `:table_name` 需替换为你的数据表名称，`record_id` 需替换为你的记录 ID
 
@@ -15,7 +15,7 @@ curl -X DELETE \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/5cbe89e7f1ec740af442a1f9/
+  https://{{服务器域名}}/hserve/v2.2/table/test_table/record/5cbe89e7f1ec740af442a1f9/
 ```
 
 **状态码说明**

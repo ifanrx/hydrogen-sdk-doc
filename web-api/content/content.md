@@ -91,7 +91,7 @@ https://{{服务器域名}}/hserve/v2.2/content/detail/?content_group_id=1548659
 
 **接口**
 
-`GET /hserve/v2.0/content/detail/:content_id/`
+`GET /hserve/v2.2/content/detail/:content_id/`
 
 其中 `content_id` 是内容的 ID
 
@@ -102,7 +102,7 @@ curl -X GET \
 -H "X-Hydrogen-Client-ID: {{ClientID}}" \
 -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
 -H "Content-Type: application/json" \
-https://{{服务器域名}}/hserve/v2.0/content/detail/1/
+https://{{服务器域名}}/hserve/v2.2/content/detail/1/
 ```
 
 **返回示例**

@@ -7,7 +7,7 @@
 
 **接口**
 
-`GET /hserve/v2.1/uploaded-file/:file_id/`
+`GET /hserve/v2.2/uploaded-file/:file_id/`
 
 其中 `:file_id` 需替换为你的文件 ID
 
@@ -18,7 +18,7 @@ curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.1/uploaded-file/5cac3d2299ecae0c9e8aa3e6/
+  https://{{服务器域名}}/hserve/v2.2/uploaded-file/5cac3d2299ecae0c9e8aa3e6/
 ```
 
 **返回示例**
@@ -117,7 +117,7 @@ curl -X GET \
 
 **接口**
 
-`DELETE https://{{服务器域名}}/hserve/v2.1/uploaded-file/:file_id/`
+`DELETE https://{{服务器域名}}/hserve/v2.2/uploaded-file/:file_id/`
 
 其中 `:file_id` 需替换为你的文件 ID
 
@@ -128,7 +128,7 @@ curl -X DELETE \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.1/uploaded-file/5a1ba9c1fff1d651135e5ff1/
+  https://{{服务器域名}}/hserve/v2.2/uploaded-file/5a1ba9c1fff1d651135e5ff1/
 ```
 
 **状态码说明**
@@ -142,7 +142,7 @@ curl -X DELETE \
 
 **接口**
 
-`DELETE /hserve/v2.1/uploaded-file/`
+`DELETE /hserve/v2.2/uploaded-file/`
 
 **提交参数**
 
@@ -156,7 +156,7 @@ curl -X DELETE \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"id__in":["5c263d739a557716c96c6dc6","5c263d689a557718706c6e37"]}' \
-  https://{{服务器域名}}/hserve/v2.1/uploaded-file/
+  https://{{服务器域名}}/hserve/v2.2/uploaded-file/
 ```
 
 **状态码说明**
@@ -599,7 +599,7 @@ curl -X POST \
 
 **接口**
 
-`GET /hserve/v1.3/uploaded-file/:file_id/`
+`GET /hserve/v2.2/uploaded-file/:file_id/`
 
 其中 `:file_id` 需替换为你的文件 ID
 
@@ -610,7 +610,7 @@ curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v1.3/uploaded-file/5cac3d2299ecae0c9e8aa3e6/
+  https://{{服务器域名}}/hserve/v2.2/uploaded-file/5cac3d2299ecae0c9e8aa3e6/
 ```
 
 **返回示例**
@@ -636,7 +636,7 @@ curl -X GET \
 
 **接口**
 
-`GET /hserve/v1.3/uploaded-file/`
+`GET /hserve/v2.2/uploaded-file/`
 
 **参数说明**
 
@@ -655,7 +655,7 @@ curl -X GET \
   -H "Content-Type: application/json" \
   -G \
   --data-urlencode  "order_by=-created_at" \
-  https://{{服务器域名}}/hserve/v1.3/uploaded-file/
+  https://{{服务器域名}}/hserve/v2.2/uploaded-file/
 ```
 
 **返回示例**
@@ -688,7 +688,7 @@ curl -X GET \
 
 **接口**
 
-`DELETE https://{{服务器域名}}/hserve/v1.3/uploaded-file/:file_id/`
+`DELETE https://{{服务器域名}}/hserve/v2.2/uploaded-file/:file_id/`
 
 其中 `:file_id` 需替换为你的文件 ID
 
@@ -699,7 +699,7 @@ curl -X DELETE \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v1.3/uploaded-file/5a1ba9c1fff1d651135e5ff1/
+  https://{{服务器域名}}/hserve/v2.2/uploaded-file/5a1ba9c1fff1d651135e5ff1/
 ```
 
 **状态码说明**
@@ -710,7 +710,7 @@ curl -X DELETE \
 
 **接口**
 
-`DELETE /hserve/v1.3/uploaded-file/`
+`DELETE /hserve/v2.2/uploaded-file/`
 
 **提交参数**
 
@@ -724,7 +724,7 @@ curl -X DELETE \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"id__in":["5c263d739a557716c96c6dc6","5c263d689a557718706c6e37"]}' \
-  https://{{服务器域名}}/hserve/v1.3/uploaded-file/
+  https://{{服务器域名}}/hserve/v2.2/uploaded-file/
 ```
 
 **状态码说明**
