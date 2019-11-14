@@ -59,7 +59,7 @@ createTableUsername="通过用户名注册" %}
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Content-Type: application/json" \
   -d '{"email":"hegz@qq.com","password":"mbbmb*cb"}' \
   https://{{服务器域名}}/hserve/v2.0/register/email/
@@ -78,7 +78,7 @@ curl -X POST \
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Content-Type: application/json" \
   -d '{"username":"hegz","password":"mbbmb*cb"}' \
   https://{{服务器域名}}/hserve/v2.0/register/username/
@@ -128,7 +128,7 @@ createTableUsernameLogin="通过用户名登陆" %}
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Content-Type: application/json" \
   -d '{"email":"hegz@qq.com","password":"mbbmb*cb"}' \
   https://{{服务器域名}}/hserve/v2.0/login/email/
@@ -147,7 +147,7 @@ curl -X POST \
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Content-Type: application/json" \
   -d '{"username":"hegz","password":"mbbmb*cb"}' \
   https://{{服务器域名}}/hserve/v2.0/login/username/
@@ -182,7 +182,7 @@ curl -X POST \
 
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   https://{{服务器域名}}/hserve/v2.0/user/info/72818312393/
@@ -230,7 +230,7 @@ curl -X GET \
 **请求示例**
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   https://{{服务器域名}}/hserve/v2.0/user/info/
@@ -288,7 +288,7 @@ curl -X GET \
 **请求示例**
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   https://{{服务器域名}}/hserve/v2.0/user/email-verify/
@@ -320,7 +320,7 @@ curl -X POST \
 **请求示例**
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d "{}" \
@@ -364,7 +364,7 @@ curl -X POST \
 **请求示例**
 ```shell
 curl -X PUT \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"password": "oldpassword", "new_password": "new_password"}' \
@@ -414,7 +414,7 @@ curl -X PUT \
 **请求示例**
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Content-Type: application/json" \
   -d '{"email":"hgzchn@qq.com"}' \
   https://{{服务器域名}}/hserve/v2.0/user/password/reset/

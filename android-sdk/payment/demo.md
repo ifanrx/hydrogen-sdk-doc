@@ -17,7 +17,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        BaaS.init("client id", this);
+        BaaS.init("[[client_id]]", this);
         BaaS.initWechatComponent("wx app id", this);
     }
 }

@@ -259,7 +259,7 @@ exports.main = function functionName(event, callback) {
 App({
   onLaunch: function () {
     require('./vendor/sdk-v{{book.latestVersionWechat}}.js')
-    let clientID = '此处填写 clientID'
+    let clientID = '[[client_id]]'
     wx.BaaS.init(clientID)
 
     wx.BaaS.login()
@@ -454,7 +454,7 @@ exports.main = function functionName(event, callback) {
 App({
   onLaunch: function () {
     require('./vendor/sdk-v{{book.latestVersionAlipay}}.js')
-    let clientID = '此处填写 clientID'
+    let clientID = '[[client_id]]'
     my.BaaS.init(clientID)
 
     my.BaaS.login()

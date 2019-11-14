@@ -102,7 +102,6 @@ __non_webpack_require__(['gitbook', 'jQuery'], function(gitbook, $) {
   })
 
   gitbook.events.bind('page.change', function() {
-    $(".book-body .page-inner").append('<div id="vote-container"></div>')
     if (location.pathname === '/') {
       const page = document.querySelector('.page-inner')
       page.classList.add('index-page-inner')
@@ -112,6 +111,7 @@ __non_webpack_require__(['gitbook', 'jQuery'], function(gitbook, $) {
     addRecordNumber()
 
     setTimeout(() => {
+      $(".book-body .page-inner").append('<div id="vote-container"></div>')
       sidebarScrollIntoView()
       initVueInstance()
     }, 300)

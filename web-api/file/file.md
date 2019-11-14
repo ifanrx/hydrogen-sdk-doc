@@ -15,7 +15,7 @@
 
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   https://{{服务器域名}}/hserve/v2.1/uploaded-file/5cac3d2299ecae0c9e8aa3e6/
@@ -62,7 +62,7 @@ curl -X GET \
 
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -G \
@@ -112,7 +112,7 @@ curl -X GET \
 
 ```shell
 curl -X DELETE \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   https://{{服务器域名}}/hserve/v2.1/uploaded-file/5a1ba9c1fff1d651135e5ff1/
@@ -139,7 +139,7 @@ curl -X DELETE \
 
 ```shell
 curl -X DELETE \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"id__in":["5c263d739a557716c96c6dc6","5c263d689a557718706c6e37"]}' \
@@ -190,7 +190,7 @@ curl -X DELETE \
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"source": "5cc577ec1466ec1a1b3f65bc", "save_as": "abc.png", "point": "00:00:10"}' \
@@ -268,7 +268,7 @@ curl -X POST \
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"m3u8s": ["5c453c7cfe10833f3178479e", "5c452bebfe10832bf97846c9"], "save_as": "abc.m3u8", "category_id": "5a377bcb09a8054139faaff1"}' \
@@ -349,7 +349,7 @@ curl -X POST \
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"m3u8s": "5c452bebfe10832bf97846c9", "save_as": "abc.m3u8", "category_id": "5a377bcb09a8054139faaff1", "include": [0, 5]}' \
@@ -423,7 +423,7 @@ meta 参数说明：
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"m3u8s": "5c452bebfe10832bf97846c9"}' \
@@ -518,7 +518,7 @@ streams 参数说明：
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"source": "5cc577ec1466ec1a1b3f65bc"}' \
@@ -594,7 +594,7 @@ curl -X POST \
 
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   https://{{服务器域名}}/hserve/v1.3/uploaded-file/5cac3d2299ecae0c9e8aa3e6/
@@ -637,7 +637,7 @@ curl -X GET \
 
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -G \
@@ -683,7 +683,7 @@ curl -X GET \
 
 ```shell
 curl -X DELETE \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   https://{{服务器域名}}/hserve/v1.3/uploaded-file/5a1ba9c1fff1d651135e5ff1/
@@ -707,7 +707,7 @@ curl -X DELETE \
 
 ```shell
 curl -X DELETE \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"id__in":["5c263d739a557716c96c6dc6","5c263d689a557718706c6e37"]}' \

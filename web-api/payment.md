@@ -19,7 +19,7 @@
 **请求示例**
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -G \

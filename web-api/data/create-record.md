@@ -16,7 +16,7 @@
 **请求示例**
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"name":"nickname","desc":"desc","created_by":767911111}' \
@@ -71,7 +71,7 @@ curl -X POST \
 **请求示例**
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '[{"name":"nickname","desc":"desc","created_by":767911111},{"name":"nickname2","desc":"desc2","created_by":767911111}]' \

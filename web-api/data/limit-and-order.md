@@ -12,7 +12,7 @@
 获取从第 5 条起，最多的 10 条的数据表记录
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   https://{{服务器域名}}/hserve/v2.0/table/952728/record/?limit=10&offset=5
@@ -35,7 +35,7 @@ order_by 的值必须为 table 表中的字段，可支持多重排序，字段�
 
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   https://{{服务器域名}}/hserve/v2.0/table/952728/record/?order_by=-created_at

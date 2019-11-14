@@ -112,6 +112,16 @@
 	    window.isBaasLogined = false;
 	    sessionStorage.clear();
 
+	    document.body.addEventListener('click', function (event) {
+	      if (event.target.tagName === 'A' && /localhost:4000|127\.0\.0\.1:4000/.test(location.host)) {
+	        var match = /^https?:\/\/cloud\.minapp\.com(.*)$/.exec(event.target.href);
+	        if (match) {
+	          event.preventDefault();
+	          window.open('http://localhost:8000/hydrogen' + match[1]);
+	        }
+	      }
+	    }, false);
+
 	    setTimeout(function () {
 	      gitbook.toolbar.removeButtons(['btn-1', 'btn-2', 'btn-3']);
 
@@ -140,7 +150,6 @@
 	  });
 
 	  gitbook.events.bind('page.change', function () {
-	    $(".book-body .page-inner").append('<div id="vote-container"></div>');
 	    if (location.pathname === '/') {
 	      var page = document.querySelector('.page-inner');
 	      page.classList.add('index-page-inner');
@@ -150,6 +159,7 @@
 	    addRecordNumber();
 
 	    setTimeout(function () {
+	      $(".book-body .page-inner").append('<div id="vote-container"></div>');
 	      sidebarScrollIntoView();
 	      initVueInstance();
 	    }, 300);
@@ -12245,7 +12255,6 @@
 	  getEnterpriseList: function getEnterpriseList(offset) {
 	    return $.ajax({
 	      url: config.apiHost + '/dserve/v1/enterprise/?limit=20&offset=' + offset + '&for_nav=true',
-
 	      xhrFields: {
 	        withCredentials: true
 	      }
@@ -12819,7 +12828,7 @@
 /* 85 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<div id=\"vote\" _v-0aa2ceee=\"\">\n  <div class=\"title\" _v-0aa2ceee=\"\">文档对你是否有帮助？</div>\n  <div class=\"vote-info\" _v-0aa2ceee=\"\">\n    <div class=\"vote up-vote\" @click=\"vote('up')\" _v-0aa2ceee=\"\">\n      <i class=\"iconfont\" :class=\"{'icon-up-vote': !hasAddUpvote, 'icon-up-vote-active': hasAddUpvote}\" _v-0aa2ceee=\"\"></i>\n      <div class=\"vote-count\" _v-0aa2ceee=\"\">[[upvote]]</div>\n    </div>\n    <div class=\"vote down-vote\" @click=\"vote('down')\" _v-0aa2ceee=\"\">\n      <i class=\"iconfont\" :class=\"{'icon-down-vote': !hasAddDownvote, 'icon-down-vote-active': hasAddDownvote}\" _v-0aa2ceee=\"\"></i>\n      <div class=\"vote-count\" _v-0aa2ceee=\"\">[[downvote]]</div>\n    </div>\n  </div>\n  <div class=\"help\" _v-0aa2ceee=\"\">如果开发遇到问题，你可以<a :href=\"suportUrl\" target=\"_blank\" _v-0aa2ceee=\"\">提交工单</a>寻求帮助。</div>\n</div>\n";
+	module.exports = "\n<div id=\"vote\" _v-0aa2ceee=\"\">\n  <div class=\"title\" _v-0aa2ceee=\"\">文档对你是否有帮助？</div>\n  <div class=\"vote-info\" _v-0aa2ceee=\"\">\n    <div class=\"vote up-vote\" @click=\"vote('up')\" _v-0aa2ceee=\"\">\n      <i class=\"iconfont\" :class=\"{'icon-up-vote': !hasAddUpvote, 'icon-up-vote-active': hasAddUpvote}\" _v-0aa2ceee=\"\"></i>\n      <div class=\"vote-count\" _v-0aa2ceee=\"\">[[upvote]]</div>\n    </div>\n    <div class=\"vote down-vote\" @click=\"vote('down')\" _v-0aa2ceee=\"\">\n      <i class=\"iconfont\" :class=\"{'icon-down-vote': !hasAddDownvote, 'icon-down-vote-active': hasAddDownvote}\" _v-0aa2ceee=\"\"></i>\n      <div class=\"vote-count\" _v-0aa2ceee=\"\">[[downvote]]</div>\n    </div>\n  </div>\n  <div class=\"help\" _v-0aa2ceee=\"\">如果开发遇到问题，你可以<a :href=\"supportUrl\" target=\"_blank\" _v-0aa2ceee=\"\">提交工单</a>寻求帮助。</div>\n</div>\n";
 
 /***/ })
 /******/ ]);

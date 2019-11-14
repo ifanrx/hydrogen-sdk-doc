@@ -22,7 +22,7 @@
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"phone": "12345678910", "signature_id": 1}' \
@@ -62,7 +62,7 @@ curl -X POST \
 **请求示例**
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"phone": "12345678910", "code": "352353"}' \

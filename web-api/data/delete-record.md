@@ -12,7 +12,7 @@
 
 ```shell
 curl -X DELETE \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   https://{{服务器域名}}/hserve/v2.0/table/test_table/record/5cbe89e7f1ec740af442a1f9/
@@ -58,7 +58,7 @@ Query Parameters:
 
 ```shell
 curl -X DELETE \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -G \

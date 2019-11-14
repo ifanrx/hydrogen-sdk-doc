@@ -25,7 +25,7 @@ App({
    wx.BaaS.wxExtend(wx.login,
     wx.getUserInfo,
     wx.requestPayment)
-   wx.BaaS.init('你的 client id')
+   wx.BaaS.init('[[client_id]]')
  
    wx.BaaS.ErrorTracker.enable()  // 初始化 ErrorTracker
  },
@@ -49,7 +49,7 @@ App({
 App({
  onLaunch: function() {
    require('./sdk-v<version>')
-   wx.BaaS.init('你的 client id')
+   wx.BaaS.init('[[client_id]]')
  
    let usePlugins = true // 若开发者没有使用小程序插件，可以将其设置为 false，这样即可支持其他页面自动捕获错误
  
@@ -99,7 +99,7 @@ Page({
 
 ### `wx.BaaS.ErrorTracker.enable(opts)`
  
- 初始化 ErrorTacker，注意这里必须先调用 `wx.BaaS.init('你的 client id')`。
+ 初始化 ErrorTacker，注意这里必须先调用 `wx.BaaS.init('[[client_id]]')`。
  
  **参数说明**
  

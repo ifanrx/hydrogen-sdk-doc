@@ -37,7 +37,7 @@ App({
   onLaunch() {
     // 引入 SDK
     require('./sdk-alipay.{{ book.latestVersionAlipay }}')
-     let clientID = '知晓云管理后台获取到的 ClientID'
+     let clientID = '[[client_id]]'
      my.BaaS.init(clientID)
   }
 })
