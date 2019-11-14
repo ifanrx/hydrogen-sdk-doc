@@ -16,7 +16,7 @@
 > 使用以下接口时必须根据上述步骤进行配置
 
 
-`BaaS.wxPromotionTransfer({userID, amount, description, checkName, reUserName, gatewayType})`
+`BaaS.wxPromotionTransfer({userID, openid, amount, description, checkName, reUserName, gatewayType})`
 
 ### 参数说明
 
