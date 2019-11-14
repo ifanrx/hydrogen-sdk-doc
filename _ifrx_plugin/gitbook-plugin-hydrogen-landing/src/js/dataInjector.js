@@ -14,6 +14,7 @@ exports.init = function() {
         app_name: '{{app_name}}',
         client_id: '{{client_id}}',
         enterprise_id: '{{enterprise_id}}',
+        isBaasLogined: false,
       }
     },
     created() {
@@ -22,6 +23,7 @@ exports.init = function() {
         this.app_name = data.app_name
         this.client_id = data.client_id
         this.enterprise_id = data.enterprise_id
+        this.isBaasLogined = data.isBaasLogined
       })
     },
   })

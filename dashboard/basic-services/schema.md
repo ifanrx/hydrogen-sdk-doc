@@ -25,7 +25,7 @@
 
 * 直接创建：完成创建后你需要为当前数据表逐一添加字段（数据列）。
 * 通过 json 创建：开发者可以通过导入 json 文件的方式快速创建一张表。点击查看[文件格式要求](#通过-json-创建数据表)。
-* 复制其他的数据表：如果你已经创建过类似的表，可以直接复制生成，目前仅支持跨应用复制数据表。如果你需要大批量复制，推荐使用[复制应用](https://cloud.minapp.com/dashboard/#/enterprise/[[enterprise_id | addSlashPostfixIfNotEmpty]]miniapp-copying/)服务。
+* 复制其他的数据表：如果你已经创建过类似的表，可以直接复制生成，目前仅支持跨应用复制数据表。如果你需要大批量复制，推荐使用[复制应用](https://cloud.minapp.com/dashboard/#/enterprise/[[isBaasLogined ? `${enterprise_id}/miniapp-copying/` : '']])服务。
 * 通过模板生成：知晓云提供了一些常用的数据表模板，开发者可以直接使用。
 
 #### 通过 JSON 创建数据表

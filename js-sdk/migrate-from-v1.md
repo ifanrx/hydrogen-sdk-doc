@@ -49,10 +49,10 @@
  * 下面 1.x 的 init 与 2.x 的 init 调用，效果是相同的
  */
 
-wx.BaaS.init(ClientID)  // 1.x
+wx.BaaS.init([[client_id]])  // 1.x
 
 // 由 1.x 版本升级到 2.x ，开发者需要配置 autoLogin
-wx.BaaS.init(ClientID, {autoLogin: true})  // 2.x
+wx.BaaS.init([[client_id]], {autoLogin: true})  // 2.x
 ```
 
 ## 登入登出

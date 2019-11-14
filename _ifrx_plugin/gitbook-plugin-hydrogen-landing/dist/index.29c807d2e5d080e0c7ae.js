@@ -109,6 +109,7 @@
 
 	require(['gitbook', 'jQuery'], function (gitbook, $) {
 	  gitbook.events.bind('start', function (e, config) {
+	    window.isBaasLogined = false;
 	    sessionStorage.clear();
 
 	    setTimeout(function () {
@@ -139,7 +140,6 @@
 	  });
 
 	  gitbook.events.bind('page.change', function () {
-	    window.isBaasLogined = false;
 	    $(".book-body .page-inner").append('<div id="vote-container"></div>');
 	    if (location.pathname === '/') {
 	      var page = document.querySelector('.page-inner');
@@ -11097,6 +11097,7 @@
 	      hasNextPage: false,
 	      selectedEnterprise: null,
 	      selectedMiniapp: null,
+	      isBaasLogined: false,
 
 	      curEnterprise: null,
 	      requestLocked: false,
@@ -11143,6 +11144,7 @@
 	        enterpriseApi.getEnterpriseList(this.offset).then(function (res) {
 	          window.isBaasLogined = true;
 	          eventBus.$emit(constants.BAAS_LOGINED);
+	          _this2.isBaasLogined = true;
 	          var filterMiniapplist = res.objects.filter(function (item) {
 	            return item.miniapps.length > 0;
 	          });
@@ -11206,7 +11208,8 @@
 	        app_id: this.selectedMiniapp.id,
 	        app_name: this.selectedMiniapp.name,
 	        client_id: this.selectedMiniapp.client_id,
-	        enterprise_id: this.selectedEnterprise.id
+	        enterprise_id: this.selectedEnterprise.id,
+	        isBaasLogined: this.isBaasLogined
 	      });
 	    },
 	    handleShowCascader: function handleShowCascader() {
@@ -12317,7 +12320,8 @@
 	        app_id: '{{app_id}}',
 	        app_name: '{{app_name}}',
 	        client_id: '{{client_id}}',
-	        enterprise_id: '{{enterprise_id}}'
+	        enterprise_id: '{{enterprise_id}}',
+	        isBaasLogined: false
 	      };
 	    },
 	    created: function created() {
@@ -12328,6 +12332,7 @@
 	        _this.app_name = data.app_name;
 	        _this.client_id = data.client_id;
 	        _this.enterprise_id = data.enterprise_id;
+	        _this.isBaasLogined = data.isBaasLogined;
 	      });
 	    }
 	  });
@@ -12429,7 +12434,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#vote[_v-0aa2ceee] {\n  border: solid 1px lightgrey;\n  margin-top: 40px;\n  padding: 20px;\n  font-size: 14px;\n}\n\n#vote img[_v-0aa2ceee] {\n  width: 25px;\n  height: 25px;\n}\n\n#vote .title[_v-0aa2ceee] {\n  font-size: 18px;\n  font-weight: bold;\n}\n\n#vote .vote-info[_v-0aa2ceee] {\n  margin: 20px 0;\n  display: -ms-flexbox;\n  display: flex;\n}\n\n#vote .vote-info .vote[_v-0aa2ceee] {\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: center;\n      justify-content: center;\n  -ms-flex-align: center;\n      align-items: center;\n}\n\n#vote .vote-info .down-vote[_v-0aa2ceee] {\n  margin-left: 30px;\n}\n\n#vote .vote-count[_v-0aa2ceee] {\n  margin-left: 5px;\n}\n\n#vote .iconfont[_v-0aa2ceee] {\n  font-size: 25px;\n}\n\n#vote .iconfont.icon-up-vote-active[_v-0aa2ceee],\n#vote .iconfont.icon-down-vote-active[_v-0aa2ceee] {\n  color: #128bf8;\n}\n", ""]);
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#vote[_v-0aa2ceee] {\n  border: solid 1px lightgrey;\n  margin-top: 40px;\n  padding: 20px;\n  border-radius: 5px;\n  font-size: 14px;\n  color: #333;\n}\n\n#vote img[_v-0aa2ceee] {\n  width: 25px;\n  height: 25px;\n}\n\n#vote .title[_v-0aa2ceee] {\n  font-size: 18px;\n  font-weight: bold;\n}\n\n#vote .vote-info[_v-0aa2ceee] {\n  margin: 20px 0;\n  display: -ms-flexbox;\n  display: flex;\n}\n\n#vote .vote-info .vote[_v-0aa2ceee] {\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: center;\n      justify-content: center;\n  -ms-flex-align: center;\n      align-items: center;\n}\n\n#vote .vote-info .down-vote[_v-0aa2ceee] {\n  margin-left: 30px;\n}\n\n#vote .vote-count[_v-0aa2ceee] {\n  margin-left: 5px;\n}\n\n#vote .iconfont[_v-0aa2ceee] {\n  font-size: 25px;\n}\n\n#vote .iconfont.icon-up-vote-active[_v-0aa2ceee],\n#vote .iconfont.icon-down-vote-active[_v-0aa2ceee] {\n  color: #128bf8;\n}\n", ""]);
 
 	// exports
 
@@ -12705,6 +12710,8 @@
 	      voteApi.getVote(this.pageId).then(function (data) {
 	        _this2.upvote = data.upvote;
 	        _this2.downvote = data.downvote;
+	        _this2.hasAddUpvote = data.voted === 1;
+	        _this2.hasAddDownvote = data.voted === 0;
 	      });
 	    },
 	    vote: function vote(type) {
@@ -12714,9 +12721,26 @@
 	        location.href = utils.getLoginUrl();
 	        return;
 	      }
-	      voteApi.vote(this.pageId, type).always(function (res) {
+	      if (this.hasAddUpvote && type === 'up' || this.hasAddDownvote && type === 'down') {
+	        voteApi.deleteVoteRecord(this.pageId).always(function (res) {
+	          console.log('res', res);
+	          if (!res) {
+	            return _this3.getVoteData();
+	          }
+	          if (res.status == 401) {
+	            location.href = utils.getLoginUrl();
+	            return;
+	          }
+	        });
+	        return;
+	      }
+	      voteApi.addVoteRecord(this.pageId, type).always(function (res) {
 	        if (res.status == 201) {
 	          return _this3.getVoteData();
+	        }
+	        if (res.status == 401) {
+	          location.href = utils.getLoginUrl();
+	          return;
 	        }
 	      });
 	    }
@@ -12740,14 +12764,17 @@
 	module.exports = {
 	  getVote: function getVote(id) {
 	    return $.ajax({
-	      url: config.apiHost + '/api/v2/hydrogen/doc/vote/' + id + '/',
+	      url: config.apiHost + '/api/v2/hydrogen/doc/vote/',
 	      xhrFields: {
 	        withCredentials: true
+	      },
+	      data: {
+	        documentation_path: id
 	      }
 	    });
 	  },
 
-	  vote: function vote(id, type) {
+	  addVoteRecord: function addVoteRecord(id, type) {
 	    return $.ajax({
 	      url: config.apiHost + '/api/v2/hydrogen/doc/vote/',
 	      data: (0, _stringify2.default)({
@@ -12755,6 +12782,18 @@
 	        operation: type === 'down' ? 'downvote' : 'upvote'
 	      }),
 	      method: 'POST',
+	      dataType: 'json',
+	      contentType: 'application/json; charset=utf-8',
+	      xhrFields: {
+	        withCredentials: true
+	      }
+	    });
+	  },
+
+	  deleteVoteRecord: function deleteVoteRecord(id) {
+	    return $.ajax({
+	      url: config.apiHost + '/api/v2/hydrogen/doc/vote/?documentation_path=' + id,
+	      method: 'DELETE',
 	      dataType: 'json',
 	      contentType: 'application/json; charset=utf-8',
 	      xhrFields: {

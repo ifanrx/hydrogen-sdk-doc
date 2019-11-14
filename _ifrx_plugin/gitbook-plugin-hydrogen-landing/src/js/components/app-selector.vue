@@ -36,7 +36,7 @@ const eventBus = require('../eventBus')
 const enterpriseApi = require('../io/enterprise')
 const constants = require('../constants')
 const utils = require('../utils')
-let observer = null;
+let observer = null
 
 module.exports = {
   name: 'app-selector',
@@ -48,6 +48,7 @@ module.exports = {
       hasNextPage: false,
       selectedEnterprise: null,
       selectedMiniapp: null,
+      isBaasLogined: false,
 
       curEnterprise: null,
       requestLocked: false,
@@ -91,8 +92,9 @@ module.exports = {
       try {
         enterpriseApi.getEnterpriseList(this.offset).then(
           res => {
-            window.isBaasLogined = true;
-            eventBus.$emit(constants.BAAS_LOGINED);
+            window.isBaasLogined = true
+            eventBus.$emit(constants.BAAS_LOGINED)
+            this.isBaasLogined = true
             let filterMiniapplist = res.objects.filter(item => {
               return item.miniapps.length > 0
             })
@@ -139,7 +141,7 @@ module.exports = {
         onClick: function() {
           if (isLogined) window.open(host + '/dashboard/')
           else {
-            const href = encodeURIComponent(location.href);
+            const href = encodeURIComponent(location.href)
             location.href = utils.getLoginUrl()
           }
         }
@@ -162,7 +164,8 @@ module.exports = {
         app_id: this.selectedMiniapp.id,
         app_name: this.selectedMiniapp.name,
         client_id: this.selectedMiniapp.client_id,
-        enterprise_id: this.selectedEnterprise.id
+        enterprise_id: this.selectedEnterprise.id,
+        isBaasLogined: this.isBaasLogined
       })
     },
 
