@@ -64,6 +64,16 @@ __non_webpack_require__(['gitbook', 'jQuery'], function(gitbook, $) {
     window.isBaasLogined = false
     sessionStorage.clear() // 刷新页面时清空 sessionStorage
 
+    document.body.addEventListener('click', event => {
+      if (event.target.tagName === 'A' && /localhost:4000|127\.0\.0\.1:4000/.test(location.host)) {
+        const match = /^https?:\/\/cloud\.minapp\.com(.*)$/.exec(event.target.href)
+        if (match) {
+          event.preventDefault()
+          window.open(`http://localhost:8000/hydrogen${match[1]}`)
+        }
+      }
+    }, false)
+
     setTimeout(() => {
       gitbook.toolbar.removeButtons(['btn-1', 'btn-2', 'btn-3'])
 

@@ -11,7 +11,7 @@
         <div class="vote-count">[[downvote]]</div>
       </div>
     </div>
-    <div class="help">如果开发遇到问题，你可以<a :href="suportUrl" target="_blank">提交工单</a>寻求帮助。</div>
+    <div class="help">如果开发遇到问题，你可以<a :href="supportUrl" target="_blank">提交工单</a>寻求帮助。</div>
   </div>
 </template>
 
