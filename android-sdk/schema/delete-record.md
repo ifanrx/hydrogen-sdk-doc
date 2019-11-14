@@ -115,3 +115,27 @@ BatchResult 结构如下：
 |----------------|-----------------|
 | 404            | 数据行不存在      |
 | 403            | 没有权限删除数据   |
+
+
+### 批量删除时不触发触发器
+
+```java
+Table table = new Table("my_horses");
+
+// 知晓云后台设置的触发器将不会被触发
+Query query = new Query();
+query.enableTrigger(false);
+
+
+table.batchDeleteInBackground(query, new BaseCallback<BatchResult>() {
+    @Override
+    public void onSuccess(BatchResult batchResult) {
+        // success
+    }
+    @Override
+    public void onFailure(Throwable e) {
+        // error
+    }
+});
+```
+

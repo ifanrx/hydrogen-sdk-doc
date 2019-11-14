@@ -47,9 +47,13 @@ curl -X GET \
 
 **接口**
 
-`GET /hserve/v2.0/table/:table_name/record/`
+`GET /hserve/v2.2/table/:table_name/record/`
 
 其中 `:table_name` 需替换为你的数据表名称
+
+> **info**
+> 该接口支持通过参数 return_total_count 指定是否返回查询对象总数，以协助不关心对象总数只关心查询结果列表的开发者提升接口响应速度。
+同时，从 v2.2 版本开始该接口默认不返回查询对象总数，欲获取总数的开发者需要显式指定 return_total_count 参数。
 
 **参数说明**
 
@@ -61,6 +65,7 @@ curl -X GET \
 | order_by | string | N    | 对资源进行字段排序                                                |
 | limit    | integer | N    | 限制返回资源的个数，默认为 20 条，最大可设置为 1000               |
 | offset   | integer | N    | 设置返回资源的起始偏移值，默认为 0                                |
+| return_total_count   | integer | N   | 返回结果 meta 中是否返回 total_count，1 为返回，0 为不返回，默认不返回 |
 
 - `keys` 和 `expand` 的构造可参考[字段过滤和扩展](./query-keys-expand.md)
 - `limit`、`offset` 和 `order_by` 的构造可参考[分页和排序](./limit-and-order.md)
@@ -72,7 +77,7 @@ curl -X GET \
 -H "X-Hydrogen-Client-ID: {{ClientID}}" \
 -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
 -H "Content-Type: application/json" \
-https://{{服务器域名}}/hserve/v2.0/table/952728/record/?limit=10&offset=0
+https://{{服务器域名}}/hserve/v2.2/table/952728/record/?limit=10&offset=0
 ```
 
 **返回参数说明**
@@ -89,7 +94,7 @@ https://{{服务器域名}}/hserve/v2.0/table/952728/record/?limit=10&offset=0
 | limit            |  integer  | 每次请求返回的最大记录数目    |
 | previous         |  string   | 上一页地址                 |
 | next             |  string   | 下一页地址                 |
-| total_count      |  integer  | 记录总数目                 |
+| total_count      |  integer  | 记录总数目，仅当 return_total_count 为 1 时返回                 |
 
 **返回示例**
 ```json
@@ -160,7 +165,7 @@ curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/?where=%7b%22status%22%3a%7b%22%24eq%22%3a%22deleted%22%7d%7d
+  https://{{服务器域名}}/hserve/v2.2/table/test_table/record/?where=%7b%22status%22%3a%7b%22%24eq%22%3a%22deleted%22%7d%7d
 ```
 
 其中 `%7b%22status%22%3a%7b%22%24eq%22%3a%22deleted%22%7d%7d` 为 `{"status":{"$eq":"deleted"}}` 经过 urlencode 后的值
@@ -174,7 +179,7 @@ curl -X GET \
   -H "Content-Type: application/json" \
   -G \
   --data-urlencode 'where={"status":{"$eq":"deleted"}}' \
-  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/
+  https://{{服务器域名}}/hserve/v2.2/table/test_table/record/
 ```
 
 > **info**
@@ -420,4 +425,14 @@ curl -X GET \
     }
   ]
 }
+```
+
+### 获取查询对象总数
+
+若开发者只需要获取对象总数，则可以通过设置 `limit=1` 以及 `return_total_count=1` 来达到该效果，total_count 可从返回的 meta 中获取
+
+请求示例：
+
+```
+https://{{服务器域名}}/hserve/v2.2/table/:table_name/record/?limit=1&return_total_count=1
 ```

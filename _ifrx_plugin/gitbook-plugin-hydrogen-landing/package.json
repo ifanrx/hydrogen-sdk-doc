@@ -1,6 +1,6 @@
 {
   "name": "gitbook-plugin-hydrogen-landing",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "engines": {
     "gitbook": ">1.x.x"

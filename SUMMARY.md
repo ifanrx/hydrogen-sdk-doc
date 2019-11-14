@@ -13,6 +13,7 @@
     * [新手入门 - QQ 小程序](newbies/qq.md)
     * [新手入门 - 百度小程序](newbies/baidu.md)
     * [新手入门 - iOS](newbies/swiftui.md)
+    * [新手入门 - Android](newbies/android.md)
 
 ----
 
@@ -39,7 +40,8 @@
 ----
 
 * [JS SDK](js-sdk/README.md)
-    * [1.x 迁移指南](js-sdk/migrate-from-v1.md)
+    * [2.x -> 3.x 迁移指南](js-sdk/migrate-from-v2.md)
+    * [1.x -> 2.x 迁移指南](js-sdk/migrate-from-v1.md)
     * [用户](js-sdk/user.md)
         * [登入登出](js-sdk/auth.md)
         * [当前用户](js-sdk/account.md)
@@ -109,6 +111,7 @@
         * [百度小程序支付](js-sdk/payment/baidu-pay.md)
         * [网页微信、支付宝、QQ 支付](js-sdk/payment/web.md)
         * [订单查询](js-sdk/payment/order.md)
+    * [TypeScript/自动补全](js-sdk/typescript.md)
     * [调用云函数](js-sdk/invoke-function.md)
     * [获取异步任务结果](js-sdk/async-job.md)
     * [短信验证码](js-sdk/sms.md)
@@ -119,16 +122,18 @@
 
 ----
 
-* [Android SDK (alpha 内测版)](android-sdk/README.md)
+* [Android SDK](android-sdk/README.md)
     * [用户](android-sdk/user.md)
         * [注册登录](android-sdk/auth.md)
         * [当前用户](android-sdk/account.md)
     * [数据表](android-sdk/schema/README.md)
+        * [数据类型](android-sdk/schema/data-type.md)
         * [新增数据项](android-sdk/schema/create-record.md)
         * [更新数据项](android-sdk/schema/update-record.md)
         * [删除数据项](android-sdk/schema/delete-record.md)
         * [获取数据项](android-sdk/schema/get-record-detail.md)
         * [查询数据项](android-sdk/schema/query.md)
+        * [地理位置操作](android-sdk/schema/geo.md)
         * [分页和排序](android-sdk/schema/limit-and-order.md)
         * [字段过滤与扩展](android-sdk/schema/select-and-expand.md)
     * [内容库](android-sdk/content/README.md)
@@ -136,13 +141,21 @@
     * [文件](android-sdk/file/README.md)
         * [文件操作](android-sdk/file/file.md)
         * [文件分类操作](android-sdk/file/category.md)
+    * [支付](android-sdk/payment/README.md)
+        * [支付功能接入指南及 demo 使用指南](android-sdk/payment/demo.md)
+        * [微信支付](android-sdk/payment/wechat-pay.md)
+        * [支付宝支付](android-sdk/payment/alipay-pay.md)
+        * [订单查询](android-sdk/payment/order.md)
+    * [短信验证码](android-sdk/sms.md)
+    * [调用云函数](android-sdk/invoke-function.md)
     * [异常](android-sdk/error-code.md)
+    * [查询异步数据库操作](android-sdk/async-job.md)
     * [安装 sdk](android-sdk/install.md)
     * [demo 的编译和安装](android-sdk/demo.md)
 
 ----
 
-* [iOS SDK （0.2.0-alpha 内测）](ios-sdk/README.md)
+* [iOS SDK](ios-sdk/README.md)
     * [上手指南](ios-sdk/install.md)
     * [用户](ios-sdk/user/README.md)
         * [登入登出](ios-sdk/user/auth.md)

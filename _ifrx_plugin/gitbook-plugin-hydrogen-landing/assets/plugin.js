@@ -12,7 +12,7 @@ function addHeader() {
   let el = document.querySelector('.book-summary')
   let node = document.createElement('div')
   node.id = 'ifanrx-summary-header'
-  node.innerHTML = '知晓云文档 2.0'
+  node.innerHTML = '知晓云文档 2.0+'
   el.insertBefore(node, el.firstChild)
 }
 
@@ -27,6 +27,13 @@ function addCustomerBtn() {
   node.target = '_blank'
   node.innerHTML = '<i class="iconfont icon-Customer"></i>'
   document.body.appendChild(node)
+}
+
+function addRecordNumber() {
+  let linkEle = document.querySelector('.gitbook-link')
+  linkEle.innerText = '粤 ICP 备 10211557 号-25'
+  linkEle.href = 'http://beian.miit.gov.cn'
+  linkEle.target = '_blank'
 }
 
 require(["gitbook", "jQuery"], function (gitbook, $) {
@@ -61,6 +68,11 @@ require(["gitbook", "jQuery"], function (gitbook, $) {
   })
 
   gitbook.events.bind('page.change', function () {
+    addRecordNumber()
+    if (location.pathname === '/') {
+      const page = document.querySelector('.page-inner')
+      page.classList.add('index-page-inner')
+    }
     setTimeout(sidebarScrollIntoView, 300)
   })
 })

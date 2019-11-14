@@ -36,7 +36,7 @@ axios.get('https://cloud.minapp.com/userve/v1/content/1/').then(res => {
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/content/`
+`GET https://cloud.minapp.com/userve/v2.2/content/`
 
 **提交参数**
 
@@ -44,9 +44,21 @@ axios.get('https://cloud.minapp.com/userve/v1/content/1/').then(res => {
 
   例：查询内容库名称为 "内容库1" 的内容库
 
-  `https://cloud.minapp.com/userve/v1/content/?name=内容库1`
+  `https://cloud.minapp.com/userve/v2.2/content/?name=内容库1`
 
+- return_total_count 指定是否在 meta 中返回 total_count
 
+  例：指定返回 total_count
+
+  `https://cloud.minapp.com/userve/v2.2/content/?return_total_count=1`
+
+若开发者只需要获取对象总数，则可以通过设置 `limit=1` 以及 `return_total_count=1` 来达到该效果，total_count 可从返回的 meta 中获取
+
+请求示例：
+
+```
+https://cloud.minapp.com/userve/v2.2/content/?limit=1&return_total_count=1
+``` 
 
 **代码示例**
 
@@ -55,7 +67,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/content/',{
+axios.get('https://cloud.minapp.com/userve/v2.2/content/',{
   params: {
     name: '内容库1'
   }

@@ -92,7 +92,11 @@ curl_close($ch);
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/file/`
+`GET https://cloud.minapp.com/oserve/v2.2/file/`
+
+> **info**
+> 该接口支持通过参数 return_total_count 指定是否返回查询对象总数，以协助不关心对象总数只关心查询结果列表的开发者提升接口响应速度。
+同时，从 v2.2 版本开始该接口默认不返回查询对象总数，欲获取总数的开发者需要显式指定 return_total_count 参数。
 
 **参数说明**
 
@@ -103,6 +107,15 @@ Content-Type: `application/json`
 | order_by | String | Y   | 排序（支持 `created_at` 进行排序）|
 | limit    | Number | N   | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
 | offset   | Number | N   | 设置返回资源的起始偏移值，默认为 0 |
+| return_total_count   | Number | N   | 返回结果 meta 中是否返回 total_count，1 为返回，0 为不返回，默认不返回 |
+
+若开发者只需要获取对象总数，则可以通过设置 `limit=1` 以及 `return_total_count=1` 来达到该效果，total_count 可从返回的 meta 中获取
+
+请求示例：
+
+```
+https://cloud.minapp.com/oserve/v2.2/file/?limit=1&return_total_count=1
+```
 
 **代码示例**
 
@@ -117,7 +130,7 @@ curl -X GET \
 -G \
 -d order_by=-created_at \
 -d category=5a1ba7b708443e7fc5f2fb18 \
-https://cloud.minapp.com/oserve/v1/file/
+https://cloud.minapp.com/oserve/v2.2/file/
 ```
 
 {% content "getFileListNode" %}
@@ -126,7 +139,7 @@ https://cloud.minapp.com/oserve/v1/file/
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/file/',
+  uri: 'https://cloud.minapp.com/oserve/v2.2/file/',
   method: 'GET',
   headers: {
     Authorization: `Bearer ${token}`
@@ -147,7 +160,7 @@ request(opt, function(err, res, body) {
 
 ```php
 <?php
-$url = "https://cloud.minapp.com/oserve/v1/file/";
+$url = "https://cloud.minapp.com/oserve/v2.2/file/";
 
 $ch = curl_init();
 $header = array(

@@ -1,4 +1,4 @@
-# 知晓云 iOS SDK（alpha 内测）
+# 知晓云 iOS SDK
 
 ## 简介
 

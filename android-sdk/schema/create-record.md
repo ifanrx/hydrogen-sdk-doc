@@ -156,6 +156,11 @@ record.put("date", "abc");
 record.save();
 ```
 
+## 添加 geojson 类型数据
+
+查看 [地理位置操作](./geo.md) 章节
+
+
 ## 添加 object 类型数据
 
 对于未知的类型（比如用户自定义的 Product），sdk 会直接通过 gson 序列化为 json 字符串，所以类型的属性不能被混淆（或者添加 @SerializedName）
@@ -253,3 +258,23 @@ fruits.batchSaveInBackground(Arrays.listOf(apple, banana), new Callback<BatchRes
 | 400            | 1. 提交的 ACL 权限不合法 、2. 提交的数据的字段类型不匹配、 3. 提交的数据中没有包含必填项 4. 重复创建数据（设置了唯一索引） |
 | 403            | 没有权限写入数据    |
 | 404            | 写入的数据表不存在  |
+
+
+### 批量创建时不触发触发器
+
+```java
+// 知晓云后台设置的触发器将不会被触发
+Query query = new Query();
+query.enableTrigger(false);
+table.batchSaveInBackground(list, query, new BaseCallback<BatchResult>() {
+    @Override
+    public void onSuccess(BatchResult batchResult) {
+        // success
+    }
+    @Override
+    public void onFailure(Throwable e) {
+        // fail
+    }
+});
+```
+
