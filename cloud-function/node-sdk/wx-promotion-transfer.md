@@ -23,6 +23,7 @@
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
 | userID   | Number | 用户 ID (对应 _userprofile 表中的 id 字段) |
+| openid   | string | 【可选】用户在公众号下的 openid（gatewayType 为 `weixin_tenpay_app` 的时候必填）|
 | amount   | Number | 付款金额 |
 | description | String | 付款描述 |
 | checkName   | Boolean | 是否检测真实名字 |
