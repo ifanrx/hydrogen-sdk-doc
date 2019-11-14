@@ -44,7 +44,7 @@ wx.requestSubscribeMessage({
         subscription_type: 'once',
       })
     }
-    app.BaaS.subscribeMessage({subscription}).then(res => {
+    wx.BaaS.subscribeMessage({subscription}).then(res => {
       // success
     }, err => {
       // fail
