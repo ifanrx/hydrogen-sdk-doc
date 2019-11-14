@@ -2,7 +2,7 @@
 
 **接口**
 
-`GET /hserve/v2.0/table/:table_name/record/:record_id/`
+`GET /hserve/v2.2/table/:table_name/record/:record_id/`
 
 其中 `:table_name` 需替换为你的数据表名称，`record_id` 需替换为你的记录 ID
 
@@ -13,7 +13,7 @@ curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.0/table/:table_name/record/5cbe89e7f1ec740af442a1fa/
+  https://{{服务器域名}}/hserve/v2.2/table/:table_name/record/5cbe89e7f1ec740af442a1fa/
 ```
 
 **返回参数说明**

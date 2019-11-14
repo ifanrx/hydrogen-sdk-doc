@@ -4,7 +4,7 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/content/:content_group_id/`
+`GET https://cloud.minapp.com/oserve/v2.2/content/:content_group_id/`
 
 其中 `content_group_id` 是内容库的 ID
 
@@ -18,7 +18,7 @@
 curl -X GET \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/content/1/
+https://cloud.minapp.com/oserve/v2.2/content/1/
 ```
 
 {% content "getContentGroupNode" %}
@@ -27,7 +27,7 @@ https://cloud.minapp.com/oserve/v1/content/1/
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://cloud.minapp.com/oserve/v1/content/1/',
+  url: 'https://cloud.minapp.com/oserve/v2.2/content/1/',
   headers: 
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
@@ -44,7 +44,7 @@ request(options, function (error, response, body) {
 ```php
 <?php
 $content_group_id = 1; // 内容库的 ID
-$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.2/content/{$content_group_id}/";
 
 $ch = curl_init();
 $header = array(
@@ -193,7 +193,7 @@ curl_close($ch);
 
 **接口**
 
-`POST https://cloud.minapp.com/oserve/v1/content/`
+`POST https://cloud.minapp.com/oserve/v2.2/content/`
 
 **参数说明**
 
@@ -218,7 +218,7 @@ curl -X POST \
       "name": "Content Group",
       "acl_gids": [1, 2]
     }' \
-https://cloud.minapp.com/oserve/v1/content/
+https://cloud.minapp.com/oserve/v2.2/content/
 ```
 
 {% content "createContentGroupNode" %}
@@ -227,7 +227,7 @@ https://cloud.minapp.com/oserve/v1/content/
 var request = require("request");
 
 var options = { method: 'POST',
-  url: 'https://cloud.minapp.com/oserve/v1/content/',
+  url: 'https://cloud.minapp.com/oserve/v2.2/content/',
   headers: 
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
@@ -248,7 +248,7 @@ request(options, function (error, response, body) {
 <?php
 $param['name'] = 'CreateContentGroup';
 $param['acl_gids'] = [1, 2];
-$url = 'https://cloud.minapp.com/oserve/v1/content/';
+$url = 'https://cloud.minapp.com/oserve/v2.2/content/';
 
 $ch = curl_init();
 $header = array(
@@ -293,7 +293,7 @@ curl_close($ch);
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v1/content/:content_group_id/`
+`PUT https://cloud.minapp.com/oserve/v2.2/content/:content_group_id/`
 
 
 **代码示例**
@@ -309,7 +309,7 @@ curl -X PUT \
 -d '{
       "name": "Test Group"
     }' \
-https://cloud.minapp.com/oserve/v1/content/2/
+https://cloud.minapp.com/oserve/v2.2/content/2/
 ```
 
 {% content "updateContentGroupNode" %}
@@ -318,7 +318,7 @@ https://cloud.minapp.com/oserve/v1/content/2/
 var request = require("request");
 
 var options = { method: 'PUT',
-  url: 'https://cloud.minapp.com/oserve/v1/content/2/',
+  url: 'https://cloud.minapp.com/oserve/v2.2/content/2/',
   headers: 
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
@@ -337,7 +337,7 @@ request(options, function (error, response, body) {
 ```php
 <?php
 $content_group_id = 1; // 内容库的 ID
-$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.2/content/{$content_group_id}/";
 $param['name'] = 'UpdateContentGroup';
 
 $ch = curl_init();
@@ -384,7 +384,7 @@ curl_close($ch);
 
 **接口**
 
-`DELETE https://cloud.minapp.com/oserve/v1/content/:content_group_id/`
+`DELETE https://cloud.minapp.com/oserve/v2.2/content/:content_group_id/`
 
 
 **代码示例**
@@ -397,7 +397,7 @@ curl_close($ch);
 curl -X DELETE \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/content/2/
+https://cloud.minapp.com/oserve/v2.2/content/2/
 ```
 
 {% content "deleteContentGroupNode" %}
@@ -406,7 +406,7 @@ https://cloud.minapp.com/oserve/v1/content/2/
 var request = require("request");
 
 var options = { method: 'DELETE',
-  url: 'https://cloud.minapp.com/oserve/v1/content/2/',
+  url: 'https://cloud.minapp.com/oserve/v2.2/content/2/',
   headers: 
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
@@ -424,7 +424,7 @@ request(options, function (error, response, body) {
 ```php
 <?php
 $content_group_id = 1; // 内容库的 ID
-$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.2/content/{$content_group_id}/";
 
 $ch = curl_init();
 $header = array(

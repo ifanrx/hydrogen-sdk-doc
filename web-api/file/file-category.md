@@ -4,7 +4,7 @@
 
 **接口**
 
-`GET /hserve/v1.3/file-category/:category_id/`
+`GET /hserve/v2.2/file-category/:category_id/`
 
 其中 `:category_id` 需替换为你的文件分类 ID
 
@@ -15,7 +15,7 @@ curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v1.3/file-category/5a1bb2ed7026d950ca7d2a78/
+  https://{{服务器域名}}/hserve/v2.2/file-category/5a1bb2ed7026d950ca7d2a78/
 ```
 
 **返回示例**

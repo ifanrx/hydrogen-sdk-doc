@@ -4,7 +4,7 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/file/:file_id/`
+`GET https://cloud.minapp.com/oserve/v2.2/file/:file_id/`
 
 其中 `:file_id` 需替换为你的文件 ID
 
@@ -18,7 +18,7 @@
 curl -X GET \
 -H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/file/5a1ba9c1fff1d651135e5ff1/
+https://cloud.minapp.com/oserve/v2.2/file/5a1ba9c1fff1d651135e5ff1/
 ```
 
 {% content "getFileDetailNode" %}
@@ -27,7 +27,7 @@ https://cloud.minapp.com/oserve/v1/file/5a1ba9c1fff1d651135e5ff1/
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/file/5a2fe93308443e313a428cxx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :file_id
+  uri: 'https://cloud.minapp.com/oserve/v2.2/file/5a2fe93308443e313a428cxx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :file_id
   method: 'GET',
   headers: {
     Authorization: `Bearer ${token}`
@@ -44,7 +44,7 @@ request(opt, function(err, res, body) {
 ```php
 <?php
 $file_id = '5a2fe93308443e313a428cxx'; // 文件 ID
-$url = "https://cloud.minapp.com/oserve/v1/file/{$file_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.2/file/{$file_id}/";
 
 $ch = curl_init();
 $header = array(
@@ -186,7 +186,7 @@ curl_close($ch);
 
 **接口**
 
-`DELETE https://cloud.minapp.com/oserve/v1/file/:file_id/`
+`DELETE https://cloud.minapp.com/oserve/v2.2/file/:file_id/`
 
 其中 `:file_id` 需替换为你的文件 ID
 
@@ -200,7 +200,7 @@ curl_close($ch);
 curl -X DELETE \
 -H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/file/5a1ba9c1fff1d651135e5ff1/
+https://cloud.minapp.com/oserve/v2.2/file/5a1ba9c1fff1d651135e5ff1/
 ```
 
 {% content "deleteFileNode" %}
@@ -209,7 +209,7 @@ https://cloud.minapp.com/oserve/v1/file/5a1ba9c1fff1d651135e5ff1/
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/file/5a45f22bfff1d659681c87xx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :file_id
+  uri: 'https://cloud.minapp.com/oserve/v2.2/file/5a45f22bfff1d659681c87xx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :file_id
   method: 'DELETE',
   headers: {
     Authorization: `Bearer ${token}`
@@ -226,7 +226,7 @@ request(opt, function(err, res, body) {
 ```php
 <?php
 $file_id = '5a45f22bfff1d659681c87xx'; // 文件 ID
-$url = "https://cloud.minapp.com/oserve/v1/file/{$file_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.2/file/{$file_id}/";
 
 $ch = curl_init();
 $header = array(
@@ -257,7 +257,7 @@ curl_close($ch);
 
 **接口**
 
-`DELETE https://cloud.minapp.com/oserve/v1/file/?id__in=:file1_id,:file2_id`
+`DELETE https://cloud.minapp.com/oserve/v2.2/file/?id__in=:file1_id,:file2_id`
 
 **代码示例**
 
@@ -269,7 +269,7 @@ curl_close($ch);
 curl -X DELETE \
 -H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/file/?id__in=5a1ba9c1fff1d651135e5ff1,59ca3d275f281f58523fc47a
+https://cloud.minapp.com/oserve/v2.2/file/?id__in=5a1ba9c1fff1d651135e5ff1,59ca3d275f281f58523fc47a
 ```
 
 {% content "patchDeleteNode" %}
@@ -278,7 +278,7 @@ https://cloud.minapp.com/oserve/v1/file/?id__in=5a1ba9c1fff1d651135e5ff1,59ca3d2
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/file/?id__in=5a3b8e8908443e06aa6f0a99,5a3b673308443e643f1b0c47',
+  uri: 'https://cloud.minapp.com/oserve/v2.2/file/?id__in=5a3b8e8908443e06aa6f0a99,5a3b673308443e643f1b0c47',
   method: 'DELETE',
   headers: {
     Authorization: `Bearer ${token}`
@@ -296,7 +296,7 @@ request(opt, function(err, res, body) {
 <?php
 $file_id[] = '5a45f22bfff1d659681cxxxx'; // 文件 ID
 $file_id[] = '5a3b673308443e643f1bxxxx'; // 文件 ID
-$url = "https://cloud.minapp.com/oserve/v1/file/?id__in=".implode(',',$file_id);
+$url = "https://cloud.minapp.com/oserve/v2.2/file/?id__in=".implode(',',$file_id);
 
 $ch = curl_init();
 $header = array(

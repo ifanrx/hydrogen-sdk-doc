@@ -4,7 +4,7 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/content/:content_group_id/category/:category_id/`
+`GET https://cloud.minapp.com/oserve/v2.2/content/:content_group_id/category/:category_id/`
 
 其中 `content_group_id` 是内容库的 ID, `category_id` 是内容分类的 ID
 
@@ -18,7 +18,7 @@
 curl -X GET \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/content/1/category/1/
+https://cloud.minapp.com/oserve/v2.2/content/1/category/1/
 ```
 
 {% content "getContentCategoryNode" %}
@@ -27,7 +27,7 @@ https://cloud.minapp.com/oserve/v1/content/1/category/1/
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://cloud.minapp.com/oserve/v1/content/1/category/1/',
+  url: 'https://cloud.minapp.com/oserve/v2.2/content/1/category/1/',
   headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
@@ -45,7 +45,7 @@ request(options, function (error, response, body) {
 <?php
 $content_group_id = 1; // 内容库的 ID
 $category_id = 1; // 内容分类的 ID
-$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/category/{$category_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.2/content/{$content_group_id}/category/{$category_id}/";
 
 $ch = curl_init();
 $header = array(
@@ -242,7 +242,7 @@ curl_close($ch);
 
 **接口**
 
-`POST https://cloud.minapp.com/oserve/v1/content/:content_group_id/category/`
+`POST https://cloud.minapp.com/oserve/v2.2/content/:content_group_id/category/`
 
 **参数说明**
 
@@ -269,7 +269,7 @@ curl -X POST \
 -d '{
       "name": "分类1",
     }' \
-https://cloud.minapp.com/oserve/v1/content/1/category/
+https://cloud.minapp.com/oserve/v2.2/content/1/category/
 ```
 
 {% content "createContentCategoryNode" %}
@@ -278,7 +278,7 @@ https://cloud.minapp.com/oserve/v1/content/1/category/
 var request = require("request");
 
 var options = { method: 'POST',
-  url: 'https://cloud.minapp.com/oserve/v1/content/1/category/',
+  url: 'https://cloud.minapp.com/oserve/v2.2/content/1/category/',
   headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
@@ -299,7 +299,7 @@ request(options, function (error, response, body) {
 <?php
 $content_group_id = 1;// 内容库的 ID
 $param['name'] = 'CreateCategory';
-$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/category/";
+$url = "https://cloud.minapp.com/oserve/v2.2/content/{$content_group_id}/category/";
 
 $ch = curl_init();
 $header = array(
@@ -346,7 +346,7 @@ curl_close($ch);
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v1/content/:content_group_id/category/:category_id/`
+`PUT https://cloud.minapp.com/oserve/v2.2/content/:content_group_id/category/:category_id/`
 
 
 **代码示例**
@@ -362,7 +362,7 @@ curl -X PUT \
 -d '{
       "name": "Test Category"
     }' \
-https://cloud.minapp.com/oserve/v1/content/1/category/3/
+https://cloud.minapp.com/oserve/v2.2/content/1/category/3/
 ```
 
 {% content "updateContentCategoryNode" %}
@@ -371,7 +371,7 @@ https://cloud.minapp.com/oserve/v1/content/1/category/3/
 var request = require("request");
 
 var options = { method: 'PUT',
-  url: 'https://cloud.minapp.com/oserve/v1/content/1/category/3/',
+  url: 'https://cloud.minapp.com/oserve/v2.2/content/1/category/3/',
   headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
@@ -391,7 +391,7 @@ request(options, function (error, response, body) {
 <?php
 $content_group_id = 1; // 内容库 ID
 $category_id = 1;// 内容分类的 ID
-$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/category/{$category_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.2/content/{$content_group_id}/category/{$category_id}/";
 $param['name'] = 'updateCategory';
 
 $ch = curl_init();
@@ -438,7 +438,7 @@ curl_close($ch);
 
 **接口**
 
-`DELETE https://cloud.minapp.com/oserve/v1/content/:content_group_id/category/:category_id/`
+`DELETE https://cloud.minapp.com/oserve/v2.2/content/:content_group_id/category/:category_id/`
 
 
 **代码示例**
@@ -451,7 +451,7 @@ curl_close($ch);
 curl -X DELETE \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/content/1/category/1/
+https://cloud.minapp.com/oserve/v2.2/content/1/category/1/
 ```
 
 {% content "deleteContentCategoryNode" %}
@@ -460,7 +460,7 @@ https://cloud.minapp.com/oserve/v1/content/1/category/1/
 var request = require("request");
 
 var options = { method: 'DELETE',
-  url: 'https://cloud.minapp.com/oserve/v1/content/1/category/1/',
+  url: 'https://cloud.minapp.com/oserve/v2.2/content/1/category/1/',
   headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
@@ -479,7 +479,7 @@ request(options, function (error, response, body) {
 <?php
 $content_group_id = 1; // 内容库 ID
 $category_id = 1;// 内容分类的 ID
-$url = "https://cloud.minapp.com/oserve/v1/content/{$content_group_id}/category/{$category_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.2/content/{$content_group_id}/category/{$category_id}/";
 
 $ch = curl_init();
 $header = array(

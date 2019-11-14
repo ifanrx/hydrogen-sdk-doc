@@ -17,7 +17,7 @@ curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/?keys=id,created_at
+  https://{{服务器域名}}/hserve/v2.2/table/test_table/record/?keys=id,created_at
 ```
 
 **返回示例**
@@ -55,7 +55,7 @@ curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/?keys=-id,-created_at
+  https://{{服务器域名}}/hserve/v2.2/table/test_table/record/?keys=-id,-created_at
 ```
 
 **返回示例**
@@ -100,7 +100,7 @@ curl -X GET \
   -H "X-Hydrogen-Client-ID: {{ClientID}}" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/?expand=created_by,pointer_value
+  https://{{服务器域名}}/hserve/v2.2/table/test_table/record/?expand=created_by,pointer_value
 ```
 
 **返回示例**

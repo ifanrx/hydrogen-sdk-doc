@@ -4,7 +4,7 @@
 
 **接口**
 
-`POST https://cloud.minapp.com/oserve/v1/file-category/`
+`POST https://cloud.minapp.com/oserve/v2.2/file-category/`
 
 **参数说明**
 
@@ -26,7 +26,7 @@ curl -X POST \
 -H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
 -H "Content-Type: application/json" \
 -d '{"name": "Category"}' \
-https://cloud.minapp.com/oserve/v1/file-category/
+https://cloud.minapp.com/oserve/v2.2/file-category/
 ```
 
 {% content "createCategoryNode" %}
@@ -36,7 +36,7 @@ https://cloud.minapp.com/oserve/v1/file-category/
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/file-category/',
+  uri: 'https://cloud.minapp.com/oserve/v2.2/file-category/',
   method: 'POST',
   headers: {
     Authorization: `Bearer ${token}`
@@ -55,7 +55,7 @@ request(opt, function(err, res, body) {
 ```php
 <?php
 $param = ['name' =>'nickname'];
-$url = 'https://cloud.minapp.com/oserve/v1/file-category/';
+$url = 'https://cloud.minapp.com/oserve/v2.2/file-category/';
 
 $ch = curl_init();
 $header = array(
@@ -88,7 +88,7 @@ curl_close($ch);
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/file-category/:category_id/`
+`GET https://cloud.minapp.com/oserve/v2.2/file-category/:category_id/`
 
 其中 `:category_id` 需替换为你的文件分类 ID
 
@@ -102,7 +102,7 @@ curl_close($ch);
 curl -X GET \
 -H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/file-category/5a1bb2ed7026d950ca7d2a78/
+https://cloud.minapp.com/oserve/v2.2/file-category/5a1bb2ed7026d950ca7d2a78/
 ```
 
 {% content "getDetailNode"%}
@@ -112,7 +112,7 @@ https://cloud.minapp.com/oserve/v1/file-category/5a1bb2ed7026d950ca7d2a78/
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/file-category/5a2fe91508443e3123dbe1xx/',  // 5a2fe91508443e3123dbe1xx 对应 uri :category_id
+  uri: 'https://cloud.minapp.com/oserve/v2.2/file-category/5a2fe91508443e3123dbe1xx/',  // 5a2fe91508443e3123dbe1xx 对应 uri :category_id
   method: 'GET',
   headers: {
     Authorization: `Bearer ${token}`
@@ -129,7 +129,7 @@ request(opt, function(err, res, body) {
 ```php
 <?php
 $category_id = '5a2fe91508443e3123dbe1xx'; // 文件分类 ID
-$url = "https://cloud.minapp.com/oserve/v1/file-category/{$category_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.2/file-category/{$category_id}/";
 
 $ch = curl_init();
 $header = array(
@@ -285,7 +285,7 @@ curl_close($ch);
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v1/file-category/:category_id/`
+`PUT https://cloud.minapp.com/oserve/v2.2/file-category/:category_id/`
 
 其中 `:category_id` 需替换为你的文件分类 ID
 
@@ -300,7 +300,7 @@ curl -X PUT \
 -H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
 -H "Content-Type: application/json" \
 -d '{"name": "category"}' \
-https://cloud.minapp.com/oserve/v1/file-category/5a1bb2ed7026d950ca7d2a78/
+https://cloud.minapp.com/oserve/v2.2/file-category/5a1bb2ed7026d950ca7d2a78/
 ```
 
 {% content "modifyCategoryNode" %}
@@ -310,7 +310,7 @@ https://cloud.minapp.com/oserve/v1/file-category/5a1bb2ed7026d950ca7d2a78/
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/file-category/5a6ad3cffff1d675b9e2cexx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :category_id
+  uri: 'https://cloud.minapp.com/oserve/v2.2/file-category/5a6ad3cffff1d675b9e2cexx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :category_id
   method: 'PUT',
   headers: {
     Authorization: `Bearer ${token}`
@@ -330,7 +330,7 @@ request(opt, function(err, res, body) {
 ```php
 <?php
 $category_id = '5a2fe91508443e3123dbe1xx'; // 文件分类 ID
-$url = "https://cloud.minapp.com/oserve/v1/file-category/{$category_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.2/file-category/{$category_id}/";
 $param['name'] = 'testCreateFiles';
 
 $ch = curl_init();
@@ -374,7 +374,7 @@ curl_close($ch);
 
 **接口**
 
-`DELETE https://cloud.minapp.com/oserve/v1/file-category/:category_id/`
+`DELETE https://cloud.minapp.com/oserve/v2.2/file-category/:category_id/`
 
 其中 `:category_id` 需替换为你的文件分类 ID
 
@@ -388,7 +388,7 @@ curl_close($ch);
 curl -X DELETE \
 -H "Authorization: Bearer 58f6cd9f84b1b0c04941fbd4d87bc5f14a785107" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/file-category/5a1bb2ed7026d950ca7d2a78/
+https://cloud.minapp.com/oserve/v2.2/file-category/5a1bb2ed7026d950ca7d2a78/
 ```
 
 {% content "deleteCategoryNode" %}
@@ -398,7 +398,7 @@ https://cloud.minapp.com/oserve/v1/file-category/5a1bb2ed7026d950ca7d2a78/
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/file-category/5a6ad3cffff1d675b9e2cexx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :category_id
+  uri: 'https://cloud.minapp.com/oserve/v2.2/file-category/5a6ad3cffff1d675b9e2cexx/',  // 5a6ad3cffff1d675b9e2cexx 对应 uri :category_id
   method: 'DELETE',
   headers: {
     Authorization: `Bearer ${token}`
@@ -416,7 +416,7 @@ request(opt, function(err, res, body) {
 ```php
 <?php
 $category_id = '5a2fe91508443e3123dbe1xx'; // 文件分类 ID
-$url = "https://cloud.minapp.com/oserve/v1/file-category/{$category_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.2/file-category/{$category_id}/";
 
 $ch = curl_init();
 $header = array(

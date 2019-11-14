@@ -12,6 +12,9 @@
 
 其中 `user_id` 可从用户列表中获取。
 
+> **info**
+> 推荐使用[用户信息处理](#用户信息处理)中的接口进行用户信息的获取，v1 接口已废弃。
+
 **代码示例**
 
 {% tabs  curl="Curl", node="Node", php="PHP" %}
@@ -94,6 +97,9 @@ curl_close($ch);
 **接口**
 
 `GET https://cloud.minapp.com/oserve/v1/miniapp/user-profile/`
+
+> **info**
+> 推荐使用[用户信息处理](#用户信息处理)中的接口进行用户信息的获取，v1 接口已废弃。
 
 **参数说明**
 
@@ -395,7 +401,7 @@ if ($err) {
 
 ~~`GET https://cloud.minapp.com/oserve/v1/user/info/:id/`~~(后续将废弃该接口，推荐使用以下接口)
 
-`GET https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/:id/`
+`GET https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/:id/`
 
 其中 `:id` 是用户在 `_userprofile` 表中的 `id`。
 
@@ -408,7 +414,7 @@ if ($err) {
 ```shell
 curl -X GET \
 -H "Authorization: Bearer 35919068aa799eccdef19160e1da4bf21381d2a2" \
-https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/70695404/
+https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/70695404/
 ```
 
 {% content "getSingleUserInfoNode" %}
@@ -418,7 +424,7 @@ var request = require("request");
 
 var options = {
   method: 'GET',
-  url: 'https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/70695404/',
+  url: 'https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/70695404/',
   headers:
   {
     'Content-Type': 'application/json',
@@ -437,7 +443,7 @@ var req = request(options, function (error, response, body) {
 ```php
 <?php
 $token = '35919068aa799eccdef19160e1da4bf21381d2a2';
-$url = "https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/70695404/";
+$url = "https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/70695404/";
 
 $ch = curl_init();
 $header = array(
@@ -502,7 +508,7 @@ if ($err) {
 
 ~~`PUT https://cloud.minapp.com/oserve/v1/user/info/:id/`~~(后续将废弃该接口，推荐使用以下接口)
 
-`PUT https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/:id/`
+`PUT https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/:id/`
 
 其中 `:id` 是用户在 `_userprofile` 表中的 `id`。
 
@@ -514,7 +520,7 @@ if ($err) {
 
 ```shell
 curl -X PUT \
-  https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/70695404/ \
+  https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/70695404/ \
   -H 'Authorization: Bearer 35919068aa799eccdef19160e1da4bf21381d2a2' \
   -H 'Content-Type: application/json' \
   -d '{"test": "test"}'
@@ -527,7 +533,7 @@ var request = require("request");
 
 var options = {
   method: 'PUT',
-  url: 'https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/70695404/',
+  url: 'https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/70695404/',
   headers:
   {
     'Content-Type': 'application/json',
@@ -548,7 +554,7 @@ var req = request(options, function (error, response, body) {
 ```php
 <?php
 $token = '35919068aa799eccdef19160e1da4bf21381d2a2';
-$url = "https://cloud.minapp.com/oserve/v1.9/miniapp/user_profile/70695404/";
+$url = "https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/70695404/";
 
 $ch = curl_init();
 $header = array(
@@ -743,7 +749,7 @@ if ($err) {
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v2.0/miniapp/user/account/:id/`
+`PUT https://cloud.minapp.com/oserve/v2.1/miniapp/user/account/:id/`
 
 其中 `:id` 是用户在 `_userprofile` 表中的 `id`。
 
@@ -765,7 +771,7 @@ Content-Type: `application/json`
 
 ```shell
 curl -X PUT \
-  https://cloud.minapp.com/oserve/v2.0/miniapp/user/account/70695404/ \
+  https://cloud.minapp.com/oserve/v2.1/miniapp/user/account/70695404/ \
   -H 'Authorization: Bearer 35919068aa799eccdef19160e1da4bf21381d2a2' \
   -H 'Content-Type: application/json' \
   -d '{"username": "pretty_girl"}'
@@ -778,7 +784,7 @@ var request = require("request");
 
 var options = {
   method: 'PUT',
-  url: 'https://cloud.minapp.com/oserve/v2.0/miniapp/user/account/70695404/',
+  url: 'https://cloud.minapp.com/oserve/v2.1/miniapp/user/account/70695404/',
   headers:
   {
     'Content-Type': 'application/json',
@@ -799,7 +805,7 @@ var req = request(options, function (error, response, body) {
 ```php
 <?php
 $token = '35919068aa799eccdef19160e1da4bf21381d2a2';
-$url = "https://cloud.minapp.com/oserve/v2.0/miniapp/user/account/70695404/";
+$url = "https://cloud.minapp.com/oserve/v2.1/miniapp/user/account/70695404/";
 
 $ch = curl_init();
 $header = [

@@ -6,7 +6,7 @@
 
 **接口**
 
-`POST https://cloud.minapp.com/oserve/v1/table/:table_id/export/`
+`POST https://cloud.minapp.com/oserve/v1.5/table/:table_id/export/`
 
 其中 `table_id` 是数据表的 ID
 
@@ -16,8 +16,12 @@
 | :------------ | :-----------  | :--- | :--- |
 | file_type     | String        |  是  | 导出文件的格式，支持 csv、json 格式 |
 | mode          | String        |  是  | 导出任务的模式 |
-| start         | Integer       |  否  | 导出部分数据的起始时间（时间戳） |
-| end           | Integer       |  否  | 导出部分数据的结束时间（时间戳)  |
+| where         | Object        |  否  | 导出数据的查询条件 |
+| exclude_keys  | Array         |  否  | 导出数据时排除的字段列表 |
+| include_keys  | Array         |  否  | 导出数据时包含的字段列表 |
+| order_by      | Array         |  否  | 导出数据时需要进行排序的字段列表 |
+| csv_customize_headers   | Array         |  否  | 导出数据为 CSV 时，可指定列名 |
+| timestamp_convert_keys  | Array         |  否  | 导出数据时需要进行时间类型转换的字段列表 |
 
 导出任务支持两种模式：
 
@@ -26,8 +30,7 @@
 | all     |  导出全部数据 |
 | part    |  导出部分数据 |
 
-> **info**
-> 选择部分数据导出任务时，将会根据数据的创建时间进行筛选，即 created_at 在 **[start, end)** 的区间内
+order_by 排序支持指定正序或者倒序，在字段前面加 "-" 表示倒序，目前支持排序的字段类型有 5 种，分别是 {"boolean", "date", "integer", "number", "string"}
 
 **代码示例**
 
@@ -43,7 +46,7 @@ curl -X POST \
     "file_type": "csv",
     "mode": "all"
   }' \
-https://cloud.minapp.com/oserve/v1/table/:table_id/export/
+https://cloud.minapp.com/oserve/v1.5/table/:table_id/export/
 ```
 
 {% content "exportNode" %}
@@ -52,7 +55,7 @@ https://cloud.minapp.com/oserve/v1/table/:table_id/export/
 var request = require('request')
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v1/table/:table_id/export/',
+  uri: 'https://cloud.minapp.com/oserve/v1.5/table/:table_id/export/',
   method: 'POST',
   headers: {
     Authorization: `Bearer ${token}`
@@ -73,7 +76,7 @@ request(opt, function (err, res, body) {
 ```php
 <?php
 $table_id = 1; // 数据表的 ID
-$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/export/";
+$url = "https://cloud.minapp.com/oserve/v1.5/table/{$table_id}/export/";
 $param = array(
   'file_type' => 'csv',
   "mode" => "all"
