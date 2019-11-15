@@ -1,6 +1,4 @@
 let path = require('path')
-// let webpack = require('webpack')
-// const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const WebpackAssetsManifest = require('webpack-assets-manifest')
 module.exports = {
   entry: {
@@ -21,9 +19,6 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        // include: [
-        //   path.resolve(__dirname, 'src'),
-        // ],
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
@@ -41,17 +36,5 @@ module.exports = {
   },
   plugins: [
     new WebpackAssetsManifest(),
-    // new VueLoaderPlugin(),
   ],
-  externals: {
-    // jQuery: 'jQuery',
-    // gitbook: 'gitbook',
-  },
-  resolve: {
-    // extensions: ['.js', '.vue', '.scss', '.png', '.jpg'],
-    // modules: [path.resolve(__dirname, './src'), 'node_modules'],
-    alias: {
-      // vue: 'vue/dist/vue.esm',
-    },
-  },
 }
