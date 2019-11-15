@@ -125,6 +125,7 @@ module.exports = {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 #vote .vote-info .down-vote {
