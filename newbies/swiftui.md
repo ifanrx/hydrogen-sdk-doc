@@ -83,12 +83,12 @@ pod install
 ```
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-    BaaS.register(clientID: "fdc4feb5403a985fe681")
+    BaaS.register(clientID: "[[client_id]]")
     return true
 }
 ```
 
-将 `clientID` 替换成你的应用 `ID`，`clientID` 可在 dashboard [设置-应用页](https://cloud.minapp.com/dashboard/#/app/settings/info/)中获取）。
+将 `clientID` 替换成你的应用 `ID`，`clientID` 可在 dashboard [设置-应用页](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/info/)中获取）。
 
 ![复制 clientID](/images/newbies/get-client-id.png)
 

@@ -28,7 +28,7 @@
 首先，发起一个 HTTP 请求时，要先获取应用的服务器域名
 
 ##### 获取方式
-* 进入[知晓云控制台设置页面](https://cloud.minapp.com/dashboard/#/app/settings/info/), 在左上角选择你的应用
+* 进入[知晓云控制台设置页面](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/info/), 在左上角选择你的应用
 ![client-id](/web-api/image/client-id.jpg)
 * 在选择完应用后(必须先选择应用，因为不同的应用会有不同的 `服务器域名`)，向下滑动页面，在`服务器域名`中就可以找到 `request 合法域名`
 ![server-url](/web-api/image/server-url.jpg)
@@ -55,7 +55,7 @@ https://abcd11223344daeabcd.myminapp.com/hserve/v2.0/idp/pay/order/
 区分应用的唯一凭证，服务器依靠这个字段来辨别请求者的应用
 
 ##### 获取方式
-* 进入[知晓云控制台设置页面](https://cloud.minapp.com/dashboard/#/app/settings/info/), 在左上角选择你的应用
+* 进入[知晓云控制台设置页面](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/info/), 在左上角选择你的应用
 ![client-id](/web-api/image/client-id.jpg)
 * 在选择完应用后(必须先选择应用，因为不同的应用会有不同的 `ClientID`)，向下滑动页面，在`开发者 ID`中就可以找到 `ClientID`
 ![client-id-get](/web-api/image/client-id-get.jpg)

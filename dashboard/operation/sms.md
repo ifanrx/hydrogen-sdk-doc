@@ -1,5 +1,5 @@
 # 短信
-知晓云支持验证码短信和通知类短信两种，开发者需要配合触发器使用。开通短信服务前需要完成[实名认证](https://cloud.minapp.com/dashboard/#/enterprise/settings/info/)。
+知晓云支持验证码短信和通知类短信两种，开发者需要配合触发器使用。开通短信服务前需要完成[实名认证](https://cloud.minapp.com/dashboard/#/enterprise/[[enterprise_id | addSlashPostfixIfNotEmpty]]settings/info/)。
 
 ## 基础操作
 

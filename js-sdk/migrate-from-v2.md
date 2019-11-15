@@ -42,10 +42,10 @@
 
 1. 支持自定义域名
 
-  v3.x 支持在 SDK init 的时候，指定接口的域名，例如：
+  v3.x 支持在 SDK init（clientID）的时候，指定接口的域名，例如：
 
   ```js
-  wx.BaaS.init('***', { host: 'https://***' })
+  wx.BaaS.init('[[client_id]]', { host: 'https://***' })
   ```
 
   需要先在控制台配置自定义域名

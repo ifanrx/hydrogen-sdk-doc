@@ -41,7 +41,7 @@ InitOption:
 > **info**
 > 关于 autoLogin 参数，具体请参考[多平台用户统一登录](./signin-signout.md#多平台用户统一登录) 和 [迁移指南](/js-sdk/migrate-from-v1.md)。
 
-> clientID 在[知晓云管理后台](https://cloud.minapp.com/dashboard/#/app/settings/info/)获取。
+> clientID 在[知晓云管理后台](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/info/)获取。
 
 通过初始化 SDK ，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 SDK 提供的全部功能。
 {% endmacro %}

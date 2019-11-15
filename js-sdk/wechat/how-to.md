@@ -53,7 +53,7 @@ App({
     //让插件帮助完成登录、支付等功能
     wx.BaaS.wxExtend(wx.login, wx.getUserInfo, wx.requestPayment)
 
-    let clientID = '知晓云管理后台获取到的 ClientID'
+    let clientID = '[[client_id]]'
     wx.BaaS.init(clientID)
   }
 })
@@ -94,7 +94,7 @@ App({
   onLaunch() {
     // 引入 SDK
     require('./sdk-v{{ book.latestVersionWechat }}')
-     let clientID = '知晓云管理后台获取到的 ClientID'
+     let clientID = '[[client_id]]'
      wx.BaaS.init(clientID)
   }
 })
@@ -140,7 +140,7 @@ App({
   onLaunch() {
     // 引入 SDK
     require('minapp-sdk')
-    let clientID = '知晓云管理后台获取到的 ClientID'
+    let clientID = '[[client_id]]'
     wx.BaaS.init(clientID)
   }
 })

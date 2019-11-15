@@ -10,7 +10,7 @@
 
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   https://{{服务器域名}}/hserve/v2.2/table/:table_name/record/5cbe89e7f1ec740af442a1fa/
@@ -74,7 +74,7 @@ curl -X GET \
 
 ```shell
 curl -X GET \
--H "X-Hydrogen-Client-ID: {{ClientID}}" \
+-H "X-Hydrogen-Client-ID: [[client_id]]" \
 -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
 -H "Content-Type: application/json" \
 https://{{服务器域名}}/hserve/v2.2/table/952728/record/?limit=10&offset=0
@@ -162,7 +162,7 @@ https://{{服务器域名}}/hserve/v2.2/table/952728/record/?limit=10&offset=0
 
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   https://{{服务器域名}}/hserve/v2.2/table/test_table/record/?where=%7b%22status%22%3a%7b%22%24eq%22%3a%22deleted%22%7d%7d
@@ -174,7 +174,7 @@ curl -X GET \
 
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -G \

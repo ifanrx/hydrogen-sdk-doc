@@ -24,7 +24,7 @@
 更新表 test_table 中 id 为 `5cbe89e7f1ec740af442a1fa` 的记录，将记录的 nickname 更新为 `cool`, 删除记录的 gender 字段 
 ```shell
 curl -X PUT \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"$set": {"nickname": "cool"}, "$unset": {"gender": ""}}' \
@@ -85,7 +85,7 @@ curl -X PUT \
 
 ```shell
 curl -X PUT \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"user":"5cbecc548b155c0b6d1da762"}' \
@@ -211,7 +211,7 @@ curl -X PUT \
 
 ```shell
 curl -X PUT \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"desc": {"$append": ["atomic data"]}, "price": {"$incr_by": -1}}' \
@@ -274,7 +274,7 @@ Query Parameters:
 
 ```shell
 curl -X PUT \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"age": {"$incr_by": 1}}' \

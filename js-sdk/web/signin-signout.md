@@ -133,8 +133,7 @@ window.opener，`popup-iframe` 模式会传给 window.parent。
 使用以下代码创建一个 html 文件，将该文件放置到服务器中（必须与调用授权的页面同源），
 并保证通过 url 能访问到该文件。
 
-代码中的 `<sdk-url>` 需要替换成知晓云 SDK 在服务器中的 URL，`<cilent-id>` 需要
-替换为应用的 clientId。
+代码中的 `<sdk-url>` 需要替换成知晓云 SDK 在服务器中的 URL，[[client_id]] 为知晓云应用的 clientID。
 
 单页应用的开发者，也可以不使用该模板，只要保证 authPageUrl 能访问到的对应的页面，
 并且进入页面立即调用 `BaaS.auth.thirdPartyAuth` 即可。
@@ -150,7 +149,7 @@ window.opener，`popup-iframe` 模式会传给 window.parent。
   <body>
     <script src="<sdk-url>"></script>
     <script>
-      window.BaaS.init('<clinet-id>')
+      window.BaaS.init('[[client_id]]')
       window.BaaS.auth.thirdPartyAuth()
     </script>
   </body>
@@ -283,8 +282,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 使用以下代码创建一个 html 文件，将该文件放置到服务器中（必须与调用授权的页面同源），
 并保证通过 url 能访问到该文件。
 
-代码中的 `<sdk-url>` 需要替换成知晓云 SDK 在服务器中的 URL，`<cilent-id>` 需要
-替换为应用的 clientId。
+代码中的 `<sdk-url>` 需要替换成知晓云 SDK 在服务器中的 URL，[[client_id]] 为知晓云应用的 clientID。
 
 单页应用的开发者，也可以不使用该模板，只要保证 authPageUrl 能访问到的对应的页面，
 并且进入页面立即调用 `BaaS.auth.thirdPartyAuth` 即可。
@@ -300,7 +298,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
   <body>
     <script src="<sdk-url>"></script>
     <script>
-      window.BaaS.init('<clinet-id>')
+      window.BaaS.init('[[client_id]]')
       window.BaaS.auth.thirdPartyAuth()
     </script>
   </body>

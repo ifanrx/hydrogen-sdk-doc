@@ -46,7 +46,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        BaaS.init("clientId", this);
+        BaaS.init("[[client_id]]", this);
         // ...
     }
 }

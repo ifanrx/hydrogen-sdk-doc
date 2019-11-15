@@ -133,8 +133,8 @@ Content-Type: `application/json`
     uri: 'https://cloud.minapp.com/api/oauth2/hydrogen/openapi/authorize/',
     method: 'POST',
     json: {
-      client_id: 'a4d2d62965ddb57fa4xx',
-      client_secret: 'e5802b40135baab9b4e84e35bed058a264c37dxx'
+      client_id: '[[client_id]]',
+      client_secret: '{{client_secret}}'
     },
     jar: true,                // 允许记住 cookie 
     followAllRedirects: true,     // 允许重定向
@@ -150,8 +150,8 @@ Content-Type: `application/json`
       uri: 'https://cloud.minapp.com/api/oauth2/access_token/',
       method: 'POST',
       json: {
-        client_id: 'a4d2d62965ddb57fa4xx',
-        client_secret: 'e5802b40135baab9b4e84e35bed058a264c37dxx',
+        client_id: '[[client_id]]',
+        client_secret: '{{client_secret}}',
         grant_type: 'authorization_code',
         code,
       }
@@ -252,8 +252,8 @@ Content-Type: `application/json`
       uri: 'https://cloud.minapp.com/api/oauth2/access_token/',
       method: 'POST',
       json: {
-        client_id: 'a4d2d62965ddb57fa4xx',
-        client_secret: 'e5802b40135baab9b4e84e35bed058a264c37dxx',
+        client_id: '[[client_id]]',
+        client_secret: '{{client_secret}}',
         grant_type: 'refresh_token',
         refresh_token: refreshToken,
       }
