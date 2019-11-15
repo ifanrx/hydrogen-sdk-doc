@@ -1,5 +1,7 @@
 let path = require('path')
 const WebpackAssetsManifest = require('webpack-assets-manifest')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
+
 module.exports = {
   entry: {
     index: './src/plugin',
@@ -15,7 +17,7 @@ module.exports = {
         include: [
           path.resolve(__dirname, 'src'),
         ],
-        loader: 'style-loader!css-loader',
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
       },
       {
         test: /\.js$/,
@@ -36,5 +38,6 @@ module.exports = {
   },
   plugins: [
     new WebpackAssetsManifest(),
+    new ExtractTextPlugin('[name].[hash].css')
   ],
 }

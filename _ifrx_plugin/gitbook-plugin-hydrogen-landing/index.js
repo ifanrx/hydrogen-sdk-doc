@@ -6,6 +6,9 @@ var uid = 1
 module.exports = {
   book: {
     assets: './dist',
+    css: [
+      manifest['index.css'],
+    ],
     js: [
       manifest['index.js'],
     ],
