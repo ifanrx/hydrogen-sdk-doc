@@ -83,7 +83,7 @@ pod install
 ```
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-    BaaS.register(clientID: "[[client_id]]")
+    BaaS.register(clientID: "[[client_id]]")  // 应用名称: [[app_name]]
     return true
 }
 ```

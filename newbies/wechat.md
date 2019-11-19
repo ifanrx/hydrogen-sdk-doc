@@ -96,7 +96,7 @@ App({
      wx.getUserInfo,
      wx.requestPayment)
 
-    let clientID = '[[client_id]]'
+    let clientID = '[[client_id]]'  // 应用名称: [[app_name]]
     wx.BaaS.init(clientID)
   }
 })
@@ -208,7 +208,7 @@ App({
     require('./sdk-v{{ book.latestVersionWechat }}')
 
     // 初始化 SDK
-    let clientID = '[[client_id]]'
+    let clientID = '[[client_id]]'  // 应用名称: [[app_name]]
     wx.BaaS.init(clientID)
   }
 })

@@ -39,7 +39,7 @@ App({
   onLaunch() {
     // 引入 SDK
     require('./sdk-v{{ book.latestVersionBaidu }}')
-     let clientID = '[[client_id]]'
+     let clientID = '[[client_id]]'  // 应用名称: [[app_name]]
      swan.BaaS.init(clientID)
   }
 })

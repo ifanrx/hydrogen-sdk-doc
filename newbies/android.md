@@ -65,7 +65,7 @@ dependencies {
 
 ![复制 clientID](/images/newbies/get-client-id.png)
 
-创建文件 `app/config.properties`，填入 `clientId=[[client_id]]`
+创建文件 `app/config.properties`，填入 `clientId=[[client_id]]` （应用名称: [[app_name]]）
 
 ### 使用 `Android SDK` 获取书籍列表
 

@@ -92,7 +92,7 @@ App({
     require('./sdk-alipay.js')
 
     // 初始化 SDK
-    let clientID = '[[client_id]]'
+    let clientID = '[[client_id]]'  // 应用名称: [[app_name]]
     my.BaaS.init(clientID)
   }
 })

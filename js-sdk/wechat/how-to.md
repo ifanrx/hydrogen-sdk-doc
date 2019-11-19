@@ -53,7 +53,7 @@ App({
     //让插件帮助完成登录、支付等功能
     wx.BaaS.wxExtend(wx.login, wx.getUserInfo, wx.requestPayment)
 
-    let clientID = '[[client_id]]'
+    let clientID = '[[client_id]]'  // 应用名称: [[app_name]]
     wx.BaaS.init(clientID)
   }
 })

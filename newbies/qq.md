@@ -91,7 +91,7 @@ App({
   onLaunch() {
     // 引入 SDK
     require('./sdk-qq.{{ book.latestVersionQQ }}.js')
-    let clientID = '[[client_id]]'
+    let clientID = '[[client_id]]'  // 应用名称: [[app_name]]
     qq.BaaS.init(clientID)
   }
 })
