@@ -1,4 +1,23 @@
 {% import "/cloud-function/node-sdk/macro/total_count.md" as totalCount %}
+{% macro modifiableField() %}
+支持更新的字段：
+
+1. `_userprofile` 表所有用户定义字段
+
+2. `nickname`
+
+3. `gender`
+
+4. `country`
+
+5. `province`
+
+6. `city`
+
+7. `language`
+
+8. `avata`
+{% endmacro %}
 
 # 获取用户信息
 
@@ -174,7 +193,9 @@ MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_order']).
 
 ### 更新用户信息
 
-更新用户信息与[数据表更新数据项](./schema/update-record.md)方法基本一致。这里只支持对 _userprofile 表中自定义的字段进行更新。
+更新用户信息与[数据表更新数据项](./schema/update-record.md)方法基本一致。
+
+{{modifiableField()}}
 
 **请求示例**
 
@@ -199,11 +220,12 @@ user.set('age', 30).update().then(res => {
 
 **参数说明**
 
-| 名称      | 类型    |  必填   | 说明 |
-| :-------- | :-------|-----  | :------ |
-| username  | String  | N | 用户名      |
-| email     | String  | N | 邮箱        |
-| password  | String  | N | 密码    |
+| 名称      | 类型    |  必填   | 说明    |
+| :-------- | :------ | :-----  | :------ |
+| username  | String  | N       | 用户名  |
+| email     | String  | N       | 邮箱    |
+| phone     | String  | N       | 手机号  |
+| password  | String  | N       | 密码    |
 
 **示例代码**
 
@@ -213,6 +235,7 @@ const userRecord = MyUser.getWithoutData(userID)
 userRecord.setAccount({
   email: 'foo@gmail.com',
   username: 'bar',
+  phone: '15000000000',
   password: 'baz',
 }).then(res => {
   // success
@@ -229,7 +252,9 @@ userRecord.setAccount({
   "data": {
     "email": "foo@gmail.com",
     "email_verified": false,
-    "username": "bar"
+    "username": "bar",
+    "phone": "15000000000",
+    "phone_verified": false,
   }
 }
 ```
@@ -237,6 +262,8 @@ userRecord.setAccount({
 ## 批量修改用户自定义字段
 
 `BaaS.UserRecord#update(options)`
+
+{{modifiableField()}}
 
 **参数说明**
 
