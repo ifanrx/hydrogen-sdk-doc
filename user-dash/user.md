@@ -83,7 +83,7 @@ axios.get('https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/', {
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v2.0/miniapp/user_profile/{{user_id}}/`
+`GET https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/{{user_id}}/`
 
 其中 `user_id` 即用户 ID
 
@@ -94,7 +94,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v2.0/miniapp/user_profile/36619758/')
+axios.get('https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/36619758/')
 .then(res => {
   console.log(res.data)
 })
@@ -196,7 +196,7 @@ axios.put('https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/', {
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v2.0/miniapp/user/account/:id/`
+`PUT https://cloud.minapp.com/userve/v2.2/miniapp/user/account/:id/`
 
 其中 `:id` 是用户在 `_userprofile` 表中的 `id`。
 
@@ -218,7 +218,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.put('https://cloud.minapp.com/userve/v2.0/miniapp/user/account/70695404/', {
+axios.put('https://cloud.minapp.com/userve/v2.2/miniapp/user/account/70695404/', {
   username: 'pretty_girl'
 }).then(res => {
   console.log(res.data)

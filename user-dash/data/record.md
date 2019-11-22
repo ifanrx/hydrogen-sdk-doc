@@ -110,7 +110,7 @@ https://cloud.minapp.com/userve/v2.2/table/:table_id/record/?order_by=-created_a
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/table/:table_id/record/:record_id/`
+`GET https://cloud.minapp.com/userve/v2.2/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -118,7 +118,7 @@ https://cloud.minapp.com/userve/v2.2/table/:table_id/record/?order_by=-created_a
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/table/:table_id/record/`
+`POST https://cloud.minapp.com/userve/v2.2/table/:table_id/record/`
 
 其中 `:table_id` 需替换为你的数据表 ID
 
@@ -147,7 +147,7 @@ Content-Type: `application/json`
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v1/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/userve/v2.2/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -177,7 +177,7 @@ Content-Type: `application/json`
 
 **接口**
 
-`DELETE https://cloud.minapp.com/userve/v1/table/:table_id/record/:record_id/`
+`DELETE https://cloud.minapp.com/userve/v2.2/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -192,7 +192,7 @@ Content-Type: `application/json`
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v1/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/userve/v2.2/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -280,7 +280,7 @@ Content-Type: `application/json`
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1.8/table/:table_id/record/?where=query`
+`GET https://cloud.minapp.com/userve/v2.2/table/:table_id/record/?where=query`
 
 其中 `:table_id` 需替换为你的数据表 ID，query 为查询条件
 
@@ -297,7 +297,7 @@ Content-Type: `application/json`
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1.8/table/3906/record/',  // 3906 对应 :table_id
+  uri: 'https://cloud.minapp.com/userve/v2.2/table/3906/record/',  // 3906 对应 :table_id
   method: 'GET',
   headers: {
     Authorization: `Bearer ${token}`,
@@ -327,7 +327,7 @@ import requests
 
 
 table_id = ''
-BASE_API = r'https://cloud.minapp.com/userve/v1.8/table/%s/record/' % table_id
+BASE_API = r'https://cloud.minapp.com/userve/v2.2/table/%s/record/' % table_id
 
 TOKEN = ''
 HEADERS = {
@@ -362,7 +362,7 @@ $condition = array(
   'limit' => '10',
   'offset' => '0',
 );
-$url = "https://cloud.minapp.com/userve/v1.8/table/{$table_id}/record/?";
+$url = "https://cloud.minapp.com/userve/v2.2/table/{$table_id}/record/?";
 $url .= http_build_query($condition);
 
 $ch = curl_init();
@@ -394,7 +394,7 @@ curl_close($ch);
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1.8/table/:table_id/record/?expand=pointer,created_by`
+`GET https://cloud.minapp.com/userve/v2.2/table/:table_id/record/?expand=pointer,created_by`
 
 其中 `:table_id` 需替换为你的数据表 ID
 
@@ -441,7 +441,7 @@ curl_close($ch);
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1.8/table/3906/record/',  // 3906 对应 :table_id
+  uri: 'https://cloud.minapp.com/userve/v2.2/table/3906/record/',  // 3906 对应 :table_id
   method: 'GET',
   headers: {
     Authorization: `Bearer ${token}`,
@@ -472,7 +472,7 @@ import requests
 
 
 table_id = ''
-BASE_API = r'https://cloud.minapp.com/userve/v1.8/table/%s/record/' % table_id
+BASE_API = r'https://cloud.minapp.com/userve/v2.2/table/%s/record/' % table_id
 
 TOKEN = ''
 HEADERS = {
@@ -509,7 +509,7 @@ $condition = array(
   'offset' => '0',
   'expand' => 'pointer,created_by'
 );
-$url = "https://cloud.minapp.com/userve/v1.8/table/{$table_id}/record/?";
+$url = "https://cloud.minapp.com/userve/v2.2/table/{$table_id}/record/?";
 $url .= http_build_query($condition);
 
 $ch = curl_init();
@@ -536,7 +536,7 @@ curl_close($ch);
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1.8/table/:table_id/record/`
+`POST https://cloud.minapp.com/userve/v2.2/table/:table_id/record/`
 
 其中 `:table_id` 需替换为你的数据表 ID
 
@@ -550,7 +550,7 @@ curl_close($ch);
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1.8/table/3906/record/',  // 3906 对应 :table_id
+  uri: 'https://cloud.minapp.com/userve/v2.2/table/3906/record/',  // 3906 对应 :table_id
   method: 'POST',
   headers: {
     Authorization: `Bearer ${token}`,
@@ -577,7 +577,7 @@ $table_id = 1;
 $param = array(
   'pointer' => '5a2fa9b008443e59e0e67889'
 );
-$url = "https://cloud.minapp.com/userve/v1.8/table/{$table_id}/record/";
+$url = "https://cloud.minapp.com/userve/v2.2/table/{$table_id}/record/";
 
 $ch = curl_init();
 $header = array(
@@ -611,7 +611,7 @@ curl_close($ch);
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v1.8/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/userve/v2.2/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -625,7 +625,7 @@ curl_close($ch);
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/userve/v1.8/table/3906/record/5a6ee2ab4a7baa1fc083e3xx',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
+  uri: 'https://cloud.minapp.com/userve/v2.2/table/3906/record/5a6ee2ab4a7baa1fc083e3xx',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
   method: 'PUT',
   headers: {
     Authorization: `Bearer ${token}`,
@@ -646,7 +646,7 @@ request(opt, function(err, res, body) {
 <?php
 $table_id = 1; // 数据表 ID
 $record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
-$url = "https://cloud.minapp.com/userve/v1.8/table/{$table_id}/record/{$record_id}/";
+$url = "https://cloud.minapp.com/userve/v2.2/table/{$table_id}/record/{$record_id}/";
 $param['pointer'] = '5a2fa9b008443e59e0e67889';
 
 $ch = curl_init();

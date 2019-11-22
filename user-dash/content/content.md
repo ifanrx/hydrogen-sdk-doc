@@ -6,7 +6,7 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/content/:content_group_id/text/:text_id/`
+`GET https://cloud.minapp.com/userve/v2.2/content/:content_group_id/text/:text_id/`
 
 其中 `content_group_id` 是内容库的 ID, `text_id` 是内容的 ID
 
@@ -17,7 +17,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/content/1/text/1/').then(res => {
+axios.get('https://cloud.minapp.com/userve/v2.2/content/1/text/1/').then(res => {
   console.log(res.data)
 })
 ```
@@ -88,7 +88,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/content/2.2/text/').then(res => {
+axios.get('https://cloud.minapp.com/userve/v2.2/content/2/text/').then(res => {
   console.log(res.data)
 })
 ```
@@ -130,7 +130,7 @@ axios.get('https://cloud.minapp.com/userve/v1/content/2.2/text/').then(res => {
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/content/:content_group_id/text/`
+`POST https://cloud.minapp.com/userve/v2.2/content/:content_group_id/text/`
 
 **参数说明**
 
@@ -162,7 +162,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/content/1/text/', {"title": "Test Title"}).then(res => {
+axios.post('https://cloud.minapp.com/userve/v2.2/content/1/text/', {"title": "Test Title"}).then(res => {
   console.log(res.data)
 })
 ```
@@ -196,7 +196,7 @@ axios.post('https://cloud.minapp.com/userve/v1/content/1/text/', {"title": "Test
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v1/content/:content_group_id/text/:text_id/`
+`PUT https://cloud.minapp.com/userve/v2.2/content/:content_group_id/text/:text_id/`
 
 
 **代码示例**
@@ -206,7 +206,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.put('https://cloud.minapp.com/userve/v1/content/1/text/2/', {"name": "Test name"}).then(res => {
+axios.put('https://cloud.minapp.com/userve/v2.2/content/1/text/2/', {"name": "Test name"}).then(res => {
   console.log(res.data)
 })
 ```
@@ -235,7 +235,7 @@ axios.put('https://cloud.minapp.com/userve/v1/content/1/text/2/', {"name": "Test
 
 **接口**
 
-`DELETE https://cloud.minapp.com/userve/v1/content/:content_group_id/text/:text_id/`
+`DELETE https://cloud.minapp.com/userve/v2.2/content/:content_group_id/text/:text_id/`
 
 
 **代码示例**
@@ -245,7 +245,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.delete('https://cloud.minapp.com/userve/v1/content/1/text/1/').then(res => {
+axios.delete('https://cloud.minapp.com/userve/v2.2/content/1/text/1/').then(res => {
   console.log(res.data)
 })
 ```

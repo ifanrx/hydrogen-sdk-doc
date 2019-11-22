@@ -4,7 +4,7 @@
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/table/`
+`POST https://cloud.minapp.com/userve/v1.8/table/`
 
 **提交参数**
 
@@ -125,7 +125,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/table/', {
+axios.post('https://cloud.minapp.com/userve/v1.8/table/', {
   name: 'Table',
   schema: {
     fields: [
@@ -222,7 +222,7 @@ axios.post('https://cloud.minapp.com/userve/v1/table/', {
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/table/:table_id/`
+`GET https://cloud.minapp.com/userve/v1.8/table/:table_id/`
 
 **代码示例**
 
@@ -231,7 +231,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/table/1/').then(res => {
+axios.get('https://cloud.minapp.com/userve/v1.8/table/1/').then(res => {
   console.log(res.data)
 })
 ```
@@ -276,13 +276,13 @@ axios.get('https://cloud.minapp.com/userve/v1/table/1/').then(res => {
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/table/`
+`GET https://cloud.minapp.com/userve/v1.8/table/`
 
 **提交参数**
 
 - name 支持对数据表名的等值查询
 
-`https://cloud.minapp.com/userve/v1/table/?name=Table`
+`https://cloud.minapp.com/userve/v1.8/table/?name=Table`
 
 **代码示例**
 
@@ -291,7 +291,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/table/', {
+axios.get('https://cloud.minapp.com/userve/v1.8/table/', {
   params: {
     name: 'test',
   }
@@ -351,7 +351,7 @@ axios.get('https://cloud.minapp.com/userve/v1/table/', {
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v1/table/:table_id/`
+`PUT https://cloud.minapp.com/userve/v1.8/table/:table_id/`
 
 > **info**
 > 数据表更新接口支持一次更新一个或多个字段
@@ -363,7 +363,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.put('https://cloud.minapp.com/userve/v1/table/1/', {
+axios.put('https://cloud.minapp.com/userve/v1.8/table/1/', {
   name: 'table'
 }).then(res => {
   console.log(res.data)
@@ -411,7 +411,7 @@ axios.put('https://cloud.minapp.com/userve/v1/table/1/', {
 
 **接口**
 
-`DELETE https://cloud.minapp.com/userve/v1/table/:table_id/`
+`DELETE https://cloud.minapp.com/userve/v1.8/table/:table_id/`
 
 **代码示例**
 
@@ -420,7 +420,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.delete('https://cloud.minapp.com/userve/v1/table/1/').then(res => {
+axios.delete('https://cloud.minapp.com/userve/v1.8/table/1/').then(res => {
   console.log(res.data)
 })
 ```
