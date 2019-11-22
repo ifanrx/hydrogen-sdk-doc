@@ -4,7 +4,7 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/content/:content_group_id/`
+`GET https://cloud.minapp.com/userve/v2.2/content/:content_group_id/`
 
 其中 `content_group_id` 是内容库的 ID
 
@@ -15,7 +15,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/content/1/').then(res => {
+axios.get('https://cloud.minapp.com/userve/v2.2/content/1/').then(res => {
   console.log(res.data)
 })
 ```
@@ -27,6 +27,7 @@ axios.get('https://cloud.minapp.com/userve/v1/content/1/').then(res => {
   "id": 1,
   "name": "内容库",
   "acl_gids": [],
+  "anonymous_read": true,
   "created_at": 1489137188,
   "updated_at": 1495769882
 }
@@ -92,6 +93,7 @@ axios.get('https://cloud.minapp.com/userve/v2.2/content/',{
       "id": 1,
       "name": "内容库1",
       "acl_gids": [],
+      "anonymous_read": false,
       "created_at": 1489137188,
       "updated_at": 1495769882
     }
@@ -103,7 +105,7 @@ axios.get('https://cloud.minapp.com/userve/v2.2/content/',{
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/content/`
+`POST https://cloud.minapp.com/userve/v2.2/content/`
 
 **参数说明**
 
@@ -113,6 +115,7 @@ Content-Type: `application/json`
 | :------- | :-----------  | :--- | :--- |
 | name     | String        |  Y   | 内容库名称 |
 | acl_gids | Integer Array |  N   | 用户的访问权限，其内为分组 ID |
+| anonymous_read | Boolean | N | 是否允许匿名读 |
 
 **代码示例**
 
@@ -121,7 +124,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/content/', {
+axios.post('https://cloud.minapp.com/userve/v2.2/content/', {
   "name": "Content Group",
   "acl_gids": [1, 2]
 }).then(res => {
@@ -152,7 +155,7 @@ axios.post('https://cloud.minapp.com/userve/v1/content/', {
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v1/content/:content_group_id/`
+`PUT https://cloud.minapp.com/userve/v2.2/content/:content_group_id/`
 
 
 **代码示例**
@@ -162,7 +165,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.put('https://cloud.minapp.com/userve/v1/content/2/', {
+axios.put('https://cloud.minapp.com/userve/v2.2/content/2/', {
   "name": "Test Group"
 }).then(res => {
   console.log(res.data)
@@ -176,6 +179,7 @@ axios.put('https://cloud.minapp.com/userve/v1/content/2/', {
   "id": 2,
   "name": "Test Group",
   "acl_gids": [1, 2],
+  "anonymous_read": false,
   "created_at": 1489137188,
   "updated_at": 1495769882
 }
@@ -192,7 +196,7 @@ axios.put('https://cloud.minapp.com/userve/v1/content/2/', {
 
 **接口**
 
-`DELETE https://cloud.minapp.com/userve/v1/content/:content_group_id/`
+`DELETE https://cloud.minapp.com/userve/v2.2/content/:content_group_id/`
 
 
 **代码示例**
@@ -202,7 +206,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.delete('https://cloud.minapp.com/userve/v1/content/2/').then(res => {
+axios.delete('https://cloud.minapp.com/userve/v2.2/content/2/').then(res => {
   console.log(res.data)
 })
 ```

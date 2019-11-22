@@ -4,7 +4,7 @@
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/file-category/`
+`POST https://cloud.minapp.com/userve/v2.2/file-category/`
 
 **参数说明**
 
@@ -21,7 +21,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/file-category/', {name: 'Category'}).then(res => {
+axios.post('https://cloud.minapp.com/userve/v2.2/file-category/', {name: 'Category'}).then(res => {
   console.log(res.data)
 })
 ```
@@ -35,7 +35,7 @@ axios.post('https://cloud.minapp.com/userve/v1/file-category/', {name: 'Category
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/file-category/:category_id/`
+`GET https://cloud.minapp.com/userve/v2.2/file-category/:category_id/`
 
 其中 `:category_id` 需替换为你的文件分类 ID
 
@@ -46,7 +46,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d2a78/').then(res => {
+axios.get('https://cloud.minapp.com/userve/v2.2/file-category/5a1bb2ed7026d950ca7d2a78/').then(res => {
   console.log(res.data)
 })
 ```
@@ -136,7 +136,7 @@ axios.get('https://cloud.minapp.com/userve/v2.2/file-category/').then(res => {
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v1/file-category/:category_id/`
+`PUT https://cloud.minapp.com/userve/v2.2/file-category/:category_id/`
 
 其中 `:category_id` 需替换为你的文件分类 ID
 
@@ -147,7 +147,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.put('https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d2a78/', {name: 'Category'}).then(res => {
+axios.put('https://cloud.minapp.com/userve/v2.2/file-category/5a1bb2ed7026d950ca7d2a78/', {name: 'Category'}).then(res => {
   console.log(res.data)
 })
 ```
@@ -172,7 +172,7 @@ axios.put('https://cloud.minapp.com/userve/v1/file-category/5a1bb2ed7026d950ca7d
 
 **接口**
 
-`DELETE https://cloud.minapp.com/userve/v1/file-category/:category_id/`
+`DELETE https://cloud.minapp.com/userve/v2.2/file-category/:category_id/`
 
 其中 `:category_id` 需替换为你的文件分类 ID
 
@@ -183,7 +183,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.delete('https://cloud.minapp.com/userve/v1/file-category/5a1ba9c1fff1d651135e5ff1/').then(res => {
+axios.delete('https://cloud.minapp.com/userve/v2.2/file-category/5a1ba9c1fff1d651135e5ff1/').then(res => {
   console.log(res.data)
 })
 ```

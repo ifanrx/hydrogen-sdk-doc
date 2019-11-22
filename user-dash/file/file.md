@@ -4,7 +4,7 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/file/:file_id/`
+`GET https://cloud.minapp.com/userve/v2.2/file/:file_id/`
 
 其中 `:file_id` 需替换为你的文件 ID
 
@@ -15,7 +15,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/file/5a1ba9c1fff1d651135e5ff1/').then(res => {
+axios.get('https://cloud.minapp.com/userve/v2.2/file/5a1ba9c1fff1d651135e5ff1/').then(res => {
   console.log(res.data)
 })
 ```
@@ -93,7 +93,7 @@ axios.get('https://cloud.minapp.com/userve/v2.2/file/', {
 
 **接口**
 
-`DELETE https://cloud.minapp.com/userve/v1/file/:file_id/`
+`DELETE https://cloud.minapp.com/userve/v2.2/file/:file_id/`
 
 其中 `:file_id` 需替换为你的文件 ID
 
@@ -104,7 +104,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.delete('https://cloud.minapp.com/userve/v1/file/5a1ba9c1fff1d651135e5ff1/').then(res => {
+axios.delete('https://cloud.minapp.com/userve/v2.2/file/5a1ba9c1fff1d651135e5ff1/').then(res => {
   console.log(res.data)
 })
 ```
@@ -117,7 +117,7 @@ axios.delete('https://cloud.minapp.com/userve/v1/file/5a1ba9c1fff1d651135e5ff1/'
 
 **接口**
 
-`DELETE https://cloud.minapp.com/userve/v1/file/?id__in=:file1_id,:file2_id`
+`DELETE https://cloud.minapp.com/userve/v2.2/file/?id__in=:file1_id,:file2_id`
 
 **代码示例**
 
@@ -126,7 +126,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.delete('https://cloud.minapp.com/userve/v1/file/', {
+axios.delete('https://cloud.minapp.com/userve/v2.2/file/', {
   params: {
     id__in: '5a1ba9c1fff1d651135e5ff1,59ca3d275f281f58523fc47a'
   }

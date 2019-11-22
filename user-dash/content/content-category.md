@@ -4,7 +4,7 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/content/:content_group_id/category/:category_id/`
+`GET https://cloud.minapp.com/userve/v2.2/content/:content_group_id/category/:category_id/`
 
 其中 `content_group_id` 是内容库的 ID, `category_id` 是内容分类的 ID
 
@@ -15,7 +15,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/content/1/category/1/').then(res => {
+axios.get('https://cloud.minapp.com/userve/v2.2/content/1/category/1/').then(res => {
   console.log(res.data)
 })
 ```
@@ -153,7 +153,7 @@ axios.get('https://cloud.minapp.com/userve/v2.2/content/1/category/').then(res =
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/content/:content_group_id/category/`
+`POST https://cloud.minapp.com/userve/v2.2/content/:content_group_id/category/`
 
 **参数说明**
 
@@ -174,7 +174,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/content/1/category/', {"name": "分类1",}).then(res => {
+axios.post('https://cloud.minapp.com/userve/v2.2/content/1/category/', {"name": "分类1",}).then(res => {
   console.log(res.data)
 })
 ```
@@ -203,7 +203,7 @@ axios.post('https://cloud.minapp.com/userve/v1/content/1/category/', {"name": "�
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v1/content/:content_group_id/category/:category_id/`
+`PUT https://cloud.minapp.com/userve/v2.2/content/:content_group_id/category/:category_id/`
 
 
 **代码示例**
@@ -213,7 +213,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.put('https://cloud.minapp.com/userve/v1/content/1/category/3/', {"name": "分类1",}).then(res => {
+axios.put('https://cloud.minapp.com/userve/v2.2/content/1/category/3/', {"name": "分类1",}).then(res => {
   console.log(res.data)
 })
 ```
@@ -241,7 +241,7 @@ axios.put('https://cloud.minapp.com/userve/v1/content/1/category/3/', {"name": "
 
 **接口**
 
-`DELETE https://cloud.minapp.com/userve/v1/content/:content_group_id/category/:category_id/`
+`DELETE https://cloud.minapp.com/userve/v2.2/content/:content_group_id/category/:category_id/`
 
 
 **代码示例**
@@ -251,7 +251,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.delete('https://cloud.minapp.com/userve/v1/content/1/category/1/').then(res => {
+axios.delete('https://cloud.minapp.com/userve/v2.2/content/1/category/1/').then(res => {
   console.log(res.data)
 })
 ```
