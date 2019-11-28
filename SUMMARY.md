@@ -153,6 +153,7 @@
     * [查询异步数据库操作](android-sdk/async-job.md)
     * [安装 sdk](android-sdk/install.md)
     * [demo 的编译和安装](android-sdk/demo.md)
+    * [获取服务器时间](android-sdk/server-date.md)
 
 ----
 
