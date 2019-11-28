@@ -19,6 +19,7 @@
 * [云函数](./cloud-function.md)
 * [支付](./payment.md)
 * [短信服务](./sms.md)
+* [工具](./utils.md)
 
 ## 如何构造 HTTP 请求
 
@@ -34,7 +35,7 @@
 ![server-url](/web-api/image/server-url.jpg)
 
 ##### 使用方式
-Web API 形如 `https://{{服务器域名}}/hserve/v2.0/idp/pay/order/` 
+Web API 形如 `https://{{服务器域名}}/hserve/v2.0/idp/pay/order/`
 
 (eg: `https://abcd11223344daeabcd.myminapp.com/hserve/v2.0/idp/pay/order/`)
 
@@ -77,7 +78,7 @@ https://abcd11223344daeabcd.myminapp.com/hserve/v1/content/category/?content_gro
 ```
 
 **有一些 WEB API 除了需要知道 `ClientID` 外，还需要知道请求来自哪一名用户(如修改用户信息，应用就需要知道修改的是哪一个用户的信息)，`Access Token` 能满足应用的这个需求**
- 
+
 ### Access Token
 用于应用中用户的鉴权
 
