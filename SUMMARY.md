@@ -183,6 +183,7 @@
         * [订单查询](ios-sdk/payment/order.md)
     * [调用云函数](ios-sdk/invoke-function.md)
     * [短信验证码](ios-sdk/sms.md)
+    * [获取服务器时间](ios-sdk/server-data.md)
     * [错误码和错误对象](ios-sdk/error-code.md)
     * [iOS-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
     * [SwiftUI-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)

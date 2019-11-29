@@ -72,38 +72,3 @@ BaaS.isDebug = true
 BaaS.isDebug = YES;
 ```
 {% endtabs %}
-
-# 获取服务器时间
-
-获取当前服务器时间
-
-{% tabs swift4="Swift", oc4="Objective-C" %}
-{% content "swift4" %}
-```
-BaaS.getServerTime() { result, error in
-                    
-}
-```
-{% content "oc4" %}
-```
-[BaaS getServerTime:^(NSDictionary * _Nullable result, NSError * _Nullable error) {
-
-}];
-```
-{% endtabs %}
-
-**返回参数说明**
-
-| 参数   | 类型                   | 描述 |
-| :---- | :--------------------- | :-- |
-| result  | Dictionary            | 包含时间的结果，具体如下 **result** 样例|
-| error | NSError                 | 错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md) |
-
-**result**
-
-```json
-{
-  "time": 2019-11-28T16:39:12.732361+08:00
-}
-```
-
