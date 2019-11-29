@@ -29,7 +29,7 @@ Subscription:
 | template_id   | string | 是   | 模版 id |
 | subscription_type  | string | 是   | 订阅类型，目前只支持 `once`（一次性订阅）|
 
-上报模板消息卡片点击事件，只需要在 `app.js` 的 `onShow` 中做一个埋点，其他的事情由 SDK 自动完成。
+用户发生点击行为或者发起支付回调后，调起订阅消息界面，其他的事情由 SDK 自动完成。
 
 **示例代码**
 
@@ -44,7 +44,7 @@ wx.requestSubscribeMessage({
         subscription_type: 'once',
       })
     }
-    app.BaaS.subscribeMessage({subscription}).then(res => {
+    wx.BaaS.subscribeMessage({subscription}).then(res => {
       // success
     }, err => {
       // fail

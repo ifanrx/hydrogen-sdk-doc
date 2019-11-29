@@ -10,7 +10,7 @@
 通过该接口可以获取小程序任意页面的二维码，扫描该二维码可以直接进入小程序对应的页面。目前支持生成小程序码和小程序二维码。
 
 > **info**
-> 调用该接口前，请确保在 [知晓云管理后台-小程序设置页面-SDK 功能设置](https://cloud.minapp.com/admin/profile/) 中已开启相应权限。
+> 调用该接口前，请确保在 [知晓云管理后台-小程序设置页面-SDK 功能设置](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/info/) 中已开启相应权限。
 
 
 ## 参数说明

@@ -1,3 +1,24 @@
+{% import "/cloud-function/node-sdk/macro/total_count.md" as totalCount %}
+{% macro modifiableField() %}
+支持更新的字段：
+
+1. `_userprofile` 表所有用户定义字段
+
+2. `nickname`
+
+3. `gender`
+
+4. `country`
+
+5. `province`
+
+6. `city`
+
+7. `language`
+
+8. `avata`
+{% endmacro %}
+
 # 获取用户信息
 
 `let MyUser = new BaaS.User()`
@@ -172,7 +193,9 @@ MyUser.expand(['pointer_test_oder']).select(['nickname', 'pointer_test_order']).
 
 ### 更新用户信息
 
-更新用户信息与[数据表更新数据项](./schema/update-record.md)方法基本一致。这里只支持对 _userprofile 表中自定义的字段进行更新。
+更新用户信息与[数据表更新数据项](./schema/update-record.md)方法基本一致。
+
+{{modifiableField()}}
 
 **请求示例**
 
@@ -197,11 +220,12 @@ user.set('age', 30).update().then(res => {
 
 **参数说明**
 
-| 名称      | 类型    |  必填   | 说明 |
-| :-------- | :-------|-----  | :------ |
-| username  | String  | N | 用户名      |
-| email     | String  | N | 邮箱        |
-| password  | String  | N | 密码    |
+| 名称      | 类型    |  必填   | 说明    |
+| :-------- | :------ | :-----  | :------ |
+| username  | String  | N       | 用户名  |
+| email     | String  | N       | 邮箱    |
+| phone     | String  | N       | 手机号  |
+| password  | String  | N       | 密码    |
 
 **示例代码**
 
@@ -211,6 +235,7 @@ const userRecord = MyUser.getWithoutData(userID)
 userRecord.setAccount({
   email: 'foo@gmail.com',
   username: 'bar',
+  phone: '15000000000',
   password: 'baz',
 }).then(res => {
   // success
@@ -227,12 +252,29 @@ userRecord.setAccount({
   "data": {
     "email": "foo@gmail.com",
     "email_verified": false,
-    "username": "bar"
+    "username": "bar",
+    "phone": "15000000000",
+    "phone_verified": false,
   }
 }
 ```
 
 ## 批量修改用户自定义字段
+
+`BaaS.UserRecord#update(options)`
+
+{{modifiableField()}}
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| enableTrigger | boolean |  否  | true | 是否触发触发器 |
+| withCount     | boolean |  否  | true | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
 
 通过设置自定义查询条件 Query，将符合条件的用户自定义字段进行批量更新操作
 
@@ -472,7 +514,50 @@ User.delete(userID).then(res => {
 }
 ```
 
+## 获取符合筛选条件的用户总数
+
+`BaaS.User#count()`
+
+
+{% tabs getUserCountAsync="async/await", getUserCountPromise="promise" %}
+{% content "getUserCountAsync" %}
+```js
+let MyUser = new BaaS.User()
+let query = new BaaS.Query()
+query.contains('nickname', 'like')
+let num = await MyUser.setQuery(query).count()
+console.log(num)  // 10
+```
+
+{% content "getUserCountPromise" %}
+```js
+let MyUser = new BaaS.User()
+let query = new BaaS.Query()
+query.contains('nickname', 'like')
+MyUser.setQuery(query).count().then(num => {
+  // success
+  console.log(num)  // 10
+  callback(null, res)
+}, err => {
+  // err
+  callback(err)
+})
+```
+{% endtabs %}
+
 ## 查询，获取用户列表
+
+`BaaS.User#find(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| withCount     | boolean |  否  | true | 是否返回 total_count |
+
+{{totalCount.withCountTips()}}
 
 用户查询与[数据表查询](./schema/query.md)方法一致
 

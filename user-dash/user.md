@@ -4,22 +4,29 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v2.0/miniapp/user_profile/`
+`GET https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/`
+
+> **info**
+> 该接口支持通过参数 return_total_count 指定是否返回查询对象总数，以协助不关心对象总数只关心查询结果列表的开发者提升接口响应速度。
+同时，从 v2.2 版本开始该接口默认不返回查询对象总数，欲获取总数的开发者需要显式指定 return_total_count 参数。
 
 **参数说明**
 
 | 参数        | 类型   | 必填 | 说明 |
 | :--------- | :----- | :-- | :-- |
-| created_at | String | N   | 用户创建的时间，值为时间戳。查询创建时间大于等于 2017-01-01 的用户 `created_at__gte=1483228800`，查询创建时间小于等于 2017-01-01 的用户：`created_at__lte=1483228800` |
-| gender     | Number | N   | 户的性别，其中 `1` 表示男，`2` 表示女 |
-| group      | String | N   | 给定用户组 ID 查询在用户组下的用户列表。只支持 `in` 查询：`group__in=258,360`|
-| limit      | Number | N   | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
-| nickname   | String | N   | 用户的微信昵称，支持等值查询 `nickname=Tom`, 模糊查询 `nickname__contains=Tom` |
-| offset     | Number | N   | 设置返回资源的起始偏移值，默认为 0 |
-| openid     | String | N   | 用户的 OpenID |
-| order_by   | String | N   | 排序（支持 `created_at` 进行排序） |
-| unionid    | String | N   | 用户的 UnionID |
-| user_id    | String | N   | 用户 ID (对应 _userprofile 表中的 id 字段) |
+| where    | String | N   | 查询语句，参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码 |
+| order_by | String | N   | 以下字段不支持排序：gender, country, province, city, language |
+| limit    | Number | N   | 限制返回资源的个数，默认为 20 条，最大可设置为 1000 |
+| offset   | Number | N   | 设置返回资源的起始偏移值，默认为 0 |
+| return_total_count   | Number | N   | 返回结果 meta 中是否返回 total_count，1 为返回，0 为不返回，默认不返回 |
+
+若开发者只需要获取对象总数，则可以通过设置 `limit=1` 以及 `return_total_count=1` 来达到该效果，total_count 可从返回的 meta 中获取
+
+请求示例：
+
+```
+https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/?limit=1&return_total_count=1
+```
 
 **代码示例**
 
@@ -28,12 +35,13 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v2.0/miniapp/user_profile/', {
+axios.get('https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/', {
   params: {
     nickname__contains: 'Tom',
     gender: 1,
     created_at__gt: 1483228800,
     order_by: '-created_at',
+    return_total_count: 1
   }
 }).then(res => {
   console.log(res.data)
@@ -75,7 +83,7 @@ axios.get('https://cloud.minapp.com/userve/v2.0/miniapp/user_profile/', {
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v2.0/miniapp/user_profile/{{user_id}}/`
+`GET https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/{{user_id}}/`
 
 其中 `user_id` 即用户 ID
 
@@ -86,7 +94,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v2.0/miniapp/user_profile/36619758/')
+axios.get('https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/36619758/')
 .then(res => {
   console.log(res.data)
 })
@@ -114,7 +122,11 @@ axios.get('https://cloud.minapp.com/userve/v2.0/miniapp/user_profile/36619758/')
 
 ## 批量修改自定义字段
 
-`PUT https://cloud.minapp.com/userve/v2.1/miniapp/user_profile/`
+`PUT https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/`
+
+> **info**
+> 该接口支持通过参数 return_total_count 指定是否返回待更新对象总数，以协助不关心对象总数只关心数据更新结果的开发者提升接口响应速度。
+同时，从 v2.2 版本开始该接口默认不返回待更新对象总数，欲获取总数的开发者需要显式指定 return_total_count 参数。
 
 **Query 参数说明**
 
@@ -123,6 +135,7 @@ axios.get('https://cloud.minapp.com/userve/v2.0/miniapp/user_profile/36619758/')
 | where    | String | N   | 查询语句，参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码 |
 | limit    | Number | N   | 限制单次请求更新的用户数，默认为 20 条，最大可设置为 1000 |
 | offset   | Number | N   | 设置更新的偏移值，默认为 0 |
+| return_total_count   | Number | N   | 返回结果中是否包含 total_count，1 为包含，0 为不包含，默认不包含 |
 
 > **info**
 > where 字段的详细说明请查看：[数据模块：数据操作](https://doc.minapp.com/user-dash/data/record.html#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE)。
@@ -140,7 +153,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.put('https://cloud.minapp.com/userve/v2.1/miniapp/user_profile/', {
+axios.put('https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/', {
   test: 'test'
 }).then(res => {
   console.log(res.data)
@@ -183,7 +196,7 @@ axios.put('https://cloud.minapp.com/userve/v2.1/miniapp/user_profile/', {
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v2.0/miniapp/user/account/:id/`
+`PUT https://cloud.minapp.com/userve/v2.2/miniapp/user/account/:id/`
 
 其中 `:id` 是用户在 `_userprofile` 表中的 `id`。
 
@@ -191,12 +204,17 @@ axios.put('https://cloud.minapp.com/userve/v2.1/miniapp/user_profile/', {
 
 Content-Type: `application/json`
 
-| 参数    | 类型   | 必填 | 说明 |
-| :----- | :----- | :-- | :-- |
-| username   | String | N   | 用户名，不区分大小写 |
-| email | String | N   | 邮箱，不区分大小写 |
-| password | String | N | 用户密码，新用户密码若 new_password 不为空则必填 |
-| new_password | String | N | 新用户密码 |
+| 参数          | 类型   | 必填 | 说明 |
+| :----------- | :----- | :-- | :-- |
+| username     | string | N   | 用户名，不区分大小写 |
+| email        | string | N   | 邮箱，不区分大小写 |
+| new_password | string | N   | 设置用户密码 |
+| phone        | string | N   | 新的手机号 |
+
+如果需要为用户强行**修改密码**, 传入 `new_password` 即可。
+当设置新的手机号时，`phone_verified` 重置为 `false`，需要重新通过验证码进行验证。
+
+> 如想重置用户的 email/username/phone，可以将 email/username/phone 的值设置为 null。
 
 **代码示例**
 
@@ -205,7 +223,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.put('https://cloud.minapp.com/userve/v2.0/miniapp/user/account/70695404/', {
+axios.put('https://cloud.minapp.com/userve/v2.2/miniapp/user/account/70695404/', {
   username: 'pretty_girl'
 }).then(res => {
   console.log(res.data)
@@ -219,17 +237,22 @@ axios.put('https://cloud.minapp.com/userve/v2.0/miniapp/user/account/70695404/',
 {
   "email": "pretty_girl@fake.com",
   "email_verified": false,
-  "username": "pretty_girl"
+  "username": "pretty_girl",
+  "phone": "13800138000",
+  "phone_verified": true
 }
 ```
 
 **返回参数说明**
 
-| 参数    | 类型   | 说明 |
-| :----- | :----- | :-- |
-| username   | String | 用户名，不区分大小写 |
-| email | String | 邮箱，不区分大小写 |
-| email_verified | Boolean | 用户邮箱是否已激活 |
+| 参数          | 类型      | 说明 |
+| :------------ | :------- | :-- |
+| username      | string   | 用户名，不区分大小写 |
+| email         | string   | 邮箱，不区分大小写 |
+| email_verified | boolean  | 用户邮箱是否已激活 |
+| phone         | string   | 手机号码|
+| phone_verified | boolean  | 手机号码是否已经验证|
+
 
 **状态码说明**
 

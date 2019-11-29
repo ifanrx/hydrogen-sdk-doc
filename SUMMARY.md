@@ -114,6 +114,7 @@
     * [TypeScript/自动补全](js-sdk/typescript.md)
     * [调用云函数](js-sdk/invoke-function.md)
     * [获取异步任务结果](js-sdk/async-job.md)
+    * [获取服务器时间](js-sdk/server-date.md)
     * [短信验证码](js-sdk/sms.md)
     * [错误码和 HError 对象](js-sdk/error-code.md)
     * [本地存储](js-sdk/local-storage.md)
@@ -152,6 +153,7 @@
     * [查询异步数据库操作](android-sdk/async-job.md)
     * [安装 sdk](android-sdk/install.md)
     * [demo 的编译和安装](android-sdk/demo.md)
+    * [获取服务器时间](android-sdk/server-date.md)
 
 ----
 
@@ -184,7 +186,7 @@
     * [错误码和错误对象](ios-sdk/error-code.md)
     * [iOS-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
     * [SwiftUI-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)
-        
+
 ----
 
 * [知晓云开放 API](open-api/README.md)
@@ -327,6 +329,7 @@
     * [错误码和 HError 对象](cloud-function/node-sdk/error.md)
     * [公众号发送红包](cloud-function/node-sdk/red-pack.md)
     * [获取异步任务结果](cloud-function/node-sdk/async-job.md)
+    * [获取服务器时间](cloud-function/node-sdk/server-date.md)
 
 ----
 

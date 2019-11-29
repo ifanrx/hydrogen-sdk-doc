@@ -43,11 +43,11 @@ import MinCloud
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
-BaaS.register(clientID: "f86c1******45d1152a1", serverURLString: "com.example")
+BaaS.register(clientID: "[[client_id]]", serverURLString: "com.example")
 ```
 {% content "oc1" %}
 ```
-[BaaS registerWithClientID:@"f86c1******45d1152a1" serverURLString:@"com.example"];
+[BaaS registerWithClientID:@"[[client_id]]" serverURLString:@"com.example"];
 ```
 {% endtabs %}
 

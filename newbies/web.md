@@ -23,14 +23,14 @@
 > 如果注册或邮件激活失败，请开发者根据失败提示进行后续操作。如果开发者认为是服务提供方方面导致的失败，请邮件联系 `mincloud@ifanr.com`，我们会第一时间处理您的邮件。
 
 ## 配置安全域名
-进入知晓云 [设置页面](https://cloud.minapp.com/dashboard/#/app/settings/app/) 配置安全域名，只有在指定域名下，才能正常的请求知晓云数据：
+进入知晓云 [设置页面](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/app/) 配置安全域名，只有在指定域名下，才能正常的请求知晓云数据：
 ![配置安全域名](/images/newbies/web-sdk-secure-domain.png)
 
 假设我们将 web 应用架设在 `http://localhost:8080/`，则在安全域名配置框中输入 `http://localhost:8080` 即可
 
 ## 第一个接入知晓云的 Web 应用
 
-下面，我们以[**我的书架** demo](https://github.com/ifanrx/hydrogen-demo/tree/master/web-sdk-demo) 为例，讲解如何在 web 中接入知晓云 SDK。你可以[点击这里体验示例应用](https://codesandbox.io/s/zq3q291wo3)（需要先在 dashboard 中[配置相应安全域名](https://cloud.minapp.com/dashboard/#/app/settings/sdk/)，比如对于此示例应用需填入 `https://zq3q291wo3.csb.app`，并在示例应用中填写 ClientID，ClientID 可在 dashboard [设置-应用页](https://cloud.minapp.com/dashboard/#/app/settings/info/)中获取）。
+下面，我们以[**我的书架** demo](https://github.com/ifanrx/hydrogen-demo/tree/master/web-sdk-demo) 为例，讲解如何在 web 中接入知晓云 SDK。你可以[点击这里体验示例应用](https://codesandbox.io/s/zq3q291wo3)（需要先在 dashboard 中[配置相应安全域名](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/sdk/)，比如对于此示例应用需填入 `https://zq3q291wo3.csb.app`，并在示例应用中填写 ClientID，ClientID 可在 dashboard [设置-应用页](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/info/)中获取）。
 
 ### 知晓云的初始化配置
 
@@ -55,11 +55,9 @@
 
 通过初始化 [SDK](/js-sdk/download-sdk.md)，知晓云服务可以验证当前的应用是否是有效合法的，只有通过验证的应用才能使用 [SDK](/js-sdk/download-sdk.md) 提供的全部功能。
 
-在知晓云后台 - [**设置模块**](https://cloud.minapp.com/dashboard/#/app/settings/app/)，可获取要接入知晓云服务的 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
+在知晓云后台 - [**设置模块**](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/app/)，可获取要接入知晓云服务的 `ClientID`, 按照如下方式进行 [SDK](/js-sdk/download-sdk.md) 初始化:
 
-![复制 clientID](/images/newbies/get-client-id1.jpeg)
-
-![复制 clientID](/images/newbies/get-client-id2.jpeg)
+![复制 clientID](/images/newbies/get-client-id.png)
 
 初次打开 demo，页面会提示输入 clientID，输入 clientID 后就可以初始化 BaaS 对象了，初始化 BaaS 对象的逻辑如下：
 
@@ -164,7 +162,7 @@ handleRegister 代码如下：
       })
 ```
 
-用户登录后，就有权限读取和写入数据了。已注册的用户可以在 [用户列表 - 用户](https://cloud.minapp.com/dashboard/#/app/user/list/)页面看到
+用户登录后，就有权限读取和写入数据了。已注册的用户可以在 [用户列表 - 用户](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]user/list/)页面看到
 
 ### SDK 数据操作接口使用示例
 

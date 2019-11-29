@@ -20,8 +20,7 @@
 ```html
 <html>
   <head>
-    <!-- 其中 client_id 需替换为您应用的 ClientID -->
-    <script src="https://cloud.minapp.com/custom-userdash/auth/<client_id>/"></script>
+    <script src="https://cloud.minapp.com/custom-userdash/auth/[[client_id]]/"></script>
   </head>
   <body>
   </body>

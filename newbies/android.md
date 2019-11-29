@@ -61,11 +61,11 @@ dependencies {
 
 ### 初始化 `Android SDK`
 
-在应用启动时，需要注册知晓云 `clientId`，`clientID` 可在 dashboard [设置-应用页](https://cloud.minapp.com/dashboard/#/app/settings/info/)中获取。
+在应用启动时，需要注册知晓云 `clientId`，`clientID` 可在 dashboard [设置-应用页](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/info/)中获取。
 
 ![复制 clientID](/images/newbies/get-client-id.png)
 
-创建文件 `app/config.properties`，填入 `clientId=你的 clientID`
+创建文件 `app/config.properties`，填入 `clientId=[[client_id]]` （应用名称: [[app_name]]）
 
 ### 使用 `Android SDK` 获取书籍列表
 

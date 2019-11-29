@@ -36,7 +36,7 @@
 
 **接口**
 
-`POST /hserve/v2.0/register/:register-type/`
+`POST /hserve/v2.1/register/:register-type/`
 
 **:register-type** 有两种:
 
@@ -59,10 +59,10 @@ createTableUsername="通过用户名注册" %}
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Content-Type: application/json" \
   -d '{"email":"hegz@qq.com","password":"mbbmb*cb"}' \
-  https://{{服务器域名}}/hserve/v2.0/register/email/
+  https://{{服务器域名}}/hserve/v2.1/register/email/
 ```
 
 {% content "createTableUsername" %}
@@ -78,10 +78,10 @@ curl -X POST \
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Content-Type: application/json" \
   -d '{"username":"hegz","password":"mbbmb*cb"}' \
-  https://{{服务器域名}}/hserve/v2.0/register/username/
+  https://{{服务器域名}}/hserve/v2.1/register/username/
 ```
 
 {% endtabs %}
@@ -105,7 +105,7 @@ curl -X POST \
 
 **接口**
 
-`POST /hserve/v2.0/login/:login-type/`
+`POST /hserve/v2.1/login/:login-type/`
 
 **:login-type** 有两种:
 
@@ -128,10 +128,10 @@ createTableUsernameLogin="通过用户名登陆" %}
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Content-Type: application/json" \
   -d '{"email":"hegz@qq.com","password":"mbbmb*cb"}' \
-  https://{{服务器域名}}/hserve/v2.0/login/email/
+  https://{{服务器域名}}/hserve/v2.1/login/email/
 ```
 
 {% content "createTableUsernameLogin" %}
@@ -147,10 +147,10 @@ curl -X POST \
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Content-Type: application/json" \
   -d '{"username":"hegz","password":"mbbmb*cb"}' \
-  https://{{服务器域名}}/hserve/v2.0/login/username/
+  https://{{服务器域名}}/hserve/v2.1/login/username/
 ```
 
 {% endtabs %}
@@ -174,22 +174,22 @@ curl -X POST \
 
 **接口**
 
-`GET /hserve/v2.0/user/info/:user_id/`
+`GET /hserve/v2.2/user/info/:user_id/`
 
-**:user_id** 为[用户(user)](#user-object)中的 user_id 
+**:user_id** 为[用户(user)](#user-object)中的 user_id
 
 **请求示例**
 
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.0/user/info/72818312393/
+  https://{{服务器域名}}/hserve/v2.2/user/info/72818312393/
 ```
 
 **返回示例**
-```json     
+```json
 {
     "country": "China",
     "avatar": "https://media.ifanrusercontent.com/blablabla.jpg",
@@ -224,16 +224,27 @@ curl -X GET \
 
 **接口**
 
-`GET /hserve/v2.0/user/info/`
+`GET /hserve/v2.2/user/info/`
 
+> **info**
+> 该接口支持通过参数 return_total_count 指定是否返回查询对象总数，以协助不关心对象总数只关心查询结果列表的开发者提升接口响应速度。
+同时，从 v2.2 版本开始该接口默认不返回查询对象总数，欲获取总数的开发者需要显式指定 return_total_count 参数。
+
+若开发者只需要获取对象总数，则可以通过设置 `limit=1` 以及 `return_total_count=1` 来达到该效果，total_count 可从返回的 meta 中获取
+
+请求示例：
+
+```
+https://{{服务器域名}}/hserve/v2.2/user/info/?limit=1&return_total_count=1
+```
 
 **请求示例**
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
-  https://{{服务器域名}}/hserve/v2.0/user/info/
+  https://{{服务器域名}}/hserve/v2.2/user/info/
 ```
 
 **返回示例**
@@ -263,7 +274,7 @@ curl -X GET \
         "total_count": 140,
         "limit": 1,
         "previous": null,
-        "next": "/userve/v2.0/user/info/?limit=1&offset=1",
+        "next": "/userve/v2.2/user/info/?limit=1&offset=1",
         "offset": 0
     }
 }
@@ -288,7 +299,7 @@ curl -X GET \
 **请求示例**
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   https://{{服务器域名}}/hserve/v2.0/user/email-verify/
@@ -320,7 +331,7 @@ curl -X POST \
 **请求示例**
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d "{}" \
@@ -343,11 +354,12 @@ curl -X POST \
 
 
 # 修改用户信息
-可更改密码、用户名、邮箱
+
+可更改密码、用户名、邮箱、手机号
 
 **接口**
 
-`PUT /hserve/v2.0/user/account/`
+`PUT /hserve/v2.1/user/account/`
 
 
 **请求参数**
@@ -356,38 +368,45 @@ curl -X POST \
 | :------------  | :----------- | :---| :--- |
 | email          | string   |  否 | 新的邮箱地址 |
 | username       | string   |  否 | 新的用户名 |
+| phone          | string   |  否 | 新的手机号 |
 | password       | string   |  否 | 旧密码 |
 | new_password   | string   |  否 | 新密码 |
 
-如果选择**修改密码**, 必须同时传入 `password` 和 `new_password`
+如果选择**修改密码**, 必须同时传入 `password` 和 `new_password`。
+当设置新的手机号时，`phone_verified` 重置为 `false`，需要重新通过验证码进行验证。
+
+> 如想重置用户的 email/username/phone，可以将 email/username/phone 的值设置为 null。
 
 **请求示例**
 ```shell
 curl -X PUT \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"password": "oldpassword", "new_password": "new_password"}' \
-  https://{{服务器域名}}/hserve/v2.0/user/account/
+  https://{{服务器域名}}/hserve/v2.1/user/account/
 ```
-
 
 **返回示例**
 ```json
 {
     "email": "hgzchn@qq.com",
     "email_verified": false,
-    "username": "123"
+    "username": "123",
+    "phone": "13800138000",
+    "phone_verified": true
 }
 ```
 
 **返回字段说明**
 
-|       参数     |       类型   | 说明 |
-| :------------ | :----------- | :---| :--- |
+| 参数          |       类型   | 说明 |
+| :------------ | :----------- | :---|
 | email         | string   | 目前的邮箱 |
-| email_verified| boolean  | 邮箱是否已经验证 |
+| email_verified | boolean  | 邮箱是否已经验证 |
 | username      | string   | 目前的用户名 |
+| phone         | string   | 手机号码|
+| phone_verified | boolean  | 手机号码是否已经验证|
 
 **状态码说明**
 
@@ -414,7 +433,7 @@ curl -X PUT \
 **请求示例**
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Content-Type: application/json" \
   -d '{"email":"hgzchn@qq.com"}' \
   https://{{服务器域名}}/hserve/v2.0/user/password/reset/

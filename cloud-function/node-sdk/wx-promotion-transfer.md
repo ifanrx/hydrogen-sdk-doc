@@ -1,3 +1,5 @@
+{% import "./macro/weixin-tenpay.md" as WeixinTenpay %}
+
 # 企业付款
 
 企业付款为企业提供付款至用户零钱的能力，支持通过API接口付款，具体的场景介绍参考[微信企业付款场景介绍](https://pay.weixin.qq.com/wiki/doc/api/tools/mch_pay.php?chapter=14_1)
@@ -14,18 +16,21 @@
 > 使用以下接口时必须根据上述步骤进行配置
 
 
-`BaaS.wxPromotionTransfer({userID, amount, description, checkName, reUserName})`
+`BaaS.wxPromotionTransfer({userID, openid, amount, description, checkName, reUserName, gatewayType})`
 
 ### 参数说明
 
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
-| userID | Number | 用户 ID (对应 _userprofile 表中的 id 字段) |
-| amount | Number | 付款金额 |
+| userID   | Number | 用户 ID (对应 _userprofile 表中的 id 字段) |
+| openid   | string | 【可选】用户在公众号下的 openid（gatewayType 为 `weixin_tenpay_app` 的时候必填）|
+| amount   | Number | 付款金额 |
 | description | String | 付款描述 |
-| checkName | Boolean | 是否检测真实名字 |
-| reUserName | String | 【可选】真实名字（checkName 为 false 时，可不填） |
+| checkName   | Boolean | 是否检测真实名字 |
+| reUserName  | String | 【可选】真实名字（checkName 为 false 时，可不填） |
+| gatewayType | GatewayType | 【可选】微信支付商户类型（默认为微信小程序） |
 
+{{WeixinTenpay.getGatewayType()}}
 
 ### 示例代码
 ```javascript

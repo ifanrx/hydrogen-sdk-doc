@@ -220,13 +220,13 @@
 - 在线发送
 
 {% if apiPrefix == "wx." %}
-在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/wechat-template-message/message/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
+在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]wechat-template-message/message/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
 {% elif apiPrefix == "my." %}
-在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/alipay-template-message/guide/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
+在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]alipay-template-message/guide/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
 {% elif apiPrefix == "qq." %}
-在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/qq-template-message/guide/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
+在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]qq-template-message/guide/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
 {% elif apiPrefix == "swan." %}
-在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/baidu-template-message/guide/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
+在[知晓云控制台 - 知晓推送](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]baidu-template-message/guide/)中在线填写模板消息内容、选择发送用户后直接向其推送模板消息。适用于临时通知或不定期的活动通知等场景。
 {% endif %}
 
 - 触发器发送

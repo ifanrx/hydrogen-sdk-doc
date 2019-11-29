@@ -43,7 +43,7 @@
 
 {{ sdkInit.renderIntoPlatform('wechat') }}
 
-在[知晓云后台 - 我的应用](https://cloud.minapp.com/admin/profile/)页面获取要接入知晓云服务的小程序 ClientID, 按照如下方式进行 SDK 初始化:
+在[知晓云后台 - 我的应用](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/info/)页面获取要接入知晓云服务的小程序 ClientID, 按照如下方式进行 SDK 初始化:
 
 ```js
 //app.js
@@ -53,7 +53,7 @@ App({
     //让插件帮助完成登录、支付等功能
     wx.BaaS.wxExtend(wx.login, wx.getUserInfo, wx.requestPayment)
 
-    let clientID = '知晓云管理后台获取到的 ClientID'
+    let clientID = '[[client_id]]'  // 应用名称: [[app_name]]
     wx.BaaS.init(clientID)
   }
 })
@@ -84,7 +84,7 @@ App({
 
 {{ sdkInit.renderIntoPlatform('wechat') }}
 
-在[知晓云后台 - 我的应用](https://cloud.minapp.com/admin/profile/)页面获取要接入知晓云服务的小程序 ClientID, 按照如下方式进行 SDK 初始化:
+在[知晓云后台 - 我的应用](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/info/)页面获取要接入知晓云服务的小程序 ClientID, 按照如下方式进行 SDK 初始化:
 
 <pre>
 <code class="lang-js">
@@ -94,7 +94,7 @@ App({
   onLaunch() {
     // 引入 SDK
     require('./sdk-v{{ book.latestVersionWechat }}')
-     let clientID = '知晓云管理后台获取到的 ClientID'
+     let clientID = '[[client_id]]'
      wx.BaaS.init(clientID)
   }
 })
@@ -132,7 +132,7 @@ App({
 
 {{ sdkInit.renderIntoPlatform('wechat') }}
 
-在[知晓云后台 - 我的应用](https://cloud.minapp.com/admin/profile/)页面获取要接入知晓云服务的小程序 ClientID, 按照如下方式进行 SDK 初始化:
+在[知晓云后台 - 我的应用](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/info/)页面获取要接入知晓云服务的小程序 ClientID, 按照如下方式进行 SDK 初始化:
 ```js
 // app.js
 
@@ -140,7 +140,7 @@ App({
   onLaunch() {
     // 引入 SDK
     require('minapp-sdk')
-    let clientID = '知晓云管理后台获取到的 ClientID'
+    let clientID = '[[client_id]]'
     wx.BaaS.init(clientID)
   }
 })

@@ -7,7 +7,7 @@
 * 进行重要操作的验证确认等
 
 > **info**
-> SDK 发送短信需要在[知晓云控制台](https://cloud.minapp.com/dashboard/#/app/sms/setting)开通并开启发送短信权限，操作步骤请参考本页面末尾
+> SDK 发送短信需要在[知晓云控制台](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]sms/setting)开通并开启发送短信权限，操作步骤请参考本页面末尾
 
 ## 发送短信验证码
 `BaaS.sendSmsCode({phone, signatureID})`

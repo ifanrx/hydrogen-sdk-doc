@@ -7,7 +7,7 @@
 {% block tips1 %}
 
 > **info**
-> 调用云函数，需要先在控制台创建云函数 [控制台 - 云函数](https://cloud.minapp.com/dashboard/#/app/engine/cloud-function/function/)
+> 调用云函数，需要先在控制台创建云函数 [控制台 - 云函数](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]engine/cloud-function/function/)
 > ![新建云函数](/images/dashboard/cloud-function-add.jpg)
 
 **请求示例**

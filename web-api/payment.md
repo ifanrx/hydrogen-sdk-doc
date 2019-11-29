@@ -2,7 +2,7 @@
 
 **接口**
 
-`GET /hserve/v2.0/idp/pay/order/`
+`GET /hserve/v2.2/idp/pay/order/`
 
 **请求参数**
 
@@ -19,12 +19,12 @@
 **请求示例**
 ```shell
 curl -X GET \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -G \
   --data-urlencode 'status=success' \
-  https://{{服务器域名}}/hserve/v2.0/idp/pay/order/
+  https://{{服务器域名}}/hserve/v2.2/idp/pay/order/
 ```
 **返回参数说明**
 
@@ -46,7 +46,7 @@ curl -X GET \
 {
     "meta": {
         "limit": 20,
-        "next": "/hserve/v2.0/idp/pay/order/?limit=20&offset=20",
+        "next": "/hserve/v2.2/idp/pay/order/?limit=20&offset=20",
         "offset": 0,
         "previous": null,
         "total_count": 2

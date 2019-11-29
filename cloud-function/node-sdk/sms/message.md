@@ -17,7 +17,7 @@ data 是 Object 类型，它包括以下几个属性
 | recipient_type  | String | 是   | 推送类型，可选值： 'phone_number'、'user_list'、'user_group'、'schema_user'  |
 | `<recipient_params>` | Array、Integer、String、Object | 是   | 根据recipientType来填写不同的参数名， 详见下方表格说明 |
 | template_name     | String | 是   | 模板名称 |
-| keywords        | Object | 是   | 关键字（可在 [知晓云-短信](https://cloud.minapp.com/dashboard/#/app/sms/setting) 配置）|
+| keywords        | Object | 是   | 关键字（可在 [知晓云-短信](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]sms/setting) 配置）|
 | schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 
 

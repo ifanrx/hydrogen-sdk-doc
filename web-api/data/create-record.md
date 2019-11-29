@@ -1,6 +1,6 @@
 # 新增单条记录
 
-`POST /hserve/v2.0/table/:table_name/record/`
+`POST /hserve/v2.2/table/:table_name/record/`
 
 本接口提供数据写入功能，其中 `:table_name` 需替换为你的数据表名称
 
@@ -16,11 +16,11 @@
 **请求示例**
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"name":"nickname","desc":"desc","created_by":767911111}' \
-  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/
+  https://{{服务器域名}}/hserve/v2.2/table/test_table/record/
 ```
 
 > **info**
@@ -56,7 +56,7 @@ curl -X POST \
 
 # 批量新增记录
 
-`POST /hserve/v2.0/table/:table_name/record/`
+`POST /hserve/v2.2/table/:table_name/record/`
 
 本接口提供数据批量写入功能，其中 `:table_name` 需替换为你的数据表名称
 
@@ -71,11 +71,11 @@ curl -X POST \
 **请求示例**
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '[{"name":"nickname","desc":"desc","created_by":767911111},{"name":"nickname2","desc":"desc2","created_by":767911111}]' \
-  https://{{服务器域名}}/hserve/v2.0/table/test_table/record/
+  https://{{服务器域名}}/hserve/v2.2/table/test_table/record/
 ```
 > **info**
 > 状态码返回 201 并不说明批量写入数据完全成功，仅代表服务端已收到并处理了这个请求

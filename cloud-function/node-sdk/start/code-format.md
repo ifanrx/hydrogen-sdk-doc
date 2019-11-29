@@ -23,7 +23,7 @@ exports.main = function helloWorld(event, callback) {
 | 包含字段         | 类型            | 说明 |
 | :-------------- | :------------- | :-- |
 | data            | 任何 js 合法类型 | 在用户调用云函数时传入的参数 |
-| eventType       | String         | 提供给用户的触发来源的信息，包括http-call/event-payment/event-data/event-schedule |
+| eventType       | String         | 提供给用户的触发来源的信息，包括 sdk/open_api/user_dash/cloud_function 等 |
 | jobId           | Number         | 当前函数执行的 id |
 | memoryLimitInMB | Number         | 当前函数的内存资源限制 |
 | miniappId       | Number         | 云函数所属小程序 id |

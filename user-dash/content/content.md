@@ -6,7 +6,7 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/content/:content_group_id/text/:text_id/`
+`GET https://cloud.minapp.com/userve/v2.2/content/:content_group_id/text/:text_id/`
 
 其中 `content_group_id` 是内容库的 ID, `text_id` 是内容的 ID
 
@@ -17,7 +17,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/content/1/text/1/').then(res => {
+axios.get('https://cloud.minapp.com/userve/v2.2/content/1/text/1/').then(res => {
   console.log(res.data)
 })
 ```
@@ -63,11 +63,23 @@ axios.get('https://cloud.minapp.com/userve/v1/content/1/text/1/').then(res => {
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v1/content/:content_group_id/text/`
+`GET https://cloud.minapp.com/userve/v2.2/content/:content_group_id/text/`
+
+> **info**
+> 该接口支持通过参数 return_total_count 指定是否返回查询对象总数，以协助不关心对象总数只关心查询结果列表的开发者提升接口响应速度。
+同时，从 v2.2 版本开始该接口默认不返回查询对象总数，欲获取总数的开发者需要显式指定 return_total_count 参数。
 
 **提交参数**
 
 内容查询与[数据表接口](../data/record.md)查询保持一致
+
+若开发者只需要获取对象总数，则可以通过设置 `limit=1` 以及 `return_total_count=1` 来达到该效果，total_count 可从返回的 meta 中获取
+
+请求示例：
+
+```
+https://cloud.minapp.com/userve/v2.2/content/:content_group_id/text/?limit=1&return_total_count=1
+```
 
 **代码示例**
 
@@ -76,7 +88,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v1/content/1/text/').then(res => {
+axios.get('https://cloud.minapp.com/userve/v2.2/content/2/text/').then(res => {
   console.log(res.data)
 })
 ```
@@ -118,7 +130,7 @@ axios.get('https://cloud.minapp.com/userve/v1/content/1/text/').then(res => {
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v1/content/:content_group_id/text/`
+`POST https://cloud.minapp.com/userve/v2.2/content/:content_group_id/text/`
 
 **参数说明**
 
@@ -150,7 +162,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.post('https://cloud.minapp.com/userve/v1/content/1/text/', {"title": "Test Title"}).then(res => {
+axios.post('https://cloud.minapp.com/userve/v2.2/content/1/text/', {"title": "Test Title"}).then(res => {
   console.log(res.data)
 })
 ```
@@ -184,7 +196,7 @@ axios.post('https://cloud.minapp.com/userve/v1/content/1/text/', {"title": "Test
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v1/content/:content_group_id/text/:text_id/`
+`PUT https://cloud.minapp.com/userve/v2.2/content/:content_group_id/text/:text_id/`
 
 
 **代码示例**
@@ -194,7 +206,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.put('https://cloud.minapp.com/userve/v1/content/1/text/2/', {"name": "Test name"}).then(res => {
+axios.put('https://cloud.minapp.com/userve/v2.2/content/1/text/2/', {"name": "Test name"}).then(res => {
   console.log(res.data)
 })
 ```
@@ -223,7 +235,7 @@ axios.put('https://cloud.minapp.com/userve/v1/content/1/text/2/', {"name": "Test
 
 **接口**
 
-`DELETE https://cloud.minapp.com/userve/v1/content/:content_group_id/text/:text_id/`
+`DELETE https://cloud.minapp.com/userve/v2.2/content/:content_group_id/text/:text_id/`
 
 
 **代码示例**
@@ -233,7 +245,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.delete('https://cloud.minapp.com/userve/v1/content/1/text/1/').then(res => {
+axios.delete('https://cloud.minapp.com/userve/v2.2/content/1/text/1/').then(res => {
   console.log(res.data)
 })
 ```

@@ -1,10 +1,12 @@
+{% import "./macro/weixin-tenpay.md" as WeixinTenpay %}
+
 # 公众号发送红包
 
 
 ## 准备工作
 
 1. 阅读[微信文档](https://pay.weixin.qq.com/wiki/doc/api/tools/cash_coupon.php?chapter=13_1)，了解发送红包发放前的准备事项
-2. 若开发者尚未在知晓云配置支付证书，请前往[知晓云-支付证书页面](https://cloud.minapp.com/dashboard/#/app/payment/config/) 配置支付证书
+2. 若开发者尚未在知晓云配置支付证书，请前往[知晓云-支付证书页面](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]payment/config/) 配置支付证书
 3. 确保你账户里的资金充足
 
 > **info**
@@ -16,7 +18,7 @@
 `redPack.sendRedPack(params)`
 
 **参数说明**
-   
+ 
 | 参数名                      | 类型   | 说明     |
 |----------------------------|--------|----------|
 | params.type                | string | 红包类型，普通红包：normal，裂变红包：fission；必填 |
@@ -30,6 +32,9 @@
 | params.wishing             | string | 红包祝福语；必填 |
 | params.scene_id            | string | 场景 id， 可选 |
 | params.risk_info           | string | 活动信息， 可选 |
+| params.gateway_type        | GatewayType | 微信支付商户类型，可选，默认为微信小程序 |
+
+{{WeixinTenpay.getGatewayType()}}
 
 **示例代码**
 ```javascript
@@ -47,7 +52,8 @@ redPack.sendRedPack({
   "act_name": "新年红包",
   "remark": "新年红包",
   "scene_id": "PRODUCT_2",
-  "risk_info": "posttime%3d123123412%26clientversion%3d234134%26mobile%3d122344545%26deviceid%3dIOS"
+  "risk_info": "posttime%3d123123412%26clientversion%3d234134%26mobile%3d122344545%26deviceid%3dIOS",
+  "gateway_type": "weixin_tenpay_wap",
 }).then(res => {
   console.log(res.data.return_code === 'SUCCESS')
 }).catch(err=>{

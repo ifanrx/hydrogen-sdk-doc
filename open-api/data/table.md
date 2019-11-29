@@ -4,7 +4,7 @@
 
 **接口**
 
-`POST https://cloud.minapp.com/oserve/v1/table/`
+`POST https://cloud.minapp.com/oserve/v1.8/table/`
 
 **提交参数**
 
@@ -142,7 +142,7 @@ curl -X POST \
       "row_write_perm": ["user:*"],
       "write_perm": ["user:*"]
     }' \
-https://cloud.minapp.com/oserve/v1/table/
+https://cloud.minapp.com/oserve/v1.8/table/
 ```
 {% content "createTableNode" %}
 
@@ -150,7 +150,7 @@ https://cloud.minapp.com/oserve/v1/table/
 var request = require("request");
 
 var options = { method: 'POST',
-  url: 'https://cloud.minapp.com/oserve/v1/table/',
+  url: 'https://cloud.minapp.com/oserve/v1.8/table/',
   headers: 
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
@@ -181,7 +181,7 @@ $param['schema'] = $schema;
 $param['row_read_perm'] = ['user:*'];
 $param['row_write_perm'] = ['user:*'];
 $param['write_perm'] = ['user:*'];
-$url = 'https://cloud.minapp.com/oserve/v1/table/';
+$url = 'https://cloud.minapp.com/oserve/v1.8/table/';
 
 $ch = curl_init();
 $header = array(
@@ -283,7 +283,7 @@ curl_close($ch);
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/table/:table_id/`
+`GET https://cloud.minapp.com/oserve/v1.8/table/:table_id/`
 
 **代码示例**
 
@@ -295,7 +295,7 @@ curl_close($ch);
 curl -X GET \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/table/1/
+https://cloud.minapp.com/oserve/v1.8/table/1/
 ```
 
 {% content "getTableNode" %}
@@ -304,7 +304,7 @@ https://cloud.minapp.com/oserve/v1/table/1/
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://cloud.minapp.com/oserve/v1/table/1/',
+  url: 'https://cloud.minapp.com/oserve/v1.8/table/1/',
   headers: 
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
@@ -321,7 +321,7 @@ request(options, function (error, response, body) {
 ```php
 <?php
 $table_id = 1; // 数据表 ID
-$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/";
+$url = "https://cloud.minapp.com/oserve/v1.8/table/{$table_id}/";
 
 $ch = curl_init();
 $header = array(
@@ -382,13 +382,13 @@ curl_close($ch);
 
 **接口**
 
-`GET https://cloud.minapp.com/oserve/v1/table/`
+`GET https://cloud.minapp.com/oserve/v1.8/table/`
 
 **提交参数**
 
 - name 支持对数据表名的等值查询
 
-`https://cloud.minapp.com/oserve/v1/table/?name=Table`
+`https://cloud.minapp.com/oserve/v1.8/table/?name=Table`
 
 **代码示例**
 
@@ -400,7 +400,7 @@ curl_close($ch);
 curl -X GET \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/table/
+https://cloud.minapp.com/oserve/v1.8/table/
 ```
 
 {% content "getTableListNode" %}
@@ -409,7 +409,7 @@ https://cloud.minapp.com/oserve/v1/table/
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://cloud.minapp.com/oserve/v1/table/',
+  url: 'https://cloud.minapp.com/oserve/v1.8/table/',
   headers: 
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
@@ -425,7 +425,7 @@ request(options, function (error, response, body) {
 
 ```php
 <?php
-$url = "https://cloud.minapp.com/oserve/v1/table/";
+$url = "https://cloud.minapp.com/oserve/v1.8/table/";
 
 $ch = curl_init();
 $header = array(
@@ -496,7 +496,7 @@ curl_close($ch);
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v1/table/:table_id/`
+`PUT https://cloud.minapp.com/oserve/v1.8/table/:table_id/`
 
 > **info**
 > 数据表更新接口支持一次更新一个或多个字段
@@ -514,7 +514,7 @@ curl -X PUT \
 -d '{
       "name": "table"
     }' \
-https://cloud.minapp.com/oserve/v1/table/1/
+https://cloud.minapp.com/oserve/v1.8/table/1/
 ```
 
 {% content "updateTableNode" %}
@@ -523,7 +523,7 @@ https://cloud.minapp.com/oserve/v1/table/1/
 var request = require("request");
 
 var options = { method: 'PUT',
-  url: 'https://cloud.minapp.com/oserve/v1/table/1/',
+  url: 'https://cloud.minapp.com/oserve/v1.8/table/1/',
   headers: 
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
@@ -542,7 +542,7 @@ request(options, function (error, response, body) {
 ```php
 <?php
 $table_id = 1; // 数据表 ID
-$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/";
+$url = "https://cloud.minapp.com/oserve/v1.8/table/{$table_id}/";
 $param['name'] = 'table';
 
 $ch = curl_init();
@@ -607,7 +607,7 @@ curl_close($ch);
 
 **接口**
 
-`DELETE https://cloud.minapp.com/oserve/v1/table/:table_id/`
+`DELETE https://cloud.minapp.com/oserve/v1.8/table/:table_id/`
 
 **代码示例**
 
@@ -619,7 +619,7 @@ curl_close($ch);
 curl -X DELETE \
 -H "cookie: {{ cookie }}" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v1/table/1/
+https://cloud.minapp.com/oserve/v1.8/table/1/
 ```
 
 {% content "deleteTablePHP" %}
@@ -627,7 +627,7 @@ https://cloud.minapp.com/oserve/v1/table/1/
 ```php
 <?php
 $table_id = 1; // 表 ID
-$url = "https://cloud.minapp.com/oserve/v1/table/{$table_id}/";
+$url = "https://cloud.minapp.com/oserve/v1.8/table/{$table_id}/";
 
 $ch = curl_init();
 $header = array(

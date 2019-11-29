@@ -1,6 +1,6 @@
 # 短信服务
 
-# 发送短信验证码
+## 发送短信验证码
 
 **接口**
 
@@ -9,7 +9,7 @@
 支持指定短信签名向指定手机号发送短信验证码。
 
 > **info**
-> 发送短信前请先进行[短信签名审核](https://cloud.minapp.com/dashboard/#/app/sms/setting)，审核通过后才能发送短信
+> 发送短信前请先进行[短信签名审核](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]sms/setting)，审核通过后才能发送短信
 
 **请求参数**
 
@@ -22,7 +22,7 @@
 
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"phone": "12345678910", "signature_id": 1}' \
@@ -62,7 +62,7 @@ curl -X POST \
 **请求示例**
 ```shell
 curl -X POST \
-  -H "X-Hydrogen-Client-ID: {{ClientID}}" \
+  -H "X-Hydrogen-Client-ID: [[client_id]]" \
   -H "Authorization: Hydrogen-r1 {{AccessToken}}" \
   -H "Content-Type: application/json" \
   -d '{"phone": "12345678910", "code": "352353"}' \
