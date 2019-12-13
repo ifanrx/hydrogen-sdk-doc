@@ -23,7 +23,7 @@ tableID 和 tableName 二选一，不能同时存在
 
 | 参数      | 类型   | 必填 | 说明 |
 | :-----   | :-----  | :-- | :---|
-| fileType | String  |  是 | 导出文件的格式，支持 csv、json 格式 |
+| fileType | String  |  是 | 导出文件的格式，支持 csv、json、xlsx 格式 |
 | mode     | String  |  是  | 导出任务的模式|
 | start    | Integer / Date / String |  否  | 导出部分数据的起始时间 |
 | end      | Integer / Date / String |  否  | 导出部分数据的结束时间 |
@@ -87,7 +87,7 @@ res.data:
 | :-----      | :-----  | :-- | :---|
 | dataFileUrl | String  |  否  | 准备导入的备份数据 url （dataFileUrl 与 dataFile 两者必须指定一个） |
 | dataFile    | String / Buffer |  否  | 文件路径（目前仅支持沙箱环境的 tmp 目录） / 文件 Buffer |
-| fileType    | String  |  是 | 导入文件的格式，支持 csv、json 格式 |
+| fileType    | String  |  是 | 导入文件的格式，支持 csv、json、xlsx 格式 |
 
 **示例代码**
 {% tabs importDataAsync="async/await", importDataPromise="promise" %}
