@@ -297,6 +297,7 @@
           <li><a href="/ios-sdk/payment/README.md">支付</a></li>
           <li><a href="/ios-sdk/invoke-function.md">调用云函数</a></li>
           <li><a href="/ios-sdk/sms.md">短信验证码</a></li>
+          <li><a href="/ios-sdk/server-data.md">获取服务器时间</a></li>
         </ul>
       </div>
     </div>

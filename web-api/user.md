@@ -176,7 +176,7 @@ curl -X POST \
 
 `GET /hserve/v2.2/user/info/:user_id/`
 
-**:user_id** 为[用户(user)](#user-object)中的 user_id 
+**:user_id** 为[用户(user)](#user-object)中的 user_id
 
 **请求示例**
 
@@ -189,7 +189,7 @@ curl -X GET \
 ```
 
 **返回示例**
-```json     
+```json
 {
     "country": "China",
     "avatar": "https://media.ifanrusercontent.com/blablabla.jpg",
@@ -354,6 +354,7 @@ curl -X POST \
 
 
 # 修改用户信息
+
 可更改密码、用户名、邮箱、手机号
 
 **接口**
@@ -367,10 +368,14 @@ curl -X POST \
 | :------------  | :----------- | :---| :--- |
 | email          | string   |  否 | 新的邮箱地址 |
 | username       | string   |  否 | 新的用户名 |
+| phone          | string   |  否 | 新的手机号 |
 | password       | string   |  否 | 旧密码 |
 | new_password   | string   |  否 | 新密码 |
 
-如果选择**修改密码**, 必须同时传入 `password` 和 `new_password`
+如果选择**修改密码**, 必须同时传入 `password` 和 `new_password`。
+当设置新的手机号时，`phone_verified` 重置为 `false`，需要重新通过验证码进行验证。
+
+> 如想重置用户的 email/username/phone，可以将 email/username/phone 的值设置为 null。
 
 **请求示例**
 ```shell
@@ -382,23 +387,26 @@ curl -X PUT \
   https://{{服务器域名}}/hserve/v2.1/user/account/
 ```
 
-
 **返回示例**
 ```json
 {
     "email": "hgzchn@qq.com",
     "email_verified": false,
-    "username": "123"
+    "username": "123",
+    "phone": "13800138000",
+    "phone_verified": true
 }
 ```
 
 **返回字段说明**
 
-|       参数     |       类型   | 说明 |
-| :------------ | :----------- | :---| :--- |
+| 参数          |       类型   | 说明 |
+| :------------ | :----------- | :---|
 | email         | string   | 目前的邮箱 |
-| email_verified| boolean  | 邮箱是否已经验证 |
+| email_verified | boolean  | 邮箱是否已经验证 |
 | username      | string   | 目前的用户名 |
+| phone         | string   | 手机号码|
+| phone_verified | boolean  | 手机号码是否已经验证|
 
 **状态码说明**
 

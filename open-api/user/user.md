@@ -757,11 +757,17 @@ if ($err) {
 
 Content-Type: `application/json`
 
-| 参数    | 类型   | 必填 | 说明 |
-| :----- | :----- | :-- | :-- |
-| username   | String | N   | 用户名，不区分大小写 |
-| email | String | N   | 邮箱，不区分大小写 |
-| password | String | N | 用户密码 |
+| 参数          | 类型   | 必填 | 说明 |
+| :----------- | :----- | :-- | :-- |
+| username     | string | N   | 用户名，不区分大小写 |
+| email        | string | N   | 邮箱，不区分大小写 |
+| new_password | string | N   | 设置用户密码 |
+| phone        | string | N   | 新的手机号 |
+
+如果需要为用户强行**修改密码**, 传入 `new_password` 即可。
+当设置新的手机号时，`phone_verified` 重置为 `false`，需要重新通过验证码进行验证。
+
+> 如想重置用户的 email/username/phone，可以将 email/username/phone 的值设置为 null。
 
 **代码示例**
 
@@ -843,17 +849,21 @@ if ($err) {
 {
   "email": "pretty_girl@example.com",
   "email_verified": false,
-  "username": "pretty_girl"
+  "username": "pretty_girl",
+  "phone": "13800138000",
+  "phone_verified": true
 }
 ```
 
 **返回参数说明**
 
-| 参数    | 类型   | 说明 |
-| :----- | :----- | :-- |
-| username   | String | 用户名，不区分大小写 |
-| email | String | 邮箱，不区分大小写 |
-| email_verified | Boolean | 用户邮箱是否已激活 |
+| 参数           |       类型   | 说明 |
+| :------------ | :----------- | :---|
+| email         | string   | 目前的邮箱 |
+| email_verified | boolean  | 邮箱是否已经验证 |
+| username      | string   | 目前的用户名 |
+| phone         | string   | 手机号码|
+| phone_verified | boolean  | 手机号码是否已经验证|
 
 **状态码说明**
 

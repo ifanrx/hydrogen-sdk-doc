@@ -17,9 +17,9 @@
 | recordID | string |  是  | 记录 ID |
 | query    | Query  |  是  | Query 查询条件对象 |
 
-options（批量删除时需要设置）:
+options（类型：Object，批量删除时需要设置），属性说明:
 
-| 参数          | 类型    | 必填 | 默认 | 说明 |
+| 属性          | 类型    | 必填 | 默认 | 说明 |
 | :------------ | :------ | :--- | :--- |:--- |
 | enableTrigger | boolean |  否  | true | 是否触发触发器 |
 | withCount     | boolean |  否  | `false` | 是否返回 total_count |
