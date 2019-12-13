@@ -31,11 +31,13 @@ InitOption:
 | autoLogin     | Boolean |   N   | 请求知晓云接口时，是否自动静默登录，默认为 false |
 | logLevel      | String |   N   | 日志输出级别，共支持 debug、info、warn、error 4 个级别，默认为 error|
 | host          | String |   N   | 自定义域名 |
+| env           | String |   N   | 开发环境 ID，用于区分生产环境与其他开发环境，默认为生产环境 |
 {% else %}
 | 参数          | 类型    | 必填 | 说明         |
 | :------------ | :------| ---- | :----------- |
 | logLevel      | String |   N   | 日志输出级别，共支持 debug、info、warn、error 4 个级别，默认为 error|
 | host          | String |   N   | 自定义域名 |
+| env           | String |   N   | 开发环境 ID，用于区分生产环境与其他开发环境，默认为生产环境 |
 {% endif %}
 
 > **info**
