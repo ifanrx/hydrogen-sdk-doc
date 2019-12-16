@@ -21,7 +21,7 @@ Web 端微信支付支持三种支付方式：
 3. 手机 H5 支付（gatewayType: `weixin_tenpay_wap`）
 
 > **info**
-> 使用 JSAPI 支付时，需要先通过公众号登录（[web 第三方登录](/js-sdk/web/signin-signout.md)，`providor` 为 `oauth-wechat-mp`），
+> 使用 JSAPI 支付时，需要先通过公众号登录（[web 第三方登录](/js-sdk/web/signin-signout.md)，`provider` 为 `oauth-wechat-mp`），
 > 或通过已经关联了微信公众号登录用户的账号登录。
 
 **参数说明**
