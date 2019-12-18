@@ -24,6 +24,10 @@ data 是 Object 类型，它包括以下几个属性
 | keywords        | Object | 是   | 关键字 |
 | schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 | page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
+| can_send_template_message  | Boolean | 否   | 是否过滤无效用户  |
+| template_message_high_value_user  | Boolean | 否   | 是否过滤低价值用户  |
+| can_send_subscription_message  | Boolean | 否   | 是否过滤无效用户  |
+| template_message_rate_limit  | RateLimit | 否   | 发送频率限制  |
 
 
 | recipient_type 类型 | recipient_params     | 类型            | 说明                          |
@@ -32,6 +36,13 @@ data 是 Object 类型，它包括以下几个属性
 | user_list         | user_list            | Integer Array | 推送批量用户，传入用户 id 列表           |
 | user_group        | user_group_name      | String        | 用户组名，注意这里是提交用户组名称，而不是用户组 id |
 | schema_user       | user_profile_filters | String        | 对指定数据表的查询条件，用于筛选用户        |
+
+RateLimit 类型说明:
+
+| 属性            | 类型   | 必填 | 说明 |
+| :-------------- | :----- | :--- | :--- |
+| interval        | Number | 是   | 时间间隔  |
+| limit           | Number | 是   | 每批次发送条数  |
 
 
 **请求示例 - user_id**
