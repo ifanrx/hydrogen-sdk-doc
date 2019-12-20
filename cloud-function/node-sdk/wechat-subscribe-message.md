@@ -21,7 +21,7 @@ data 是 Object 类型，它包括以下几个属性
 | recipient_type  | String | 是   | 推送类型，可选值： user_id、user_list、user_group、schema_user |
 | `<recipient_params>` | Array、Integer、String、Object | 是   | 根据recipient_type来填写不同的参数名， 详见下方表格说明 |
 | template_id     | String | 是   | 模板 ID （微信后台配置）|
-| keywords        | Object | 是   | 关键字 |
+| keywords        | Object | 是   | 关键字，请参照 [微信官方文档](https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/subscribe-message/subscribeMessage.send.html) |
 | schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 | page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
 | can_send_template_message  | Boolean | 否   | 是否过滤无效用户  |
@@ -54,10 +54,10 @@ let data = {
   template_id: "tadfDf23asdi8dfd",
   page: "pages/index/index",
   keywords: {
-    keyword1: {
+    thing01: {
       value: "书籍",
     },
-    keyword2: {
+    number01: {
       value: "50.5",
     }
   }
@@ -134,9 +134,9 @@ let data = {
 BaaS.wechat.sendSubscribeMessage(data)
 ```
 
-其中 keyword1, keyword2 为微信后台中实际关键词对应的键值
+其中 keywords 为微信后台中实际关键词对应的键值
 
-![关键词对应键值示例](/images/cloud-function/keyword.png)
+![关键词对应键值示例](/images/cloud-function/subscribe-keywords.png)
 
 ## user_profile_filters 语法
 
