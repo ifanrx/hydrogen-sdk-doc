@@ -22,6 +22,10 @@
 
 当前版本的云函数对于对容器外网络请求有并发限制（包括数据表 / 内容库等知晓云操作以及知晓云外的网络请求），当进行并发请求时（如使用 Promise.all），请将并发请求数控制在 10 个以下。
 
+## 云函数内存限制
+
+当前版本云函数提供 128M/256M 两个版本，如果你有更高级别的要求，请联系微信客服（minsupport3）
+
 ## 其他
 
 {% include "/cloud-function/frag/cloud-function-technical-notes.md" %}
