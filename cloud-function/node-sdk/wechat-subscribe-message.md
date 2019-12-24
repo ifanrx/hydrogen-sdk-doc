@@ -24,10 +24,7 @@ data 是 Object 类型，它包括以下几个属性
 | keywords        | Object | 是   | 关键字，请参照 [微信官方文档](https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/subscribe-message/subscribeMessage.send.html) |
 | schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 | page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
-| can_send_template_message  | Boolean | 否   | 是否过滤无效用户  |
-| template_message_high_value_user  | Boolean | 否   | 是否过滤低价值用户  |
 | can_send_subscription_message  | Boolean | 否   | 是否过滤无效用户  |
-| template_message_rate_limit  | RateLimit | 否   | 发送频率限制  |
 
 
 | recipient_type 类型 | recipient_params     | 类型            | 说明                          |
