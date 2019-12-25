@@ -55,9 +55,33 @@ Product.setQuery(query).select(['-created_at', '-created_by']).find()
 
 开发者可以通过 expand pointer 来查询该字段的更多信息,返回结果中的 pointer 字段会被替换为这个字段对应的完整的数据行对象。
 
+1. ** 使用 expand 来控制 pointer 展开 **
+
+  例如：
+
+  `Product.expand('created_by')`
+
+  `Product.expand(['pointer', 'created_by'])`
+
+2. ** 指定 pointer 展开并只返回某些字段 (SDK >= v3.5.0) **
+
+  例如：
+
+  `Product.expand('created_by.nickname')`
+
+  `Product.expand(['pointer', 'created_by.nickname', 'created_by.city'])`
+
+  以上例子，如果字段后有 `.` 符号，则展开的对象只返回与 `.` 符号后面的字符串相匹配的属性，
+  如果没有 `.` 符号，则返回整个展开的对象。
+
+
 > **info**
 > created_by 字段是一个特殊的 pointer，开发者无需配置，默认指向了 _userpofile 表。需 SDK >= v1.3.0 
+>
 > 用户自定义 pointer 需 SDK >= 1.10.0
+
+> 指定 pointer 展开并只返回某些字段 需 SDK >= 3.5.0
+>
 > 使用 expand 方法会增加一次数据表查询，api call 计费 +1
 
 ### expand 返回结果示例
