@@ -342,3 +342,4 @@
     * [常见问题](support/qA.md)
     * [服务协议](support/terms.md)
     * [技术细节](support/technical-notes.md)
+    * [认证信息](support/auth-info.md)
