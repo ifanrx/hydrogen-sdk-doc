@@ -64,7 +64,8 @@ Product.setQuery(query).select(['-created_at', '-created_by']).find()
 
   `Product.expand(['pointer', 'created_by.nickname', 'created_by.city'])`
 
-  以上例子，如果字段后有 `.` 符号，则展开的对象只返回与 `.` 符号后面的字符串相匹配的属性，
+  上述例子，如果字段后有 `.` 符号，则展开的对象只返回与 `.` 符号后面的字符串相匹配的属性
+  （除了 created_by 外，其他 pointer 还会返回一个名为 `_table` 的属性），
   如果没有 `.` 符号，则返回整个展开的对象。
 
 > **info**
