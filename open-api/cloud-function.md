@@ -858,6 +858,7 @@ if ($err) {
 | :----------   | :--- | :--- | :--- |
 | name | String | 否 | 云函数名，不能为空字符串 |
 | function_code | String | 否 | 云函数代码，不能为空字符串 |
+| plan_circle | String | 否 | 套餐类型，可能的值：P_FREE（128 MB 内存）, P_PERSONAL（256 MB 内存）|
 | remark | String | 否 | 备注 |
 
 **返回参数说明**
@@ -869,7 +870,7 @@ if ($err) {
 | function_code | String | 云函数代码 |
 | id | Integer | 云函数 ID |
 | name | String | 云函数名 |
-| plan_circle | String | 套餐类型，可能的值：P_FREE, P_PERSONAL, P_ENTERPRISE |
+| plan_circle | String | 套餐类型，可能的值：P_FREE（128 MB 内存）, P_PERSONAL（256 MB 内存） |
 | remark | String | 备注 |
 | updated_at | Integer | 最近一次更新时间 |
 | updated_by | String | 更新者昵称 |
