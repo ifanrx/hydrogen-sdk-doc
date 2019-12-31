@@ -331,6 +331,9 @@
     * [公众号发送红包](cloud-function/node-sdk/red-pack.md)
     * [获取异步任务结果](cloud-function/node-sdk/async-job.md)
     * [获取服务器时间](cloud-function/node-sdk/server-date.md)
+    * [SDK 版本](cloud-function/node-sdk/version/README.md)
+        * [指定 SDK 版本](cloud-function/node-sdk/version/use-version.md)
+        * [可用版本与更新日志](cloud-function/node-sdk/version/changelog.md)
 
 ----
 
