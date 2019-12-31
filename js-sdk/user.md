@@ -65,6 +65,14 @@
 > **info**
 > 如果有自定义字段，则一并返回（以上两种情况皆是如此）。
 
+**微信网页登录/微信公众号登录 UnionID 机制说明**
+
+应用使用微信网页登录/微信公众号登录后，当用户资料中有 unionid 返回时，知晓云会将其存储到内置字段 ``_provider.wechat_unionid`` 中。
+在重新进行微信网页登录/微信公众号登录时，知晓云会优先通过 ``_provider.wechat_unionid`` 查找用户，从而实现微信网页登录/微信公众号登录之间的用户身份打通。
+
+> **info**
+> 微信小程序暂未支持
+
 **请求示例**
 
 {% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
@@ -127,7 +135,7 @@ MyUser.get(userID).then(res => {
 
 select 使用方法可以参考[数据表 - 字段过滤](/js-sdk/schema/select-and-expand.md)小节
 
-## 扩展字段 
+## 扩展字段
 
 expand 使用方法可以参考[数据表 - 字段扩展](/js-sdk/schema/select-and-expand.md)小节
 
