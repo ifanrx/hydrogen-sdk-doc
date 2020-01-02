@@ -19,7 +19,7 @@
 ```javascript
 BaaS.useVersion('v3.2')
 
-exports.main = function (event, callback) {
+exports.main = async function (event) {
   console.log(BaaS.VERSION) // 3.2.x
   ...
 }
@@ -33,7 +33,7 @@ exports.main = function (event, callback) {
 ```javascript
 BaaS.useVersion('v3.2')
 
-exports.main = function (event, callback) {
+exports.main = async function (event) {
   console.log(BaaS.VERSION) // 3.2.x
   ...
 }
