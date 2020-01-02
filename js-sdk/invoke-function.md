@@ -4,9 +4,6 @@
 
 该模块允许用户创建、编写运行于知晓云云引擎上的代码。适用于一些对安全性有要求，功能复杂、需求个性化的业务场景。配合触发器可以帮助开发者实现功能复杂的小程序。你只需编写简单的、目的单一的云函数，并将它与其他功能（如触发器、定时任务）产生的事件关联起来，即可在小程序上实现更加复杂的业务逻辑，如订单的自动化取消、抽奖等。使用云函数可以完成市面上全部类型的小程序实现，极大的降低了运维成本，在快速实现功能的基础上，仍然保留了极强的水平扩展能力。想了解更多有关于云函数的内容，请见[控制台操作-云函数](/dashboard/cloud-function.md)。
 
-> **danger**
-> 由于原则上客户端是不可信任的，匿名用户调用云函数将存在一定的数据安全风险。
-
 ## `BaaS.invoke(functionName, params, sync)` 
 
 {% block tips1 %}
@@ -14,6 +11,13 @@
 > **info**
 > 调用云函数，需要先在控制台创建云函数 [控制台 - 云函数](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]engine/cloud-function/function/)
 > ![新建云函数](/images/dashboard/cloud-function-add.jpg)
+
+默认只允许登录用户（不包含匿名登录用户）调用云函数，如果需要允许匿名登录用户调用，请在[控制台-设置-SDK](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/sdk/) 打开“匿名用户调用云函数”开关
+
+![](/images/cloud-function/anonymous.png)
+
+> **danger**
+> 由于原则上客户端是不可信任的，匿名用户调用云函数将存在一定的数据安全风险。
 
 {% endblock tips1 %}
 
