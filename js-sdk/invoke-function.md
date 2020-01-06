@@ -12,6 +12,10 @@
 > 调用云函数，需要先在控制台创建云函数 [控制台 - 云函数](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]engine/cloud-function/function/)
 > ![新建云函数](/images/dashboard/cloud-function-add.jpg)
 
+默认只允许登录用户（不包含匿名临时用户）调用云函数，如果需要允许匿名临时用户调用，请在[控制台-设置-SDK](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/sdk/) 打开“匿名临时用户调用云函数”开关。**由于原则上客户端是不可信任的，匿名临时用户调用云函数将存在一定的数据安全风险，请在云函数内部做好必要的防护措施，如 request 的 ip 的检测等。**
+
+![](/images/cloud-function/anonymous.png)
+
 {% endblock tips1 %}
 
 **参数说明**
