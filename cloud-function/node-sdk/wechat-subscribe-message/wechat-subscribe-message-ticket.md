@@ -19,11 +19,14 @@ options（类型：Object），属性说明：
 **请求示例**
 
 ```js
-const count = await BaaS.wechat.getSubscribeMsgTicketCount({
-  userID: "...",
-  templateID: "...",
-  subscriptionType: "once",
-})
+BaaS.useVersion('v3.3')
+exports.main = async function(event) {
+  return await BaaS.wechat.getSubscribeMsgTicketCount({
+    userID: "...",
+    templateID: "...",
+    subscriptionType: "once",
+  })
+}
 ```
 
 
