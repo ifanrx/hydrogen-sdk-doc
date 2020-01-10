@@ -8,6 +8,14 @@
   Authorization: Bearer <Access Token>
 ```
 
+若开发者需要在发起 API 请求时进行测试环境的指定，则需要在 HTTP Header 中加入以下环境参数：
+
+```
+  X-Hydrogen-Env-ID: <Env ID>
+```
+
+在不指定环境参数的情况下，默认调用生产环境的 API。
+
 
 ## 授权流程
 
