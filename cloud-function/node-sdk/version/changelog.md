@@ -4,6 +4,10 @@
 
 下文所列出的标记为 `[M]` 的更新均为不兼容更新。升级 SDK 版本时，请参照更新日志调整代码。
 
+### 3.3 (2020-01-10)
+
+1. #### [A] 添加获取微信订阅消息可用订阅数量接口 [查看](/cloud-function/node-sdk/wechat-subscribe-message/wechat-subscribe-message-ticket.md)
+
 ### 3.2 (2020-01-02)
 1. #### [M] `UserRecord#setAccount` 返回整个 `_userprofile`。
 2. #### [M] `withCount` 默认为 false。

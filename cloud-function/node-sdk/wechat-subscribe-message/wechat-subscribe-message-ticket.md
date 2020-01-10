@@ -32,5 +32,9 @@ exports.main = async function(event) {
 
 **返回示例**
 ```js
-10
+{
+  "error": {},
+  "code": 0,
+  "data": 10
+}
 ```
