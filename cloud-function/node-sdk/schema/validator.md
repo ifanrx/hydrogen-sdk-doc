@@ -1,7 +1,7 @@
 # 校验器
 
 校验器用于数据操作时校验操作的合法性，是对数据表 ACL 权限的自定义校验。
-数据表关联了校验器后，在进行数据操作时，会调用该校验器。
+数据表关联了校验器后，在进行数据操作时，后台会会调用该校验器进行校验。
 校验器通过返回 `true`、`false` 或抛出错误来对操作合法性做出评判。
 
 > **info**
@@ -172,7 +172,7 @@ exports.main = async function (event) {
 
 ### 综合校验
 
-SDK 提供了 Validator 类来做更加复杂定制化的校验。
+SDK 提供了 Validator 类来做更加复杂、定制化的校验。
 
 - `Validator(event, handlers)` 创建 Validator 对象
 - `Validator#validate` 执行校验
