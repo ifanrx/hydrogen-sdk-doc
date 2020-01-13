@@ -284,6 +284,7 @@
         * [地理位置操作](cloud-function/node-sdk/schema/geo.md)
         * [字段过滤与扩展](cloud-function/node-sdk/schema/select-and-expand.md)
         * [数据导入导出操作](cloud-function/node-sdk/schema/operation.md)
+        * [校验器](cloud-function/node-sdk/schema/validator.md)
         * [API REFERENCE](cloud-function/node-sdk/schema/api-reference.md)
              * [TableObject](cloud-function/node-sdk/schema/frag/table-object.md)
              * [TableRecord](cloud-function/node-sdk/schema/frag/table-record.md)
