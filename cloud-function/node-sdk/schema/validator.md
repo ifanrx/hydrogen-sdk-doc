@@ -111,38 +111,6 @@ exports.main = async function (event) {
 }
 ```
 
-**代码示例**
-
-在下面例子的 handler 中使用自定义逻辑代替 `return true` 即可。
-
-```js
-BaaS.useVersion('v3.4')
-exports.main = async function (event) {
-  const handlers = {
-    async onCreate(data) {
-      return true
-    },
-    async onUpdate(data) {
-      return true
-    },
-    async onDelete(data) {
-      return true
-    },
-    async onBulkCreate(data) {
-      return true
-    },
-    async onBulkUpdate(data) {
-      return true
-    },
-    async onBulkDelete(data) {
-      return true
-    },
-  }
-  const validator = new BaaS.Validator(handlers)
-  return validator.validate(event)
-}
-```
-
 ## 使用场景
 
 校验器的使用场景主要分为以下几个方面：
