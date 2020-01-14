@@ -4,9 +4,124 @@
 数据表关联了校验器后，在进行数据操作时，后台会调用该校验器进行校验。
 校验器通过返回 `true`、`false` 或抛出错误来对操作合法性做出评判。
 
-> **info**
-> “校验器”与“云函数”使用同一个“云函数”引擎，但使用场景并不一样，
-> **不要在“校验器”中包含跟数据校验无关的业务代码**。
+校验器的使用场景主要分为以下几个方面：
+
+- 对数据表操作方法进行校验（`create`、`update`、`delete`、`bulk_create`、`bulk_update`、`bulk_delete`等）
+- 对操作者进行校验
+- 对用户传入数据—— `payload` 进行校验
+
+## 快速开始
+
+只需两步，即可成功创建校验器：
+
+1. 在控制台数据表中创建校验器 [查看文档]()。
+2. 校验器创建成功后，进入编辑页面，只需要在默认提供的校验器模版代码对应的 handler 中加入判定逻辑即可，校验器模版代码如下。
+
+  ```js
+  BaaS.useVersion('v3.4')
+  exports.main = async function (event) {
+    const handlers = {
+     /**
+      * handler 会在对应的操作事件中被触发，请在下方特定的事件 handler 中添加判定逻辑并修改返回值。
+      *
+      * <<输入>>:
+      * | 属性        | 类型   | 说明                                                                                          |
+      * | :---------- | :----- | :-------------------------------------------------------------------------------------------- |
+      * | event       | String | 触发事件类型，包括：`create`、`update`、`delete`、`bulk_create`、`bulk_update`、`bulk_delete` |
+      * | schema_id   | String | 校验器关联的数据表 ID                                                                         |
+      * | schema_name | String | 校验器关联的数据表名称                                                                        |
+      * | user_id     | String | 触发事件的用户 ID                                                                             |
+      * | payload     | Object | 用户传入数据，`delete`/`bulk_delete` 事件中不包含该参数                                       |
+      * | before      | Object | 原始数据，`create`/`bulk_create`/`bulk_update`/`bulk_delete` 事件中不包含该参数               |
+      * | filter      | Object | 用户筛选条件，仅 `bulk_update`/`bulk_delete` 包含该参数                                       |
+      *
+      * <<输出>>:
+      * 返回 true 为 “验证通过”
+      * 返回 false 为 “验证不通过（未提供理由）”
+      * 抛出 Error 为 “验证不通过（Error.message 为理由）”
+      *
+      * <<举例>>:
+      * return data.user_id === "1001" // 只允许 ID 为 "1001" 的用户进行操作
+      * 或者:
+      * if (data.user_id === "1001") {
+      *   return true
+      * } else {
+      *   throw Error(`用户 ${data.user_id} 无操作权限`)
+      * }
+      */
+      async onCreate(data) {
+        // “创建”操作时触发，
+        return true
+      },
+      async onUpdate(data) {
+        // “更新”操作时触发
+        return true
+      },
+      async onDelete(data) {
+        // “删除”操作时触发
+        return true
+      },
+      async onBulkCreate(data) {
+        // “批量创建”操作时触发
+        return true
+      },
+      async onBulkUpdate(data) {
+        // “批量更新”操作时触发
+        return true
+      },
+      async onBulkDelete(data) {
+        // “批量删除”操作时触发
+        return true
+      },
+    }
+    const validator = new BaaS.Validator(handlers)
+    return validator.validate(event)
+  }
+  ```
+
+**使用示例**
+
+下方是一个完整的校验器例子，实现了以下规则：
+
+  - 所有用户可以创建订单
+  - 只允许用户 '1001' 删除订单
+  - 禁止了批量创建、批量更新、批量删除
+  - 禁止取消已过期订单
+
+```js
+BaaS.useVersion('v3.4')
+exports.main = async function (event) {
+  const handlers = {
+    async onCreate(data) {
+      return true
+    },
+    async onUpdate(data) {
+      if (event.data.before.status === '已过期' && event.data.payload.status === '已取消') {
+        throw Error('已过期的订单不可取消')
+      }
+      return true
+    },
+    async onDelete(data) {
+      if (data.user_id === "1001") {
+        return true
+      } else {
+        throw Error(`用户 ${data.user_id} 无操作权限`)
+      }
+    },
+    async onBulkCreate(data) {
+      return false
+    },
+    async onBulkUpdate(data) {
+      return false
+    },
+    async onBulkDelete(data) {
+      return false
+    },
+  }
+  const validator = new BaaS.Validator(handlers)
+  return validator.validate(event)
+}
+```
 
 ## Validator
 
@@ -56,68 +171,9 @@ interface Handlers {
 
   `return validator.validate(event)`
 
-**校验器模板**
+**代码示例**
 
-下方是一个完整的校验器模板，处理了创建、更新、删除、批量创建、批量更新、批量删除等操作事件，
-并返回了 `true`（验证通过）。
-
-```js
-BaaS.useVersion('v3.4')
-exports.main = async function (event) {
-  const handlers = {
-    async onCreate(data) {
-      // “创建”操作时触发，如需自定义规则，请添加判定逻辑并修改返回值（下面其他 handler 也一样）。
-      //
-      // 返回 true 为 “验证通过”
-      // 返回 false 为 “验证不通过（未提供理由）”
-      // 抛出 Error 为 “验证不通过（Error.message 为理由）”
-      //
-      // 例如，只允许 ID 为 "1001" 的用户进行操作：
-      //
-      // return data.user_id === "1001"
-      //
-      // 或者，
-      //
-      // if (data.user_id === "1001") {
-      //   return true
-      // } else {
-      //   throw Error(`用户 ${data.user_id} 无操作权限`)
-      // }
-      return true
-    },
-    async onUpdate(data) {
-      // “更新”操作时触发
-      return true
-    },
-    async onDelete(data) {
-      // “删除”操作时触发
-      return true
-    },
-    async onBulkCreate(data) {
-      // “批量创建”操作时触发
-      return true
-    },
-    async onBulkUpdate(data) {
-      // “批量更新”操作时触发
-      return true
-    },
-    async onBulkDelete(data) {
-      // “批量删除”操作时触发
-      return true
-    },
-  }
-  const validator = new BaaS.Validator(handlers)
-  return validator.validate(event)
-}
-```
-
-## 使用场景
-
-校验器的使用场景主要分为以下几个方面：
-
-- 对数据表操作方法进行校验（`create`、`update`、`delete`、`bulk_create`、`bulk_update`、`bulk_delete`等）
-- 对操作者进行校验
-- 对用户传入数据—— `payload` 进行校验
+参考上文。
 
 ## 高阶使用
 
