@@ -62,9 +62,9 @@ fields 详细参数
 数据表关联了校验器后，在进行数据操作时，后台会调用该校验器进行校验。
 校验器通过返回 `true`、`false` 或抛出错误来对操作合法性做出评判。
 
-校验器的具体详情可以参考[校验器](/cloud-function/node-sdk/validator.md)
+如下图所示，开发者可以通过点击“校验器”按钮给数据表添加一个云函数校验器。已经添加过云函数校验器的数据表，可以通过该按钮进入到校验器的编辑页。
 
-开发者可以通过**校验器**给数据表添加一个云函数校验器，已经添加过云函数校验器的数据表，可以通过该按钮进入到校验器的编辑页。
+如何编写校验器逻辑代码，可以参考 [云函数 SDK 校验器文档](/cloud-function/node-sdk/schema/validator.md#快速开始)。
 
 ![创建校验器](/images/dashboard/basic-services/schema-create-validator.png)
 
