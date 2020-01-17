@@ -56,6 +56,22 @@ fields 详细参数
 | format          | String | 是 | 仅当 type 为 geojson 时使用。<br>值只能是 default。 |
 | coordinate_type | String | 是 | 仅当 type 为 geojson 时使用。<br>有两个值可选：<br>wgs84: 地球坐标<br>gcj02: 火星坐标 |
 
+### 校验器
+
+![创建校验器](/images/dashboard/basic-services/schema-create-validator.png)
+
+开发者可以通过**校验器**给数据表添加一个云函数校验器，已经添加过云函数校验器的数据表，可以通过该按钮进入到校验器的编辑页
+
+校验器用于数据操作时校验操作的合法性，是对数据表 ACL 权限的自定义校验。
+数据表关联了校验器后，在进行数据操作时，后台会调用该校验器进行校验。
+校验器通过返回 `true`、`false` 或抛出错误来对操作合法性做出评判。
+
+校验器的具体详情可以参考[校验器](/cloud-function/node-sdk/validator.md)
+
+校验器**不能**删除，但是可以通过检验器编辑页面的开启/关闭开关对校验器进行开启或关闭
+
+![校验器](/images/dashboard/basic-services/schema-close-validator.png)
+
 ### 添加列
 
 ![添加列](/images/dashboard/basic-services/add-column.png)
