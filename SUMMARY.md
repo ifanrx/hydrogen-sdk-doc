@@ -127,6 +127,7 @@
     * [用户](android-sdk/user.md)
         * [注册登录](android-sdk/auth.md)
         * [当前用户](android-sdk/account.md)
+        * [微信登录](android-sdk/wechat_signin.md)
     * [数据表](android-sdk/schema/README.md)
         * [数据类型](android-sdk/schema/data-type.md)
         * [新增数据项](android-sdk/schema/create-record.md)
