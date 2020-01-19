@@ -6,13 +6,13 @@
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v2.2/table/:table_id/record/`
+`GET https://cloud.minapp.com/userve/v2.4/table/:table_id/record/`
 
 其中 `:table_id` 需替换为你的数据表 ID
 
 > **info**
 > 该接口支持通过参数 return_total_count 指定是否返回查询对象总数，以协助不关心对象总数只关心查询结果列表的开发者提升接口响应速度。
-同时，从 v2.2 版本开始该接口默认不返回查询对象总数，欲获取总数的开发者需要显式指定 return_total_count 参数。
+同时，从 v2.4 版本开始该接口默认不返回查询对象总数，欲获取总数的开发者需要显式指定 return_total_count 参数。
 
 **参数说明**
 
@@ -41,7 +41,7 @@ var axios = require('axios').create({
   withCredentials: true
 })
 
-axios.get('https://cloud.minapp.com/userve/v2.2/table/1/record/', {params: {where: {price: {$eq: 10}}}}).then(res => {
+axios.get('https://cloud.minapp.com/userve/v2.4/table/1/record/', {params: {where: {price: {$eq: 10}}}}).then(res => {
   console.log(res.data)
 })
 ```
@@ -89,7 +89,7 @@ axios.get('https://cloud.minapp.com/userve/v2.2/table/1/record/', {params: {wher
 请求示例：
 
 ```
-https://cloud.minapp.com/userve/v2.2/table/:table_id/record/?limit=1&return_total_count=1
+https://cloud.minapp.com/userve/v2.4/table/:table_id/record/?limit=1&return_total_count=1
 ``` 
 
 ## 排序返回查询数据
@@ -100,17 +100,17 @@ https://cloud.minapp.com/userve/v2.2/table/:table_id/record/?limit=1&return_tota
 
 ```
 # 顺序
-https://cloud.minapp.com/userve/v2.2/table/:table_id/record/?order_by=created_at
+https://cloud.minapp.com/userve/v2.4/table/:table_id/record/?order_by=created_at
 
 # 倒序
-https://cloud.minapp.com/userve/v2.2/table/:table_id/record/?order_by=-created_at
+https://cloud.minapp.com/userve/v2.4/table/:table_id/record/?order_by=-created_at
 ```
 
 ## 获取数据项
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v2.2/table/:table_id/record/:record_id/`
+`GET https://cloud.minapp.com/userve/v2.4/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -118,7 +118,7 @@ https://cloud.minapp.com/userve/v2.2/table/:table_id/record/?order_by=-created_a
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v2.2/table/:table_id/record/`
+`POST https://cloud.minapp.com/userve/v2.4/table/:table_id/record/`
 
 其中 `:table_id` 需替换为你的数据表 ID
 
@@ -148,7 +148,7 @@ Content-Type: `application/json`
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v2.2/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/userve/v2.4/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -169,7 +169,31 @@ Content-Type: `application/json`
 
 **状态码说明**
 
-`201` 更新成功，`400` 请求参数有错
+`200` 更新成功，`400` 请求参数有错
+
+
+## 修改数据行 ACL
+
+**接口**
+
+`PUT https://cloud.minapp.com/userve/v2.4/table/:table_id/record/:record_id/`
+
+其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
+
+**参数说明**
+
+Content-Type: `application/json`
+
+| 参数  | 类型                | 必填 | 说明 |
+| :--- | :------------------ | :-- | :-- |
+| read_perm  | String Array | Y   | 待更新的数据行读权限 |
+| write_perm | String Array | Y   | 待更新的数据行写权限 |
+
+`write_perm` 和 `read_perm` 的可选值请参考 [数据表操作-创建数据表](./table.md) 小节
+
+**状态码说明**
+
+`200` 更新成功，`400` 请求参数有错
 
 
 ## 数据删除
@@ -179,7 +203,7 @@ Content-Type: `application/json`
 
 **接口**
 
-`DELETE https://cloud.minapp.com/userve/v2.2/table/:table_id/record/:record_id/`
+`DELETE https://cloud.minapp.com/userve/v2.4/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -194,7 +218,7 @@ Content-Type: `application/json`
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v2.2/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/userve/v2.4/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -282,121 +306,26 @@ Content-Type: `application/json`
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v2.2/table/:table_id/record/?where=query`
+`GET https://cloud.minapp.com/userve/v2.4/table/:table_id/record/?where=query`
 
 其中 `:table_id` 需替换为你的数据表 ID，query 为查询条件
-
-**示例代码**
-
-假设现在有两张表： order 表和 customer 表，order 表中有一个类型为 pointer，名称为 user 的字段，指向了 customer 表的数据行。
-现在需要查询 order 表中，user 字段指向 customer 表中 id 为 `5bf4f7457fed8d6c2f5c3d6e` 的数据行。
-
-{% tabs pointerFirst="Node", pointerSecond="Python", pointerThird="PHP" %}
-
-{% content "pointerFirst" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v2.2/table/3906/record/',  // 3906 对应 :table_id
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  qs: {     // query string, 被附加到uri的参数
-    where: JSON.stringify({   // 可选, 参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码
-      "user": {"$eq": "5bf4f7457fed8d6c2f5c3d6e"}
-    }),
-    order_by: 'id',   // 可选
-    offset: 0,    // 可选
-    limit: 20,    // 可选
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
-```
-
-{% content "pointerSecond" %}
-
-```python
-import json
-import urllib
-
-import requests
-
-
-table_id = ''
-BASE_API = r'https://cloud.minapp.com/userve/v2.2/table/%s/record/' % table_id
-
-TOKEN = ''
-HEADERS = {
-  'Authorization': 'Bearer %s' % TOKEN
-}
-
-where_ = {
-  'user': {'$eq': "5bf4f7457fed8d6c2f5c3d6e"},
-}
-
-query_ = urllib.urlencode({
-  'where': json.dumps(where_),
-  'order_by': '-id',
-  'limit': 10,
-  'offset': 0,
-})
-
-API = '?'.join((BASE_API, query_))
-
-resp_ = requests.get(API, headers=HEADERS)
-print resp_.content
-```
-
-{% content "pointerThird" %}
-
-```php
-<?php
-$table_id = 1; // 数据表 ID
-$condition = array(
-  'order_by' => '-id',
-  'where' => json_encode(['user' => ['$eq' => '5bf4f7457fed8d6c2f5c3d6e']]),
-  'limit' => '10',
-  'offset' => '0',
-);
-$url = "https://cloud.minapp.com/userve/v2.2/table/{$table_id}/record/?";
-$url .= http_build_query($condition);
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Bearer {$token}",
-  'Content-Type: application/json; charset=utf-8',
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res = curl_exec($ch);
-curl_close($ch);
-```
-
-{% endtabs %}
-
 
 ## 字段扩展
 
 支持 expand created_by 以及 pointer 类型字段。返回结果中的 created_by 以及扩展的 pointer 类型字段会被替换为这个字段对应的完整对象。
 
 > **info**
-> 字段扩展功能仅支持在 v1.8 及以上版本接口使用
+> 1. 字段扩展功能仅支持在 v1.8 及以上版本接口使用
+>
+> 2. v2.4 以上版本字段扩展支持指定 pointer 展开后返回的字段，通过设置 expand=pointer1,pointer2&keys=pointer1.field1,pointer2.field2 的形式进行指定；注意，仅当 expand 中已指定展开对应的 pointer 字段后，keys 中指定的 pointer 展开后返回值才会生效，否则会被忽略
+>
+> 3. 通过 keys=pointer.field1,pointer.field2 指定返回字段，keys=-pointer.field1,-pointer.field2 指定不返回字段，两者不能同时使用，否则 keys 参数会被直接忽略
+>
+> 4. 展开后的返回值中默认会带上 _table 字段，表示该 pointer 字段指向的表名
 
 **接口**
 
-`GET https://cloud.minapp.com/userve/v2.2/table/:table_id/record/?expand=pointer,created_by`
+`GET https://cloud.minapp.com/userve/v2.4/table/:table_id/record/?expand=pointer,created_by&keys=created_by.nickanme,created_by.avatar,pointer.customized_field`
 
 其中 `:table_id` 需替换为你的数据表 ID
 
@@ -419,190 +348,36 @@ curl_close($ch);
   "created_at": 1516118400,
   "created_by": {
     "avatar": "https://media.ifanrusercontent.com/tavatar/fb/cd/xxxx.jpg",
-    "id": 62536607,
     "nickname": "Larry。"
   },
   "id": "5a2fa9b008443e59e0e67829",
   "name": "小米无线耳机",
   "price": 199,
   "pointer": {
-    "id": "5a2fa9b008443e59e0e67889",
     "_table": "pointer",
     "customized_field": "field_content"
   }
 }
 ```
 
-**代码示例**
-
-{% tabs expandFirst="Node", expandSecond="Python", expandThird="PHP" %}
-
-{% content "expandFirst" %}
-
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v2.2/table/3906/record/',  // 3906 对应 :table_id
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  qs: {     // query string, 被附加到uri的参数
-    where: JSON.stringify({   // 可选, 参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码
-      "price": {"$eq": 10}
-    }),
-    order_by: 'id',   // 可选
-    offset: 0,    // 可选
-    limit: 20,    // 可选
-    expand: 'pointer,created_by',    //必选，表示需要扩展的字段
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(body)
-})
-```
-
-{% content "expandSecond" %}
-
-```python
-import json
-import urllib
-
-import requests
-
-
-table_id = ''
-BASE_API = r'https://cloud.minapp.com/userve/v2.2/table/%s/record/' % table_id
-
-TOKEN = ''
-HEADERS = {
-  'Authorization': 'Bearer %s' % TOKEN
-}
-
-where_ = {
-  'price': {'$gt': 100},
-}
-
-query_ = urllib.urlencode({
-  'where': json.dumps(where_),
-  'order_by': '-id',
-  'limit': 10,
-  'offset': 0,
-  'expand': 'pointer,created_by'
-})
-
-API = '?'.join((BASE_API, query_))
-
-resp_ = requests.get(API, headers=HEADERS)
-print resp_.content
-```
-
-{% content "expandThird" %}
-
-```php
-<?php
-$table_id = 1; // 数据表 ID
-$condition = array(
-  'order_by' => '-id',
-  'where' => json_encode(['price' => ['$gt' => 'test search']]),
-  'limit' => '10',
-  'offset' => '0',
-  'expand' => 'pointer,created_by'
-);
-$url = "https://cloud.minapp.com/userve/v2.2/table/{$table_id}/record/?";
-$url .= http_build_query($condition);
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Bearer {$token}",
-  'Content-Type: application/json; charset=utf-8',
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res = curl_exec($ch);
-curl_close($ch);
-```
-
-{% endtabs %}
-
 
 ## 添加 pointer 类型数据
 
 **接口**
 
-`POST https://cloud.minapp.com/userve/v2.2/table/:table_id/record/`
+`POST https://cloud.minapp.com/userve/v2.4/table/:table_id/record/`
 
 其中 `:table_id` 需替换为你的数据表 ID
 
-**代码示例**
+**参数说明**
 
-{% tabs pointerInsertNode="Node", pointerInsertPHP="PHP" %}
+Content-Type: `application/json`
 
-{% content "pointerInsertNode" %}
+| 参数  | 类型                | 必填 | 说明 |
+| :--- | :------------------ | :-- | :-- |
+| key  | key 字段对应的数据类型 | Y   | key 应为数据表中定义的字段名 |
 
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v2.2/table/3906/record/',  // 3906 对应 :table_id
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    name: 'nickname',
-    desc: ['description'],
-    price: 19,
-    amount: 19,
-    code: '18814098707'
-    pointer: '5a2fa9b008443e59e0e67889',    // pointer 关联的数据 ID
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% content "pointerInsertPHP" %}
-```php
-<?php
-$table_id = 1;
-$param = array(
-  'pointer' => '5a2fa9b008443e59e0e67889'
-);
-$url = "https://cloud.minapp.com/userve/v2.2/table/{$table_id}/record/";
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Bearer {$token}",
-  'Content-Type: application/json; charset=utf-8',
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res['response'] = curl_exec($ch); // 反馈结果
-$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close($ch);
-
-```
-
-
-{% endtabs %}
+其中 `pointer` 类型字段的创建只需传入指向的数据行 ID 即可。
 
 **状态码说明**
 
@@ -613,65 +388,335 @@ curl_close($ch);
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v2.2/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/userve/v2.4/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
-**代码示例**
+**参数说明**
 
-{% tabs pointerUpdateNode="Node", pointerUpdatePHP="PHP" %}
+Content-Type: `application/json`
 
-{% content "pointerUpdateNode" %}
+| 参数  | 类型                | 必填 | 说明 |
+| :--- | :------------------ | :-- | :-- |
+| key  | key 字段对应的数据类型 | Y   | key 应为数据表中定义的字段名 |
 
-```js
-var request = require('request');
-
-var opt = {
-  uri: 'https://cloud.minapp.com/userve/v2.2/table/3906/record/5a6ee2ab4a7baa1fc083e3xx',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
-  method: 'PUT',
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
-    pointer: '5a2fa9b008443e59e0e67889',    // pointer 关联的数据 ID
-  }
-}
-
-request(opt, function(err, res, body) {
-  console.log(res.statusCode)
-})
-```
-
-{% content "pointerUpdatePHP" %}
-
-```php
-<?php
-$table_id = 1; // 数据表 ID
-$record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
-$url = "https://cloud.minapp.com/userve/v2.2/table/{$table_id}/record/{$record_id}/";
-$param['pointer'] = '5a2fa9b008443e59e0e67889';
-
-$ch = curl_init();
-$header = array(
-  "Authorization: Bearer {$token}",
-  'Content-Type: application/json; charset=utf-8'
-);
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$res['response'] = curl_exec($ch); // 反馈结果
-$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
-curl_close($ch);
-```
-
-{% endtabs %}
+其中 `pointer` 类型字段的创建只需传入指向的数据行 ID 即可。
 
 **状态码说明**
 
 `200` 更新成功，`400` 请求参数有错
+
+
+## 批量写入数据
+
+**接口**
+
+`POST https://cloud.minapp.com/userve/v2.4/table/:table_id/record/`
+
+其中 `:table_id` 是数据表的 ID。一次请求最多支持创建 1000 条数据，支持触发触发器。
+
+**参数说明**
+
+Content-Type: `application/json`
+
+将需要批量创建的数据放到一个数组里提交，数组中的元素构建方式与创建单条数据一致。
+
+**返回示例**
+
+```json
+{
+  "operation_result": [
+    {
+      "success": {
+        "id": "5cac254426eda1729d9f1d8c",
+        "created_at": 1554785604
+      }
+    },
+    {
+      "error": {
+        "err_msg": "数据写入失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。",
+        "code": 11000
+      }
+    }
+  ],
+  "total_count": 2,
+  "succeed": 1
+}
+```
+
+**返回参数说明**
+
+| 参数    | 类型   | 说明 |
+| :----- | :----- | :-- |
+| total_count | Integer | 总共需要创建的记录数 |
+| succeed | Integer | 创建成功的记录数 |
+| operation_result | Array | 包含的元素类型是 Object，一个 Object 表示一条记录创建的结果。 |
+
+operation_result 包含的 Object 的参数说明：
+
+创建成功（对象中包含键：success）：
+
+| 参数    | 类型   | 说明 |
+| :----- | :----- | :-- |
+| id | String | 记录 ID |
+| created_at | Integer | 记录创建时的时间戳 |
+
+创建失败（对象中包含键：error）：
+
+| 参数    | 类型   | 说明 |
+| :----- | :----- | :-- |
+| err_msg | String | 错误信息 |
+| code | Integer | 错误代码 |
+
+**状态码说明**
+
+`201`: 成功。
+
+`400`: 参数错误，比如缺少必填项，数据类型不对。
+
+`404`: 指定的数据表不存在。
+
+
+## 同步批量修改数据
+
+**接口**
+
+`PUT https://cloud.minapp.com/userve/v2.4/table/:table_id/record/`
+
+其中 `:table_id` 是数据表的 ID。单次请求最多修改 1000 条数据，支持触发触发器。
+
+> **info**
+> 该接口支持通过参数 return_total_count 指定是否返回待更新对象总数，以协助不关心对象总数只关心数据更新结果的开发者提升接口响应速度。
+同时，从 v2.4 版本开始该接口默认不返回待更新对象总数，欲获取总数的开发者需要显式指定 return_total_count 参数。
+
+**Query 参数说明**
+
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :-- |
+| where    | String | N   | 查询语句，参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码 |
+| limit    | Integer | Y   | 设置单次请求可以更新最大数据条数，默认为 1000 |
+| offset   | Integer | N   | 设置更新的起始偏移值，默认为 0 |
+| return_total_count   | Integer | N   | 返回结果中是否包含 total_count，1 为包含，0 为不包含，默认不包含 |
+
+**参数说明**
+
+Content-Type: `application/json`
+
+与修改单条数据的参数一致。
+
+**返回示例**
+
+```json
+{
+  "offset": 0,
+  "operation_result": [
+    {
+      "success": {
+        "updated_at": 1556414642,
+        "id": "5cc5009f04cc155b1d61dc26"
+      }
+    }
+  ],
+  "next": null,
+  "total_count": 1,
+  "limit": 1000,
+  "succeed": 1
+}
+```
+
+**返回参数说明**
+
+| 参数    | 类型   | 说明 |
+| :----- | :----- | :-- |
+| total_count | Integer | 总共需要更新的记录数，仅在 return_total_count=1 的情况下返回 |
+| succeed | Integer | 更新成功的记录数 |
+| offset | Integer | 偏移量，默认为 0 |
+| next | String | 下一次的更新链接，若待删除记录数超过 limit 指定的上限，可通过该链接继续更新，更新完成时值为：null |
+| limit | Integer | 与 URL 中参数 limit 一致（默认为 1000） |
+| operation_result | Array | 包含的元素类型是 Object，一个 Object 表示一条记录修改的结果。 |
+
+operation_result 包含的 Object 的参数说明：
+
+更新成功（对象中包含键：success）：
+
+| 参数    | 类型   | 说明 |
+| :----- | :----- | :-- |
+| id | String | 记录 ID |
+| updated_at | Integer | 记录修改完成时的时间戳 |
+
+更新失败（对象中包含键：error）：
+
+| 参数    | 类型   | 说明 |
+| :----- | :----- | :-- |
+| err_msg | String | 错误信息 |
+| code | Integer | 错误代码 |
+
+**状态码说明**
+
+`200`: 成功。
+
+`400`: 参数错误，比如缺少必填项，数据类型不对。
+
+`404`: 指定的数据表不存在。
+
+
+## 同步批量删除数据
+
+**接口**
+
+`DELETE https://cloud.minapp.com/userve/v2.4/table/:table_id/record/`
+
+其中 `:table_id` 是数据表的 ID。单次请求最多删除 1000 条数据，支持触发触发器。
+
+> **info**
+> 该接口支持通过参数 return_total_count 指定是否返回待删除对象总数，以协助不关心对象总数只关心数据删除结果的开发者提升接口响应速度。
+同时，从 v2.4 版本开始该接口默认不返回待删除对象总数，欲获取总数的开发者需要显式指定 return_total_count 参数。
+
+**Query 参数说明**
+
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :-- |
+| where    | String | N   | 查询语句，参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码 |
+| limit    | Integer | Y   | 设置单次请求至多可以删除多少条数据，默认为 1000 |
+| offset   | Integer | N   | 设置删除的起始偏移值，默认为 0 |
+| return_total_count   | Integer | N   | 返回结果中是否包含 total_count，1 为包含，0 为不包含，默认不包含 |
+
+**返回示例**
+
+```json
+{
+  "total_count": 2,
+  "offset": 0,
+  "next": null,
+  "limit": 1000,
+  "succeed": 2
+}
+```
+
+**返回参数说明**
+
+| 参数    | 类型   | 说明 |
+| :----- | :----- | :-- |
+| total_count | Integer | 总共需要删除的记录数，仅在 return_total_count=1 的情况下返回 |
+| succeed | Integer | 删除成功的记录数 |
+| offset | Integer | 偏移量，默认为 0 |
+| next | String | 下一次的删除链接，若待删除记录数超过 limit 指定的上限，可通过该链接继续删除，删除完成时值为：null |
+| limit | Integer | 与 URL 中参数 limit 一致（默认为 1000） |
+
+**状态码说明**
+
+`200`: 成功。
+
+`400`: 查询参数不合法，比如：数据类型不对。
+
+`404`: 指定的数据表不存在。
+
+
+## 异步大批量修改数据
+
+**接口**
+
+`PUT https://cloud.minapp.com/userve/v2.4/table/:table_id/record/`
+
+其中 `:table_id` 是数据表的 ID。单次请求更新的数据条数大于 1000 条且 Query 参数中没有 limit 参数或 limit 值大于 1000 时会自动使用此接口，不支持触发触发器。
+
+**Query 参数说明**
+
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :-- |
+| where    | String | N   | 查询语句，参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码 |
+
+**参数说明**
+
+Content-Type: `application/json`
+
+与修改单条数据的参数一致。
+
+**返回参数说明**
+
+| 参数    | 类型   | 说明 |
+| :----- | :----- | :-- |
+| status | String | 请求状态，值为：ok |
+| operation_id | Integer | 异步结果 ID |
+
+**状态码说明**
+
+`200`: 成功。
+
+`400`: 参数错误，比如缺少必填项，数据类型不对。
+
+`404`: 指定的数据表不存在。
+
+## 异步大批量删除数据
+
+**接口**
+
+`DELETE https://cloud.minapp.com/userve/v2.4/table/:table_id/record/`
+
+其中 `:table_id` 是数据表的 ID。单次请求删除的数据条数大于 1000 条且 Query 参数中没有 limit 参数或 limit 值大于 1000 时会自动使用此接口，不支持触发触发器。
+
+**Query 参数说明**
+
+| 参数      | 类型   | 必填 | 说明 |
+| :------- | :----- | :-- | :-- |
+| where    | String | N   | 查询语句，参数值应经过 JSON 编码为 JSONString 后，再经过 URL 编码 |
+
+**返回参数说明**
+
+| 参数    | 类型   | 说明 |
+| :----- | :----- | :-- |
+| status | String | 请求状态，值为：ok |
+| operation_id | Integer | 异步结果 ID |
+
+**状态码说明**
+
+`200`: 成功。
+
+`400`: 查询参数不合法，比如：数据类型不对。
+
+`404`: 指定的数据表不存在。
+
+## 查询异步批量更新、删除结果
+
+**接口**
+
+`GET https://cloud.minapp.com/userve/v1/bulk-operation/:operation_id/`
+
+其中 `:operation_id` 是异步批量更新或删除接口中返回的 `operation_id` 字段的值。
+
+**返回示例**
+
+```json
+{
+  "id": 1,
+  "schema_id": 1,
+  "schema_name": "random_name",
+  "operation": "update",
+  "status": "success",
+  "created_at": 111111,
+  "updated_at": 111112,
+  "matched_count": 111,
+  "modified_count": 111,
+}
+```
+
+**返回参数说明**
+
+| 参数    | 类型   | 说明 |
+| :----- | :----- | :-- |
+| id | Integer | 记录 ID |
+| schema_id | Integer | 数据表表 ID |
+| schema_name | String | 数据表表名 |
+| operation | String | 操作类型：update（更新）、delete（删除） |
+| status | String | 操作状态：pending（执行中）、 success（成功）|
+| created_at | Integer | 任务创建时间，时间戳 |
+| updated_at | Integer | 本记录最后更新时间，时间戳 |
+| matched_count | Integer | 匹配的数据条数，仅当操作类型是更新时才有 |
+| modified_count | Integer | 更新的数据条数，仅当操作类型是更新时才有 |
+| deleted_count | Integer | 删除的数据条数，仅当操作类型是删除时才有 |
+
+**状态码说明**
+
+`200`: 成功
+
+`404`: 操作记录不存在
