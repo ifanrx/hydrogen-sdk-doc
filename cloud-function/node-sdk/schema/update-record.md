@@ -49,19 +49,19 @@ a. set 操作
 `product.set(key, value)` 或 `product.set(obj)`
 
  **参数说明**
- 
+
 | 参数  | 类型              | 必填 | 说明 |
 | :---- | :---------------- | :-- | :-- |
 | key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
 | value | any               | 是  | 与 key 字段的类型保持一致 |
 | obj   | Object            | 是  | 一次性赋值的键值对对象, 如 `{a: 10, b: 20}` |
- 
- b. unset 操作 
- 
+
+ b. unset 操作
+
  将某个字段的值清空
- 
+
  `product.unset(key)` 或 `product.unset(obj)`
- 
+
 **参数说明**
 
 | 参数  | 类型              | 必填 | 说明 |
@@ -490,7 +490,7 @@ function updateData() {
            "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
          }
        }
-     ] 
+     ]
   }
 }
 ```
@@ -501,14 +501,12 @@ function updateData() {
 
 ### 按条件批量更新时不触发触发器
 
-> **info**
-> 不触发触发器的情况下:
+批量更新不触发触发器的情况下会有以下的操作（暂不支持指定同步/异步操作）:
 
-> limit <= 1000 时，操作记录为同步执行
-
-> limit > 1000 时，则会转为异步执行并移除限制，变成操作全部
-
-> limit 未设置时，为操作全部的异步操作
+- 当数据表中的数据总数未超过 1000 的时，无论的 limit 设置多少，均为同步更新。
+- 当数据表中的数据总数超过 1000 的时，其操作则分为三种：
+  - limit <= 1000 时，操作记录为同步执行
+  - limit > 1000 或未设置时，则会转为异步执行并移除限制，变成操作全部
 
 {% tabs batchUpdateAsync="async/await", batchUpdatePromise="promise" %}
 {% content "batchUpdateAsync" %}
@@ -596,7 +594,7 @@ function batchUpdate() {
            "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
          }
        }
-     ] 
+     ]
   }
 }
 ```
@@ -663,7 +661,7 @@ record.patchObject('obj1', patch)
 
 ## 修改数据行 ACL
 
-有时候我们需要设置特定数据行的 ACL 权限，之前只能在知晓云控制台修改数据行 ACL，现在云函数中支持通过代码来完该操作了。 
+有时候我们需要设置特定数据行的 ACL 权限，之前只能在知晓云控制台修改数据行 ACL，现在云函数中支持通过代码来完该操作了。
 
 假设 product 表中有一行 id 为 5bffbab54b30640ba8135650 的数据行，目前其 acl 为 所有人可读，所有人可写，现在需要将其修改为 `用户组【开发人员】和创建者可写` 、`创建者可读`。
 
@@ -679,7 +677,7 @@ async function updateACL() {
   try {
     let Product = new BaaS.TableObject('product')
     let record = Product.getWithoutData('5bffbab54b30640ba8135650')
-    
+
     record.set('write_perm', [ "gid:656", "user:37087886"])
     record.set('read_perm', [ "user:37087886" ])
 
@@ -698,10 +696,10 @@ async function updateACL() {
 function updateACL() {
   let Product = new BaaS.TableObject('product')
   let record = Product.getWithoutData('5bffbab54b30640ba8135650')
-  
+
   record.set('write_perm', [ "gid:656", "user:37087886"])
   record.set('read_perm', [ "user:37087886" ])
-  
+
   record.update().then(res=>{
     // success
     callback(null, res)
@@ -712,11 +710,11 @@ function updateACL() {
 }
 ```
 {% endtabs %}
- 
+
  **返回示例**
- 
+
  res 结构如下：
- 
+
  ```json
 {
   "status": 200,
