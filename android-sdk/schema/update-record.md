@@ -300,10 +300,10 @@ catch 回调中的 err 对象:
 
 ### 批量更新时不触发触发器
 
-批量更新不触发触发器的情况下会有以下的操作（暂不支持指定同步/异步操作）:
+不触发触发器的情况下会有以下的行为:
 
-- 当数据表中的数据总数未超过 1000 的时，无论的 limit 设置多少，均为同步更新。
-- 当数据表中的数据总数超过 1000 的时，其操作则分为三种：
+- 当更新命中总条目 <= 1000 时，无论 limit 设置为多少，均为同步更新，将返回每一条更新的 id 和更新结果，详见下方返回示例中同步执行部分。
+- 当更新命中总条目 > 1000 时，根据设置 limit 的不同，将有下方两种行为：
   - limit <= 1000 时，操作记录为同步执行
   - limit > 1000 或未设置时，则会转为异步执行并移除限制，变成操作全部
 
@@ -336,7 +336,7 @@ table.batchUpdateInBackground(query, updateOption, new BaseCallback<BatchResult>
 
 **返回结构的 json 示例**
 
-同步操作时结构如下：
+同步执行时，返回数据结构如下：
 
 ```json
 {
@@ -368,7 +368,7 @@ table.batchUpdateInBackground(query, updateOption, new BaseCallback<BatchResult>
 }
 ```
 
-异步操作时结构如下：
+异步执行时，返回数据结构如下：
 
 ```json
 {
