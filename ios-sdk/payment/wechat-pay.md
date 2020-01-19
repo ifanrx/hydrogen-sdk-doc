@@ -29,14 +29,34 @@
 {% content "swift1" %}
 ```
 func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return BaaS.handleOpenURL(url: url)
+    return BaaS.handleOpenURL(url: url)
 }
+
+// Xcode 11+ 创建的项目需配置：
+
+func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        
+    guard let url = URLContexts.first?.url else {
+        return
+    }
+    _ = BaaS.handleOpenURL(url: url)
+}
+
 ```
 {% content "oc1" %}
 ```
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     return [BaaS handleOpenURLWithUrl:url];
 }
+
+// Xcode 11+ 创建的项目需配置：
+
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
+    UIOpenURLContext *context = [[URLContexts allObjects] objectAtIndex:0];
+    NSURL *url = context.URL;
+    return [BaaS handleOpenURLWithUrl:url];
+}
+
 ```
 {% endtabs %}
 
