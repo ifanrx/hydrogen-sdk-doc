@@ -375,14 +375,12 @@ function batchUpdate() {
 
 ### 批量修改用户自定义字段不触发触发器
 
-> **info**
-> 不触发触发器的情况下:
+不触发触发器的情况下会有以下的行为:
 
-> limit <= 1000 时，操作记录为同步执行
-
-> limit > 1000 时，则会转为异步执行并移除限制，变成操作全部
-
-> limit 未设置时，为操作全部的异步操作
+- 当更新命中总条目 <= 1000 时，无论 limit 设置为多少，均为同步更新，将返回每一条更新的 id 和更新结果，详见下方返回示例中同步执行部分。
+- 当更新命中总条目 > 1000 时，根据设置 limit 的不同，将有下方两种行为：
+  - limit <= 1000 时，操作记录为同步执行
+  - limit > 1000 或未设置时，则会转为异步执行并移除 limit 限制，变成操作全部
 
 {% tabs batchUpdateWithoutTriggerAsync="async/await", batchUpdateWithoutTriggerPromise="promise" %}
 {% content "batchUpdateWithoutTriggerAsync" %}

@@ -123,7 +123,7 @@ let query = new wx.BaaS.Query()
 MyTableObject.limit(10).offset(0).delete(query).then(res => {
   console.log(res)
 }, err => {
-  console.log(err)  
+  console.log(err)
 })
 ```
 {% endifanrxCodeTabs %}
@@ -160,15 +160,12 @@ SDK 1.9.1 及以上版本支持批量删除数据项时不触发触发器。该�
 
 SDK 2.9.0 及以上版本，在 enableTrigger 为 false 时，SDK 将不会设置默认的 limit （值为 20），如果用户没有设置 limit，则为全量删除。
 
+批量删除不触发触发器的情况下会有以下的行为:
 
-> **info**
-> 不触发触发器的情况下:
-
-> limit <= 1000 时，操作记录为同步执行
-
-> limit > 1000 时，则会转为异步执行并移除限制，变成操作全部
-
-> limit 未设置时，为操作全部的异步操作
+- 当删除命中总条目 <= 1000 时，无论 limit 设置为多少，均为同步删除，将返回删除结果，详见下方返回示例中同步执行部分。
+- 当删除命中总条目 > 1000 时，根据设置 limit 的不同，将有下方两种行为：
+  - limit <= 1000 时，操作记录为同步执行
+  - limit > 1000 或未设置时，则会转为异步执行并移除 limit 限制，变成操作全部
 
 ```js
 // 知晓云后台设置的触发器将不会被触发

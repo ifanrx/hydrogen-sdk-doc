@@ -26,7 +26,7 @@ a. put 操作
 | value | any               | 是  | 与 key 字段的类型保持一致 |
 | record| Record            | 是  | 一次性赋值的键值对对象 |
 
-b. unset 操作 
+b. unset 操作
 
 将某个字段的值清空
 
@@ -59,7 +59,7 @@ Record record = product.fetchWithoutData("59897882ff650c0477f00485");
 // 同步的方式
 try {
     record.put("price", 1);
-    record.save();   
+    record.save();
     // 操作成功
 } catch (Exception e) {
     // 操作失败
@@ -89,7 +89,7 @@ record.saveInBackground(new Callback<Record>() {
 | 404            | 数据行不存在    |
 
 
-## 更新 pointer 类型字段 
+## 更新 pointer 类型字段
 
 假设有 product 表, product 表部分字段如下:
 
@@ -114,7 +114,7 @@ try {
     Record user = Users.userWithoutData(69147880);
     // 针对当前登录用户，可用以下方法
     // CurrentUser user = Auth.currentUserWithoutData();
-    
+
     Record article = articles.createRecord();
     article.put("comment", comment);
     article.put("user", user);
@@ -285,7 +285,7 @@ then 回调中的 res 对象结构如下：
            "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
          }
        }
-     ] 
+     ]
   }
 }
 ```
@@ -300,15 +300,12 @@ catch 回调中的 err 对象:
 
 ### 批量更新时不触发触发器
 
-> **info**
-> 不触发触发器的情况下:
+不触发触发器的情况下会有以下的行为:
 
-> limit <= 1000 时，操作记录为同步执行
-
-> limit > 1000 时，则会转为异步执行并移除限制，变成操作全部
-
-> limit 未设置时，为操作全部的异步操作
-
+- 当更新命中总条目 <= 1000 时，无论 limit 设置为多少，均为同步更新，将返回每一条更新的 id 和更新结果，详见下方返回示例中同步执行部分。
+- 当更新命中总条目 > 1000 时，根据设置 limit 的不同，将有下方两种行为：
+  - limit <= 1000 时，操作记录为同步执行
+  - limit > 1000 或未设置时，则会转为异步执行并移除 limit 限制，变成操作全部
 
 ```java
 Table table = new Table("my_horses");
@@ -339,7 +336,7 @@ table.batchUpdateInBackground(query, updateOption, new BaseCallback<BatchResult>
 
 **返回结构的 json 示例**
 
-同步操作时结构如下：
+同步执行时，返回数据结构如下：
 
 ```json
 {
@@ -371,7 +368,7 @@ table.batchUpdateInBackground(query, updateOption, new BaseCallback<BatchResult>
 }
 ```
 
-异步操作时结构如下：
+异步执行时，返回数据结构如下：
 
 ```json
 {
