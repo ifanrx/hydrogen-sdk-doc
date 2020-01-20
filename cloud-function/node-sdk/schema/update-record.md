@@ -506,7 +506,7 @@ function updateData() {
 - 当更新命中总条目 <= 1000 时，无论 limit 设置为多少，均为同步更新，将返回每一条更新的 id 和更新结果，详见下方返回示例中同步执行部分。
 - 当更新命中总条目 > 1000 时，根据设置 limit 的不同，将有下方两种行为：
   - limit <= 1000 时，操作记录为同步执行
-  - limit > 1000 或未设置时，则会转为异步执行并移除限制，变成操作全部
+  - limit > 1000 或未设置时，则会转为异步执行并移除 limit 限制，变成操作全部
 
 {% tabs batchUpdateAsync="async/await", batchUpdatePromise="promise" %}
 {% content "batchUpdateAsync" %}
