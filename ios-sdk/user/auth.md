@@ -312,6 +312,9 @@ Auth.signIn(with: .wechat, createUser: true, syncUserProfile: .sentx) { (user, e
 ```
 {% endtabs %}
 
+> **info**
+> 目前第三方平台仅支持微信登录，近期将增加对新浪微博以及苹果登录。
+
 **参数说明**
 
 | 名称        | 类型   | 说明    |
@@ -323,9 +326,6 @@ Auth.signIn(with: .wechat, createUser: true, syncUserProfile: .sentx) { (user, e
 > **info**
 >
 >   1. `createUser` 参数决定了一个新的微信用户第一次登录时的服务端处理行为。 默认为 true，服务端会有该用户创建一个知晓云用户记录。 当 `createUser` 为 false 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见[多平台用户统一登录](#多平台用户统一登录)
-
-> **info**
-> 目前第三方平台仅支持微信登录，近期将增加对新浪微博以及苹果登录。
 
 **返回结果**
 
@@ -368,15 +368,15 @@ Auth.associate(with: .wechat, syncUserProfile: .sentx) { (currentUser, error) in
 ```
 {% endtabs %}
 
+> **info**
+> 目前第三方平台仅支持微信登录，近期将增加对新浪微博以及苹果登录。
+
 **参数说明**
 
 | 名称        | 类型   | 说明    |
 | :---------- | :----- | :------ |
 | signType | SignType | 第三方平台类型 |
 | syncUserProfile | SyncUserProfileType | 详见[同步第三方平台用户信息的方式](#同步第三方平台用户信息) |
-
-> **info**
-> 目前第三方平台仅支持微信登录，近期将增加对新浪微博以及苹果登录。
 
 **返回结果**
 
