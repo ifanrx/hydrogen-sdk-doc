@@ -497,6 +497,93 @@ curl_close($ch);
 `201` 写入成功，`400` 请求参数有错
 
 
+## 清空字段值
+
+将数据表中行数据对应字段值清空
+
+**接口**
+
+`PUT https://cloud.minapp.com/oserve/v2.4/table/:table_id/record/:record_id/`
+
+其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
+
+**参数说明**
+
+| 参数     | 类型    | 必填 | 说明 |
+| :---    | :------| :--  | :-- |
+| $unset  | Object | Y    | 待清空的字段|
+
+```json
+{
+  "$unset": {
+    "expample": "" 
+  }
+}
+```
+
+**代码示例**
+
+{% tabs unsetNode="Node", unsetPHP="PHP" %}
+
+{% content "unsetNode" %}
+
+```js
+var request = require('request');
+
+var opt = {
+  uri: 'https://cloud.minapp.com/oserve/v2.4/table/3906/record/5a33406909a805412e3169xx/',  // 3906 对应 :table_id, 5a33406909a805412e3169xx 对应 :record_id
+  method: 'PUT',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  json: {   // 指定 data 以 "Content-Type": 'application/json' 传送
+    $unset: {
+      "example": ""
+    }
+  }
+}
+
+request(opt, function(err, res, body) {
+  console.log(res.statusCode)
+})
+```
+
+{% content "unsetPHP" %}
+
+```php
+<?php
+$table_id = 1; // 数据表 ID
+$record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
+$url = "https://cloud.minapp.com/oserve/v2.4/table/{$table_id}/record/{$record_id}/";
+$param = array(
+  '$unset' => ['example' => [""]]
+);
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8',
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
+```
+{% endtabs %}
+
+**状态码说明**
+
+`200` 更新成功，`400` 请求参数有错
+
+
 ## 修改数据行 ACL 
 
 **接口**

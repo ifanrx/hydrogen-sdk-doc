@@ -172,6 +172,35 @@ Content-Type: `application/json`
 `200` 更新成功，`400` 请求参数有错
 
 
+## 清空字段值
+
+将数据表中行数据对应字段值清空
+
+**接口**
+
+`PUT https://cloud.minapp.com/userve/v2.4/table/:table_id/record/:record_id/`
+
+其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
+
+**参数说明**
+
+| 参数     | 类型    | 必填 | 说明 |
+| :---    | :------| :--  | :-- |
+| $unset  | Object | Y    | 待清空的字段|
+
+```json
+{
+  "$unset": {
+    "expample": "" 
+  }
+}
+```
+
+**状态码说明**
+
+`200` 更新成功，`400` 请求参数有错
+
+
 ## 修改数据行 ACL
 
 **接口**
