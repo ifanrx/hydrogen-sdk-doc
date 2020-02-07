@@ -120,6 +120,52 @@ axios.get('https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/36619758/')
 }
 ```
 
+
+## 更新单个用户信息
+
+**接口**
+
+`PUT https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/:id/`
+
+其中 `:id` 是用户在 `_userprofile` 表中的 `id`。
+
+**参数说明**
+
+> **info**
+> 参数与更新数据表数据的参数一致，详细说明请查看：[数据模块：更新数据](https://doc.minapp.com/user-dash/data/record.html#%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE)。
+> 支持数据原子性更新，详细说明请查看：[数据模块：数据原子性更新](https://doc.minapp.com/user-dash/data/record.html#%E6%95%B0%E6%8D%AE%E5%8E%9F%E5%AD%90%E6%80%A7%E6%9B%B4%E6%96%B0)。
+
+**返回示例**
+
+```json
+{
+    "avatar": "https://media.ifanrusercontent.com/tavatar/4d/7c/4d7c5418b262bfa2250fd3b70789ba9d0c6e4603.jpg",
+    "city": "广州",
+    "country": "中国",
+    "created_at": 1542858732,
+    "created_by": 70695404,
+    "gender": 1,
+    "id": 70695404,
+    "is_authorized": true,
+    "language": "zh_CN",
+    "nickname": "Guoch",
+    "openid": "o0b495agcnGojMQbCnlB9AV6OeDw",
+    "province": "广东",
+    "test": "changed_from_open_api",
+    "unionid": null,
+    "updated_at": 1542957870
+}
+```
+
+**状态码说明**
+
+`200`: 成功。
+
+`400`: 字段类型不匹配，更新非自定义字段或不存在的字段。
+
+`404`: 用户不存在。
+
+
 ## 批量修改自定义字段
 
 `PUT https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/`
