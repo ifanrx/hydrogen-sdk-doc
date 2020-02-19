@@ -54,7 +54,11 @@ public class SignInActivity extends AppCompatActivity {
 
         @Override
         public void onFailure(@Nullable Exception ex) {
-            // 微信登录失败
+            // 微信登录失败，可能的异常有：
+            // IOException 网络异常
+            // WechatNotInitException 没有安装微信
+            // "fail to send auth req to wechat" 调用微信 sdk 时发生异常（此时要通过 logcat 查看 MicroMsg.SDK 的日志）
+            // "sign in error XXX" 服务端登录异常
         }
     };
 
