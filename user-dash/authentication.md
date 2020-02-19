@@ -12,7 +12,7 @@
 
 ```html
 <!-- 其中 client_id 需替换为您应用的 ClientID，envID 替换为开发环境 ID，如果是生产环境，则不需要填写 -->
-<script src="https://cloud.minapp.com/custom-userdash/auth/<client_id>/?env_id=[envID]"></script>
+<script src="https://cloud.minapp.com/custom-userdash/auth/<client_id>/?env_id=<envID>"></script>
 ```
 
 生产环境示例：
