@@ -84,7 +84,7 @@
 下方是一个完整的校验器例子，实现了以下规则：
 
   - 所有用户可以创建订单
-  - 只允许用户 '1001' 删除订单
+  - 只允许用户 1001 删除订单
   - 禁止了批量创建、批量更新、批量删除
   - 禁止取消已过期订单
 
@@ -102,7 +102,7 @@ exports.main = async function (event) {
       return true
     },
     async onDelete(data) {
-      if (data.user_id === "1001") {
+      if (data.user_id == 1001) {
         return true
       } else {
         throw Error(`用户 ${data.user_id} 无操作权限`)
@@ -276,7 +276,7 @@ exports.main = async function (event) {
 
 ```js
 BaaS.useVersion('v3')
-const whitelist = ['1001', '1002']
+const whitelist = [1001, 1002]
 exports.main = async function (event) {
   return whitelist.includes(event.data.user_id)
 }
@@ -286,7 +286,7 @@ exports.main = async function (event) {
 
 ```js
 BaaS.useVersion('v3')
-const whitelist = ['1001', '1002']
+const whitelist = [1001, 1002]
 exports.main = async function (event) {
   if (!whitelist.includes(event.data.user_id)) {
     throw Error(`用户 ${event.data.user_id} 无操作权限`)
@@ -329,13 +329,13 @@ exports.main = async function (event) {
 
 2. 由于 JavaScript 函数默认返回 `undefined`，是个 falsy 值，所以校验通过时，**需要明确返回 `true`**。
 
-  例如，下文的代码中，开发者的意图是只禁止 ID 为 '1001' 的用户创建数据。但实际上，
+  例如，下文的代码中，开发者的意图是只禁止 ID 为 1001 的用户创建数据。但实际上，
   所有用户都被禁止操作了。
 
   ```js
   ...
   async onCreate(data) {
-    if (data.user_id === "1001") {
+    if (data.user_id == 1001) {
       return false
     }
   },
@@ -347,7 +347,7 @@ exports.main = async function (event) {
   ```js
   ...
   async onCreate(data) {
-    if (data.user_id === "1001") {
+    if (data.user_id == 1001) {
       return false
     }
     return true
