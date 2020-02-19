@@ -41,9 +41,9 @@
       * 抛出 Error 为 “验证不通过（Error.message 为理由）”
       *
       * <<举例>>:
-      * return data.user_id === "1001" // 只允许 ID 为 "1001" 的用户进行操作
+      * return data.user_id == 1001 // 只允许 ID 为 1001 的用户进行操作
       * 或者:
-      * if (data.user_id === "1001") {
+      * if (data.user_id == 1001) {
       *   return true
       * } else {
       *   throw Error(`用户 ${data.user_id} 无操作权限`)
