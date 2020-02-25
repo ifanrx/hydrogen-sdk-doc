@@ -221,7 +221,7 @@ interface Handlers {
 不返回拒绝理由：
 
 ```js
-BaaS.useVersion('v3')
+BaaS.useVersion('v3.4')
 exports.main = async function (event) {
   return false
 }
@@ -230,7 +230,7 @@ exports.main = async function (event) {
 返回拒绝理由：
 
 ```js
-BaaS.useVersion('v3')
+BaaS.useVersion('v3.4')
 exports.main = async function (event) {
   throw '数据表已锁定，不允许任何操作'
 }
@@ -246,7 +246,7 @@ exports.main = async function (event) {
 不返回拒绝理由：
 
 ```js
-BaaS.useVersion('v3')
+BaaS.useVersion('v3.4')
 const whitelist = ['create', 'update']
 exports.main = async function (event) {
   return whitelist.includes(event.data.event)
@@ -256,7 +256,7 @@ exports.main = async function (event) {
 返回拒绝理由：
 
 ```js
-BaaS.useVersion('v3')
+BaaS.useVersion('v3.4')
 const whitelist = ['create', 'update']
 exports.main = async function (event) {
   if (!whitelist.includes(event.data.event)) {
@@ -275,7 +275,7 @@ exports.main = async function (event) {
 不返回拒绝理由：
 
 ```js
-BaaS.useVersion('v3')
+BaaS.useVersion('v3.4')
 const whitelist = [1001, 1002]
 exports.main = async function (event) {
   return whitelist.includes(event.data.user_id)
@@ -285,7 +285,7 @@ exports.main = async function (event) {
 返回拒绝理由：
 
 ```js
-BaaS.useVersion('v3')
+BaaS.useVersion('v3.4')
 const whitelist = [1001, 1002]
 exports.main = async function (event) {
   if (!whitelist.includes(event.data.user_id)) {
@@ -304,7 +304,7 @@ exports.main = async function (event) {
 不返回拒绝理由：
 
 ```js
-BaaS.useVersion('v3')
+BaaS.useVersion('v3.4')
 exports.main = async function (event) {
   return !(event.data.before.status === '已过期' && event.data.payload.status === '已取消')
 }
@@ -313,7 +313,7 @@ exports.main = async function (event) {
 返回拒绝理由：
 
 ```js
-BaaS.useVersion('v3')
+BaaS.useVersion('v3.4')
 exports.main = async function (event) {
   if (event.data.before.status === '已过期' && event.data.payload.status === '已取消') {
     throw Error('已过期的订单不可取消')
