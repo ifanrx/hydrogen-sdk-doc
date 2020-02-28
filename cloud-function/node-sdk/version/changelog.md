@@ -4,6 +4,12 @@
 
 下文所列出的标记为 `[M]` 的更新均为不兼容更新。升级 SDK 版本时，请参照更新日志调整代码。
 
+### 3.4 (2020-02-28)
+
+1. #### [A] 支持数据表校验器 [查看](/cloud-function/node-sdk/schema/validator.md)
+2. #### [A] 文件上传时，使用文件名作为文件路径 [查看](/cloud-function/node-sdk/file/file.md)
+3. #### [A] wxacode 接口返回 uploaded_file 文件对象 [查看](/cloud-function/node-sdk/wxacode.md)
+
 ### 3.3 (2020-01-10)
 
 1. #### [A] 添加获取微信订阅消息可用订阅数量接口 [查看](/cloud-function/node-sdk/wechat-subscribe-message/wechat-subscribe-message-ticket.md)
