@@ -5,7 +5,7 @@
 > 以下操作仅适用于 SDK version >= 1.2.0
 {% endif %}
 
-`{{apiPrefix}}BaaS.getWXACode(type, params)`
+`{{apiPrefix}}BaaS.getWXACode(type, params, cdn, categoryName)`
 
 通过该接口可以获取小程序任意页面的二维码，扫描该二维码可以直接进入小程序对应的页面。目前支持生成小程序码和小程序二维码。
 
@@ -31,6 +31,19 @@
 | :----- | :------ | :-- |
 | image  | String  | 二维码的 base64 编码 |
 | download_url  | String  | 请求参数 cdn=true 时返回，二维码的下载链接 |
+| uploaded_file | Object  | 请求参数 cdn=true 时返回，图片文件对象。{% if apiPrefix %}SDK >= 3.7.0 {% else %}SDK >= v3.4 {% endif %}返回改参数 |
+
+uploaded_file 参数说明：
+
+| 参数        |  类型  | 说明 |
+| :--------- | :----- | :------ |
+| path       | String | 上传后的文件地址 |
+| cdn_path   | String | 文件在 cdn 上的路径 |
+| created_at | String | 文件上传时间 |
+| id         | Object | 文件 ID |
+| mime_type  | String | 文件媒体类型 |
+| name       | String | 文件名 |
+| size       | Number | 以字节为单位 |
 
 以下几种情况会返回 400 错误：
 
