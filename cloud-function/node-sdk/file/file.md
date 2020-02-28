@@ -32,12 +32,22 @@
 
 **FileMeta对象说明**
 
-| 字段名       | 类型   | 必填 | 说明           | 默认值 |
-| :---------- | :----- | :-- | :------------- | :---- |
-| category_id | String |  N  | 文件分类 ID     | ''    |
-| filename    | String |  N  | 文件名          | file.bin |
-| filepath    | String |  N  | 文件路径        | /tmp/file.bin |
-| contentType | String |  N  | 文件 MIME 类型  | application/octet-stream |
+| 字段名           | 类型    | 必填 | 说明            | 默认值 |
+| :--------------- | :------ | :--- | :-------------- | :---- |
+| category_id      | String  |  N   | 文件分类 ID     | ''    |
+| random_file_link | Boolean |  N   | 是否使用随机的文件存储路径，值为 `false` 则使用 `filename` 作为文件存储路径，详见下文举例说明      | true    |
+| filename         | String  |  N   | 文件名          | file.bin |
+| filepath         | String  |  N   | 文件路径        | /tmp/file.bin |
+| contentType      | String  |  N   | 文件 MIME 类型  | application/octet-stream |
+
+> **info**
+> **`random_file_link` 举例说明：**
+
+> `fileMeta.random_file_link` 为 `true` 时，如果 `fileMeta.filename` 为 `avatar.png`，
+> 则返回值中 res.data.file.path 为 `https://cloud-minapp-xxx.cloud.ifanrusercontent.com/1j6ZGvnzSpJ7YBZ8.png`
+
+> `fileMeta.random_file_link` 为 `false` 时，如果 `fileMeta.filename` 为 `avatar.png`，
+> 则返回值中 res.data.file.path 为 `https://cloud-minapp-xxx.cloud.ifanrusercontent.com/avatar.png`
 
 **示例代码**
 
@@ -53,6 +63,27 @@ MyFile.upload(Buffer.from('this is file content'), {filename: 'test.txt'}).then(
 // 上传到指定目录
 MyFile.upload('/var/log/test.log', {category_id: 1}).then()
 ```
+
+**返回参数说明**
+
+res.data:
+
+|   参数  | 类型   | 说明 |
+| :----- | :----- | :-- |
+| path   | String | 上传后的文件地址 |
+| file   | Object | 包含文件详细信息，详见以下 |
+
+file 参数说明：
+
+| 参数        |  类型  | 说明 |
+| :--------- | :----- | :------ |
+| path       | String | 上传后的文件地址 |
+| cdn_path   | String | 文件在 cdn 上的路径 |
+| created_at | String | 文件上传时间 |
+| id         | Object | 文件 ID |
+| mime_type  | String | 文件媒体类型 |
+| name       | String | 文件名 |
+| size       | Number | 以字节为单位 |
 
 
 ## 获取文件详情
