@@ -10,7 +10,9 @@ exports.main = function helloWorld(event, callback) {
 ```
 
 > **info**
-> 云函数已支持 async/await 语法，请参考[文档](/cloud-function/node-sdk/async-await.md)
+> 云函数已支持 async/await 语法，请参考[文档](/cloud-function/node-sdk/start/async-await.md)
+
+> 云函数支持与返回机制，请参考[Node.js 事件循环](/cloud-function/node-sdk/start/nodejs-event-loop.md)
 
 ## 参数介绍
 
