@@ -9,6 +9,8 @@
 >
 > 非 async 函数无法使用 return。
 
+> 云函数执行与结果返回机制，请参考[Node.js 事件循环](/cloud-function/node-sdk/start/nodejs-event-loop.md)
+
 ## 云函数支持以下两种风格的写法：
 
 1. 使用 callback
