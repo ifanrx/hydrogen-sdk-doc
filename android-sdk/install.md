@@ -8,6 +8,15 @@ buildscript {
         jcenter()   
     }
 }
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+    }
+}
 ```
 
 2. 在 app 模块的 build.gradle 里加入以下配置
