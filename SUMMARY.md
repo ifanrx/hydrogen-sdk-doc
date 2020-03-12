@@ -79,6 +79,7 @@
         * [微信加密数据解密](js-sdk/wechat/wechat-decrypt.md)
         * [检测违规图片、音频、文本](js-sdk/wechat/censor.md)
         * [获取二维码](js-sdk/wechat/wxacode.md)
+        * [UnionID 登录机制支持](js-sdk/wechat/unionid-login.md)
     * [QQ 小程序](js-sdk/qq/README.md)
         * [接入指南](js-sdk/qq/how-to.md)
         * [QQ 登录](js-sdk/qq/signin-signout.md)
