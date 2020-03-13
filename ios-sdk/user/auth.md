@@ -219,7 +219,7 @@ BaaS.sendSmsCode(phone: "150****7274") { (success, error) in
 }
 
 // 2. 手机号 + 验证码登录
-Auth.signInWithSMS("150****7274", code: "12345", createUser: true) { (currentUser, error) in
+Auth.signInWithSMSVerificationCode("150****7274", code: "12345", createUser: true) { (currentUser, error) in
 
 }
 ```
@@ -231,7 +231,7 @@ Auth.signInWithSMS("150****7274", code: "12345", createUser: true) { (currentUse
 }];
 
 // 2. 手机号 + 验证码登录
-[BaaSAuth signInWithSMS:@"150****7274" code:@"12345" createUser:YES completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
+[BaaSAuth signInWithSMSVerificationCode:@"150****7274" code:@"12345" createUser:YES completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
 
 }];
 ```

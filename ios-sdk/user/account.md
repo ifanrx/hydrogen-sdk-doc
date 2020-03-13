@@ -262,7 +262,7 @@ currentUser?.verifyPhone(code: "12345", completion: { (success, error) in
 
 }];
 
-// 2. 验证手机号
+// 3. 验证手机号
 [currentUser verifyPhoneWithCode:@"12345" completion:^(BOOL success, NSError * _Nullable error) {
                        
 }];
