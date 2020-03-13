@@ -32,6 +32,7 @@ SDK 提供了快速登录小程序的接口，省去使用微信登录接口时�
 | 参数            | 类型    | 说明         |
 | :-------------- | :------ | :----------- |
 | createUser      | Boolean | 是否创建用户，默认为 `true`，可选 |
+| withUnionID     | Boolean | （SDK version >= 3.8.0）是否使用 [unionid 登录](/js-sdk/wechat/unionid-login.md)，默认为 `false`，可选 |
 
 
 `createUser` 参数决定了一个新的微信用户第一次登录时的服务端处理行为。
@@ -75,6 +76,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | data            | object | bindgetuserinfo 事件回调返回的参数 |
 | createUser | Boolean | 是否创建用户，默认为 true |
 | syncUserProfile | String | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx` |
+| withUnionID     | Boolean | （SDK version >= 3.8.0）是否使用 [unionid 登录](/js-sdk/wechat/unionid-login.md)，默认为 `false`，可选 |
 
 `createUser` 参数决定了一个新的微信用户第一次登录时的服务端处理行为。
 默认为 `true`，服务端会有该用户创建一个知晓云用户记录。
@@ -144,6 +146,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | :------| :------ | :----------- |
 | data            | object | bindgetuserinfo 事件回调返回的参数 |
 | syncUserProfile | String | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx` |
+| withUnionID     | Boolean | （SDK version >= 3.8.0）是否使用 [unionid 登录](/js-sdk/wechat/unionid-login.md) 并关联，默认为 `false`，可选 |
 
 {% include "/js-sdk/frag/_sync_user_profile_param.md" %}
 
