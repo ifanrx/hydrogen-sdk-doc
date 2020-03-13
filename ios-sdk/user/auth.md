@@ -213,14 +213,26 @@ Auth.anonymousLogin { (currentUser, error) in
 {% tabs swift6="Swift", oc6="Objective-C" %}
 {% content "swift6" %}
 ```
-Auth.signInWithSMS(phone: "150****7274", code: "12345", createUser: true) { (currentUser, error) in
+// 1. 发送验证码
+BaaS.sendSmsCode(phone: "150****7274") { (success, error) in
+
+}
+
+// 2. 手机号 + 验证码登录
+Auth.signInWithSMS("150****7274", code: "12345", createUser: true) { (currentUser, error) in
 
 }
 ```
 {% content "oc6" %}
 ```
-[BaaSAuth signInWithSMSWithPhone:@"150****7274" code:@"12345" createUser:YES completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
-                    
+// 1. 发送验证码
+[BaaS sendSmsCodeWithPhone:@"1508805****" completion:^(BOOL success, NSError * _Nullable error) {
+
+}];
+
+// 2. 手机号 + 验证码登录
+[BaaSAuth signInWithSMS:@"150****7274" code:@"12345" createUser:YES completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
+
 }];
 ```
 {% endtabs %}
@@ -289,27 +301,27 @@ BOOL installed = [BaaS isWXAppInstalled];
 Auth.signIn(with: .wechat, createUser: true, syncUserProfile: .sentx) { (user, error) in
 
 }
-
-其中 signType 说明如下：
+```
+其中 provider 说明如下：
 
 | 类型            | 说明      |
 | :--------------| :-----------------|
 | .wechat            | 微信      |
 
-```
+
 {% content "oc7" %}
 ```
-[BaaSAuth signInWith:SignTypeWechat createUser:YES syncUserProfile:SyncUserProfileTypeSetnx completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
+[BaaSAuth signInWith:ProviderWechat createUser:YES syncUserProfile:SyncUserProfileTypeSetnx completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
     
 }];
+```
 
-其中 signType 说明如下：
+其中 provider 说明如下：
 
 | 类型            | 说明      |
 | :--------------| :-----------------|
-| SignTypeWechat | 微信      |
+| ProviderWechat | 微信      |
 
-```
 {% endtabs %}
 
 > **info**
@@ -319,7 +331,7 @@ Auth.signIn(with: .wechat, createUser: true, syncUserProfile: .sentx) { (user, e
 
 | 名称        | 类型   | 说明    |
 | :---------- | :----- | :------ |
-| signType | SignType | 第三方平台类型 |
+| provider | Provider | 第三方平台类型 |
 | createUser | Bool | 是否为新用户创建账号 |
 | syncUserProfile | SyncUserProfileType | 详见[同步第三方平台用户信息的方式](#同步第三方平台用户信息) |
 
@@ -346,26 +358,27 @@ Auth.signIn(with: .wechat, createUser: true, syncUserProfile: .sentx) { (user, e
 Auth.associate(with: .wechat, syncUserProfile: .sentx) { (currentUser, error) in
 
 }
+```
 
-其中 signType 说明如下：
+其中 provider 说明如下：
 
 | 类型            | 说明      |
 | :--------------| :-----------------|
 | .wechat            | 微信登录      |
 
-```
 {% content "oc8" %}
 ```
-[BaaSAuth associateWith:SignTypeWechat syncUserProfile:SyncUserProfileTypeSetnx completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
+[BaaSAuth associateWith:ProviderWechat syncUserProfile:SyncUserProfileTypeSetnx completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
 
 }];
-
-其中 signType 说明如下：
-
-| 类型            | 说明      |
-| :--------------| :-----------------|
-| SignTypeWechat | 微信登录      |
 ```
+
+其中 provider 说明如下：
+
+| 类型        | 说明      |
+| :---------  | :------------- |
+| ProviderWechat | 微信登录      |
+
 {% endtabs %}
 
 > **info**
@@ -375,7 +388,7 @@ Auth.associate(with: .wechat, syncUserProfile: .sentx) { (currentUser, error) in
 
 | 名称        | 类型   | 说明    |
 | :---------- | :----- | :------ |
-| signType | SignType | 第三方平台类型 |
+| provider | Provider | 第三方平台类型 |
 | syncUserProfile | SyncUserProfileType | 详见[同步第三方平台用户信息的方式](#同步第三方平台用户信息) |
 
 **返回结果**
@@ -398,21 +411,22 @@ Auth.associate(with: .wechat, syncUserProfile: .sentx) { (currentUser, error) in
 
 {% tabs swift9="Swift", oc9="Objective-C" %}
 {% content "swift9" %}
-```
+
 | 类型            | 说明      |
-| :--------------| :-----------------|
-| .overwrite            | 强制更新      |
-| .sentx                | 仅当字段从未被赋值时才更新  |
-| .flase                 | 不更新      |
-```
+| :-----------   | :----------------- |
+| .overwrite     | 强制更新      |
+| .sentx         | 仅当字段从未被赋值时才更新  |
+| .flase         | 不更新      |
+
+
 {% content "oc9" %}
-```
+
 | 类型            | 说明      |
-| :--------------| :-----------------|
-| SyncUserProfileTypeOverwrite            | 强制更新      |
-| SyncUserProfileTypeSentx                | 仅当字段从未被赋值时才更新  |
-| SyncUserProfileTypeFlase                 | 不更新      |
-```
+| :-------------- | :----------------- |
+| SyncUserProfileTypeOverwrite | 强制更新  |
+| SyncUserProfileTypeSentx     | 仅当字段从未被赋值时才更新  |
+| SyncUserProfileTypeFlase     | 不更新      |
+
 {% endtabs %}
 
 # 登出
@@ -445,6 +459,27 @@ Auth.logout { (success, error) in
 
 # 多平台用户统一登录
 
+多平台用户统一登录：如果知晓云通用账号（如，用户名/邮箱 + 密码注册的账号），关联了微信。那么，用户使用通用账号登录或微信登录其中一种方式登录，登录后都为同一个账号。
+
 开发者可以决定第三方平台登录用户（微信、微博、苹果），以及手机 + 验证码登录用户，在第一次登录时，是否需要关联到知晓云通用账号。如果不关联，知晓云将会为第三方平台及手机+验证码的登录用户创建新账号。如果需要关联，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。
 
-假设开发者现在同时支持**微信**和**用户名**登录，需要微信新用户关联到已经注册好的用户账户，才能登录成功。 可以通过 signIn(with: .wechat) 的参数 createUser 设置为 false，此时，服务端会判断该用户是否已经有账户记录， 如果没有，则返回 404 状态码。开发者可根据此状态码，跳转到需要填写用户名密码页面，进行已有账户的关联或新的账户的创建， 完成后，调用 associate(with: .wechat) 方法完成当前微信用户与账户的绑定。下一次用户再次微信登录时，则会直接登录成功。
+假设开发者现在同时支持**微信**和**用户名**登录，需要微信新用户关联到已经注册好的用户账户，才能登录成功。 可以通过 `signIn(with: .wechat)` 的参数 `createUser` 设置为 false，此时，服务端会判断该用户是否已经有账户记录， 如果没有，则返回 404 状态码。开发者可根据此状态码，跳转到需要填写用户名密码页面，进行已有账户的关联或新的账户的创建， 完成后，调用 associate(with: .wechat) 方法完成当前微信用户与账户的绑定。下一次用户再次微信登录时，则会直接登录成功。
+
+以 Swift 微信登录，且 `createUser: false` 为例（示例仅供参考，请结合实际业务进行调整）：
+
+```
+Auth.signIn(with: .wechat, createUser: false, syncUserProfile: .setnx) { (user, error) in
+    // 返回 404，表示账号不存在，此时应跳转到用户名/邮箱/手机号登录等方式登录。
+    // 示例代码为演示流程，直接用用户名登录
+    if error?.code == 404 {
+        Auth.login(username: "ifanr", password: "12345") { (currentUser, error) in
+             // 登录成功
+            if currentUser != nil {
+            // 绑定微信到当前用户
+            Auth.associate(with: .wechat, syncUserProfile: .setnx) { (currentUser, error) in
+                                    
+            }
+        }
+    }
+}
+```
