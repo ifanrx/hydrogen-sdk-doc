@@ -6,6 +6,9 @@
 
 在讲述如何完成用户数据的合并前，让我们先简要了解一下知晓云的 `unionid` 登录机制设计。
 
+> **info**
+> 登录方法请查看 [微信登录](/js-sdk/wechat/signin-signout.md) 章节。
+
 ## UnionID 登录机制
 
 > **info**
