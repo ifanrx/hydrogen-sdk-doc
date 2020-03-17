@@ -182,41 +182,6 @@ currentUser.updatePhone("150****7274", completion: { (result, error) in
 | result   | Dictionary           | 被更新的信息 |
 | error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)     |
 
-### 更新用户自定义字段
-
-**示例代码**
-
-{% tabs swift4="Swift", oc4="Objective-C" %}
-{% content "swift4" %}
-```
-currentUser.updateUserInfo(["age": 18]) { (result, error) in
-
-}
-```
-{% content "oc4" %}
-```
-[currentUser updateUserInfo:@{@"age": @18} completion:^(NSDictionary<NSString *,id> * _Nullable result, NSError * _Nullable error) {
-
-}];
-```
-{% endtabs %}
-
-**参数说明**
-
-参数说明：
-
-| 名称      | 类型           | 说明 |
-| :------- | :------------  | :------ |
-| userInfo | Dictionary     | 用户自定义字段信息 |
-
-
-**结果返回**
-
-| 名称       | 类型           | 说明 |
-| :-------- | :------------  | :------ |
-| result   | Dictionary           | 被更新的信息 |
-| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)     |
-
 ### 验证当前用户手机号
 
 > **info**
@@ -280,6 +245,41 @@ currentUser?.verifyPhone(code: "12345", completion: { (success, error) in
 | 名称       | 类型           | 说明 |
 | :-------- | :------------  | :------ |
 | success   | Bool           | 是否验证成功 |
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)     |
+
+### 更新用户自定义字段
+
+**示例代码**
+
+{% tabs swift4="Swift", oc4="Objective-C" %}
+{% content "swift4" %}
+```
+currentUser.updateUserInfo(["age": 18]) { (result, error) in
+
+}
+```
+{% content "oc4" %}
+```
+[currentUser updateUserInfo:@{@"age": @18} completion:^(NSDictionary<NSString *,id> * _Nullable result, NSError * _Nullable error) {
+
+}];
+```
+{% endtabs %}
+
+**参数说明**
+
+参数说明：
+
+| 名称      | 类型           | 说明 |
+| :------- | :------------  | :------ |
+| userInfo | Dictionary     | 用户自定义字段信息 |
+
+
+**结果返回**
+
+| 名称       | 类型           | 说明 |
+| :-------- | :------------  | :------ |
+| result   | Dictionary           | 被更新的信息 |
 | error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)     |
 
 ### 邮箱验证

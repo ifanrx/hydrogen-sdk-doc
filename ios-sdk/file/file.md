@@ -7,7 +7,7 @@
 文件上传支持两种方式：
 
 1. 指定文件的本地路径
-2. 指定文件的数据 data 
+2. 指定文件的内容数据 
 
 #### 指定文件的本地路径
 
@@ -44,7 +44,7 @@ FileManager.upload(filename: "datasource", localPath: filePath, categoryName: "B
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | file  |   File           | 已上传的文件，详见 **数据类型** 小节 |
-| progress  |   Progress    | 上传进度 |
+| progress  |   Progress    | 上传进度，详见[文档](https://developer.apple.com/documentation/foundation/progress) |
 | error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
 #### 指定文件的本地路径及文件类型
@@ -115,7 +115,7 @@ FileManager.upload(filename: "cover", fileData: fileData, categoryName: "book", 
 | 参数                 |  类型   | 必填 | 说明 |
 | :-------------------| :----- | :--- | :--------- |
 | filename | String |  Y  |  文件名称|
-| fileData | Data |  Y  | 文件数据 |
+| fileData | Data |  Y  | 文件的内容数据 |
 | categoryName | String | N  | 文件分类名称  |
 | categoryId | String | N  | 文件分类 Id  |
 | mimeType  | String | N   | 文件类型  |

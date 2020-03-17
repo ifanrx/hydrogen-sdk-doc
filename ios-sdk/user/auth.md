@@ -214,7 +214,7 @@ Auth.anonymousLogin { (currentUser, error) in
 {% content "swift6" %}
 ```
 // 1. 发送验证码
-BaaS.sendSmsCode(phone: "150****7274") { (success, error) in
+BaaS.sendSmsCode(phone: "150****7274", createUser: true) { (success, error) in
 
 }
 
@@ -298,42 +298,28 @@ BOOL installed = [BaaS isWXAppInstalled];
 {% tabs swift7="Swift", oc7="Objective-C" %}
 {% content "swift7" %}
 ```
-Auth.signIn(with: .wechat, createUser: true, syncUserProfile: .sentx) { (user, error) in
+Auth.signIn(with: .wechat, createUser: true, syncUserProfile: .setnx) { (user, error) in
 
 }
 ```
-其中 provider 说明如下：
-
-| 类型            | 说明      |
-| :--------------| :-----------------|
-| .wechat            | 微信      |
-
 
 {% content "oc7" %}
+
 ```
 [BaaSAuth signInWith:ProviderWechat createUser:YES syncUserProfile:SyncUserProfileTypeSetnx completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
     
 }];
 ```
 
-其中 provider 说明如下：
-
-| 类型            | 说明      |
-| :--------------| :-----------------|
-| ProviderWechat | 微信      |
-
 {% endtabs %}
-
-> **info**
-> 目前第三方平台仅支持微信登录，近期将增加对新浪微博以及苹果登录。
 
 **参数说明**
 
 | 名称        | 类型   | 说明    |
 | :---------- | :----- | :------ |
-| provider | Provider | 第三方平台类型 |
+| provider | Provider | 第三方平台类型，详见[Provider](#Provider) |
 | createUser | Bool | 是否为新用户创建账号 |
-| syncUserProfile | SyncUserProfileType | 详见[同步第三方平台用户信息的方式](#同步第三方平台用户信息) |
+| syncUserProfile | SyncUserProfileType |同步第三方平台用户信息的方式， 详见[SyncUserProfileType](#SyncUserProfileType) |
 
 > **info**
 >
@@ -345,89 +331,6 @@ Auth.signIn(with: .wechat, createUser: true, syncUserProfile: .sentx) { (user, e
 | :------- | :------------  | :------ |
 | currentUser    | CurrentUser         | 当前用户实例，详见 [当前用户](./account.md) |
 | error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md) |
-
-### 关联微信账号
-
-通过此方法可将通用注册登录用户（在已登录状态下）关联微信账号，以便下次可以通过微信登录。
-
-**示例代码**
-
-{% tabs swift8="Swift", oc8="Objective-C" %}
-{% content "swift8" %}
-```
-Auth.associate(with: .wechat, syncUserProfile: .sentx) { (currentUser, error) in
-
-}
-```
-
-其中 provider 说明如下：
-
-| 类型            | 说明      |
-| :--------------| :-----------------|
-| .wechat            | 微信登录      |
-
-{% content "oc8" %}
-```
-[BaaSAuth associateWith:ProviderWechat syncUserProfile:SyncUserProfileTypeSetnx completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
-
-}];
-```
-
-其中 provider 说明如下：
-
-| 类型        | 说明      |
-| :---------  | :------------- |
-| ProviderWechat | 微信登录      |
-
-{% endtabs %}
-
-> **info**
-> 目前第三方平台仅支持微信登录，近期将增加对新浪微博以及苹果登录。
-
-**参数说明**
-
-| 名称        | 类型   | 说明    |
-| :---------- | :----- | :------ |
-| provider | Provider | 第三方平台类型 |
-| syncUserProfile | SyncUserProfileType | 详见[同步第三方平台用户信息的方式](#同步第三方平台用户信息) |
-
-**返回结果**
-
-| 名称      | 类型           | 说明 |
-| :------- | :------------  | :------ |
-| currentUser    | CurrentUser         | 当前用户实例，详见 [当前用户](./account.md) |
-| error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md) |
-
-### 同步第三方平台用户信息
-
-第三方登录（微信、微博、苹果）后获取到的用户信息自动保存在 userprofile 表的 `_provider` 字段。同时开发者可以设置 `SyncUserProfileType` 同步方式将第三方平台的用户信息同步到相应字段，支持同步的字段如下：
-* `nickname`
-* `avatar`
-* `gender`（仅微信）
-* `language`
-* `city`
-
-其中同步方式 `SyncUserProfileType` 如下：
-
-{% tabs swift9="Swift", oc9="Objective-C" %}
-{% content "swift9" %}
-
-| 类型            | 说明      |
-| :-----------   | :----------------- |
-| .overwrite     | 强制更新      |
-| .sentx         | 仅当字段从未被赋值时才更新  |
-| .flase         | 不更新      |
-
-
-{% content "oc9" %}
-
-| 类型            | 说明      |
-| :-------------- | :----------------- |
-| SyncUserProfileTypeOverwrite | 强制更新  |
-| SyncUserProfileTypeSentx     | 仅当字段从未被赋值时才更新  |
-| SyncUserProfileTypeFlase     | 不更新      |
-
-{% endtabs %}
 
 # 登出
 
@@ -457,9 +360,48 @@ Auth.logout { (success, error) in
 | success  | Bool           | 是否登出成功 |
 | error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md)  |
 
-# 多平台用户统一登录
+# 账号关联
 
-多平台用户统一登录：如果知晓云通用账号（如，用户名/邮箱 + 密码注册的账号），关联了微信。那么，用户使用通用账号登录或微信登录其中一种方式登录，登录后都为同一个账号。
+如果知晓云通用账号（如，用户名/邮箱 + 密码注册的账号），关联了第三方平台账号，如微信账号。那么，用户使用通用账号登录或微信登录其中一种方式登录，登录后都为同一个账号。
+
+## 关联微信账号
+
+通过此方法可将通用注册登录用户（在已登录状态下）关联微信账号，以便下次可以通过微信登录。
+
+**示例代码**
+
+{% tabs swift8="Swift", oc8="Objective-C" %}
+{% content "swift8" %}
+```
+Auth.associate(with: .wechat, syncUserProfile: .setnx) { (currentUser, error) in
+
+}
+```
+
+{% content "oc8" %}
+```
+[BaaSAuth associateWith:ProviderWechat syncUserProfile:SyncUserProfileTypeSetnx completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
+
+}];
+```
+
+{% endtabs %}
+
+**参数说明**
+
+| 名称        | 类型   | 说明    |
+| :---------- | :----- | :------ |
+| provider | Provider | 第三方平台类型，详见[Provider](#Provider) |
+| syncUserProfile | SyncUserProfileType | 同步第三方平台用户信息方式， 详见[SyncUserProfileType](#SyncUserProfileType)|
+
+**返回结果**
+
+| 名称      | 类型           | 说明 |
+| :------- | :------------  | :------ |
+| currentUser    | CurrentUser         | 当前用户实例，详见 [当前用户](./account.md) |
+| error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md) |
+
+# 多平台用户统一登录
 
 开发者可以决定第三方平台登录用户（微信、微博、苹果），以及手机 + 验证码登录用户，在第一次登录时，是否需要关联到知晓云通用账号。如果不关联，知晓云将会为第三方平台及手机+验证码的登录用户创建新账号。如果需要关联，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。
 
@@ -483,3 +425,60 @@ Auth.signIn(with: .wechat, createUser: false, syncUserProfile: .setnx) { (user, 
     }
 }
 ```
+
+# 数据类型
+
+## Provider
+
+表示第三方平台登录类型，如下
+
+{% tabs swift11="Swift", oc11="Objective-C" %}
+{% content "swift11" %}
+
+| 类型            | 说明      |
+| :--------------| :-----------------|
+| .wechat            | 微信      |
+
+{% content "oc11" %}
+
+| 类型            | 说明      |
+| :--------------| :-----------------|
+| ProviderWechat | 微信      |
+
+{% endtabs %}
+
+> **info**
+> 目前第三方平台仅支持微信登录，近期将增加对新浪微博以及苹果登录。
+
+## SyncUserProfileType
+
+ **同步第三方平台用户信息**
+ 
+ 第三方登录（微信、微博、苹果）后获取到的用户信息自动保存在 **userprofile** 表的 `_provider` 字段。同时开发者可以设置 `SyncUserProfileType` 同步方式将第三方平台的用户信息同步到 **userprofile** 表的相应字段，支持同步的字段如下：
+* `nickname`
+* `avatar`
+* `gender`（仅微信）
+* `language`
+* `city`
+
+同步方式 `SyncUserProfileType` 方式，如下：
+
+{% tabs swift9="Swift", oc9="Objective-C" %}
+{% content "swift9" %}
+
+| 类型            | 说明      |
+| :-----------   | :----------------- |
+| .overwrite     | 强制更新      |
+| .setnx         | 仅当字段从未被赋值时才更新  |
+| .flase         | 不更新      |
+
+
+{% content "oc9" %}
+
+| 类型            | 说明      |
+| :-------------- | :----------------- |
+| SyncUserProfileTypeOverwrite | 强制更新  |
+| SyncUserProfileTypeSetnx     | 仅当字段从未被赋值时才更新  |
+| SyncUserProfileTypeFlase     | 不更新      |
+
+{% endtabs %}
