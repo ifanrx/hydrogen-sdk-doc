@@ -346,7 +346,7 @@ curl_close($ch);
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   | Integer | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 路径 |
+| path   | String | 上传成功后的访问地址 URL |
 | created_by   | Integer | 创建者 id |
 | mime_type   | String | mime_type 类型 |
 | media_type   | String | 媒体类型 |
@@ -354,7 +354,7 @@ curl_close($ch);
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
 | reference   | Object | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
 | updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
 | id   | String | 本条记录 ID |
@@ -492,7 +492,7 @@ if ($err) {
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   | Integer | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 路径 |
+| path   | String | 上传成功后的访问地址 URL |
 | created_by   | Integer | 创建者 id |
 | mime_type   | String | mime_type 类型 |
 | media_type   | String | 媒体类型 |
@@ -500,7 +500,7 @@ if ($err) {
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
 | reference   | Object | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
 | updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
 | id   | String | 本条记录 ID |
@@ -640,7 +640,7 @@ if ($err) {
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   | Integer | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 路径 |
+| path   | String | 上传成功后的访问地址 URL |
 | created_by   | Integer | 创建者 id |
 | mime_type   | String | mime_type 类型 |
 | media_type   | String | 媒体类型 |
@@ -648,7 +648,7 @@ if ($err) {
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
 | reference   | Object | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
 | updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
 | id   | String | 本条记录 ID |

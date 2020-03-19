@@ -19,12 +19,12 @@ file 类型的数据结构
 
 | 字段       | 说明 |
 | :--------- | :--- |
-| cdn_path   | cdn 路径 |
+| cdn_path   | 文件在 CDN 中的相对路径 |
 | created_at | 创建时间 |
 | id         | 文件 id |
 | mime_type  | 文件类型 |
 | name       | 文件名称 |
-| path       | 文件完整 url |
+| path       | 上传成功后的访问地址 URL |
 | size       | 文件尺寸，单位 `byte` |
 
 > **info**

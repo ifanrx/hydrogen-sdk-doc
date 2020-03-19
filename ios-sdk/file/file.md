@@ -356,7 +356,7 @@ NSDictionary *params = @{
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   |  | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 路径 |
+| path   | String | 上传成功后的访问地址 URL |
 | created_by   | String | 创建者 id |
 | mime_type   | String | mime_type 类型 |
 | media_type   | String | 媒体类型 |
@@ -364,7 +364,7 @@ NSDictionary *params = @{
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
 | reference   | String | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
 | updated_at   | TimeInterval | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
 | _id   | String | 本条记录 ID |
@@ -409,7 +409,7 @@ NSDictionary *params = @{
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   | TimeInterval | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 路径 |
+| path   | String | 上传成功后的访问地址 URL |
 | created_by   | String | 创建者 id |
 | mime_type   | String | mime_type 类型 |
 | media_type   | String | 媒体类型 |
@@ -417,7 +417,7 @@ NSDictionary *params = @{
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
 | reference   | String | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
 | updated_at   | TimeInterval | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
 | _id   | String | 本条记录 ID |
@@ -467,7 +467,7 @@ NSDictionary *params = @{
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   | TimeInterval | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 路径 |
+| path   | String | 上传成功后的访问地址 URL |
 | created_by   | Int64 | 创建者 id |
 | mime_type   | String | mime_type 类型 |
 | media_type   | String | 媒体类型 |
@@ -475,7 +475,7 @@ NSDictionary *params = @{
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
 | reference   | String | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
 | updated_at   | TimeInterval | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
 | _id   | String | 本条记录 ID |

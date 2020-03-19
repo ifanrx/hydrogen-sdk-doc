@@ -186,7 +186,7 @@ curl -X DELETE \
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   | integer | 创建时间 （格式为 unix 时间戳) |
-| path   | string | 路径 |
+| path   | string | 上传成功后的访问地址 URL |
 | created_by   | integer | 创建者 id |
 | mime_type   | string | mime_type 类型 |
 | media_type   | string | 媒体类型 |
@@ -194,7 +194,7 @@ curl -X DELETE \
 | name   | string | 文件名 |
 | status   | string | 文件状态 |
 | reference   | object | 引用 |
-| cdn_path   | string | cdn 中保存的路径 |
+| cdn_path   | string | 文件在 CDN 中的相对路径 |
 | updated_at   | integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | string | 文件所属类别 |
 | id   | string | 本条记录 ID |
@@ -264,7 +264,7 @@ curl -X POST \
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   | integer | 创建时间 （格式为 unix 时间戳) |
-| path   | string | 路径 |
+| path   | string | 上传成功后的访问地址 URL |
 | created_by   | integer | 创建者 id |
 | mime_type   | string | mime_type 类型 |
 | media_type   | string | 媒体类型 |
@@ -272,7 +272,7 @@ curl -X POST \
 | name   | string | 文件名 |
 | status   | string | 文件状态 |
 | reference   | object | 引用 |
-| cdn_path   | string | cdn 中保存的路径 |
+| cdn_path   | string | 文件在 CDN 中的相对路径 |
 | updated_at   | integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | string | 文件所属类别 |
 | id   | string | 本条记录 ID |
@@ -345,7 +345,7 @@ curl -X POST \
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   | integer | 创建时间 （格式为 unix 时间戳) |
-| path   | string | 文件访问完整 URL |
+| path   | string | 上传成功后的访问地址 URL |
 | created_by   | integer | 创建者 id |
 | mime_type   | string | mime_type 类型 |
 | media_type   | string | 媒体类型 |
@@ -353,7 +353,7 @@ curl -X POST \
 | name   | string | 文件名 |
 | status   | string | 文件状态 |
 | reference   | object | 引用 |
-| cdn_path   | string | cdn 中保存的路径 |
+| cdn_path   | string | 文件在 CDN 中的相对路径 |
 | updated_at   | integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | string | 文件所属类别 |
 | id   | string | 本条记录 ID |
