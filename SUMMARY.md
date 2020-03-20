@@ -348,6 +348,8 @@
     * [云函数实战教程](support/practice/cloud-function.md)
     * [订阅消息防坑指南](support/practice/subscribe-message-guide.md)
     * [订阅消息实战教程](support/practice/subscribe-message-course.md)
+* [使用指南](support/practice/README.md)
+    * [触发器 V2 使用指南](support/practice/trigger-v2-guideline.md)
 * [管理与支持](support/README.md)
     * [插件](support/plugin.md)
     * [常见问题](support/qA.md)
