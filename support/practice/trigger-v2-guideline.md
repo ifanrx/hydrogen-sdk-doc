@@ -28,7 +28,7 @@
 
 触发器 V2 中支持使用 date 操作符对 Date 类型的变量进行日期格式化，其语法为：
 
-    {{ <date_field> | date: "Y-m-d" }}
+    {{ <date_field> | date:"Y-m-d" }}
 
 通过 `|` 将 `date` 操作符与所需要格式化的 Date 类型变量连接起来，`"Y-m-d"` 则表示日期格式化字符串，具体可参考下文的可用格式化字符串列表。
 
@@ -36,7 +36,7 @@
 
 如当设置 Email 正文中使用变量：
 
-    创建时间：{{ after.created_at | date: "Y-m-d" }}
+    创建时间：{{ after.created_at | date:"Y-m-d" }}
 
 在邮件发送时，则会根据上述变量进行转换成以下格式：
 
