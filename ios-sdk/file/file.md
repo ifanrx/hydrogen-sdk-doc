@@ -674,7 +674,8 @@ streams 参数说明：
 | id         |   String  | 文件 Id |
 | mimeType |  String    | 文件类型 |
 | name  |  String  | 文件名 |
-| cdnPath  |  String | cdn 路径 |
+| cdnPath  |  String | 文件在 CDN 中的路径 |
+| path  |  String | 文件上传成功后的访问地址 |
 | size  |  Int | 文件大小 |
 | category |  FileCategory  | 文件分类 |
 | localPath |  String   |   本地路径 |
