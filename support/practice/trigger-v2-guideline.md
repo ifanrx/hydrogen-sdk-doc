@@ -10,8 +10,8 @@
 
 |触发器触发类型|可使用对象|对象含义|使用示例|
 |------------|--------|-------|-------|
-|数据表|`after`|触发器执行签的数据行|`{{ after.nickname }}`|
-|数据表|`before`|触发器执行后的数据行|`{{ before.nickname }}`|
+|数据表|`after`|事件发生后的数据行，如创建后/更新后|`{{ after.nickname }}`|
+|数据表|`before`|事件发生前的数据行，如更新前/删除前|`{{ before.nickname }}`|
 |微信支付回调|`payload`|支付订单对象|`{{ payload.trade_no }}`|
 |支付宝支付回调|`payload`|支付订单对象|`{{ payload.trade_no }}`|
 |QQ 支付回调|`payload`|支付订单对象|`{{ payload.trade_no }}`|
@@ -49,17 +49,17 @@
 |--------|----|---|
 |y|年，两位数字|'20'|
 |Y|年，四位数字| '2020'|
-|m|月，补 0|'01' to '12'|
-|n|月，不补 0|'1' to '12'|
-|d|日，补 0|'01' to '31'|
-|j|日，不补 0|'1' to '31'|
-|h|小时，12 小时制|'01' to '12'|
-|H|小时，24 小时制|'00' to '23'|
-|g|小时，12 小时制，不补 0|'1' to '12'|
-|G|小时，24 小时制，不补 0|'0' to '23'|
-|i|分钟|'00' to '59'|
-|s|秒|'00' to '59'|
-|u|毫秒|000000 to 999999|
+|m|月，补 0|'01', '02'...'12'|
+|n|月，不补 0|'1', '2'...'12'|
+|d|日，补 0|'01', '02'...'31'|
+|j|日，不补 0|'1', '2'...'31'|
+|h|小时，12 小时制|'01', '02'...'12'|
+|H|小时，24 小时制|'00', '01'...'23'|
+|g|小时，12 小时制，不补 0|'1', '2'...'12'|
+|G|小时，24 小时制，不补 0|'0', '1'...'23'|
+|i|分钟|'00', '01'...'59'|
+|s|秒|'00', '01'...'59'|
+|u|毫秒|000000, 000001...999999|
 |A|'AM' or 'PM'|'AM'|
 
 ## 触发器执行云函数时 event.data 格式说明
@@ -114,7 +114,27 @@
 
     {
         "subject": "WeChatPaySuccess",
-        "payload": {}
+        "payload": {
+            "id": 1,
+            "miniapp": 1,
+            "trade_no": "1gA7O2zk8m4R4L2HTOiCa4uqEx99ktRt",
+            "transaction_no": "5d9kRCyhM7t6Zlp6uyYu87InsPwznbvH",
+            "merchandise_description": "test",
+            "merchandise_snapshot": {},
+            "merchandise_schema_id": null,
+            "merchandise_record_id": null,
+            "status": "pending",
+            "refund_status": null,
+            "total_cost": 398.0,
+            "ip_address": "127.0.0.1",
+            "created_by": 1,
+            "paid_at":null,
+            "gateway_type": "weixin_tenpay",
+            "currency_type": "CNY",
+            "profit_sharing": false,
+            "created_at": 1584696925,
+            "updated_at": 1584696925
+        }}
     }
 
 字段说明：
@@ -130,7 +150,24 @@
 
     {
         "subject": "FileOperation",
-        "payload": {},
+        "payload": {
+            "categories":[1, 2],
+            "name": "wxfab60d15556a51ec.o6zAJs5dCuYRqqJOq0MwNPlGiFVM.WQVT2fLZpD6q1cd738e01dc1c7417c03d046e96408cc.jpg",
+            "path": null,
+            "size": 6151,
+            "cdn_path": "1gAU4kRagtUBepZZ.jpg",
+            "media_type": "image",
+            "mime_type": "image/jpeg",
+            "status": "success",
+            "reference":{
+                "record_id":"5bbee7cf073f1b0acc394076",
+                "field":"file",
+                "schema_id":48376
+            },
+            "created_by": 62536607,
+            "created_at": 1584696925,
+            "updated_at": 1584696925
+        },
         "event": "file_upload",
         "pattern": {"result": "success"}
     }
@@ -173,7 +210,7 @@
 
 |字段|类型|备注|
 |----|---|---|
-|payload|对象|微信推送消息的对象|
+|payload|对象|微信推送消息的对象，取决于微信推送的消息，具体参考微信文档|
 |subject|字符串|触发类型，此值固定为 `WeChatMessage`|
 
 ### 支付宝支付回调
@@ -182,7 +219,27 @@
 
     {
         "subject": "AlipayPaySuccess",
-        "payload": {}
+        "payload": {
+            "id": 1,
+            "miniapp": 1,
+            "trade_no": "1gA7O2zk8m4R4L2HTOiCa4uqEx99ktRt",
+            "transaction_no": "5d9kRCyhM7t6Zlp6uyYu87InsPwznbvH",
+            "merchandise_description": "test",
+            "merchandise_snapshot": {},
+            "merchandise_schema_id": null,
+            "merchandise_record_id": null,
+            "status": "pending",
+            "refund_status": null,
+            "total_cost": 398.0,
+            "ip_address": "127.0.0.1",
+            "created_by": 1,
+            "paid_at":null,
+            "gateway_type": "alipay",
+            "currency_type": "CNY",
+            "profit_sharing": false,
+            "created_at": 1584696925,
+            "updated_at": 1584696925
+        }
     }
 
 字段说明：
@@ -198,7 +255,27 @@
 
     {
         "subject": "QPaySuccess",
-        "payload": {}
+        "payload": {
+            "id": 1,
+            "miniapp": 1,
+            "trade_no": "1gA7O2zk8m4R4L2HTOiCa4uqEx99ktRt",
+            "transaction_no": "5d9kRCyhM7t6Zlp6uyYu87InsPwznbvH",
+            "merchandise_description": "test",
+            "merchandise_snapshot": {},
+            "merchandise_schema_id": null,
+            "merchandise_record_id": null,
+            "status": "pending",
+            "refund_status": null,
+            "total_cost": 398.0,
+            "ip_address": "127.0.0.1",
+            "created_by": 1,
+            "paid_at":null,
+            "gateway_type": "qfpay",
+            "currency_type": "CNY",
+            "profit_sharing": false,
+            "created_at": 1584696925,
+            "updated_at": 1584696925
+        }
     }
 
 字段说明：
@@ -214,7 +291,27 @@
 
     {
         "subject": "BaiduPaySuccess",
-        "payload": {}
+        "payload": {
+            "id": 1,
+            "miniapp": 1,
+            "trade_no": "1gA7O2zk8m4R4L2HTOiCa4uqEx99ktRt",
+            "transaction_no": "5d9kRCyhM7t6Zlp6uyYu87InsPwznbvH",
+            "merchandise_description": "test",
+            "merchandise_snapshot": {},
+            "merchandise_schema_id": null,
+            "merchandise_record_id": null,
+            "status": "pending",
+            "refund_status": null,
+            "total_cost": 398.0,
+            "ip_address": "127.0.0.1",
+            "created_by": 1,
+            "paid_at":null,
+            "gateway_type": "baidu_miniapp_pay",
+            "currency_type": "CNY",
+            "profit_sharing": false,
+            "created_at": 1584696925,
+            "updated_at": 1584696925
+        }
     }
 
 字段说明：
@@ -232,7 +329,12 @@
         "subject": "UserActivity",
         "event": "",
         "pattern": "",
-        "payload": {}
+        "payload": {
+            "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4089.0 Safari/537.36",
+            "ip_address": "127.0.0.1",
+            "created_by": 1,
+            "created_at": 1584696925
+        }
     }
 
 字段说明：
