@@ -210,7 +210,7 @@ FileManager.delete(["5c98aed0d575****5f878224", "5c98aed0d575****6e1ace9b"]) { (
 **参数说明**
 
 |  参数  |  类型   | 必填 | 说明 |
-| :----- | :-- -- | :-- | :-- |
+| :----- | :---- | :-- | :-- |
 | fileId | Array |  Y  | 需要删除的文件 id |
 
 **返回结果**
@@ -680,6 +680,7 @@ streams 参数说明：
 | category |  FileCategory  | 文件分类 |
 | localPath |  String   |   本地路径 |
 | createdAt | TimeInterval  |   创建日期 | 
+| metaInfo | Dictionary  |   文件所有的元数据 |
 
 ### FileCategory
 
