@@ -114,6 +114,7 @@
           <li><a href="/js-sdk/alipay/README.md">支付宝</a></li>
           <li><a href="/js-sdk/baidu/README.md">百度</a></li>
           <li><a href="/js-sdk/web/README.md">Web</a></li>
+          <li><a href="/js-sdk/bytedance/README.md">字节跳动</a></li>
         </ul>
       </div>
     </div>

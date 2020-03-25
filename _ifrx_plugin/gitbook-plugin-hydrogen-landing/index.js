@@ -26,6 +26,7 @@ module.exports = {
         content += `<li role="presentation" class=""><a href="#web-${blockUID}" aria-controls="web-${blockUID}" role="tab" data-toggle="tab">Web</a></li>`
         content += `<li role="presentation" class=""><a href="#alipay-${blockUID}" aria-controls="alipay-${blockUID}" role="tab" data-toggle="tab">支付宝小程序</a></li>`
         content += `<li role="presentation" class=""><a href="#baidu-${blockUID}" aria-controls="baidu-${blockUID}" role="tab" data-toggle="tab">百度小程序</a></li>`
+        content += `<li role="presentation" class=""><a href="#bytedance-${blockUID}" aria-controls="baidu-${blockUID}" role="tab" data-toggle="tab">字节跳动小程序</a></li>`
 
         // _.map(block.kwargs, function(value, key) {
         //   if (!_.startsWith(key, "__")) {
@@ -42,6 +43,7 @@ module.exports = {
         content += `<div role="tabpanel" class="tab-pane" id="web-${blockUID}">${markup.replace(/wx\.BaaS/g, 'BaaS')}</div>`
         content += `<div role="tabpanel" class="tab-pane" id="alipay-${blockUID}">${markup.replace(/wx\.BaaS/g, 'my.BaaS')}</div>`
         content += `<div role="tabpanel" class="tab-pane" id="baidu-${blockUID}">${markup.replace(/wx\.BaaS/g, 'swan.BaaS')}</div>`
+        content += `<div role="tabpanel" class="tab-pane" id="bytedance-${blockUID}">${markup.replace(/wx\.BaaS/g, 'tt.BaaS')}</div>`
 
         // _.map(block.blocks, function (b) {
         //   var markup = markdown.page(b.body).content;

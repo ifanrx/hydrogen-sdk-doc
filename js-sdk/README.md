@@ -9,6 +9,7 @@
 * [支付宝小程序接入指南](./alipay/README.md)
 * [QQ 接入指南](./qq/README.md)
 * [百度小程序接入指南](./baidu/README.md)
+* [字节跳动小程序接入指南](./bytedance/README.md)
 
 ## 迁移指南
 
