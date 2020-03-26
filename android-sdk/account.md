@@ -81,10 +81,16 @@ CurrentUser.getExpiresAt();
 - 用户使用小程序授权登录后，通过设置用户名或邮箱，以便下次通过用户名或邮箱登录。
 
 
-### 设置用户名，设置邮箱，更新密码
+### 设置用户名、邮箱和手机号，更新密码
 
+> **info**
+> 匿名用户无法调用
+> 
 > 用户名不区分大小写。当用户设置了 username 为 ifanrx 的账号后，其他人不能再注册诸如 Ifanrx、IfAnrx、IFANRX 等账号了
+>
 > 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 
+>
+> 重新设置手机号后，需要重新验证手机号。
 
 `currentUser.updateUser(request)`
 
@@ -96,22 +102,55 @@ CurrentUser.getExpiresAt();
 | email        | String       | 户邮箱 （不区分大小写） |
 | password     | String       | 用户密码 （若有提交 new_password 则为必填） |
 | newPassword  | String       | 新用户密码 |
+| phone        | String       | 手机号 |
 
 **示例代码**
 
 ```java
 try {
   UpdateUserReq request = new UpdateUserReq();
-  // 用户名、email 和密码可以单独更新，可以两两更新，可以三个一起更新
+  // 用户名、email、手机号和密码可以单独更新，可以两两更新，可以所有字段一起更新
   request.setUsername("new user name");
   request.setEmail("new email");
   request.setPassword("xxxxxx");
   request.setNewPassword("xxxxxx");
+  request.setPhone("15023779345");
   Auth.currentUser().updateUser(request);
   // 操作成功
 } catch (Exception e) {
   Log.d(TAG, e.getMessage(), e);
   // 操作失败
+}
+```
+
+**异常**
+
+异常请参考[异常](./error-code.md)
+
+
+### 验证手机号
+
+> **info**
+> 匿名用户无法调用
+>
+> 短信验证码 smsCode 通过接口 `BaaS.sendSmsCode(String)` 获取，请查看[文档](/android-sdk/sms.md)
+
+`currentUser.smsPhoneVerification(smsCode)`
+
+**参数说明**
+
+| 名称                | 类型        | 必填  | 说明        |
+| :-------------------| :---------- | ----- | :---------- |
+| smsCode             | String      | Y     |  短信验证码 |
+
+**示例代码**
+
+```java
+try {
+  Auth.currentUser().smsPhoneVerification("123456");
+  // 验证成功
+} catch (Exception e) {
+  // 验证失败
 }
 ```
 

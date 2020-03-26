@@ -262,6 +262,7 @@
           <li><a href="/android-sdk/file/README.md">文件</a></li>
           <li><a href="/android-sdk/user.md">用户</a></li>
           <li><a href="/android-sdk/wechat_signin.md">微信登录</a></li>
+          <li><a href="/android-sdk/wechat_binding.md">绑定微信</a></li>
           <li><a href="/android-sdk/payment/README.md">支付</a></li>
           <li><a href="/android-sdk/invoke-function.md">调用云函数</a></li>
           <li><a href="/android-sdk/sms.md">短信验证码</a></li>

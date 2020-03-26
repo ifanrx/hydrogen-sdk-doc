@@ -1,6 +1,6 @@
 ﻿# 知晓云 Android SDK 接入指南
 
-1. 在根模块的 build.gradle 加入 jcenter 仓库
+#### 在根模块的 build.gradle 加入 jcenter 仓库
 
 ```gradle
 buildscript {
@@ -19,7 +19,7 @@ allprojects {
 }
 ```
 
-2. 在 app 模块的 build.gradle 里加入以下配置
+#### 在 app 模块的 build.gradle 里加入以下配置
 
 ```gradle
 android {
@@ -35,13 +35,13 @@ android {
     }
 }
 
-// app 模块引入依赖，目前最新版本为 1.1.0
+// app 模块引入依赖，目前最新版本为 1.1.10
 dependencies {
     implementation "com.minapp.android:sdk:xxx"
 }
 ```
 
-3. sdk 需要用到网络请求，所以在使用 sdk 前去 AndroidManifest.xml 检查下有没申请网络权限
+#### sdk 需要用到网络请求，所以在使用 sdk 前去 AndroidManifest.xml 检查下有没申请网络权限
 
 ```xml
 <manifest>
@@ -49,7 +49,8 @@ dependencies {
 </manifest>
 ```
 
-4. 在使用 sdk 前先初始化
+#### 在使用 sdk 前先初始化
+
 ```java
 public class App extends Application {
     @Override
