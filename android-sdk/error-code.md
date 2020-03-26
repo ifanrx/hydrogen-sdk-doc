@@ -24,7 +24,7 @@ threadPool.submit(() -> {
 
 一些自定义的异常如下：
 
-`AnonymousNotAllowedException`  612 anonymous user is not allowed 某些 api 是不允许匿名登录用户操作的
+`AnonymousNotAllowedException`  612 anonymous user is not allowed 某些 api 是不允许临时用户操作的
 
 `UninitializedException`        602 uninitialized  未调用 BaaS.init() 进行初始化
 
