@@ -67,6 +67,44 @@ Auth.signInByUsername(username, pwd);
 Auth.signInByEmail(email, pwd)
 ```
 
+### 手机号 + 短信验证码登录
+
+> **info**
+> 短信验证码 smsCode 通过接口 `BaaS.sendSmsCode(String)` 获取，请查看[文档](/android-sdk/sms.md)
+
+用户可以“手机号 + 短信验证码”进行登录
+
+`Auth.signInByPhone(request)`
+
+参数说明：
+
+| 名称        | 类型   | 说明    |
+| :---------- | :----- | :------ |
+| phone       | String | 手机号码 |
+| code        | String | 短信验证码 |
+| createUser  | Boolean | 是否创建用户，默认为 `true`，可选 |
+
+`createUser` 参数决定了一个新手机号用户第一次登录时的服务端处理行为。
+默认为 `true`，服务端会有该用户创建一个知晓云用户记录。
+当 `createUser` 为 `false` 时，服务端会终止登录过程，返回 404 错误码
+
+**示例代码**
+
+```java
+SignInByPhoneRequest request = new SignInByPhoneRequest("15023449384", "123456");
+Auth.signInByPhoneInBackground(request, new BaseCallback<User>() {
+    @Override
+    public void onSuccess(User user) {
+        // 登录成功
+    }
+
+    @Override
+    public void onFailure(Throwable e) {
+        // 登录失败
+    }
+});
+```
+
 ### 创建临时匿名用户
 
 往数据表里添加数据，需要有一个用户身份（这样才能保障数据来源可回溯）。
