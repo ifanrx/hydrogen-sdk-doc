@@ -1,9 +1,12 @@
 {% macro userInfoAlert() %}
 > **info**
-> 由于 SDK 维护用户登录状态的需要，在用户授权时，并不会将开发者传入的 data 参数直接传给后端，
-> 而是会再调一次 tt.getUserInfo （由于开发者这之前已经进行了用户授权，所以这里能正常拿到授权的结果，
-> 请忽略开发者工具的提示）拿到 data，再传给后端。
 > 如果开发者需要更新之前已经授权用户的信息，请在用户授权时将 syncUserProfile 设置为 'overwrite'。
+{% endmacro %}
+
+{% macro appNameAlert() %}
+> **info**
+> 字节跳动「抖音」和「头条」等平台（包括开发者工具）同一用户登录拿到的 openid 不一样，
+> 该方法或会获取当前 app 平台，用于区分不同登录的来源。
 {% endmacro %}
 
 # 登入登出
@@ -22,6 +25,8 @@ SDK 提供了快速登录小程序的接口，省去使用字节跳动登录接�
 `tt.BaaS.auth.loginWithTt({ forceLogin, createUser })`
 
 该方法会进行简单的登录，不需要用户授权，即不会弹出授权框。但如果 app 中未登录，会弹出登录框。
+
+{{appNameAlert()}}
 
 **参数说明**
 
@@ -61,9 +66,11 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## 强制登录
 
+`tt.BaaS.auth.loginWithTt({forceLogin, createUser, syncUserProfile})`
+
 该方法会弹出授权框。如果 app 中未登录，会先弹出登录框。
 
-`tt.BaaS.auth.loginWithTt({forceLogin, createUser, syncUserProfile})`
+{{appNameAlert()}}
 
 **参数说明**
 
@@ -118,9 +125,11 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## 关联字节跳动小程序
 
+`UserRecord.linkTt({forceLogin, syncUserProfile})`
+
 通过此方法可将通用注册登录用户（在已登录状态下）关联字节跳动小程序账号。
 
-`UserRecord.linkTt({forceLogin, syncUserProfile})`
+{{appNameAlert()}}
 
 **参数说明**
 

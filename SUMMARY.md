@@ -105,7 +105,7 @@
         * [支付宝支付](js-sdk/alipay/payment.md)
         * [模板消息](js-sdk/alipay/template-message.md)
         * [获取二维码](js-sdk/alipay/alipay-qr-code.md)
-    * [字节跳动小程序](js-sdk/bytedance/README.md)
+    * [字节跳动（头条、抖音等）小程序](js-sdk/bytedance/README.md)
         * [接入指南](js-sdk/bytedance/how-to.md)
         * [字节跳动登录](js-sdk/bytedance/signin-signout.md)
     * [支付](js-sdk/payment/README.md)

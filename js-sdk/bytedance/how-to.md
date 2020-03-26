@@ -76,4 +76,3 @@ product.set(apple).save().then(res => {
 
 * [数据表](../schema/README.md)
 * [内容库](../content/README.md)
-* [支付](./payment/README.md)
