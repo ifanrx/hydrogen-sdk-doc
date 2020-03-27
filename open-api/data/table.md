@@ -24,7 +24,7 @@
 
 |       参数       |  类型  | 说明 |
 | :-------------- | :---- | :--- |
-| user:anonymous  | String| 所有人（匿名用户 + 登录用户）可写／可读 |
+| user:anonymous  | String| 所有人（临时用户 + 登录用户）可写／所有人（登录用户 + 未登录用户）可读 |
 | user:*          | String| 登录用户（不包含匿名用户）可写／可读 |
 | user:<:user_id> | String| 某个用户可写／可读 |
 | gid:<:group_id> | String| 某个分组下的用户可写／可读 |
@@ -151,10 +151,10 @@ var request = require("request");
 
 var options = { method: 'POST',
   url: 'https://cloud.minapp.com/oserve/v1.8/table/',
-  headers: 
+  headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
-  body: 
+  body:
    { name: 'Table199',
      schema: { fields: [ { name: 'String', type: 'string' } ] },
      row_read_perm: [ 'user:*' ],
@@ -305,7 +305,7 @@ var request = require("request");
 
 var options = { method: 'GET',
   url: 'https://cloud.minapp.com/oserve/v1.8/table/1/',
-  headers: 
+  headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
 
@@ -410,7 +410,7 @@ var request = require("request");
 
 var options = { method: 'GET',
   url: 'https://cloud.minapp.com/oserve/v1.8/table/',
-  headers: 
+  headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' } };
 
@@ -524,7 +524,7 @@ var request = require("request");
 
 var options = { method: 'PUT',
   url: 'https://cloud.minapp.com/oserve/v1.8/table/1/',
-  headers: 
+  headers:
    { 'Content-Type': 'application/json',
      Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
   body: { name: 'table' },
