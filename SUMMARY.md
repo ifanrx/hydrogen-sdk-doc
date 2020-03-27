@@ -14,6 +14,7 @@
     * [新手入门 - 百度小程序](newbies/baidu.md)
     * [新手入门 - iOS](newbies/swiftui.md)
     * [新手入门 - Android](newbies/android.md)
+    * [新手入门 - 字节跳动（头条、抖音等）小程序](newbies/bytedance.md)
 
 ----
 
