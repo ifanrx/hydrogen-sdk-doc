@@ -202,7 +202,7 @@ new Vue({
 ```
 在 demo 中新增的书籍后，我们可以在数据管理模块同时看到新增的数据项。
 
-![bookshelf 数据表](/images/newbies/bookshelf-schema.jpeg)
+![bookshelf 数据表](/images/newbies/bookshelf-schema.png)
 
 ### 浏览示例应用
 
