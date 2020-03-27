@@ -36,12 +36,12 @@ Auth.getCurrentUser { (currentUser, error) in
 - 用户的用户名/邮箱设置有误，需要修改为新的用户名/邮箱。
 
 > **info**
-> 除更新自定义字段外，其他方法临时用户无法调用。
+> 除更新自定义字段外，其他方法匿名用户无法调用。
 
 ### 设置用户名
 
 > **info**
-> 临时用户无法调用
+> 匿名用户无法调用
 
 > 用户名不区分大小写。当用户设置了 username 为 ifanrx 的账号后，其他人不能再注册诸如 Ifanrx、IfAnrx、IFANRX 等账号了。
 
@@ -51,7 +51,7 @@ Auth.getCurrentUser { (currentUser, error) in
 {% content "swift1" %}
 ```
 currentUser.updateUsername("test_new") { (result, error) in
-
+                    
 }
 ```
 {% content "oc1" %}
@@ -78,7 +78,7 @@ currentUser.updateUsername("test_new") { (result, error) in
 ### 设置邮箱
 
 > **info**
-> 临时用户无法调用
+> 匿名用户无法调用
 
 > 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 。
 
@@ -88,7 +88,7 @@ currentUser.updateUsername("test_new") { (result, error) in
 {% content "swift2" %}
 ```
 currentUser.updateEmail("test_new@ifanr.com") { (result, error) in
-
+                    
 }
 ```
 {% content "oc2" %}
@@ -115,7 +115,7 @@ currentUser.updateEmail("test_new@ifanr.com") { (result, error) in
 ### 设置密码
 
 > **info**
-> 临时用户无法调用
+> 匿名用户无法调用
 
 **示例代码**
 {% tabs swift3="Swift", oc3="Objective-C" %}
@@ -187,7 +187,7 @@ currentUser.updateUserInfo(["age": 18]) { (result, error) in
 ### 邮箱验证
 
 > **info**
-> 临时用户无法调用
+> 匿名用户无法调用
 
 当用户通过邮箱注册后或者修改了邮箱后，开发者可能希望对用户填写的邮箱真实性进行校验，
 调用该 API 后，知晓云会向当前用户发送一封验证邮件，用户可以打开邮件并进行验证操作。

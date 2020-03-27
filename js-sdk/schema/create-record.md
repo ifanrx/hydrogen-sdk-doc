@@ -1,7 +1,7 @@
 # 新增数据记录
 
 > **info**
-> 临时用户新增数据记录，请先查看[数据表匿名读写权限特别说明](/js-sdk/schema/#数据表匿名读写权限特别说明)
+> 匿名用户新增数据记录，请先查看[数据表匿名读写权限特别说明](/js-sdk/schema/#数据表匿名读写权限特别说明)
 
 ## 操作步骤
 
@@ -291,10 +291,10 @@ record.save()
 ```
 {% endifanrxCodeTabs %}
 
-## 添加 pointer 类型数据
+## 添加 pointer 类型数据 
 
 > **info**
-> 每张表最多能建立 3 个 pointer 类型的字段。如有更多需求，请提交工单说明
+> 每张表最多能建立 3 个 pointer 类型的字段。如有更多需求，请提交工单说明  
 > pointer 指向的数据表，不能改名或删除
 
 假设现在有一张 Article 表, Article 表部分字段如下:
@@ -304,7 +304,7 @@ record.save()
 | comment        |  pointer         | 指向了 `Comment` 表     |
 | user           |  pointer         | 指向了 `_userprofile` 表     |
 
-现在在 Article 表中新增一条数据，其中:
+现在在 Article 表中新增一条数据，其中: 
 
 comment 字段指向了 Comment 表中 id 为 5bad87ab0769797b4fb27a1b 的数据行
 

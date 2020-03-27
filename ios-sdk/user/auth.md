@@ -144,25 +144,26 @@ Auth.login(username: "test", password: "111") { (currentUser, error) in
 | currentUser    | CurrentUser         | 当前用户实例，详见 [当前用户](./account.md) |
 | error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md)     |
 
-### 创建临时用户
+### 匿名登录
 
 往数据表里添加数据，需要有一个用户身份（这样才能保障数据来源可回溯）。
-如果不希望强制用户在一开始就进行注册，可以使用临时用户，让应用不提供注册步骤也能使得用户可以往 ACL 权限设置为“允许所有人（临时用户 + 登录用户）可写” 的数据表内添加数据。
+如果不希望强制用户在一开始就进行注册，可以使用匿名用户，让应用不提供注册步骤也能创建临时用户。
+以使得当前用户可以往 `ACL` 权限设置为“允许所有人（匿名用户 + 登录用户）可写” 的数据表内添加数据。
 
-> 临时用户使用场景举例：假如开发者希望应用内的文章，所有人可以在登录前阅读、点赞，
-> 而且仅在调用特定接口时才需要登录，比如发布文章、评论文章。这时可以先使用临时用户登录，
+> 匿名登录使用场景举例：假如开发者希望应用内的文章，所有人可以在登录前阅读、点赞，
+> 而且仅在调用特定接口时才需要登录，比如发布文章、评论文章。这时可以先使用匿名登录，
 > 之后再使用其他登录方式登录（这里可能需要进行合并用户数据操作）。
 
-临时用户转换为正式用户（临时用户登录后再使用其他登录方式登录），开发者需要考虑以下情况（以用户名为例）：
+匿名用户转换为正式用户（匿名登录后再使用其他登录方式登录），开发者需要考虑以下情况（以用户名为例）：
 
 1. 不需要进行用户数据合并
 
-    临时用户登录后，使用用户名注册返回的 `user_id` 与之前临时用户登录的 `user_id` 是一致的
-    （也就是直接把临时用户转变为了正式用户），所以不需要数据合并。
+    匿名登录后，使用用户名注册返回的 `user_id` 与之前匿名登录的 `user_id` 是一致的
+    （也就是直接把匿名用户转变为了正式用户），所以不需要数据合并。
 
 2. 需要进行用户数据合并
 
-    临时用户登录后，使用用户名登录，登录成功后，返回的 `user_id` 必定与之前临时用户登录的 `user_id` 不一致，所以需要数据合并。
+    匿名登录后，使用用户名登录，登录成功后，返回的 `user_id` 必定与之前匿名登录的 `user_id` 不一致，所以需要数据合并。
 
 > **info**
 > 最终进不进行数据合并，由开发者自己考量决定。合并操作需要开发者自己进行。
@@ -219,7 +220,7 @@ Auth.signInWithSMS(phone: "150****7274", code: "12345", createUser: true) { (cur
 {% content "oc6" %}
 ```
 [BaaSAuth signInWithSMSWithPhone:@"150****7274" code:@"12345" createUser:YES completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
-
+                    
 }];
 ```
 {% endtabs %}
@@ -299,7 +300,7 @@ Auth.signIn(with: .wechat, createUser: true, syncUserProfile: .sentx) { (user, e
 {% content "oc7" %}
 ```
 [BaaSAuth signInWith:SignTypeWechat createUser:YES syncUserProfile:SyncUserProfileTypeSetnx completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
-
+    
 }];
 
 其中 signType 说明如下：
@@ -436,7 +437,7 @@ Auth.logout { (success, error) in
 {% endtabs %}
 
 **返回结果**
-
+ 
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | success  | Bool           | 是否登出成功 |
