@@ -6,7 +6,7 @@
 
 1.如何创建和编写云函数：
 
-开发者可以登录到知晓云控制台，进入到**引擎-云函数**界面，知晓云提供了一个在线代码编辑器，你可以在上面编写你的云函数。目前编写云函数的渠道只有这里，后续我们会提供命令行功能上传云函数等渠道。
+开发者可以登录到知晓云控制台，进入到**引擎-云函数**界面，知晓云提供了一个在线代码编辑器，你可以在上面编写你的云函数。除了使用在线代码编辑器编写云函数，我们还提供了[命令行工具](/cloud-function/cli.md)等渠道，方便用户在本地编辑器编写云函数之后，将云函数文件上传到知晓云。
 
 创建完云函数后为其编写逻辑代码，目前支持的编程语言仅有 `Node.js`，后续我们也会增加对其它语言的支持。
 
@@ -24,17 +24,22 @@
 
 进入知晓云控制台，选择一个应用进入，依次点击「 引擎 」、「 云函數 」、「 添加 」。
 
-![进入云函数控制台面板](/images/cloud-function/dashboard-into.png)
+![首次进入云函数控制台面板](/images/cloud-function/dashboard-into1.png)
+![云函数控制台面板](/images/cloud-function/dashboard-into2.png)
 
-在弹出添加云函数模态框中，选择 `Hello world` 模板，函数命名为 `helloWorld`，点击确认，即可完成云函数的创建。
+在弹出添加云函数模态框中，选择 `Hello World` 模板，函数命名为 `helloWorld`，点击确认，即可完成云函数的创建。
 
 ![创建 hello world 函数](/images/cloud-function/dashboard-hello-world.png)
 
 创建好云函数后，在代码编辑器中，默认会添加以下一段代码，它的作用是当调用该方法后，函数会返回 'hello world'。
 
 ```js
-exports.main = function helloWorld(event, callback) {
-  callback(null, "hello world")
+exports.main = async function helloWorld(event) {
+  try {
+    return "hello world"
+  } catch (err) {
+    throw err
+  }
 }
 ```
 
@@ -44,7 +49,7 @@ exports.main = function helloWorld(event, callback) {
 云函数创建好后，就可以在你的微信小程序代码中，触发该函数了。在此之前，你得先下载我们的 JS SDK，导入项目并进行初始化，关于这块的内容，可以查看我们的 [JS SDK 文档](/js-sdk/README.md)。触发云函数的示例代码如下：
 
 ```js
-wx.BaaS.invokeFunction('helloWorld').then(res => {
+wx.BaaS.invoke('helloWorld').then(res => {
   console.log(res.data)  // 'hello world'
 })
 ```
@@ -58,22 +63,22 @@ wx.BaaS.invokeFunction('helloWorld').then(res => {
 修改云函数的代码如下：
 
 ```js
-exports.main = function getArticles(event, callback) {
-  let tableID = 212
-  let Article = new BaaS.TableObject(tableID)
-
-  Article.limit(100).find().then(res => {
-    callback(null, res.data.objects)
-  }, err => {
-    callback(err)
-  })
+exports.main = async function getArticles(event, callback) {
+  try {
+    const tableName = 'article'
+    const Article = new BaaS.TableObject(tableName)
+    const res = await Article.limit(100).find()
+    return res.data.objects
+  } catch (err) {
+    throw err
+  }
 }
 ```
 
 修改小程序中的代码：
 
 ```js
-wx.BaaS.invokeFunction('getArticles').then(res => {
+wx.BaaS.invoke('getArticles').then(res => {
   console.log(res.data) // articles
 })
 ```
