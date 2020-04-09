@@ -14,6 +14,8 @@
 `BaaS.alipay.sendTemplateMessage(data)`
 {% elif platform == 'baidu' %}
 `BaaS.baidu.sendTemplateMessage(data)`
+{% elif platform == 'bytedance' %}
+`BaaS.bytedance.sendTemplateMessage(data)`
 {% else %}
 `BaaS.qq.sendTemplateMessage(data)`
 {% endif %}
@@ -45,7 +47,23 @@ data 是 Object 类型，它包括以下几个属性
 | `<recipient_params>` | Array、Integer、String、Object | 是   | 根据recipient_type来填写不同的参数名， 详见下方表格说明 |
 | template_id     | String | 是   | 模板 ID |
 | submission_type | String | 是   | 模板消息触发条件，`form_id` 或者 `order_id` |
-| keywords        | Object | 是   | 关键字（可在 [知晓云-模板消息](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]template-message/template) 配置）|
+| keywords        | Object | 是   | 关键字（可在 [知晓云-模板消息](https://cloud.minapp.com/dashboard/#/app/[[app_id &#124; addSlashPostfixIfNotEmpty]]template-message/template) 配置）|
+| schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
+| page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
+| can_send_template_message  | Boolean | 否   | 是否过滤无效用户  |
+| template_message_high_value_user  | Boolean | 否   | 是否过滤低价值用户  |
+| can_send_subscription_message  | Boolean | 否   | 是否过滤无效用户  |
+| template_message_rate_limit  | RateLimit | 否   | 发送频率限制  |
+
+{% elif platform == 'bytedance' %}
+| 参数             | 类型   | 必填  | 说明 |
+| :-------------- | :----- | :--- | :-- |
+| recipient_type  | String | 是   | 推送类型，可选值： user_id、user_list、user_group、schema_user  |
+| `<recipient_params>` | Array、Integer、String、Object | 是   | 根据recipient_type来填写不同的参数名， 详见下方表格说明 |
+| template_id     | String | 是   | 模板 ID |
+| app_name        | AppName | 是   | 应用名称。目前支持 `toutiao`（今日头条） |
+| submission_type | String | 是   | 模板消息触发条件，暂时只支持 `form_id` |
+| keywords        | Object | 是   | 关键字（可在 [知晓云-模板消息](https://cloud.minapp.com/dashboard/#/app/[[app_id &#124; addSlashPostfixIfNotEmpty]]template-message/template) 配置）|
 | schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 | page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
 | can_send_template_message  | Boolean | 否   | 是否过滤无效用户  |
@@ -68,6 +86,14 @@ data 是 Object 类型，它包括以下几个属性
 | can_send_subscription_message  | Boolean | 否   | 是否过滤无效用户  |
 | template_message_rate_limit  | RateLimit | 否   | 发送频率限制  |
 
+{% endif %}
+
+
+{% if platform == 'bytedance' %}
+AppName 支持以下值：
+| 名称            | 说明 |
+| :-------------- | :--- |
+| toutiao         | 今日头条 |
 {% endif %}
 
 
@@ -123,6 +149,12 @@ BaaS.baidu.sendTemplateMessage(data).then(res => {
 }, err => {
   // 发送失败
 })
+{% elif platform == 'bytedance' %}
+BaaS.bytedance.sendTemplateMessage(data).then(res => {
+  // 发送成功
+}, err => {
+  // 发送失败
+})
 {% else %}
 BaaS.qq.sendTemplateMessage(data).then(res => {
   // 发送成功
@@ -148,6 +180,8 @@ BaaS.sendTemplateMessage(data)
 BaaS.alipay.sendTemplateMessage(data)
 {% elif platform == 'baidu' %}
 BaaS.baidu.sendTemplateMessage(data)
+{% elif platform == 'bytedance' %}
+BaaS.bytedance.sendTemplateMessage(data)
 {% else %}
 BaaS.qq.sendTemplateMessage(data)
 {% endif %}
@@ -172,6 +206,8 @@ BaaS.sendTemplateMessage(data)
 BaaS.alipay.sendTemplateMessage(data)
 {% elif platform == 'baidu' %}
 BaaS.baidu.sendTemplateMessage(data)
+{% elif platform == 'bytedance' %}
+BaaS.bytedance.sendTemplateMessage(data)
 {% else %}
 BaaS.qq.sendTemplateMessage(data)
 {% endif %}
@@ -215,6 +251,8 @@ BaaS.sendTemplateMessage(data)
 BaaS.alipay.sendTemplateMessage(data)
 {% elif platform == 'baidu' %}
 BaaS.baidu.sendTemplateMessage(data)
+{% elif platform == 'bytedance' %}
+BaaS.bytedance.sendTemplateMessage(data)
 {% else %}
 BaaS.qq.sendTemplateMessage(data)
 {% endif %}
@@ -240,6 +278,11 @@ BaaS.qq.sendTemplateMessage(data)
 
 > **info**
 > 如果 `submission_type = 'form_id'`，请确保在调用 `BaaS.baidu.sendTemplateMessage` 前，已在小程序端调用 `swan.BaaS.reportTicket`上报模版消息所需的 `formId`
+{% elif platform == 'bytedance' %}
+其中 keyword1, keyword2 为字节跳动小程序后台中实际关键词对应的键值
+
+> **info**
+> 如果 `submission_type = 'form_id'`，请确保在调用 `BaaS.bytedance.sendTemplateMessage` 前，已在小程序端调用 `tt.BaaS.reportTicket`上报模版消息所需的 `formId`
 {% else %}
 其中 keyword1, keyword2 为 QQ 后台中实际关键词对应的键值
 
