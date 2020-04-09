@@ -70,6 +70,9 @@ neighbourhood.query(query);
 
 **`withinCircle` 在指定点集合中，查找包含在指定圆心和指定半径所构成的圆形区域中的点 (返回结果随机排序)**
 
+> **info**
+> radius 参数单位为 km。
+
 ```java
 // 查找在距离用户 radius 千米范围内的饭店
 
@@ -86,6 +89,9 @@ restaurant.query(query);
 
 
 **`withinRegion` 在指定点集合中，查找包含在以指定点为圆点，以最大和最小距离为半径，所构成的圆环区域中的点（返回结果按从近到远排序）**
+
+> **info**
+> maxDistance 与 minDistance 参数单位为 m。
 
 ```java
 // 查找距离用户 minDistance 千米外，maxDistance 千米内的所有饭店
