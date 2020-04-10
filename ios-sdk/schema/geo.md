@@ -162,7 +162,7 @@ query.where = where;
 {% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}
 ```
-// 查找距离用户 minDistance 千米外，maxDistance 千米内的所有饭店
+// 查找距离用户 minDistance 米外，maxDistance 米内的所有饭店
 
 let restaurant = Table(name: "restaurantTableName")
 
@@ -176,7 +176,7 @@ restaurant.find(query: query, completion: {listResult, error in
 ```
 {% content "oc5" %}
 ```
-// 查找距离用户 minDistance 千米外，maxDistance 千米内的所有饭店
+// 查找距离用户 minDistance 米外，maxDistance 米内的所有饭店
 
 BaaSTable *restaurant = [[BaaSTable alloc] initWithName:@"restaurantTableName"];
 

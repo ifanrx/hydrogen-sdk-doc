@@ -97,7 +97,7 @@ Restaurant.setQuery(query).find()
 
 {% ifanrxCodeTabs %}
 ```js
-// 查找距离用户 minDistance 千米外，maxDistance 千米内的所有饭店
+// 查找距离用户 minDistance 米外，maxDistance 米内的所有饭店
 
 var Restaurant = new wx.BaaS.TableObject(restaurantTableName)
 

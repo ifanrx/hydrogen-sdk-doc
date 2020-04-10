@@ -88,7 +88,7 @@ Restaurant.setQuery(query).find()
 > maxDistance 与 minDistance 参数单位为 m。
 
 ```js
-// 查找距离用户 minDistance 千米外，maxDistance 千米内的所有饭店
+// 查找距离用户 minDistance 米外，maxDistance 米内的所有饭店
 
 var Restaurant = new BaaS.TableObject(restaurantTableName)
 

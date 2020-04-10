@@ -82,7 +82,7 @@ Restaurant.setQuery(query).find()
 **`withinRegion` 在指定点集合中，查找包含在以指定点为圆点，以最大和最小距离为半径，所构成的圆环区域中的点（返回结果按从近到远排序）**
 
 ```js
-// 查找距离用户 minDistance 千米外，maxDistance 千米内的所有饭店
+// 查找距离用户 minDistance 米外，maxDistance 米内的所有饭店
 
 var Restaurant = new BaaS.TableObject(restaurantTableName)
 
