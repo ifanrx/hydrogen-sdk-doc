@@ -24,8 +24,8 @@
 
 进入知晓云控制台，选择一个应用进入，依次点击「 引擎 」、「 云函數 」、「 添加 」。
 
-![首次进入云函数控制台面板](/images/cloud-function/dashboard-into1.png)
-![云函数控制台面板](/images/cloud-function/dashboard-into2.png)
+![首次进入云函数控制台面板](/images/cloud-function/dashboard-into-first.png)
+![云函数控制台面板](/images/cloud-function/dashboard-into.png)
 
 在弹出添加云函数模态框中，选择 `Hello World` 模板，函数命名为 `helloWorld`，点击确认，即可完成云函数的创建。
 
