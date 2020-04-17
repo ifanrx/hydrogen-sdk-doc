@@ -56,8 +56,6 @@
 请移步[这里](https://smartprogram.baidu.com/docs/develop/serverapi/open_infomation/#sendTemplateMessage/)
 {% endif %}
 
-{% if apiPrefix != "qq." %}
-
 ## 上报模板消息卡片点击事件
 
 {% if apiPrefix == "wx." %}
@@ -66,6 +64,10 @@
 `my.BaaS.reportTemplateMsgAnalytics(options)`
 {% elif apiPrefix == "swan." %}
 `swan.BaaS.reportTemplateMsgAnalytics(options)`
+{% elif apiPrefix == "qq." %}
+`qq.BaaS.reportTemplateMsgAnalytics(options)`
+{% elif apiPrefix == "tt." %}
+`tt.BaaS.reportTemplateMsgAnalytics(options)`
 {% endif %}
 
 **参数说明**
@@ -107,9 +109,26 @@
 ```
 > **info**
 > 由于百度小程序的生命周期和其他平台小程序的有些差异，onShow 在 onLaunch 之后执行，故不要把引入 SDK 的代码放到 onLaunch 中，否则会导致执行到 onShow 的时候 swan.Baas 为 undefine 导致程序报错，建议将引入 SDK 的代码放在文件的头部，即 App({}) 执行之前。
+{% elif apiPrefix == "qq." %}
+```js
+// app.js
+...
+   onShow: function(options) {
+    qq.BaaS.reportTemplateMsgAnalytics(options)
+  },
+...
+```
+{% elif apiPrefix == "tt." %}
+```js
+// app.js
+...
+   onShow: function(options) {
+    tt.BaaS.reportTemplateMsgAnalytics(options)
+  },
+...
+```
 {% endif %}
 
-{% endif %}
 
 ## 上报模板消息所需 formId
 {% if apiPrefix == "wx." %}
@@ -120,6 +139,8 @@
 {% set api = "qq.BaaS.reportTicket" %}
 {% elif apiPrefix == "swan." %}
 {% set api = "swan.BaaS.reportTicket" %}
+{% elif apiPrefix == "tt." %}
+{% set api = "tt.BaaS.reportTicket" %}
 {% endif %}
 
 {% if apiPrefix == "wx." %}
@@ -132,6 +153,8 @@
 `qq.BaaS.reportTicket(formID)`
 {% elif apiPrefix == "swan." %}
 `swan.BaaS.reportTicket(formID)`
+{% elif apiPrefix == "tt." %}
+`tt.BaaS.reportTicket(formID)`
 {% endif %}
 
 **参数说明**
@@ -142,7 +165,7 @@
 
 当使用小程序的 `<form/>` 组件，且属性 report-submit 设为 true 时，此时表单是声明为需要要发模板消息的，当点击按钮提交表单即可获取 formID。
 
-{% if apiPrefix != "qq." and apiPrefix != "swan." %}
+{% if apiPrefix == "wx." or apiPrefix == "my." %}
 ### 方式二：使用自定义组件自动上报（推荐）
 
 > **info**
@@ -244,4 +267,6 @@
 具体使用方式请移步[这里](/cloud-function/node-sdk/template-message/qq/template-message.md)。
 {% elif apiPrefix == "swan." %}
 具体使用方式请移步[这里](/cloud-function/node-sdk/template-message/baidu/template-message.md)。
+{% elif apiPrefix == "tt." %}
+具体使用方式请移步[这里](/cloud-function/node-sdk/template-message/bytedance/template-message.md)。
 {% endif %}
