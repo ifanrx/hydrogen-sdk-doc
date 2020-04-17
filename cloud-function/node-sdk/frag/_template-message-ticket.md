@@ -12,6 +12,9 @@
 `BaaS.baidu.getTemplateMsgTicketCount({userID, submissionType})`
 {% elif platform == 'bytedance' %}
 `BaaS.bytedance.getTemplateMsgTicketCount({userID, submissionType})`
+
+> **info**
+> SDK >= 3.7
 {% else %}
 `BaaS.qq.getTemplateMsgTicketCount({userID, submissionType})`
 {% endif %}

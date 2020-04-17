@@ -16,6 +16,9 @@
 `BaaS.baidu.sendTemplateMessage(data)`
 {% elif platform == 'bytedance' %}
 `BaaS.bytedance.sendTemplateMessage(data)`
+
+> **info**
+> SDK >= 3.7
 {% else %}
 `BaaS.qq.sendTemplateMessage(data)`
 {% endif %}
@@ -91,6 +94,7 @@ data 是 Object 类型，它包括以下几个属性
 
 {% if platform == 'bytedance' %}
 AppName 支持以下值：
+
 | 名称            | 说明 |
 | :-------------- | :--- |
 | toutiao         | 今日头条 |
