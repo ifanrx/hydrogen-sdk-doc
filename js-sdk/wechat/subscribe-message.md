@@ -7,11 +7,6 @@
 
 通过上报订阅状态，可以在发送时过滤掉无效用户，使发送更精准。
 
-> **info**
-> 目前只支持一次性订阅
-
-> 只需要上报订阅结果为 `accept` 的模版 ID
-
 `wx.BaaS.subscribeMessage(options)`
 
 **参数说明**
@@ -27,7 +22,7 @@ Subscription:
 | 参数          | 类型   | 必填 | 说明 |
 | :------------ | :----- | :--- | :-- |
 | template_id   | string | 是   | 模版 id |
-| subscription_type  | string | 是   | 订阅类型，目前只支持 `once`（一次性订阅）|
+| subscription_type  | string | 是   | 订阅类型， `once`（一次性订阅），`permanent`（永久订阅）|
 
 用户发生点击行为或者发起支付回调后，调起订阅消息界面，其他的事情由 SDK 自动完成。
 
