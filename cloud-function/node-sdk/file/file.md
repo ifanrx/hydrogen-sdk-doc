@@ -90,7 +90,7 @@ file 参数说明：
 
 ### 创建下载任务
 
-`MyFile.createDownloadTask({originalUrl, filename, categoryName})`
+`MyFile.createDownloadTask({originalUrl, filename, categoryName, overwrite})`
 
 **参数说明**
 
@@ -99,6 +99,7 @@ file 参数说明：
 | originalUrl  | String  |  Y   | 需要下载的文件 URL      |
 | filename     | String  |  Y   | 文件名 |
 | categoryName | String  |  N   | 文件分类名 |
+| overwrite    | Boolean |  N   | 是否覆盖已存在的同名文件, 默认值为 true |
 
 **示例代码**
 
@@ -109,6 +110,7 @@ const res = await MyFile.createDownloadTask({
   originalUrl: 'https://***.jpg',
   filename: '***.jpg',
   categoryName: '文件云下载',
+  overwrite: true,
 })
 return res.data
 ```
