@@ -51,20 +51,16 @@ AppName 支持的值为：
 
 **返回字段说明**
 
-{% if apiPrefix %}
-| 参数    | 类型    | 说明 |
-| :------ | :------ | :-- |
-| image_url  | String  | 二维码地址，二维码的下载链接 |
-{% else %}
-| 参数    | 类型    | 说明 |
-| :------ | :------ | :-- |
-| id      | String  | 二维码 ID |
-| name    | String  | 二维码名称 |
-| image_url  | String  | 二维码地址，二维码的下载链接 |
-| url_param  | String  | 页面地址 |
-| query_param  | String  | 启动参数 |
-| describe  | String  | 描述 |
-{% endif %}
+| 参数       | 类型   | 说明 |
+| :--------- | :----- | :-- |
+| categories | Array  | 分类 |
+| path       | String | 上传成功后的访问地址 URL |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
+| id         | Object | 文件 ID |
+| mime_type  | String | 文件媒体类型 |
+| name       | String | 文件名 |
+| size       | Number | 以字节为单位 |
+| created_at | String | 文件上传时间 |
 
 以下几种情况会返回 400 错误：
 
