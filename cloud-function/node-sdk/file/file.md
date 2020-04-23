@@ -143,6 +143,38 @@ return res.data
 
 **返回示例**
 
+下载中：
+
+```json
+{
+  "category_name": "文件云下载",
+  "created_at": 1587545049,
+  "error_message": null,
+  "file_path": "https://***.jpg",
+  "filename": "***.jpg",
+  "id": 5,
+  "original_url": "https://***.jpg",
+  "status": "pending",
+}
+```
+
+下载失败：
+
+```json
+{
+  "category_name": "文件云下载",
+  "created_at": 1587545049,
+  "error_message": null,
+  "file_path": "https://***.jpg",
+  "filename": "***.jpg",
+  "id": 5,
+  "original_url": "https://***.jpg",
+  "status": "failed",
+}
+```
+
+下载成功：
+
 ```json
 {
   "category_name": "文件云下载",
