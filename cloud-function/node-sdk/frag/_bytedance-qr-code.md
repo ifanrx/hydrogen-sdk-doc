@@ -4,6 +4,9 @@
 `{{apiPrefix}}BaaS.getQRCode({path, platform, width, lineColor, background, setIcon, categoryName, categoryId})`
 {% else %}
 `BaaS.bytedance.getQRCode({appName, path, platform, width, lineColor, background, setIcon, categoryName, categoryId})`
+
+> **info**
+> SDK >= 3.8
 {% endif %}
 
 

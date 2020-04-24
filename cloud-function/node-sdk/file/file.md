@@ -88,6 +88,9 @@ file 参数说明：
 
 ## 文件云下载
 
+> **info**
+> SDK >= 3.8
+
 ### 创建下载任务
 
 `MyFile.createDownloadTask({originalUrl, filename, categoryName, overwrite})`
