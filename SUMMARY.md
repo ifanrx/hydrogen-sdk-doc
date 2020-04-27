@@ -41,7 +41,7 @@
 ----
 
 * [JS SDK](js-sdk/README.md)
-    * [2.x -> 3.x 迁移指南](js-sdk/migrate-from-v2.md)
+    * [3.x -> 3.x 迁移指南](js-sdk/migrate-from-v2.md)
     * [1.x -> 2.x 迁移指南](js-sdk/migrate-from-v1.md)
     * [用户](js-sdk/user.md)
         * [登入登出](js-sdk/auth.md)
@@ -112,6 +112,9 @@
         * [字节跳动小程序支付](js-sdk/bytedance/payment.md)
         * [模板消息](js-sdk/bytedance/template-message.md)
         * [获取二维码](js-sdk/bytedance/bytedance-qr-code.md)
+    * [React Native](js-sdk/react-native/README.md)
+        * [接入指南](js-sdk/react-native/how-to.md)
+        * [登入登出](js-sdk/react-native/signin-signout.md)
     * [支付](js-sdk/payment/README.md)
         * [微信小程序支付](js-sdk/payment/wechat-pay.md)
         * [支付宝小程序支付](js-sdk/payment/alipay-pay.md)
