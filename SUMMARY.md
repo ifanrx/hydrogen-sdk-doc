@@ -41,7 +41,7 @@
 ----
 
 * [JS SDK](js-sdk/README.md)
-    * [3.x -> 3.x 迁移指南](js-sdk/migrate-from-v2.md)
+    * [2.x -> 3.x 迁移指南](js-sdk/migrate-from-v2.md)
     * [1.x -> 2.x 迁移指南](js-sdk/migrate-from-v1.md)
     * [用户](js-sdk/user.md)
         * [登入登出](js-sdk/auth.md)
