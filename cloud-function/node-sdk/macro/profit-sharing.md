@@ -14,6 +14,12 @@ ReceiverType 可选值说明:
 > 请发工单联系客服，不要重复调用接口，否则可能造成资金损失。（详见[微信官方文档](https://pay.weixin.qq.com/wiki/doc/api/allocation.php?chapter=27_1&index=1) 中错误码列表）
 {% endmacro %}
 
+
+{% macro versionWarning() %}
+> **info**
+> 分账功能仅商用版及商用版以上版本可以使用。
+{% endmacro %}
+
 {% macro receiverTypeAlipay() %}
 ReceiverType 可选值说明:
 
