@@ -36,11 +36,11 @@ request 结构说明
 
 | 参数             | 类型   | 描述 |
 | :-------------- | :----- | :--- |
-| meta.ip_address | Object | 发起云函数请求的 IP   |
+| meta.ip_address | String | 发起云函数请求的 IP   |
 | meta.user_agent | String | 发起云函数请求设备的 userAgent |
 | user.avatar_url | String | 发起云函数请求的用户头像  |
-| user.nickname   | Object | 发起云函数请求的用户昵称 |
-| user.id         | Object | 发起云函数请求的用户 ID |
+| user.nickname   | String | 发起云函数请求的用户昵称 |
+| user.id         | String | 发起云函数请求的用户 ID |
 
 request 示例如下
 
