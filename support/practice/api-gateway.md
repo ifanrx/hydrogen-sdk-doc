@@ -30,7 +30,25 @@ API 网关分成前后端服务，前端主要为接收客户端请求，并对�
 | headers          | Object | 请求中提交的自定义 Headers(预先在 API 的参数设置后才可以使用) |
 | nested_arguments | Array  | 路径中配置的位置参数                     |
 | named_arguments  | Object | 路径中配置的命名参数                     |
+| ip_address       | String | 调用客户端地址                          |
+| user_agent       | String | 调用客户端 User-Agent                  |
 
+示例：
+
+```json
+{
+    "request_method": "GET",
+    "nested_arguments": [],
+    "named_argsuments": {},
+    "request_path": "/hello-world/",
+    "query_string": {"query": ["1", "2"], "string": ["1"]},
+    "headers": {
+        "customer-headers": "foo"
+    },
+    "ip_address": "127.0.0.1",
+    "user_agent": "user-agent",
+}
+```
 
 #### event.data 对象说明
 
@@ -39,9 +57,9 @@ API 网关分成前后端服务，前端主要为接收客户端请求，并对�
  - JSON（Content-Type: `application/json`）
  - XML（Content-Type: `application/xml`)
 
-API 网关会将 JSON/XML 内容转为任何 JavaScript 合法类型/对象，使得云函数内部中无需再次解析，提升使用效率。
+API 网关会将 JSON/XML 内容转为 JavaScript 合法类型，使得云函数内部中无需再次解析，提升使用效率。
 
-XML 的请求转换例子，如用户的请求内容为：
+其中 XML 内容的会从字符串转为对象，如用户的请求内容为：
 
 ```
 <xml>
