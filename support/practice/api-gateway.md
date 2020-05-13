@@ -39,7 +39,7 @@ API 网关分成前后端服务，前端主要为接收客户端请求，并对�
 {
     "request_method": "GET",
     "nested_arguments": [],
-    "named_argsuments": {},
+    "named_arguments": {},
     "request_path": "/hello-world/",
     "query_string": {"query": ["1", "2"], "string": ["1"]},
     "headers": {
