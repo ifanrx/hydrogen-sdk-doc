@@ -142,7 +142,7 @@ exports.main = async function helloWorld (event) {
 }
 ```
 
-返回内容为 `text/html` 类型
+返回内容为 `application/xml` 类型
 
 ``` javascript
 exports.main = async function helloWorld (event) {
