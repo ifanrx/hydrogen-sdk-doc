@@ -307,3 +307,71 @@ axios.put('https://cloud.minapp.com/userve/v2.2/miniapp/user/account/70695404/',
 `400`: password 错误、email 不合法、username 或 email 已经存在。
 
 `404`: 用户不存在。
+
+## 创建用户
+
+**接口**
+
+`POST https://cloud.minapp.com/userve/v2.5/miniapp/user_profile/`
+
+**参数说明**
+
+Content-Type: `application/json`
+
+允许用户传入如下参数进行用户创建：
+
+| 字段名           | 字段类型   | 说明                   |
+| :---------------| :------- | :--------------------- |
+| _username       | string   | 用户名，不区分大小写 |
+| _email          | string   | 邮箱，不区分大小写 |
+| _email_verified | boolean  | 用户邮箱是否已激活 |
+| _phone          | string   | 手机号码 |
+| _phone_verified | boolean  | 手机号码是否已经验证 |
+| _password       | string   | 用户密码 |
+| avatar          | string   | 用户头像 |
+| nickname        | string   | 用户昵称 |
+| gender          | integer  | 用户性别，其中值为 1 代表男性，值为 2 代表女性，值为 0 代表未知 |
+| country         | string   | 用户所在国家 |
+| province        | string   | 用户所在省份 |
+| city            | string   | 用户所在城市 |
+| language        | string   | 用户的语言 |
+
+除上述字段外，用户还可传入 `_userprofile` 表中的自定义字段进行用户创建。
+
+> **danger**
+> 创建用户时，接口中必须至少传入 `_phone/_username/_email` 中的一项，同时还需传入 `_password` 参数进行密码设置。
+
+**代码示例**
+
+```javascript
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.post('https://cloud.minapp.com/userve/v2.5/miniapp/user_profile/', {
+  _email: 'example@ifanr.com',
+  _password: 'example'
+}).then(res => {
+  console.log(res.data)
+});
+
+```
+
+**返回示例**
+
+```json
+{
+  "email": "example@ifanr.com",
+  "email_verified": false,
+  "avatar": "https://media.ifanrusercontent.com/hydrogen/default_avatar.png",
+  "created_at": 1589359083,
+  "id": 176366728119494,
+  "updated_at": 1589359083
+}
+```
+
+**状态码说明**
+
+`201`: 成功。
+
+`400`: 缺少必填项、字段类型不匹配、唯一索引冲突（如创建了 `_email` 字段重复的用户）。

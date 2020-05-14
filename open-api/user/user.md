@@ -874,3 +874,129 @@ if ($err) {
 `401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
 
 `404`: 用户不存在。
+
+
+## 创建用户
+
+**接口**
+
+`POST https://cloud.minapp.com/oserve/v2.5/miniapp/user_profile/`
+
+**参数说明**
+
+Content-Type: `application/json`
+
+允许用户传入如下参数进行用户创建：
+
+| 字段名           | 字段类型   | 说明                   |
+| :---------------| :------- | :--------------------- |
+| _username       | string   | 用户名，不区分大小写 |
+| _email          | string   | 邮箱，不区分大小写 |
+| _email_verified | boolean  | 用户邮箱是否已激活 |
+| _phone          | string   | 手机号码 |
+| _phone_verified | boolean  | 手机号码是否已经验证 |
+| _password       | string   | 用户密码 |
+| avatar          | string   | 用户头像 |
+| nickname        | string   | 用户昵称 |
+| gender          | integer  | 用户性别，其中值为 1 代表男性，值为 2 代表女性，值为 0 代表未知 |
+| country         | string   | 用户所在国家 |
+| province        | string   | 用户所在省份 |
+| city            | string   | 用户所在城市 |
+| language        | string   | 用户的语言 |
+
+除上述字段外，用户还可传入 `_userprofile` 表中的自定义字段进行用户创建。
+
+> **danger**
+> 创建用户时，接口中必须至少传入 `_phone/_username/_email` 中的一项，同时还需传入 `_password` 参数进行密码设置。
+
+**代码示例**
+
+{% tabs  createUserCurl="Curl", createUserNode="Node", createUserPHP="PHP" %}
+
+{% content "createUserCurl"%}
+
+```shell
+curl -X POST \
+  https://cloud.minapp.com/oserve/v2.5/miniapp/user_profile/ \
+  -H 'Authorization: Bearer 35919068aa799eccdef19160e1da4bf2xxxxxxxx' \
+  -H 'Content-Type: application/json' \
+  -d '{"_email": "example@ifanr.com", "_password": "example"}'
+```
+
+{% content "createUserNode" %}
+
+```javascript
+var request = require("request");
+
+var options = {
+  method: 'POST',
+  url: 'https://cloud.minapp.com/oserve/v2.5/miniapp/user_profile/',
+  headers:
+  {
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer ${token}'
+  },
+  body: {"_email": "example@ifanr.com", "_password": "example"},
+  json: true
+};
+
+var req = request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+  console.log(body);
+});
+```
+
+{% content "createUserPHP"%}
+
+```php
+<?php
+$url = "https://cloud.minapp.com/oserve/v2.5/miniapp/user_profile/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, "{\"_email\": \"example@ifanr.com\", \"_password\": \"example\"}");
+
+$response = curl_exec($ch);
+$err = curl_error($ch);
+
+curl_close($ch);
+
+if ($err) {
+  echo "CURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```json
+{
+  "email": "example@ifanr.com",
+  "email_verified": false,
+  "avatar": "https://media.ifanrusercontent.com/hydrogen/default_avatar.png",
+  "created_at": 1589359083,
+  "id": 1763667xxxxxxxx,
+  "updated_at": 1589359083
+}
+```
+
+**状态码说明**
+
+`201`: 成功。
+
+`400`: 缺少必填项、字段类型不匹配、唯一索引冲突（如创建了 `_email` 字段重复的用户）。
+
+`401`: 未授权，请检查请求头中的 Authorization 字段是否正确。
