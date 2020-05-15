@@ -147,7 +147,7 @@ API 网关会将 JSON/XML 内容转为 JavaScript 合法类型，使得云函数
 | :----------- | :------ | :----------- |
 | content      | String  | 响应内容      |
 | content_type | String  | 响应内容的类型 |
-| status_code  | integer | 响应状态码    |
+| status_code  | Integer | 响应状态码    |
 
 响应内容类型支持以下几种：
 

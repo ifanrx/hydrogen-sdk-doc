@@ -40,7 +40,7 @@ request 结构说明
 | meta.user_agent | String  | 发起云函数请求设备的 userAgent |
 | user.avatar_url | String  | 发起云函数请求的用户头像  |
 | user.nickname   | String  | 发起云函数请求的用户昵称 |
-| user.id         | Interge | 发起云函数请求的用户 ID |
+| user.id         | Integer | 发起云函数请求的用户 ID |
 
 request 示例如下
 
