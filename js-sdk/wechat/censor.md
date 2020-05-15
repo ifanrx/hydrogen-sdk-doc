@@ -102,8 +102,8 @@ HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
 | id            | String | 检测记录 id  |
-| error_code    | String | 错误码，=0 时不返回此字段  |
-| error_message | String | 错误信息，error_code=0 时不返回此字段  |
+| error_code    | Integer | 错误码 |
+| error_message | String | 错误信息  |
 | status_code   | Number | 默认为：0，4294966288(-1008)为链接无法下载  |
 | risky         | Boolean | 是否为违规内容，true 为风险，false 为未检测到风险，null 为微信尚未推送检查结果  |
 {% endmacro %}

@@ -313,6 +313,11 @@
           <li><a href="/support/practice/cloud-function.md">云函数实战教程</a></li>
           <li><a href="/support/practice/trigger.md">触发器实战教程</a></li>
         </ul>
+        <em class="directory-item-section-title">使用指南</em>
+        <ul class="directory-item-section-list">
+          <li><a href="/support/practice/trigger-v2-guideline.md">触发器 V2 使用指南</a></li>
+          <li><a href="/support/practice/api-gateway.md">API 网关使用指南</a></li>
+        </ul>
       </div>
       <div class="directory-item-section">
         <em class="directory-item-section-title">其他</em>
