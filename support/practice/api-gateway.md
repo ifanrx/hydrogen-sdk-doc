@@ -230,3 +230,29 @@ exports.main = async function helloWorld (event) {
     return response_data
 }
 ```
+
+
+## 认证方式
+
+API 网关支持开发者选择以下几种认证方式：
+
+1. 免鉴权
+2. JWT
+
+若开发者选择免鉴权的认证方式，则 API 网关在收到匿名请求时，也可以通过认证。
+
+推荐开发者对信息较为敏感的网关请求采用 JWT 的认证方式。
+
+#### JWT 认证
+
+当开发者在控制台为网关 API 成功绑定所使用的 JWT 后，开发者即可使用该 JWT 完成接口认证。
+
+在 API 请求中，传递如下 http headers -- Authorization: Bearer <token>，其中 token 通过当前路由绑定的 JWT 密钥生成。
+
+token 生成方式如下：
+
+1. 首先指定使用算法 HS256；
+2. 不特别指定 JWT 签名所使用的 payload ，开发者可选择对一个空的 {} 进行签名，也可选择设置 JWT 提供的官方字段 exp(过期时间)/nbf(生效时间) 等规定 token 有效期；
+3. 使用 HS256 算法、JWT 签名所需 payload 以及路由绑定的 JWT 密钥，即可生成认证所需的 token。
+
+服务器在收到 Authorization header 中的 token 之后，将校验其有效性，若 token 校验不通过则将返回 401 错误码。
