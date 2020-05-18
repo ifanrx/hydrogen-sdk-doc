@@ -244,7 +244,7 @@ API 网关支持开发者选择以下几种认证方式：
 
 当开发者在控制台为网关 API 成功绑定所使用的 JWT 后，开发者即可使用该 JWT 完成接口认证。
 
-在 API 请求中，传递如下 http headers -- Authorization: Bearer <token>，其中 token 通过当前路由绑定的 JWT 密钥生成。
+在 API 请求中，传递如下 http headers -- `Authorization: Bearer <token>`，其中 `token` 通过当前路由绑定的 JWT 密钥生成。
 
 token 生成方式如下：
 
@@ -253,3 +253,16 @@ token 生成方式如下：
 3. 使用 HS256 算法、JWT 签名所需 payload 以及路由绑定的 JWT 密钥，即可生成认证所需的 token。
 
 服务器在收到 Authorization header 中的 token 之后，将校验其有效性，若 token 校验不通过则将返回 401 错误码。
+
+
+## 自有域名
+
+API 网关支持开发者使用自有域名作为网关请求域名。
+
+使用自有域名时，需要先为您的二级域名在知晓云接入 API 域名备案[点我直达](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/domain/)。
+
+由于一个域名只能绑定一个 API 网关，建议在绑定网关时使用三级域名。
+
+即，若开发者已在知晓云接入 `example.com` 的 API 域名备案，则开发者可使用形如 `example.example.com` 的域名进行 API 网关自有域名绑定。
+
+在绑定 API 网关自有域名后，开发者需要在域名服务商处[解析 CNAME](http://support.minapp.com/hc/kb/article/1320479/)。
