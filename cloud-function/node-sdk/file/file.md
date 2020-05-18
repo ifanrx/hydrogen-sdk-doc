@@ -70,20 +70,147 @@ res.data:
 
 |   参数  | 类型   | 说明 |
 | :----- | :----- | :-- |
-| path   | String | 上传后的文件地址 |
+| path   | String | 上传成功后的访问地址 URL |
 | file   | Object | 包含文件详细信息，详见以下 |
 
 file 参数说明：
 
 | 参数        |  类型  | 说明 |
 | :--------- | :----- | :------ |
-| path       | String | 上传后的文件地址 |
-| cdn_path   | String | 文件在 cdn 上的路径 |
+| path       | String | 上传成功后的访问地址 URL |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
 | created_at | String | 文件上传时间 |
 | id         | Object | 文件 ID |
 | mime_type  | String | 文件媒体类型 |
 | name       | String | 文件名 |
 | size       | Number | 以字节为单位 |
+
+
+## 文件云下载
+
+> **info**
+> SDK >= 3.8
+
+### 创建下载任务
+
+`MyFile.createDownloadTask({originalUrl, filename, categoryName, overwrite})`
+
+**参数说明**
+
+| 参数         | 类型    | 必填 | 说明              |
+| :----------- | :------ | :--- | :---------------- |
+| originalUrl  | String  |  Y   | 需要下载的文件 URL      |
+| filename     | String  |  Y   | 文件名 |
+| categoryName | String  |  N   | 文件分类名 |
+| overwrite    | Boolean |  N   | 是否覆盖已存在的同名文件, 默认值为 true |
+
+**示例代码**
+
+```js
+let MyFile = new BaaS.File()
+
+const res = await MyFile.createDownloadTask({
+  originalUrl: 'https://***.jpg',
+  filename: '***.jpg',
+  categoryName: '文件云下载',
+  overwrite: true,
+})
+return res.data
+```
+
+**返回示例**
+
+```json
+{
+  "id": 1
+}
+```
+
+### 获取下载结果
+
+`MyFile.getDownloadTaskResult(id)`
+
+**参数说明**
+
+| 参数         | 类型    | 必填 | 说明             |
+| :----------- | :------ | :--- | :--------------- |
+| id           | Integer |  Y   | 下载任务 ID      |
+
+**示例代码**
+
+```js
+let MyFile = new BaaS.File()
+const res = await MyFile.getDownloadTaskResult(1)
+return res.data
+```
+
+**返回示例**
+
+下载中：
+
+```json
+{
+  "category_name": "文件云下载",
+  "created_at": 1587545049,
+  "error_message": null,
+  "file_path": "https://***.jpg",
+  "filename": "***.jpg",
+  "id": 5,
+  "original_url": "https://***.jpg",
+  "status": "pending",
+}
+```
+
+下载失败：
+
+```json
+{
+  "category_name": "文件云下载",
+  "created_at": 1587545049,
+  "error_message": null,
+  "file_path": "https://***.jpg",
+  "filename": "***.jpg",
+  "id": 5,
+  "original_url": "https://***.jpg",
+  "status": "failed",
+}
+```
+
+下载成功：
+
+```json
+{
+  "category_name": "文件云下载",
+  "created_at": 1587545049,
+  "error_message": null,
+  "file_path": "https://***.jpg",
+  "filename": "***.jpg",
+  "id": 5,
+  "original_url": "https://***.jpg",
+  "status": "success",
+  "uploaded_file": {
+    "categories": [
+      {
+        "id": "5ea003ca2dc6106f4f0b441f",
+        "name": "文件云下载",
+        "parent": null
+      }
+    ],
+    "cdn_path": "***.jpg",
+    "created_at": 1587545051,
+    "created_by": 1091431,
+    "id": "5ea003db2dc6106fcfd3cf62",
+    "media_type": null,
+    "mime_type": null,
+    "name": "***.jpg",
+    "path": "https://***.jpg",
+    "reference": {},
+    "size": 7755,
+    "status": "success",
+    "updated_at": 1587545051
+  }
+}
+```
 
 
 ## 获取文件详情
@@ -290,7 +417,7 @@ res.data:
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   | Integer | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 文件的 URL 路径 |
+| path   | String | 上传成功后的访问地址 URL |
 | created_by   | Integer | 创建者 id |
 | mime_type   | String | mime_type 类型 |
 | media_type   | String | 媒体类型 |
@@ -298,7 +425,7 @@ res.data:
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
 | reference   | String | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
 | updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
 | id   | String | 本条记录 ID |
@@ -363,7 +490,7 @@ res.data:
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   | Integer | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 路径 |
+| path   | String | 上传成功后的访问地址 URL |
 | created_by   | Integer | 创建者 id |
 | mime_type   | String | mime_type 类型 |
 | media_type   | String | 媒体类型 |
@@ -371,7 +498,7 @@ res.data:
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
 | reference   | String | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
 | updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
 | _id   | String | 本条记录 ID |
@@ -439,7 +566,7 @@ res.data:
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   | Integer | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 路径 |
+| path   | String | 上传成功后的访问地址 URL |
 | created_by   | Integer | 创建者 id |
 | mime_type   | String | mime_type 类型 |
 | media_type   | String | 媒体类型 |
@@ -447,7 +574,7 @@ res.data:
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
 | reference   | String | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
 | updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
 | _id   | String | 本条记录 ID |

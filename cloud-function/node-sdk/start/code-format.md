@@ -25,7 +25,7 @@ exports.main = function helloWorld(event, callback) {
 | 包含字段         | 类型            | 说明 |
 | :-------------- | :------------- | :-- |
 | data            | 任何 js 合法类型 | 在用户调用云函数时传入的参数 |
-| eventType       | String         | 提供给用户的触发来源的信息，包括 sdk/open_api/user_dash/cloud_function 等 |
+| eventType       | String         | 提供给用户的触发来源的信息，包括 sdk/open_api/user_dash/cloud_function/[api_gateway](/support/practice/api-gateway.md) 等 |
 | jobId           | Number         | 当前函数执行的 id |
 | memoryLimitInMB | Number         | 当前函数的内存资源限制 |
 | miniappId       | Number         | 云函数所属小程序 id |
@@ -34,13 +34,13 @@ exports.main = function helloWorld(event, callback) {
 
 request 结构说明
 
-| 参数             | 类型   | 描述 |
-| :-------------- | :----- | :--- |
-| meta.ip_address | Object | 发起云函数请求的 IP   |
-| meta.user_agent | String | 发起云函数请求设备的 userAgent |
-| user.avatar_url | String | 发起云函数请求的用户头像  |
-| user.nickname   | Object | 发起云函数请求的用户昵称 |
-| user.id         | Object | 发起云函数请求的用户 ID |
+| 参数             | 类型    | 描述 |
+| :-------------- | :------ | :--- |
+| meta.ip_address | String  | 发起云函数请求的 IP   |
+| meta.user_agent | String  | 发起云函数请求设备的 userAgent |
+| user.avatar_url | String  | 发起云函数请求的用户头像  |
+| user.nickname   | String  | 发起云函数请求的用户昵称 |
+| user.id         | Integer | 发起云函数请求的用户 ID |
 
 request 示例如下
 

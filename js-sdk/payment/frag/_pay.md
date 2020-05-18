@@ -1,3 +1,5 @@
+{% import "/cloud-function/node-sdk/macro/profit-sharing.md" as profitSharing %}
+
 <!-- ex_nonav -->
 {% if apiPrefix == 'wx' %}
 {% set platformName = "微信" %}
@@ -11,6 +13,9 @@
 {% elif apiPrefix == 'swan' %}
 {% set platformName = "百度" %}
 # 百度支付
+{% elif apiPrefix == 'tt' %}
+{% set platformName = "字节跳动" %}
+# 字节跳动支付
 {% endif %}
 
 {% if apiPrefix == 'swan' %}
@@ -40,6 +45,19 @@
 | merchandiseRecordID    | String  | N   | 商品数据行 ID，可用于定位用户购买的物品 |
 | merchandiseSnapshot    | Object  | N   | 根据业务需求自定义的数据 |
 | profitSharing          | Boolean | N   | 当前订单是否需要分账。分账操作，请查看[微信直连商户分账](/cloud-function/node-sdk/order.html#微信直连商户分账) |
+
+{{ profitSharing.versionWarning() }}
+<!-- 分隔两个 info -->
+
+{% elif apiPrefix == 'tt' %}
+| 参数                   | 类型    | 必填 | 参数描述 |
+| :--------------------- | :------ | :-- | :------ |
+| totalCost              | Number  | Y   | 支付总额，单位：元 |
+| merchandiseDescription | String  | Y   | {{platformName}}支付凭证-商品详情的内容 |
+| service                | String  | N   | 支付方法，默认为「收银台支付」，`wechat` 为直接使用「微信支付」，`alipay` 为直接使用「支付宝支付」 |
+| merchandiseSchemaID    | Integer | N   | 商品数据表 ID，可用于定位用户购买的物品 |
+| merchandiseRecordID    | String  | N   | 商品数据行 ID，可用于定位用户购买的物品 |
+| merchandiseSnapshot    | Object  | N   | 根据业务需求自定义的数据 |
 {% else %}
 | 参数                   | 类型    | 必填 | 参数描述 |
 | :--------------------- | :------ | :-- | :------ |
@@ -83,7 +101,7 @@
 > `resultCode`是支付宝返回的状态码，
 `resultCode: '9000'` 为支付成功，`resultCode: '8000'` 为正在处理中，
 具体以知晓云后台支付订单的状态为准。请参考[订单查询接口文档](/js-sdk/payment/order.md)。
-{% elif apiPrefix == 'swan' %}
+{% elif apiPrefix == 'swan' or apiPrefix == 'tt' %}
 | 参数                      | 类型   | 说明 |
 | :-------------------------| :----- | :-- |
 | transaction_no | String   | {{platformName}}支付流水号 |
@@ -127,7 +145,7 @@ let params = {
 }
 ```
 
-{% elif apiPrefix == 'swan' %}
+{% elif apiPrefix == 'swan' or apiPrefix == 'tt' %}
 ```
 {
   transaction_no: "MDUhtNmacdYBKokJbCXhvYuoJnHXzpeN",
@@ -225,6 +243,19 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ```js
 swan.BaaS.pay(params).then(res => {
+  // success. 支付请求成功响应。
+}, err => {
+  // HError 对象
+  if (err.code === 608) {
+    console.log(err.message)
+  }
+})
+```
+
+{% elif apiPrefix == 'tt' %}
+
+```js
+tt.BaaS.pay(params).then(res => {
   // success. 支付请求成功响应。
 }, err => {
   // HError 对象

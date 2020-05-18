@@ -62,10 +62,10 @@ curl -X POST \
 | id            | String       | 上传的文件 ID |
 | policy        | String       | 文件上传配置 |
 | authorization | String       | 文件上传凭证 |
-| path          | String       | 文件上传成功后的访问地址 |
+| path          | String       | 上传成功后的访问地址 URL |
 | upload_url    | String       | 上传文件的目标地址 |
 | name          | String       | 文件名 |
-| cdn_path      | String       | 文件在 CDN 中保存的路径 |
+| cdn_path      | String       | 文件在 CDN 中的相对路径 |
 | created_at    | Integer      | 文件创建时间戳 |
 
 **返回示例**

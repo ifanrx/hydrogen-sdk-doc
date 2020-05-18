@@ -4,6 +4,13 @@
 
 ### 文件上传
 
+文件上传支持两种方式：
+
+1. 指定文件的本地路径
+2. 指定文件的内容数据 
+
+#### 指定文件的本地路径
+
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
@@ -37,6 +44,90 @@ FileManager.upload(filename: "datasource", localPath: filePath, categoryName: "B
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
 | file  |   File           | 已上传的文件，详见 **数据类型** 小节 |
+| progress  |   Progress    | 上传进度，详见[文档](https://developer.apple.com/documentation/foundation/progress) |
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
+
+#### 指定文件的本地路径及文件类型
+
+{% tabs swift2_1="Swift", oc2_1="Objective-C" %}
+{% content "swift2_1" %}
+```
+let localPath = Bundle.main.path(forResource: "cover", ofType: "png")!
+FileManager.upload(filename: "cover", localPath: filePath, mimeType: "image/png", categoryName: "book", progressBlock: { progress in
+                                
+    }, completion: {file, error in
+
+})
+```
+{% content "oc2_1" %}
+```
+[BaaSFileManager uploadWithFilename:@"cover" localPath:filePath mimeType:@"image/png" categoryName:@"book" categoryId:nil progressBlock:^(NSProgress * _Nullable progess) {
+                        
+    } completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
+                        
+}];
+```
+{% endtabs %}
+
+**参数说明**
+
+| 参数                 |  类型   | 必填 | 说明 |
+| :-------------------| :----- | :--- | :--------- |
+| filename | String |  Y  |  文件名称|
+| localPath | String |  Y  | 本地资源路径 |
+| categoryName | String | N  | 文件分类名称  |
+| categoryId | String | N  | 文件分类 Id  |
+| mimeType  | String | N   | 文件类型  |
+
+若同时指定 categoryId 及 categoryName ，将优先使用 categoryId。
+
+**返回结果**
+
+| 名称      | 类型           | 说明 |
+| :------- | :------------  | :------ |
+| file  |   File           | 已上传的文件，详见 **数据类型** 小节 |
+| progress  |   Progress    | 上传进度 |
+| error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
+
+#### 指定文件数据及文件类型
+
+{% tabs swift2_2="Swift", oc2_2="Objective-C" %}
+{% content "swift2" %}
+```
+FileManager.upload(filename: "cover", fileData: fileData, categoryName: "book", progressBlock: { (progress) in
+                
+    }) { (file, error) in
+                
+}
+```
+{% content "oc2_2" %}
+```
+[BaaSFileManager uploadWithFilename:@"cover" fileData:fileData mimeType:@"image/png" categoryName:@"book" categoryId:nil progressBlock:^(NSProgress * _Nullable progress) {
+                        
+    } completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
+                        
+}];
+```
+{% endtabs %}
+
+**参数说明**
+
+| 参数                 |  类型   | 必填 | 说明 |
+| :-------------------| :----- | :--- | :--------- |
+| filename | String |  Y  |  文件名称|
+| fileData | Data |  Y  | 文件的内容数据 |
+| categoryName | String | N  | 文件分类名称  |
+| categoryId | String | N  | 文件分类 Id  |
+| mimeType  | String | N   | 文件类型  |
+
+若同时指定 categoryId 及 categoryName ，将优先使用 categoryId。
+
+**返回结果**
+
+| 名称      | 类型           | 说明 |
+| :------- | :------------  | :------ |
+| file  |   File           | 已上传的文件，详见 **数据类型** 小节 |
+| progress  |   Progress    | 上传进度 |
 | error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
 ### 获取文件详情
@@ -119,7 +210,7 @@ FileManager.delete(["5c98aed0d575****5f878224", "5c98aed0d575****6e1ace9b"]) { (
 **参数说明**
 
 |  参数  |  类型   | 必填 | 说明 |
-| :----- | :-- -- | :-- | :-- |
+| :----- | :---- | :-- | :-- |
 | fileId | Array |  Y  | 需要删除的文件 id |
 
 **返回结果**
@@ -356,7 +447,7 @@ NSDictionary *params = @{
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   |  | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 路径 |
+| path   | String | 上传成功后的访问地址 URL |
 | created_by   | String | 创建者 id |
 | mime_type   | String | mime_type 类型 |
 | media_type   | String | 媒体类型 |
@@ -364,7 +455,7 @@ NSDictionary *params = @{
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
 | reference   | String | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
 | updated_at   | TimeInterval | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
 | _id   | String | 本条记录 ID |
@@ -409,7 +500,7 @@ NSDictionary *params = @{
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   | TimeInterval | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 路径 |
+| path   | String | 上传成功后的访问地址 URL |
 | created_by   | String | 创建者 id |
 | mime_type   | String | mime_type 类型 |
 | media_type   | String | 媒体类型 |
@@ -417,7 +508,7 @@ NSDictionary *params = @{
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
 | reference   | String | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
 | updated_at   | TimeInterval | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
 | _id   | String | 本条记录 ID |
@@ -467,7 +558,7 @@ NSDictionary *params = @{
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | created_at   | TimeInterval | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 路径 |
+| path   | String | 上传成功后的访问地址 URL |
 | created_by   | Int64 | 创建者 id |
 | mime_type   | String | mime_type 类型 |
 | media_type   | String | 媒体类型 |
@@ -475,7 +566,7 @@ NSDictionary *params = @{
 | name   | String | 文件名 |
 | status   | String | 文件状态 |
 | reference   | String | 引用 |
-| cdn_path   | String | cdn 中保存的路径 |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
 | updated_at   | TimeInterval | 更新时间 （格式为 unix 时间戳) |
 | categories   | String | 文件所属类别 |
 | _id   | String | 本条记录 ID |
@@ -583,11 +674,13 @@ streams 参数说明：
 | id         |   String  | 文件 Id |
 | mimeType |  String    | 文件类型 |
 | name  |  String  | 文件名 |
-| cdnPath  |  String | cdn 路径 |
+| cdnPath  |  String | CDN 中的相对路径 |
+| path  |  String | 文件上传成功后的访问地址 URL |
 | size  |  Int | 文件大小 |
 | category |  FileCategory  | 文件分类 |
 | localPath |  String   |   本地路径 |
 | createdAt | TimeInterval  |   创建日期 | 
+| metaInfo | Dictionary  |   文件所有的元数据 |
 
 ### FileCategory
 

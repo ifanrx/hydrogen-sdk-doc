@@ -37,8 +37,8 @@ uploaded_file 参数说明：
 
 | 参数        |  类型  | 说明 |
 | :--------- | :----- | :------ |
-| path       | String | 上传后的文件地址 |
-| cdn_path   | String | 文件在 cdn 上的路径 |
+| path       | String | 上传成功后的访问地址 URL |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
 | created_at | String | 文件上传时间 |
 | id         | Object | 文件 ID |
 | mime_type  | String | 文件媒体类型 |

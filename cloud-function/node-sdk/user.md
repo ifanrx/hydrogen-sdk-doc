@@ -16,7 +16,7 @@
 
 7. `language`
 
-8. `avata`
+8. `avatar`
 {% endmacro %}
 
 # 获取用户信息

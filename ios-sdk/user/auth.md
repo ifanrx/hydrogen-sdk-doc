@@ -144,26 +144,26 @@ Auth.login(username: "test", password: "111") { (currentUser, error) in
 | currentUser    | CurrentUser         | 当前用户实例，详见 [当前用户](./account.md) |
 | error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md)     |
 
-### 匿名登录
+
+### 创建临时用户
 
 往数据表里添加数据，需要有一个用户身份（这样才能保障数据来源可回溯）。
-如果不希望强制用户在一开始就进行注册，可以使用匿名用户，让应用不提供注册步骤也能创建临时用户。
-以使得当前用户可以往 `ACL` 权限设置为“允许所有人（匿名用户 + 登录用户）可写” 的数据表内添加数据。
+如果不希望强制用户在一开始就进行注册，可以使用临时用户，让应用不提供注册步骤也能使得当前用户可以往 ACL 权限设置为“允许所有人（临时用户 + 登录用户）可写” 的数据>表内添加数据。
 
-> 匿名登录使用场景举例：假如开发者希望应用内的文章，所有人可以在登录前阅读、点赞，
-> 而且仅在调用特定接口时才需要登录，比如发布文章、评论文章。这时可以先使用匿名登录，
+> 临时用户使用场景举例：假如开发者希望应用内的文章，所有人可以在登录前阅读、点赞，
+> 而且仅在调用特定接口时才需要登录，比如发布文章、评论文章。这时可以先使用临时用户，
 > 之后再使用其他登录方式登录（这里可能需要进行合并用户数据操作）。
 
-匿名用户转换为正式用户（匿名登录后再使用其他登录方式登录），开发者需要考虑以下情况（以用户名为例）：
+临时用户转换为正式用户（创建临时用户后再使用其他登录方式登录），开发者需要考虑以下情况（以用户名为例）：
 
 1. 不需要进行用户数据合并
 
-    匿名登录后，使用用户名注册返回的 `user_id` 与之前匿名登录的 `user_id` 是一致的
-    （也就是直接把匿名用户转变为了正式用户），所以不需要数据合并。
+    创建临时用户后，使用用户名注册返回的 `user_id` 与之前临时用户的 `user_id` 是一致的
+    （也就是直接把临时用户转变为了正式用户），所以不需要数据合并。
 
 2. 需要进行用户数据合并
 
-    匿名登录后，使用用户名登录，登录成功后，返回的 `user_id` 必定与之前匿名登录的 `user_id` 不一致，所以需要数据合并。
+    创建临时用户后，使用用户名登录，登录成功后，返回的 `user_id` 必定与之前临时用户的 `user_id` 不一致，所以需要数据合并。
 
 > **info**
 > 最终进不进行数据合并，由开发者自己考量决定。合并操作需要开发者自己进行。
@@ -213,14 +213,26 @@ Auth.anonymousLogin { (currentUser, error) in
 {% tabs swift6="Swift", oc6="Objective-C" %}
 {% content "swift6" %}
 ```
-Auth.signInWithSMS(phone: "150****7274", code: "12345", createUser: true) { (currentUser, error) in
+// 1. 发送验证码
+BaaS.sendSmsCode(phone: "150****7274", createUser: true) { (success, error) in
+
+}
+
+// 2. 手机号 + 验证码登录
+Auth.signInWithSMSVerificationCode("150****7274", code: "12345", createUser: true) { (currentUser, error) in
 
 }
 ```
 {% content "oc6" %}
 ```
-[BaaSAuth signInWithSMSWithPhone:@"150****7274" code:@"12345" createUser:YES completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
-                    
+// 1. 发送验证码
+[BaaS sendSmsCodeWithPhone:@"1508805****" completion:^(BOOL success, NSError * _Nullable error) {
+
+}];
+
+// 2. 手机号 + 验证码登录
+[BaaSAuth signInWithSMSVerificationCode:@"150****7274" code:@"12345" createUser:YES completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
+
 }];
 ```
 {% endtabs %}
@@ -286,42 +298,27 @@ BOOL installed = [BaaS isWXAppInstalled];
 {% tabs swift7="Swift", oc7="Objective-C" %}
 {% content "swift7" %}
 ```
-Auth.signIn(with: .wechat, createUser: true, syncUserProfile: .sentx) { (user, error) in
+Auth.signIn(with: .wechat, createUser: true, syncUserProfile: .setnx) { (user, error) in
 
 }
-
-其中 signType 说明如下：
-
-| 类型            | 说明      |
-| :--------------| :-----------------|
-| .wechat            | 微信      |
-
 ```
+
 {% content "oc7" %}
+
 ```
-[BaaSAuth signInWith:SignTypeWechat createUser:YES syncUserProfile:SyncUserProfileTypeSetnx completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
-    
+[BaaSAuth signInWith:ProviderWechat createUser:YES syncUserProfile:SyncUserProfileTypeSetnx completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
 }];
-
-其中 signType 说明如下：
-
-| 类型            | 说明      |
-| :--------------| :-----------------|
-| SignTypeWechat | 微信      |
-
 ```
-{% endtabs %}
 
-> **info**
-> 目前第三方平台仅支持微信登录，近期将增加对新浪微博以及苹果登录。
+{% endtabs %}
 
 **参数说明**
 
 | 名称        | 类型   | 说明    |
 | :---------- | :----- | :------ |
-| signType | SignType | 第三方平台类型 |
+| provider | Provider | 第三方平台类型，详见[Provider](#Provider) |
 | createUser | Bool | 是否为新用户创建账号 |
-| syncUserProfile | SyncUserProfileType | 详见[同步第三方平台用户信息的方式](#同步第三方平台用户信息) |
+| syncUserProfile | SyncUserProfileType |同步第三方平台用户信息的方式， 详见[SyncUserProfileType](#SyncUserProfileType) |
 
 > **info**
 >
@@ -333,87 +330,6 @@ Auth.signIn(with: .wechat, createUser: true, syncUserProfile: .sentx) { (user, e
 | :------- | :------------  | :------ |
 | currentUser    | CurrentUser         | 当前用户实例，详见 [当前用户](./account.md) |
 | error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md) |
-
-### 关联微信账号
-
-通过此方法可将通用注册登录用户（在已登录状态下）关联微信账号，以便下次可以通过微信登录。
-
-**示例代码**
-
-{% tabs swift8="Swift", oc8="Objective-C" %}
-{% content "swift8" %}
-```
-Auth.associate(with: .wechat, syncUserProfile: .sentx) { (currentUser, error) in
-
-}
-
-其中 signType 说明如下：
-
-| 类型            | 说明      |
-| :--------------| :-----------------|
-| .wechat            | 微信登录      |
-
-```
-{% content "oc8" %}
-```
-[BaaSAuth associateWith:SignTypeWechat syncUserProfile:SyncUserProfileTypeSetnx completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
-
-}];
-
-其中 signType 说明如下：
-
-| 类型            | 说明      |
-| :--------------| :-----------------|
-| SignTypeWechat | 微信登录      |
-```
-{% endtabs %}
-
-> **info**
-> 目前第三方平台仅支持微信登录，近期将增加对新浪微博以及苹果登录。
-
-**参数说明**
-
-| 名称        | 类型   | 说明    |
-| :---------- | :----- | :------ |
-| signType | SignType | 第三方平台类型 |
-| syncUserProfile | SyncUserProfileType | 详见[同步第三方平台用户信息的方式](#同步第三方平台用户信息) |
-
-**返回结果**
-
-| 名称      | 类型           | 说明 |
-| :------- | :------------  | :------ |
-| currentUser    | CurrentUser         | 当前用户实例，详见 [当前用户](./account.md) |
-| error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md) |
-
-### 同步第三方平台用户信息
-
-第三方登录（微信、微博、苹果）后获取到的用户信息自动保存在 userprofile 表的 `_provider` 字段。同时开发者可以设置 `SyncUserProfileType` 同步方式将第三方平台的用户信息同步到相应字段，支持同步的字段如下：
-* `nickname`
-* `avatar`
-* `gender`（仅微信）
-* `language`
-* `city`
-
-其中同步方式 `SyncUserProfileType` 如下：
-
-{% tabs swift9="Swift", oc9="Objective-C" %}
-{% content "swift9" %}
-```
-| 类型            | 说明      |
-| :--------------| :-----------------|
-| .overwrite            | 强制更新      |
-| .sentx                | 仅当字段从未被赋值时才更新  |
-| .flase                 | 不更新      |
-```
-{% content "oc9" %}
-```
-| 类型            | 说明      |
-| :--------------| :-----------------|
-| SyncUserProfileTypeOverwrite            | 强制更新      |
-| SyncUserProfileTypeSentx                | 仅当字段从未被赋值时才更新  |
-| SyncUserProfileTypeFlase                 | 不更新      |
-```
-{% endtabs %}
 
 # 登出
 
@@ -443,8 +359,124 @@ Auth.logout { (success, error) in
 | success  | Bool           | 是否登出成功 |
 | error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md)  |
 
+# 账号关联
+
+如果知晓云通用账号（如，用户名/邮箱 + 密码注册的账号），关联了第三方平台账号，如微信账号。那么，用户使用通用账号登录或微信登录其中一种方式登录，登录后都为同一个账号。
+
+## 关联微信账号
+
+通过此方法可将通用注册登录用户（在已登录状态下）关联微信账号，以便下次可以通过微信登录。
+
+**示例代码**
+
+{% tabs swift8="Swift", oc8="Objective-C" %}
+{% content "swift8" %}
+```
+Auth.associate(with: .wechat, syncUserProfile: .setnx) { (currentUser, error) in
+
+}
+```
+
+{% content "oc8" %}
+```
+[BaaSAuth associateWith:ProviderWechat syncUserProfile:SyncUserProfileTypeSetnx completion:^(BaaSCurrentUser * _Nullable currentUser, NSError * _Nullable error) {
+
+}];
+```
+
+{% endtabs %}
+
+**参数说明**
+
+| 名称        | 类型   | 说明    |
+| :---------- | :----- | :------ |
+| provider | Provider | 第三方平台类型，详见[Provider](#Provider) |
+| syncUserProfile | SyncUserProfileType | 同步第三方平台用户信息方式， 详见[SyncUserProfileType](#SyncUserProfileType)|
+
+**返回结果**
+
+| 名称      | 类型           | 说明 |
+| :------- | :------------  | :------ |
+| currentUser    | CurrentUser         | 当前用户实例，详见 [当前用户](./account.md) |
+| error   |  NSError |  错误信息，详见[错误处理和错误码](/ios-sdk/error-code.md) |
+
 # 多平台用户统一登录
 
 开发者可以决定第三方平台登录用户（微信、微博、苹果），以及手机 + 验证码登录用户，在第一次登录时，是否需要关联到知晓云通用账号。如果不关联，知晓云将会为第三方平台及手机+验证码的登录用户创建新账号。如果需要关联，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。
 
-假设开发者现在同时支持**微信**和**用户名**登录，需要微信新用户关联到已经注册好的用户账户，才能登录成功。 可以通过 signIn(with: .wechat) 的参数 createUser 设置为 false，此时，服务端会判断该用户是否已经有账户记录， 如果没有，则返回 404 状态码。开发者可根据此状态码，跳转到需要填写用户名密码页面，进行已有账户的关联或新的账户的创建， 完成后，调用 associate(with: .wechat) 方法完成当前微信用户与账户的绑定。下一次用户再次微信登录时，则会直接登录成功。
+假设开发者现在同时支持**微信**和**用户名**登录，需要微信新用户关联到已经注册好的用户账户，才能登录成功。 可以通过 `signIn(with: .wechat)` 的参数 `createUser` 设置为 false，此时，服务端会判断该用户是否已经有账户记录， 如果没有，则返回 404 状态码。开发者可根据此状态码，跳转到需要填写用户名密码页面，进行已有账户的关联或新的账户的创建， 完成后，调用 associate(with: .wechat) 方法完成当前微信用户与账户的绑定。下一次用户再次微信登录时，则会直接登录成功。
+
+以 Swift 微信登录，且 `createUser: false` 为例（示例仅供参考，请结合实际业务进行调整）：
+
+```
+Auth.signIn(with: .wechat, createUser: false, syncUserProfile: .setnx) { (user, error) in
+    // 返回 404，表示账号不存在，此时应跳转到用户名/邮箱/手机号登录等方式登录。
+    // 示例代码为演示流程，直接用用户名登录
+    if error?.code == 404 {
+        Auth.login(username: "ifanr", password: "12345") { (currentUser, error) in
+             // 登录成功
+            if currentUser != nil {
+            // 绑定微信到当前用户
+            Auth.associate(with: .wechat, syncUserProfile: .setnx) { (currentUser, error) in
+                                    
+            }
+        }
+    }
+}
+```
+
+# 数据类型
+
+## Provider
+
+表示第三方平台登录类型，如下
+
+{% tabs swift11="Swift", oc11="Objective-C" %}
+{% content "swift11" %}
+
+| 类型            | 说明      |
+| :--------------| :-----------------|
+| .wechat            | 微信      |
+
+{% content "oc11" %}
+
+| 类型            | 说明      |
+| :--------------| :-----------------|
+| ProviderWechat | 微信      |
+
+{% endtabs %}
+
+> **info**
+> 目前第三方平台仅支持微信登录，近期将增加对新浪微博以及苹果登录。
+
+## SyncUserProfileType
+
+ **同步第三方平台用户信息**
+ 
+ 第三方登录（微信、微博、苹果）后获取到的用户信息自动保存在 **userprofile** 表的 `_provider` 字段。同时开发者可以设置 `SyncUserProfileType` 同步方式将第三方平台的用户信息同步到 **userprofile** 表的相应字段，支持同步的字段如下：
+* `nickname`
+* `avatar`
+* `gender`（仅微信）
+* `language`
+* `city`
+
+同步方式 `SyncUserProfileType` 方式，如下：
+
+{% tabs swift9="Swift", oc9="Objective-C" %}
+{% content "swift9" %}
+
+| 类型            | 说明      |
+| :-----------   | :----------------- |
+| .overwrite     | 强制更新      |
+| .setnx         | 仅当字段从未被赋值时才更新  |
+| .flase         | 不更新      |
+
+{% content "oc9" %}
+
+| 类型            | 说明      |
+| :-------------- | :----------------- |
+| SyncUserProfileTypeOverwrite | 强制更新  |
+| SyncUserProfileTypeSetnx     | 仅当字段从未被赋值时才更新  |
+| SyncUserProfileTypeFlase     | 不更新      |
+
+{% endtabs %}
