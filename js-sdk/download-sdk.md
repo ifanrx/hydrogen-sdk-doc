@@ -4,6 +4,8 @@
 
 ### 选择版本下载
 
+#### 正式版
+
 - [支付宝小程序 SDK v{{ book.latestVersionAlipay }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-alipay.{{book.latestVersionAlipay}}.zip)
 - [微信小程序 SDK v{{ book.latestVersionWechat }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-wechat.{{book.latestVersionWechat}}.zip)
 - [QQ 小程序 SDK v{{ book.latestVersionQQ }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-qq.{{book.latestVersionQQ}}.zip)
@@ -15,6 +17,17 @@
 - [类型定义文件 baas-wx.d.ts](https://dl.ifanr.cn/hydrogen/sdk/baas-wx.d.ts)（微信开发者工具中使用）
 - [类型定义文件 baas.d.ts](https://dl.ifanr.cn/hydrogen/sdk/baas.d.ts)（其他编辑器中使用）
 - [类型定义文件 npm 版](https://www.npmjs.com/package/minapp-sdk-typings)
+
+#### beta 版
+
+- [支付宝小程序 SDK v3.13.0-beta.0](https://dl.ifanr.cn/hydrogen/sdk/sdk-alipay.3.13.0-beta.0.zip)
+- [微信小程序 SDK v3.13.0-beta.0](https://dl.ifanr.cn/hydrogen/sdk/sdk-wechat.3.13.0-beta.0.zip)
+- [QQ 小程序 SDK v3.13.0-beta.0](https://dl.ifanr.cn/hydrogen/sdk/sdk-qq.3.13.0-beta.0.zip)
+- [百度小程序 SDK v3.13.0-beta.0](https://dl.ifanr.cn/hydrogen/sdk/sdk-baidu.3.13.0-beta.0.zip)
+- [字节跳动小程序 SDK v3.13.0-beta.0](https://dl.ifanr.cn/hydrogen/sdk/sdk-bytedance.3.13.0-beta.0.zip)
+- [Web SDK v3.13.0-beta.0](https://dl.ifanr.cn/hydrogen/sdk/sdk-web.3.13.0-beta.0.zip)
+- [Web SDK npm 版（minapp-sdk@3.13.0-beta.0）](https://www.npmjs.com/package/minapp-sdk)
+- [react native SDK（react-native-minapp-sdk@3.13.0-beta.0）](https://www.npmjs.com/package/react-native-minapp-sdk)
 
 ### 更新注意事项
 
