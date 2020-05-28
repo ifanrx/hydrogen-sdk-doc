@@ -23,6 +23,8 @@ Receiver 类型包括以下几个属性：
 
 # 支付宝商家分账
 
+{{ profitSharing.versionWarning() }}
+
 对某一订单进行分账，请查看[订单操作文档](/cloud-function/node-sdk/order.html#支付宝商家分账)
 
 ## 添加分账接收方

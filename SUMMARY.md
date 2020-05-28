@@ -28,8 +28,10 @@
         * [支付](dashboard/basic-services/payment.md)
         * [触发器](dashboard/basic-services/trigger.md)
         * [云函数](dashboard/basic-services/cloud-function.md)
+        * [API 网关](dashboard/basic-services/api-gateway.md)
         * [设置](dashboard/basic-services/set-up.md)
         * [ACL 简介](dashboard/basic-services/acl.md)
+        * [API 网关](dashboard/basic-services/api-gateway.md)
     * [运营](dashboard/operation/README.md)
         * [运营后台](dashboard/operation/user-dash.md)
         * [短信](dashboard/operation/sms.md)
@@ -41,6 +43,7 @@
 ----
 
 * [JS SDK](js-sdk/README.md)
+    * [快速开始](js-sdk/quick-start.md)
     * [2.x -> 3.x 迁移指南](js-sdk/migrate-from-v2.md)
     * [1.x -> 2.x 迁移指南](js-sdk/migrate-from-v1.md)
     * [用户](js-sdk/user.md)
@@ -366,6 +369,8 @@
     * [订阅消息实战教程](support/practice/subscribe-message-course.md)
 * [使用指南](support/practice/README.md)
     * [触发器 V2 使用指南](support/practice/trigger-v2-guideline.md)
+    * [API 网关使用指南](support/practice/api-gateway.md)
+    * [API 网关定义 API 路径指](support/practice/api-gateway-request-path.md)
 * [管理与支持](support/README.md)
     * [插件](support/plugin.md)
     * [常见问题](support/qA.md)
