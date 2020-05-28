@@ -23,26 +23,12 @@ pod install
 
 ### c. 引入 SDK
 
-> **info**
-> BaaS.init 方法是个异步方法，会在很短的时间内完成，
-> 为了不影响 SDK 其他接口的调用，请在程序的入口处调用 BaaS.init（提前调用）。
-
 在[知晓云后台 - 我的应用](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/info/)页面获取要接入知晓云服务的小程序 ClientID, 按照如下方式进行 SDK 初始化:
 
 ```js
 import BaaS from 'react-native-minapp-sdk';
 
 BaaS.init('[[client_id]]');
-```
-
-如需要确保在 SDK 初始化完成后执行，请按照下面示例：
-
-```js
-import BaaS from 'react-native-minapp-sdk';
-
-BaaS.init('[[client_id]]').then(() => {
-  // SDK 初始化成功
-})
 ```
 
 ## 使用 SDK
