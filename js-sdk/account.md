@@ -389,7 +389,10 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ### 更新用户自定义字段
 
-更新用户信息与[数据表更新数据项](schema/update-record.md)方法基本一致。这里只允许更新 `_userprofile` 表中自定义的字段。
+更新用户信息与[数据表更新数据项](schema/update-record.md)方法基本一致。这里只允许当前用户更新 `_userprofile` 表中自己的自定义字段。
+
+> **info**
+> 处于权限安全考虑，JS SDK 仅允许当前用户更新自己的自定义字段，如业务需要更新其他用户自定义字段，请调用云函数，使用[云函数的用户更新方法](../cloud-function/node-sdk/user.md#更新用户信息)，并在云函数中对用户身份进行校验，避免安全问题。
 
 **请求示例**
 
