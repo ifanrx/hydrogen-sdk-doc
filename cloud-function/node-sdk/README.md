@@ -12,4 +12,5 @@
 # Node.js SDK
 
 目前知晓云云函数支持的 Node.js 开发语言包括如下版本：
-- Node.js 8.9
+- Node.js 8.9（2020 年 7 月 8 日停止支持）
+- Node.js 12
