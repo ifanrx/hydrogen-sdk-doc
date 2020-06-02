@@ -103,6 +103,7 @@
         * [登入登出](js-sdk/web/signin-signout.md)
         * [支付](js-sdk/web/payment.md)
         * [第三方授权配置](js-sdk/web/third-party-auth-config.md)
+        * [获取微信 JSSDK 调用凭证](js-sdk/web/wechat.md)
     * [支付宝小程序](js-sdk/alipay/README.md)
         * [接入指南](js-sdk/alipay/how-to.md)
         * [支付宝登录](js-sdk/alipay/signin-signout.md)
