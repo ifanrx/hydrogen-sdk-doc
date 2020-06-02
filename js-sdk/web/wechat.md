@@ -41,3 +41,23 @@ window.BaaS.getWechatJSSDKCredentials(window.location.href.replace(/#.*/, ''))
     // 失败
   })
 ```
+
+**成功返回示例**
+
+```
+{
+    "appid": "******",
+    "noncestr": "******",
+    "signature": "******",
+    "timestamp": 1591076524
+}
+```
+
+**失败返回示例**
+
+```
+{
+    "code": 400,
+    "message": "400: URL missing."
+}
+```
