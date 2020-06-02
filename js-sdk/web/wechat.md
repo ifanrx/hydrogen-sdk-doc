@@ -55,9 +55,20 @@ window.BaaS.getWechatJSSDKCredentials(window.location.href.replace(/#.*/, ''))
 
 **失败返回示例**
 
+都是返回 HError 对象，请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+缺少 url 参数的情况
 ```
 {
     "code": 400,
     "message": "400: URL missing."
+}
+```
+
+凭证无效的情况，请参考[第三方授权配置](js-sdk/web/third-party-auth-config.html#微信---公众号（微信网页授权）)
+````
+{
+    "code": 404,
+    "message": "404: Please set WeChat MP apikey first."
 }
 ```
