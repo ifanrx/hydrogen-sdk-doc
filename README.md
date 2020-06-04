@@ -172,7 +172,7 @@
         <em class="directory-item-section-title">小程序</em>
         <ul class="directory-item-section-list">
           <li><a href="/cloud-function/node-sdk/template-message/README.md">模板消息</a></li>
-          <li><a href="/cloud-function/node-sdk/wechat-subscribe-message.md">订阅消息</a></li>
+          <li><a href="/cloud-function/node-sdk/subscribe-message.md">订阅消息</a></li>
           <li><a href="/cloud-function/node-sdk/censor.md">检测违规图片、文本</a></li>
           <li><a href="/cloud-function/node-sdk/wxacode.md">获取小程序二维码</a></li>
         </ul>
