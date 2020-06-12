@@ -15,6 +15,7 @@
     * [新手入门 - iOS](newbies/swiftui.md)
     * [新手入门 - Android](newbies/android.md)
     * [新手入门 - 字节跳动（头条、抖音等）小程序](newbies/bytedance.md)
+    * [新手入门 - 京东小程序](newbies/jingdong.md)
 
 ----
 
@@ -116,6 +117,9 @@
         * [字节跳动小程序支付](js-sdk/bytedance/payment.md)
         * [模板消息](js-sdk/bytedance/template-message.md)
         * [获取二维码](js-sdk/bytedance/bytedance-qr-code.md)
+    * [京东小程序](js-sdk/jingdong/README.md)
+        * [接入指南](js-sdk/jingdong/how-to.md)
+        * [京东登录](js-sdk/jingdong/signin-signout.md)
     * [React Native](js-sdk/react-native/README.md)
         * [接入指南](js-sdk/react-native/how-to.md)
         * [登入登出](js-sdk/react-native/signin-signout.md)
