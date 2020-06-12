@@ -25,6 +25,7 @@
 - [QQ 小程序 SDK v3.13.0-beta.2](https://dl.ifanr.cn/hydrogen/sdk/sdk-qq.3.13.0-beta.2.zip)
 - [百度小程序 SDK v3.13.0-beta.2](https://dl.ifanr.cn/hydrogen/sdk/sdk-baidu.3.13.0-beta.2.zip)
 - [字节跳动小程序 SDK v3.13.0-beta.2](https://dl.ifanr.cn/hydrogen/sdk/sdk-bytedance.3.13.0-beta.2.zip)
+- [京东小程序 SDK 3.13.0-beta.6](https://dl.ifanr.cn/hydrogen/sdk/sdk-jingdong.3.13.0-beta.6.zip)
 - [Web SDK v3.13.0-beta.2](https://dl.ifanr.cn/hydrogen/sdk/sdk-web.3.13.0-beta.2.zip)
 - [Web SDK npm 版（minapp-sdk@3.13.0-beta.2）](https://www.npmjs.com/package/minapp-sdk)
 - [react native SDK（react-native-minapp-sdk@3.13.0-beta.2）](https://www.npmjs.com/package/react-native-minapp-sdk)
