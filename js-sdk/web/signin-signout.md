@@ -40,6 +40,7 @@
 | options.wechatIframeContentStyle  | Object  | 否   | `{}` | 微信 web 授权，在 popup-iframe 模式下，微信授权页面的样式 |
 | options.windowFeatures  | String  | 否   | `''` | popup-window 模式下，授权窗口的特性，详见 [strWindowFeatures](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open)。 |
 | options.createUser      | Boolean | 否   | `true` | 是否创建用户 |
+| options.silent      | Boolean | 否   | `false` | 是否静默登录（目前只有 `provider` 为 `oauth-wechat-mp` 才支持） |
 | options.syncUserProfile | String  | 否   | `'setnx'` | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 overwrite、setnx、false |
 
 必填参数：
@@ -189,6 +190,7 @@ window.opener，`popup-iframe` 模式会传给 window.parent。
 | options.wechatIframeContentStyle  | Object  | 否   | `{}` | 微信 web 授权，在 popup-iframe 模式下，微信授权页面的样式 |
 | options.windowFeatures  | String  | 否   | `''` | popup-window 模式下，授权窗口的特性，详见 [strWindowFeatures](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open)。 |
 | options.createUser      | Boolean | 否   | `true` | 是否创建用户 |
+| options.silent      | Boolean | 否   | `false` | 是否静默登录（目前只有 `provider` 为 `oauth-wechat-mp` 才支持） |
 | options.syncUserProfile | String  | 否   | `'setnx'` | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 overwrite、setnx、false |
 
 必填参数：
