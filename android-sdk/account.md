@@ -36,7 +36,7 @@ try {
 ## CurrentUser 对象说明
 
 `CurrentUser` 代表了当前登录的用户，开发者可以通过获取当前用户的信息，执行一些当前登录用户才能执行的动作
-`CurrentUser` 是 `User` 的子类，所以该对象包含了 `_userprofile` 表所有的字段。  
+`CurrentUser` 是 `User` 的子类，所以该对象包含了 `_userprofile` 表所有的字段。
 
 ### 获取用户自定义字段
 
@@ -50,7 +50,7 @@ try {
 **示例代码**
 
 假设开发者在 _userprofile 表中定义了 `custom_name` 列，并设置当前用户的 `custom_name` 为 `ifanrx`。则在 SDK 中查询当前用户自定义字段代码如下：
-  
+
 ```java
 try {
   String customName = Auth.currentUser().getString("custom_name");
@@ -60,7 +60,7 @@ try {
 ```
 字段说明请参考 [获取用户信息小节](user.md)
 
-### 判断用户是否是匿名用户
+### 判断用户是否是临时用户
 
 ```java
 Auth.isAnonymous();
@@ -84,7 +84,7 @@ CurrentUser.getExpiresAt();
 ### 设置用户名，设置邮箱，更新密码
 
 > 用户名不区分大小写。当用户设置了 username 为 ifanrx 的账号后，其他人不能再注册诸如 Ifanrx、IfAnrx、IFANRX 等账号了
-> 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 
+> 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com
 
 `currentUser.updateUser(request)`
 

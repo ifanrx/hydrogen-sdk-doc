@@ -40,6 +40,7 @@
 | options.wechatIframeContentStyle  | Object  | 否   | `{}` | 微信 web 授权，在 popup-iframe 模式下，微信授权页面的样式 |
 | options.windowFeatures  | String  | 否   | `''` | popup-window 模式下，授权窗口的特性，详见 [strWindowFeatures](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open)。 |
 | options.createUser      | Boolean | 否   | `true` | 是否创建用户 |
+| options.silent      | Boolean | 否   | `false` | 是否静默登录（目前只有 `provider` 为 `oauth-wechat-mp` 才支持） |
 | options.syncUserProfile | String  | 否   | `'setnx'` | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 overwrite、setnx、false |
 
 必填参数：
@@ -47,7 +48,7 @@
 - ** provider ** - 第三方平台。目前支持三个平台 `oauth-wechat-mp`(微信公众号)、`oauth-wechat-web`(微信网页)、`oauth-weibo`(新浪微博)
 
 - ** authPageUrl  ** - 授权页面 URL。进行授权时，SDK 会打开一个新窗口（或 iframe，具体请查看参数 options.mode ），在该页面中跳转到第三方授权页面进行授权，
-并将结果返回给授权调用方（loginWithThirdParty 或 linkThirdParty 接口），所以该页面是整个授权过程的总控页面。页面不需要开发者自行开发，我们已经提供了[授权页模板](#附：授权页模板)，只需要改一下配置项，
+并将结果返回给授权调用方（loginWithThirdParty 或 linkThirdParty 接口），所以该页面是整个授权过程的总控页面。页面不需要开发者自行开发，我们已经提供了[授权页模板](#auth_template)，只需要改一下配置项，
 并放到自己的服务器下即可。页面的内容请查看下方的授权页面模板。
 
   > **info**
@@ -128,7 +129,7 @@ window.opener，`popup-iframe` 模式会传给 window.parent。
 > **info**
 > 一般来说，该接口只在授权页中使用。
 
-**授权页模板**
+**授权页模板**<div id="auth_template"></div>
 
 使用以下代码创建一个 html 文件，将该文件放置到服务器中（必须与调用授权的页面同源），
 并保证通过 url 能访问到该文件。
@@ -189,6 +190,7 @@ window.opener，`popup-iframe` 模式会传给 window.parent。
 | options.wechatIframeContentStyle  | Object  | 否   | `{}` | 微信 web 授权，在 popup-iframe 模式下，微信授权页面的样式 |
 | options.windowFeatures  | String  | 否   | `''` | popup-window 模式下，授权窗口的特性，详见 [strWindowFeatures](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open)。 |
 | options.createUser      | Boolean | 否   | `true` | 是否创建用户 |
+| options.silent      | Boolean | 否   | `false` | 是否静默登录（目前只有 `provider` 为 `oauth-wechat-mp` 才支持） |
 | options.syncUserProfile | String  | 否   | `'setnx'` | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 overwrite、setnx、false |
 
 必填参数：
@@ -196,7 +198,7 @@ window.opener，`popup-iframe` 模式会传给 window.parent。
 - ** provider ** - 第三方平台。目前支持三个平台 `oauth-wechat-mp`(微信公众号)、`oauth-wechat-web`(微信网页)、`oauth-weibo`(新浪微博)
 
 - ** authPageUrl  ** - 授权页面 URL。进行授权时，SDK 会打开一个新窗口（或 iframe，具体请查看参数 options.mode ），在该页面中跳转到第三方授权页面进行授权，
-并将结果返回给授权调用方（loginWithThirdParty 或 linkThirdParty 接口），所以该页面是整个授权过程的总控页面。页面不需要开发者自行开发，我们已经提供了[授权页模板](#附：授权页模板)，只需要改一下配置项，
+并将结果返回给授权调用方（loginWithThirdParty 或 linkThirdParty 接口），所以该页面是整个授权过程的总控页面。页面不需要开发者自行开发，我们已经提供了[授权页模板](#auth_template)，只需要改一下配置项，
 并放到自己的服务器下即可。页面的内容请查看下方的授权页面模板。
 
   > **info**

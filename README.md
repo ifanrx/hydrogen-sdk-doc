@@ -114,6 +114,8 @@
           <li><a href="/js-sdk/alipay/README.md">支付宝</a></li>
           <li><a href="/js-sdk/baidu/README.md">百度</a></li>
           <li><a href="/js-sdk/web/README.md">Web</a></li>
+          <li><a href="/js-sdk/bytedance/README.md">字节跳动（头条、抖音等）</a></li>
+          <li><a href="/js-sdk/react-native/README.md">React Native</a></li>
         </ul>
       </div>
     </div>
@@ -311,6 +313,11 @@
         <ul class="directory-item-section-list">
           <li><a href="/support/practice/cloud-function.md">云函数实战教程</a></li>
           <li><a href="/support/practice/trigger.md">触发器实战教程</a></li>
+        </ul>
+        <em class="directory-item-section-title">使用指南</em>
+        <ul class="directory-item-section-list">
+          <li><a href="/support/practice/trigger-v2-guideline.md">触发器 V2 使用指南</a></li>
+          <li><a href="/support/practice/api-gateway.md">API 网关使用指南</a></li>
         </ul>
       </div>
       <div class="directory-item-section">

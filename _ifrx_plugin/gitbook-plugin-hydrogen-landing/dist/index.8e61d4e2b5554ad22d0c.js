@@ -10718,7 +10718,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-12e0d66e/app-selector.vue"
+	  var id = "_v-22d18702/app-selector.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -12051,7 +12051,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-48ef4acd/vote.vue"
+	  var id = "_v-87d8613e/vote.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -12075,8 +12075,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-48ef4acd&scoped=true!../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./vote.vue", function() {
-				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-48ef4acd&scoped=true!../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./vote.vue");
+			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-87d8613e&scoped=true!../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./vote.vue", function() {
+				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-87d8613e&scoped=true!../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./vote.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12094,7 +12094,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#vote[_v-48ef4acd] {\n  border: solid 1px lightgrey;\n  margin-top: 40px;\n  padding: 20px;\n  border-radius: 5px;\n  font-size: 14px;\n  color: #333;\n}\n\n#vote img[_v-48ef4acd] {\n  width: 25px;\n  height: 25px;\n}\n\n#vote .title[_v-48ef4acd] {\n  font-size: 18px;\n  font-weight: bold;\n}\n\n#vote .vote-info[_v-48ef4acd] {\n  margin: 20px 0;\n  display: -ms-flexbox;\n  display: flex;\n}\n\n#vote .vote-info .vote[_v-48ef4acd] {\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: center;\n      justify-content: center;\n  -ms-flex-align: center;\n      align-items: center;\n  cursor: pointer;\n}\n\n#vote .vote-info .down-vote[_v-48ef4acd] {\n  margin-left: 30px;\n}\n\n#vote .vote-count[_v-48ef4acd] {\n  margin-left: 5px;\n}\n\n#vote .iconfont[_v-48ef4acd] {\n  font-size: 25px;\n}\n\n#vote .iconfont.icon-up-vote-active[_v-48ef4acd],\n#vote .iconfont.icon-down-vote-active[_v-48ef4acd] {\n  color: #128bf8;\n}\n", ""]);
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#vote[_v-87d8613e] {\n  border: solid 1px lightgrey;\n  margin-top: 40px;\n  padding: 20px;\n  border-radius: 5px;\n  font-size: 14px;\n  color: #333;\n}\n\n#vote img[_v-87d8613e] {\n  width: 25px;\n  height: 25px;\n}\n\n#vote .title[_v-87d8613e] {\n  font-size: 18px;\n  font-weight: bold;\n}\n\n#vote .vote-info[_v-87d8613e] {\n  margin: 20px 0;\n  display: -ms-flexbox;\n  display: flex;\n}\n\n#vote .vote-info .vote[_v-87d8613e] {\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: center;\n      justify-content: center;\n  -ms-flex-align: center;\n      align-items: center;\n  cursor: pointer;\n}\n\n#vote .vote-info .down-vote[_v-87d8613e] {\n  margin-left: 30px;\n}\n\n#vote .vote-count[_v-87d8613e] {\n  margin-left: 5px;\n}\n\n#vote .iconfont[_v-87d8613e] {\n  font-size: 25px;\n}\n\n#vote .iconfont.icon-up-vote-active[_v-87d8613e],\n#vote .iconfont.icon-down-vote-active[_v-87d8613e] {\n  color: #128bf8;\n}\n", ""]);
 
 	// exports
 
@@ -12479,7 +12479,7 @@
 /* 85 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<div id=\"vote\" _v-48ef4acd=\"\">\n  <div class=\"title\" _v-48ef4acd=\"\">文档对你是否有帮助？</div>\n  <div class=\"vote-info\" _v-48ef4acd=\"\">\n    <div class=\"vote up-vote\" @click=\"vote('up')\" _v-48ef4acd=\"\">\n      <i class=\"iconfont\" :class=\"{'icon-up-vote': !hasAddUpvote, 'icon-up-vote-active': hasAddUpvote}\" _v-48ef4acd=\"\"></i>\n      <div class=\"vote-count\" _v-48ef4acd=\"\">[[upvote]]</div>\n    </div>\n    <div class=\"vote down-vote\" @click=\"vote('down')\" _v-48ef4acd=\"\">\n      <i class=\"iconfont\" :class=\"{'icon-down-vote': !hasAddDownvote, 'icon-down-vote-active': hasAddDownvote}\" _v-48ef4acd=\"\"></i>\n      <div class=\"vote-count\" _v-48ef4acd=\"\">[[downvote]]</div>\n    </div>\n  </div>\n  <div class=\"help\" _v-48ef4acd=\"\">如果开发遇到问题，你可以<a :href=\"supportUrl\" target=\"_blank\" _v-48ef4acd=\"\">提交工单</a>寻求帮助。</div>\n</div>\n";
+	module.exports = "\n<div id=\"vote\" _v-87d8613e=\"\">\n  <div class=\"title\" _v-87d8613e=\"\">文档对你是否有帮助？</div>\n  <div class=\"vote-info\" _v-87d8613e=\"\">\n    <div class=\"vote up-vote\" @click=\"vote('up')\" _v-87d8613e=\"\">\n      <i class=\"iconfont\" :class=\"{'icon-up-vote': !hasAddUpvote, 'icon-up-vote-active': hasAddUpvote}\" _v-87d8613e=\"\"></i>\n      <div class=\"vote-count\" _v-87d8613e=\"\">[[upvote]]</div>\n    </div>\n    <div class=\"vote down-vote\" @click=\"vote('down')\" _v-87d8613e=\"\">\n      <i class=\"iconfont\" :class=\"{'icon-down-vote': !hasAddDownvote, 'icon-down-vote-active': hasAddDownvote}\" _v-87d8613e=\"\"></i>\n      <div class=\"vote-count\" _v-87d8613e=\"\">[[downvote]]</div>\n    </div>\n  </div>\n  <div class=\"help\" _v-87d8613e=\"\">如果开发遇到问题，你可以<a :href=\"supportUrl\" target=\"_blank\" _v-87d8613e=\"\">提交工单</a>寻求帮助。</div>\n</div>\n";
 
 /***/ })
 /******/ ]);

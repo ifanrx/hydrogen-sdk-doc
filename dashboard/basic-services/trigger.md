@@ -564,8 +564,8 @@ gateway_type 枚举值:
 | media_type | 媒体类型              | string  |  图像：image，音乐：music，录音：voice，视频：video，其他：other |
 | mime_type  | MIME 类型            | string   |  [标准 MIME 类型](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types) |
 | reference  | 最近一次引用信息       | object  |  不可枚举，具体解释见表格下方 |
-| cdn_path   | 文件在 CDN 中的路径     | string  | 不可枚举 |
-| path       | 文件路径               | string  | 不可枚举  |
+| cdn_path   | 文件在 CDN 中的相对路径     | string  | 不可枚举 |
+| path       | 上传成功后的访问地址 URL               | string  | 不可枚举  |
 | created_at | 创建时间（时间戳）       | integer | 不可枚举  |
 | updated_at | 最近一次更新时间（时间戳）| integer | 不可枚举  |
 | created_by | 创建人 ID              |  integer | 不可枚举 |

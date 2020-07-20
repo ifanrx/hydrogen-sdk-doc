@@ -9,7 +9,9 @@
 
 ## 云函数支持的开发语言
 目前知晓云云函数支持的 Node.js 开发语言包括如下版本：
-- Node.js 8.9
+
+- Node.js 8.9（2020 年 7 月 8 日停止支持）
+- Node.js 12
 
 ## 第一次使用云函数？
 如果你是第一次接触云函数，我们建议你按顺序阅读以下内容：
@@ -19,4 +21,5 @@
 * [async/await](/cloud-function/node-sdk/start/async-await.md)
 * [Node JS 事件循环机制](/cloud-function/node-sdk/start/nodejs-event-loop.md)
 * [技术细节](/cloud-function/node-sdk/start/technical-notes.md)
+
 

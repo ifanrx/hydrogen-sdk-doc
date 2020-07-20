@@ -16,12 +16,106 @@
 
 7. `language`
 
-8. `avata`
+8. `avatar`
 {% endmacro %}
 
-# 获取用户信息
+# 用户
 
 `let MyUser = new BaaS.User()`
+
+## 创建用户
+
+### 操作步骤
+
+1.本地创建用户
+
+`let user = MyUser.create()`
+
+2.为上面创建的用户设置属性
+
+`user.set(data)`
+
+该方法支持两种类型的赋值操作：
+
+a.一次性赋值：
+
+```js
+user.set({
+  key1: value1,
+  key2: value2
+})
+```
+
+b.逐个赋值
+
+```js
+user.set(key1, value1)
+user.set(key2, value2)
+```
+
+支持的属性：
+
+| 属性            | 类型    | 必填 | 说明 |
+| :-------------- | :------ | :--- | :--- |
+| _username        | String  | `_username`、`_phone`、`_email` 其中至少一项必填  | 用户名 |
+| _phone          | String  | `_username`、`_phone`、`_email` 其中至少一项必填  | 手机号 |
+| _email           | String  | `_username`、`_phone`、`_email` 其中至少一项必填  | 邮箱 |
+| _password        | String  | 传入了 `_username`、`_email` 时必填  | 密码 |
+| _phone_verified  | Boolean | 否 | 手机号是否已验证 |
+| _email_verified   | Boolean | 否 | 邮箱是否已验证 |
+| avatar          | String  | 否 | 用户头像 |
+| nickname        | String  | 否 | 用户昵称 |
+| gender          | Integer | 否 | 用户性别，可选值包括：0(未知)、1(男性)、2(女性) |
+| country         | String  | 否 | 国家 |
+| province        | String  | 否 | 省份 |
+| city            | String  | 否 | 城市 |
+| language        | String  | 否 | 语言 |
+
+除了以上字段外，还支持用户表的自定义字段
+
+> **info**
+> 对同一字段进行多次 `set` 操作，后面的数据会覆盖掉前面的数据
+
+4.将创建的用户保存到服务器
+
+`user.save()`
+
+通过上面的四个步骤，即完成了一个用户的创建。
+
+
+**请求示例**
+
+```js
+const MyUser = new BaaS.User()
+const user = MyUser.create()
+user.set({
+  _email: '***',
+  _password: '***',
+})
+cosnt res = await user.save()
+```
+
+**返回示例**
+
+```json
+{
+  "status": 200,
+  "data": {
+    "_email_verified": false,
+    "_group": [],
+    "_phone_verified": false,
+    "_provider": {},
+    "_email": "***",
+    "avatar": "https://media.ifanrusercontent.com/hydrogen/default_avatar.png",
+    "can_send_alipay_template_message": false,
+    "can_send_wechat_template_message": false,
+    "created_at": 1590463229,
+    "created_by": 180889312739596,
+    "id": 180889312739596,
+    "updated_at": 1590463229,
+  }
+}
+```
 
 ## 获取指定用户信息
 
