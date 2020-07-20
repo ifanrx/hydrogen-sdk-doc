@@ -60,6 +60,7 @@
         * [分页和排序](js-sdk/schema/limit-and-order.md)
         * [地理位置操作](js-sdk/schema/geo.md)
         * [字段过滤与扩展](js-sdk/schema/select-and-expand.md)
+        * [实时数据库（WebSocket）](js-sdk/schema/websocket.md)
         * [API REFERENCE](js-sdk/schema/api-reference.md)
             * [TableObject](js-sdk/schema/frag/table-object.md)
             * [TableRecord](js-sdk/schema/frag/table-record.md)
