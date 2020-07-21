@@ -22,26 +22,29 @@ exports.main = function helloWorld(event, callback) {
 
 此参数包含了触发事件的相关数据:
 
-| 包含字段          | 类型            | 说明 |
-| :--------------  | :------------- | :-- |
-| data             | 任何 js 合法类型 | 在用户调用云函数时传入的参数 |
-| eventType        | String         | 提供给用户的触发来源的信息，包括 sdk/open_api/user_dash/cloud_function/[api_gateway](/support/practice/api-gateway.md) 等 |
-| jobId            | Number         | 当前函数执行的 id |
-| memoryLimitInMB  | Number         | 当前函数的内存资源限制 |
-| miniappId        | Number         | 云函数所属小程序 id |
-| request          | Object         | 若云函数请求来自 BaaS SDK, 此处存储请求用户及其他客户端信息 |
-| timeLimitInMS    | Number         | 当前函数的 timeout 时间 |
-| flex_schema_name | String         | 当数据表触发器触发执行云函数时，其值为触发执行的数据表名称，其他情况没有此字段 |
+| 包含字段         | 类型             | 说明                                                                                                                      |
+| :--------------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------ |
+| data             | 任何 js 合法类型 | 在用户调用云函数时传入的参数                                                                                              |
+| eventType        | String           | 提供给用户的触发来源的信息，包括 sdk/open_api/user_dash/cloud_function/[api_gateway](/support/practice/api-gateway.md) 等 |
+| jobId            | Number           | 当前函数执行的 id                                                                                                         |
+| memoryLimitInMB  | Number           | 当前函数的内存资源限制                                                                                                    |
+| miniappId        | Number           | 云函数所属小程序 id                                                                                                       |
+| request          | Object           | 若云函数请求来自 BaaS SDK, 此处存储请求用户及其他客户端信息                                                               |
+| timeLimitInMS    | Number           | 当前函数的 timeout 时间                                                                                                   |
+| flex_schema_name | String           | 当数据表触发器触发执行云函数时，其值为触发执行的数据表名称，其他情况没有此字段                                            |
+
 
 request 结构说明
 
-| 参数             | 类型    | 描述 |
-| :-------------- | :------ | :--- |
-| meta.ip_address | String  | 发起云函数请求的 IP   |
-| meta.user_agent | String  | 发起云函数请求设备的 userAgent |
-| user.avatar_url | String  | 发起云函数请求的用户头像  |
-| user.nickname   | String  | 发起云函数请求的用户昵称 |
-| user.id         | Integer | 发起云函数请求的用户 ID |
+| 参数            | 类型    | 描述                               |
+| :-------------- | :------ | :--------------------------------- |
+| meta.ip_address | String  | 发起云函数请求的 IP                |
+| meta.user_agent | String  | 发起云函数请求设备的 userAgent     |
+| user.avatar_url | String  | 发起云函数请求的用户头像           |
+| user.nickname   | String  | 发起云函数请求的用户昵称           |
+| user.openid     | String  | 发起云函数请求的用户的微信 openid  |
+| user.uniond     | String  | 发起云函数请求的用户的微信 unionid |
+| user.id         | Integer | 发起云函数请求的用户 ID            |
 
 request 示例如下
 
@@ -54,7 +57,9 @@ request 示例如下
   "user": {
     "avatar_url": "http://cdn.ifanr.cn/ifanr/default_avatar.png",
     "id": 135570997,
-    "nickname": "ifanr"
+    "nickname": "ifanr",
+    "openid": null,
+    "unionid": null
   }
 }
 ```
