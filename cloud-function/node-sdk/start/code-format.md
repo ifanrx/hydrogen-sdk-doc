@@ -22,16 +22,17 @@ exports.main = function helloWorld(event, callback) {
 
 此参数包含了触发事件的相关数据:
 
-| 包含字段         | 类型             | 说明                                                                                                                      |
-| :--------------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------ |
-| data             | 任何 js 合法类型 | 在用户调用云函数时传入的参数                                                                                              |
-| eventType        | String           | 提供给用户的触发来源的信息，包括 sdk/open_api/user_dash/cloud_function/[api_gateway](/support/practice/api-gateway.md) 等 |
-| jobId            | Number           | 当前函数执行的 id                                                                                                         |
-| memoryLimitInMB  | Number           | 当前函数的内存资源限制                                                                                                    |
-| miniappId        | Number           | 云函数所属小程序 id                                                                                                       |
-| request          | Object           | 若云函数请求来自 BaaS SDK, 此处存储请求用户及其他客户端信息                                                               |
-| timeLimitInMS    | Number           | 当前函数的 timeout 时间                                                                                                   |
-| flex_schema_name | String           | 当数据表触发器触发执行云函数时，其值为触发执行的数据表名称，其他情况没有此字段                                            |
+| 包含字段         | 类型             | 说明                                                                                                                        |
+| :--------------- | :--------------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| data             | 任何 js 合法类型 | 在用户调用云函数时传入的参数                                                                                                |
+| eventType        | String           | 提供给用户的触发来源的信息，包括 sdk/open_api/user_dash/cloud_function/[api_gateway](/support/practice/api-gateway.md) 等   |
+| jobId            | Number           | 当前函数执行的 id                                                                                                           |
+| memoryLimitInMB  | Number           | 当前函数的内存资源限制                                                                                                      |
+| miniappId        | Number           | 云函数所属小程序 id                                                                                                         |
+| request          | Object           | 若云函数请求来自 BaaS SDK, 此处存储请求用户及其他客户端信息                                                                 |
+| timeLimitInMS    | Number           | 当前函数的 timeout 时间                                                                                                     |
+| signKey          | string           | 密钥，用于获取微信小程序的 access token 时解密，使用参考：[获取微信 ACCESS_TOKEN](/cloud-function/node-sdk/access-token.md) |
+| flex_schema_name | String           | 当数据表触发器触发执行云函数时，其值为触发执行的数据表名称，其他情况没有此字段                                              |
 
 
 request 结构说明
