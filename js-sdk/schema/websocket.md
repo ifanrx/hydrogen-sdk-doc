@@ -26,6 +26,9 @@ tableName 和 tableID 二选一，不能同时存在
 | tableID   | Number | 是  | 数据表的 ID             |
 | tableName | String |  是 | 数据表名（SDK >= 1.2.0） |
 
+> **info**
+> 实时数据库功能无法订阅内置数据表，如 _userprofile 表、_richtextcontent 表等
+
 2.发起数据表订阅操作
 
 `let myEvent = MyTableObject.subscribe(event, callbackObj)`
