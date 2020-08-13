@@ -208,6 +208,10 @@ createEvent.unsubscribe() // 取消订阅上述示例中数据表的新增数据
 
 下面，我们以**视频弹幕**微信小程序 Demo 为示例，展示实时数据库功能在实际开发中的使用。
 
+<div class="index-doc-header-video">
+  <video src="https://cloud-minapp-287.cloud.ifanrusercontent.com/1k629eQfaH5BtJ6h.mp4" poster="https://cloud-minapp-287.cloud.ifanrusercontent.com/1k62WXZqwI0GkCjv.png" controls="controls" playsinline=""></video>
+</div>
+
 ### 1、知晓云的初始化配置
 
 首先，打开[微信开发者工具](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=201822)，将先前下载好的[演示 demo](https://github.com/ifanrx/hydrogen-demo.git) 的 `websocket-demo-danmu` 文件夹添加入小程序项目中。

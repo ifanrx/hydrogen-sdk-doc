@@ -133,6 +133,7 @@ module.exports = {
     },
 
     addLoginStatusBtn(isLogined) {
+      const host = 'https://cloud.minapp.com'
       window.gitbook.toolbar.createButton({
         className: 'ifrx-btn ifrx-btn-login',
         text: isLogined ? '进入控制台' : '登录',
