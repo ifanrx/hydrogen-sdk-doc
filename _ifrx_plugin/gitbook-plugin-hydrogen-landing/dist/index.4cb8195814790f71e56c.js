@@ -10841,6 +10841,7 @@
 	      }
 	    },
 	    addLoginStatusBtn: function addLoginStatusBtn(isLogined) {
+	      var host = 'https://cloud.minapp.com';
 	      window.gitbook.toolbar.createButton({
 	        className: 'ifrx-btn ifrx-btn-login',
 	        text: isLogined ? '进入控制台' : '登录',
