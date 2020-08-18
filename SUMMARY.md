@@ -92,6 +92,7 @@
         * [QQ 支付](js-sdk/qq/payment.md)
         * [网络请求](js-sdk/qq/request.md)
         * [模板消息](js-sdk/qq/template-message.md)
+        * [订阅消息](js-sdk/qq/subscribe-message.md)
         * [QQ 加密数据解密](js-sdk/qq/decrypt.md)
         * [检测违规图片、文本](js-sdk/qq/censor.md)
     * [百度小程序](js-sdk/baidu/README.md)
