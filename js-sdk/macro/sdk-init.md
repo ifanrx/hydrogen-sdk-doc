@@ -8,6 +8,10 @@
 {% set apiPrefix = 'swan.' %}
 {% elif platform == 'qq' %}
 {% set apiPrefix = 'qq.' %}
+{% elif platform == 'bytedance' %}
+{% set apiPrefix = 'tt.' %}
+{% elif platform == 'jingdong' %}
+{% set apiPrefix = 'jd.' %}
 {% else %}
 {% set apiPrefix = '' %}
 {% endif %}

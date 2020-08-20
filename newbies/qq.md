@@ -142,6 +142,6 @@ Page({
 
 同时，我们可以在数据管理模块看到新增的数据项。
 
-![bookshelf 数据表](/images/newbies/bookshelf-schema.jpeg)
+![bookshelf 数据表](/images/newbies/bookshelf-schema.png)
 
 至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo/tree/master/qq-sdk-demo)的源码。

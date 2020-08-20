@@ -2,6 +2,8 @@
 
 # 微信直连商户分账
 
+{{ profitSharing.versionWarning() }}
+
 对某一订单进行分账，请查看[订单操作文档](/cloud-function/node-sdk/order.html#微信直连商户分账)
 
 ## 添加分账接收方

@@ -125,8 +125,7 @@ Page({
   // 绑定添加书目的提交按钮点击事件，向服务器发送数据
   createBook(e) {
     let bookName = this.data.creatingBookName // 缓存在 data 对象中的输入框输入的书名
-    let tableID = '1' // 从知晓云后台的数据表中获取到的对应数据表的 ID
-    let Books = new my.BaaS.TableObject(tableID) //实例化对应 tableID 的数据表对象
+    let Books = new qq.BaaS.TableObject('bookshelf') //实例化对应 tableName 的数据表对象
     let book = Books.create() // 创建一条记录
 
   // 调用创建数据项接口，进行数据的持久化存储，详见：https://doc.minapp.com/js-sdk/schema/create-record.html
@@ -144,6 +143,6 @@ Page({
 
 同时，我们可以在数据管理模块看到新增的数据项。
 
-![bookshelf 数据表](/images/newbies/bookshelf-schema.jpeg)
+![bookshelf 数据表](/images/newbies/bookshelf-schema.png)
 
 至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo/tree/master/alipay-sdk-demo)的源码。

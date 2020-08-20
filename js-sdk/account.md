@@ -145,15 +145,15 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 ```
 字段说明请参考 [获取用户信息小节](user.md)
 
-### 判断用户是否是匿名用户
+### 判断用户是否是临时用户
 
 {% ifanrxCodeTabs %}
 ```javascript
 wx.BaaS.auth.getCurrentUser().then(user => {
   if (user._anonymous) {
-    // 匿名用户
+    // 临时用户
   } else {
-    // 非匿名用户
+    // 非临时用户
   }
 })
 ```
@@ -168,12 +168,12 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 - 用户使用小程序授权登录后，通过设置用户名或邮箱，以便下次通过用户名或邮箱登录。
 
 > **info**
-> 除更新自定义字段外，其他方法匿名用户无法调用
+> 除更新自定义字段外，其他方法临时用户无法调用
 
 ### 初始化账号信息
 
 > **info**
-> 匿名用户无法调用
+> 临睡用户无法调用
 
 `currentUser.setAccount({username, email, password})`
 
@@ -206,7 +206,7 @@ wx.BaaS.auth.getCurrentUser()
 ### 设置用户名
 
 > **info**
-> 匿名用户无法调用
+> 临时用户无法调用
 
 > 用户名不区分大小写。当用户设置了 username 为 ifanrx 的账号后，其他人不能再注册诸如 Ifanrx、IfAnrx、IFANRX 等账号了
 
@@ -243,7 +243,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 ### 设置邮箱
 
 > **info**
-> 匿名用户无法调用
+> 临时用户无法调用
 
 > 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com
 
@@ -282,7 +282,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 ### 设置手机号
 
 > **info**
-> 匿名用户无法调用
+> 临时用户无法调用
 >
 > 重新设置手机号后，需要重新验证手机号。
 
@@ -319,7 +319,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 ### 验证手机号
 
 > **info**
-> 匿名用户无法调用
+> 临时用户无法调用
 >
 > 短信验证码 smsCode 通过接口 `BaaS.sendSmsCode()` 获取，请查看[文档](/js-sdk/sms.md)
 
@@ -356,7 +356,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 ### 更新密码
 
 > **info**
-> 匿名用户无法调用
+> 临时用户无法调用
 
 `currentUser.updatePassword({password, newPassword})`
 
@@ -389,7 +389,10 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ### 更新用户自定义字段
 
-更新用户信息与[数据表更新数据项](schema/update-record.md)方法基本一致。这里只允许更新 `_userprofile` 表中自定义的字段。
+更新用户信息与[数据表更新数据项](schema/update-record.md)方法基本一致。这里只允许当前用户更新 `_userprofile` 表中自己的自定义字段。
+
+> **info**
+> 处于权限安全考虑，JS SDK 仅允许当前用户更新自己的自定义字段，如业务需要更新其他用户自定义字段，请调用云函数，使用[云函数的用户更新方法](../cloud-function/node-sdk/user.md#更新用户信息)，并在云函数中对用户身份进行校验，避免安全问题。
 
 **请求示例**
 
@@ -411,7 +414,7 @@ wx.BaaS.auth.getCurrentUser()
 ## 邮箱验证
 
 > **info**
-> 匿名用户无法调用
+> 临时用户无法调用
 
 `currentUser.requestEmailVerification()`
 

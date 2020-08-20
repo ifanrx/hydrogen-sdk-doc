@@ -29,6 +29,7 @@
 
 .nav-tabs > li > a {
   color: #ccc;
+  font-size: 14px;
 }
 
 .nav-tabs > li.active > a:hover {
