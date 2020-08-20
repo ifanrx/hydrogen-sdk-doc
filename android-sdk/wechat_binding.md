@@ -1,7 +1,7 @@
 # 绑定微信
 
 > **info**
-> 参考 [「微信登录指南」](/ndroid-sdk/wechat_signin.md) 完成 SDK 内微信功能的初始化
+> 参考 [「微信登录指南」](/android-sdk/wechat_signin.md) 完成 SDK 内微信功能的初始化
 >
 > 绑定微信前需先登录（非匿名）
 >

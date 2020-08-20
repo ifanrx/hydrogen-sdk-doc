@@ -150,6 +150,8 @@
         * [当前用户](android-sdk/account.md)
         * [微信登录](android-sdk/wechat_signin.md)
         * [绑定微信](android-sdk/wechat_binding.md)
+        * [微博登录](android-sdk/weibo_signin.md)
+        * [绑定微博](android-sdk/weibo_binding.md)
     * [数据表](android-sdk/schema/README.md)
         * [数据类型](android-sdk/schema/data-type.md)
         * [新增数据项](android-sdk/schema/create-record.md)

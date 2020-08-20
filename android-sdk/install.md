@@ -35,7 +35,7 @@ android {
     }
 }
 
-// app 模块引入依赖，目前最新版本为 1.1.10
+// app 模块引入依赖，目前最新版本为 1.2.0
 dependencies {
     implementation "com.minapp.android:sdk:xxx"
 }

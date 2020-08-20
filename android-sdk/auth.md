@@ -67,7 +67,6 @@ Auth.signInByUsername(username, pwd);
 Auth.signInByEmail(email, pwd)
 ```
 
-<<<<<<< HEAD
 ### 手机号 + 短信验证码登录
 
 > **info**
@@ -107,9 +106,6 @@ Auth.signInByPhoneInBackground(request, new BaseCallback<User>() {
 ```
 
 ### 创建临时匿名用户
-=======
-### 创建临时用户
->>>>>>> ifanrx_master
 
 往数据表里添加数据，需要有一个用户身份（这样才能保障数据来源可回溯）。
 如果不希望强制用户在一开始就进行注册，可以使用临时用户，让应用不提供注册步骤也能使得当前用户可以往 ACL 权限设置为“允许所有人（临时用户 + 登录用户）可写” 的数据表内添加数据。

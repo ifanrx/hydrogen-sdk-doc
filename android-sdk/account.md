@@ -87,14 +87,10 @@ CurrentUser.getExpiresAt();
 > 匿名用户无法调用
 > 
 > 用户名不区分大小写。当用户设置了 username 为 ifanrx 的账号后，其他人不能再注册诸如 Ifanrx、IfAnrx、IFANRX 等账号了
-<<<<<<< HEAD
 >
 > 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com 
 >
 > 重新设置手机号后，需要重新验证手机号。
-=======
-> 邮箱中的英文字母会被强制转换为小写。例如 iFanrX@Hello.com 会被转换成 ifanrx@hello.com
->>>>>>> ifanrx_master
 
 `currentUser.updateUser(request)`
 
