@@ -4,7 +4,7 @@
 
 1. 如何安装 SDK 请参考[「知晓云 Android SDK 接入指南」](./install.md)
 
-2. 确保 SDK 版本 >= 1.2.0
+2. 确保 SDK 版本 >= 1.2.1
 
 3. 接入[微博开放平台](https://open.weibo.com/development/mobile)，拿到 app id 和 secret id
 

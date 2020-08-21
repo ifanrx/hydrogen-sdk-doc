@@ -5,7 +5,7 @@
 >
 > 绑定微博前需先登录（非匿名）
 >
-> 确保 SDK 版本 >= 1.2.0
+> 确保 SDK 版本 >= 1.2.1
 
 `WeiboComponent.associationWithWeibo(Activity, SignInCallback)`
 
