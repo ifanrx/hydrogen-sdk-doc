@@ -84,7 +84,7 @@ Auth.signInByEmail(email, pwd)
 | code        | String | 短信验证码 |
 | createUser  | Boolean | 是否创建用户，默认为 `true`，可选 |
 
-`createUser` 参数决定了一个新手机号用户第一次登录时的服务端处理行为。
+`createUser` 参数决定了该手机号未曾注册过用户时的服务端处理行为。
 默认为 `true`，服务端会有该用户创建一个知晓云用户记录。
 当 `createUser` 为 `false` 时，服务端会终止登录过程，返回 404 错误码
 
