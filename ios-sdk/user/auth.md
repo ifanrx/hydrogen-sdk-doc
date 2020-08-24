@@ -276,21 +276,21 @@ SDK 提供了快速接入微信登录的接口，省去了使用微信登录接�
 
 3. Xcode 配置
 
-* 配置微信 `APPID`
+* 配置微信 `AppID`
 
-在 `Xcode` 中打开项目，设置项目属性中的 `URL Types` 为微信 `APPID`。如图所示
+在 `Xcode` 中打开项目，设置项目属性中的 `URL Types` 为微信 `AppID`。如图所示
 
 ![设置 URLTYPE](/images/ios/wexin_scheme.png)
 
 * 设置白名单
 
-在 Xcode 中打开项目，在 info.plist 文件中添加 `LSApplicationQueriesSchemes` 数组，并在该数组中添加 `wechat` 和 `wexin` 两个字符串。如图所示：
+在 Xcode 中打开项目，在 info.plist 文件中添加 `LSApplicationQueriesSchemes` 数组，并在该数组中添加 `wechat` 、`wexin`、`weixinULAPI` 三个字符串。如图所示：
 
 ![设置白名单](/images/ios/query_scheme.png)
 
-* 向微信终端注册应用的微信 appid
+* 向微信终端注册应用的微信 `AppID`
 
-在 AppDelegate 的 didFinishLaunchingWithOptions 函数中向微信注册应用的微信 appid，微信要求必须实现 universal link，详见[文档](https://developers.weixin.qq.com/doc/oplatform/Mobile_App/Access_Guide/iOS.html)
+在 AppDelegate 的 didFinishLaunchingWithOptions 函数中向微信注册应用的微信 `AppID`，微信要求必须实现 universal link，详见[文档](https://developers.weixin.qq.com/doc/oplatform/Mobile_App/Access_Guide/iOS.html)
 
 ```
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -384,7 +384,7 @@ Auth.signIn(with: .wechat, createUser: true, syncUserProfile: .setnx) { (user, e
 
 > **info**
 >
->   1. `createUser` 参数决定了一个新的微信用户第一次登录时的服务端处理行为。 默认为 true，服务端会有该用户创建一个知晓云用户记录。 当 `createUser` 为 false 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见[多平台用户统一登录](#多平台用户统一登录)
+>   1. `createUser` 参数决定了一个新的微信用户**第一次登录**时的服务端处理行为。 默认为 true，服务端会为该用户创建一个知晓云用户记录。 当 `createUser` 为 false 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见[多平台用户统一登录](#多平台用户统一登录)
 
 **返回结果**
 
@@ -409,9 +409,9 @@ SDK 提供了快速接入微博登录的接口，省去了使用微博登录接�
 
 ### Xcode 配置
 
-* 配置微博 `APPID`
+* 配置微博 `AppID`
 
-在 `Xcode` 中打开项目，设置项目属性中的 `URL Types` 为微博 `APPID`。设置该项是保证微博授权成功后能够打开您的应用，该项中 `URL Schemes` 格式为“wb[你的应用程序AppId]”，例如：wb12345678，如图所示
+在 `Xcode` 中打开项目，设置项目属性中的 `URL Types` 为微博 `AppID`。设置该项是保证微博授权成功后能够打开您的应用，该项中 `URL Schemes` 格式为“wb[你的应用程序AppID]”，例如：wb12345678，如图所示
 
 ![设置 URLTYPE](/images/ios/weibo_scheme.png)
 
@@ -421,9 +421,9 @@ SDK 提供了快速接入微博登录的接口，省去了使用微博登录接�
 
 ![设置白名单](/images/ios/weibo_query.png)
 
-* 向微博注册应用的微博 appid
+* 向微博注册应用的微博 `AppID`
 
-在 AppDelegate 的 didFinishLaunchingWithOptions 函数中向微博注册应用的微博 appid
+在 AppDelegate 的 didFinishLaunchingWithOptions 函数中向微博注册应用的微博 `AppID`，`redirectURI` 为在微博开发平台填写的回调地址。 
 
 ```
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -488,7 +488,7 @@ Auth.signIn(with: .weibo, createUser: true, syncUserProfile: .setnx) { (user, er
 
 > **info**
 >
->   1. `createUser` 参数决定了一个新的微信用户第一次登录时的服务端处理行为。 默认为 true，服务端会有该用户创建一个知晓云用户记录。 当 `createUser` 为 false 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见[多平台用户统一登录](#多平台用户统一登录)
+>   1. `createUser` 参数决定了一个新的微博用户**第一次登录**时的服务端处理行为。 默认为 true，服务端会为该用户创建一个知晓云用户记录。 当 `createUser` 为 false 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见[多平台用户统一登录](#多平台用户统一登录)
 
 **返回结果**
 
@@ -503,11 +503,11 @@ SDK 提供了快速接入苹果登录的接口。详见[苹果官方文档](http
 
 接入步骤如下：
 
-1. 登录开发者网站，找到应用对应的 Identifier 并开启 Sign In with Apple。
+1. 登录开发者网站，找到应用对应的 `Identifier` 并开启 `Sign In with Apple`。
 
 ![Apple-Config](/images/ios/apple_login_config.png)
 
-2. 在 Xcode 的 Signing & Capabilities 开启 Sign in with Apple 功能。
+2. 在 `Xcode` 的 `Signing & Capabilities` 开启 `Sign in with Apple` 功能。
 
 ![image](/images/ios/apple_login_xcode.png)
 
@@ -545,7 +545,7 @@ Auth.signIn(with: .apple, createUser: true, syncUserProfile: .setnx) { (user, er
 
 > **info**
 >
->   1. `createUser` 参数决定了一个新的微信用户第一次登录时的服务端处理行为。 默认为 true，服务端会有该用户创建一个知晓云用户记录。 当 `createUser` 为 false 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见[多平台用户统一登录](#多平台用户统一登录)
+>   1. `createUser` 参数决定了一个新的苹果用户**第一次登录**时的服务端处理行为。 默认为 true，服务端会为该用户创建一个知晓云用户记录。 当 `createUser` 为 false 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见[多平台用户统一登录](#多平台用户统一登录)
 
 **返回结果**
 
