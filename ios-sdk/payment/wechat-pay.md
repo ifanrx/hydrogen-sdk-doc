@@ -8,57 +8,9 @@
 
 ![账号关联](/images/ios/wexin_account.png)
 
-## `Xcode` 配置
+## Xcode 配置
 
-### 1. 配置微信 `APPID`
-
-在 `Xcode` 中打开项目，设置项目属性中的 `URL Schemes` 为微信 `APPID`。如图所示
-
-![设置 URLTYPE](/images/ios/wexin_scheme.png)
-
-### 2. 设置白名单
-
-在 Xcode 中打开项目，在 info.plist 文件中添加 `LSApplicationQueriesSchemes` 数组，并在该数组中添加 `wechat` 和 `wexin` 两个字符串。如图所示：
-
-![设置白名单](/images/ios/query_scheme.png)
-
-
-### 3. 配置返回 `URL` 处理方法
-
-{% tabs swift1="Swift", oc1="Objective-C" %}
-{% content "swift1" %}
-```
-func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-    return BaaS.handleOpenURL(url: url)
-}
-
-// Xcode 11+ 创建的项目需配置：
-
-func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        
-    guard let url = URLContexts.first?.url else {
-        return
-    }
-    _ = BaaS.handleOpenURL(url: url)
-}
-
-```
-{% content "oc1" %}
-```
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    return [BaaS handleOpenURLWithUrl:url];
-}
-
-// Xcode 11+ 创建的项目需配置：
-
-- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
-    UIOpenURLContext *context = [[URLContexts allObjects] objectAtIndex:0];
-    NSURL *url = context.URL;
-    return [BaaS handleOpenURLWithUrl:url];
-}
-
-```
-{% endtabs %}
+在使用微信支付，需要在 Xcode 进行配置以及重写相关方法，具体参考[微信登录]((../user/auth.md#))的Xcode 配置小节。
 
 ## 发起支付
 

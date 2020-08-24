@@ -12,7 +12,7 @@
 
 ### 1. 配置支付宝 `APPID`
 
-在 `Xcode` 中打开项目，设置项目属性中的 `URL Schemes` 为支付宝 `APPID`。如图所示
+在 `Xcode` 中打开项目，设置项目属性中的 `URL Types` 为支付宝 `APPID`。如图所示
 
 ![设置 URLTYPE](/images/ios/alipay_scheme.png)
 
@@ -28,7 +28,18 @@
 {% content "swift1" %}
 ```
 func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return BaaS.handleOpenURL(url: url)
+    return BaaS.handleOpenURL(url: url)
+}
+```
+
+适配了 SceneDelegate 的 App，需要重写 openURLContexts 方法：
+
+```
+func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+    guard let url = URLContexts.first?.url else {
+        return
+    }
+    _ = BaaS.handleOpenURL(url: url)
 }
 ```
 {% content "oc1" %}
@@ -37,6 +48,18 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplication.Op
     return [BaaS handleOpenURLWithUrl:url];
 }
 ```
+
+适配了 SceneDelegate 的 App，需要重写 openURLContexts 方法：
+
+```
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
+    UIOpenURLContext *context = [[URLContexts allObjects] objectAtIndex:0];
+    NSURL *url = context.URL;
+    [BaaS handleOpenURLWithUrl:url];
+}
+
+```
+
 {% endtabs %}
 
 ## 发起支付
