@@ -32,9 +32,7 @@
 
 1.本地创建用户
 
-```
-let user = MyUser.create()
-```
+`let user = MyUser.create()`
 
 2.为上面创建的用户设置属性
 
