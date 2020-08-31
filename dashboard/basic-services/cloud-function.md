@@ -13,6 +13,7 @@
 ### 测试云函数
 
 ![测试云函数](/images/dashboard/basic-services/cloud-function-test.png)
+![测试云函数](/images/dashboard/basic-services/cloud-function-test2.png)
 
 知晓云提供了云函数测试功能，可以方便地调试您的代码。点击云函数面板右上角的「测试」按钮即可打开测试弹窗。
 

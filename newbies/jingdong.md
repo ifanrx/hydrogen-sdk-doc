@@ -12,11 +12,11 @@
 
 ## 小程序注册指引
 
-在使用**知晓云**之前，请先确保按照字节跳动小程序官方指引完成[小程序注册流程](https://developer.toutiao.com/apply)。
+在使用**知晓云**之前，请先确保按照京东小程序官方指引完成[小程序注册流程](https://mp.jd.com/)。
 
 ## 知晓云账号注册
 
-开发者按照字节跳动小程序官方的指引申请到自己的小程序后，接下来就可注册并获取知晓云账号，完成相关信息绑定与服务配置后，即可使用知晓云提供的后端服务。
+开发者按照京东小程序官方的指引申请到自己的小程序后，接下来就可注册并获取知晓云账号，完成相关信息绑定与服务配置后，即可使用知晓云提供的后端服务。
 
 ### 注册并完成相关信息绑定
 
@@ -33,11 +33,11 @@
 
 为了使用知晓云提供的后端服务，进入 dashboard 后，开发者首先需要为知晓云授权。
 
-知晓云在设置模块提供了**一键授权**功能，用户只需在应用“导览”页中找到字节跳动小程序平台，点击**立即接入**，接着在“设置-字节跳动”页中填写配置信息完成授权即可。
+知晓云在设置模块提供了**一键授权**功能，用户只需在应用“导览”页中找到京东小程序平台，点击**立即接入**，接着在“设置-京东”页中填写配置信息完成授权即可。
 
-![一键开通](/images/newbies/open-up-bytedance.png)
+![一键开通](/images/newbies/open-up-jingdong.png)
 
-![填写配置信息完成授权](/images/newbies/bytedance-setting.png)
+![填写配置信息完成授权](/images/newbies/jingdong-settings.png)
 
 ### SDK 文件版接入
 
@@ -45,9 +45,9 @@
 
 ![知晓云服务器域名](/images/newbies/domain-name-config-alipay.png)
 
-登录[小程序后台](https://microapp.bytedance.com/app/setting/{{appid}})，进入 “设置 - 开发”页面，将知晓云提供给开发者的服务器域名全部配置到字节跳动开发者后台的“服务器域名”配置项中。
+登录[小程序后台](https://mp.jd.com/app/list)，进入 “设置 - 开发”页面，将知晓云提供给开发者的服务器域名全部配置到京东开发者后台的“服务器域名”配置项中。
 
-![小程序服务器域名配置](/images/newbies/hydrogen-domain-name-config-bytedance.png)
+![小程序服务器域名配置](/images/newbies/hydrogen-domain-name-config-jingdong.png)
 
 ## 第一个接入知晓云的小程序
 
@@ -55,10 +55,11 @@
 
 ### 1、 知晓云的初始化配置
 
->**info**
-> 如果用导入的项目的话，要核对一下 appid 
+首先，打开**京东开发者工具**，将先前下载好的[演示 demo](https://github.com/ifanrx/hydrogen-demo.git) 的 `jd-sdk-demo` 文件夹添加入小程序项目中。
 
-![创建小程序项目](/images/newbies/minapp-creation-bytedance.png)
+![创建小程序项目](/images/newbies/minapp-creation-jingdong.png)
+
+其中 `AppID` 为小程序的 ID，在京东小程序后台**设置 >> 开发设置** 中可获取，知晓云也在[**设置模块的小程序面板**](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/jd/)提供了快速通道获取小程序 ID。
 
 接下来，在 `app.js` 中引入 [SDK js 文件](/js-sdk/download-sdk.md)。
 
@@ -69,7 +70,7 @@
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-bytedance.{{ book.latestVersionBytedance }}.js')
+    require('./sdk-jingdong.{{ book.latestVersionJingdong }}.js')
   }
 })
 </code>
@@ -86,11 +87,11 @@ App({
 App({
   onLaunch() {
     // 引入 SDK
-    require('./sdk-bytedance.{{ book.latestVersionBytedance }}.js')
+    require('./sdk-jingdong.{{ book.latestVersionJingdong }}.js')
 
     // 初始化 SDK
-    let clientID = '[[client_id]]'  // 应用名称: [[app_name]]
-    tt.BaaS.init(clientID)
+    let clientID = '[[client_id]]'  // 控制台中获取 client_id
+    jd.BaaS.init(clientID)
   }
 })
 </code>
@@ -122,7 +123,7 @@ Page({
   // 绑定添加书目的提交按钮点击事件，向服务器发送数据
   createBook(e) {
     let bookName = this.data.creatingBookName // 缓存在 data 对象中的输入框输入的书名
-    let Books = new tt.BaaS.TableObject('bookshelf') //实例化对应 tableName 的数据表对象
+    let Books = new jd.BaaS.TableObject('bookshelf') //实例化对应 tableName 的数据表对象
 
     let book = Books.create() // 创建一条记录
 
@@ -136,8 +137,11 @@ Page({
 })
 ```
 
+> **info**
+> 注意，上述代码可能和 `我的书架` 源码有一定的差异，但是代码的逻辑和接口的调用方式基本上是一样。
+
 同时，我们可以在数据管理模块看到新增的数据项。
 
 ![bookshelf 数据表](/images/newbies/bookshelf-schema.png)
 
-至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo/tree/master/bytedance-sdk-demo)的源码。
+至于更新书名和删除书籍等操作，其接口调用过程大致和创建书籍一样，这里就不再赘述，详见[**演示 demo**](https://github.com/ifanrx/hydrogen-demo/tree/master/jd-sdk-demo)的源码。

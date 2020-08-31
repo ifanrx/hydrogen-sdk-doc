@@ -28,20 +28,6 @@
   }
   ```
 
-  ```javascript
-  exports.main = async function getProduct(event, callback) {
-    try {
-      let tableName = 'product'
-      let recordID = '59897882ff650c0477f00485'
-      let Product = new BaaS.TableObject(tableName)
-      let product = await Product.get(recordID)
-      callback(null, product)
-    } catch (err) {
-      callback(err)
-    }
-  }
-  ```
-
 2. 使用 async + return
 
   ```javascript
