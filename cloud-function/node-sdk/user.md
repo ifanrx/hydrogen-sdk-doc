@@ -25,11 +25,16 @@
 
 ## 创建用户
 
+> **info**
+> SDK >= 3.9
+
 ### 操作步骤
 
 1.本地创建用户
 
-`let user = MyUser.create()`
+```
+let user = MyUser.create()
+```
 
 2.为上面创建的用户设置属性
 
