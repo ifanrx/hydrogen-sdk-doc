@@ -1,6 +1,6 @@
 # Requirements
 
-* iOS 9.0+
+* iOS 10.0+
 * Xcode 10.1+
 * Swift 4.2+
 
@@ -9,7 +9,7 @@
 在 `Podfile` 文件中添加以下代码
 
 ```
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 
 target 'YOUR_APP_TARGET' do # 替换 YOUR_APP_TARGET 为你的应用名称。
