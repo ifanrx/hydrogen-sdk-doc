@@ -1,10 +1,18 @@
 <!-- ex_nonav -->
 
+{% if platform == 'wechat' %}
 # 获取微信订阅消息可用订阅记录数量（SDK >= v3.3）
+{% else %}
+# 获取 QQ 订阅消息可用订阅记录数量（SDK >= v3.10）
+{% endif %}
 
 用于检查订阅消息模版的订阅记录数量，以保证用户可以收到订阅消息通知（如下单提醒）
 
+{% if platform == 'wechat' %}
 `BaaS.wechat.getSubscribeMsgTicketCount(options)`
+{% else %}
+`BaaS.qq.getSubscribeMsgTicketCount(options)`
+{% endif %}
 
 **参数说明**
 
@@ -18,6 +26,7 @@ options（类型：Object），属性说明：
 
 **请求示例**
 
+{% if platform == 'wechat' %}
 ```js
 BaaS.useVersion('v3.3')
 exports.main = async function(event) {
@@ -28,7 +37,18 @@ exports.main = async function(event) {
   })
 }
 ```
-
+{% else %}
+```js
+BaaS.useVersion('v3.3')
+exports.main = async function(event) {
+  return await BaaS.qq.getSubscribeMsgTicketCount({
+    userID: "...",
+    templateID: "...",
+    subscriptionType: "once",
+  })
+}
+```
+{% endif %}
 
 **返回示例**
 ```js
