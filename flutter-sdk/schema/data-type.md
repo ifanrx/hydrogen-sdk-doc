@@ -37,7 +37,6 @@
 | total_count | int | 总的待插入记录数 |
 | operation_result | List | TableRecordOperation 数组，包含每条数据是否成功被创建等信息 |
 
-
 ## TableRecordOperation 类型
 
 | 名称  | 类型 | 说明 |

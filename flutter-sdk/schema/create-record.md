@@ -5,7 +5,7 @@
 1.通过 `tableName` 或 `tableId` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表。
 
 ```dart
-TableOject MyTableObject = new TableObject(tableId);
+TableObject myTableObject = new TableObject(tableId);
 ```
 
 **参数说明**
@@ -19,7 +19,7 @@ tableName 和 tableId 二选一，不能同时存在
 
 2.本地创建一条空记录
 
-`TableRecord myRecord = MyTableObject.create();`
+`TableRecord myRecord = myTableObject.create();`
 
 3.为上面创建的空记录赋值
 

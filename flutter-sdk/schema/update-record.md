@@ -10,24 +10,17 @@ options（批量更新时需要设置）:
 
 | 参数          | 类型    | 必填 | 默认 | 说明 |
 | :------------ | :------ | :--- | :--- |:--- |
-| enableTrigger | boolean |  否  | true | 是否触发触发器 |
-| withCount     | boolean |  否  | `false` | 是否返回 total_count |
+| enableTrigger | bool |  否  | true | 是否触发触发器 |
+| withCount     | bool |  否  | false | 是否返回 total_count |
 
-{{totalCount.withCountTips()}}
-
-<!-- 分隔两个 info -->
-> **info**
-> 临时用户更新数据，请先查看[数据表匿名读写权限特别说明](/js-sdk/schema/#数据表匿名读写权限特别说明)
 
 ## 操作步骤
 
 1.通过 `tableName` 或 `tableID` 实例化一个 `TableObject` 对象，操作该对象即相当于操作对应的数据表，这里推荐用 tableName
 
-{% ifanrxCodeTabs %}
-
-`let MyTableObject = new wx.BaaS.TableObject(tableName)`
-
-{% endifanrxCodeTabs %}
+```dart
+TableObject myTableObject = new TableObject(tableId);
+```
 
 **参数说明**
 
@@ -41,17 +34,15 @@ tableName 和 tableID 二选一，不能同时存在
 | tableID   | Number | 是  | 数据表的 ID |
 | tableName | String |  是 | 数据表名 |
 
-2.通过数据行 id（以下用 `recordID` 参数名表示） 设置指定数据行
+2.通过数据行 id（以下用 `recordId` 参数名表示） 设置指定数据行
 
-{% ifanrxCodeTabs %}
-`let product = MyTableObject.getWithoutData(recordID)`
-{% endifanrxCodeTabs %}
+`TableRecord product = myTableObject.getWithoutData(recordId: recordId)`
 
 **参数说明**
 
 | 参数      | 类型   | 必填 | 说明 |
 | :------- | :----- | :-- | :---|
-| recordID | String | 是  | 数据行 id |
+| recordId | String | 是  | 数据行 id |
 
 3.调用 set 或 unset  修改指定记录的数据
 
@@ -67,7 +58,7 @@ a. set 操作
 | :---- | :---------------- | :-- | :-- |
 | key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
 | value | any               | 是  | 与 key 字段的类型保持一致 |
-| obj   | Object            | 是  | 一次性赋值的键值对对象, 如 `{a: 10, b: 20}` |
+| obj   | Map<String, dynamic>            | 是  | 一次性赋值的键值对对象, 如 `{a: 10, b: 20}` |
 
 b. unset 操作
 
@@ -80,13 +71,13 @@ b. unset 操作
 | 参数  | 类型              | 必填 | 说明 |
 | :---- | :---------------- | :-- | :-- |
 | key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
-| obj   | Object            | 是  | 一次性赋值的键值对对象, 如 `{a: '', b: ''}` |
+| obj   | Map<String, dynamic>            | 是  | 一次性赋值的键值对对象, 如 `{a: '', b: ''}` |
 
 set 和 unset 方法都支持两种类型的赋值操作：
 
 a. 一次性赋值：
 
-```js
+```dart
 product.set({
   key1: value1,
   key2: value2
@@ -95,7 +86,7 @@ product.set({
 
 b. 逐个赋值：
 
-```js
+```dart
 product.set(key1, value1)
 product.set(key2, value2)
 ```
@@ -117,41 +108,23 @@ product.set(key2, value2)
 ## 普通数据更新
 
 **请求示例**
-{% ifanrxCodeTabs %}
-```js
+```dart
 // 更新 tableName 为 'product' 的数据表中 id 为 59897882ff650c0477f00485 的数据行的 price 字段
-let tableName = 'product'
-let recordID = '59897882ff650c0477f00485' // 数据行 id
+String tableName = 'product';
+String recordId = '59897882ff650c0477f00485'; // 数据行 id
 
-let Product = new wx.BaaS.TableObject(tableName)
-let product = Product.getWithoutData(recordID)
+TableObject product = new TableObject(tableName);
+TableRecord record = product.getWithoutData(recordId: recordId);
 
-product.set('price', 11)
-product.update().then(res => {
-  // success
-}, err => {
-  // err
-})
+record.set('price', 11);
+TableRecord response = await record.update();
 ```
-{% endifanrxCodeTabs %}
 
-**返回示例**
+**返回结果**
 
-then 回调中的 res 对象结构如下：
-
-```json
-{
-  "statusCode": 200,
-  "data": {
-    "created_at": 1487053095,
-    "id": "7",
-    "name": "fushi",
-    "price": 11,
-    "desc": ["sweet", "red"],
-    "amount": 2
-  }
-}
-```
+| 名称 | 类型 | 说明 |
+| ---- | ---- | ---- |
+| response | TableRecord | 返回 TableRecord 类型，详见 [数据类型](/flutter-sdk/data-type.md) |
 
 err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
@@ -165,8 +138,8 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 
 ## 更新 object 类型内的属性
-```javascript
-product.patchObject('obj1', {name: '123'})
+```dart
+product.patchObject('obj1', {'name': '123'});
 ```
 
 **参数说明**
@@ -174,31 +147,31 @@ product.patchObject('obj1', {name: '123'})
 | 参数   | 类型                | 必填 | 说明 |
 | :---- | :------------------ | :-  | :-- |
 | key   | String              | 是  | 在数据表中的类型必须是 Object |
-| value | Object              | 是  | 更新的对象 |
+| value | Map              | 是  | 更新的对象 |
 
 > **info**
-> 该操作的效果类似 Object.assign(), 是浅合并，也就是只合并第一层，嵌套的属性仍然是被替换。
-> 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的
+> 该操作是浅合并，也就是只合并第一层，嵌套的属性仍然是被替换。
+> 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{'#ifanr.x': 123}` 和 `{'知晓云': 'test'}` 是错误的
 
 **请求示例**
 假设数据表 Product 中有数据行如下
-```javascript
+```dart
 [{
    id: "7",
    obj1: {a: [1, 2, 3], b: 666, c: {age: 100}}
 }]
 ```
 
-```javascript
-let record = Product.getWithoutData('7')
+```dart
+TableRecord record = Product.getWithoutData('7');
 
-let patch = {a: [222], b: 555, d: 888}
-record.patchObject('obj1', patch)
+Map<String, dynamic> patch = {'a': [222], 'b': 555, 'd': 888};
+record.patchObject('obj1', patch);
 
 ```
 执行结果
 
-```javascript
+```dart
 [
   {
     id: '7',
@@ -215,77 +188,45 @@ record.patchObject('obj1', patch)
 | 字段名          | 字段类型          | 说明                 |
 |----------------|------------------|----------------------|
 | customer       |  pointer         | 指向了 `customer` 表     |
-| user           |  pointer         | 指向了 `_userprofile` 表     |
 
 
-现在需要更新 product 表中 id 为 `5bdfaf068asd123123asd` 的数据行
+现在需要更新 product 表中 id 为 `5f4f44b0818361584b51f799` 的数据行
 
 **示例代码**
 
-{% ifanrxCodeTabs %}
-```js
-// 获取一个 tableRecord 实例
-let Customer = new wx.BaaS.TableObject('customer')
-let customer = Customer.getWithoutData('5bdfaf068b155c0891d064ad')
+```dart
+// product 表
+TableObject product = new TableObject('product');
+TableRecord productRecord = product.getWithoutData(recordId: '5f4f44b0818361584b51f799');
 
-// 获取要修改的数据行的实例
-let Product = new wx.BaaS.TableObject('product')
-let product = Product.getWithoutData('5bdfaf068asd123123asd')
-// 69147880 为 _userprofile 表中某行数据的 id
-let user = new wx.BaaS.User().getWithoutData(69147880)
+// customer 表
+TableObject customer = new TableObject('jiajun_pointer');
+TableRecord customerRecord = customer.getWithoutData(recordId: '5f3631ab6526327aa10373bc');
 
-// 给 pointer 字段赋值
-product.set('customer', customer)
-product.set('user', user)
+// 向 product 数据项更新 pointer
+productRecord.set('customer', customerRecord);
 
-product.update().then(res=>{
-  // success
-})
+TableRecord response = await productRecord.update();
 ```
-{% endifanrxCodeTabs %}
-
-**返回示例**
-```json
-{
-  "statusCode": 200,
-  "data": {
-    "_id": "5bdfaf068asd123123asd",
-    "created_at": 1541744690,
-    "created_by": 3,
-    "id": "5bdfaf068asd123123asd",
-    "customer": {
-      "id": "5bdfaf068b155c0891d064ad",
-      "_table": "customer"
-    },
-    "user": {
-      "id": 69147880,
-      "_table": "_userprofile"
-    },
-    "read_perm": [ "user:*" ],
-    "updated_at": 1541744690,
-    "write_perm": [ "user:*" ] }
-}
-```
-
 
 ## 计数器原子性更新
 
 对数字类型的字段进行原子性增减操作。当请求同时对一个数据进行增减时，原子性使得冲突和覆盖导致的数据不正确的情况不会出现。
 
-`product.incrementBy(key, value)`
+`product.incrementBy(key, value);`
 
 **参数说明**
 
 | 参数   | 类型              | 必填 | 说明 |
 | :---- | :---------------- | :-- | :-- |
 | key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
-| value | Number 或 Integer | 是  | 与 key 的类型保持一致 |
+| value | num 或 int | 是  | 与 key 的类型保持一致 |
 
 **请求示例**
 
-```js
-product.incrementBy('amount', 1)
-product.update().then(res => {}, err => {})
+```dart
+product.incrementBy('amount', 1);
+await product.update();
 ```
 
 
@@ -293,52 +234,52 @@ product.update().then(res => {}, err => {})
 
 ### 将 _待插入的数组_ 加到原数组末尾
 
-`product.append(key, value)`
+`product.append(key, value);`
 
 **参数说明**
 
 | 参数   | 类型                | 必填 | 说明 |
 | :---- | :------------------ | :-- | :--- |
 | key   | String              | 是  | 在数据表中的类型必须是 Array |
-| value | Array 或 Array item | 是  | - |
+| value | List 或 List item | 是  | - |
 
 **请求示例**
 
-```js
-product.append('desc', ['big'])
+```dart
+product.append('desc', ['big']);
 // or
-product.append('desc', 'big')
+product.append('desc', 'big');
 ```
 
 ### 将 _待插入的数组_ 中不包含在原数组的数据加到原数组末尾
 
-`product.uAppend(key, value)`
+`product.uAppend(key, value);`
 
 **参数说明**
 
 | 参数   | 类型                | 必填 | 说明 |
 | :---- | :------------------ | :-- | :-- |
 | key   | String              | 是  | 在数据表中的类型必须是 Array |
-| value | Array 或 Array item | 是   | - |
+| value | List 或 List item | 是   | - |
 
 **请求示例**
 
-```js
-product.uAppend('desc', ['sweet'])
+```dart
+product.uAppend('desc', ['sweet']);
 // or
-product.uAppend('desc', 'sweet')
+product.uAppend('desc', 'sweet');
 ```
 
 ### 从原数组中删除指定的值
 
-`product.remove(key, value)`
+`product.remove(key, value);`
 
 **参数说明**
 
 | 参数   | 类型                | 必填 | 说明 |
 | :---- | :------------------ | :-  | :-- |
 | key   | String              | 是  | 在数据表中的类型必须是 Array |
-| value | Array 或 Array item | 是  | 如果元素类型是 geojson、object、file，则只能是 Array item，或 length 为 1 的 Array |
+| value | List 或 List item | 是  | 如果元素类型是 geojson、object、file，则只能是 List item，或 length 为 1 的 List |
 
 > **info**
 > 如果 array 类型字段的子元素类型是 geojson、object 或 file，则 value 只能是 Array item 或 length 为 1 的 Array,
@@ -346,13 +287,13 @@ product.uAppend('desc', 'sweet')
 
 > 下面的操作是能按预期执行的:
 
-> `product.remove('array_obj', {a: 10})`
+> `product.remove('array_obj', {a: 10});`
 
-> `product.remove('array_obj', [{a: 10}])`
+> `product.remove('array_obj', [{a: 10}]);`
 
 > 下面的 `{a: 30}`，将会被忽略:
 
-> `product.remove('array_obj', [{a: 10}, {a: 30}])`
+> `product.remove('array_obj', [{a: 10}, {a: 30}]);`
 
 **请求示例**
 
@@ -365,23 +306,21 @@ product.remove('desc', 'sweet')
 > **info**
 > 对**同一字段**设置多次 `append` 或 `remove` 操作后进行 `update` 操作，则只有最后一次进行的 `append` 或 `remove` 是有效的；如果同时对**同一字段**进行 `set`、`remove` 和 `append` 操作，则只有最后执行的操作是有效的。
 
-<span class="attention">注：</span> 设置的数据要与预先在知晓云平台设定的数据类型一致，当仅更新一个字段，并且数据不合法时，将无法成功保存，请求返回 `Failed to save record, type conflict on fields` 错误，如果更新多个字段，其中有一个或一个以上字段数据合法，则请求成功，但其中数据不合法的字段将不会成功保存，如下示例：
+<span class="attention">注：</span> 设置的数据要与预先在知晓云平台设定的数据类型一致，当仅更新一个字段，并且数据不合法时，将无法成功保存。如果更新多个字段，其中有一个或一个以上字段数据合法，则请求成功，但其中数据不合法的字段将不会成功保存，如下示例：
 
-```js
+```dart
 /*
 * 同时设置 amount 和 date 字段，其中 date 为日期类型，这里为其赋了一个字符串类型的值，
 * 该请求会返回 200，但只有 amount 被成功设置为 10
 */
 
-let order = Order.getWithoutData(orderID)
-order.set('amount', 10)
-order.set('date', 'abc')
-order.update()
+TableRecord record = order.getWithoutData(orderID);
+record.set('amount', 10);
+record.set('date', 'abc');
+record.update();
 ```
 
 ## 按条件批量更新数据项
-
-SDK 1.4.0 及以上版本支持批量更新数据项。可以通过设置自定义查询条件 Query，将符合条件的数据进行批量更新操作。
 
 > 注意：由于条件查询可能命中非常多的数据，默认情况下，限制为最多更新前 1000 条数据。
 > 如需要一次性更新更多数据，请参考下一个章节：不触发触发器的更新，或者通过维护分页来进行。
@@ -393,63 +332,35 @@ SDK 1.4.0 及以上版本支持批量更新数据项。可以通过设置自定�
 
 **请求示例**
 
-{% ifanrxCodeTabs %}
-```js
-let MyTableObject = new wx.BaaS.TableObject(tableName)
-
-let query = new wx.BaaS.Query()
+```dart
+TableObject tableObject = new TableObject(tableName);
+Query query = new Query();
 
 // 设置查询条件（比较、字符串包含、组合等）
 //...
 
 // limit、offset 可以指定按条件查询命中的数据分页
-let records = MyTableObject.limit(10).offset(0).getWithoutData(query)
+query.limit(10);
+query.offset(0);
+TableRecord record = tableObject.getWithoutData(query: query);
 
 // 与更新特定记录一致
-records.set(key1, value1)
-records.incrementBy(key2, value2)
-records.append(key3, value3)
+record.set(key1, value1);
+record.incrementBy(key2, value2);
+record.append(key3, value3);
 
-records.update().then(res => {}, err => {})
+TableRecordOperationList response = await record.update();
 ```
-{% endifanrxCodeTabs %}
 
-**返回示例**
+**返回结果**
 
-then 回调中的 res 对象结构如下：
+| 名称  | 类型 | 说明 |
+| ----- | ----- | ----- |
+| succeed | int | 成功插入记录数 |
+| total_count | int | 总的待插入记录数 |
+| operation_result | List | TableRecordOperation 数组，包含每条数据是否成功被创建等信息 |
 
-```json
-{
-  "statusCode": 200, // 200 表示更新成功, 注意这不代表所有数据都更新成功，具体要看 operation_result 字段
-  "data": {
-    "succeed": 8, // 成功更新记录数
-    "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
-    "offset": 0,
-    "limit": 1000,
-    "next": null, // 下一次更新 url，若为 null 则表示全部更新完毕
-    "operation_result": [  // 创建的详细结果
-       {
-         "success": {      // 成功时会有 success 字段
-           "id": "5bffbab54b30640ba8135650",
-           "updated_at": 1543486133
-         }
-       },
-       {
-         "success": {
-           "id": "5bffbab54b30640ba8135651",
-           "updated_at": 1543486133
-         }
-       },
-       {
-         "error": {     // 失败时会有 error 字段
-           "code": 16837,
-           "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
-         }
-       }
-     ]
-  }
-}
-```
+TableRecordOperation 类型具体请参考：[数据类型](/flutter-sdk/data-type.md)
 
 catch 回调中的 err 对象:
 
@@ -461,9 +372,9 @@ catch 回调中的 err 对象:
 
 ### 批量更新时不触发触发器
 
-SDK 1.9.1 及以上版本支持批量更新数据项时不触发触发器。该模式在批量更新数据时，不会触发设置好的触发器，会对查询条件匹配的数据全部更新，没有最多 1000 条的限制。
+支持批量更新数据项时不触发触发器。该模式在批量更新数据时，不会触发设置好的触发器，会对查询条件匹配的数据全部更新，没有最多 1000 条的限制。
 
-SDK 2.9.0 及以上版本，在 enableTrigger 为 false 时，SDK 将不会设置默认的 limit （值为 20），如果用户没有设置 limit，则为全量更新。
+在 enableTrigger 为 false 时，SDK 将不会设置默认的 limit （值为 20），如果用户没有设置 limit，则为全量更新。
 
 不触发触发器的情况下会有以下的行为:
 
@@ -472,74 +383,20 @@ SDK 2.9.0 及以上版本，在 enableTrigger 为 false 时，SDK 将不会设�
   - limit <= 1000 时，操作记录为同步执行
   - limit > 1000 或未设置时，则会转为异步执行并移除 limit 限制，变成操作全部
 
-{% ifanrxCodeTabs %}
-```js
-let MyTableObject = new wx.BaaS.TableObject(tableName)
-
-let query = new wx.BaaS.Query()
+```dart
+TableObject tableObject = new TableObject(tableName);
+Query query = new Query();
 
 // 设置查询条件（比较、字符串包含、组合等）
 //...
 
-let records = MyTableObject.getWithoutData(query)
+// limit、offset 可以指定按条件查询命中的数据分页
+query.limit(10);
+query.offset(0);
+TableRecord record = tableObject.getWithoutData(query: query);
 
 // 与更新特定记录一致
 // 设置更新内容 ...
 
-// 知晓云后台设置的触发器将不会被触发
-records.update({enableTrigger: false}).then(res => {}, err => {})
+TableRecordOperationList response = await record.update(enableTrigger: false);
 ```
-
-{% endifanrxCodeTabs %}
-
-**返回示例**
-
-同步操作时，then 回调中的 res 对象结构如下：
-
-```json
-{
-  "statusCode": 200, // 200 表示更新成功, 注意这不代表所有数据都更新成功，具体要看 operation_result 字段
-  "data": {
-    "succeed": 8, // 成功更新记录数
-    "total_count": 10,  // where 匹配的记录数，包括无权限操作记录
-    "offset": 0,
-    "limit": 1000,
-    "next": null, // 下一次更新 url，若为 null 则表示全部更新完毕
-    "operation_result": [  // 创建的详细结果
-       {
-         "success": {      // 成功时会有 success 字段
-           "id": "5bffbab54b30640ba8135650",
-           "updated_at": 1543486133
-         }
-       },
-       {
-         "success": {
-           "id": "5bffbab54b30640ba8135651",
-           "updated_at": 1543486133
-         }
-       },
-       {
-         "error": {     // 失败时会有 error 字段
-           "code": 16837,
-           "err_msg": "数据更新失败，具体错误信息可联系知晓云微信客服：minsupport3 获取。"
-         }
-       }
-     ]
-  }
-}
-```
-
-异步操作时，then 回调中的 res 对象结构如下：
-
-```json
-{
-  "statusCode": 200, // 200 表示更新成功, 注意这不代表所有数据都更新成功，具体要看 operation_result 字段
-  "data": {
-    "statys": "ok",
-    "operation_id": 1 // 可以用来查询到最终执行的结果
-  }
-}
-```
-
-> **info**
-> 获取异步执行结果，请查看接口[文档](/js-sdk/async-job.md)
