@@ -233,6 +233,8 @@
         * [内容操作](flutter-sdk/content/operate.md)
     * [文件](flutter-sdk/file/README.md)
         * [文件操作](flutter-sdk/file/file.md)
+    * [错误码和错误对象](flutter-sdk/error-code.md)
+    * [获取服务器时间](flutter-sdk/server-date.md)
 
 ----
 
