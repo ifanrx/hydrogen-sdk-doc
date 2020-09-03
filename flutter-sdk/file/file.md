@@ -1,201 +1,55 @@
 {% import "/js-sdk/macro/total_count.md" as totalCount %}
 
-{% macro filter() %}
-文件查询与[数据表查询](../schema/query.md)方法一致，但只支持以下指定字段的筛选
-
-| 支持字段       |  类型  | 说明 |
-| :------------ | :----- | :--- |
-| id            | String | 文件 id |
-| name          | String | 文件名 |
-| size          | Number | 文件大小，以字节为单位 |
-| category_id   | String | 文件分类 id |
-| category_name | String | 文件分类名 |
-| created_at    | Integer| 创建时间 （格式为 unix 时间戳） |
-{% endmacro %}
-
 # 文件操作
-
-实例化一个 `BaaS.File` 对象，以下操作都是在该对象上进行操作，如下进行实例化：
-
-{% ifanrxCodeTabs %}
-`let MyFile = new wx.BaaS.File()`
-{% endifanrxCodeTabs %}
 
 ## 文件上传
 
-`MyFile.upload(fileParams, metaData)`
-
-**fileParams 参数说明（必须）**
-
-| 参数                 |  类型   | 必填 | 说明 |
-| :-------------------| :----- | :--- | :--------- |
-| fileParams.filePath | String |  Y  | 本地资源路径 |
-| fileParams.fileObj | String |  Y  | 文件对象（在 Web 端上传时提供该参数）|
-| fileParams.fileType | String |  Y  | 文件类型，image / video / audio（在支付宝端上传时提供该参数）|
+`FileManager.upload(File file, Map<String, dynamic> metaData)`
 
 **metaData 参数说明（可选）**
 
 | 参数                   |  类型  | 必填 | 说明 |
 | :---------------------| :----- | :--- | :--- |
-| metaData.categoryID   | String |  N  | 要上传的文件分类 ID |
-| metaData.categoryName | String |  N  | 要上传的文件分类名 |
+| categoryID            | String |  N  | 要上传的文件分类 ID |
+| categoryName          | String |  N  | 要上传的文件分类名 |
 
 > **info**
 > 请勿同时填写 categoryID 和 categoryName，默认只使用 categoryID
 
-**返回参数说明**
+**返回 `CloudFile` 对象**
 
-res.data:
-
-|   参数  | 类型   | 说明 |
-| :----- | :----- | :-- |
-| status | String | 成功返回 'ok' |
-| path   | String | 上传成功后的访问地址 URL |
-| file   | Object | 包含文件详细信息，详见以下 |
-
-file 参数说明：
-
-| 参数        |  类型  | 说明 |
-| :--------- | :----- | :------ |
-| path       | String | 上传成功后的访问地址 URL (v2.2.0 版本新增) |
-| cdn_path   | String | 文件在 CDN 中的相对路径 |
-| created_at | String | 文件上传时间 |
-| id         | Object | 文件 ID |
-| mime_type  | String | 文件媒体类型 |
-| name       | String | 文件名 |
-| size       | Number | 以字节为单位 |
+| 参数           |  类型        | 说明 |
+| :------------ | :-----       | :--- |
+| id            | String       | 文件 id |
+| name          | String       | 文件名 |
+| size          | int          | 文件大小，以字节为单位 |
+| category      | FileCategory | 文件归属的目录 |
+| path          | String       | 上传成功后的访问地址 URL |
+| cdn_path      | String       | 文件在 CDN 中的相对路径 |
+| created_at    | int          | 创建时间 （格式为 unix 时间戳） |
+| mime_type     | String       | 文件媒体类型 |
+| media_type    | String       | 如果是视频/图片，表示文件的格式 |
 
 **示例代码**
 
-{% tabs first="微信小程序", second="Web" , third="支付宝小程序" %}
+```Dart
+import 'package:file_picker/file_picker.dart';
 
-{% content "first" %}
-```js
-wx.chooseImage({
-  success: function(res) {
-    let MyFile = new wx.BaaS.File()
-    let fileParams = {filePath: res.tempFilePaths[0]}
-    let metaData = {categoryName: 'SDK'}
-
-    MyFile.upload(fileParams, metaData).then(res => {
-      // 上传成功
-      let data = res.data  // res.data 为 Object 类型
-    }, err => {
-      // HError 对象
-    })
-  }
-})
-```
-
-#### 监听上传进度变化事件和中断上传任务 (仅限微信小程序)
-在 1.1.2 版本的基础上，1.8.0 版本中增加了对 [UploadTask](https://developers.weixin.qq.com/miniprogram/dev/api/UploadTask.html) 的支持， `upload` API 返回的 Promise 对象上增加了 `onProgressUpdate` 和 `abort` 方法，使文件上传增加了以下两个特性：
-
-- 监听上传进度：`onProgressUpdate(callback)`
-- 中断上传任务：`abort()`
-
-callback 接收一个对象类型的参数，其结构如下：
-
-| 参数                     |  类型  | 说明 |
-| :------------------------| :----- | :------ |
-| progress                 | Number | 上传进度百分比	 |
-| totalBytesSent           | Number | 已经上传的数据长度，单位 Bytes	|
-| totalBytesExpectedToSend | Number | 预期需要上传的数据总长度，单位 Bytes |
-
-
-**示例代码**
-
-```js
-wx.chooseImage({
-  success: function(res) {
-    let MyFile = new wx.BaaS.File()
-    let fileParams = {filePath: res.tempFilePaths[0]}
-    let metaData = {categoryName: 'SDK'}
-
-    // upload API 返回一个 Promise，1.8.0 后返回值增加了 onProgressUpdate 和 abort 方法
-    let uploadTask =  MyFile.upload(fileParams, metaData)
-
-    // 文件成功上传的回调
-    uploadTask.then(res=>{
-
-    })
-
-    // 监听上传进度
-    uploadTask.onProgressUpdate(e => {
-      console.log(e)
-    })
-
-    // 600 毫秒后中断上传
-    setTimeout(()=> uploadTask.abort(), 600)
-  }
-})
-```
-
-**onProgressUpdate 接收参数示例**
-
-```json
-{
-  "progress":80,
-  "totalBytesSent":1507328,
-  "totalBytesExpectedToSend":1883803
+try {
+  Map<String, dynamic> metaData = {
+    'categoryID': currentCate,
+  };
+  File file = await FilePicker.getFile();
+  CloudFile cloudFile = await FileManager.upload(file, metaData);
+  // 操作成功
+} catch (e) {
+  // 操作失败
 }
 ```
 
-
-{% content "second" %}
-
-```html
-<input type="file" id="file">
-```
-```javascript
-var f = document.getElementById('file')
-
-f.addEventListener('change', function(e) {
-   let File = new BaaS.File()
-   let fileParams = {fileObj: e.target.files[0]}
-
-   File.upload(fileParams).then(res => {
-     console.log(res)
-   }, err => {
-   // HError
-   })
-})
-```
-
-
-{% content "third" %}
-
-```js
-my.chooseImage({
-  success: function(res) {
-    let MyFile = new wx.BaaS.File()
-    let fileParams = {
-      filePath: res.apFilePaths[0],
-      fileType: 'image',
-    }
-    let metaData = {categoryName: 'SDK'}
-
-    MyFile.upload(fileParams, metaData).then(res => {
-      // 上传成功
-      let data = res.data  // res.data 为 Object 类型
-    }, err => {
-      // HError 对象
-    })
-  }
-})
-```
-
-{% endtabs %}
-
-
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
-
-> **info**
-> file 字段可用于含有 file 类型的数据表的数据操作，详细见 [新增数据项](../schema/create-record.md)
-
-
 ## 获取文件详情
 
-`MyFile.get(fileID)`
+`FileManager.get(String fileID)`
 
 **参数说明**
 
@@ -203,125 +57,49 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | :----- | :-- -- | :-- | :-- |
 | fileID | String |  Y  | 文件 id |
 
-**返回参数说明**
-
-res.data:
-
-| 参数        | 类型   | 说明 |
-| :--------- | :----- | :------ |
-| category   | Object | 包含文件分类信息，详见以下 |
-| created_at | String | 文件上传时间 |
-| id         | Object | 文件 ID |
-| mime_type  | String | 文件媒体类型 |
-| name       | String | 文件名 |
-| path       | String | 上传成功后的访问地址 URL |
-| cdn_path   | String | 文件在 CDN 中的相对路径 (v2.2.0 新增) |
-| size       | Number | 以字节为单位 |
-
-category 参数说明：
-
-| 参数  | 类型   | 说明 |
-| :--- | :----- | :-- |
-| id   | String | 分类 ID |
-| name | String | 分类名 |
-
 **示例代码**
 
-{% ifanrxCodeTabs %}
-```js
-let MyFile = new wx.BaaS.File()
-MyFile.get('5a2fe93308443e313a428c4f').then((res) => {
-  // success
-}, err => {
-  // HError 对象
-})
-```
-{% endifanrxCodeTabs %}
-
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
-
-**返回示例**
-
-```json
-{
-  "category": {
-    "id": "5a2fe91508443e3123dbe1cb",
-    "name": "科技"
-  },
-  "created_at": 1507822469,
-  "id": "5a2fe93308443e313a428c4f",
-  "mime_type": "image/png",
-  "name": "sdk-test-minapp2.png",
-  "path": "https://cloud-minapp-7894.cloud.ifanrusercontent.com/1eOledhCbvjgaCSE.png",
-  "size": 3879
+```Dart
+try {
+  CloudFile MyFile = await FileManager.get('5a2fe93308443e313a428c4f');
+  // 操作成功
+} on HError catch(e) {
+  // 操作失败
 }
 ```
 
+HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 
 ## 删除文件
 
-`MyFile.delete(fileID)`
+`FileManager.delete(fileID)`
 
 **参数说明**
 
 | 参数    | 类型                   | 必填 | 说明 |
 | :----- | :--------------------- | :-- | :-- |
-| fileID | String or String Array | Y   | 文件 id (可为数组) |
+| fileID | String or `List<String>` | Y   | 文件 id (可为数组) |
 
 **示例代码**
 
-{% ifanrxCodeTabs %}
-```js
-let MyFile = new wx.BaaS.File()
-
-MyFile.delete('5a2fe93308443e313a428c4f').then()
-
-MyFile.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']).then()
+```Dart
+try {
+  await FileManager.delete('5a2fe93308443e313a428c4f');
+  await FileManager.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']);
+  // 操作成功
+} on HError catch(e) {
+  // 操作失败
+}
 ```
-{% endifanrxCodeTabs %}
 
 > **info**
 > 删除单个文件，如果权限不足，会返回 401；删除多个文件，如果权限不足，则直接跳过该文件
 
-## 获取符合条件的文件总数
+## 文件列表
 
-`BaaS.File#count()`
+### 查询，获取文件列表
 
-> **info**
-> SDK v3.0 新增
-
-{{filter()}}
-
-{% ifanrxCodeTabs comment="目前会自动将 wx.BaaS 替换为 window 和 my"  %}
-```js
-let MyFile = new wx.BaaS.File()
-let query = new wx.BaaS.Query()
-query.compare('category_name', '=', categoryName)
-query.contains('name', substr)
-MyFile.setQuery(query).count().then(num => {
-  // success
-  console.log(num)  // 10
-}, err => {
-  // err
-})
-```
-{% endifanrxCodeTabs %}
-
-## 查询，获取文件列表
-
-`BaaS.File#find(options)`
-
-**参数说明**
-
-options:
-
-| 参数          | 类型    | 必填 | 默认 | 说明 |
-| :------------ | :------ | :--- | :--- |:--- |
-| withCount     | boolean |  否  | `false` (SDK v3.x) / `true` (SDK v2.x) | 是否返回 total_count |
-
-{{totalCount.withCountTips()}}
-
-{{filter()}}
+`FileManager.find([Query query])`
 
 文件查询与[数据表查询](../schema/query.md)方法一致，但只支持以下指定字段的筛选
 
@@ -336,38 +114,23 @@ options:
 
 **示例代码**
 
-{% ifanrxCodeTabs %}
-```js
-let MyFile = new wx.BaaS.File()
+```Dart
+try {
+  // 查找所有文件
+  CloudFileList cloudFiles = await FileManager.find();
 
-// 查找所有文件
-MyFile.find()
+  let query = new wx.BaaS.Query();
+  // 查询某一文件分类下的所有文件
+  query.compare('category_name', '=', categoryName);
+  // 查询文件名包含指定字符串的文件
+  query.contains('name', substr);
 
-let query = new wx.BaaS.Query()
-// 查询某一文件分类下的所有文件
-query.compare('category_name', '=', categoryName)
-// 查询文件名包含指定字符串的文件
-query.contains('name', substr)
-
-
-MyFile.setQuery(query).find()
+  CloudFileList cloudFiles = await FileManager.find(query);
+  // 操作成功
+} on HError catch(e) {
+  // 操作失败
+}
 ```
-{% endifanrxCodeTabs %}
-
-{% ifanrxCodeTabs %}
-```js
-let MyFile = new wx.BaaS.File()
-
-// 查找所有文件
-MyFile.find()
-
-// 按创建时间范围查询: 2018年10月24日17时10分57秒 至今上传的文件
-let query = wx.BaaS.Query.and(new wx.BaaS.Query().compare('created_at', '<=', Math.ceil(Date.now() / 1000)), new wx.BaaS.Query().compare('created_at', '>=', 1540372257))
-
-MyFile.setQuery(query).find()
-```
-{% endifanrxCodeTabs %}
-
 
 ### 排序
 文件查询排序与[数据表排序](../schema/limit-and-order.md)方法一致，但只支持对以下指定字段进行排序
@@ -380,48 +143,102 @@ MyFile.setQuery(query).find()
 
 **示例代码**
 
-{% ifanrxCodeTabs %}
-```js
-let MyFile = new wx.BaaS.File()
-MyFile.orderBy('-created_at').find().then()
+```Dart
+try {
+  Query query = Query();
+  query.orderBy('-created_at');
+  CloudFileList cloudFiles = await FileManager.find(query);
+  // 操作成功
+} on HError catch(e) {
+  // 操作失败
+}
 ```
-{% endifanrxCodeTabs %}
 
 ### 分页
 文件查询排序与[数据表分页](../schema/limit-and-order.md)方法一致
 
 **示例代码**
 
-{% ifanrxCodeTabs %}
-```js
-let MyFile = new wx.BaaS.File()
-MyFile.limit(10).offset(5).find().then()
-```
-{% endifanrxCodeTabs %}
-
-**返回示例**
-
-成功时 res 结构如下
-```json
- {
-  "meta": {
-    "limit": 20,
-    "next": "/dserve/v1.3/uploaded-file/?limit=20&offset=20&where=%7B%22%24and%22%3A%5B%7B%22category_name%22%3A%7B%22%24eq%22%3A%22%E5%9B%BE%E7%89%87%22%7D%7D%5D%7D",
-    "offset": 0,
-    "previous": null,
-    "total_count": 36
-  },
-  "objects": [{
-    "category": {"id": "5b73f36f2a4f56246e76b7b3", "name": "图片"},
-    "created_at": 1534823603,
-    "id": "5b7b8cb3839c611ab4eb2599",
-    "mime_type": "image/jpeg",
-    "name": "wxc6b86e382a1e3294.o6zAJs5dCuYRqqJOq0MwNPlGiFVM.CGLDGRT03IsI7fa51717abe74ed34e0c9cc77dbe7079.jpg",
-    "path": "https://cloud-minapp-11033.cloud.ifanrusercontent.com/1frxjPBNFAOrQtOS.jpg",
-    "size": 11189
-  }]
+```Dart
+try {
+  Query query = Query();
+  query
+    ..limit(10)
+    ..offset(5);
+  CloudFileList cloudFiles = await FileManager.find(query);
+  // 操作成功
+} on HError catch(e) {
+  // 操作失败
 }
 ```
+
+## 文件分类
+
+### 获取文件分类
+
+`FileManager.getCategory(String cateID)`
+
+**参数说明**
+
+| 参数        | 类型   | 必填 | 说明 |
+| :--------- | :----- | :-- | :-- |
+| cateID     | String | Y   | 文件分类 ID |
+
+**示例代码**
+
+```Dart
+try {
+  FileCategory cate = await FileManager.getCategory('5a2fe91508443e3123dbe1cb');
+  // 操作成功
+} on HError catch(e) {
+  // 操作失败
+}
+```
+
+### 查询指定分类下的文件
+
+`FileManager.find([Query query])`
+
+**示例代码**
+
+```Dart
+try {
+  Query query = Query();
+  Where where = Where.compare('category_id', '=', '5a2fe91508443e3123dbe1cb');
+  query.where(where);
+  CloudFileList files = await FileManager.find(query);
+  // 操作成功
+} on HError catch(e) {
+  // 操作失败
+}
+```
+
+**参数说明**
+
+| 参数        | 类型   | 必填 | 说明 |
+| :--------- | :----- | :-- | :-- |
+| query      | Query  | N   | 查询条件，详见[数据表 - 查询](../schema/query.md) |
+
+## 查询文件分类
+
+`FileManager.getCategoryList([Query query])`
+
+文件分类查询与[数据表查询](../schema/query.md)方法一致，但只支持以下指定字段的筛选：
+
+```Dart
+try {
+  FileCategoryList cates = await FileManager.getCategoryList();
+  // 操作成功
+} on HError catch(e) {
+  // 操作失败
+}
+```
+
+**参数说明**
+
+| 参数        | 类型   | 必填 | 说明 |
+| :--------- | :----- | :-- | :-- |
+| query      | Query  | N   | 查询条件，详见[数据表 - 查询](../schema/query.md) |
 
 ## 图片云处理
 
@@ -442,7 +259,7 @@ https://cloud-minapp-7894.cloud.ifanrusercontent.com/1eiuEUuISgOstoVZ.png!/water
 > **info**
 > SDK 版本要求 >= 1.16.0
 
-`MyFile.genVideoSnapshot(params)`
+`FileManager.genVideoSnapshot(Map<String, dynamic> params)`
 
 **params参数说明**
 
@@ -478,23 +295,23 @@ res:
 
 **示例代码**
 
-```js
-let MyFile = new wx.BaaS.File()
-let params = {
-  "source": "xxxxxxxxxx",
-  "save_as": "hello.png",
-  "point": "00:00:10",
-  "category_id": "5c18bc794e1e8d20dbfcddcc",
-  "random_file_link": false
+```Dart
+try {
+  Map<String, dynamic> params = {
+    "source": "xxxxxxxxxx",
+    "save_as": "hello.png",
+    "point": "00:00:10",
+    "category_id": "5c18bc794e1e8d20dbfcddcc",
+    "random_file_link": false
+  }
+  Map<String, dynamic> cover = await FileManager.genVideoSnapshot(params)
+  // 操作成功
+} on HError catch(e) {
+  // 操作失败
 }
-MyFile.genVideoSnapshot(params).then((res) => {
-  // success
-}, err => {
-  // HError 对象
-})
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 
 **返回示例**
 
@@ -518,59 +335,50 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## M3U8 视频拼接
 
-> **info**
-> SDK 版本要求 >= 1.16.0
-
-
-`MyFile.videoConcat(params)`
+`FileManager.videoConcat(Map<String, dynamic> params)`
 
 **params参数说明**
 
-|  参数  |  类型   | 必填 | 说明 |
-| :----- | :-- -- | :-- | :-- |
-| m3u8s | Array |  Y  | 视频文件的 id 列表，按提交的顺序进行拼接 |
-| save_as   | String |  Y  | 截图保存的文件名 |
-| category_id   | String |  N  | 文件所属类别 ID |
+|  参数               |  类型   | 必填 | 说明 |
+| :-----             | :----   | :-- | :-- |
+| m3u8s              | Array   |  Y  | 视频文件的 id 列表，按提交的顺序进行拼接 |
+| save_as            | String  |  Y  | 截图保存的文件名 |
+| category_id        | String  |  N  | 文件所属类别 ID |
 | random_file_link   | Boolean |  N  | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true |
 
 **返回参数说明**
 
-res:
+Map<String, dynamic> res:
 
-| 参数        | 类型   | 说明 |
-| :--------- | :----- | :------ |
-| created_at   | Integer | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 上传成功后的访问地址 URL |
-| created_by   | Integer | 创建者 id |
-| mime_type   | String | mime_type 类型 |
-| media_type   | String | 媒体类型 |
-| size   | Integer | 文件大小 |
-| name   | String | 文件名 |
-| status   | String | 文件状态 |
-| reference   | String | 引用 |
-| cdn_path   | String | 文件在 CDN 中的相对路径 |
-| updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
-| categories   | String | 文件所属类别 |
-| _id   | String | 本条记录 ID |
+| 参数          | 类型      | 说明 |
+| :---------   | :-----    | :------ |
+| created_at   | Integer   | 创建时间 （格式为 unix 时间戳) |
+| path         | String    | 上传成功后的访问地址 URL |
+| created_by   | Integer   | 创建者 id |
+| mime_type    | String    | mime_type 类型 |
+| media_type   | String    | 媒体类型 |
+| size         | Integer   | 文件大小 |
+| name         | String    | 文件名 |
+| status       | String    | 文件状态 |
+| reference    | String    | 引用 |
+| cdn_path     | String    | 文件在 CDN 中的相对路径 |
+| updated_at   | Integer   | 更新时间 （格式为 unix 时间戳) |
+| categories   | String    | 文件所属类别 |
+| _id          | String    | 本条记录 ID |
 
 **示例代码**
 
-```js
-let MyFile = new wx.BaaS.File()
-let params = {
+```Dart
+Map<String, dynamic> params = {
   "m3u8s": ["xxxxxxxxxx", "xxxxxxxxxx"],
   "save_as": "hello.m3u8",
   "category_id": "5c18bc794e1e8d20dbfcddcc",
   "random_file_link": false,
 }
-MyFile.videoConcat(params).then((res) => {
-  // success
-}, err => {
-  // HError 对象
-})
+Map<String, dynamic> 
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 
 **返回示例**
 
@@ -594,62 +402,58 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## M3U8 视频剪辑
 
-> **info**
-> SDK 版本要求 >= 1.16.0
-
-
-`MyFile.videoClip(params)`
+`FileManager.videoClip(Map<String, dynamic> params)`
 
 **params参数说明**
 
-|  参数  |  类型   | 必填 | 说明 |
-| :----- | :-- -- | :-- | :-- |
-| m3u8 | String |  Y  | 视频文件的 id |
-| save_as   | String |  Y  | 截图保存的文件名 |
-| category_id   | String |  N  | 文件所属类别 ID |
-| random_file_link   | Boolean |  N  | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true |
-| include   | Array |  N  | 包含某段内容的开始结束时间，单位是秒。当 index 为 false 时，为开始结束分片序号 |
-| exclude   | Array |  N  | 不包含某段内容的开始结束时间，单位是秒。当 index 为 false 时，为开始结束分片序号 |
-| index   | Boolean |  N  | include 或者 exclude 中的值是否为 ts 分片序号，默认为 false |
+|  参数               |  类型       | 必填 | 说明 |
+| :-----             | :----       | :-- | :-- |
+| m3u8               | String      |  Y  | 视频文件的 id |
+| save_as            | String      |  Y  | 截图保存的文件名 |
+| category_id        | String      |  N  | 文件所属类别 ID |
+| random_file_link   | Boolean     |  N  | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true |
+| include            | Array       |  N  | 包含某段内容的开始结束时间，单位是秒。当 index 为 false 时，为开始结束分片序号 |
+| exclude            | Array       |  N  | 不包含某段内容的开始结束时间，单位是秒。当 index 为 false 时，为开始结束分片序号 |
+| index              | Boolean     |  N  | include 或者 exclude 中的值是否为 ts 分片序号，默认为 false |
 
 
 **返回参数说明**
 
 res:
 
-| 参数        | 类型   | 说明 |
-| :--------- | :----- | :------ |
-| created_at   | Integer | 创建时间 （格式为 unix 时间戳) |
-| path   | String | 上传成功后的访问地址 URL |
-| created_by   | Integer | 创建者 id |
-| mime_type   | String | mime_type 类型 |
-| media_type   | String | 媒体类型 |
-| size   | Integer | 文件大小 |
-| name   | String | 文件名 |
-| status   | String | 文件状态 |
-| reference   | String | 引用 |
-| cdn_path   | String | 文件在 CDN 中的相对路径 |
-| updated_at   | Integer | 更新时间 （格式为 unix 时间戳) |
-| categories   | String | 文件所属类别 |
-| _id   | String | 本条记录 ID |
+| 参数              | 类型              | 说明 |
+| :---------       | :-----            | :------ |
+| created_at       | Integer           | 创建时间 （格式为 unix 时间戳) |
+| path             | String            | 上传成功后的访问地址 URL |
+| created_by       | Integer           | 创建者 id |
+| mime_type        | String            | mime_type 类型 |
+| media_type       | String            | 媒体类型 |
+| size             | Integer           | 文件大小 |
+| name             | String            | 文件名 |
+| status           | String            | 文件状态 |
+| reference        | String            | 引用 |
+| cdn_path         | String            | 文件在 CDN 中的相对路径 |
+| updated_at       | Integer           | 更新时间 （格式为 unix 时间戳) |
+| categories       | String            | 文件所属类别 |
+| _id              | String            | 本条记录 ID |
 
 
 **示例代码**
 
-```js
-let MyFile = new wx.BaaS.File()
-let params = {
-  "m3u8": "xxxxxxxxxx",
-  "include": [0, 20],
-  "save_as": "0s_20s.m3u8",
-  "category_id": "5c18bc794e1e8d20dbfcddcc",
-  "random_file_link": false
+```Dart
+try {
+  Map<String, dynamic> params = {
+    "m3u8": "xxxxxxxxxx",
+    "include": [0, 20],
+    "save_as": "0s_20s.m3u8",
+    "category_id": "5c18bc794e1e8d20dbfcddcc",
+    "random_file_link": false
+  };
+  Map<String, dynamic> video = FileManager.videoConcat(params);
+  // 操作成功
+} on HError catch(e) {
+  // 操作失败
 }
-MyFile.videoClip(params).then((res) => {
-  // success
-}, err => {
-  // HError 对象
-})
 ```
 
 HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
@@ -676,11 +480,7 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## M3U8 时长和分片信息
 
-> **info**
-> SDK 版本要求 >= 1.16.0
-
-
-`MyFile.videoMeta(params)`
+`FileManager.videoMeta(Map<String, dynamic> params)`
 
 **params参数说明**
 
@@ -696,30 +496,30 @@ res:
 | :--------- | :----- | :------ |
 | status_code   | Integer | 状态码 |
 | message   | String | 返回信息 |
-| meta   | Object | 详见以下 |
+| meta   | `Map<String, dynamic>` | 详见以下 |
 
 meta 参数说明：
 
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
 | duartion   | Number | m3u8 时长 |
-| points   | Array | 时间点 |
+| points   | `List<num>` | 时间点 |
 
 **示例代码**
 
-```js
-let MyFile = new wx.BaaS.File()
-let params = {
-  "m3u8": "xxxxxxxxxx"
+```Dart
+try {
+  let params = {
+    "m3u8": "xxxxxxxxxx"
+  };
+  Map<String, dynamic> meta = FileManager.videoMeta(params);
+  // 操作成功
+} on HError catch(e) {
+  // 操作失败
 }
-MyFile.videoMeta(params).then((res) => {
-  // success
-}, err => {
-  // HError 对象
-})
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 
 **返回示例**
 
@@ -756,11 +556,7 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## 音视频的元信息
 
-> **info**
-> SDK 版本要求 >= 1.16.0
-
-
-`MyFile.videoAudioMeta(params)`
+`FileManager.videoAudioMeta(Map<String, dynamic> params)`
 
 **params参数说明**
 
@@ -774,15 +570,15 @@ res:
 
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
-| format   | Object | 音视频格式信息，详见以下 |
-| streams   | Array | stream 列表，详见以下 |
+| format   | Map<String, dynamic> | 音视频格式信息，详见以下 |
+| streams   | `List<Map<String, dynamic>>` | stream 列表，详见以下 |
 
 format 参数说明：
 
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
-| bitrate   | Integer | 比特率 |
-| duration   | Number | 时长 |
+| bitrate   | int | 比特率 |
+| duration   | num | 时长 |
 | format   | String | 容器格式 |
 | fullname   | String | 容器格式全称 |
 
@@ -790,34 +586,34 @@ streams 参数说明：
 
 | 参数        | 类型   | 说明 |
 | :--------- | :----- | :------ |
-| index   | Integer | 表示第几路流 |
+| index   | int | 表示第几路流 |
 | type   | String | 一般情况下, video 或 audio |
-| bitrate   | Integer | 流码率 |
+| bitrate   | int | 流码率 |
 | codec   | String | 流编码 |
 | codec_desc   | String | 流编码说明 |
-| duration   | Number | 流时长 |
-| video_fps   | Number | (视频流)视频帧数 |
-| video_height   | Integer | (视频流)视频高度 |
-| video_width   | Integer | (视频流)视频宽度 |
-| audio_channels   | Integer | (音频流)音频通道数 |
-| audio_samplerate   | Integer | (音频流)音频采样率 |
+| duration   | num | 流时长 |
+| video_fps   | num | (视频流)视频帧数 |
+| video_height   | int | (视频流)视频高度 |
+| video_width   | int | (视频流)视频宽度 |
+| audio_channels   | int | (音频流)音频通道数 |
+| audio_samplerate   | int | (音频流)音频采样率 |
 
 
 **示例代码**
 
-```js
-let MyFile = new wx.BaaS.File()
-let params = {
-  "source": "xxxxxxxxxx"
+```Dart
+try {
+  Map<String, dynamic> params = {
+    "source": "xxxxxxxxxx"
+  };
+  FileManager.videoAudioMeta(params);
+  // 操作成功
+} on HError catch(e) {
+  // 操作失败
 }
-MyFile.videoAudioMeta(params).then((res) => {
-  // success
-}, err => {
-  // HError 对象
-})
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 
 **返回示例**
 
@@ -863,3 +659,51 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
   }
 }
 ```
+
+## 数据对象
+
+### CloudFile
+
+| 参数           | 类型         | 说明 |
+| :------------ | :-----       | :--- |
+| id            | String       | 文件 id |
+| name          | String       | 文件名 |
+| size          | int          | 文件大小，以字节为单位 |
+| category      | FileCategory | 文件归属的目录 |
+| path          | String       | 上传成功后的访问地址 URL |
+| cdn_path      | String       | 文件在 CDN 中的相对路径 |
+| created_at    | int          | 创建时间 （格式为 unix 时间戳） |
+| mime_type     | String       | 文件媒体类型 |
+| media_type    | String       | 如果是视频/图片，表示文件的格式 |
+
+### CloudFileList
+
+| 参数           | 类型                  | 说明 |
+| :------------ | :-----                | :--- |
+| limit         | int                   | 返回文件的最大个数 |
+| offset        | int                   | 返回文件的起始偏移值 |
+| total_count   | int                   | 文件总数 |
+| next          | String                | 下一页地址，若为 null ，表示当前为最后一页 |
+| previous      | String                | 上一页地址，若为 null ，表示当前为第一页 |
+| files         | `List<CloudFile>`       | 文件列表，每个元素为 CloudFile 类型 |
+
+### FileCategory
+
+| 参数           | 类型         | 说明 |
+| :------------ | :-----       | :--- |
+| id            | String       | 分类 id |
+| name          | String       | 分类名称 |
+| files         | int          | 文件数量 |
+| created_at    | int          | 创建时间 （格式为 unix 时间戳） |
+| updated_at    | int          | 更新日期 （格式为 unix 时间戳） |
+
+### FileCategoryList
+
+| 参数                    | 类型                     | 说明 |
+| :------------          | :-----                   | :--- |
+| limit                  | int                      | 返回文件的最大个数 |
+| offset                 | int                      | 返回文件的起始偏移值 |
+| total_count            | int                      | 文件总数 |
+| next                   | String                   | 下一页地址，若为 null ，表示当前为最后一页 |
+| previous               | String                   | 上一页地址，若为 null ，表示当前为第一页 |
+| fileCategories         | `List<FileCategory>`       | 分类列表，每个元素为 FileCategory 类型 |
