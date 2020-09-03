@@ -4,7 +4,7 @@
 
 ----
 
-<!-- * [简介](README.md)
+* [简介](README.md)
 
 * [新手入门](newbies/README.md)
     * [新手入门 - 微信小程序](newbies/wechat.md)
@@ -15,9 +15,9 @@
     * [新手入门 - iOS](newbies/swiftui.md)
     * [新手入门 - Android](newbies/android.md)
     * [新手入门 - 字节跳动（头条、抖音等）小程序](newbies/bytedance.md)
-    * [新手入门 - 京东小程序](newbies/jingdong.md) -->
+    * [新手入门 - 京东小程序](newbies/jingdong.md)
 
-<!-- ----
+----
 
 * [控制台使用指南](dashboard/README.md)
     * [导览](dashboard/guide.md)
@@ -214,7 +214,7 @@
     * [iOS-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
     * [SwiftUI-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)
 
----- -->
+----
 
 * [Flutter SDK](flutter-sdk/README.md)
     * [上手指南](flutter-sdk/quick-start.md)
@@ -237,10 +237,9 @@
         * [内容操作](flutter-sdk/content/operate.md)
     * [文件](flutter-sdk/file/README.md)
         * [文件操作](flutter-sdk/file/file.md)
-        * [文件分类操作](flutter-sdk/file/category.md)
 
 ----
-<!-- 
+
 * [知晓云开放 API](open-api/README.md)
     * [授权认证](open-api/authentication.md)
     * [数据模块](open-api/data/README.md)
@@ -415,4 +414,4 @@
     * [常见问题](support/qA.md)
     * [服务协议](support/terms.md)
     * [技术细节](support/technical-notes.md)
-    * [认证信息](support/auth-info.md) -->
+    * [认证信息](support/auth-info.md)
