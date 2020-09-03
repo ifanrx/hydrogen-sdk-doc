@@ -200,12 +200,11 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 | 数据类型 |                            可使用的查询操作                                             | 说明 |
 |:---------|:--------------------------------------------------------------------------------------- |:-----|
-| string   | =, !=, isNull                                                                           | -    |
-| integer  | =, >, >=, <, <=, !=, isNull                                                             | -    |
-| number   | =, >, >=, <, <=, !=, isNull                                                             | -    |
-| array    | isNull, arrayContains                                                                   | file、geojson、object、date 类型的 array 不支持查询操作 |
-| boolean  | =, !=, isNull                                                                           | -    |
-| date     | =, >, >=, <, <=, !=, isNull                                                             | -    |
+| string   | =, !=                                                                           | -    |
+| integer  | =, >, >=, <, <=, !=                                                             | -    |
+| number   | =, >, >=, <, <=, !=                                                             | -    |
+| boolean  | =, !=                                                                           | -    |
+| date     | =, >, >=, <, <=, !=                                                             | -    |
 
 
 **请求示例**
