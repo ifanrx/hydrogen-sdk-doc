@@ -220,7 +220,7 @@ const event = 'create' // create、update 或 delete
 // 实例化查询对象
 let query = new wx.BaaS.Query()
 
-// 设置查询条件（比较、isNull 判断、数组包含等）
+// 设置查询条件（如比较）
 query.compare('key', '=', 'sample')
 
 // 应用查询对象
