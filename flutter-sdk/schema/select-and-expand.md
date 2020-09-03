@@ -1,19 +1,16 @@
 # 字段过滤与扩展
 
-> **danger**
-> 该操作适用于 SDK version >= v1.3.0
-
 ## 字段过滤
 
 1. ** 使用 select 来控制请求返回的字段 **
 
   例如：
 
-  `Product.select('created_by')`
+  `query.select('created_by')`
 
-  `Product.select(['pointer', 'created_by'])`
+  `query.select(['pointer', 'created_by'])`
 
-2. ** 通过 `select('pointer.attr')` 指定 pointer 展开后只返回 pointer 中的某些字段 (SDK >= 3.6.0) **
+2. ** 通过 `select('pointer.attr')` 指定 pointer 展开后只返回 pointer 中的某些字段 **
 
   > **info**
   > `pointer` 字段已经设置了 `expand`，该操作才生效，否则会被忽略。
@@ -22,7 +19,11 @@
 
   例如：
 
-  `Product.expand(['created_by', 'pointer']).select(['created_by.nickname', 'pointer.count'])`
+  ```dart
+  query.limit(1);
+  query.select(['created_by.nickname', 'pointer.count']);
+  query.expand(['created_by', 'pointer']);
+  ```
 
 > **info**
 > `select('field')` `select(['field_a', 'field_b'])` 为“规定返回”，
@@ -34,43 +35,43 @@
 
 **在 get 方法中使用**
 
-{% ifanrxCodeTabs %}
-```js
-var Product = new wx.BaaS.TableObject(tableName)
-var recordID = 'xxxxxxxx' // 数据行 id
+```dart
+TableObject product = new TableObject(tableName);
+String recordId = 'xxxxxxxx' // 数据行 id
 
 // 规定返回特定字段
-Product.select('created_at').get(recordID)
+product.get(recordId, select: 'created_at');
 // or
-Product.select(['created_at', 'created_by']).get(recordID)
+product.get(recordId, select: ['created_at', 'created_by']);
 
 // 规定不返回特定字段
-Product.select('-created_at').get(recordID)
+product.get(recordId, select: '-created_at');
 // or
-Product.select(['-created_at', '-created_by']).get(recordID)
+product.get(recordId, select: ['-created_at', '-created_by']);
 ```
-{% endifanrxCodeTabs %}
 
 **在 find 方法中使用**
 
-{% ifanrxCodeTabs %}
-```js
-var Product = new wx.BaaS.TableObject(tableName)
+```dart
+TableObject product = new TableObject(tableName);
 
-var query = new wx.BaaS.Query()
-query.compare('amount', '>', 0)
+Query query = new Query();
+query.where(Where.compare('amount', '>', 0));
 
 // 规定返回特定字段
-Product.setQuery(query).select('created_at').find()
+query.select('created_at');
+product.find(query: query);
 // or
-Product.setQuery(query).select(['created_at', 'created_by']).find()
+query.select(['created_at', 'created_by']);
+product.find(query: query);
 
 // 规定不返回特定字段
-Product.setQuery(query).select('-created_at').find()
+query.select('-created_at');
+product.find(query: query);
 // or
-Product.setQuery(query).select(['-created_at', '-created_by']).find()
+query.select(['-created_at', '-created_by']);
+product.find(query: query);
 ```
-{% endifanrxCodeTabs %}
 
 
 ## 字段扩展
@@ -81,14 +82,14 @@ Product.setQuery(query).select(['-created_at', '-created_by']).find()
 
   例如：
 
-  `Product.expand('created_by')`
+  `query.expand('created_by')`
 
-  `Product.expand(['pointer', 'created_by'])`
+  `query.expand(['pointer', 'created_by'])`
 
 > **info**
-> created_by 字段是一个特殊的 pointer，开发者无需配置，默认指向了 _userpofile 表。需 SDK >= v1.3.0 
+> created_by 字段是一个特殊的 pointer，开发者无需配置，默认指向了 _userpofile 表
 >
-> 用户自定义 pointer 需 SDK >= 1.10.0
+> 用户自定义 pointer
 >
 > 使用 expand 方法会增加一次数据表查询，api call 计费 +1
 
@@ -137,22 +138,19 @@ Product.setQuery(query).select(['-created_at', '-created_by']).find()
 
 ### 使用方法
 **在 get 方法中使用**
-{% ifanrxCodeTabs %}
-```js
-var Product = new wx.BaaS.TableObject(tableName)
-Product.expand(['created_by', 'pointer_value']).get('5acc2904da6b737322a82f78')
+```dart
+TableObject product = new TableObject(tableName);
+product.get('5acc2904da6b737322a82f78', expand: ['created_by', 'pointer_value']);
 ```
-{% endifanrxCodeTabs %}
 
 **在 find 方法中使用**
-{% ifanrxCodeTabs %}
-```js
-var Product = new wx.BaaS.TableObject(tableName)
+```dart
+TableObject product = new TableObject(tableName);
 
-var query = new wx.BaaS.Query()
-query.compare('amount', '>', 0)
+Query query = new Query();
+query.where(Where.compare('amount', '>', 0));
 
 // 扩展特定字段
-Product.setQuery(query).expand(['created_by', 'pointer_value']).find()
+query.expand(['-created_at', '-created_by']);
+product.find(query: query);
 ```
-{% endifanrxCodeTabs %}

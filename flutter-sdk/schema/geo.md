@@ -17,119 +17,100 @@ geojson 类型字段支持使用 GeoPoint 或 GeoPolygon 类型数据进行赋�
 
 * GeoPolygon 表示地理形状，可以通过以下两种方法创建一个地理形状
 
-{% ifanrxCodeTabs %}
-```
+```dart
 // 1. 直接使用数字
-var polygon = new wx.BaaS.GeoPolygon([[10, 10], [20, 10], [30, 20], [10, 10]])
+GeoPolygon polygon = new GeoPolygon(coordinates: [[10, 10], [20, 10], [30, 20], [10, 10]]);
 
 // 2. 借助 GeoPoint
-var point1 = new wx.BaaS.GeoPoint(10, 10)
+GeoPoint point1 = new GeoPoint(10, 10);
 ...
-var polygon = new wx.BaaS.GeoPolygon([point1, point2, point3, point1])
+GeoPolygon polygon = new GeoPolygon(points: [point1, point2, point3, point1]);
 ```
-{% endifanrxCodeTabs %}
 
 **请求示例**
 
-{% ifanrxCodeTabs %}
-```js
-var Product = new wx.BaaS.TableObject(tableName)
-var product = Product.create()
+```dart
+TableObject tableObject = new TableObject(tableName);
+TableRecord record = tableObject.create();
 
 // 保存一个点
-var point = new wx.BaaS.GeoPoint(10, 10)
-product.set('origin', point).save()
+GeoPoint point = new GeoPoint(10, 10);
+record.set('geo_point', point);
+record.save();
 
 // 保存一个多边形
-var polygon = new wx.BaaS.GeoPolygon([[10, 10], [20, 10], [30, 20], [10, 10]]) // 前后两点相同，即需构成一个闭环
-// or
-var point1 = new wx.BaaS.GeoPoint(10, 10)
-//...
-polygon = new wx.BaaS.GeoPolygon([point1, point2, point3, point1])
+GeoPolygon polygon = new GeoPolygon(coordinates: [[10, 10], [20, 10], [30, 20], [10, 10]]); // 前后两点相同，即需构成一个闭环
 
-product.set('origin', polygon).save()
+// or
+GeoPoint point1 = new GeoPoint(10, 10);
+//...
+
+polygon = new GeoPolygon(points: [point1, point2, point3, point1]);
+
+record.set('geo_polygon', polygon);
+record.save();
 ```
-{% endifanrxCodeTabs %}
 
 
 ## 地理位置查询
 
 **`include` 在指定多边形集合中找出包含某一点的多边形**
 
-{% ifanrxCodeTabs %}
-```js
+```dart
 // 查找当前用户所属小区
+TableObject neighborhood = new TableObject(neighborhoodTable);
 
-var Neighbourhood = new wx.BaaS.TableObject(neighbourhoodTableName)
+Query query = new Query();
 
-var query = new wx.BaaS.Query()
+// geoField 为 neighborhood 表中定义地理位置的字段名，point 为用户所在位置，为 GeoPoint 类型
+query.where(Where.include('geo_polygon', point));
 
-// geoField 为 neighbourhood 表中定义地理位置的字段名，point 为用户所在位置，为 GeoPoint 类型
-query.include('geoField', point)
-
-Neighbourhood.setQuery(query).find()
+neighborhood.find(query: query);
 ```
-{% endifanrxCodeTabs %}
 
 **`withinCircle` 在指定点集合中，查找包含在指定圆心和指定半径所构成的圆形区域中的点 (返回结果随机排序)**
 
 > **info**
 > radius 参数单位为 km。
 
-{% ifanrxCodeTabs %}
-```js
+```dart
 // 查找在距离用户 radius 千米范围内的饭店
-
-var Restaurant = new wx.BaaS.TableObject(restaurantTableName)
+TableObject restaurant = new TableObject(restaurantTableName);
 
 // geoField 为 restaurant 表中定义地理位置的字段名
-query.withinCircle('geoField', point, radius)
+query.where(Where.withinCircle('geoField', point, radius));
 
-Restaurant.setQuery(query).find()
+restaurant.find(query: query);
 ```
-{% endifanrxCodeTabs %}
-
 
 **`withinRegion` 在指定点集合中，查找包含在以指定点为圆点，以最大和最小距离为半径，所构成的圆环区域中的点（返回结果按从近到远排序）**
 
 > **info**
 > maxDistance 与 minDistance 参数单位为 m。
 
-{% ifanrxCodeTabs %}
-```js
+```dart
 // 查找距离用户 minDistance 米外，maxDistance 米内的所有饭店
-
-var Restaurant = new wx.BaaS.TableObject(restaurantTableName)
+TableObject restaurant = new TableObject(restaurantTableName);
 
 // geoField 为 restaurant 表中定义地理位置的字段名，point 为圆点，minDistance 不指定默认为 0
-query.withinRegion('geoField', point, maxDistance, minDistance)
+query.where(Where.withinRegion('geoField', point, maxDistance, minDistance));
 
-Restaurant.setQuery(query).find()
+restaurant.find(query: query);
 ```
-{% endifanrxCodeTabs %}
 
 
 **`within` 在指定点集合中，查找包含于指定的多边形区域的点**
 
-{% ifanrxCodeTabs %}
-```js
+```dart
 // 查找某个小区内的所有饭店
+TableObject neighborhood = new TableObject(neighborhoodTable);
 
-var Neighbourhood = new wx.BaaS.TableObject(neighbourhoodTableName)
+TableRecord record = await neighborhood.get(recordId);
+GeoPolygon neighborhoodPolygon = new GeoPolygon(coordinates: record.recordInfo['geo_polygon']['coordinates'][0]);
 
-Neighbourhood.get(recordID).then(res => {
-  var neighbourhood = res.data
+Query query = new Query();
+query.where(Where.within('restaurantGeoField', neighborhoodPolygon));
 
-  var query = new wx.BaaS.Query()
-
-  // neighbourhoodGeoField 为 neighbourhood 表中定义地理位置的字段名
-  var neighbourhoodPolygon = new wx.BaaS.GeoPolygon(neighbourhood['neighbourhoodGeoField'].coordinates[0])
-
-  // restaurantGeoField 为 restaurant 表中定义地理位置的字段名
-  query.within('restaurantGeoField', neighbourhoodPolygon)
-
-  var Restaurant = new wx.BaaS.TableObject(restaurantTableID)
-  Restaurant.setQuery(query).find()
-})
+TableObject restaurant = new TableObject(restaurantTableID);
+await restaurant.find(query: query);
 ```
-{% endifanrxCodeTabs %}

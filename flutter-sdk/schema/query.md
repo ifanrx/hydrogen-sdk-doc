@@ -350,9 +350,10 @@ TableObject customer = new TableObject('customer');
 Query query = new Query();
 Where where = Where.compare('customer', '=', customer.getWithoutData(recordId: '5bad87ab0769797b4fb27a1b'));
 query.where(where);
+query.expand(['customer']);
 
 try {
-  TableRecordList data = await order.find(query: query, expand: ['customer']);
+  TableRecordList data = await order.find(query: query);
 } catch (e) {
   print(e.toString());
 }
