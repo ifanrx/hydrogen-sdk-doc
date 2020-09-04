@@ -196,6 +196,10 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## 按查询条件订阅
 
+> **info**
+> 条件订阅使用方法与查询数据（Query）一致，可参考：[查询数据](/js-sdk/schema/query.md)。
+> Websocket 按条件订阅目前仅支持比较（compare）查询。
+
 按条件订阅支持以下操作符：
 
 | 数据类型 |                            可使用的查询操作                                             | 说明 |
