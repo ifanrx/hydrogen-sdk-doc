@@ -194,6 +194,55 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ![删除数据触发 WebSocket](/images/websocket/dashboard-delete-data.png)
 
+## 按查询条件订阅
+
+> **info**
+> 条件订阅使用方法与查询数据（Query）一致，可参考：[查询数据](/js-sdk/schema/query.md)。
+> Websocket 按条件订阅目前仅支持比较（compare）查询。
+
+按条件订阅支持以下操作符：
+
+| 数据类型 |                            可使用的查询操作                                             | 说明 |
+|:---------|:--------------------------------------------------------------------------------------- |:-----|
+| string   | =, !=                                                                           | -    |
+| integer  | =, >, >=, <, <=, !=                                                             | -    |
+| number   | =, >, >=, <, <=, !=                                                             | -    |
+| boolean  | =, !=                                                                           | -    |
+| date     | =, >, >=, <, <=, !=                                                             | -    |
+
+
+**请求示例**
+
+{% ifanrxCodeTabs %}
+
+```js
+// 订阅 tableName 为 'product' 的数据表的新增数据动作
+const tableName = 'product'
+const Product = new wx.BaaS.TableObject(tableName)
+const event = 'create' // create、update 或 delete
+
+// 实例化查询对象
+let query = new wx.BaaS.Query()
+
+// 设置查询条件（如比较）
+query.compare('key', '=', 'sample')
+
+// 应用查询对象
+let createEvent = Product.setQuery(query).subscribe(event, {
+  oninit: () => {
+    console.log(`订阅成功==>`)
+  },
+  onevent: res => {
+    console.log(`订阅推送==>`, res)
+  },
+  onerror: err => {
+    console.log(`订阅断开==>`, err)
+  },
+})
+```
+
+{% endifanrxCodeTabs %}
+
 ## 取消订阅
 
 当实时数据库功能连接成功后，会一直保持订阅状态。如需断开连接，比如退出发起订阅的页面时，可根据需要主动发起取消订阅。
