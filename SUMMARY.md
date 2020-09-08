@@ -218,6 +218,10 @@
 
 * [Flutter SDK](flutter-sdk/README.md)
     * [上手指南](flutter-sdk/quick-start.md)
+    * [用户](flutter-sdk/user/README.md)
+        * [登入登出](flutter-sdk/user/auth.md)
+        * [用户](flutter-sdk/user/user.md)
+        * [当前用户](flutter-sdk/user/account.md)
     * [数据表](flutter-sdk/schema/README.md)
         * [数据类型](flutter-sdk/schema/data-type.md)
         * [新增数据项](flutter-sdk/schema/create-record.md)
@@ -233,6 +237,8 @@
         * [内容操作](flutter-sdk/content/operate.md)
     * [文件](flutter-sdk/file/README.md)
         * [文件操作](flutter-sdk/file/file.md)
+    * [云函数](flutter-sdk/cloud-function.md)
+    * [短信服务](flutter-sdk/sms.md)
     * [错误码和错误对象](flutter-sdk/error-code.md)
     * [获取服务器时间](flutter-sdk/server-date.md)
 
