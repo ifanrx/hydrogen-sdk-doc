@@ -67,7 +67,7 @@ res.data:
 ```js
 let contentGroupID = 1513076211190694
 
-wx.BaaS.ContentGroup.getContent(contentGroupID).then(res => {
+wx.BaaS.ContentGroup.get(contentGroupID).then(res => {
   // success
 }, err => {
   // err
