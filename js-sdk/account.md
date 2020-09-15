@@ -173,7 +173,7 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 ### 初始化账号信息
 
 > **info**
-> 临睡用户无法调用
+> 临时用户无法调用
 
 `currentUser.setAccount({username, email, password})`
 
