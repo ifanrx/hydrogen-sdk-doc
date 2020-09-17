@@ -65,7 +65,7 @@ TableObject product = new TableObject(tableName);
 TableRecord record = product.create();
 
 // 设置方式一
-Map apple = {
+Map<String, dynamic> apple = {
   'name': 'apple',
   'price': 1,
   'desc': ['good'],
