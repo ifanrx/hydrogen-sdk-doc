@@ -213,6 +213,7 @@ try {
 
 ```dart
 try {
+  int contentGroupID = 1513076211190694;
   ContentGroup contentGroup = new ContentGroup(contentGroupID);
   ContentCategory data = await contentGroup.getCategory(1513076252710475);
 } catch (e) {
@@ -232,6 +233,7 @@ try {
 
 ```dart
 try {
+  int contentGroupID = 1513076211190694;
   ContentGroup contentGroup = new ContentGroup(contentGroupID);
   ContentCategoryList data = await contentGroup.getCategoryList();
   print(data);
