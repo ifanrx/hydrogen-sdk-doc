@@ -54,7 +54,7 @@ try {
 **参数说明**
 
 |  参数  |  类型   | 必填 | 说明 |
-| :----- | :-- -- | :-- | :-- |
+| :----- | :---- | :-- | :-- |
 | fileID | String |  Y  | 文件 id |
 
 **示例代码**
@@ -119,7 +119,7 @@ try {
   // 查找所有文件
   CloudFileList cloudFiles = await FileManager.find();
 
-  let query = new wx.BaaS.Query();
+  let query = new Query();
   // 查询某一文件分类下的所有文件
   query.compare('category_name', '=', categoryName);
   // 查询文件名包含指定字符串的文件
@@ -264,7 +264,7 @@ https://cloud-minapp-7894.cloud.ifanrusercontent.com/1eiuEUuISgOstoVZ.png!/water
 **params参数说明**
 
 |  参数  |  类型   | 必填 | 说明 |
-| :----- | :-- -- | :-- | :-- |
+| :----- | :---- | :-- | :-- |
 | source | String |  Y  | 视频文件的 id |
 | save_as | String |  Y  | 截图保存的文件名 |
 | point | String |  Y  | 截图时间格式，格式：HH:MM:SS |
@@ -485,7 +485,7 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 **params参数说明**
 
 |  参数  |  类型   | 必填 | 说明 |
-| :----- | :-- -- | :-- | :-- |
+| :----- | :---- | :-- | :-- |
 | m3u8 | String |  Y  | 视频文件的 id |
 
 **返回参数说明**
@@ -561,7 +561,7 @@ HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code
 **params参数说明**
 
 |  参数  |  类型   | 必填 | 说明 |
-| :----- | :-- -- | :-- | :-- |
+| :----- | :---- | :-- | :-- |
 | source   | String |  Y  | 文件的 id |
 
 **返回参数说明**
