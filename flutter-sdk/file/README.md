@@ -26,7 +26,7 @@ try {
 **通过 ID 获取某个文件详情**
 
 ```Dart
-CloudFile file = await CloudFile.get('5a2fe93308443e313a428c4f');
+CloudFile file = await FileManager.get('5a2fe93308443e313a428c4f');
 ```
 
 | 参数           |  类型        | 说明 |
