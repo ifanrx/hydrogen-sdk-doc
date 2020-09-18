@@ -1,4 +1,4 @@
-# 安装知晓云 Flutter SDK 依赖
+# 安装知晓云 Flutter SDK（内测版） 依赖
 
 1. 在项目根目录下的 `pubspec.yaml` 文件找到 `dependencies`，添加以下代码：
 
