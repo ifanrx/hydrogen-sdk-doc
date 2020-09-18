@@ -72,7 +72,7 @@ HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code
 **示例代码**
 ```Dart
 try {
-  CurrentUser currentUse = await Auth.registerWithPhone(phone: "13812345678", password: "111");
+  CurrentUser currentUser = await Auth.registerWithPhone(phone: "13812345678", password: "111");
   // 操作成功
 } on HError catch(e) {
   // 操作成功

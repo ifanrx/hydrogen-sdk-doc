@@ -34,6 +34,14 @@ try {
 }
 ```
 
+云函数执行相关错误码如下：
+
+`404`  传入的参数 name 不合法
+
+`400`  云函数调度/执行失败
+
+HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
+
 **参数说明**
 
 | 参数          | 类型                   | 必填 | 说每个 |
@@ -48,8 +56,6 @@ try {
 | :---- | :--------------------- | :-- |
 | result  | 由云函数返回的数据类型决定 | 函数通过 callback 返回的数据，详细如下面 **result** 样例 |
 
-HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
-
 **result**
 
 ```json
@@ -57,5 +63,15 @@ HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code
   "error": {},
   "code": 0,
   "data": "hello BaaS"
+}
+```
+
+**sync 为 false 时返回示例**
+
+```json
+{
+  "error": {},
+  "code": 0,
+  "data": {"status": "ok"}
 }
 ```
