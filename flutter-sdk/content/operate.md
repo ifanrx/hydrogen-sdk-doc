@@ -261,8 +261,8 @@ try {
 | group_id |  int   |   分组 Id |
 | categories | List  |  子类 | 
 | visit_count | int  |  阅读数 | 
-| updated_at  |  int | 更新日期 |
-| created_at | int  |   创建日期 | 
+| updated_at  |  int | 更新日期，unix 时间戳格式 |
+| created_at | int  |   创建日期，unix 时间戳格式 | 
 | created_by |  int    | 创建者 Id |
 | name |  String   | 列表名称，仅在 find 时有值 |
 
@@ -287,13 +287,13 @@ try {
 | :--------- | :--- | :----   |
 | limit     |  int  |  返回内容的最大个数   |
 | offset    | int  |    返回内容的起始偏移值 |
-| totalCount   | int   |   内容总数，默认为 -1，表示该字段无效 |
+| total_count   | int   |   内容总数，默认为 -1，表示该字段无效 |
 | next      | String  |   下一页地址，若值为 `null`，表示当前为最后一页 |
 | previous  | String  |    上一页地址，若值为 `null`，表示当前为第一页 |
 | contents  |   List<Content> | 内容列表，每个元素为 Content 类型   |
 
 > **info**
-> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.withTotalCount(true)` 来获取 totalCount。详见[获取记录总数](../schema/limit-and-order.md)
+> 返回结果默认不包含 total_count，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.withTotalCount(true)` 来获取 total_count。详见[获取记录总数](../schema/limit-and-order.md)
 
 
 ### ContentCategoryList
@@ -304,10 +304,10 @@ try {
 | :--------- | :--- | :----   |
 | limit     |  int  |  返回内容分类的最大个数   |
 | offset    | int  |    返回内容分类的起始偏移值 |
-| totalCount   | int   |   内容分类总数，默认为 -1，表示该字段无效 |
+| total_count   | int   |   内容分类总数，默认为 -1，表示该字段无效 |
 | next      | String  |   下一页地址，若值为 `null`，表示当前为最后一页 |
 | previous  | String  |    上一页地址，若值为 `null`，表示当前为第一页 |
 | contents  |   List<ContentCategory> | 内容分类列表，每个元素为 `ContentCategory` 类型  |
 
 > **info**
-> 返回结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.withTotalCount(true)` 来获取 totalCount。详见[获取记录总数](../schema/limit-and-order.md)
+> 返回结果默认不包含 total_count，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.withTotalCount(true)` 来获取 total_count。详见[获取记录总数](../schema/limit-and-order.md)

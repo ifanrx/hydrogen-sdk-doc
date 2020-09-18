@@ -36,3 +36,7 @@ BaaS.init('a4d2d62965ddb57fa4d8');
 | clientID  | String         |是          | 应用 ID     |
 | host      | String         |否          |  自定义域名  |
 | debug     | bool           |否          |  是否打开调试模式，默认为 false  |
+
+> **info**
+> 目前 debug 模式下支持打印请求链接和上传文件时的链接。
+> debug 模式还可以通过 Charles 和 iOS 模拟器进行抓包调试，端口默认为 8888。
