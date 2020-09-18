@@ -6,7 +6,7 @@
 dependencies:
   flutter:
     sdk: flutter
-  # 待添加
+  minapp: ^1.0.0-alpha
 ```
 
 2. 在命令行执行以下代码，安装 SDK
