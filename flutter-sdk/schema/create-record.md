@@ -192,7 +192,7 @@ TableObject table = new TableObject(tableName);
 TableRecord record = table.create();
 File file = await FilePicker.getFile();
 CloudFile data = await FileManager.upload(file);
-record.set('cover', data);
+record.set('cover', [data]);
 await record.save();
 ```
 
