@@ -16,11 +16,10 @@ module.exports = {
   output: {
     path: __dirname,
     filename: 'index.js',
-    library: 'exports.main',
-    libraryTarget: 'assign',
+    libraryTarget: 'commonjs-module',
   },
   target: 'node',
-}
+};
 ```
 
 target 设置为 `'node'`，webpack 会打包生成一个可以运行在 node 环境下的文件（使用 Node.js 自带的 `require` 来引入模块，
@@ -85,24 +84,6 @@ func_test    // 运行`mincloud new func_test` 生成的云函数目录。
 
 ### webpack 配置
 
-> **info**
-> 在云函数中使用 `module.exports` 或 `exports.main` 来导出函数，在 webpack 配置中会有所区别。具体写法请根据需要参考以下二个标签。
-
-{% tabs exports1="使用 module.exports", exports2="使用 exports.main" %}
-{% content "exports1" %}
-```js
-// webpack.config.js
-module.exports = {
-  output: {
-    path: __dirname,
-    filename: 'index.js',
-    library: 'exports.main',
-    libraryTarget: 'assign',
-  },
-  target: 'node',
-}
-```
-{% content "exports2" %}
 ```js
 // webpack.config.js
 module.exports = {
@@ -114,7 +95,6 @@ module.exports = {
   target: 'node',
 };
 ```
-{% endtabs %}
 
 ### package.json script 配置
 
@@ -138,7 +118,7 @@ module.exports = {
 ```js
 // src/index.js
 ...   // 可以在这里引入其他模块
-module.exports = function (event, callback) {
+exports.main = async function (event) {
   ...
 }
 ...

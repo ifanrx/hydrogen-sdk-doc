@@ -11,10 +11,6 @@
 
 > 云函数执行与结果返回机制，请参考[Node.js 事件循环](/cloud-function/node-sdk/start/nodejs-event-loop.md)
 
-<!-- 隔开 2 个 info -->
-> **info**
-> 下面例子均使用了 `exports.main` 来导出函数，在 webpack 中需要设置指定配置文件，请参考[代码打包](/cloud-function/node-sdk/packaging.md)中的 **Webpack 配置**部分。
-
 ## 云函数支持以下两种风格的写法：
 
 1. 使用 callback
