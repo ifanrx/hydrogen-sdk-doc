@@ -6,6 +6,15 @@
 <img src="../images/flutter/todo-demo.png" width="200"/>
 
 
+以下是本次 Demo 教程的相关视频：
+
+<div class="index-doc-header-video">
+  <video src="https://cloud-minapp-287.cloud.ifanrusercontent.com/1kKuBds2vR67IvIP.mp4" controls="controls" playsinline=""></video>
+</div>
+
+
+## 准备
+
 我们在正式开始之前，先捋一下准备工作。
 构建这一个 Todo App，我们需要三步走：
 
