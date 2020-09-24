@@ -17,7 +17,9 @@ options:
 
 <!-- 分隔两个 info -->
 > **info**
-> 更新单条记录，若要使用 `enableTrigger`， 则需要 SDK 3.11.0 及以上版本
+> 更新单条记录，若要使用 `enableTrigger`， 则需要 SDK 3.11.0 及以上版本。
+> 
+> 关于指定 SDK 版本，请参考[SDK 版本指定与查看当前版本号](../version/use-version.md)。
 
 ## 操作步骤
 
