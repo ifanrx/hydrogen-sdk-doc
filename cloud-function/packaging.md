@@ -85,6 +85,11 @@ func_test    // 运行`mincloud new func_test` 生成的云函数目录。
 
 ### webpack 配置
 
+> **info**
+> 在云函数中使用 `module.exports` 或 `exports.main` 来导出函数，在 webpack 配置中会有所区别。具体写法请根据需要参考以下二个标签。
+
+{% tabs exports1="使用 module.exports", exports2="使用 exports.main" %}
+{% content "exports1" %}
 ```js
 // webpack.config.js
 module.exports = {
@@ -97,6 +102,19 @@ module.exports = {
   target: 'node',
 }
 ```
+{% content "exports2" %}
+```js
+// webpack.config.js
+module.exports = {
+  output: {
+    path: __dirname,
+    filename: 'index.js',
+    libraryTarget: 'commonjs-module',
+  },
+  target: 'node',
+};
+```
+{% endtabs %}
 
 ### package.json script 配置
 
@@ -125,6 +143,9 @@ module.exports = function (event, callback) {
 }
 ...
 ```
+
+> **info**
+> 云函数的 return 返回不能为 `undefined`。
 
 ### 打包
 
