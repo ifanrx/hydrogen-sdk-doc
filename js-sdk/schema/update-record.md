@@ -10,8 +10,9 @@ options（批量更新时需要设置）:
 
 | 参数          | 类型    | 必填 | 默认 | 说明 |
 | :------------ | :------ | :--- | :--- |:--- |
-| enableTrigger | boolean |  否  | true | 是否触发触发器 |
+| enableTrigger | boolean |  否  | `true` | 是否触发触发器 |
 | withCount     | boolean |  否  | `false` | 是否返回 total_count |
+| expand        | string 或 string[] |  否  | 空字符串 | 是否返回对应字段扩展 |
 
 {{totalCount.withCountTips()}}
 
@@ -22,6 +23,16 @@ options（批量更新时需要设置）:
 <!-- 分隔两个 info -->
 > **info**
 > 临时用户更新数据，请先查看[数据表匿名读写权限特别说明](/js-sdk/schema/#数据表匿名读写权限特别说明)
+
+<!-- 分隔两个 info -->
+> **info**
+> SDK 3.14.5 及以上版本提供单条数据更新返回字段扩展的支持。expand 属性可传入字符串或者包含字符串的数组。例如：
+>
+> `record.update({expand: 'created_by'})`
+>
+> `record.update({expand: ['created_by']})`
+>
+> 有关字段扩展的介绍，请查看[字段扩展](/js-sdk/schema/select-and-expand.html/#字段扩展)。
 
 ## 操作步骤
 
