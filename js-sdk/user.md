@@ -241,6 +241,9 @@ MyUser.setQuery(query).count().then(num => {
 
 ## 查询，获取用户列表
 
+> **info**
+> 因为安全性考虑，仅支持 nickname、id 字段的查询，如需查询更多字段，可通过在云函数内编写查询逻辑[云函数 node sdk](/cloud-function/node-sdk/user.html#查询，获取用户列表) 查询用户 ，然后通过小程序调用。
+
 `MyUser.find(options)`
 
 **参数说明**
