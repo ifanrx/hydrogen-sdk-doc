@@ -11,11 +11,11 @@ b. 将下载解压后得到的 SDK js 文件放在小程序项目目录中
 <pre>
 <code class="lang-js">
 // app.js
+import './sdk-v{{ book.latestVersionJingdong }}'
 
 App({
   onLaunch() {
-    // require SDK
-    require('./sdk-v{{ book.latestVersionJingdong }}')
+    ...
   }
 })
 </code>
