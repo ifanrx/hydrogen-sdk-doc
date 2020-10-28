@@ -74,8 +74,6 @@ user.set(key2, value2)
 | province        | String  | 否 | 省份 |
 | city            | String  | 否 | 城市 |
 | language        | String  | 否 | 语言 |
-| openid        | String  | 否 | 用户唯一标识 |
-| unionid        | String  | 否 | 用户在开放平台的唯一标识符 |
 
 除了以上字段外，还支持用户表的自定义字段
 
