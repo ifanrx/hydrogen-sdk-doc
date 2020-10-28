@@ -137,7 +137,7 @@ user.set({
   _email: '***',
   _password: '***',
 })
-cosnt res = await user.save()
+const res = await user.save()
 ```
 
 **返回示例**
