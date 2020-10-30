@@ -198,16 +198,25 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
 
 | 参数   | 类型              | 必填 | 说明 |
 | :---- | :---------------- | :-- | :-- |
-| key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
+| key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer，也可以为 Object 类型中的 Number 或 Integer 字段，具体参考请求示例 |
 | value | Number 或 Integer | 是  | 与 key 的类型保持一致 |
 
 **请求示例**
+
+更新在数据表中的类型是 Number 或 Integer 的数据：
 
 ```js
 product.incrementBy('amount', 1)
 product.update().then(res => {}, err => {})
 ```
 
+更新数据表里 Object 类型中某个字段是 Number 或 Integer 的数据：
+
+```js
+// 例如现有数据表中类型为 Object 的字段 obj，且具体内容为 {amount: 1}
+product.incrementBy('obj.amount', 1)
+product.update().then(res => {}, err => {})
+```
 
 
 ## 更新 pointer 类型字段
