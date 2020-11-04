@@ -79,6 +79,33 @@ axios.get('https://cloud.minapp.com/userve/v2.2/miniapp/user_profile/', {
 }
 ```
 
+## 获取当前登录用户信息
+
+**接口**
+
+`GET https://cloud.minapp.com/userve/v1/user-profile/`
+
+```js
+var axios = require('axios').create({
+  withCredentials: true
+})
+
+axios.get('https://cloud.minapp.com/userve/v1/user-profile/')
+.then(res => {
+  console.log(res.data)
+})
+```
+**返回示例**
+
+```json
+{
+  "avatar_link": "https://media.ifanrusercontent.com/media/tavatar/55/c3/55c3dbebcc61891be10d29ded808c84a01dcf864.jpg",
+  "email": "xiaohuangya@163.com",
+  "nickname": "PCG",
+  "user_id": 36619758
+}
+```
+
 ## 获取用户详情
 
 **接口**
