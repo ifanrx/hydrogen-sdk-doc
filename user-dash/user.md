@@ -100,7 +100,7 @@ axios.get('https://cloud.minapp.com/userve/v1/user-profile/')
 ```json
 {
   "avatar_link": "https://media.ifanrusercontent.com/media/tavatar/55/c3/55c3dbebcc61891be10d29ded808c84a01dcf864.jpg",
-  "email": "xiaohuangya@163.com",
+  "email": "example@163.com",
   "nickname": "PCG",
   "user_id": 36619758
 }
