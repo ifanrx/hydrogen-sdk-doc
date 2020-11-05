@@ -424,9 +424,10 @@ async function updateRecord() {
     let Product = new BaaS.TableObject(tableName)
     let product = Product.getWithoutData(recordID)
 
-    product.pop('array_i')
+    product.pop('array_i') // array_i: [1, 2, 3, 4]
     let res = await product.update()
     // success
+     // array_i: [1, 2, 3]
     return res
   } catch(err) {
     // err
@@ -445,9 +446,10 @@ function updateRecord() {
   let Product = new BaaS.TableObject(tableName)
   let product = Product.getWithoutData(recordID)
 
-  product.pop('array_i')
+  product.pop('array_i') // array_i: [1, 2, 3, 4]
   product.update().then(res => {
     // success
+    // array_i: [1, 2, 3]
     callback(null, res)
   }).catch(err => {
     // error
@@ -457,6 +459,19 @@ function updateRecord() {
 ```
 
 {% endtabs %}
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "59897882ff650c0477f00485",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "59897882ff650c0477f00485",
+    "array_i": [1, 2, 3]
+}
+```
 
 #### 从原组中删除第一项
 
@@ -482,9 +497,10 @@ async function updateRecord() {
     let Product = new BaaS.TableObject(tableName)
     let product = Product.getWithoutData(recordID)
 
-    product.shift('array_i')
+    product.shift('array_i') // array_i: [1, 2, 3, 4]
     let res = await product.update()
     // success
+     // array_i: [2, 3, 4]
     return res
   } catch(err) {
     // err
@@ -503,9 +519,10 @@ function updateRecord() {
   let Product = new BaaS.TableObject(tableName)
   let product = Product.getWithoutData(recordID)
 
-  product.shift('array_i')
+  product.shift('array_i') // array_i: [1, 2, 3, 4]
   product.update().then(res => {
     // success
+    // array_i: [2, 3, 4] 
     callback(null, res)
   }).catch(err => {
     // error
@@ -515,6 +532,19 @@ function updateRecord() {
 ```
 
 {% endtabs %}
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "59897882ff650c0477f00485",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "59897882ff650c0477f00485",
+    "array_i": [2, 3, 4]
+}
+```
 
 ## 自定义条件批量更新数据项
 
