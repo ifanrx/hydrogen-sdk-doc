@@ -407,7 +407,14 @@ order.update()
 **请求示例**
 
 ```js
-product.pop('desc')
+let Product = new wx.BaaS.TableObject(tableName)
+let product = Product.getWithoutData(recordID)
+product.pop('array_i')
+product.update().then(res => {
+  console.log(res)
+}).catch(err => {
+  console.log(err)
+})
 ```
 
 ### 从原组中删除第一项
@@ -423,7 +430,14 @@ product.pop('desc')
 **请求示例**
 
 ```js
-product.shift('desc')
+let Product = new wx.BaaS.TableObject(tableName)
+let product = Product.getWithoutData(recordID)
+product.shift('array_i')
+product.update().then(res => {
+  console.log(res)
+}).catch(err => {
+  console.log(err)
+})
 ```
 
 ## 按条件批量更新数据项
