@@ -412,16 +412,51 @@ order.update()
 
 **请求示例**
 
+{% tabs updatePopAsync="async/await", updatePopPromise="promise" %}
+{% content "updatePopAsync" %}
+
 ```js
-let Product = new BaaS.TableObject(tableName)
-let product = Product.getWithoutData(recordID)
-product.pop('array_i')
-product.update().then(res => {
-  console.log(res)
-}).catch(err => {
-  console.log(err)
-})
+async function updateRecord() {
+  try {
+    let tableName = 'product'
+    let recordID = '59897882ff650c0477f00485'
+
+    let Product = new BaaS.TableObject(tableName)
+    let product = Product.getWithoutData(recordID)
+
+    product.pop('array_i')
+    let res = await product.update()
+    // success
+    return res
+  } catch(err) {
+    // err
+    throw err
+  }
+}
 ```
+
+{% content "updatePopPromise" %}
+
+```js
+function updateRecord() {
+  let tableName = 'product'
+  let recordID = '59897882ff650c0477f00485'
+
+  let Product = new BaaS.TableObject(tableName)
+  let product = Product.getWithoutData(recordID)
+
+  product.pop('array_i')
+  product.update().then(res => {
+    // success
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
+}
+```
+
+{% endtabs %}
 
 #### 从原组中删除第一项
 
@@ -435,16 +470,51 @@ product.update().then(res => {
 
 **请求示例**
 
+{% tabs updateShiftAsync="async/await", updateShiftPromise="promise" %}
+{% content "updateShiftAsync" %}
+
 ```js
-let Product = new BaaS.TableObject(tableName)
-let product = Product.getWithoutData(recordID)
-product.shift('array_i')
-product.update().then(res => {
-  console.log(res)
-}).catch(err => {
-  console.log(err)
-})
+async function updateRecord() {
+  try {
+    let tableName = 'product'
+    let recordID = '59897882ff650c0477f00485'
+
+    let Product = new BaaS.TableObject(tableName)
+    let product = Product.getWithoutData(recordID)
+
+    product.shift('array_i')
+    let res = await product.update()
+    // success
+    return res
+  } catch(err) {
+    // err
+    throw err
+  }
+}
 ```
+
+{% content "updateShiftPromise" %}
+
+```js
+function updateRecord() {
+  let tableName = 'product'
+  let recordID = '59897882ff650c0477f00485'
+
+  let Product = new BaaS.TableObject(tableName)
+  let product = Product.getWithoutData(recordID)
+
+  product.shift('array_i')
+  product.update().then(res => {
+    // success
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
+}
+```
+
+{% endtabs %}
 
 ## 自定义条件批量更新数据项
 

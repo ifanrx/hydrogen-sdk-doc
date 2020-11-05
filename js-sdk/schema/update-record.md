@@ -406,7 +406,10 @@ order.update()
 
 **请求示例**
 
+{% ifanrxCodeTabs %}
 ```js
+let tableName = 'product'
+let recordID = '59897882ff650c0477f00485'
 let Product = new wx.BaaS.TableObject(tableName)
 let product = Product.getWithoutData(recordID)
 product.pop('array_i')
@@ -416,6 +419,7 @@ product.update().then(res => {
   console.log(err)
 })
 ```
+{% endifanrxCodeTabs %}
 
 ### 从原组中删除第一项
 
@@ -429,7 +433,10 @@ product.update().then(res => {
 
 **请求示例**
 
+{% ifanrxCodeTabs %}
 ```js
+let tableName = 'product'
+let recordID = '59897882ff650c0477f00485'
 let Product = new wx.BaaS.TableObject(tableName)
 let product = Product.getWithoutData(recordID)
 product.shift('array_i')
@@ -439,6 +446,7 @@ product.update().then(res => {
   console.log(err)
 })
 ```
+{% endifanrxCodeTabs %}
 
 ## 按条件批量更新数据项
 
