@@ -26,4 +26,5 @@ exports.main = function testSDKNetwork(event, callback) {
 >
 > 如果外部接口需要对请求 IP 进行限制，可以将以下 IP 放入 IP 访问白名单中：
 >
-> 52.80.218.3
+> 54.223.169.46
+> 54.223.84.167
