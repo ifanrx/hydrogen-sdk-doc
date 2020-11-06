@@ -74,6 +74,7 @@ user.set(key2, value2)
 | province        | String  | 否 | 省份 |
 | city            | String  | 否 | 城市 |
 | language        | String  | 否 | 语言 |
+| is_authorized        | Boolean  | 否 | 微信是否授权，默认为 `undefined` |
 
 除了以上字段外，还支持用户表的自定义字段
 
