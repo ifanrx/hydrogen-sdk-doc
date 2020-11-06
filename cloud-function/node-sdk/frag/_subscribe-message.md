@@ -32,6 +32,7 @@ data 是 Object 类型，它包括以下几个属性
 | schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 | page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
 | can_send_subscription_message  | Boolean | 否   | 是否过滤无效用户  |
+| miniprogram_state  | String | 否   | 跳转小程序类型：developer 为开发版；trial 为体验版；formal 为正式版；默认为正式版  |
 {% else %}
 | 参数            | 类型   | 必填  | 说明 |
 | :-------------- | :----- | :--- | :-- |
