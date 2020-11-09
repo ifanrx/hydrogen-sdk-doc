@@ -400,6 +400,152 @@ order.set('date', 'abc')
 order.update()
 ```
 
+#### 从原数组中删除最后一项
+
+`product.pop(key)`
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-- | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+
+**请求示例**
+
+{% tabs updatePopAsync="async/await", updatePopPromise="promise" %}
+{% content "updatePopAsync" %}
+
+```js
+async function updateRecord() {
+  try {
+    let tableName = 'product'
+    let recordID = '59897882ff650c0477f00485'
+
+    let Product = new BaaS.TableObject(tableName)
+    let product = Product.getWithoutData(recordID)
+
+    product.pop('array_i') // array_i: [1, 2, 3, 4]
+    let res = await product.update()
+    // success
+     // array_i: [1, 2, 3]
+    return res
+  } catch(err) {
+    // err
+    throw err
+  }
+}
+```
+
+{% content "updatePopPromise" %}
+
+```js
+function updateRecord() {
+  let tableName = 'product'
+  let recordID = '59897882ff650c0477f00485'
+
+  let Product = new BaaS.TableObject(tableName)
+  let product = Product.getWithoutData(recordID)
+
+  product.pop('array_i') // array_i: [1, 2, 3, 4]
+  product.update().then(res => {
+    // success
+    // array_i: [1, 2, 3]
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
+}
+```
+
+{% endtabs %}
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "59897882ff650c0477f00485",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "59897882ff650c0477f00485",
+    "array_i": [1, 2, 3]
+}
+```
+
+#### 从原组中删除第一项
+
+`product.shift(key)`
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-- | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+
+**请求示例**
+
+{% tabs updateShiftAsync="async/await", updateShiftPromise="promise" %}
+{% content "updateShiftAsync" %}
+
+```js
+async function updateRecord() {
+  try {
+    let tableName = 'product'
+    let recordID = '59897882ff650c0477f00485'
+
+    let Product = new BaaS.TableObject(tableName)
+    let product = Product.getWithoutData(recordID)
+
+    product.shift('array_i') // array_i: [1, 2, 3, 4]
+    let res = await product.update()
+    // success
+     // array_i: [2, 3, 4]
+    return res
+  } catch(err) {
+    // err
+    throw err
+  }
+}
+```
+
+{% content "updateShiftPromise" %}
+
+```js
+function updateRecord() {
+  let tableName = 'product'
+  let recordID = '59897882ff650c0477f00485'
+
+  let Product = new BaaS.TableObject(tableName)
+  let product = Product.getWithoutData(recordID)
+
+  product.shift('array_i') // array_i: [1, 2, 3, 4]
+  product.update().then(res => {
+    // success
+    // array_i: [2, 3, 4] 
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
+}
+```
+
+{% endtabs %}
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "59897882ff650c0477f00485",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "59897882ff650c0477f00485",
+    "array_i": [2, 3, 4]
+}
+```
+
 ## 自定义条件批量更新数据项
 
 通过设置自定义查询条件 Query，将符合条件的数据进行批量更新操作

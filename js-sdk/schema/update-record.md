@@ -394,6 +394,86 @@ order.set('date', 'abc')
 order.update()
 ```
 
+### 从原数组中删除最后一项
+
+`product.pop(key)`
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-- | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+
+**请求示例**
+
+{% ifanrxCodeTabs %}
+```js
+let tableName = 'product'
+let recordID = '59897882ff650c0477f00485'
+let Product = new wx.BaaS.TableObject(tableName)
+let product = Product.getWithoutData(recordID)
+product.pop('array_i') // array_i: [1, 2, 3, 4]
+product.update().then(res => {
+  console.log(res) // array_i: [1, 2, 3]
+}).catch(err => {
+  console.log(err)
+})
+```
+{% endifanrxCodeTabs %}
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "59897882ff650c0477f00485",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "59897882ff650c0477f00485",
+    "array_i": [1, 2, 3]
+}
+```
+
+### 从原组中删除第一项
+
+`product.shift(key)`
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-- | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+
+**请求示例**
+
+{% ifanrxCodeTabs %}
+```js
+let tableName = 'product'
+let recordID = '59897882ff650c0477f00485'
+let Product = new wx.BaaS.TableObject(tableName)
+let product = Product.getWithoutData(recordID)
+product.shift('array_i') // array_i: [1, 2, 3, 4]
+product.update().then(res => {
+  console.log(res) // array_i: [2, 3, 4]
+}).catch(err => {
+  console.log(err)
+})
+```
+{% endifanrxCodeTabs %}
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "59897882ff650c0477f00485",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "59897882ff650c0477f00485",
+    "array_i": [2, 3, 4]
+}
+```
+
 ## 按条件批量更新数据项
 
 SDK 1.4.0 及以上版本支持批量更新数据项。可以通过设置自定义查询条件 Query，将符合条件的数据进行批量更新操作。
