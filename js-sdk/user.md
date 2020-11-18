@@ -20,15 +20,7 @@
 
 **返回字段说明**
 
-当查询的用户为非当前用户时：
-
-| 参数      | 类型   | 说明 |
-| :------- | :----- | :-- |
-| avatar   | String | 用户头像 |
-| id       | Number | 用户 ID (对应 _userprofile 表中的 id 字段) |
-| nickname | String | 用户昵称 |
-
-当查询的用户为当前用户时：
+内置字段的返回依赖于 `_userprofile` 表中该内置字段的权限设置，若字段权限勾选了 `客户端不可见`，则 SDK 中该字段不返回；若字段权限勾选了仅创建者可见，则 SDK 中仅当 `userID` 与当前用户 ID 相同时返回该字段。`_userprofile` 表中的内置字段包括：
 
 | 参数      | 类型   | 说明 |
 | :------- | :----- | :--- |
@@ -40,10 +32,14 @@
 | language | String | 用户的语言，简体中文为 zh_CN |
 | nickname | String | 用户昵称 |
 | openid   | String | 用户唯一标识，由微信提供 |
+| unionid  | String | 同一个微信开放平台帐号下的不同应用中，用户的唯一标识，由微信提供 |
 | province | String | 用户所在省份 |
+| is_authorized | Boolean | 用户是否授权，true 为已授权，false 为未授权 |
 | _email | String | 用户邮箱（用于用户以邮箱 & 密码登录） |
 | _username | String | 用户名（用于用户以用户名 & 密码登录） |
 | _email_verified | Boolean | 用户邮箱是否已经通过验证（已验证邮箱才能找回密码） |
+| _phone | String | 用户手机 |
+| _phone_verified | Boolean | 用户手机是否已经通过验证 |
 | _provider |Object |  用户在平台方的用户信息  |
 | _provider.alipay |Object |  支付宝平台的用户信息，见下方说明  |
 
@@ -63,7 +59,7 @@
 | gender      |  string |  支付宝小程序用户性别，female 为女性，male 为男性 |
 
 > **info**
-> 如果有自定义字段，则一并返回（以上两种情况皆是如此）。
+> 如果有自定义字段，则自定义字段同样依赖于该字段的权限设置判断是否在 SDK 中进行返回，判断规则同上内置字段。
 
 **微信网页登录/微信公众号登录 UnionID 机制说明**
 
