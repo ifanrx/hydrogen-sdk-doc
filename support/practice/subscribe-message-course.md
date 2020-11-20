@@ -43,7 +43,7 @@
 | 参数                | 类型           | 必填    | 说明    |
 |--------------------|----------------|--------|--------|
 | template_id        | String          |是      | 模板 ID |
-| subscription_type  | String          |是      | 订阅类型，目前只支持 once（一次性订阅） |
+| subscription_type  | String          |是      | 订阅类型，once（一次性订阅），permanent（永久订阅） |
 
 用户发生点击行为或者发起支付回调后，调起订阅消息界面，通过 SDK 上报订阅状态。
 
