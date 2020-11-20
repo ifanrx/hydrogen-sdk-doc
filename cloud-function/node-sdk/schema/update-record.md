@@ -198,16 +198,25 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
 
 | 参数   | 类型              | 必填 | 说明 |
 | :---- | :---------------- | :-- | :-- |
-| key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
+| key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer，也可以为 Object 类型中的 Number 或 Integer 字段，具体参考请求示例 |
 | value | Number 或 Integer | 是  | 与 key 的类型保持一致 |
 
 **请求示例**
+
+更新在数据表中的类型是 Number 或 Integer 的数据：
 
 ```js
 product.incrementBy('amount', 1)
 product.update().then(res => {}, err => {})
 ```
 
+更新数据表里 Object 类型中某个字段是 Number 或 Integer 的数据：
+
+```js
+// 例如现有数据表中类型为 Object 的字段 obj，且具体内容为 {amount: 1}
+product.incrementBy('obj.amount', 1)
+product.update().then(res => {}, err => {})
+```
 
 
 ## 更新 pointer 类型字段
@@ -389,6 +398,152 @@ let order = Order.getWithoutData(orderID)
 order.set('amount', 10)
 order.set('date', 'abc')
 order.update()
+```
+
+#### 从原数组中删除最后一项
+
+`product.pop(key)`
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-- | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+
+**请求示例**
+
+{% tabs updatePopAsync="async/await", updatePopPromise="promise" %}
+{% content "updatePopAsync" %}
+
+```js
+async function updateRecord() {
+  try {
+    let tableName = 'product'
+    let recordID = '59897882ff650c0477f00485'
+
+    let Product = new BaaS.TableObject(tableName)
+    let product = Product.getWithoutData(recordID)
+
+    product.pop('array_i') // array_i: [1, 2, 3, 4]
+    let res = await product.update()
+    // success
+     // array_i: [1, 2, 3]
+    return res
+  } catch(err) {
+    // err
+    throw err
+  }
+}
+```
+
+{% content "updatePopPromise" %}
+
+```js
+function updateRecord() {
+  let tableName = 'product'
+  let recordID = '59897882ff650c0477f00485'
+
+  let Product = new BaaS.TableObject(tableName)
+  let product = Product.getWithoutData(recordID)
+
+  product.pop('array_i') // array_i: [1, 2, 3, 4]
+  product.update().then(res => {
+    // success
+    // array_i: [1, 2, 3]
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
+}
+```
+
+{% endtabs %}
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "59897882ff650c0477f00485",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "59897882ff650c0477f00485",
+    "array_i": [1, 2, 3]
+}
+```
+
+#### 从原组中删除第一项
+
+`product.shift(key)`
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-- | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+
+**请求示例**
+
+{% tabs updateShiftAsync="async/await", updateShiftPromise="promise" %}
+{% content "updateShiftAsync" %}
+
+```js
+async function updateRecord() {
+  try {
+    let tableName = 'product'
+    let recordID = '59897882ff650c0477f00485'
+
+    let Product = new BaaS.TableObject(tableName)
+    let product = Product.getWithoutData(recordID)
+
+    product.shift('array_i') // array_i: [1, 2, 3, 4]
+    let res = await product.update()
+    // success
+     // array_i: [2, 3, 4]
+    return res
+  } catch(err) {
+    // err
+    throw err
+  }
+}
+```
+
+{% content "updateShiftPromise" %}
+
+```js
+function updateRecord() {
+  let tableName = 'product'
+  let recordID = '59897882ff650c0477f00485'
+
+  let Product = new BaaS.TableObject(tableName)
+  let product = Product.getWithoutData(recordID)
+
+  product.shift('array_i') // array_i: [1, 2, 3, 4]
+  product.update().then(res => {
+    // success
+    // array_i: [2, 3, 4] 
+    callback(null, res)
+  }).catch(err => {
+    // error
+    callback(err)
+  })
+}
+```
+
+{% endtabs %}
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "59897882ff650c0477f00485",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "59897882ff650c0477f00485",
+    "array_i": [2, 3, 4]
+}
 ```
 
 ## 自定义条件批量更新数据项
