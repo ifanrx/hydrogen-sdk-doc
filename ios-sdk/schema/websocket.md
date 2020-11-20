@@ -52,7 +52,7 @@ BaaSTable *table = [[BaaSTable alloc] initWithName:@"danmu"];
 订阅数据表的事件，同时可以指定事件的查询条件，当满足条件的事件发生时，app 将会收到事件回调。
 
 ```
-public func subscribe(event:where:callbackQueue:onInit:onError:onEvent:)
+public func subscribe(event:where:onInit:onError:onEvent:)
 ```
 
 **示例代码**
@@ -66,10 +66,9 @@ let danmuTable = Table(name: "danmu")
 
 // 给事件添加条件
 let typeWhere = Where.compare("type", operator: .equalTo, value: "user")
-let serialQueue = DispatchQueue(label: "com.ifanr.mincloud.demo")
 
 // 发起订阅
-danmuTable.subscribe(.onUpdate, where: typeWhere, callbackQueue: serialQueue) { [weak self] (subscription) in
+danmuTable.subscribe(.onUpdate, where: typeWhere) { [weak self] (subscription) in
     // 订阅成功，
     // 获得订阅对象 subscription，可通过 subscription 对象的 unsubscribe 方法取消该订阅。
     self?.subscription = subscription
@@ -87,10 +86,9 @@ BaaSTable *table = [[BaaSTable alloc] initWithName:@"danmu"];
 
 // 给事件添加条件
 BaaSWhere *where = [BaaSWhere compare:@"type" operator:BaaSOperatorEqualTo value:@"user"];
-dispatch_queue_t serialQueue = dispatch_queue_create("com.ifanr.mincloud.demo", DISPATCH_QUEUE_SERIAL);
 
 // 发起订阅
-[table subscribe:BaaSSubscriptionEventOnCreate where:where callbackQueue:serialQueue onInit:^(BaaSSubscription * _Nonnull subscription) {
+[table subscribe:BaaSSubscriptionEventOnCreate where:where onInit:^(BaaSSubscription * _Nonnull subscription) {
     // 订阅成功，
     // 获得订阅对象 subscription，可通过 subscription 对象的 unsubscribe 方法取消该订阅。
     self.subscription = subscription;
@@ -109,13 +107,12 @@ dispatch_queue_t serialQueue = dispatch_queue_create("com.ifanr.mincloud.demo", 
 | :-----  | :----- | :---- | :--- |
 | event    | SubscriptionEvent | 是  | 表数据变化的类型，参考 [SubscriptionEvent](#SubscriptionEvent)   |
 | where    |  Where? |  否   | 按查询条件订阅，默认为 nil，表示订阅事件所有的操作都会触发回调。参考数据表[查询](/ios-sdk/schema/query.md) |
-| callbackQueue | DispatchQueue?(Swift) / dispatch_queue_t(OC) | 否  | 回调函数所在队列，参考[文档](https://developer.apple.com/documentation/dispatch/dispatchqueue) |
 | onInit | SubscribeCallback |  是 | 订阅成功回调函数，参考 [SubscribeCallback](#SubscribeCallback) |
 | onError | ErrorSubscribeCallback | 是 | 订阅失败回调函数，参考 [ErrorSubscribeCallback](#ErrorSubscribeCallback) |
 | onEvent  | EventCallback    | 是  | 事件发生时的回调函数，参考 [EventCallback](#EventCallback)  |
 
 > **info**
-> SDK 自动管理 WebSocket 的连接，当发起第一个订阅时，SDK 将建立连接，之后的订阅/接收事件/删除订阅，都使用该连接。若当前没有订阅，SDK 将关闭连接。
+> SDK 自动管理 WebSocket 的连接，当发起第一个订阅时，SDK 将建立连接，之后的订阅/接收事件/删除订阅，都使用该连接。
 > 若 WebSocket 连接意外断开，比如 app 挂起，无网络等，当 app 恢复正常时，SDK 自动重连。
 
 另外，在知晓云控制台中手动删除数据时，如需触发删除数据动作的订阅通知，需要勾上「删除动作触发触发器」设置，如下图
@@ -126,7 +123,7 @@ dispatch_queue_t serialQueue = dispatch_queue_create("com.ifanr.mincloud.demo", 
 
 当实时数据库功能连接成功后，会一直保持订阅状态。如需断开连接，比如退出发起订阅的页面时，可根据需要主动发起取消订阅。
 
-`Subscription` 表示一个订阅对象，在订阅成功的回调函数获取，并保存，当需要取消订阅 `unsubscribe` 方法。
+`Subscription` 表示一个订阅对象，在订阅成功的回调函数获取，并保存，当需要取消订阅 时调用`unsubscribe` 方法。
 
 ```
 func unsubscribe(onSuccess:onError:)
@@ -134,7 +131,6 @@ func unsubscribe(onSuccess:onError:)
 
 | 名称     | 类型   | 必填   | 说明  |
 | :-----  | :----- | :---- | :--- |
-| callbackQueue | DispatchQueue?(Swift) / dispatch_queue_t(OC) | 否  | 回调函数所在队列，参考[文档](https://developer.apple.com/documentation/dispatch/dispatchqueue) |
 | onSuccess | UnsubscribeCallback |  是 | 取消订阅成功回调函数，参考 [UnsubscribeCallback](#SubscriptionEvent) |
 | onError | ErrorUnsubscribeCallback | 是 | 取消订阅失败回调函数，参考 [ErrorUnsubscribeCallback](#ErrorUnsubscribeCallback) |
 
@@ -169,9 +165,8 @@ subscription?.unsubscribe(onSuccess: {
 
 BaaSSubscription *subscription = nil;
 BaaSTable *table = [[BaaSTable alloc] initWithName:@"danmu"];
-dispatch_queue_t serialQueue = dispatch_queue_create("com.ifanr.mincloud", DISPATCH_QUEUE_SERIAL);
 
-[table subscribe:BaaSSubscriptionEventOnCreate where:nil callbackQueue:serialQueue onInit:^(BaaSSubscription * _Nonnull subscription) {
+[table subscribe:BaaSSubscriptionEventOnCreate where:nil onInit:^(BaaSSubscription * _Nonnull subscription) {
     // 订阅成功，
     // 获得订阅对象 subscription
     self.subscription = subscription;
@@ -184,7 +179,7 @@ dispatch_queue_t serialQueue = dispatch_queue_create("com.ifanr.mincloud", DISPA
 ... 
 
 // 取消订阅
-[subscription unsubscribeWithCallbackQueue:nil onSuccess:^{
+[subscription unsubscribeOnSuccess:^{
     NSLog(@"取消订阅成功");
 } onError:^(NSError * _Nullable error) {
     NSLog(@"取消订阅错误：%@", error.localizedDescription);
@@ -232,7 +227,7 @@ public typealias SubscribeCallback = (_ subscription: Subscription) -> Void
 
 | 名称  | 类型  | 说明 |
 | :---- | :---- | :---- | 
-| subscription | Subscription | 表示一个订阅，可用于[取消订阅]() |
+| subscription | Subscription | 表示一个订阅，可用于取消订阅 |
 
 ### ErrorSubscribeCallback 
 
@@ -244,7 +239,7 @@ public typealias ErrorSubscribeCallback = (_ error: NSError?) -> Void
 
 | 名称  | 类型  | 说明 |
 | :---- | :---- | :---- | 
-| error | NSError | 订阅失败的错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md) |
+| error | NSError | 订阅失败的错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)及[订阅错误信息](#订阅错误信息) |
 
 ### EventCallback 
 
@@ -380,4 +375,16 @@ public typealias ErrorUnsubscribeCallback = (_ error: NSError?) -> Void
 
 | 名称  | 类型  | 说明 |
 | :---- | :---- | :---- | 
-| error | NSError? | 取消订阅失败的错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md) |
+| error | NSError? | 取消订阅失败的错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)及[订阅错误信息](#订阅错误信息) |
+
+## 订阅错误信息
+
+| 错误码 | 错误描述  |  说明   | 
+| :---  | :--- |  :--- |
+| 401  |  unauthorized | 未登录  |
+| 400  |  duplicate subscription   |  重复订阅 |
+| 400  |  not allow to subscribe builtin schema | 不允许订阅内置表  |
+| 400  | invalid options | 订阅的字段或值类型错误  |
+| 400 | schema does not exists | 订阅的数据表不存在  |
+| 402 | payment required    | 应用欠费 |
+| 500  |  internal server error | 服务器错误 |
