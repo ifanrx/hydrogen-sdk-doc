@@ -68,7 +68,7 @@ let danmuTable = Table(name: "danmu")
 let typeWhere = Where.compare("type", operator: .equalTo, value: "user")
 
 // 发起订阅
-danmuTable.subscribe(.onUpdate, where: typeWhere) { [weak self] (subscription) in
+danmuTable.subscribe(.onCreate, where: typeWhere) { [weak self] (subscription) in
     // 订阅成功，
     // 获得订阅对象 subscription，可通过 subscription 对象的 unsubscribe 方法取消该订阅。
     self?.subscription = subscription
@@ -106,14 +106,23 @@ BaaSWhere *where = [BaaSWhere compare:@"type" operator:BaaSOperatorEqualTo value
 | 名称     | 类型   | 必填   | 说明                                          |
 | :-----  | :----- | :---- | :--- |
 | event    | SubscriptionEvent | 是  | 表数据变化的类型，参考 [SubscriptionEvent](#SubscriptionEvent)   |
-| where    |  Where? |  否   | 按查询条件订阅，默认为 nil，表示订阅事件所有的操作都会触发回调。参考数据表[查询](/ios-sdk/schema/query.md) |
+| where    |  Where? |  否   | 查询条件订阅，默认为 nil，表示订阅事件所有的操作都会触发回调。 |
 | onInit | SubscribeCallback |  是 | 订阅成功回调函数，参考 [SubscribeCallback](#SubscribeCallback) |
 | onError | ErrorSubscribeCallback | 是 | 订阅失败回调函数，参考 [ErrorSubscribeCallback](#ErrorSubscribeCallback) |
 | onEvent  | EventCallback    | 是  | 事件发生时的回调函数，参考 [EventCallback](#EventCallback)  |
 
 > **info**
-> SDK 自动管理 WebSocket 的连接，当发起第一个订阅时，SDK 将建立连接，之后的订阅/接收事件/删除订阅，都使用该连接。
-> 若 WebSocket 连接意外断开，比如 app 挂起，无网络等，当 app 恢复正常时，SDK 自动重连。
+> 条件订阅使用方法与查询数据一致，可参考：[查询数据](/ios-sdk/schema/query.md)。
+> Websocket 按条件订阅目前仅支持比较（compare）查询。
+
+按条件订阅支持以下操作符：
+
+| 数据类型 |            可使用的查询操作     |
+|:---------         |:--------------------------- |
+| String            | =, !=                       |
+| Int/Float/Double  | =, >, >=, <, <=, !=         |
+| Bool              | =, !=                       |
+| Date              | =, >, >=, <, <=, !=         |
 
 另外，在知晓云控制台中手动删除数据时，如需触发删除数据动作的订阅通知，需要勾上「删除动作触发触发器」设置，如下图
 
@@ -186,6 +195,12 @@ BaaSTable *table = [[BaaSTable alloc] initWithName:@"danmu"];
 }];
 ```
 {% endtabs %}
+
+## 连接管理与重连
+
+ SDK 自动管理 WebSocket 的连接，当发起第一个订阅时，SDK 将建立连接，之后的订阅/接收事件/删除订阅，都使用该连接。当前无订阅时，SDK 主动关闭连接。
+
+ 若 WebSocket 连接意外断开，比如 app 挂起，无网络等，当 app 恢复正常时，SDK 自动重连。
 
 ## 数据类型
 
@@ -377,7 +392,7 @@ public typealias ErrorUnsubscribeCallback = (_ error: NSError?) -> Void
 | :---- | :---- | :---- | 
 | error | NSError? | 取消订阅失败的错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)及[订阅错误信息](#订阅错误信息) |
 
-## 订阅错误信息
+## 错误码
 
 | 错误码 | 错误描述  |  说明   | 
 | :---  | :--- |  :--- |
@@ -386,5 +401,6 @@ public typealias ErrorUnsubscribeCallback = (_ error: NSError?) -> Void
 | 400  |  not allow to subscribe builtin schema | 不允许订阅内置表  |
 | 400  | invalid options | 订阅的字段或值类型错误  |
 | 400 | schema does not exists | 订阅的数据表不存在  |
+| 400 | no such subscription  | 取消订阅无效的订阅  |
 | 402 | payment required    | 应用欠费 |
 | 500  |  internal server error | 服务器错误 |
