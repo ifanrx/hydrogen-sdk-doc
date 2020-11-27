@@ -396,7 +396,6 @@ public typealias ErrorUnsubscribeCallback = (_ error: NSError?) -> Void
 
 | 错误码 | 错误描述  |  说明   | 
 | :---  | :--- |  :--- |
-| 401  |  unauthorized | 未登录  |
 | 400  |  duplicate subscription   |  重复订阅 |
 | 400  |  not allow to subscribe builtin schema | 不允许订阅内置表  |
 | 400  | invalid options | 订阅的字段或值类型错误  |
@@ -404,3 +403,5 @@ public typealias ErrorUnsubscribeCallback = (_ error: NSError?) -> Void
 | 400 | no such subscription  | 取消订阅无效的订阅  |
 | 402 | payment required    | 应用欠费 |
 | 500  |  internal server error | 服务器错误 |
+| 604  |  please login in | 用户未登录  |
+| 616  |  connection error | 连接错误  |
