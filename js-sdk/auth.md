@@ -276,7 +276,7 @@ wx.BaaS.auth.loginWithSmsVerificationCode('15000000000', '123456').then(user => 
 请参考[关联微信小程序](./wechat/signin-signout.html#关联微信小程序)
 
 ### 关联支付宝小程序
-请参考[关联支付宝小程序](./alipay/signin-signout.html#关联支付宝小程序)
+请参考[关联支付宝账号](./alipay/signin-signout.html#关联支付宝账号)
 
 ### 关联 QQ 小程序
 请参考[关联 QQ 小程序](./qq/signin-signout.html#关联-qq-小程序)
