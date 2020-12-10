@@ -185,6 +185,7 @@
 
 * [iOS SDK](ios-sdk/README.md)
     * [上手指南](ios-sdk/install.md)
+    * [1.x -> 2.x 迁移指南](ios-sdk/migrate-from-v1.md)
     * [用户](ios-sdk/user/README.md)
         * [登入登出](ios-sdk/user/auth.md)
         * [用户](ios-sdk/user/user.md)

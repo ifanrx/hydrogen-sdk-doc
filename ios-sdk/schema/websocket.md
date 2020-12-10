@@ -202,6 +202,44 @@ BaaSTable *table = [[BaaSTable alloc] initWithName:@"danmu"];
 
  若 WebSocket 连接意外断开，比如 app 挂起，无网络等，当 app 恢复正常时，SDK 自动重连。
 
+ ### 重连机制
+
+ SDK 提供了 `ConnectionRetryPolicy` 默认的重连机制。通过 `delayLimit` 可以设置下次连接的最大延时。其内部使用二进制退避算法实现重连延时控制，即 delay 秒后重新尝试连接，且不断重连，直到连接成功：
+ 
+ ```
+ var delay = (2^ retryCount) * 0.5
+ delay = min(delay, delayLimit)
+ ```
+
+ #### 自定义重连机制
+
+ 如果默认的重连机制不满足使用需求，可以自定义重连机制。SDK 提供了 `ConnectionRetrier` 协议，通过实现该协议的 `retry(retryCount:) -> TimeInterval` 方法，来自定义重连机制。该方法的参数为当前的重试次数，返回值为下次连接延时。如果返回值小于 0，表示不进行重连。
+
+ 例如，重连机制为重试5次，延时从 1 秒开始，每次延时翻倍：
+
+ ```
+class ConnectionRetryOnePolicy: ConnectionRetrier {
+    
+    var retryLimit: UInt = 10 // 最大尝试次数
+    
+    init(retryLimit: UInt) {
+        self.retryLimit = retryLimit
+    }
+    
+    func retry(retryCount: UInt) -> TimeInterval {
+        
+        if retryCount < retryLimit {
+            return 2 * retryCount * 0.5
+        } else {
+            return -1
+        }
+    }
+}
+
+// 设置重连机制
+BaaSWebSocketConfiguration.retryPolicy = ConnectionRetryOnePolicy(retryLimit: 10)
+ ```
+
 ## 数据类型
 
 ### SubscriptionEvent
