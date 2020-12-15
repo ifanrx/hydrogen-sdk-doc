@@ -4,8 +4,9 @@
 > 目前 SDK 2.x 版本改动如下:
 > 1. 废弃 Record 固有属性
 > 2. 新增回调函数所在执行队列
-> 3. 升级 Moya 以及 Alamofire
-> 4. 实时数据库（WebSocket）
+> 3. Record 类型的 save 和 update 方法增加 Query 参数
+> 4. 升级 Moya 以及 Alamofire
+> 5. 实时数据库（WebSocket）
 
 ## 废弃 Record 固有属性
 
@@ -32,6 +33,10 @@
 | updatedAt  |  TimeInterval | 时间戳，更新日期  |
 
 如需获取上述数据，可以通过访问 `contentInfo` 或者通过 `get(_ key:)` 获取相应数据。
+
+## Record 类型的 save 和 update 方法增加 Query 参数
+
+在创建或者更新记录时，通过 Query 设置需要扩展的 pointer 的字段，参考[创建记录项](/ios-sdk/schema/create-record.md)，[更新记录项](/ios-sdk/schema/update-record.md)，[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)
 
 ## 新增回调函数所在执行队列
 

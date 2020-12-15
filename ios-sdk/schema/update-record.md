@@ -110,13 +110,17 @@ book.unset("color")
 {% tabs swift6="Swift", oc6="Objective-C" %}
 {% content "swift6" %}
 ```
-record.update { (success, error) in
+let query = Query()
+query.expand = ["pointer"]
+record.update(query: query, completion: { (success, error) in
 
-}
+})
 ```
 {% content "oc6" %}
 ```
-[record update:^(BOOL success, NSError * _Nullable error) {
+BaaSQuery *query = [[BaaSQuery alloc] init];
+query.expand = @[@"pointer"];
+[record updateWithQuery: query completion: ^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -126,6 +130,7 @@ record.update { (success, error) in
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
+| query    | Query          | 目前仅设置扩展，参考[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)  |
 | success  | Bool           | 是否新增数据成功 |
 | error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
@@ -201,6 +206,21 @@ book.incrementBy("price", value: 10.5)
 | key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
 | value | Double             | 是  | 与 key 的类型保持一致 |
 
+
+更新数据表里 Object 类型中某个字段是 Number 或 Integer 的数据：
+
+例如现有 `Book` 表中类型为 Object 的字段 info，且具体内容为 {amount: 1}
+{% tabs swift7_1="Swift", oc7_1="Objective-C" %}
+{% content "swift7_1" %}
+```
+book.incrementBy("info.amount", value: 0.5)
+```
+{% content "oc7_1" %}
+```
+[book incrementBy:@"info.amount" value:@0.5];
+```
+{% endtabs %}
+
 ## 数组原子性更新
 
 ### 将 _待插入的数组_ 加到原数组末尾
@@ -258,11 +278,11 @@ book.uAppend(@"author", value: ["xiaoming", "xiaohong"])
 {% tabs swift10="Swift", oc10="Objective-C" %}
 {% content "swift10" %}
 ```
-book.remove("author", value: ["xiaohong"])
+book.remove("recommender", value: ["xiaohong"])
 ```
 {% content "oc10" %}
 ```
-[book remove:@"author" value:@[@"xiaohong"]];
+[book remove:@"recommender" value:@[@"xiaohong"]];
 ```
 {% endtabs %}
 
@@ -274,6 +294,49 @@ book.remove("author", value: ["xiaohong"])
 | key   | String               | 是  | 在数据表中的类型必须是 Array |
 | value | Array               | 是  | 如果元素类型是 geojson、object、file，则只能是 length 为 1 的 Array |
 
+### 从原数组中删除最后一个元素
+
+假设 `Book` 表中有一个字段 `recommender`，表示推荐者，类型是数组，可以有多个推荐者。假如数据表中 `recommender` 为 `["xiaohua", "xiaohong"]`，现删除最后一个推荐者：
+
+{% tabs swift10_1="Swift", oc10_1="Objective-C" %}
+{% content "swift10_1" %}
+```
+book.pop("recommender")
+```
+{% content "oc10_1" %}
+```
+[book pop:@"recommender"]];
+```
+{% endtabs %}
+
+此时，数据表的 `recommender` 值为 `["xiaohua"]`。
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-  | :-- |
+| key   | String               | 是  | 在数据表中的类型必须是 Array |
+
+### 从原数组中删除第一个元素
+
+假设 `Book` 表中有一个字段 `recommender`，表示推荐者，类型是数组，可以有多个推荐者。假如数据表中 `recommender` 为 `["xiaohua", "xiaohong"]`，现删除第一个推荐者：
+
+{% tabs swift10_1="Swift", oc10_1="Objective-C" %}
+{% content "swift10_1" %}
+```
+book.shift("recommender")
+```
+{% content "oc10_1" %}
+```
+[book shift:@"recommender"]];
+```
+{% endtabs %}
+
+此时，数据表的 `recommender` 值为 `["xiaohong"]`。
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-  | :-- |
+| key   | String               | 是  | 在数据表中的类型必须是 Array |
 
 ## 按条件批量更新数据项
 

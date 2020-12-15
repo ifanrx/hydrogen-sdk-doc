@@ -108,13 +108,17 @@ record.set("price", value: 10)
 {% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}
 ```
-record.save { (success, error) in
+let query = Query()
+query.expand = ["pointer"]
+record.save(query: query, completion { (success, error) in
 
-}
+})
 ```
 {% content "oc5" %}
 ```
-[record save:^(BOOL success, NSError * _Nullable error) {
+BaaSQuery *query = [[BaaSQuery alloc] init];
+query.expand = @[@"pointer"];
+[record saveWithQuery: query completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -124,6 +128,7 @@ record.save { (success, error) in
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
+| query    | Query          | 目前仅设置扩展，参考[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)  |
 | success  | Bool           | 是否新增数据成功 |
 | error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
