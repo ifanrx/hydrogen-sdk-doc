@@ -112,7 +112,8 @@ book.unset("color")
 ```
 let query = Query()
 query.expand = ["pointer"]
-record.update(query: query, completion: { (success, error) in
+let options = [RecordOption.enableTrigger: true]
+record.update(query: query, options: options, completion: { (success, error) in
 
 })
 ```
@@ -120,17 +121,24 @@ record.update(query: query, completion: { (success, error) in
 ```
 BaaSQuery *query = [[BaaSQuery alloc] init];
 query.expand = @[@"pointer"];
-[record updateWithQuery: query completion: ^(BOOL success, NSError * _Nullable error) {
+NSDictionary *options = @{RecordOption.enableTrigger: @YES};
+[record updateWithQuery: query options:options completion: ^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
 {% endtabs %}
 
+**参数说明**
+
+| 参数名    | 类型    | 说明              |  必填  |
+|-----------|---------|-------------------|----|
+| query    | Query          | 目前仅设置扩展，参考[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)  |
+| options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOption](/ios-sdk/schema/data-type.md#RecordOption) |  N |
+
 **返回结果**
  
 | 名称      | 类型           | 说明 |
 | :------- | :------------  | :------ |
-| query    | Query          | 目前仅设置扩展，参考[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)  |
 | success  | Bool           | 是否新增数据成功 |
 | error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
 
@@ -399,7 +407,7 @@ BaaSRecord *record = [_table createRecord];
 |-----------|---------|-------------------|-------|
 | record   | Record  |   需要被更新的信息|  Y |
 | query | Query | 设置扩展字段 |  N  | 
-| options | Dictionary    |   批量操作选项 ，目前支持支持 enable_trigger, true 为触发触发器 |  N |
+| options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOption](/ios-sdk/schema/data-type.md#RecordOption) |  N |
 
 **返回结果**
  
