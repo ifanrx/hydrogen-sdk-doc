@@ -110,7 +110,7 @@ wx.requestSubscribeMessage({
 
 动作类型选择「发送订阅消息」，与在线发送类似，填入相关内容，通过模板校验后即可完成触发器创建。如果所示，updated_at 存的是字符串，可以使用 ```{{updated_at | date:"Y年m月d日 H:i"}}``` 这种 filter 形式进行转换。另外可以点击「添加动作」继续设置动作。
 
-更多内容可查看[知晓云-触发器教程](/dashboard/basic-services/trigger.md)
+更多内容可查看[知晓云-触发器教程](../../dashboard/basic-services/trigger.md)
 
 ### 通过云函数发送
 #### 创建云函数
