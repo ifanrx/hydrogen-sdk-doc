@@ -4,7 +4,7 @@
 我们打开应用的引擎模块，默认就进入到了触发器模块，在这个页面我们可以很方便进行的查询、编辑，禁用等操作。
 ![触发器](../../images/practice/trigger/3275474.jpg)
 
-触发器相关文档请[移步这里](/dashboard/trigger.md)
+触发器相关文档请[移步这里](../../dashboard/basic-services/trigger.md)
 ## 触发类型：数据表
 下面我们先以数据表作为触发条件，方便大家实操。
 ![触发类型：数据表](../../images/practice/trigger/42461106.jpg)

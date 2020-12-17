@@ -2,7 +2,7 @@
 
 API 网关分成前后端服务，前端主要为接收客户端请求，并对其进行有效性校验及请求参数格式化后，再交给后端进行处理。
 
-详细的控制台配置流程参考：[点我直达](/dashboard/basic-services/api-gateway.md)
+详细的控制台配置流程参考：[点我直达](../../dashboard/basic-services/api-gateway.md)
 
 > 后端服务暂只支持云函数
 
