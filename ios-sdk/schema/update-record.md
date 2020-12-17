@@ -328,12 +328,12 @@ book.pop("recommender")
 
 假设 `Book` 表中有一个字段 `recommender`，表示推荐者，类型是数组，可以有多个推荐者。假如数据表中 `recommender` 为 `["xiaohua", "xiaohong"]`，现删除第一个推荐者：
 
-{% tabs swift10_1="Swift", oc10_1="Objective-C" %}
-{% content "swift10_1" %}
+{% tabs swift10_2="Swift", oc10_2="Objective-C" %}
+{% content "swift10_2" %}
 ```
 book.shift("recommender")
 ```
-{% content "oc10_1" %}
+{% content "oc10_2" %}
 ```
 [book shift:@"recommender"]];
 ```
