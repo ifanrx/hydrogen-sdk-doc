@@ -25,7 +25,7 @@
 | files      | Number | Y   | 分类下的文件数 |
 | id         | String | Y   | 分类 ID |
 | name       | String | Y   | 分类名 |
-| updated_at | Number | Y   | 分裂更新时间 |
+| updated_at | Number | Y   | 分类更新时间 |
 
 **示例代码**
 
