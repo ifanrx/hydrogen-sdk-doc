@@ -87,7 +87,7 @@ Where where = new Where();
 where.equalTo(Content.ID, "1513076305938456");
 
 Query query = new Query()
-  .keys("-title", "-content")
+  .select("-title", "-content")
   .expand("pointer_test_oder")
   .put(where);
 Content content = Contents.contents(query).getObjects().get(0);
@@ -122,7 +122,7 @@ Content content = Contents.contents(query).getObjects().get(0);
 **请求示例 2**
 ```java
 Query query = new Query()
-  .keys("title", "content", "pointer_test_oder")
+  .select("title", "content", "pointer_test_oder")
   .expand("pointer_test_oder")
   .put(where);
 PagedList<Content> contents = Contents.contents(query);
