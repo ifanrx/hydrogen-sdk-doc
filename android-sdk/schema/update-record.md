@@ -1,5 +1,18 @@
 # 更新数据项
 
+`Record.save(SaveOptions)`
+
+**参数说明**
+
+SaveOptions:
+
+| 字段          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| enableTrigger | Boolean |  否  | null | 是否触发触发器 |
+| withCount     | Boolean |  否  | null | 是否返回 total_count |
+| expand        | List |  否  | null | 是否返回对应字段扩展 |
+
+
 ## 操作步骤
 
 1.通过 `tableName` 实例化一个 `Table` 对象，操作该对象即相当于操作对应的数据表
