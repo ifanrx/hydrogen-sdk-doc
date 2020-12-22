@@ -508,9 +508,13 @@ if ($err) {
 
 ~~`PUT https://cloud.minapp.com/oserve/v1/user/info/:id/`~~(后续将废弃该接口，推荐使用以下接口)
 
-`PUT https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/:id/`
+`PUT https://cloud.minapp.com/oserve/v2.6/miniapp/user_profile/:id/`
 
 其中 `:id` 是用户在 `_userprofile` 表中的 `id`。
+
+> **info**
+> - v2.6 版本前，数据更新操作会结合用户输入数据以及原有的数据行其余字段数据，使用整个数据对象进行保存；
+> - v2.6 版本后（包含 v2.6），数据更新操作仅会针对用户输入数据对字段进行单独更新。
 
 **代码示例**
 
@@ -520,7 +524,7 @@ if ($err) {
 
 ```shell
 curl -X PUT \
-  https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/70695404/ \
+  https://cloud.minapp.com/oserve/v2.6/miniapp/user_profile/70695404/ \
   -H 'Authorization: Bearer 35919068aa799eccdef19160e1da4bf21381d2a2' \
   -H 'Content-Type: application/json' \
   -d '{"test": "test"}'
@@ -533,7 +537,7 @@ var request = require("request");
 
 var options = {
   method: 'PUT',
-  url: 'https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/70695404/',
+  url: 'https://cloud.minapp.com/oserve/v2.6/miniapp/user_profile/70695404/',
   headers:
   {
     'Content-Type': 'application/json',
@@ -554,7 +558,7 @@ var req = request(options, function (error, response, body) {
 ```php
 <?php
 $token = '35919068aa799eccdef19160e1da4bf21381d2a2';
-$url = "https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/70695404/";
+$url = "https://cloud.minapp.com/oserve/v2.6/miniapp/user_profile/70695404/";
 
 $ch = curl_init();
 $header = array(
@@ -618,7 +622,7 @@ if ($err) {
 
 ### 批量修改自定义字段
 
-`PUT https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/`
+`PUT https://cloud.minapp.com/oserve/v2.6/miniapp/user_profile/`
 
 > **info**
 > 该接口支持通过参数 return_total_count 指定是否返回待更新对象总数，以协助不关心对象总数只关心数据更新结果的开发者提升接口响应速度。
@@ -650,7 +654,7 @@ if ($err) {
 
 ```shell
 curl -X PUT \
-  https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/ \
+  https://cloud.minapp.com/oserve/v2.6/miniapp/user_profile/ \
   -H 'Authorization: Bearer 35919068aa799eccdef19160e1da4bf21381d2a2' \
   -H 'Content-Type: application/json' \
   -d '{"test": "test"}'
@@ -663,7 +667,7 @@ var request = require("request");
 
 var options = {
   method: 'PUT',
-  url: 'https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/',
+  url: 'https://cloud.minapp.com/oserve/v2.6/miniapp/user_profile/',
   headers:
   {
     'Content-Type': 'application/json',
@@ -684,7 +688,7 @@ var req = request(options, function (error, response, body) {
 ```php
 <?php
 $token = '35919068aa799eccdef19160e1da4bf21381d2a2';
-$url = "https://cloud.minapp.com/oserve/v2.2/miniapp/user_profile/";
+$url = "https://cloud.minapp.com/oserve/v2.6/miniapp/user_profile/";
 
 $ch = curl_init();
 $header = array(

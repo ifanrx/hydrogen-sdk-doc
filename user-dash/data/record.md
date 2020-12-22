@@ -146,9 +146,13 @@ Content-Type: `application/json`
 
 本接口提供数据更新的能力，通过指定表 ID 以及 Record ID 来完成操作， 需注意，更新的数据所包含的字段需要与数据表中定义的字段一致。
 
+> **info**
+> - v2.6 版本前，数据更新操作会结合用户输入数据以及原有的数据行其余字段数据，使用整个数据对象进行保存；
+> - v2.6 版本后（包含 v2.6），数据更新操作仅会针对用户输入数据对字段进行单独更新。
+
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v2.4/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/userve/v2.6/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -178,7 +182,7 @@ Content-Type: `application/json`
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v2.4/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/userve/v2.6/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -205,7 +209,7 @@ Content-Type: `application/json`
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v2.4/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/userve/v2.6/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -247,7 +251,7 @@ Content-Type: `application/json`
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v2.4/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/userve/v2.6/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -417,7 +421,7 @@ Content-Type: `application/json`
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v2.4/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/userve/v2.6/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -510,7 +514,7 @@ operation_result 包含的 Object 的参数说明：
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v2.4/table/:table_id/record/`
+`PUT https://cloud.minapp.com/userve/v2.6/table/:table_id/record/`
 
 其中 `:table_id` 是数据表的 ID。单次请求最多修改 1000 条数据，支持触发触发器。
 
@@ -645,7 +649,7 @@ operation_result 包含的 Object 的参数说明：
 
 **接口**
 
-`PUT https://cloud.minapp.com/userve/v2.4/table/:table_id/record/`
+`PUT https://cloud.minapp.com/userve/v2.6/table/:table_id/record/`
 
 其中 `:table_id` 是数据表的 ID。单次请求更新的数据条数大于 1000 条且 Query 参数中没有 limit 参数或 limit 值大于 1000 时会自动使用此接口，不支持触发触发器。
 

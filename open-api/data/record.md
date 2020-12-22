@@ -419,9 +419,13 @@ curl_close($ch);
 
 本接口提供数据更新的能力，通过指定表 ID 以及 Record ID 来完成操作， 需注意，更新的数据所包含的字段需要与数据表中定义的字段一致。
 
+> **info**
+> - v2.6 版本前，数据更新操作会结合用户输入数据以及原有的数据行其余字段数据，使用整个数据对象进行保存；
+> - v2.6 版本后（包含 v2.6），数据更新操作仅会针对用户输入数据对字段进行单独更新。
+
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v2.4/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/oserve/v2.6/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -447,7 +451,7 @@ Content-Type: `application/json`
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v2.4/table/3906/record/5a6ee2ab4a7baa1fc083e3xx/',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
+  uri: 'https://cloud.minapp.com/oserve/v2.6/table/3906/record/5a6ee2ab4a7baa1fc083e3xx/',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
   method: 'PUT',
   headers: {
     Authorization: `Bearer ${token}`,
@@ -468,7 +472,7 @@ request(opt, function(err, res, body) {
 <?php
 $table_id = 1; // 数据表 ID
 $record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
-$url = "https://cloud.minapp.com/oserve/v2.4/table/{$table_id}/record/{$record_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.6/table/{$table_id}/record/{$record_id}/";
 $param['name'] = 'nickname';
 
 $ch = curl_init();
@@ -503,7 +507,7 @@ curl_close($ch);
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v2.4/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/oserve/v2.6/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -531,7 +535,7 @@ curl_close($ch);
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v2.4/table/3906/record/5a33406909a805412e3169xx/',  // 3906 对应 :table_id, 5a33406909a805412e3169xx 对应 :record_id
+  uri: 'https://cloud.minapp.com/oserve/v2.6/table/3906/record/5a33406909a805412e3169xx/',  // 3906 对应 :table_id, 5a33406909a805412e3169xx 对应 :record_id
   method: 'PUT',
   headers: {
     Authorization: `Bearer ${token}`,
@@ -554,7 +558,7 @@ request(opt, function(err, res, body) {
 <?php
 $table_id = 1; // 数据表 ID
 $record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
-$url = "https://cloud.minapp.com/oserve/v2.4/table/{$table_id}/record/{$record_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.6/table/{$table_id}/record/{$record_id}/";
 $param = array(
   '$unset' => ['example' => [""]]
 );
@@ -588,7 +592,7 @@ curl_close($ch);
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v2.4/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/oserve/v2.6/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -610,7 +614,7 @@ curl_close($ch);
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v2.4/table/3906/record/5a6ee2ab4a7baa1fc083e3xx/',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
+  uri: 'https://cloud.minapp.com/oserve/v2.6/table/3906/record/5a6ee2ab4a7baa1fc083e3xx/',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
   method: 'PUT',
   headers: {
     Authorization: `Bearer ${token}`,
@@ -631,7 +635,7 @@ request(opt, function(err, res, body) {
 <?php
 $table_id = 3906; // 数据表 ID
 $record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
-$url = "https://cloud.minapp.com/oserve/v2.4/table/{$table_id}/record/{$record_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.6/table/{$table_id}/record/{$record_id}/";
 $param['write_perm'] = [ "gid:656", "user:37087886"];
 $param['read_perm'] = [ "user:37087886" ];
 
@@ -732,7 +736,7 @@ curl_close($ch);
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v2.4/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/oserve/v2.6/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -814,7 +818,7 @@ Content-Type: `application/json`
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v2.4/table/3906/record/5a33406909a805412e3169xx/',  // 3906 对应 :table_id, 5a33406909a805412e3169xx 对应 :record_id
+  uri: 'https://cloud.minapp.com/oserve/v2.6/table/3906/record/5a33406909a805412e3169xx/',  // 3906 对应 :table_id, 5a33406909a805412e3169xx 对应 :record_id
   method: 'PUT',
   headers: {
     Authorization: `Bearer ${token}`,
@@ -840,7 +844,7 @@ request(opt, function(err, res, body) {
 <?php
 $table_id = 1; // 数据表 ID
 $record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
-$url = "https://cloud.minapp.com/oserve/v2.4/table/{$table_id}/record/{$record_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.6/table/{$table_id}/record/{$record_id}/";
 $param = array(
   'desc' => ['$append' => ['atomic data']], 
   'price' => ['$incr_by' => -1]
@@ -1221,7 +1225,7 @@ curl_close($ch);
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v2.4/table/:table_id/record/:record_id/`
+`PUT https://cloud.minapp.com/oserve/v2.6/table/:table_id/record/:record_id/`
 
 其中 `:table_id` 需替换为你的数据表 ID，`record_id` 需替换为你的记录 ID
 
@@ -1235,7 +1239,7 @@ curl_close($ch);
 var request = require('request');
 
 var opt = {
-  uri: 'https://cloud.minapp.com/oserve/v2.4/table/3906/record/5a6ee2ab4a7baa1fc083e3xx',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
+  uri: 'https://cloud.minapp.com/oserve/v2.6/table/3906/record/5a6ee2ab4a7baa1fc083e3xx',  // 3906 对应 :table_id, 5a6ee2ab4a7baa1fc083e3xx 对应 :record_id
   method: 'PUT',
   headers: {
     Authorization: `Bearer ${token}`,
@@ -1256,7 +1260,7 @@ request(opt, function(err, res, body) {
 <?php
 $table_id = 1; // 数据表 ID
 $record_id = '5a6ee2ab4a7baa1fc083e3xx'; // 记录 ID
-$url = "https://cloud.minapp.com/oserve/v2.4/table/{$table_id}/record/{$record_id}/";
+$url = "https://cloud.minapp.com/oserve/v2.6/table/{$table_id}/record/{$record_id}/";
 $param['pointer'] = '5a2fa9b008443e59e0e67889';
 
 $ch = curl_init();
@@ -1437,7 +1441,7 @@ operation_result 包含的 Object 的参数说明：
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v2.4/table/:table_id/record/`
+`PUT https://cloud.minapp.com/oserve/v2.6/table/:table_id/record/`
 
 其中 `:table_id` 是数据表的 ID。单次请求最多修改 1000 条数据，支持触发触发器。
 
@@ -1468,7 +1472,7 @@ Content-Type: `application/json`
 
 ```shell
 curl -X PUT \
-  https://cloud.minapp.com/oserve/v2.4/table/70264/record/ \
+  https://cloud.minapp.com/oserve/v2.6/table/70264/record/ \
   -H 'Authorization: Bearer 35919068aa799eccdef19160e1da4bf21381d2a2' \
   -H 'Content-Type: application/json' \
   -d '{"name": "Sam"}'
@@ -1481,7 +1485,7 @@ var request = require("request");
 
 var options = {
   method: 'PUT',
-  url: 'https://cloud.minapp.com/oserve/v2.4/table/70264/record/',
+  url: 'https://cloud.minapp.com/oserve/v2.6/table/70264/record/',
   headers:
   {
     'Content-Type': 'application/json',
@@ -1502,7 +1506,7 @@ var req = request(options, function (error, response, body) {
 ```php
 <?php
 $token = '35919068aa799eccdef19160e1da4bf21381d2a2';
-$url = "https://cloud.minapp.com/oserve/v2.4/table/70264/record/";
+$url = "https://cloud.minapp.com/oserve/v2.6/table/70264/record/";
 
 $ch = curl_init();
 $header = [
@@ -1718,7 +1722,7 @@ if ($err) {
 
 **接口**
 
-`PUT https://cloud.minapp.com/oserve/v2.4/table/:table_id/record/`
+`PUT https://cloud.minapp.com/oserve/v2.6/table/:table_id/record/`
 
 其中 `:table_id` 是数据表的 ID。单次请求更新的数据条数大于 1000 条且 Query 参数中没有 limit 参数时会自动使用此接口，不支持触发触发器。
 
@@ -1742,7 +1746,7 @@ Content-Type: `application/json`
 
 ```shell
 curl -X PUT \
-  https://cloud.minapp.com/oserve/v2.4/table/70264/record/ \
+  https://cloud.minapp.com/oserve/v2.6/table/70264/record/ \
   -H 'Authorization: Bearer 35919068aa799eccdef19160e1da4bf21381d2a2' \
   -H 'Content-Type: application/json' \
   -d '{"name": "Sam"}'
@@ -1755,7 +1759,7 @@ var request = require("request");
 
 var options = {
   method: 'PUT',
-  url: 'https://cloud.minapp.com/oserve/v2.4/table/70264/record/',
+  url: 'https://cloud.minapp.com/oserve/v2.6/table/70264/record/',
   headers:
   {
     'Content-Type': 'application/json',
@@ -1776,7 +1780,7 @@ var req = request(options, function (error, response, body) {
 ```php
 <?php
 $token = '35919068aa799eccdef19160e1da4bf21381d2a2';
-$url = "https://cloud.minapp.com/oserve/v2.4/table/70264/record/";
+$url = "https://cloud.minapp.com/oserve/v2.6/table/70264/record/";
 
 $ch = curl_init();
 $header = [
