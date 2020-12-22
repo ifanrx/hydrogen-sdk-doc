@@ -35,9 +35,9 @@
 
 如需获取上述数据，可以通过访问 `contentInfo` 或者通过 `get(_ key:)` 获取相应数据。
 
-## Record 类型的 save 和 update 方法增加 Query 参数
+## Record 类型的 save 和 update 方法增加 expand 参数
 
-在创建或者更新记录时，通过 Query 设置需要扩展的 pointer 的字段，参考[创建记录项](/ios-sdk/schema/create-record.md)，[更新记录项](/ios-sdk/schema/update-record.md)，[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)
+在创建或者更新记录时，通过 expand 设置返回内容中需要扩展的 pointer 的字段，参考[创建记录项](/ios-sdk/schema/create-record.md)，[更新记录项](/ios-sdk/schema/update-record.md)，[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)
 
 ## Record 类型的 save/update/delete 方法增加 [RecordOption: Any] 参数
 

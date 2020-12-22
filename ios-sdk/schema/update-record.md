@@ -110,19 +110,17 @@ book.unset("color")
 {% tabs swift6="Swift", oc6="Objective-C" %}
 {% content "swift6" %}
 ```
-let query = Query()
-query.expand = ["pointer"]
+let expand = ["pointer"]
 let options = [RecordOption.enableTrigger: true]
-record.update(query: query, options: options, completion: { (success, error) in
+record.update(expand: expand, options: options, completion: { (success, error) in
 
 })
 ```
 {% content "oc6" %}
 ```
-BaaSQuery *query = [[BaaSQuery alloc] init];
-query.expand = @[@"pointer"];
+NSArray *expand = @[@"pointer"];
 NSDictionary *options = @{RecordOption.enableTrigger: @YES};
-[record updateWithQuery: query options:options completion: ^(BOOL success, NSError * _Nullable error) {
+[record updateWithExpand: expand options:options completion: ^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -132,7 +130,7 @@ NSDictionary *options = @{RecordOption.enableTrigger: @YES};
 
 | 参数名    | 类型    | 说明              |  必填  |
 |-----------|---------|-------------------|----|
-| query    | Query          | 目前仅设置扩展，参考[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)  |
+| expand    | [String]          | 设置扩展，参考[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)  |
 | options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOption](/ios-sdk/schema/data-type.md#RecordOption) |  N |
 
 **返回结果**

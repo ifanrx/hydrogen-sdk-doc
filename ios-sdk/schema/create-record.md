@@ -108,19 +108,17 @@ record.set("price", value: 10)
 {% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}
 ```
-let query = Query()
-query.expand = ["pointer"]
+let expand = ["pointer"]
 let options = [RecordOption.enableTrigger: true]
-record.save(query: query, options: options, completion { (success, error) in
+record.save(expand: expand, options: options, completion { (success, error) in
 
 })
 ```
 {% content "oc5" %}
 ```
-BaaSQuery *query = [[BaaSQuery alloc] init];
-query.expand = @[@"pointer"];
+NSArray *expand = @[@"pointer"];
 NSDictionary *options = @{RecordOption.enableTrigger: @YES};
-[record saveWithQuery: query options:options completion:^(BOOL success, NSError * _Nullable error) {
+[record saveWithExpand: expand options:options completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -130,7 +128,7 @@ NSDictionary *options = @{RecordOption.enableTrigger: @YES};
 
 | 参数名    | 类型    | 说明              |  必填  |
 |-----------|---------|-------------------|----|
-| query    | Query          | 目前仅设置扩展，参考[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)  |
+| expand    | [String]          | 设置扩展，参考[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)  |
 | options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOption](/ios-sdk/schema/data-type.md#RecordOption) |  N |
 
 **返回结果**
@@ -188,7 +186,7 @@ BaaSRecord *book = [bookTable createRecord];
 [book set:@"author" value:@"海明威"];
 [book set:@"price" value:49];
 
-[book saveWithQuery: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
+[book saveWithExpand: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -212,7 +210,7 @@ book.save { (success, error) in
 NSISO8601DateFormatter *dateFormatter = [[NSISO8601DateFormatter alloc] init];
 NSString *dateISO = [dateFormatter stringFromDate:[NSDate date]];
 [book set:@"publish_date" value:dateISO];
-[book saveWithQuery: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
+[book saveWithExpand: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -238,7 +236,7 @@ FileManager.get("@"5c98b065d575a97d5f878225"") { (file, error) in
 ```
 [BaaSFileManager get:@"5c98b065d575a97d5f878225", completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
     [book set:@"cover" value:file];
-    [book saveWithQuery: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
+    [book saveWithExpand: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 }];
@@ -267,7 +265,7 @@ FileManager.get("@"5c98b065d575a97d5f878225"") { (file, error) in
 ```
 [BaaSFileManager get:@"5c98b065d575a97d5f878225", completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
     [book set:@"photos" value:@[file]];
-    [book saveWithQuery: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
+    [book saveWithExpand: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 }];
@@ -301,7 +299,7 @@ book.save { (success, error) in
 {% content "oc8_2" %}
 ```
 [book set:@"publish_info" value: @{@"name": @"efg出版社", @"location": @"广东省广州市天河区五山路 100 号"}];
-[book saveWithQuery: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
+[book saveWithExpand: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -328,7 +326,7 @@ book.save { (success, error) in
 {% content "oc8_3" %}
 ```
 [book set:@"recommender" value: @[@"yuminghong", @"hua"]];
-[book saveWithQuery: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
+[book saveWithExpand: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -363,7 +361,7 @@ book.save { (success, error) in
 ```
 BaaSRecord *comment = [table getWithoutDataWithRecordId:@"5bad87ab0769797b4fb27a1b"];
 [book set:@"comment" value:comment];
-[book saveWithQuery: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
+[book saveWithExpand: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
