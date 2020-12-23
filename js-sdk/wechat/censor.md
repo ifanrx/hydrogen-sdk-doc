@@ -30,6 +30,12 @@
 |----------|--------|----------|
 | filePath | String | 文件路径 |
 
+**返回参数说明**
+
+| 参数名   | 类型   | 说明     |
+|----------|--------|----------|
+| risky         | Boolean | 是否为违规内容，true 为风险，false 为未检测到风险，null 为微信尚未推送检查结果  |
+
 {% endblock censorImageSign %}
 
 **返回示例**
@@ -54,7 +60,7 @@ wx.chooseImage({
   }})
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](../error-code.md)
 
 {% endblock censorImageCode %}
 
@@ -70,6 +76,13 @@ HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
 | text     | String | 要检测的文本 |
+
+
+**返回参数说明**
+
+| 参数名   | 类型   | 说明     |
+|----------|--------|----------|
+| risky         | Boolean | 是否为违规内容，true 为风险，false 为未检测到风险，null 为微信尚未推送检查结果  |
 
 **返回示例**
 
@@ -90,7 +103,7 @@ HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
     })
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](../error-code.md)
 
 {% endblock censorTextCode %}
 
@@ -146,7 +159,7 @@ HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
 | 404      | 文件不存在      |
 | 500      | 服务错误        |
 
-HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](../error-code.md)
 
 **示例代码**
 
@@ -189,7 +202,7 @@ wx.BaaS.censorAsync("...").then(res => {
 | 200      | 成功     |
 | 404      | 检测记录不存在 |
 
-HError 对象结构请参考[错误码和 HError 对象](./error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](../error-code.md)
 
 **示例代码**
 
