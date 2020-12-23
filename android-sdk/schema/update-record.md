@@ -277,6 +277,87 @@ record.put('date', 'abc')
 record.save()
 ```
 
+### 从原数组中删除最后一项
+
+`Record.pop(key)`
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-- | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+
+**请求示例**
+
+```java
+Table table = new Table("product");
+Record record = table.fetchWithoutData("59897882ff650c0477f00485");
+record.pop("array_i");  // array_i: [1, 2, 3, 4]
+record.saveInBackground(new BaseCallback<Record>() {
+    @Override
+    public void onSuccess(Record record) {
+        // array_i: [1, 2, 3]
+    }
+
+    @Override
+    public void onFailure(Throwable e) {}
+});
+```
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "59897882ff650c0477f00485",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "59897882ff650c0477f00485",
+    "array_i": [1, 2, 3]
+}
+```
+
+### 从原组中删除第一项
+
+`Record.shift(key)`
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-- | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+
+**请求示例**
+
+```java
+Table table = new Table("product");
+Record record = table.fetchWithoutData("59897882ff650c0477f00485");
+record.shift("array_i");  // array_i: [1, 2, 3, 4]
+record.saveInBackground(new BaseCallback<Record>() {
+    @Override
+    public void onSuccess(Record record) {
+        // array_i: [2, 3, 4]
+    }
+
+    @Override
+    public void onFailure(Throwable e) {}
+});
+```
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "59897882ff650c0477f00485",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "59897882ff650c0477f00485",
+    "array_i": [2, 3, 4]
+}
+```
+
+
 ## 按条件批量更新数据项
 
 > 注意：由于条件查询可能命中非常多的数据，默认情况下，限制为最多更新前 1000 条数据。
