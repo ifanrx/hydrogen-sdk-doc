@@ -102,6 +102,53 @@ record.saveInBackground(new Callback<Record>() {
 | 404            | 数据行不存在    |
 
 
+## 更新 object 类型内的属性
+```java
+Record.patchObject("obj1", record);
+```
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-  | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Object |
+| value | Record              | 是  | 更新的对象 |
+
+> **info**
+> 该操作的效果浅合并，也就是只合并第一层，嵌套的属性仍然是被替换。
+> 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的
+
+**请求示例**
+假设数据表 Product 中有数据行如下
+```javascript
+[{
+   id: "7",
+   obj1: {a: [1, 2, 3], b: 666, c: {age: 100}}
+}]
+```
+
+```java
+Table product = new Table("Product");
+Record record = product.fetchWithoutData("7");
+Record patch = product.createRecord();
+patch.put("a", new int[]{222});
+patch.put("b", 555);
+patch.put("d", 888);
+record.patchObject("obj1", patch);
+
+```
+执行结果
+
+```javascript
+[
+  {
+    id: '7',
+    obj1: {a: [222], b: 555, c: {age: 100}, d: 888}
+  }
+]
+```
+
+
 ## 更新 pointer 类型字段
 
 假设有 product 表, product 表部分字段如下:
