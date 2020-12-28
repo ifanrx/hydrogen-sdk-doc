@@ -128,7 +128,7 @@ NSDictionary *options = @{RecordOption.enableTrigger: @YES};
 
 | 参数名    | 类型    | 说明              |  必填  |
 |-----------|---------|-------------------|----|
-| expand    | [String]          | 设置扩展，参考[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)  |
+| expand    | [String]          | 设置扩展，参考[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)  |  N  |
 | options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOption](/ios-sdk/schema/data-type.md#RecordOption) |  N |
 
 **返回结果**
