@@ -6,7 +6,7 @@
 
 详细内容，可查看以下功能模块介绍：
 
-* [上手指南](./install.md)
+* [上手指南](./quick-start.md)
 * [登入登出](./user/auth.md)
 * [用户](./user/account.md)
 * [数据表](./schema/README.md)
