@@ -8,6 +8,9 @@
 
 `BaaS.alipay.censorText(text)`
 
+> **info**
+> 检测违规文本需要 3.10 以上版本。
+
 {% endblock censorTextSign %}
 
 {% block censorTextCode %}
