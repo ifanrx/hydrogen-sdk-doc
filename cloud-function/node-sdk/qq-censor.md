@@ -15,6 +15,12 @@
 |----------|--------|----------|
 | fileID | string | 文件列表中的文件ID |
 
+**返回参数说明**
+
+| 参数名   | 类型   | 说明     |
+|----------|--------|----------|
+| risky         | Boolean | 是否为违规内容，true 为风险，false 为未检测到风险，null 为微信尚未推送检查结果  |
+
 {% endblock censorImageSign %}
 
 {% block censorImageCode %}
