@@ -35,7 +35,7 @@
 
 | 选项           |   类型  |  说明    |
 | :-----------  | :----------- | :------------     |
-| enableTrigger | RecordOptionKey |  是否触发触发器  | 
+| enableTrigger | RecordOptionKey |  是否触发触发器，默认触发 | 
 
 其中 RecordOptionKey 为 String 的别名。
 
