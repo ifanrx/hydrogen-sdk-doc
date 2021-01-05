@@ -109,7 +109,7 @@ record.set("price", value: 10)
 {% content "swift5" %}
 ```
 let expand = ["pointer"]
-let options = [RecordOption.enableTrigger: true]
+let options = [RecordOptionKey.enableTrigger: true]
 record.save(expand: expand, options: options, completion { (success, error) in
 
 })
@@ -117,7 +117,7 @@ record.save(expand: expand, options: options, completion { (success, error) in
 {% content "oc5" %}
 ```
 NSArray *expand = @[@"pointer"];
-NSDictionary *options = @{RecordOption.enableTrigger: @YES};
+NSDictionary *options = @{RecordOptionKey.enableTrigger: @YES};
 [record saveWithExpand: expand options:options completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
@@ -129,7 +129,7 @@ NSDictionary *options = @{RecordOption.enableTrigger: @YES};
 | 参数名    | 类型    | 说明              |  必填  |
 |-----------|---------|-------------------|----|
 | expand    | [String]          | 设置扩展，参考[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)  |  N  |
-| options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOption](/ios-sdk/schema/data-type.md#RecordOption) |  N |
+| options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOptionKey](/ios-sdk/schema/data-type.md#RecordOptionKey) |  N |
 
 **返回结果**
  
@@ -398,7 +398,7 @@ NSDictionary *options = @{@"enable_trigger": @YES};
 | 参数名    | 类型    | 说明              |  必填  |
 |-----------|---------|-------------------|----|
 | records   | Dictionary  |   符合表结构的记录数据| Y |
-| options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOption](/ios-sdk/schema/data-type.md#RecordOption)  |  N |
+| options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOptionKey](/ios-sdk/schema/data-type.md#RecordOptionKey)  |  N |
 
 **返回结果**
  

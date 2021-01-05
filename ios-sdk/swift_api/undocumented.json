@@ -604,21 +604,28 @@
     },
     {
       "file": "/Users/quanhuapeng/Desktop/hydrogen-ios-sdk/MinCloud/Pay.swift",
-      "line": 17,
+      "line": 16,
+      "symbol": "PaymentOptionKey.copy(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/quanhuapeng/Desktop/hydrogen-ios-sdk/MinCloud/Pay.swift",
+      "line": 62,
       "symbol": "Pay.shared",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/quanhuapeng/Desktop/hydrogen-ios-sdk/MinCloud/Pay.swift",
-      "line": 18,
+      "line": 63,
       "symbol": "Pay.isPaying",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/quanhuapeng/Desktop/hydrogen-ios-sdk/MinCloud/Pay.swift",
-      "line": 19,
+      "line": 64,
       "symbol": "Pay.callBackQueue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
@@ -751,49 +758,42 @@
     },
     {
       "file": "/Users/quanhuapeng/Desktop/hydrogen-ios-sdk/MinCloud/Table.swift",
-      "line": 12,
-      "symbol": "RecordOptionKey",
-      "symbol_kind": "source.lang.swift.decl.typealias",
+      "line": 15,
+      "symbol": "RecordOptionKey.copy(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/quanhuapeng/Desktop/hydrogen-ios-sdk/MinCloud/Table.swift",
-      "line": 17,
-      "symbol": "RecordOption.enableTrigger",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/quanhuapeng/Desktop/hydrogen-ios-sdk/MinCloud/Table.swift",
-      "line": 25,
+      "line": 36,
       "symbol": "Table.Id",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/quanhuapeng/Desktop/hydrogen-ios-sdk/MinCloud/Table.swift",
-      "line": 26,
+      "line": 37,
       "symbol": "Table.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/quanhuapeng/Desktop/hydrogen-ios-sdk/MinCloud/Table.swift",
-      "line": 31,
+      "line": 42,
       "symbol": "Table.callBackQueue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/quanhuapeng/Desktop/hydrogen-ios-sdk/MinCloud/Table.swift",
-      "line": 33,
+      "line": 44,
       "symbol": "Table.init(tableId:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/quanhuapeng/Desktop/hydrogen-ios-sdk/MinCloud/Table.swift",
-      "line": 38,
+      "line": 49,
       "symbol": "Table.init(name:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

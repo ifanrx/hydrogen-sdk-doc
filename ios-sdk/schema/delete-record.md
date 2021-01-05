@@ -7,14 +7,14 @@
 {% tabs swift1="Swift", oc1="Objective-C" %}
 {% content "swift1" %}
 ```
-let options = [RecordOption.enableTrigger: true]
+let options = [RecordOptionKey.enableTrigger: true]
 record.delete(options: options, completion { (success, error) in
 
 })
 ```
 {% content "oc1" %}
 ```
-NSDictionary *options = @{RecordOption.enableTrigger: @YES};
+NSDictionary *options = @{RecordOptionKey.enableTrigger: @YES};
 [_record deleteWithOptions:options completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
@@ -25,7 +25,7 @@ NSDictionary *options = @{RecordOption.enableTrigger: @YES};
 
 | 参数名    | 类型    | 说明              |  必填  |
 |-----------|---------|-------------------|----|
-| options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOption](/ios-sdk/schema/data-type.md#RecordOption) |  N |
+| options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOptionKey](/ios-sdk/schema/data-type.md#RecordOptionKey) |  N |
 
 **结果返回**
 
@@ -77,7 +77,7 @@ NSDictionary *options = @{@"enable_trigger": @true};
 | 参数名    | 类型    | 必填              |  说明  |
 |-----------|---------|-------------------|--|
 | query | Query |  N  |  查询条件，详见[数据表 - 查询](./query.md)  | 
-| options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOption](/ios-sdk/schema/data-type.md#RecordOption) |  N |
+| options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOptionKey](/ios-sdk/schema/data-type.md#RecordOptionKey) |  N |
 
 **返回结果**
  

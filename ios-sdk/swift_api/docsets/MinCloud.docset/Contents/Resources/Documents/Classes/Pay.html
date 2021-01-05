@@ -108,6 +108,9 @@
                 <a href="../Classes/Pay.html">Pay</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/PaymentOptionKey.html">PaymentOptionKey</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Query.html">Query</a>
               </li>
               <li class="nav-group-task">
@@ -117,7 +120,7 @@
                 <a href="../Classes/RecordList.html">RecordList</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/RecordOption.html">RecordOption</a>
+                <a href="../Classes/RecordOptionKey.html">RecordOptionKey</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RequestCanceller.html">RequestCanceller</a>
@@ -260,9 +263,6 @@
                 <a href="../Typealiases.html#/s:8MinCloud26RecordListResultCompletiona">RecordListResultCompletion</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:8MinCloud15RecordOptionKeya">RecordOptionKey</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:8MinCloud22RecordResultCompletiona">RecordResultCompletion</a>
               </li>
               <li class="nav-group-task">
@@ -387,9 +387,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@MinCloud@objc(cs)BaaSPay(im)wxPayWithTotalCost:merchandiseDescription:merchandiseSchemaID:merchandiseRecordID:merchandiseSnapshot:completion:"></a>
-                    <a name="//apple_ref/swift/Method/wxPay(totalCost:merchandiseDescription:merchandiseSchemaID:merchandiseRecordID:merchandiseSnapshot:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSPay(im)wxPayWithTotalCost:merchandiseDescription:merchandiseSchemaID:merchandiseRecordID:merchandiseSnapshot:completion:">wxPay(totalCost:<wbr>merchandiseDescription:<wbr>merchandiseSchemaID:<wbr>merchandiseRecordID:<wbr>merchandiseSnapshot:<wbr>completion:<wbr>)</a>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaSPay(im)wxPayWithTotalCost:merchandiseDescription:options:completion:"></a>
+                    <a name="//apple_ref/swift/Method/wxPay(totalCost:merchandiseDescription:options:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSPay(im)wxPayWithTotalCost:merchandiseDescription:options:completion:">wxPay(totalCost:<wbr>merchandiseDescription:<wbr>options:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -406,7 +406,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
 <span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">wxPay</span><span class="p">(</span><span class="nv">totalCost</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">merchandiseDescription</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">merchandiseSchemaID</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">merchandiseRecordID</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">merchandiseSnapshot</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:8MinCloud15OrderCompletiona">OrderCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/RequestCanceller.html">RequestCanceller</a></span><span class="p">?</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">wxPay</span><span class="p">(</span><span class="nv">totalCost</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">merchandiseDescription</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/PaymentOptionKey.html">PaymentOptionKey</a></span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:8MinCloud15OrderCompletiona">OrderCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/RequestCanceller.html">RequestCanceller</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -441,36 +441,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>merchandiseSchemaID</em>
+                                <em>options</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>商品数据表 ID，可用于定位用户购买的物品</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>merchandiseRecordID</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>商品数据行 ID，可用于定位用户购买的物品</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>merchandiseSnapshot</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>根据业务需求自定义的数据</p>
+                                  <p>支付参数，参考 PaymentOptionKey</p>
                                 </div>
                               </td>
                             </tr>
@@ -499,9 +475,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@MinCloud@objc(cs)BaaSPay(im)aliPayWithTotalCost:merchandiseDescription:merchandiseSchemaID:merchandiseRecordID:merchandiseSnapshot:completion:"></a>
-                    <a name="//apple_ref/swift/Method/aliPay(totalCost:merchandiseDescription:merchandiseSchemaID:merchandiseRecordID:merchandiseSnapshot:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSPay(im)aliPayWithTotalCost:merchandiseDescription:merchandiseSchemaID:merchandiseRecordID:merchandiseSnapshot:completion:">aliPay(totalCost:<wbr>merchandiseDescription:<wbr>merchandiseSchemaID:<wbr>merchandiseRecordID:<wbr>merchandiseSnapshot:<wbr>completion:<wbr>)</a>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaSPay(im)aliPayWithTotalCost:merchandiseDescription:options:completion:"></a>
+                    <a name="//apple_ref/swift/Method/aliPay(totalCost:merchandiseDescription:options:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSPay(im)aliPayWithTotalCost:merchandiseDescription:options:completion:">aliPay(totalCost:<wbr>merchandiseDescription:<wbr>options:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -518,7 +494,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
 <span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">aliPay</span><span class="p">(</span><span class="nv">totalCost</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">merchandiseDescription</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">merchandiseSchemaID</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">merchandiseRecordID</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">merchandiseSnapshot</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:8MinCloud15OrderCompletiona">OrderCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/RequestCanceller.html">RequestCanceller</a></span><span class="p">?</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">aliPay</span><span class="p">(</span><span class="nv">totalCost</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">merchandiseDescription</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/PaymentOptionKey.html">PaymentOptionKey</a></span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:8MinCloud15OrderCompletiona">OrderCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/RequestCanceller.html">RequestCanceller</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -553,36 +529,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>merchandiseSchemaID</em>
+                                <em>options</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>商品数据表 ID，可用于定位用户购买的物品</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>merchandiseRecordID</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>商品数据行 ID，可用于定位用户购买的物品</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>merchandiseSnapshot</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>根据业务需求自定义的数据</p>
+                                  <p>支付参数，参考 PaymentOptionKey</p>
                                 </div>
                               </td>
                             </tr>
@@ -725,7 +677,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://cloud.minapp.com/" target="_blank" rel="external">ifanr</a>. All rights reserved. (Last updated: 2021-01-04)</p>
+          <p>&copy; 2021 <a class="link" href="https://cloud.minapp.com/" target="_blank" rel="external">ifanr</a>. All rights reserved. (Last updated: 2021-01-05)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ListResult Class Reference</title>
+    <title>RecordOptionKey Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,8 +13,8 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/ListResult" class="dashAnchor"></a>
-    <a title="ListResult Class Reference"></a>
+    <a name="//apple_ref/swift/Class/RecordOptionKey" class="dashAnchor"></a>
+    <a title="RecordOptionKey Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">MinCloud 2.0.0-b Docs</a> (69% documented)</p>
@@ -29,7 +29,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">MinCloud Reference</a>
         <img id="carat" src="../img/carat.png" />
-        ListResult Class Reference
+        RecordOptionKey Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -284,16 +284,16 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>ListResult</h1>
+            <h1>RecordOptionKey</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">BaaSListResult</span><span class="p">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="kt">ListResult</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Mappable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">RecordOptionKey</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">RecordOptionKey</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">NSCopying</span></code></pre>
 
                 </div>
               </div>
-            <p>记录列表元数据，当调用 Table/FileManager/ContentGroup/Pay 对象的 find()，将返回该对象。</p>
+            <p>数据表的记录在进行 save/update/delete 操作时，可以附带的选项。</p>
 
           </section>
           <section class="section task-group-section">
@@ -302,177 +302,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@MinCloud@objc(cs)BaaSListResult(py)limit"></a>
-                    <a name="//apple_ref/swift/Property/limit" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSListResult(py)limit">limit</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>当前请求指定的返回的记录个数</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">internal(set)</span> <span class="k">var</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@MinCloud@objc(cs)BaaSListResult(py)offset"></a>
-                    <a name="//apple_ref/swift/Property/offset" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSListResult(py)offset">offset</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>指定该请求返回的记录的起始位置</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">internal(set)</span> <span class="k">var</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@MinCloud@objc(cs)BaaSListResult(py)totalCount"></a>
-                    <a name="//apple_ref/swift/Property/totalCount" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSListResult(py)totalCount">totalCount</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>满足请求条件的记录的数量，-1 表示该属性无效。</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">internal(set)</span> <span class="k">var</span> <span class="nv">totalCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@MinCloud@objc(cs)BaaSListResult(py)next"></a>
-                    <a name="//apple_ref/swift/Property/next" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSListResult(py)next">next</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>下一页地址，nil 表示当前为 最后一页</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">internal(set)</span> <span class="k">var</span> <span class="nv">next</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@MinCloud@objc(cs)BaaSListResult(py)previous"></a>
-                    <a name="//apple_ref/swift/Property/previous" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSListResult(py)previous">previous</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>上一页地址，nil 表示当前为 第一页</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">internal(set)</span> <span class="k">var</span> <span class="nv">previous</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@MinCloud@objc(cs)BaaSListResult(py)listInfo"></a>
-                    <a name="//apple_ref/swift/Property/listInfo" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSListResult(py)listInfo">listInfo</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>满足请求条件的所有记录信息</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">internal(set)</span> <span class="k">var</span> <span class="nv">listInfo</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@MinCloud@objc(cs)BaaSListResult(im)init"></a>
-                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSListResult(im)init">init()</a>
+                    <a name="/c:@M@MinCloud@objc(cs)RecordOptionKey(im)copyWithZone:"></a>
+                    <a name="//apple_ref/swift/Method/copy(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)RecordOptionKey(im)copyWithZone:">copy(with:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -487,7 +319,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">copy</span><span class="p">(</span><span class="n">with</span> <span class="nv">zone</span><span class="p">:</span> <span class="kt">NSZone</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span></code></pre>
 
                         </div>
                       </div>
@@ -497,9 +329,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8MinCloud10ListResultC4dictACSgSDySSypG_tcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(dict:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MinCloud10ListResultC4dictACSgSDySSypG_tcfc">init(dict:<wbr>)</a>
+                    <a name="/c:@M@MinCloud@objc(cs)RecordOptionKey(cpy)enableTrigger"></a>
+                    <a name="//apple_ref/swift/Variable/enableTrigger" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)RecordOptionKey(cpy)enableTrigger">enableTrigger</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -507,68 +339,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>是否允许触发器触发
+该参数对应值为 Bool 类型，默认 true。</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">required</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">dict</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@MinCloud@objc(cs)BaaSListResult(py)description"></a>
-                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSListResult(py)description">description</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">open</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@MinCloud@objc(cs)BaaSListResult(py)debugDescription"></a>
-                    <a name="//apple_ref/swift/Property/debugDescription" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSListResult(py)debugDescription">debugDescription</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">open</span> <span class="k">var</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">enableTrigger</span><span class="p">:</span> <span class="kt">RecordOptionKey</span></code></pre>
 
                         </div>
                       </div>

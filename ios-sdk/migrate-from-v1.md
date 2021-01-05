@@ -6,8 +6,9 @@
 > 2. 新增回调函数所在执行队列
 > 3. Record 类型的 save/update 方法增加 query 参数
 > 4. Record 类型的 save/update/delete 方法增加 options 参数
-> 5. 升级 Moya 以及 Alamofire
-> 6. 实时数据库（WebSocket）
+> 5. Pay 微信/支付宝支付方法新增 options 参数
+> 6. 升级 Moya 以及 Alamofire
+> 7. 实时数据库（WebSocket）
 
 ## 废弃 Record 固有属性
 
@@ -39,9 +40,14 @@
 
 在创建或者更新记录时，通过 expand 设置返回内容中需要扩展的 pointer 的字段，参考[创建记录项](/ios-sdk/schema/create-record.md)，[更新记录项](/ios-sdk/schema/update-record.md)，[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)
 
-## Record 类型的 save/update/delete 方法增加 [RecordOption: Any] 参数
+## Record 类型的 save/update/delete 方法增加 [RecordOptionKey: Any] 参数
 
 通过设置 options 可以在记录的新增/更新/删除操作时，附带一些选项，比如是否触发触发器。具体参考 [新增数据记录](/ios-sdk/schema/create-record.md)、[更新数据记录](/ios-sdk/schema/update-record.md)、[删除记录项](/ios-sdk/schema/delete-record.md)
+
+## Pay 微信/支付宝支付新增 options 参数
+
+Pay 的 wxPay() 和 aliPay() 方法去除 merchandiseSchemaID、merchandiseRecordID、merchandiseSnapshot 参数。
+新增 options 参数，其为 [PaymentOptionKey: Any] 类型，用于提交支付时可选参数。参考 [支付宝支付](/ios-sdk/payment/alipay-pay.md)、[微信支付](/ios-sdk/payment/wechat-pay.md)。
 
 ## 新增回调函数所在执行队列
 

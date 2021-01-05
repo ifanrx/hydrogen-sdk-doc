@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>RecordOption Class Reference</title>
+    <title>PaymentOptionKey Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,8 +13,8 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/RecordOption" class="dashAnchor"></a>
-    <a title="RecordOption Class Reference"></a>
+    <a name="//apple_ref/swift/Class/PaymentOptionKey" class="dashAnchor"></a>
+    <a title="PaymentOptionKey Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">MinCloud 2.0.0-b Docs</a> (69% documented)</p>
@@ -29,7 +29,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">MinCloud Reference</a>
         <img id="carat" src="../img/carat.png" />
-        RecordOption Class Reference
+        PaymentOptionKey Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -108,6 +108,9 @@
                 <a href="../Classes/Pay.html">Pay</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/PaymentOptionKey.html">PaymentOptionKey</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Query.html">Query</a>
               </li>
               <li class="nav-group-task">
@@ -117,7 +120,7 @@
                 <a href="../Classes/RecordList.html">RecordList</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/RecordOption.html">RecordOption</a>
+                <a href="../Classes/RecordOptionKey.html">RecordOptionKey</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RequestCanceller.html">RequestCanceller</a>
@@ -260,9 +263,6 @@
                 <a href="../Typealiases.html#/s:8MinCloud26RecordListResultCompletiona">RecordListResultCompletion</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:8MinCloud15RecordOptionKeya">RecordOptionKey</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:8MinCloud22RecordResultCompletiona">RecordResultCompletion</a>
               </li>
               <li class="nav-group-task">
@@ -284,16 +284,16 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>RecordOption</h1>
+            <h1>PaymentOptionKey</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">RecordOption</span><span class="p">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="kt">RecordOption</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">PaymentOptionKey</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">PaymentOptionKey</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">NSCopying</span></code></pre>
 
                 </div>
               </div>
-            <p>数据表的记录在进行 save/update/delete 操作时，可以附带的选项。</p>
+            <p>创建支付订单时，所有可以提交的参数</p>
 
           </section>
           <section class="section task-group-section">
@@ -302,9 +302,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@MinCloud@objc(cs)RecordOption(cpy)enableTrigger"></a>
-                    <a name="//apple_ref/swift/Variable/enableTrigger" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@MinCloud@objc(cs)RecordOption(cpy)enableTrigger">enableTrigger</a>
+                    <a name="/c:@M@MinCloud@objc(cs)PaymentOptionKey(im)copyWithZone:"></a>
+                    <a name="//apple_ref/swift/Method/copy(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)PaymentOptionKey(im)copyWithZone:">copy(with:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -319,8 +319,124 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">copy</span><span class="p">(</span><span class="n">with</span> <span class="nv">zone</span><span class="p">:</span> <span class="kt">NSZone</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)PaymentOptionKey(cpy)merchandiseSchemaID"></a>
+                    <a name="//apple_ref/swift/Variable/merchandiseSchemaID" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)PaymentOptionKey(cpy)merchandiseSchemaID">merchandiseSchemaID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>商品表 Id，可用于定位用户购买的物品
+该参数对应值为 String 类型</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">enableTrigger</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MinCloud15RecordOptionKeya">RecordOptionKey</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">merchandiseSchemaID</span><span class="p">:</span> <span class="kt">PaymentOptionKey</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)PaymentOptionKey(cpy)merchandiseRecordID"></a>
+                    <a name="//apple_ref/swift/Variable/merchandiseRecordID" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)PaymentOptionKey(cpy)merchandiseRecordID">merchandiseRecordID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>商品记录 Id，可用于定位用户购买的物品
+该参数对应值为 String 类型</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">merchandiseRecordID</span><span class="p">:</span> <span class="kt">PaymentOptionKey</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)PaymentOptionKey(cpy)merchandiseSnapshot"></a>
+                    <a name="//apple_ref/swift/Variable/merchandiseSnapshot" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)PaymentOptionKey(cpy)merchandiseSnapshot">merchandiseSnapshot</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>根据业务需求自定义的数据
+该参数对应值为 [String: Any] 类型</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">merchandiseSnapshot</span><span class="p">:</span> <span class="kt">PaymentOptionKey</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)PaymentOptionKey(cpy)profitSharing"></a>
+                    <a name="//apple_ref/swift/Variable/profitSharing" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)PaymentOptionKey(cpy)profitSharing">profitSharing</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>当前订单是否需要分账，该参数仅用于<em>微信支付</em>。
+分账功能仅商用版及商用版以上版本可以使用。
+该参数对应值为 Bool 类型</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">profitSharing</span><span class="p">:</span> <span class="kt">PaymentOptionKey</span></code></pre>
 
                         </div>
                       </div>
@@ -332,7 +448,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://cloud.minapp.com/" target="_blank" rel="external">ifanr</a>. All rights reserved. (Last updated: 2021-01-04)</p>
+          <p>&copy; 2021 <a class="link" href="https://cloud.minapp.com/" target="_blank" rel="external">ifanr</a>. All rights reserved. (Last updated: 2021-01-05)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

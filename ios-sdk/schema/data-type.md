@@ -29,15 +29,13 @@
 > **info**
 > 查询结果默认不包含 totalCount，如需获取该值可以在设置查询条件 `Query` 时，通过设置 `query.returnTotalCount = true` 来获取 totalCount。详见[获取记录总数](./limit-and-order.md)
 
-## RecordOption 类型
+## RecordOptionKey 类型
 
 数据表的记录在进行 save/update/delete 操作时，可以附带的选项。
 
 | 选项           |   类型  |  说明    |
 | :-----------  | :----------- | :------------     |
-| enableTrigger | RecordOptionKey |  是否触发触发器，默认触发 | 
-
-其中 RecordOptionKey 为 String 的别名。
+| enableTrigger | Bool |  是否触发触发器，默认为 true | 
 
 **示例**
 
@@ -47,7 +45,7 @@
 let table = Table(name: "Product")
 let record = table.createRecord()
 record.set("name", value: "iPhone")
-record.save(options: [RecordOption.enableTrigger: true]) { (success, error) in
+record.save(options: [RecordOptionKey.enableTrigger: true]) { (success, error) in
 
 }
 ```
