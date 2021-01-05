@@ -190,6 +190,10 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 > **info**
 > 当 WebSocket 连接意外断开时，SDK 会采用指数退避算法的机制，自动尝试重连。
 
+<!-- 分隔两个 info -->
+> **info**
+> 3.15.2 及以上版本用户未登录时不再主动尝试重连。
+
 另外，在知晓云控制台中手动删除数据时，如需触发删除数据动作的订阅通知，需要勾上「删除动作触发触发器」设置，如下图
 
 ![删除数据触发 WebSocket](/images/websocket/dashboard-delete-data.png)
