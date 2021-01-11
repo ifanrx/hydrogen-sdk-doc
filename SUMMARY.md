@@ -186,6 +186,7 @@
 
 * [iOS SDK](ios-sdk/README.md)
     * [上手指南](ios-sdk/install.md)
+    * [1.x -> 2.x 迁移指南](ios-sdk/migrate-from-v1.md)
     * [用户](ios-sdk/user/README.md)
         * [登入登出](ios-sdk/user/auth.md)
         * [用户](ios-sdk/user/user.md)
@@ -200,6 +201,7 @@
         * [分页和排序](ios-sdk/schema/limit-and-order.md)
         * [字段过滤与扩展](ios-sdk/schema/select-and-expand.md)
         * [地理位置操作](ios-sdk/schema/geo.md)
+        * [实时数据库(WebSocket)](ios-sdk/schema/websocket.md)
     * [内容库](ios-sdk/content/README.md)
         * [内容操作](ios-sdk/content/operate.md)
     * [文件](ios-sdk/file/README.md)
@@ -212,6 +214,7 @@
     * [短信验证码](ios-sdk/sms.md)
     * [获取服务器时间](ios-sdk/server-data.md)
     * [错误码和错误对象](ios-sdk/error-code.md)
+    * [API Reference](ios-sdk/swift_api/index.html)
     * [iOS-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
     * [SwiftUI-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)
 

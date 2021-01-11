@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Query Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/Query" class="dashAnchor"></a>
+    <a title="Query Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">MinCloud 2.0.0-b Docs</a> (69% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">MinCloud Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Query Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Auth.html">Auth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BaaS.html">BaaS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BaaSWebSocketConfiguration.html">BaaSWebSocketConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BaseRecord.html">BaseRecord</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ConnectionRetryPolicy.html">ConnectionRetryPolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Content.html">Content</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ContentCategory.html">ContentCategory</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ContentCategoryList.html">ContentCategoryList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ContentGroup.html">ContentGroup</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ContentList.html">ContentList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CurrentUser.html">CurrentUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/File.html">File</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FileCategory.html">FileCategory</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FileCategoryList.html">FileCategoryList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FileList.html">FileList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FileManager.html">FileManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GeoPoint.html">GeoPoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GeoPolygon.html">GeoPolygon</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ListResult.html">ListResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Order.html">Order</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OrderList.html">OrderList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OrderQuery.html">OrderQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Pay.html">Pay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PaymentOptionKey.html">PaymentOptionKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Query.html">Query</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Record.html">Record</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RecordList.html">RecordList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RecordOptionKey.html">RecordOptionKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RequestCanceller.html">RequestCanceller</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Subscription.html">Subscription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Table.html">Table</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/User.html">User</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserList.html">UserList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Where.html">Where</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/GateWayType.html">GateWayType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Operator.html">Operator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OrderStatus.html">OrderStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Provider.html">Provider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RefundStatus.html">RefundStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SubscriptionEvent.html">SubscriptionEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:8MinCloud10SwampErrorO">SwampError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SyncUserProfileType.html">SyncUserProfileType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/ConnectionRetrier.html">ConnectionRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SwampSerializer.html">SwampSerializer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Localisation.html">Localisation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Localisation/Wechat.html">– Wechat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Localisation/Weibo.html">– Weibo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Localisation/Apple.html">– Apple</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Localisation/Common.html">– Common</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud20BOOLResultCompletiona">BOOLResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud21COUNTResultCompletiona">COUNTResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud35ContentCategoryListResultCompletiona">ContentCategoryListResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud31ContentCategoryResultCompletiona">ContentCategoryResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud27ContentListResultCompletiona">ContentListResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud23ContentResultCompletiona">ContentResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud27CurrentUserResultCompletiona">CurrentUserResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud22ErrorSubscribeCallbacka">ErrorSubscribeCallback</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud24ErrorUnsubscribeCallbacka">ErrorUnsubscribeCallback</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud13EventCallbacka">EventCallback</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud32FileCategoryListResultCompletiona">FileCategoryListResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud28FileCategoryResultCompletiona">FileCategoryResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud24FileListResultCompletiona">FileListResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud20FileResultCompletiona">FileResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud22OBJECTResultCompletiona">OBJECTResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud15OrderCompletiona">OrderCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud19OrderListCompletiona">OrderListCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud13ProgressBlocka">ProgressBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud26RecordListResultCompletiona">RecordListResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud22RecordResultCompletiona">RecordResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud17SubscribeCallbacka">SubscribeCallback</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud19UnsubscribeCallbacka">UnsubscribeCallback</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud24UserListResultCompletiona">UserListResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud20UserResultCompletiona">UserResultCompletion</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Query</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">BaaSQuery</span><span class="p">)</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kt">Query</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>查询条件</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaSQuery(py)limit"></a>
+                    <a name="//apple_ref/swift/Property/limit" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSQuery(py)limit">limit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>查询数目，每次获取 limit 条记录，默认为 20</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaSQuery(py)offset"></a>
+                    <a name="//apple_ref/swift/Property/offset" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSQuery(py)offset">offset</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>记录偏移值，每次查询按照某种排序获取记录，offset 为记录的起始序号。</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaSQuery(py)where"></a>
+                    <a name="//apple_ref/swift/Property/where" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSQuery(py)where">where</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">var</span> <span class="p">`</span><span class="nv">where</span><span class="p">`:</span> <span class="kt"><a href="../Classes/Where.html">Where</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaSQuery(py)select"></a>
+                    <a name="//apple_ref/swift/Property/select" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSQuery(py)select">select</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>筛选请求返回的字段，设置需要返回的字段名，不需要返回的字段名前加 -。
+expand = [&ldquo;name&rdquo;, &ldquo;age&rdquo;] 表示只获取 name 和 age 字段。
+expand = [&ldquo;-name&rdquo;, &ldquo;-age&rdquo;] 表示获取除了 name 和 age 的其他所有字段。</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">select</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaSQuery(py)expand"></a>
+                    <a name="//apple_ref/swift/Property/expand" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSQuery(py)expand">expand</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>展开数据表中 pointer 类型的字段。
+pointer_value 为 pointer 类型
+不使用 expand
+{
+    &ldquo;id&rdquo;: &ldquo;5a2fa9b008443e59e0e67829&rdquo;,
+    &ldquo;name&rdquo;: &ldquo;小米无线耳机&rdquo;,
+    &ldquo;pointer_value&rdquo;: &ldquo;5a2fa9xxxxxxxxxxxxxx&rdquo;
+}</p>
+
+<p>使用 expand
+{
+    &ldquo;pointer_value&rdquo;: {
+        &ldquo;created_at&rdquo;: 1516118400,
+        &ldquo;name&rdquo;: &ldquo;123&rdquo;,
+        &ldquo;id&rdquo;: &ldquo;5a2fa9xxxxxxxxxxxxxx&rdquo;
+    },
+    &ldquo;id&rdquo;: &ldquo;5a2fa9b008443e59e0e67829&rdquo;,
+    &ldquo;name&rdquo;: &ldquo;小米无线耳机&rdquo;,
+}</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">expand</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaSQuery(py)orderBy"></a>
+                    <a name="//apple_ref/swift/Property/orderBy" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSQuery(py)orderBy">orderBy</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>控制使用升序或降序获取数据列表，设置需要排序的字段名，升序为字段名，降序在字段名前加 &lsquo;-&#39;。
+升序
+orderBy = [&ldquo;created_at&rdquo;]
+降序
+orderBy = [&ldquo;-created_at&rdquo;]
+多重排序: 优先级 created_at &gt; updated_at
+orderBy = [&ldquo;created_at&rdquo;, &ldquo;updated_at&rdquo;]</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">orderBy</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaSQuery(py)returnTotalCount"></a>
+                    <a name="//apple_ref/swift/Property/returnTotalCount" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaSQuery(py)returnTotalCount">returnTotalCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>在 ListResult 中是否返回记录的总数量，默认不返回</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">returnTotalCount</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://cloud.minapp.com/" target="_blank" rel="external">ifanr</a>. All rights reserved. (Last updated: 2021-01-05)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

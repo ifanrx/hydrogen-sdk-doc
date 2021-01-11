@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>BaaS Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/BaaS" class="dashAnchor"></a>
+    <a title="BaaS Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">MinCloud 2.0.0-b Docs</a> (69% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">MinCloud Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        BaaS Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Auth.html">Auth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BaaS.html">BaaS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BaaSWebSocketConfiguration.html">BaaSWebSocketConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BaseRecord.html">BaseRecord</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ConnectionRetryPolicy.html">ConnectionRetryPolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Content.html">Content</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ContentCategory.html">ContentCategory</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ContentCategoryList.html">ContentCategoryList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ContentGroup.html">ContentGroup</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ContentList.html">ContentList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CurrentUser.html">CurrentUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/File.html">File</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FileCategory.html">FileCategory</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FileCategoryList.html">FileCategoryList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FileList.html">FileList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FileManager.html">FileManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GeoPoint.html">GeoPoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GeoPolygon.html">GeoPolygon</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ListResult.html">ListResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Order.html">Order</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OrderList.html">OrderList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OrderQuery.html">OrderQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Pay.html">Pay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PaymentOptionKey.html">PaymentOptionKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Query.html">Query</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Record.html">Record</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RecordList.html">RecordList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RecordOptionKey.html">RecordOptionKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RequestCanceller.html">RequestCanceller</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Subscription.html">Subscription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Table.html">Table</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/User.html">User</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserList.html">UserList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Where.html">Where</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/GateWayType.html">GateWayType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Operator.html">Operator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OrderStatus.html">OrderStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Provider.html">Provider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RefundStatus.html">RefundStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SubscriptionEvent.html">SubscriptionEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:8MinCloud10SwampErrorO">SwampError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SyncUserProfileType.html">SyncUserProfileType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/ConnectionRetrier.html">ConnectionRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SwampSerializer.html">SwampSerializer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Localisation.html">Localisation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Localisation/Wechat.html">– Wechat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Localisation/Weibo.html">– Weibo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Localisation/Apple.html">– Apple</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Localisation/Common.html">– Common</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud20BOOLResultCompletiona">BOOLResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud21COUNTResultCompletiona">COUNTResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud35ContentCategoryListResultCompletiona">ContentCategoryListResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud31ContentCategoryResultCompletiona">ContentCategoryResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud27ContentListResultCompletiona">ContentListResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud23ContentResultCompletiona">ContentResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud27CurrentUserResultCompletiona">CurrentUserResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud22ErrorSubscribeCallbacka">ErrorSubscribeCallback</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud24ErrorUnsubscribeCallbacka">ErrorUnsubscribeCallback</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud13EventCallbacka">EventCallback</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud32FileCategoryListResultCompletiona">FileCategoryListResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud28FileCategoryResultCompletiona">FileCategoryResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud24FileListResultCompletiona">FileListResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud20FileResultCompletiona">FileResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud22OBJECTResultCompletiona">OBJECTResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud15OrderCompletiona">OrderCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud19OrderListCompletiona">OrderListCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud13ProgressBlocka">ProgressBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud26RecordListResultCompletiona">RecordListResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud22RecordResultCompletiona">RecordResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud17SubscribeCallbacka">SubscribeCallback</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud19UnsubscribeCallbacka">UnsubscribeCallback</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud24UserListResultCompletiona">UserListResultCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MinCloud20UserResultCompletiona">UserResultCompletion</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>BaaS</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">BaaS</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>MinCloud 全局类，主要实现通用功能。</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaS(cm)registerWithClientID:serverURLString:"></a>
+                    <a name="//apple_ref/swift/Method/register(clientID:serverURLString:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaS(cm)registerWithClientID:serverURLString:">register(clientID:<wbr>serverURLString:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="nv">clientID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">serverURLString</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaS(cm)registerWechat:universalLink:"></a>
+                    <a name="//apple_ref/swift/Method/registerWechat(_:universalLink:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaS(cm)registerWechat:universalLink:">registerWechat(_:<wbr>universalLink:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>注册微信 appId</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">registerWechat</span><span class="p">(</span><span class="n">_</span> <span class="nv">appId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">universalLink</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>appId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>在微信开放平台注册获取的 appId</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>universalLink</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>在微信开放平台注册获取的 universalLink</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaS(cm)registerWeibo:redirectURI:"></a>
+                    <a name="//apple_ref/swift/Method/registerWeibo(_:redirectURI:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaS(cm)registerWeibo:redirectURI:">registerWeibo(_:<wbr>redirectURI:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>注册微博 appId</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">registerWeibo</span><span class="p">(</span><span class="n">_</span> <span class="nv">appId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">redirectURI</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>appId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>在微博开放平台注册获取的 appId</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>redirectURI</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>在微博开放平台注册获取的 appId</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaS(cpy)isDebug"></a>
+                    <a name="//apple_ref/swift/Variable/isDebug" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaS(cpy)isDebug">isDebug</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>是否开启调试模式，默认不开启。开启后将打印调试日志。</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">isDebug</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaS(cm)getVersion"></a>
+                    <a name="//apple_ref/swift/Method/getVersion()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaS(cm)getVersion">getVersion()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>获取 MinCloud 当前版本</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getVersion</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>当前版本</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaS(cm)invokeWithName:data:sync:callBackQueue:completion:"></a>
+                    <a name="//apple_ref/swift/Method/invoke(name:data:sync:callBackQueue:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaS(cm)invokeWithName:data:sync:callBackQueue:completion:">invoke(name:<wbr>data:<wbr>sync:<wbr>callBackQueue:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>触发云函数</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">invoke</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Any</span><span class="p">,</span> <span class="nv">sync</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">callBackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:8MinCloud22OBJECTResultCompletiona">OBJECTResultCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/RequestCanceller.html">RequestCanceller</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>云函数名称</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>云函数参数，具体使用请参照文档：<a href="https://doc.minapp.com/ios-sdk/invoke-function.html">https://doc.minapp.com/ios-sdk/invoke-function.html</a></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sync</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>是否等待执行结果</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callBackQueue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>回调函数执行队列</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>执行结果</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaS(cm)sendSmsCodeWithPhone:callBackQueue:completion:"></a>
+                    <a name="//apple_ref/swift/Method/sendSmsCode(phone:callBackQueue:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaS(cm)sendSmsCodeWithPhone:callBackQueue:completion:">sendSmsCode(phone:<wbr>callBackQueue:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>发送短信验证码</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">sendSmsCode</span><span class="p">(</span><span class="nv">phone</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">callBackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:8MinCloud20BOOLResultCompletiona">BOOLResultCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/RequestCanceller.html">RequestCanceller</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>phone</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>手机号</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callBackQueue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>回调函数执行队列</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>发送结果</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaS(cm)verifySmsCodeWithPhone:code:callBackQueue:completion:"></a>
+                    <a name="//apple_ref/swift/Method/verifySmsCode(phone:code:callBackQueue:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaS(cm)verifySmsCodeWithPhone:code:callBackQueue:completion:">verifySmsCode(phone:<wbr>code:<wbr>callBackQueue:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>验证手机已接收的验证码</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">verifySmsCode</span><span class="p">(</span><span class="nv">phone</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">code</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">callBackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:8MinCloud20BOOLResultCompletiona">BOOLResultCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/RequestCanceller.html">RequestCanceller</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>phone</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>手机号</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>code</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>验证</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callBackQueue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>回调函数执行队列</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>验证结果</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MinCloud@objc(cs)BaaS(cm)getServerTimeWithCallBackQueue:completion:"></a>
+                    <a name="//apple_ref/swift/Method/getServerTime(callBackQueue:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MinCloud@objc(cs)BaaS(cm)getServerTimeWithCallBackQueue:completion:">getServerTime(callBackQueue:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>获取服务器时间</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getServerTime</span><span class="p">(</span><span class="nv">callBackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:8MinCloud22OBJECTResultCompletiona">OBJECTResultCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/RequestCanceller.html">RequestCanceller</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callBackQueue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>回调函数执行队列</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>获取服务器时间结果</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@MinCloud@objc(cs)BaaS(cm)isWXAppInstalled"></a>
+                    <a name="//apple_ref/swift/Method/isWXAppInstalled()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@MinCloud@objc(cs)BaaS(cm)isWXAppInstalled">isWXAppInstalled()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>检查微信是否已被用户安装</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">isWXAppInstalled</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>微信已安装返回YES，未安装返回NO。</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@MinCloud@objc(cs)BaaS(cm)handleOpenURLWithUrl:"></a>
+                    <a name="//apple_ref/swift/Method/handleOpenURL(url:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@MinCloud@objc(cs)BaaS(cm)handleOpenURLWithUrl:">handleOpenURL(url:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>处理微信或支付宝通过URL启动App时传递的数据
+需要在 application:openURL:sourceApplication:annotation:或者application:handleOpenURL中调用。</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">handleOpenURL</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>微信或支付宝启动第三方应用时传递过来的URL</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>成功返回YES，失败返回NO。</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@MinCloud@objc(cs)BaaS(cm)handleOpenUniversalLinkWithUserActivity:"></a>
+                    <a name="//apple_ref/swift/Method/handleOpenUniversalLink(userActivity:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@MinCloud@objc(cs)BaaS(cm)handleOpenUniversalLinkWithUserActivity:">handleOpenUniversalLink(userActivity:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>适配了 SceneDelegate 的 App，
+系统将会回调 SceneDelegate 的 continueUserActivity 方法，
+所以需要重写 SceneDelegate 的该方法，并在 continueUserActivity 内调用 handleOpenUniversalLink 方法。</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">handleOpenUniversalLink</span><span class="p">(</span><span class="nv">userActivity</span><span class="p">:</span> <span class="kt">NSUserActivity</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://cloud.minapp.com/" target="_blank" rel="external">ifanr</a>. All rights reserved. (Last updated: 2021-01-05)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

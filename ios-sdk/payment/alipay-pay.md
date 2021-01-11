@@ -73,13 +73,15 @@ func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>)
 {% tabs swift2="Swift", oc2="Objective-C" %}
 {% content "swift2" %}
 ```
-Pay.shared.aliPay(totalCost: 0.01, merchandiseDescription: "微信支付", completion: { (order, error) in
+let options: [PaymentOptionKey: Any] = [.merchandiseRecordID: "123", .merchandiseSchemaID: "123", .merchandiseSnapshot: ["somekey": "somevalue"]]
+Pay.shared.aliPay(totalCost: 0.01, merchandiseDescription: "微信支付", options: options, completion: { (order, error) in
 
 })
 ```
 {% content "oc2" %}
 ```
-BaaSPay *pay = [BaaSPay.shared aliPayWithTotalCost:0.01 merchandiseDescription:@"支付宝" merchandiseSchemaID: "xxxx" merchandiseRecordID:"xxxxxx" merchandiseSnapshot:nil completion:^(BaaSOrder * _Nullable order, NSError * _Nullable error) {
+NSDictionary *options = @{PaymentOptionKey.merchandiseRecordID: @"123", PaymentOptionKey.merchandiseSchemaID: @"123", PaymentOptionKey.merchandiseSnapshot: @{}};
+BaaSPay *pay = [BaaSPay.shared aliPayWithTotalCost:0.01 merchandiseDescription:@"支付宝" options: options completion:^(BaaSOrder * _Nullable order, NSError * _Nullable error) {
 
 }];
 ```
@@ -91,9 +93,7 @@ BaaSPay *pay = [BaaSPay.shared aliPayWithTotalCost:0.01 merchandiseDescription:@
 | :--------------------- | :------ | :-- | :------ |
 | totalCost              | Float   | Y   | 支付总额 |
 | merchandiseDescription | String  | Y   | {{platformName}}支付凭证-商品详情的内容 |
-| merchandiseSchemaID    | String | N   | 商品数据表 ID，可用于定位用户购买的物品 |
-| merchandiseRecordID    | String  | N   | 商品记录 ID，可用于定位用户购买的物品 |
-| merchandiseSnapshot    | Dictionary  | N   | 根据业务需求自定义的数据 |
+| options    | [PaymentOptionKey: Any] | N   | 支付订单参数，参考[PaymentOptionKey](#PaymentOptionKey) |
 
 > **info**
 > 举例：开发者有一个 `Article` 表, 里面有免费 / 付费的文章, 当用户对一篇付费文章进行支付时, 则可以将 `Article` 表的 `ID` 作为 `merchandiseSchemaID`, 文章记录的 `ID` 作为你 `merchandiseRecordID` 作为支付参数，写进支付订单记录。当用户阅读此付费文章时, 则可以通过 `merchandiseSchemaID`, `merchandiseRecordID` 来查询用户是否付费。
@@ -104,3 +104,13 @@ BaaSPay *pay = [BaaSPay.shared aliPayWithTotalCost:0.01 merchandiseDescription:@
 | :------- | :------------  | :------ |
 | order  |   Order          | 订单信息，详见 [订单查询](./order.md) |
 | error   |  NSError |  错误信息，参考[错误处理和错误码](/ios-sdk/error-code.md)  |
+
+### PaymentOptionKey
+
+支付可选参数
+
+| 参数                   | 类型    | 必填 | 参数描述 |
+| :--------------------- | :------ | :-- | :------ |
+| merchandiseSchemaID    | String | N   | 商品表 ID，可用于定位用户购买的物品 |
+| merchandiseRecordID    | String  | N   | 商品记录 ID，可用于定位用户购买的物品 |
+| merchandiseSnapshot    | [String: Any]  | N   | 根据业务需求自定义的数据 |

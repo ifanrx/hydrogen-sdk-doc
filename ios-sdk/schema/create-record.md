@@ -108,17 +108,28 @@ record.set("price", value: 10)
 {% tabs swift5="Swift", oc5="Objective-C" %}
 {% content "swift5" %}
 ```
-record.save { (success, error) in
+let expand = ["pointer"]
+let options = [RecordOptionKey.enableTrigger: true]
+record.save(expand: expand, options: options, completion { (success, error) in
 
-}
+})
 ```
 {% content "oc5" %}
 ```
-[record save:^(BOOL success, NSError * _Nullable error) {
+NSArray *expand = @[@"pointer"];
+NSDictionary *options = @{RecordOptionKey.enableTrigger: @YES};
+[record saveWithExpand: expand options:options completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
 {% endtabs %}
+
+**参数说明**
+
+| 参数名    | 类型    | 说明              |  必填  |
+|-----------|---------|-------------------|----|
+| expand    | [String]          | 设置扩展，参考[字段过滤与扩展](/ios-sdk/schema/select-and-expand.md#字段扩展)  |  N  |
+| options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOptionKey](/ios-sdk/schema/data-type.md#RecordOptionKey) |  N |
 
 **返回结果**
  
@@ -175,7 +186,7 @@ BaaSRecord *book = [bookTable createRecord];
 [book set:@"author" value:@"海明威"];
 [book set:@"price" value:49];
 
-[book save:^(BOOL success, NSError * _Nullable error) {
+[book saveWithExpand: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -199,7 +210,7 @@ book.save { (success, error) in
 NSISO8601DateFormatter *dateFormatter = [[NSISO8601DateFormatter alloc] init];
 NSString *dateISO = [dateFormatter stringFromDate:[NSDate date]];
 [book set:@"publish_date" value:dateISO];
-[book save:^(BOOL success, NSError * _Nullable error) {
+[book saveWithExpand: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -225,9 +236,9 @@ FileManager.get("@"5c98b065d575a97d5f878225"") { (file, error) in
 ```
 [BaaSFileManager get:@"5c98b065d575a97d5f878225", completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
     [book set:@"cover" value:file];
-    [book save:^(BOOL success, NSError * _Nullable error) {
+    [book saveWithExpand: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
 
-    }];
+}];
 }];
 ```
 {% endtabs %}
@@ -254,9 +265,9 @@ FileManager.get("@"5c98b065d575a97d5f878225"") { (file, error) in
 ```
 [BaaSFileManager get:@"5c98b065d575a97d5f878225", completion:^(BaaSFile * _Nullable file, NSError * _Nullable error) {
     [book set:@"photos" value:@[file]];
-    [book save:^(BOOL success, NSError * _Nullable error) {
+    [book saveWithExpand: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
 
-    }];
+}];
 }];
 ```
 {% endtabs %}
@@ -288,7 +299,7 @@ book.save { (success, error) in
 {% content "oc8_2" %}
 ```
 [book set:@"publish_info" value: @{@"name": @"efg出版社", @"location": @"广东省广州市天河区五山路 100 号"}];
-[book save:^(BOOL success, NSError * _Nullable error) {
+[book saveWithExpand: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -315,7 +326,7 @@ book.save { (success, error) in
 {% content "oc8_3" %}
 ```
 [book set:@"recommender" value: @[@"yuminghong", @"hua"]];
-[book save:^(BOOL success, NSError * _Nullable error) {
+[book saveWithExpand: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -350,7 +361,7 @@ book.save { (success, error) in
 ```
 BaaSRecord *comment = [table getWithoutDataWithRecordId:@"5bad87ab0769797b4fb27a1b"];
 [book set:@"comment" value:comment];
-[book save:^(BOOL success, NSError * _Nullable error) {
+[book saveWithExpand: nil options:nil completion:^(BOOL success, NSError * _Nullable error) {
 
 }];
 ```
@@ -387,7 +398,7 @@ NSDictionary *options = @{@"enable_trigger": @YES};
 | 参数名    | 类型    | 说明              |  必填  |
 |-----------|---------|-------------------|----|
 | records   | Dictionary  |   符合表结构的记录数据| Y |
-| options | Dictionary    |   批量操作选项 ，目前支持支持 enable_trigger, true 为触发触发器 |  N |
+| options | [RecordOptionKey: Any] |   操作选项，参考 [RecordOptionKey](/ios-sdk/schema/data-type.md#RecordOptionKey)  |  N |
 
 **返回结果**
  

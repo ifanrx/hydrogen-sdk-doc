@@ -72,3 +72,18 @@ BaaS.isDebug = true
 BaaS.isDebug = YES;
 ```
 {% endtabs %}
+
+# MinCloud 第三方依赖库
+
+MinCloud 依赖库如下
+
+| 名称  | 版本  | 
+| :----- | :----- |
+| Moya   | ~> 14.0.0 |
+| Alamofire | ~> 5.0.0 |
+| Starscream | ~> 4.0.0 |
+| AlipaySDK  | 15.7.7 |
+| libWeiboSDK | 3.3.0  |
+| libWebChatSDK | 1.8.7.1 |
+
+如果你的项目中也需要使用上述依赖，可以直接使用；如果存在版本冲突，以 MinCloud 的版本为准。
