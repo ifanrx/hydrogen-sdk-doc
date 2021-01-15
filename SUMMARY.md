@@ -213,7 +213,6 @@
     * [短信验证码](ios-sdk/sms.md)
     * [获取服务器时间](ios-sdk/server-data.md)
     * [错误码和错误对象](ios-sdk/error-code.md)
-    * [API Reference](ios-sdk/swift_api/index.html)
     * [iOS-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/ios-sdk-demo)
     * [SwiftUI-Demo](https://github.com/ifanrx/hydrogen-demo/tree/master/swiftui-demo)
 
