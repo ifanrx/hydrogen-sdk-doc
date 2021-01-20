@@ -190,7 +190,7 @@ let data = {
   user_profile_filters: {
     "$and": [
       {
-        "is_authorize": {"$eq": true}
+        "is_authorized": {"$eq": true}
       },
       {
         "array_field": {
@@ -217,7 +217,7 @@ let data = {
   user_profile_filters: {
     "$and": [
       {
-        "is_authorize": {"$eq": true}
+        "is_authorized": {"$eq": true}
       },
       {
         "array_field": {
