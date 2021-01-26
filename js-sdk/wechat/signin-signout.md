@@ -134,6 +134,66 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 > **info**
 > `wx.BaaS.auth.loginWithWechat` 默认会检查用户是否已登录，若未登录，该接口默认会先执行登录操作
 
+## 更新用户手机号
+
+开发者需要提供按钮的方式，令用户触发授权手机号操作。
+
+`wx.BaaS.auth.updateWeChatPhone(data, {overwrite})`
+
+**参数说明**
+
+| 参数            | 类型    | 说明         |
+| :-------------- | :------ | :----------- |
+| data            | object | bindgetphonenumber 事件回调返回的参数 |
+| overwrite | Boolean | 默认为 true。如果设置为 false，用户原本就有手机号会返回 400 错误|
+
+```html
+<button open-type="getPhoneNumber" bindgetphonenumber="phoneNumberUpdate">更新用户手机号</button>
+```
+
+用户点击该按钮时，会返回获取到的用户加密手机号信息，开发者需在回调中调用 `wx.BaaS.auth.updateWeChatPhone` 方法，以更新用户手机号。
+
+**请求示例**
+
+```js
+Page({
+  // ...
+  phoneNumberUpdate(data) {
+    wx.BaaS.auth.updateWeChatPhone(data).then(user => {
+        // user 包含用户完整信息，详见下方描述
+      }, err => {
+        // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
+    })
+  },
+  // ...
+})
+```
+
+**用户同意授权返回示例**
+then 回调中的 user 对象为 currentUser 对象，请参考[currentUser 小节](../account.md) ：
+
+
+**用户拒绝授权示例**
+ catch 回调中的 HError 对象示例：
+
+```json
+{
+  "id": 61736923,
+  "openid": "ofo380BgVHDSf3gz0QK1DYPGnLxx",
+  "unionid": "",
+  "code": 603,
+  "message": "unauthorized"
+}
+```
+
+**其他错误**
+catch 回调中的 res 对象示例：
+
+res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+> **info**
+> `wx.BaaS.auth.updateWeChatPhone` 需要用户已登录，若未登录，该接口会返回 604 错误。
+
 ## 关联微信小程序
 
 通过此方法可将通用注册登录用户（在已登录状态下）关联微信小程序账号。
