@@ -134,9 +134,9 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 > **info**
 > `wx.BaaS.auth.loginWithWechat` 默认会检查用户是否已登录，若未登录，该接口默认会先执行登录操作
 
-## 用户授权手机号登录
+## 用户一键授权手机号登录
 
-开发者需要提供按钮的方式，令用户触发授权手机号操作，即可通过加密后的手机号，结合 `wx.login()` 获取到的 `code` 进行知晓云微信小程序登录。
+开发者需要提供按钮的方式，令用户触发授权手机号操作，即可通过加密后的手机号，结合 `wx.login()` 获取到的 `code` 进行知晓云微信小程序登录。登录成功后用户表的 `phone_verified` 字段会更新为 `true` ，省掉了验证手机号的过程。
 
 `wx.BaaS.auth.loginWithWechat(data, {code, createUser})`
 
