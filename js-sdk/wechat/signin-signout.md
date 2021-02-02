@@ -136,7 +136,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## 更新用户手机号
 
-开发者需要提供按钮的方式，令用户触发授权手机号操作。
+开发者需要提供按钮的方式，令用户触发授权手机号操作。更新之后，用户表的 phone_verified 字段会更新为 true ，省掉了验证手机号的过程。
 
 `wx.BaaS.auth.updateWeChatPhone(data, {overwrite})`
 
