@@ -138,7 +138,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 开发者需要提供按钮的方式，令用户触发授权手机号操作。更新之后，用户表的 phone_verified 字段会更新为 true ，省掉了验证手机号的过程。
 
-`wx.BaaS.auth.updateWeChatPhone(data, {overwrite})`
+`wx.BaaS.auth.updatePhoneNumber(data, {overwrite})`
 
 **参数说明**
 
@@ -151,7 +151,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 <button open-type="getPhoneNumber" bindgetphonenumber="phoneNumberUpdate">更新用户手机号</button>
 ```
 
-用户点击该按钮时，会返回获取到的用户加密手机号信息，开发者需在回调中调用 `wx.BaaS.auth.updateWeChatPhone` 方法，以更新用户手机号。
+用户点击该按钮时，会返回获取到的用户加密手机号信息，开发者需在回调中调用 `wx.BaaS.auth.updatePhoneNumber` 方法，以更新用户手机号。
 
 **请求示例**
 
@@ -159,7 +159,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 Page({
   // ...
   phoneNumberUpdate(data) {
-    wx.BaaS.auth.updateWeChatPhone(data).then(user => {
+    wx.BaaS.auth.updatePhoneNumber(data).then(user => {
         // user 包含用户完整信息，详见下方描述
       }, err => {
         // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
@@ -192,7 +192,7 @@ catch 回调中的 res 对象示例：
 res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 > **info**
-> `wx.BaaS.auth.updateWeChatPhone` 需要用户已登录，若未登录，该接口会返回 604 错误。
+> `wx.BaaS.auth.updatePhoneNumber` 需要用户已登录，若未登录，该接口会返回 604 错误。
 
 ## 关联微信小程序
 
