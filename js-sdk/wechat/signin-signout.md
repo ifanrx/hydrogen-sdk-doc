@@ -145,7 +145,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | 参数            | 类型    | 说明         |
 | :-------------- | :------ | :----------- |
 | data            | object | bindgetphonenumber 事件回调返回的参数 |
-| overwrite | Boolean | 默认为 true。如果设置为 false，用户原本就有手机号会返回 400 错误|
+| overwrite | Boolean | 默认为 true。如果设置为 false，用户原本绑定了其他手机号会返回 400 错误|
 
 ```html
 <button open-type="getPhoneNumber" bindgetphonenumber="phoneNumberUpdate">更新用户手机号</button>
