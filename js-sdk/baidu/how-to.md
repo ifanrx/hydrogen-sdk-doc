@@ -23,9 +23,9 @@ App({
 </code>
 </pre>
 
-### 初始化 SDK
+### 初始化 SDK  
 
-{{ sdkInit.renderIntoPlatform('baidu') }}
+{{ sdkInit.renderIntoPlatform('baidu') }}  
 
 通过初始化 SDK ，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 SDK 提供的全部功能。
 
