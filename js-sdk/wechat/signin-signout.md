@@ -151,7 +151,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 `code`参数说明：由于在回调中调用 `wx.login()` 登录，可能会刷新登录态，此时服务器使用 `code` 换取的 `sessionKey` 不是加密时使用的 `sessionKey`， 导致解密失败。因此要求开发者提前进行 `wx.login()`。
 
 `createUser` 参数决定了一个新的微信用户第一次登录时的服务端处理行为。
-默认为 `true`，服务端会有该用户创建一个知晓云用户记录。
+默认为 `true`，服务端会为该用户创建一个知晓云用户记录。
 当 `createUser` 为 `false` 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见 [多平台用户统一登录](#多平台用户统一登录) 说明。
 
 ```html
@@ -168,12 +168,13 @@ Page({
   wxLogin () {
     wx.login({
         success: (res) => {
-            // 获取临时登录凭证code
+            // 获取临时登录凭证 code
         }
     })
   },
   phoneNumberHandler(data) {
     wx.BaaS.auth.loginWithWechat(data,{
+        // 通过 wx.login() 获取的临时登录凭证 code
         code: '071Jwd000ACg4L1A1Z300nzYGz1JwLxx'
     }).then(user => {
         // user 包含用户完整信息，详见下方描述
