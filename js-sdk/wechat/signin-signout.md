@@ -134,6 +134,80 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 > **info**
 > `wx.BaaS.auth.loginWithWechat` 默认会检查用户是否已登录，若未登录，该接口默认会先执行登录操作
 
+## 用户一键授权手机号登录
+
+开发者需要提供按钮的方式，令用户触发授权手机号操作，即可通过加密后的手机号，结合 `wx.login()` 获取到的 `code` 进行知晓云微信小程序登录。登录成功后用户表的 `phone_verified` 字段会更新为 `true` ，省掉了验证手机号的过程。
+
+`wx.BaaS.auth.loginWithWechat(data, {code, createUser})`
+
+**参数说明**
+
+| 参数            | 类型    | 说明         |
+| :-------------- | :------ | :----------- |
+| data            | object | bindgetphonenumber 事件回调返回的参数 |
+| code            | string | 调用 wx.login() 获取的临时登录凭证  |
+| createUser | Boolean | 是否创建用户，默认为 true |
+
+`code`参数说明：由于在回调中调用 `wx.login()` 登录，可能会刷新登录态，此时服务器使用 `code` 换取的 `sessionKey` 不是加密时使用的 `sessionKey`， 导致解密失败。因此要求开发者提前进行 `wx.login()`。
+
+`createUser` 参数决定了一个新的微信用户第一次登录时的服务端处理行为。
+默认为 `true`，服务端会为该用户创建一个知晓云用户记录。
+当 `createUser` 为 `false` 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见 [多平台用户统一登录](#多平台用户统一登录) 说明。
+
+```html
+<button open-type="getPhoneNumber" bindgetphonenumber="phoneNumberHandler" catchtap="wxLogin">用户授权手机号登录</button>
+```
+
+用户点击该按钮时，会触发 `wxLogin()`获取到临时登录凭证 `code`，同时弹出授权手机号面板；点击授权面板会触发 `phoneNumberHandler()` 方法，返回获取到的用户加密手机号信息；开发者需在回调中调用 `wx.BaaS.auth.loginWithWechat` 方法，以使用加密的手机号，结合 `wx.login()` 获取到的 `code` 进行知晓云微信小程序登录。
+
+**请求示例**
+
+```js
+Page({
+  // ...
+  wxLogin () {
+    wx.login({
+        success: (res) => {
+            // 获取临时登录凭证 code
+        }
+    })
+  },
+  phoneNumberHandler(data) {
+    wx.BaaS.auth.loginWithWechat(data,{
+        // 通过 wx.login() 获取的临时登录凭证 code
+        code: '071Jwd000ACg4L1A1Z300nzYGz1JwLxx'
+    }).then(user => {
+        // user 包含用户完整信息，详见下方描述
+      }, err => {
+        // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
+    })
+  },
+  // ...
+})
+```
+
+**用户同意授权返回示例**
+then 回调中的 user 对象为 currentUser 对象，请参考[currentUser 小节](../account.md) ：
+
+
+**用户拒绝授权示例**
+ catch 回调中的 HError 对象示例：
+
+```json
+{
+  "id": 61736923,
+  "openid": "ofo380BgVHDSf3gz0QK1DYPGnLxx",
+  "unionid": "",
+  "code": 603,
+  "message": "unauthorized"
+}
+```
+
+**其他错误**
+catch 回调中的 res 对象示例：
+
+res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
 ## 更新用户手机号
 
 开发者需要提供按钮的方式，令用户触发授权手机号操作。更新之后，用户表的 phone_verified 字段会更新为 true ，省掉了验证手机号的过程。
