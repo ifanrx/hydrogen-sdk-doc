@@ -1,5 +1,8 @@
 # 微信小程序 scheme 码
 
+> **info**
+> SDK >= 3.14
+
 ## 获取微信小程序 URL Scheme 码列表
 
 `BaaS.wechat.UrlScheme#getUrlSchemeList()`
@@ -8,7 +11,7 @@
 
 ```javascript
 exports.main = async function (event, callback) {
-  let urlScheme = new BaaS.wechart.UrlScheme();
+  let urlScheme = new BaaS.wechat.UrlScheme();
   callback(null, await urlScheme.offset(0).limit(20).getUrlSchemeList());
 };
 ```
@@ -51,7 +54,7 @@ exports.main = async function (event, callback) {
 
 ```javascript
 exports.main = async function (event, callback) {
-  let urlScheme = new BaaS.wechart.UrlScheme();
+  let urlScheme = new BaaS.wechat.UrlScheme();
   callback(null, await urlScheme.get(1));
 };
 ```
@@ -83,16 +86,16 @@ options 是对象类型,包含以下参数:
 
 jump_wxa 包含以下参数:
 
-| 参数  | 类型   | 必填 | 说明                                                         |
-| ----- | ------ | ---- | ------------------------------------------------------------ |
-| path  | String | N    | 通过 scheme 码进入的小程序页面路径，必须是已经发布的小程序存在的页面，path 为空时会跳转小程序主页 |
-| query | String | N    | 通过 scheme 码进入小程序时的 query，最大 32 个字符，只支持数字，大小写英文以及部分特殊字符：!#$&'()*+,/:;=?@-._~ |
+| 参数  | 类型   | 必填 | 说明                                                                                                               |
+| ----- | ------ | ---- | ------------------------------------------------------------------------------------------------------------------ |
+| path  | String | N    | 通过 scheme 码进入的小程序页面路径，必须是已经发布的小程序存在的页面，path 为空时会跳转小程序主页                  |
+| query | String | N    | 通过 scheme 码进入小程序时的 query，最大 32 个字符，只支持数字，大小写英文以及部分特殊字符：!#$&'()\*+,/:;=?@-.\_~ |
 
 **示例代码**
 
 ```javascript
 exports.main = async function (event, callback) {
-  let urlScheme = new BaaS.wechart.UrlScheme();
+  let urlScheme = new BaaS.wechat.UrlScheme();
   callback(
     null,
     await urlScheme.generate({
@@ -102,6 +105,24 @@ exports.main = async function (event, callback) {
     })
   );
 };
+```
+
+**返回示例**
+
+```json
+{
+  "created_at": 1610094010,
+  "id": 2,
+  "options": {
+    "jump_wxa": {
+      "path": "",
+      "query": ""
+    },
+    "expire_time": 1606737600,
+    "is_expire": true
+  },
+  "status": "pending"
+}
 ```
 
 ## 删除单个微信小程序 URL Scheme 码
@@ -118,7 +139,7 @@ exports.main = async function (event, callback) {
 
 ```javascript
 exports.main = async function (event, callback) {
-  let urlScheme = new BaaS.wechart.UrlScheme();
+  let urlScheme = new BaaS.wechat.UrlScheme();
   callback(null, await urlScheme.delete(1));
 };
 ```
