@@ -86,6 +86,7 @@
         * [检测违规图片、音频、文本](js-sdk/wechat/censor.md)
         * [获取二维码](js-sdk/wechat/wxacode.md)
         * [微信 unionid 登录](js-sdk/wechat/unionid-login.md)
+        * [微信安全风控](js-sdk/wechat/user-risk-rank.md)
     * [QQ 小程序](js-sdk/qq/README.md)
         * [接入指南](js-sdk/qq/how-to.md)
         * [QQ 登录](js-sdk/qq/signin-signout.md)
