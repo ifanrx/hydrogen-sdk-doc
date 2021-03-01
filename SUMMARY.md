@@ -401,6 +401,7 @@
     * [企业付款](cloud-function/node-sdk/wx-promotion-transfer.md)
     * [错误码和 HError 对象](cloud-function/node-sdk/error.md)
     * [公众号发送红包](cloud-function/node-sdk/red-pack.md)
+    * [微信小程序 scheme 码](cloud-function/node-sdk/url-scheme/README.md)
     * [获取异步任务结果](cloud-function/node-sdk/async-job.md)
     * [获取服务器时间](cloud-function/node-sdk/server-date.md)
     * [SDK 版本](cloud-function/node-sdk/version/README.md)
