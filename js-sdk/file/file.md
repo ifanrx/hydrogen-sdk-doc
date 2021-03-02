@@ -32,6 +32,7 @@
 | fileParams.filePath | String |  Y  | 本地资源路径 |
 | fileParams.fileObj | String |  Y  | 文件对象（在 Web 端上传时提供该参数）|
 | fileParams.fileType | String |  Y  | 文件类型，image / video / audio（在支付宝端上传时提供该参数）|
+| fileParams.fileName | String | N | 文件名(v3.18.0 版本新增) |
 
 **metaData 参数说明（可选）**
 
@@ -39,9 +40,18 @@
 | :---------------------| :----- | :--- | :--- |
 | metaData.categoryID   | String |  N  | 要上传的文件分类 ID |
 | metaData.categoryName | String |  N  | 要上传的文件分类名 |
+| metaData.randomFileLink | String | N | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true(v3.18.0 版本新增) |
 
 > **info**
-> 请勿同时填写 categoryID 和 categoryName，默认只使用 categoryID
+> 1.请勿同时填写 categoryID 和 categoryName，默认只使用 categoryID
+
+> 2.randomFileLink 举例说明：
+
+> `metaData.randomFileLink` 为 `true` 时，如果 `fileParams.fileName` 为 `avatar.png`，
+> 则返回值中 res.data.file.path 为 `https://cloud-minapp-xxx.cloud.ifanrusercontent.com/1j6ZGvnzSpJ7YBZ8.png`
+
+> `metaData.randomFileLink` 为 `false` 时，如果 `fileParams.fileName` 为 `avatar.png`，
+> 则返回值中 res.data.file.path 为 `https://cloud-minapp-xxx.cloud.ifanrusercontent.com/avatar.png`
 
 **返回参数说明**
 
