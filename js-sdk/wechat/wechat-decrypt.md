@@ -10,8 +10,8 @@
 
 | 参数           | 类型    | 必填 | 说明 |
 | :------------ | :------ | :-- | :-- |
-| encryptedData | String  | Y   | 加密的数据，可通过 wx.getWeRunData 等微信 api 返回获取，详细见[加密数据解密算法](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/signature.html)。 |
-| iv            | String  | Y   | 加密算法的初始向量，可通过 wx.getWeRunData 等微信 api 返回获取，详细见[加密数据解密算法](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/signature.html)。 |
+| encryptedData | String  | Y   | 加密的数据，可通过 wx.getWeRunData 等微信 api 返回获取 |
+| iv            | String  | Y   | 加密算法的初始向量，可通过 wx.getWeRunData 等微信 api 返回获取 |
 | type          | String  | Y   | 数据类型，现支持 'we-run-data', 'phone-number', 'open-gid' |
 
 当前支持解密的数据包括：
