@@ -16,6 +16,7 @@
     * [新手入门 - Android](newbies/android.md)
     * [新手入门 - 字节跳动（头条、抖音等）小程序](newbies/bytedance.md)
     * [新手入门 - 京东小程序](newbies/jingdong.md)
+    * [新手入门 - 快手小程序](newbies/kuaishou.md)
 
 ----
 
@@ -36,7 +37,7 @@
     * [运营](dashboard/operation/README.md)
         * [运营后台](dashboard/operation/user-dash.md)
         * [短信](dashboard/operation/sms.md)
-    * [小程序](dashboard/miniapp/README.md)
+    * [小程序](dashboard/miniapp/README.md)e
         * [知晓推送](dashboard/miniapp/template-message.md)
         * [小程序码](dashboard/miniapp/qrcode.md)
         * [客服消息](dashboard/miniapp/customer-message.md)
@@ -123,6 +124,9 @@
     * [京东小程序](js-sdk/jingdong/README.md)
         * [接入指南](js-sdk/jingdong/how-to.md)
         * [京东登录](js-sdk/jingdong/signin-signout.md)
+    * [快手小程序](js-sdk/kuaishou/README.md)
+        * [接入指南](js-sdk/kuaishou/how-to.md)
+        * [快手登录](js-sdk/kuaishou/signin-signout.md)
     * [React Native](js-sdk/react-native/README.md)
         * [接入指南](js-sdk/react-native/how-to.md)
         * [登入登出](js-sdk/react-native/signin-signout.md)

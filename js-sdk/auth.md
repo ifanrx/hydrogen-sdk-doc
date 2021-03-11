@@ -271,6 +271,9 @@ wx.BaaS.auth.loginWithSmsVerificationCode('15000000000', '123456').then(user => 
 ### 字节跳动小程序登录
 请参考[字节跳动小程序登录](./bytedance/signin-signout.md)
 
+### 快手小程序登录
+请参考[快手小程序登录](./kuaishou/signin-signout.md)
+
 ## 关联小程序账户
 用户在完成登录后，可以关联小程序账户，这样用户可以在下次通过多种方式登录同一账户。
 
@@ -291,6 +294,9 @@ wx.BaaS.auth.loginWithSmsVerificationCode('15000000000', '123456').then(user => 
 
 ### 关联字节跳动小程序
 请参考[关联字节跳动小程序](./bytedance/signin-signout.html#关联字节跳动小程序)
+
+### 关联快手小程序
+请参考[关联快手小程序](./kuaishou/signin-signout.html#关联快手小程序)
 
 ## 登出
 

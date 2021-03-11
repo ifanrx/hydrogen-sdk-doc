@@ -12,6 +12,8 @@
 - [百度小程序 SDK v{{ book.latestVersionBaidu }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-baidu.{{book.latestVersionBaidu}}.zip)
 - [微信小程序插件版 SDK v{{ book.latestVersionWechatPlugin }}](https://mp.weixin.qq.com/wxopen/pluginbasicprofile?action=intro&appid=wxc6b86e382a1e3294)
 - [字节跳动小程序 SDK v{{ book.latestVersionBytedance }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-bytedance.{{book.latestVersionBytedance}}.zip)
+- [京东小程序 SDK v{{ book.latestVersionJingdong }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-jingdong.{{book.latestVersionJingdong}}.zip)
+- [快手小程序 SDK v{{ book.latestVersionKuaishou }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-kuaishou.{{book.latestVersionKuaishou}}.zip)
 - [Web SDK v{{ book.latestVersionWeb }}](https://dl.ifanr.cn/hydrogen/sdk/sdk-web.{{book.latestVersionWeb}}.zip)
 - [Web SDK npm 版](https://www.npmjs.com/package/minapp-sdk)
 - [类型定义文件 baas-wx.d.ts](https://dl.ifanr.cn/hydrogen/sdk/baas-wx.d.ts)（微信开发者工具中使用）
