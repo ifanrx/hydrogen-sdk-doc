@@ -20,7 +20,7 @@ SDK 提供了快速登录小程序的接口，省去使用微信登录接口时�
 
 小程序建议的登录流程是，可通过 `wx.BaaS.auth.loginWithWechat()` 获取用户 openID，这时无需弹框授权，开发者拿到 openID 可以建立自身的帐号 ID。当必须要获得用户的头像昵称等信息时，调用 `wx.getUserProfile` 接口，并将返回结果通过 `wx.BaaS.auth.updateUserInfo()` 方法更新用户信息。
 
-同时，云函数 Node-SDK 也提供更新用户信息方法，详见[这里](/cloud-function/node-sdk/wx-update-user-info.md)。如需要禁止 JS-SDK 更新用户信息，只允许云函数更新，可在控制台 开发 - 设置 - SDK - 微信小程序 中打开 `仅在云函数更新用户信息` 开关。
+同时，云函数 Node-SDK 也提供更新用户信息方法，详见[这里](/cloud-function/node-sdk/wx-update-user-info.md)。默认情况下只允许云函数更新用户信息，如需要开启 JS-SDK 更新，可在控制台 `开发 - 设置 - SDK - 微信小程序` 中打开 `允许在 SDK 更新用户信息` 开关。
 
 ## 静默登录
 
@@ -144,7 +144,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## 更新用户信息
 
-开发者需要提供按钮的方式，令用户触发授权手机号操作。更新之后，用户表的 phone_verified 字段会更新为 true ，省掉了验证手机号的过程。
+开发者需要提前调用 `wx.getUserProfile` 获取用户信息，并调用以下方法更新。
 
 `wx.BaaS.auth.updateUserInfo(data, {syncUserProfile})`
 
@@ -153,7 +153,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | 参数            | 类型    | 说明         |
 | :-------------- | :------ | :----------- |
 | data            | Object | wx.getUserProfile 事件回调返回的参数 |
-| syncUserProfile | Boolean | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx`|
+| syncUserProfile | String | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为 `setnx`|
 
 **请求示例**
 
@@ -200,6 +200,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 > **info**
 > `wx.BaaS.auth.updateUserInfo` 需要用户已登录，若未登录，该接口会返回 604 错误。
+> 如果未在控制台开启“允许在 SDK 更新用户信息”开关，该接口会返回 616 错误。
 
 
 ## 更新用户手机号
@@ -266,58 +267,25 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 通过此方法可将通用注册登录用户（在已登录状态下）关联微信小程序账号。
 
-`UserRecord.linkWechat(data, {syncUserProfile})`
+`UserRecord.linkWechat({withUnionID})`
 
 **参数说明**
 
 | 参数    | 类型    | 说明         |
 | :------| :------ | :----------- |
-| data            | object | bindgetuserinfo 事件回调返回的参数 |
-| syncUserProfile | String | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx` |
 | withUnionID     | Boolean | （SDK version >= 3.8.0）是否使用 [unionid 登录](/js-sdk/wechat/unionid-login.md) 并关联，默认为 `false`，可选 |
 
-{% include "/js-sdk/frag/_sync_user_profile_param.md" %}
-
-{{ userInfoAlert() }}
-
-
 **请求示例**
-
-1. 不获取用户信息:
-
-  ```javascript
-  // 必须在用户通过 login API 登录后才能进行绑定
-  wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
-    // user 为 currentUser 对象
-    return user.linkWechat()
-  }).then(res=>{
-    // success
-    // 用户可以通过微信授权登录同一个账户了
-  })
-  ```
-
-2. 获取用户信息:
-
-  ```html
-  <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
-  ```
-
-  ```js
-  Page({
-    // ...
-    userInfoHandler(data) {
-      // 必须在用户通过 login API 登录后才能进行绑定
-      wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
-        // user 为 currentUser 对象
-        user.linkWechat(data).then(res=>{
-          // 关联成功
-          console.log(res.statusCode)
-        })
-      })
-    },
-    // ...
-  })
-  ```
+```javascript
+// 必须在用户通过 login API 登录后才能进行绑定
+wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
+  // user 为 currentUser 对象
+  return user.linkWechat()
+}).then(res=>{
+  // success
+  // 用户可以通过微信授权登录同一个账户了
+})
+```
 
 **返回示例**
 ```JSON

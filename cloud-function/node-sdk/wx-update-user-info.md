@@ -12,13 +12,14 @@
 
 小程序建议的登录流程是，可通过 `wx.BaaS.auth.loginWithWechat()` 获取用户 openID，这时无需弹框授权，开发者拿到 openID 可以建立自身的帐号 ID。当必须要获得用户的头像昵称等信息时，调用 `wx.getUserProfile` 接口，并将返回结果通过调用云函数 `BaaS.wechat.updateUserInfo()` 方法更新用户信息。
 
-`BaaS.wechat.updateUserInfo(data, {syncUserProfile})`
+`BaaS.wechat.updateUserInfo(userID, data, {syncUserProfile})`
 
 **参数说明**
 
 | 参数          | 类型    | 必填 | 说明                                                         |
 | :------------ | :------ | :--- | :----------------------------------------------------------- |
-| data            | Object | 是 | wx.getUserProfile 事件回调返回的参数 |
+| userID            | Number | 是 | 用户 ID |
+| userInfo            | Object | 是 | wx.getUserProfile 事件回调返回的参数 userInfo |
 | syncUserProfile | Boolean | 否 | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx`|
 
 **请求示例**
@@ -26,12 +27,12 @@
 ```javascript
 // 云函数部分
 BaaS.useVersion("v3.17.0");
-exports.main = async function (event, callback) {
-  const res = await BaaS.wechat.updateUserInfo(event.data.authData, {
+exports.main = async function updateUserInfo(event, callback) {
+  const res = await BaaS.wechat.updateUserInfo(event.data.userID, event.data.userInfo, {
     syncUserProfile: event.data.syncUserProfile
   });
-  callback(null, res);
-};
+  return res
+}
 ```
 
 ```javascript
@@ -40,7 +41,8 @@ wx.getUserProfile({
   //...
   success: function(res) {
     wx.BaaS.invoke("update_wechat_user_info", {
-      authData: res,
+      userID,
+      userInfo: res.userInfo,
       syncUserProfile: 'setnx'
     }).then((res) => {
       console.log(res);
