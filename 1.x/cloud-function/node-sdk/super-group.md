@@ -16,7 +16,7 @@
 ```javascript
 exports.main = async function (event, callback) {
   let userSuperGroup = new BaaS.UserSuperGroup()
-  callback(null, await userSuperGroup.create({name: 'aa2', children: [8]}))
+  return await userSuperGroup.create({name: 'aa2', children: [8]})
 }
 ```
 
@@ -34,7 +34,7 @@ exports.main = async function (event, callback) {
 ```javascript
 exports.main = async function (event, callback) {
   let userSuperGroup = new BaaS.UserSuperGroup()
-  callback(null, await userSuperGroup.get(11))
+  return await userSuperGroup.get(11)
 }
 ```
 **返回示例**
@@ -61,7 +61,7 @@ exports.main = async function (event, callback) {
 ```javascript
 exports.main = async function (event, callback) {
   let userSuperGroup = new BaaS.UserSuperGroup()
-  callback(null, await userSuperGroup.update(16, {name: 'a2222', children: [17]}))
+  return await userSuperGroup.update(16, {name: 'a2222', children: [17]})
 }
 ```
 
@@ -73,7 +73,7 @@ exports.main = async function (event, callback) {
 ```javascript
 exports.main = async function (event, callback) {
   let userSuperGroup = new BaaS.UserSuperGroup()
-  callback(null, await userSuperGroup.getUserSuperGroupList())
+  return await userSuperGroup.getUserSuperGroupList()
 }
 ```
 **返回示例**
@@ -107,6 +107,6 @@ exports.main = async function (event, callback) {
 ```javascript
 exports.main = async function (event, callback) {
   let userSuperGroup = new BaaS.UserSuperGroup()
-  callback(null, await userSuperGroup.delete([15, 16]))
+  return await userSuperGroup.delete([15, 16])
 }
 ```

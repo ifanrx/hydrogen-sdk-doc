@@ -12,7 +12,7 @@
 ```javascript
 exports.main = async function (event, callback) {
   let urlScheme = new BaaS.wechat.UrlScheme();
-  callback(null, await urlScheme.offset(0).limit(20).getUrlSchemeList());
+  return await urlScheme.offset(0).limit(20).getUrlSchemeList();
 };
 ```
 
@@ -55,7 +55,7 @@ exports.main = async function (event, callback) {
 ```javascript
 exports.main = async function (event, callback) {
   let urlScheme = new BaaS.wechat.UrlScheme();
-  callback(null, await urlScheme.get(1));
+  return await urlScheme.get(1);
 };
 ```
 
@@ -96,14 +96,11 @@ jump_wxa 包含以下参数:
 ```javascript
 exports.main = async function (event, callback) {
   let urlScheme = new BaaS.wechat.UrlScheme();
-  callback(
-    null,
-    await urlScheme.generate({
-      jump_wxa: { path: "", query: "" },
-      is_expire: true,
-      expire_time: 1606737600,
-    })
-  );
+  return await urlScheme.generate({
+    jump_wxa: { path: "", query: "" },
+    is_expire: true,
+    expire_time: 1606737600,
+  });
 };
 ```
 
@@ -140,6 +137,6 @@ exports.main = async function (event, callback) {
 ```javascript
 exports.main = async function (event, callback) {
   let urlScheme = new BaaS.wechat.UrlScheme();
-  callback(null, await urlScheme.delete(1));
+  return await urlScheme.delete(1)
 };
 ```

@@ -54,8 +54,7 @@ exports.main = async function setHash(event, callback) {
 
     // 更新 hash 字段值
     await MyRecord.set('hash', hash)
-    await MyRecord.update()
-    return callback(null, 0)
+    return await MyRecord.update()
   }
 }
 ```

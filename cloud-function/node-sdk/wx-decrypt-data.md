@@ -33,13 +33,12 @@
 // 云函数部分
 BaaS.useVersion("v3.15.0");
 exports.main = async function (event, callback) {
-  const res = await BaaS.wechat.decryptData({
+  return await BaaS.wechat.decryptData({
     encryptedData: event.data.encryptedData,
     iv: event.data.iv,
     type: event.data.type,
     userID: event.request.user.id,
   });
-  callback(null, res);
 };
 ```
 

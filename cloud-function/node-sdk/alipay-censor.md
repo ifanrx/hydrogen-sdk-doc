@@ -17,7 +17,7 @@
 
 ```javascript
 exports.main = async function (event, callback) {
-  callback(null, await BaaS.alipay.censorText('123'))
+  return await BaaS.alipay.censorText('123')
 }
 ```
 
