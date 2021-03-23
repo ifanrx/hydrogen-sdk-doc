@@ -13,9 +13,9 @@
 
 options 是对象类型,包含以下参数:
 
-| 参数 | 类型 | 必填 | 说明 |
+| 参数    | 类型   | 必填 | 说明                                                                                   |
 | ------- | ------ | ---- | -------------------------------------------------------------------------------------- |
-| unionid | String | N | 用户的 unionid，指定分享者为 unionid 用户。其余用户不能用此 activity_id 分享私密消息。 |
+| unionid | String | N    | 用户的 unionid，指定分享者为 unionid 用户。其余用户不能用此 activity_id 分享私密消息。 |
 
 **返回字段说明**
 
@@ -38,12 +38,9 @@ options 是对象类型,包含以下参数:
 **示例代码**
 
 ```js
-exports.main = async function (event, callback) {
-  callback(
-    null,
-    await BaaS.wechat.createActivityID({
-      unionid: "******"
-    })
-  );
+exports.main = async function (event) {
+  return await BaaS.wechat.createActivityID({
+    unionid: "******",
+  });
 };
 ```
