@@ -1,6 +1,6 @@
 # Summary
 
-<!-- * [旧版 1.x 版本文档](https://doc.minapp.com/1.x/)
+* [旧版 1.x 版本文档](https://doc.minapp.com/1.x/)
 
 ----
 
@@ -41,7 +41,7 @@
         * [小程序码](dashboard/miniapp/qrcode.md)
         * [客服消息](dashboard/miniapp/customer-message.md)
 
----- -->
+----
 
 * [JS SDK](js-sdk/README.md)
     * [快速开始](js-sdk/quick-start.md)
@@ -148,7 +148,7 @@
 
 ----
 
-<!-- * [Android SDK](android-sdk/README.md)
+* [Android SDK](android-sdk/README.md)
     * [用户](android-sdk/user.md)
         * [注册登录](android-sdk/auth.md)
         * [当前用户](android-sdk/account.md)
@@ -322,7 +322,7 @@
     * [云函数](user-dash/cloud-function.md)
     * [短信服务](user-dash/sms.md)
 
----- -->
+----
 
 * [云函数 Node.js SDK](cloud-function/node-sdk/README.md)
     * [入门必读](cloud-function/node-sdk/start/README.md)
@@ -415,7 +415,7 @@
 
 ----
 
-<!-- * [实战教程](support/practice/README.md)
+* [实战教程](support/practice/README.md)
     * [触发器实战教程](support/practice/trigger.md)
     * [云函数实战教程](support/practice/cloud-function.md)
     * [订阅消息防坑指南](support/practice/subscribe-message-guide.md)
@@ -429,4 +429,4 @@
     * [常见问题](support/qA.md)
     * [服务协议](support/terms.md)
     * [技术细节](support/technical-notes.md)
-    * [认证信息](support/auth-info.md) -->
+    * [认证信息](support/auth-info.md)
