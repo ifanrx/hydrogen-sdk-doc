@@ -57,7 +57,7 @@ options 是对象类型,包含以下参数:
 **示例代码**
 
 ```js
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   return await BaaS.wechat.getUserRiskRank({
     openid: "*****",
     clientIP: "******",

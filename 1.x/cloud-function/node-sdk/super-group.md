@@ -14,7 +14,7 @@
 **示例代码**
 
 ```javascript
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   let userSuperGroup = new BaaS.UserSuperGroup()
   return await userSuperGroup.create({name: 'aa2', children: [8]})
 }
@@ -32,7 +32,7 @@ exports.main = async function (event, callback) {
 **示例代码**
 
 ```javascript
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   let userSuperGroup = new BaaS.UserSuperGroup()
   return await userSuperGroup.get(11)
 }
@@ -59,7 +59,7 @@ exports.main = async function (event, callback) {
 **示例代码**
 
 ```javascript
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   let userSuperGroup = new BaaS.UserSuperGroup()
   return await userSuperGroup.update(16, {name: 'a2222', children: [17]})
 }
@@ -71,7 +71,7 @@ exports.main = async function (event, callback) {
 **示例代码**
 
 ```javascript
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   let userSuperGroup = new BaaS.UserSuperGroup()
   return await userSuperGroup.getUserSuperGroupList()
 }
@@ -105,7 +105,7 @@ exports.main = async function (event, callback) {
 **示例代码**
 
 ```javascript
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   let userSuperGroup = new BaaS.UserSuperGroup()
   return await userSuperGroup.delete([15, 16])
 }

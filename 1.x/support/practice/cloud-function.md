@@ -31,7 +31,7 @@ const genUniqueID = (len = 5) => {
   return tmp.slice(0, LENGTH - length) + number
 }
 
-exports.main = async function setHash(event, callback) {
+exports.main = async function setHash(event) {
   let MyTableObject = new BaaS.TableObject(TABLE_ID)
 
   while (true) {

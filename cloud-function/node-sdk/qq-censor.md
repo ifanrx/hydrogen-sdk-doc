@@ -27,7 +27,7 @@
 
 **示例代码**
 ```javascript
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   return await BaaS.qq.censorImage('5b71568674f0e509bb5ecc30')
 }
 ```
@@ -45,7 +45,7 @@ exports.main = async function (event, callback) {
 {% block censorTextCode %}
 
 ```javascript
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   return await BaaS.qq.censorText('123')
 }
 ```

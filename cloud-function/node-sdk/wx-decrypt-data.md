@@ -32,7 +32,7 @@
 ```javascript
 // 云函数部分
 BaaS.useVersion("v3.15.0");
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   return await BaaS.wechat.decryptData({
     encryptedData: event.data.encryptedData,
     iv: event.data.iv,
