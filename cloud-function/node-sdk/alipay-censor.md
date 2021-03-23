@@ -16,8 +16,8 @@
 {% block censorTextCode %}
 
 ```javascript
-exports.main = async function (event, callback) {
-  callback(null, await BaaS.alipay.censorText('123'))
+exports.main = async function (event) {
+  return await BaaS.alipay.censorText('123')
 }
 ```
 
