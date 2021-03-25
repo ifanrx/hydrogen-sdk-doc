@@ -18,6 +18,10 @@ SDK 提供了快速登录小程序的接口，省去使用微信登录接口时�
 > 
 > 为应对微信的调整，小程序 SDK v3.18.0 中将会调整 `wx.BaaS.auth.loginWithWechat()` 登录方法，只保留静默登录和手机号登录两部分，并提供新的更新用户信息方法 `wx.BaaS.auth.updateUserInfo()`。弹框授权个人信息的执行时机将会返回给开发者自行判断。
 
+<!-- 分隔两个 info -->
+> **info**
+> 注意：新发布的小程序中，开发者在用户登录时可直接获取到 unionID。
+
 小程序建议的登录流程是，可通过 `wx.BaaS.auth.loginWithWechat()` 获取用户 openID，这时无需弹框授权，开发者拿到 openID 可以建立自身的帐号 ID。当必须要获得用户的头像昵称等信息时，调用 `wx.getUserProfile` 接口，并将返回结果通过 `wx.BaaS.auth.updateUserInfo()` 方法更新用户信息。
 
 同时，云函数 Node-SDK 也提供更新用户信息方法，详见[这里](/cloud-function/node-sdk/wx-update-user-info.md)。默认情况下只允许云函数更新用户信息，如需要开启 JS-SDK 更新，可在控制台 `开发 - 设置 - SDK - 微信小程序` 中打开 `允许在 SDK 更新用户信息` 开关。
