@@ -19,7 +19,7 @@
 | 参数          | 类型    | 必填 | 说明                                                         |
 | :------------ | :------ | :--- | :----------------------------------------------------------- |
 | userID            | Number | 是 | 用户 ID |
-| userInfo            | Object | 是 | wx.getUserProfile 事件回调返回的参数 userInfo |
+| data            | Object | 是 | wx.getUserProfile 事件回调返回的参数 |
 | syncUserProfile | Boolean | 否 | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx`|
 
 **请求示例**
@@ -28,7 +28,7 @@
 // 云函数部分
 BaaS.useVersion("v3.17.0");
 exports.main = async function updateUserInfo(event, callback) {
-  const res = await BaaS.wechat.updateUserInfo(event.data.userID, event.data.userInfo, {
+  const res = await BaaS.wechat.updateUserInfo(event.data.userID, event.data.data, {
     syncUserProfile: event.data.syncUserProfile
   });
   return res
@@ -39,10 +39,10 @@ exports.main = async function updateUserInfo(event, callback) {
 // 微信小程序调用部分
 wx.getUserProfile({
   //...
-  success: function(res) {
+  success: function(data) {
     wx.BaaS.invoke("update_wechat_user_info", {
       userID,
-      userInfo: res.userInfo,
+      data,
       syncUserProfile: 'setnx'
     }).then((res) => {
       console.log(res);
