@@ -16,7 +16,7 @@ SDK 提供了快速登录小程序的接口，省去使用微信登录接口时�
 > **danger**
 > 从 2021 年 4 月 13 日后发布的小程序新版本，无法通过 wx.getUserInfo 与 `<button open-type="getUserInfo"/>` 获取加密的用户个人信息，而需要通过新增的 getUserProfile 接口获取。请参考 [小程序登录、用户信息相关接口调整说明](https://developers.weixin.qq.com/community/develop/doc/000cacfa20ce88df04cb468bc52801?blockType=1)。
 > 
-> 为应对微信的调整，小程序 SDK v3.18.0 中将会调整 `wx.BaaS.auth.loginWithWechat()` 登录方法，只保留静默登录和手机号登录两部分，并提供新的更新用户信息方法 `wx.BaaS.auth.updateUserInfo()`。弹框授权个人信息的执行时机将会返回给开发者自行判断。
+> 为应对微信的调整，小程序 SDK v3.18.0 中将会调整 `wx.BaaS.auth.loginWithWechat()` 登录方法，只保留静默登录和一键授权手机号登录两部分，并提供新的更新用户信息方法 `wx.BaaS.auth.updateUserInfo()`。弹框授权个人信息的执行时机将会返回给开发者自行判断。
 
 <!-- 分隔两个 info -->
 > **info**
