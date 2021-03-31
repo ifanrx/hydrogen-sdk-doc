@@ -26,6 +26,7 @@
 
 ```javascript
 // 云函数部分
+// 函数名：update_wechat_user_info
 BaaS.useVersion("v3.17.0");
 exports.main = async function updateUserInfo(event, callback) {
   const res = await BaaS.wechat.updateUserInfo(event.data.userID, event.data.data, {
@@ -40,13 +41,15 @@ exports.main = async function updateUserInfo(event, callback) {
 wx.getUserProfile({
   //...
   success: function(data) {
-    wx.BaaS.invoke("update_wechat_user_info", {
-      userID,
-      data,
-      syncUserProfile: 'setnx'
-    }).then((res) => {
-      console.log(res);
-    });
+    app.BaaS.auth.getCurrentUser().then(user => {
+      wx.BaaS.invoke("update_wechat_user_info", {
+        userID: user.id,
+        data: data,
+        syncUserProfile: 'setnx'
+      }).then((res) => {
+        console.log(res);
+      });
+    })
   },
 });
 ```
