@@ -43,12 +43,12 @@ options 是对象类型,包含以下参数:
 wx.BaaS.wxCreateActivityID({
   unionid: "******",
 }).then((res) => {
-  if (res.activity_id) {
+  if (res.data.activity_id) {
     // 声明本次分享的消息为私密消息
     wx.updateShareMenu({
       withShareTicket: true,
       isPrivateMessage: true,
-      activityId: res.activity_id,
+      activityId: res.data.activity_id,
     });
   }
 });
