@@ -25,9 +25,9 @@
 
 **请求示例**
 
-对微信加密数据进行解密需要使用到本次登录的会话密钥（session_key），因此，在调用该接口前，最好先调用一下 `wx.checkSession` 检查一下 session_key 是否过期，如果过期的话，可以先调用 `wx.BaaS.logout` 再调用 `wx.BaaS.login` 接口进行重新登录。
+对微信加密数据进行解密需要使用到本次登录的会话密钥（session_key），因此，在调用该接口前，最好先调用一下 `wx.checkSession` 检查一下 session_key 是否过期，如果过期的话，可以先调用 `wx.BaaS.auth.logout` 再调用 `wx.BaaS.auth.loginWithWechat` 接口进行重新登录。
 
-```
+```javascript
 wx.getWeRunData({
   success(res) {
     wx.checkSession({
@@ -40,8 +40,8 @@ wx.getWeRunData({
         })
       },
       fail: function() {
-        wx.BaaS.logout()
-        wx.BaaS.login()
+        wx.BaaS.auth.logout();
+        wx.BaaS.auth.loginWithWechat();
       }
     })
   }

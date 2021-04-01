@@ -11,9 +11,9 @@
 
 **示例代码**
 ```javascript
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   let userGroup = new BaaS.UserGroup()
-  callback(null, await userGroup.get(123))
+  return await userGroup.get(123)
 }
 ```
 
@@ -45,9 +45,9 @@ exports.main = async function (event, callback) {
 **示例代码**
 
 ```javascript
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   let userGroup = new BaaS.UserGroup()
-  callback(null, await userGroup.offset(0).limit(20).getUserGroupList({parentID: '11'}))
+  return await userGroup.offset(0).limit(20).getUserGroupList({parentID: '11'})
 }
 ```
 
@@ -83,9 +83,9 @@ userGroup.offset(0).limit(20).getUserGroupList({})
 
 **示例代码**
 ```javascript
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   let userGroup = new BaaS.UserGroup()
-  callback(null, await userGroup.create({name: '测试',parent:'11'}))
+  return await userGroup.create({name: '测试',parent:'11'})
 }
 ```
 
@@ -101,10 +101,9 @@ exports.main = async function (event, callback) {
 
 **示例代码**
 ```javascript
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   let userGroup = new BaaS.UserGroup()
-  await userGroup.update(12, {name: '888'})
-  callback(null)
+  return await userGroup.update(12, {name: '888'})
 }
 ```
 
@@ -119,10 +118,9 @@ exports.main = async function (event, callback) {
 
 **示例代码**
 ```javascript
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   let userGroup = new BaaS.UserGroup()
-  await userGroup.delete([12, 13])
-  callback(null)
+  return await userGroup.delete([12, 13])
 }
 ```
 
@@ -138,10 +136,9 @@ exports.main = async function (event, callback) {
 
 **示例代码**
 ```javascript
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   let userGroup = new BaaS.UserGroup()
-  await userGroup.addUserIntoGroup([1092612, 1092601], [8, 9])
-  callback(null)
+  return await userGroup.addUserIntoGroup([1092612, 1092601], [8, 9])
 }
 ```
 
@@ -156,9 +153,8 @@ exports.main = async function (event, callback) {
 | groups | integer Array | Y   | 用户组 ID 数组|
 
 ```javascript
-exports.main = async function (event, callback) {
+exports.main = async function (event) {
   let userGroup = new BaaS.UserGroup()
-  await userGroup.removeUserFromGroup([1092612], [8, 9])
-  callback(null)
+  return await userGroup.removeUserFromGroup([1092612], [8, 9])
 }
 ```
