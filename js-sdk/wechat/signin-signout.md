@@ -273,6 +273,11 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 `UserRecord.linkWechat({withUnionID})`
 
+> **danger**
+> 从 2021 年 4 月 13 日后发布的小程序新版本，无法通过 wx.getUserInfo 与 `<button open-type="getUserInfo"/>` 获取加密的用户个人信息，而需要通过新增的 getUserProfile 接口获取。请参考 [小程序登录、用户信息相关接口调整说明](https://developers.weixin.qq.com/community/develop/doc/000cacfa20ce88df04cb468bc52801?blockType=1)。
+> 
+> 为应对微信的调整，小程序 SDK v3.18.0 中将会调整关联微信小程序方法，只保留 unionid 登录，原有通过 `getUserInfo` 获取用户信息并作参数传入关联微信方法会被废弃。
+
 **参数说明**
 
 | 参数    | 类型    | 说明         |
