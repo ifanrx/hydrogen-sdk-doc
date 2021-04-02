@@ -13,10 +13,10 @@
 
 options 是对象类型,包含以下参数:
 
-| 参数    | 类型   | 必填 | 说明                                                         |
-| ------- | ------ | ---- | ------------------------------------------------------------ |
+| 参数    | 类型   | 必填 | 说明                                                                                                                 |
+| ------- | ------ | ---- | -------------------------------------------------------------------------------------------------------------------- |
 | unionid | String | N    | 用户的 unionid，指定分享者为 unionid 用户。其余用户不能用此 activity_id 分享私密消息。openid 与 unionid 填一个即可。 |
-| openid  | String | N    | 用户的 openid，指定分享者为 openid 用户。其余用户不能用此 activity_id 分享私密消息。openid 与 unionid 填一个即可。 |
+| openid  | String | N    | 用户的 openid，指定分享者为 openid 用户。其余用户不能用此 activity_id 分享私密消息。openid 与 unionid 填一个即可。   |
 
 **返回字段说明**
 
@@ -58,7 +58,7 @@ wx.BaaS.wxCreateActivityID({
 分享后，用户点开消息卡片进入小程序，在 onShow 中取到 shareTicket ，通过 [wx.authPrivateMessage](https://developers.weixin.qq.com/miniprogram/dev/api/share/wx.authPrivateMessage.html) 接口可以验证当前用户是否是私密消息的接收者。
 
 > **info**
-> 若返回的 valid 字段为 true，表示验证通过。但是为了安全起见，预防 valid 字段被篡改的可能，可以把 encryptedData 和 iv 传到开发者后台去解密。若解密后得到的 activityId 就是当前活动所对应的 activityId 则验证通过，否则表示验证不通过。加密数据解密的接口可以参考[微信加密数据解密js-sdk](/js-sdk/wechat/wechat-decrypt.md)。
+> 若返回的 valid 字段为 true，表示验证通过。但是为了安全起见，预防 valid 字段被篡改的可能，可以把 encryptedData 和 iv 传到开发者后台去解密。若解密后得到的 activityId 就是当前活动所对应的 activityId 则验证通过，否则表示验证不通过。加密数据解密的接口可以参考[微信加密数据解密 js-sdk](/js-sdk/wechat/wechat-decrypt.md)。
 
 ```js
 // app.js
@@ -76,11 +76,19 @@ wx.authPrivateMessage({
     const { encryptedData, iv, valid } = res;
     console.log("验证是否通过 ==>", valid);
     if (encryptedData && iv) {
-      wx.BaaS.wxDecryptData(encryptedData, iv, "miniapp-activity-id").then(
-        (decrytedData) => {
-          console.log("解密activity_id ==>", decrytedData);
-        }
-      );
+      wx.checkSession({
+        success: function () {
+          wx.BaaS.wxDecryptData(encryptedData, iv, "miniapp-activity-id").then(
+            (decrytedData) => {
+              console.log("解密activity_id ==>", decrytedData);
+            }
+          );
+        },
+        fail: function () {
+          wx.BaaS.auth.logout();
+          wx.BaaS.auth.loginWithWechat();
+        },
+      });
     }
   },
 });
