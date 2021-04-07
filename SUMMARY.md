@@ -392,6 +392,7 @@
         * [短信验证码](cloud-function/node-sdk/sms/code.md)
         * [短信通知](cloud-function/node-sdk/sms/message.md)
     * [网络请求](cloud-function/node-sdk/request.md)
+    * [微信更新用户信息](cloud-function/node-sdk/wx-update-user-info.md)
     * [微信加密数据解密](cloud-function/node-sdk/wx-decrypt-data.md)
     * [微信检测违规图片、文本](cloud-function/node-sdk/censor.md)
     * [QQ 检测违规图片、文本](cloud-function/node-sdk/qq-censor.md)
