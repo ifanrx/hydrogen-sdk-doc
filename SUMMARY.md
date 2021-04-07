@@ -37,7 +37,7 @@
     * [运营](dashboard/operation/README.md)
         * [运营后台](dashboard/operation/user-dash.md)
         * [短信](dashboard/operation/sms.md)
-    * [小程序](dashboard/miniapp/README.md)e
+    * [小程序](dashboard/miniapp/README.md)
         * [知晓推送](dashboard/miniapp/template-message.md)
         * [小程序码](dashboard/miniapp/qrcode.md)
         * [客服消息](dashboard/miniapp/customer-message.md)
