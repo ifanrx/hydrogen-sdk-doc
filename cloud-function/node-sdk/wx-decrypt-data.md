@@ -19,7 +19,7 @@
 当前支持解密的数据包括：
 
 - 通过调用 [`wx.getWeRunData`](https://developers.weixin.qq.com/miniprogram/dev/api/open-api/werun/wx.getWeRunData.html) 获取到的微信用户的微信运动步数，此时设置 type = 'we-run-data'
-- 通过设置 button 的 open-type 为 [`getPhoneNumber`](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html) 获取到的微信用户绑定的手机号，，此时设置 type = 'phone-number'
+- 通过设置 button 的 open-type 为 [`getPhoneNumber`](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html) 获取到的微信用户绑定的手机号，此时设置 type = 'phone-number'
 - 通过调用 [`wx.getShareInfo`](https://developers.weixin.qq.com/miniprogram/dev/api/share/wx.getShareInfo.html) 获取到的转发详细信息，此时设置 type = 'open-gid'
 
 > **danger**
@@ -27,19 +27,18 @@
 
 **请求示例**
 
-对微信加密数据进行解密需要使用到本次登录的会话密钥（session_key），因此，在调用该接口前，最好先调用一下 `wx.checkSession` 检查一下 session_key 是否过期，如果过期的话，可以先调用 `wx.BaaS.logout` 再调用 `wx.BaaS.login` 接口进行重新登录。
+对微信加密数据进行解密需要使用到本次登录的会话密钥（session_key），因此，在调用该接口前，最好先调用一下 `wx.checkSession` 检查一下 session_key 是否过期，如果过期的话，可以先调用 `wx.BaaS.auth.logout` 再调用 `wx.BaaS.auth.loginWithWechat` 接口进行重新登录。
 
 ```javascript
 // 云函数部分
 BaaS.useVersion("v3.15.0");
-exports.main = async function (event, callback) {
-  const res = await BaaS.wechat.decryptData({
+exports.main = async function (event) {
+  return await BaaS.wechat.decryptData({
     encryptedData: event.data.encryptedData,
     iv: event.data.iv,
     type: event.data.type,
     userID: event.request.user.id,
   });
-  callback(null, res);
 };
 ```
 
@@ -50,7 +49,7 @@ wx.getWeRunData({
     const { encryptedData, iv } = res;
     wx.checkSession({
       success: function () {
-        app.BaaS.invoke("decrypt_data", {
+        wx.BaaS.invoke("decrypt_data", {
           encryptedData,
           iv,
           type: "we-run-data",
@@ -59,8 +58,8 @@ wx.getWeRunData({
         });
       },
       fail: function () {
-        app.BaaS.logout();
-        app.BaaS.login();
+        wx.BaaS.auth.logout();
+        wx.BaaS.auth.loginWithWechat();
       },
     });
   },
