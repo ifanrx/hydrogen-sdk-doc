@@ -12,6 +12,8 @@
 {% set apiPrefix = 'tt.' %}
 {% elif platform == 'jingdong' %}
 {% set apiPrefix = 'jd.' %}
+{% elif platform == 'kuaishou' %}
+{% set apiPrefix = 'ks.' %}
 {% else %}
 {% set apiPrefix = '' %}
 {% endif %}

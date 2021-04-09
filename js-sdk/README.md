@@ -12,6 +12,7 @@
 * [字节跳动（头条、抖音等）小程序接入指南](./bytedance/README.md)
 * [React Native 接入指南](./react-native/README.md)
 * [京东小程序接入指南](./jingdong/README.md)
+* [快手小程序接入指南](./kuaishou/README.md)
 
 ## 迁移指南
 
