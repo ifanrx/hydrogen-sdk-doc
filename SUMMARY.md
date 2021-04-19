@@ -16,6 +16,7 @@
     * [新手入门 - Android](newbies/android.md)
     * [新手入门 - 字节跳动（头条、抖音等）小程序](newbies/bytedance.md)
     * [新手入门 - 京东小程序](newbies/jingdong.md)
+    * [新手入门 - 快手小程序](newbies/kuaishou.md)
 
 ----
 
@@ -125,6 +126,9 @@
     * [京东小程序](js-sdk/jingdong/README.md)
         * [接入指南](js-sdk/jingdong/how-to.md)
         * [京东登录](js-sdk/jingdong/signin-signout.md)
+    * [快手小程序](js-sdk/kuaishou/README.md)
+        * [接入指南](js-sdk/kuaishou/how-to.md)
+        * [快手登录](js-sdk/kuaishou/signin-signout.md)
     * [React Native](js-sdk/react-native/README.md)
         * [接入指南](js-sdk/react-native/how-to.md)
         * [登入登出](js-sdk/react-native/signin-signout.md)
@@ -393,6 +397,7 @@
         * [短信验证码](cloud-function/node-sdk/sms/code.md)
         * [短信通知](cloud-function/node-sdk/sms/message.md)
     * [网络请求](cloud-function/node-sdk/request.md)
+    * [微信更新用户信息](cloud-function/node-sdk/wx-update-user-info.md)
     * [微信加密数据解密](cloud-function/node-sdk/wx-decrypt-data.md)
     * [微信检测违规图片、文本](cloud-function/node-sdk/censor.md)
     * [QQ 检测违规图片、文本](cloud-function/node-sdk/qq-censor.md)
