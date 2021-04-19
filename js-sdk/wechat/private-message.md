@@ -3,20 +3,11 @@
 小程序私密消息功能是这样一种能力：当分享者分享小程序卡片给其他用户或者微信群后，其他用户点击此小程序卡片时，开发者可以鉴别出点击卡片的用户是否被分享者分享过小程序卡片。具体使用说明和步骤可以参考[微信小程序私密消息文档](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/share/private-message.html)。
 
 > **info**
-> SDK version >= 3.18.0
+> SDK version >= 3.20.0
 
 ## 创建私密消息的 activity_id
 
-`wx.BaaS.wxCreateActivityID(options)`
-
-**参数说明**
-
-options 是对象类型,包含以下参数:
-
-| 参数    | 类型   | 必填 | 说明                                                                                                                 |
-| ------- | ------ | ---- | -------------------------------------------------------------------------------------------------------------------- |
-| unionid | String | N    | 用户的 unionid，指定分享者为 unionid 用户。其余用户不能用此 activity_id 分享私密消息。openid 与 unionid 填一个即可。 |
-| openid  | String | N    | 用户的 openid，指定分享者为 openid 用户。其余用户不能用此 activity_id 分享私密消息。openid 与 unionid 填一个即可。   |
+`wx.BaaS.wxCreateActivityID()`
 
 **返回字段说明**
 
@@ -41,9 +32,7 @@ options 是对象类型,包含以下参数:
 创建私密消息的 activity_id ，并通过 [wx.updateShareMenu](https://developers.weixin.qq.com/miniprogram/dev/api/share/wx.updateShareMenu.html) 接口声明本次分享的消息为私密消息。
 
 ```js
-wx.BaaS.wxCreateActivityID({
-  unionid: "******",
-}).then((res) => {
+wx.BaaS.wxCreateActivityID().then((res) => {
   if (res.data.activity_id) {
     // 声明本次分享的消息为私密消息
     wx.updateShareMenu({
