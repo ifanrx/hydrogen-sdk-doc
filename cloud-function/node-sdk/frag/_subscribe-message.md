@@ -1,14 +1,24 @@
 <!-- ex_nonav -->
 {% if platform == 'wechat' %}
 # 发送微信订阅消息
-{% else %}
+{% elif platform == 'qq' %}
 # 发送 QQ 订阅消息
+{% else %}
+# 发送字节跳动订阅消息
 {% endif %}
 
 该接口给特定的用户发送一个特定的订阅消息
 
+{% if platform == 'qq' %}
+
 > **info**
 > 发送 QQ 订阅消息需要 3.11 以上版本。
+
+{% elif platform == 'bytedance' %}
+
+> **info**
+> 发送字节跳动订阅消息需要 3.19 以上版本。
+{% endif %}
 
 <!-- 分隔两个 info -->
 > **info**
@@ -18,8 +28,10 @@
 
 {% if platform == 'wechat' %}
 `BaaS.wechat.sendSubscribeMessage(data)`
-{% else %}
+{% elif platform == 'qq' %}
 `BaaS.qq.sendSubscribeMessage(data)`
+{% else %}
+`BaaS.bytedance.sendSubscribeMessage(data)`
 {% endif %}
 
 **参数说明**
@@ -89,7 +101,7 @@ BaaS.wechat.sendSubscribeMessage(data).then(res => {
   // 发送失败
 })
 ```
-{% else %}
+{% elif platform == 'qq' %}
 ```js
 let data = {
   recipient_type: 'user_id',
@@ -107,6 +119,29 @@ let data = {
 }
 
 BaaS.qq.sendSubscribeMessage(data).then(res => {
+  // 发送成功
+}, err => {
+  // 发送失败
+})
+```
+{% else %}
+```js
+let data = {
+  recipient_type: 'user_id',
+  user_id: 23425,
+  template_id: "tadfDf23asdi8dfd",
+  page: "pages/index/index",
+  keywords: {
+    thing01: {
+      value: "书籍",
+    },
+    number01: {
+      value: "50.5",
+    }
+  }
+}
+
+BaaS.bytedance.sendSubscribeMessage(data).then(res => {
   // 发送成功
 }, err => {
   // 发送失败
@@ -144,7 +179,7 @@ let data = {
 
 BaaS.wechat.sendSubscribeMessage(data)
 ```
-{% else %}
+{% elif platform == 'qq' %}
 
 ```js
 let data = {
@@ -171,6 +206,34 @@ let data = {
 }
 
 BaaS.qq.sendSubscribeMessage(data)
+```
+{% else %}
+
+```js
+let data = {
+  recipient_type: 'user_list',
+  user_list: [123, 456, 789],
+  template_id: "tadfDf23asdi8dfd",
+  // 其他参数
+}
+
+BaaS.bytedance.sendSubscribeMessage(data)
+```
+
+> **info**
+> user_list 的长度不能超过 1000
+
+**请求示例 - user_group**
+
+```js
+let data = {
+  recipient_type: 'user_group',
+  user_group_name: '运营人员',
+  template_id: "tadfDf23asdi8dfd",
+  // 其他参数
+}
+
+BaaS.bytedance.sendSubscribeMessage(data)
 ```
 {% endif %}
 
@@ -209,7 +272,7 @@ let data = {
 
 BaaS.wechat.sendSubscribeMessage(data)
 ```
-{% else %}
+{% elif platform == 'qq' %}
 
 ```js
 let data = {
@@ -236,12 +299,41 @@ let data = {
 
 BaaS.qq.sendSubscribeMessage(data)
 ```
+{% else %}
+
+```js
+let data = {
+  recipient_type: 'schema_user',
+  user_profile_filters: {
+    "$and": [
+      {
+        "is_authorized": {"$eq": true}
+      },
+      {
+        "array_field": {
+          "$in": [
+            "value_1",
+            "value_2"
+          ]
+        }
+      }
+    ]
+  },
+  user_group_name: ['运营人员', '技术人员'],
+  template_id: "tadfDf23asdi8dfd",
+  // 其他参数
+}
+
+BaaS.bytedance.sendSubscribeMessage(data)
+```
 {% endif %}
 
 {% if platform == 'wechat' %}
 其中 keywords 为微信后台中实际关键词对应的键值
-{% else %}
+{% elif platform == 'wechat' %}
 其中 keywords 为 QQ 后台中实际关键词对应的键值
+{% else %}
+其中 keywords 为字节跳动后台中实际关键词对应的键值
 {% endif %}
 
 ![关键词对应键值示例](/images/cloud-function/subscribe-keywords.png)

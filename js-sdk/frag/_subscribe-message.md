@@ -3,8 +3,10 @@
 消息能力是小程序能力中的重要组成，我们为开发者提供了订阅消息能力，以便实现服务的闭环和更优的体验。
 {% if apiPrefix == "wx." %}
 请移步[这里](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/subscribe-message.html)了解微信订阅消息
-{% else %}
+{% elif apiPrefix == "qq." %}
 请移步[这里](https://q.qq.com/wiki/develop/miniprogram/API/open_port/port_subscription.html)了解 QQ 订阅消息
+{% else %}
+请移步[这里](https://microapp.bytedance.com/docs/zh-CN/mini-app/develop/api/open-interface/subscribe-message/tt-request-subscribe-message/)了解字节跳动订阅消息
 {% endif %}
 
 ## 上报订阅状态
@@ -13,8 +15,10 @@
 
 {% if apiPrefix == "wx." %}
 `wx.BaaS.subscribeMessage(options)`
-{% else %}
+{% elif apiPrefix == "qq." %}
 `qq.BaaS.subscribeMessage(options)`
+{% else %}
+`tt.BaaS.subscribeMessage(options)`
 {% endif %}
 
 **参数说明**
@@ -57,7 +61,7 @@ wx.requestSubscribeMessage({
   },
 })
 ```
-{% else %}
+{% elif apiPrefix == "qq." %}
 ```js
 qq.subscribeAppMsg({
   tmplIds: [this.data.id],
@@ -74,6 +78,27 @@ qq.subscribeAppMsg({
     }, err => {
       // fail
     })
+  },
+})
+```
+{% else %}
+```js
+tt.requestSubscribeMessage({
+  tmplIds: this.data.id.split(','),
+  success: (res) => {
+    app.BaaS.subscribeMessage({
+      subscription: [{
+        template_id: this.data.id,
+        subscription_type: 'once',
+      }]
+    }).then(res => {
+      showModal(JSON.stringify(res.data))
+    }, err => {
+      showFailToast()
+    })
+  },
+  fail: (err) => {
+    console.log(err)
   },
 })
 ```

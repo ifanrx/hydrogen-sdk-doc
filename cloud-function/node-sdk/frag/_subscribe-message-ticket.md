@@ -2,16 +2,20 @@
 
 {% if platform == 'wechat' %}
 # 获取微信订阅消息可用订阅记录数量（SDK >= v3.3）
-{% else %}
+{% elif platform == 'qq' %}
 # 获取 QQ 订阅消息可用订阅记录数量（SDK >= v3.10）
+{% else %}
+# 获取字节跳动订阅消息可用订阅记录数量（SDK >= v3.19）
 {% endif %}
 
 用于检查订阅消息模版的订阅记录数量，以保证用户可以收到订阅消息通知（如下单提醒）
 
 {% if platform == 'wechat' %}
 `BaaS.wechat.getSubscribeMsgTicketCount(options)`
-{% else %}
+{% elif platform == 'qq' %}
 `BaaS.qq.getSubscribeMsgTicketCount(options)`
+{% else %}
+`BaaS.bytedance.getSubscribeMsgTicketCount(options)`
 {% endif %}
 
 **参数说明**
@@ -37,11 +41,22 @@ exports.main = async function(event) {
   })
 }
 ```
-{% else %}
+{% elif platform == 'qq' %}
 ```js
 BaaS.useVersion('v3.3')
 exports.main = async function(event) {
   return await BaaS.qq.getSubscribeMsgTicketCount({
+    userID: "...",
+    templateID: "...",
+    subscriptionType: "once",
+  })
+}
+```
+{% else %}
+```js
+BaaS.useVersion('v3.19')
+exports.main = async function(event) {
+  return await BaaS.bytedance.getSubscribeMsgTicketCount({
     userID: "...",
     templateID: "...",
     subscriptionType: "once",
