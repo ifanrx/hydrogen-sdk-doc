@@ -188,7 +188,7 @@ Page({
 
     Promise.all([_getLoginCode, _getUserProfile]).then(result => {
       const [code, userProfile] = result
-      app.BaaS.auth.updateUserInfo(userProfile, {code}).then(res => {
+      wx.BaaS.auth.updateUserInfo(userProfile, {code}).then(res => {
         // user 包含用户完整信息，详见下方描述
       }, err => {
         // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）

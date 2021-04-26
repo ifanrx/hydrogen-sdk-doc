@@ -41,7 +41,7 @@ exports.main = async function updateUserInfo(event, callback) {
 wx.getUserProfile({
   //...
   success: function(data) {
-    app.BaaS.auth.getCurrentUser().then(user => {
+    wx.BaaS.auth.getCurrentUser().then(user => {
       wx.BaaS.invoke("update_wechat_user_info", {
         userID: user.id,
         data: data,
