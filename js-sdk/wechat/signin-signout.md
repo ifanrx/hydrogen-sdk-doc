@@ -157,6 +157,10 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 > 
 > 同时，由于微信限制了 wx.getUserProfile 不能直接在 wx.login 的回调中调用，因此开发者需注意调用方法的顺序。也就是说，先调用 `wx.login` 方法，再调用 `wx.getUserProfile`。SDK 推荐使用 Promise.all 的方式处理上述问题。
 
+<!-- 分隔两个 info -->
+> **info**
+> 由于 `wx.getUserProfile` 必须在点击事件里触发，无法直接在回调中调用，因此开发者需要注意区分登录 `wx.BaaS.auth.loginWithWechat` 和 `wx.getUserProfile` 的调用时机。
+
 **参数说明**
 
 | 参数            | 类型    | 必填         | 说明         |
