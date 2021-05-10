@@ -117,54 +117,19 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 ## 关联百度小程序
 
-`UserRecord.linkBaidu(data, {syncUserProfile})`
-
-**参数说明**
-
-| 参数    | 类型    | 说明         |
-| :------| :------ | :----------- |
-| data   | object | swan.getUserInfo() success 回调中收到的参数，可选 |
-| syncUserProfile | String | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx` |
-
-{% include "/js-sdk/frag/_sync_user_profile_param.md" %}
+`UserRecord.linkBaidu()`
 
 **请求示例**
-
-1. 不获取用户信息:
-
-  ```javascript
-  // 必须在用户通过 login API 登录后才能进行绑定
-  swan.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
-    // user 为 currentUser 对象
-    return user.linkBaidu()
-  }).then(res=>{
-    // success
-    // 用户可以通过微信授权登录同一个账户了
-  })
-  ```
-
-2. 获取用户信息:
-
-  ```html
-  <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
-  ```
-
-  ```js
-  Page({
-    // ...
-    userInfoHandler(data) {
-      // 必须在用户通过 login API 登录后才能进行绑定
-      swan.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
-        // user 为 currentUser 对象
-        user.linkBaidu(data).then(res=>{
-          // 关联成功
-          console.log(res.statusCode)
-        })
-      })
-    },
-    // ...
-  })
-  ```
+```javascript
+// 必须在用户通过 login API 登录后才能进行绑定
+swan.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
+  // user 为 currentUser 对象
+  return user.linkBaidu()
+}).then(res=>{
+  // success
+  // 用户可以通过微信授权登录同一个账户了
+})
+```
 
 **返回示例**
 ```JSON
@@ -225,7 +190,7 @@ Page({
       // 这时候可以让用户先通过 swan.auth.register() 注册一个账户，或者 swan.auth.login() 登录一个已有账户，再使用 linkBaidu 进行绑定，这里以登录账户为例
       if (err.code === 404) {
         swan.BaaS.auth.login({email: 'ifanrx@ifanr.com', password: 'ifanrx123'}).then(user => {
-          user.linkBaidu(data.detail).then(res => {
+          user.linkBaidu().then(res => {
             console.log(res.statusCode)
             // 关联成功，下次可以通过 swan.BaaS.auth.loginWithBaidu 登录了
           })
@@ -237,13 +202,68 @@ Page({
 })
 ```
 
-若已经提前申请了用户授权，也可以在 swan.getUserInfo() 的 success 回调中进行关联账户
-```javascript
-swan.getUserInfo({
-  success(res) {
-    swan.BaaS.auth.getCurrentUser().then(user => {
-      user.linkBaidu(res)
-    })
+## <span style="color: #f04134;">`已废弃`</span> 关联百度小程序（SDK < 3.19.1）
+
+### 关联百度小程序（旧）
+
+`UserRecord.linkBaidu(data, {syncUserProfile})`
+
+**参数说明**
+
+| 参数    | 类型    | 说明         |
+| :------| :------ | :----------- |
+| data   | object | swan.getUserInfo() success 回调中收到的参数，可选 |
+| syncUserProfile | String | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx` |
+
+{% include "/js-sdk/frag/_sync_user_profile_param.md" %}
+
+**请求示例**
+
+1. 不获取用户信息:
+
+  ```javascript
+  // 必须在用户通过 login API 登录后才能进行绑定
+  swan.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
+    // user 为 currentUser 对象
+    return user.linkBaidu()
+  }).then(res=>{
+    // success
+    // 用户可以通过微信授权登录同一个账户了
+  })
+  ```
+
+2. 获取用户信息:
+
+  ```html
+  <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
+  ```
+
+  ```js
+  Page({
+    // ...
+    userInfoHandler(data) {
+      // 必须在用户通过 login API 登录后才能进行绑定
+      swan.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
+        // user 为 currentUser 对象
+        user.linkBaidu(data).then(res=>{
+          // 关联成功
+          console.log(res.statusCode)
+        })
+      })
+    },
+    // ...
+  })
+  ```
+
+**返回示例**
+```JSON
+{
+  "statusCode": 200,
+  "data": {
+    "message": "User associated.",
+    "openid": "ofo380BgVHDSf3gxxx",
+    "status": "ok",
+    "user_id": 22051668672912
   }
-})
+}
 ```

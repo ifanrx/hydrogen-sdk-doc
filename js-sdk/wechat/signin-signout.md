@@ -14,7 +14,7 @@
 SDK 提供了快速登录小程序的接口，省去使用微信登录接口时获取 code, session_key 等辅助操作。
 
 > **danger**
-> 从 2021 年 4 月 13 日后发布的小程序新版本，无法通过 wx.getUserInfo 与 `<button open-type="getUserInfo"/>` 获取加密的用户个人信息，而需要通过新增的 getUserProfile 接口获取。请参考 [小程序登录、用户信息相关接口调整说明](https://developers.weixin.qq.com/community/develop/doc/000cacfa20ce88df04cb468bc52801?blockType=1)。
+> 从 2021 年 4 月 28 日后发布的小程序新版本，无法通过 wx.getUserInfo 与 `<button open-type="getUserInfo"/>` 获取加密的用户个人信息，而需要通过新增的 getUserProfile 接口获取。请参考 [小程序登录、用户信息相关接口调整说明](https://developers.weixin.qq.com/community/develop/doc/000cacfa20ce88df04cb468bc52801?blockType=1)。
 > 
 > 为应对微信的调整，小程序 SDK v3.18.0 中将会调整 `wx.BaaS.auth.loginWithWechat()` 登录方法，只保留静默登录和一键授权手机号登录两部分，并提供新的更新用户信息方法 `wx.BaaS.auth.updateUserInfo()`。弹框授权个人信息的执行时机将会返回给开发者自行判断。
 
@@ -150,16 +150,60 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 开发者需要提前调用 `wx.getUserProfile` 获取用户信息，并调用以下方法更新。
 
-`wx.BaaS.auth.updateUserInfo(data, {syncUserProfile})`
+`wx.BaaS.auth.updateUserInfo(data, {code, syncUserProfile})`
+
+> **danger**
+> 注意：在微信开发者工具中使用基础库版本小于 2.16.0 并调用 `wx.getUserProfile` 时是无法获取到 iv、rawData、signature 和 encryptedData 等字段的。为应对微信的调整，小程序基础库版本大于等于 2.16.0 时开发者需要先通过 `wx.login` 获取用户登录凭证 `code`，并调用 `wx.getUserProfile` 获取用户信息，再传入 `updateUserInfo` 方法。基础库版本小于 2.16.0 则无需调用 wx.login 方法，直接调用 wx.getUserProfile 即可。
+> 
+> 同时，由于微信限制了 wx.getUserProfile 不能直接在 wx.login 的回调中调用，因此开发者需注意调用方法的顺序。也就是说，先调用 `wx.login` 方法，再调用 `wx.getUserProfile`。SDK 推荐使用 Promise.all 的方式处理上述问题。
+
+<!-- 分隔两个 info -->
+> **info**
+> 由于 `wx.getUserProfile` 必须在点击事件里触发，无法直接在回调中调用，因此开发者需要注意区分登录 `wx.BaaS.auth.loginWithWechat` 和 `wx.getUserProfile` 的调用时机。
 
 **参数说明**
 
-| 参数            | 类型    | 说明         |
-| :-------------- | :------ | :----------- |
-| data            | Object | wx.getUserProfile 事件回调返回的参数 |
-| syncUserProfile | String | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为 `setnx`|
+| 参数            | 类型    | 必填         | 说明         |
+| :-------------- | :------  | :------ | :----------- |
+| data            | Object | 是 | wx.getUserProfile 事件回调返回的参数 |
+| code            | Object | 否 | 用户登录凭证，基础库大于等于 2.16.0 时必填 |
+| syncUserProfile | String | 否 | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为 `setnx`|
 
 **请求示例**
+
+基础库版本大于等于 `2.16.0`：
+
+```js
+Page({
+  // ...
+  updateUserInfo() {
+    const _getLoginCode = new Promise(resolve => {
+      wx.login({
+        success: res => resolve(res.code)
+      })
+    })
+
+    const _getUserProfile = new Promise(resolve => {
+      wx.getUserProfile({
+        desc: '获取用户信息',
+        success: res => resolve(res)
+      })
+    })
+
+    Promise.all([_getLoginCode, _getUserProfile]).then(result => {
+      const [code, userProfile] = result
+      wx.BaaS.auth.updateUserInfo(userProfile, {code}).then(res => {
+        // user 包含用户完整信息，详见下方描述
+      }, err => {
+        // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
+      })
+    })
+  },
+  // ...
+})
+```
+
+基础库小于 `2.16.0`：
 
 ```js
 Page({
@@ -274,7 +318,7 @@ res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 `UserRecord.linkWechat({withUnionID})`
 
 > **danger**
-> 从 2021 年 4 月 13 日后发布的小程序新版本，无法通过 wx.getUserInfo 与 `<button open-type="getUserInfo"/>` 获取加密的用户个人信息，而需要通过新增的 getUserProfile 接口获取。请参考 [小程序登录、用户信息相关接口调整说明](https://developers.weixin.qq.com/community/develop/doc/000cacfa20ce88df04cb468bc52801?blockType=1)。
+> 从 2021 年 4 月 28 日后发布的小程序新版本，无法通过 wx.getUserInfo 与 `<button open-type="getUserInfo"/>` 获取加密的用户个人信息，而需要通过新增的 getUserProfile 接口获取。请参考 [小程序登录、用户信息相关接口调整说明](https://developers.weixin.qq.com/community/develop/doc/000cacfa20ce88df04cb468bc52801?blockType=1)。
 > 
 > 为应对微信的调整，小程序 SDK v3.18.0 中将会调整关联微信小程序方法，只保留 unionid 登录，原有通过 `getUserInfo` 获取用户信息并作参数传入关联微信方法会被废弃。
 

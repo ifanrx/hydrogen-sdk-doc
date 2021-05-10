@@ -40,13 +40,15 @@
   ],
   "title": "知晓云平台开发文档 2.0+",
   "variables": {
-    "latestVersionWechat": "3.20.0",
-    "latestVersionAlipay": "3.20.0",
-    "latestVersionWeb": "3.20.0",
-    "latestVersionQQ": "3.20.0",
-    "latestVersionBaidu": "3.20.0",
-    "latestVersionWechatPlugin": "3.20.0",
-    "latestVersionBytedance": "3.20.0",
+    "latestVersionWechat": "3.20.1",
+    "latestVersionAlipay": "3.20.1",
+    "latestVersionWeb": "3.20.1",
+    "latestVersionQQ": "3.20.1",
+    "latestVersionBaidu": "3.20.1",
+    "latestVersionWechatPlugin": "3.20.1",
+    "latestVersionBytedance": "3.20.1",
+    "latestVersionJingdong": "3.20.1",
+    "latestVersionKuaishou": "3.20.1",
     "imgURLClipDemo": "https://cloud-minapp-6.cloud.ifanrusercontent.com/1fco21YvWNpWfukk.png!/both/400x400"
   },
   "pluginsConfig": {
