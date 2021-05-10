@@ -3,7 +3,7 @@
 小程序私密消息功能是这样一种能力：当分享者分享小程序卡片给其他用户或者微信群后，其他用户点击此小程序卡片时，开发者可以鉴别出点击卡片的用户是否被分享者分享过小程序卡片。具体使用说明和步骤可以参考[微信小程序私密消息文档](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/share/private-message.html)。
 
 > **info**
-> SDK version >= 3.20.0
+> SDK version >= 3.20.1
 
 ## 创建私密消息的 activity_id
 
