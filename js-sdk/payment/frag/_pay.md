@@ -54,7 +54,7 @@
 | :--------------------- | :------ | :-- | :------ |
 | totalCost              | Number  | Y   | 支付总额，单位：元 |
 | merchandiseDescription | String  | Y   | {{platformName}}支付凭证-商品详情的内容 |
-| service                | String  | N   | 支付方法，默认为「收银台支付」，`wechat` 为直接使用「微信支付」，`alipay` 为直接使用「支付宝支付」 |
+| service                | String  | Y   | 支付方法，`wechat` 为直接使用「微信支付」，`alipay` 为直接使用「支付宝支付」。不填则为使用收银台，但由于字节官方已废弃收银台支付，开发者应使用微信或支付宝进行支付 |
 | merchandiseSchemaID    | Integer | N   | 商品数据表 ID，可用于定位用户购买的物品 |
 | merchandiseRecordID    | String  | N   | 商品数据行 ID，可用于定位用户购买的物品 |
 | merchandiseSnapshot    | Object  | N   | 根据业务需求自定义的数据 |
