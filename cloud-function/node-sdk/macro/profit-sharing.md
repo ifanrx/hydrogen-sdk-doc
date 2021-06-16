@@ -5,7 +5,7 @@ ReceiverType 可选值说明:
 | :-------------------- | :--------- |
 | 'MERCHANT_ID'         | 商户 ID    |
 | 'PERSONAL_WECHATID'   | （已废弃，微信不再支持个人微信号分账）个人微信号 |
-| 'PERSONAL_OPENID'     | （已废弃，微信不再支持个人微信号分账）个人openid |
+| 'PERSONAL_OPENID'     | 个人openid |
 {% endmacro %}
 
 {% macro warning() %}
