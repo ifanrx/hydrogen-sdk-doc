@@ -30,8 +30,8 @@
 
 **示例代码**
 ```javascript
-exports.main = async function (event, callback) {
-  callback(null, await BaaS.wxCensorImage('5b71568674f0e509bb5ecc30'))
+exports.main = async function (event) {
+  return await BaaS.wxCensorImage('5b71568674f0e509bb5ecc30')
 }
 ```
 {% endblock censorImageCode %}
@@ -48,8 +48,8 @@ exports.main = async function (event, callback) {
 {% block censorTextCode %}
 
 ```javascript
-exports.main = async function (event, callback) {
-  callback(null, await BaaS.wxCensorText('123'))
+exports.main = async function (event) {
+  return await BaaS.wxCensorText('123')
 }
 ```
 
