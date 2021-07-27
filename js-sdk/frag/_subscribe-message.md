@@ -41,7 +41,6 @@ Subscription:
 wx.requestSubscribeMessage({
   tmplIds: [this.data.id],
   success: (res) => {
-    // 用户在真机上同意订阅消息后才上报订阅消息，否则订阅记录无效
     let subscription = []
     if (res[this.data.id] === 'accept') {
       subscription.push({
