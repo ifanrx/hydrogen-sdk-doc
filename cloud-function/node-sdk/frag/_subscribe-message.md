@@ -1,14 +1,18 @@
 <!-- ex_nonav -->
 {% if platform == 'wechat' %}
 # 发送微信订阅消息
-{% else %}
+{% elif platform == 'qq' %}
 # 发送 QQ 订阅消息
+{% elif platform == 'kuaishou' %}
+# 发送快手订阅消息
 {% endif %}
 
 该接口给特定的用户发送一个特定的订阅消息
 
+{% if platform == 'qq' %}
 > **info**
 > 发送 QQ 订阅消息需要 3.11 以上版本。
+{% endif %}
 
 <!-- 分隔两个 info -->
 > **info**
@@ -18,8 +22,10 @@
 
 {% if platform == 'wechat' %}
 `BaaS.wechat.sendSubscribeMessage(data)`
-{% else %}
+{% elif platform == 'qq' %}
 `BaaS.qq.sendSubscribeMessage(data)`
+{% elif platform == 'kuaishou' %}
+`BaaS.kuaishou.sendSubscribeMessage(data)`
 {% endif %}
 
 **参数说明**
@@ -37,13 +43,23 @@ data 是 Object 类型，它包括以下几个属性
 | page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
 | can_send_subscription_message  | Boolean | 否   | 是否过滤无效用户  |
 | miniprogram_state  | String | 否   | 跳转小程序类型：developer 为开发版；trial 为体验版；formal 为正式版；默认为正式版  |
-{% else %}
+{% elif platform == 'qq' %}
 | 参数            | 类型   | 必填  | 说明 |
 | :-------------- | :----- | :--- | :-- |
 | recipient_type  | String | 是   | 推送类型，可选值： user_id、user_list、user_group、schema_user |
 | `<recipient_params>` | Array、Integer、String、Object | 是   | 根据recipient_type来填写不同的参数名， 详见下方表格说明 |
 | template_id     | String | 是   | 模板 ID （QQ 后台配置）|
 | keywords        | Object | 是   | 关键字，请参照 [QQ 官方文档](https://q.qq.com/wiki/develop/miniprogram/server/open_port/port_subscribe.html) |
+| schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
+| page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
+| can_send_subscription_message  | Boolean | 否   | 是否过滤无效用户  |
+{% elif platform == 'kuaishou' %}
+| 参数            | 类型   | 必填  | 说明 |
+| :-------------- | :----- | :--- | :-- |
+| recipient_type  | String | 是   | 推送类型，可选值： user_id、user_list、user_group、schema_user |
+| `<recipient_params>` | Array、Integer、String、Object | 是   | 根据recipient_type来填写不同的参数名， 详见下方表格说明 |
+| template_id     | String | 是   | 模板 ID （快手后台配置）|
+| keywords        | Object | 是   | 关键字，请参照 [快手官方文档](https://mp.kuaishou.com/docs/develop/server/sendMessage.html) |
 | schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 | page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
 | can_send_subscription_message  | Boolean | 否   | 是否过滤无效用户  |
@@ -89,7 +105,7 @@ BaaS.wechat.sendSubscribeMessage(data).then(res => {
   // 发送失败
 })
 ```
-{% else %}
+{% elif platform == 'qq' %}
 ```js
 let data = {
   recipient_type: 'user_id',
@@ -107,6 +123,29 @@ let data = {
 }
 
 BaaS.qq.sendSubscribeMessage(data).then(res => {
+  // 发送成功
+}, err => {
+  // 发送失败
+})
+```
+{% elif platform == 'kuaishou' %}
+```js
+let data = {
+  recipient_type: 'user_id',
+  user_id: 23425,
+  template_id: "tadfDf23asdi8dfd",
+  page: "pages/index/index",
+  keywords: {
+    thing01: {
+      value: "书籍",
+    },
+    number01: {
+      value: "50.5",
+    }
+  }
+}
+
+BaaS.kuaishou.sendSubscribeMessage(data).then(res => {
   // 发送成功
 }, err => {
   // 发送失败
@@ -144,7 +183,7 @@ let data = {
 
 BaaS.wechat.sendSubscribeMessage(data)
 ```
-{% else %}
+{% elif platform == 'qq' %}
 
 ```js
 let data = {
@@ -171,6 +210,34 @@ let data = {
 }
 
 BaaS.qq.sendSubscribeMessage(data)
+```
+{% elif platform == 'kuaishou' %}
+
+```js
+let data = {
+  recipient_type: 'user_list',
+  user_list: [123, 456, 789],
+  template_id: "tadfDf23asdi8dfd",
+  // 其他参数
+}
+
+BaaS.kuaishou.sendSubscribeMessage(data)
+```
+
+> **info**
+> user_list 的长度不能超过 1000
+
+**请求示例 - user_group**
+
+```js
+let data = {
+  recipient_type: 'user_group',
+  user_group_name: '运营人员',
+  template_id: "tadfDf23asdi8dfd",
+  // 其他参数
+}
+
+BaaS.kuaishou.sendSubscribeMessage(data)
 ```
 {% endif %}
 
@@ -209,7 +276,7 @@ let data = {
 
 BaaS.wechat.sendSubscribeMessage(data)
 ```
-{% else %}
+{% elif platform == 'qq' %}
 
 ```js
 let data = {
@@ -236,12 +303,41 @@ let data = {
 
 BaaS.qq.sendSubscribeMessage(data)
 ```
+{% elif platform == 'kuaishou' %}
+
+```js
+let data = {
+  recipient_type: 'schema_user',
+  user_profile_filters: {
+    "$and": [
+      {
+        "is_authorized": {"$eq": true}
+      },
+      {
+        "array_field": {
+          "$in": [
+            "value_1",
+            "value_2"
+          ]
+        }
+      }
+    ]
+  },
+  user_group_name: ['运营人员', '技术人员'],
+  template_id: "tadfDf23asdi8dfd",
+  // 其他参数
+}
+
+BaaS.kuaishou.sendSubscribeMessage(data)
+```
 {% endif %}
 
 {% if platform == 'wechat' %}
 其中 keywords 为微信后台中实际关键词对应的键值
-{% else %}
+{% elif platform == 'qq' %}
 其中 keywords 为 QQ 后台中实际关键词对应的键值
+{% elif platform == 'kuaishou' %}
+其中 keywords 为快手后台中实际关键词对应的键值
 {% endif %}
 
 ![关键词对应键值示例](/images/cloud-function/subscribe-keywords.png)

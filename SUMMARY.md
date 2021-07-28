@@ -392,6 +392,8 @@
         * [QQ](cloud-function/node-sdk/subscribe-message/qq/README.md)
             * [发送订阅消息](cloud-function/node-sdk/subscribe-message/qq/subscribe-message.md)
             * [获取可用订阅记录数量](cloud-function/node-sdk/subscribe-message/qq/subscribe-message-ticket.md)
+        * [快手](cloud-function/node-sdk/subscribe-message/kuaishou/README.md)
+            * [发送订阅消息](cloud-function/node-sdk/subscribe-message/kuaishou/subscribe-message.md)
     * [微信小程序直播](cloud-function/node-sdk/wechat-livestreaming/README.md)
     * [短信](cloud-function/node-sdk/sms/README.md)
         * [短信验证码](cloud-function/node-sdk/sms/code.md)

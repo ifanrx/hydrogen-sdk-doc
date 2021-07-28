@@ -5,3 +5,6 @@
 QQ
 * [发送订阅消息消息](./qq/subscribe-message.md)
 * [获取可用订阅记录数量](./qq/subscribe-message-ticket.md)
+
+快手
+* [发送订阅消息消息](./kuaishou/subscribe-message.md)
