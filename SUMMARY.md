@@ -129,6 +129,7 @@
     * [快手小程序](js-sdk/kuaishou/README.md)
         * [接入指南](js-sdk/kuaishou/how-to.md)
         * [快手登录](js-sdk/kuaishou/signin-signout.md)
+        * [订阅消息](js-sdk/kuaishou/subscribe-message.md)
     * [React Native](js-sdk/react-native/README.md)
         * [接入指南](js-sdk/react-native/how-to.md)
         * [登入登出](js-sdk/react-native/signin-signout.md)
