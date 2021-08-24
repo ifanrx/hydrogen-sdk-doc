@@ -428,7 +428,7 @@
 * [使用指南](support/guide/README.md)
     * [触发器 V2 使用指南](support/guide/trigger-v2-guideline.md)
     * [API 网关使用指南](support/guide/api-gateway.md)
-    * [API 网关定义 API 路径指](support/guide/api-gateway-request-path.md)
+    * [API 网关定义 API 路径指南](support/guide/api-gateway-request-path.md)
 * [管理与支持](support/README.md)
     * [插件](support/plugin.md)
     * [常见问题](support/qA.md)
