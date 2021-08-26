@@ -33,6 +33,7 @@
 **示例代码**
 
 ```Dart
+import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 
 try {
@@ -60,6 +61,8 @@ try {
 **示例代码**
 
 ```Dart
+import 'package:minapp/minapp.dart';
+
 try {
   CloudFile MyFile = await FileManager.get('5a2fe93308443e313a428c4f');
   // 操作成功
@@ -83,6 +86,8 @@ HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code
 **示例代码**
 
 ```Dart
+import 'package:minapp/minapp.dart';
+
 try {
   await FileManager.delete('5a2fe93308443e313a428c4f');
   await FileManager.delete(['5a2fe93308443e313a428c4c', '5a2fe93308443e313a428c4d']);
@@ -115,19 +120,22 @@ try {
 **示例代码**
 
 ```Dart
+import 'package:minapp/minapp.dart';
+
 try {
   // 查找所有文件
   CloudFileList cloudFiles = await FileManager.find();
 
-  let query = new Query();
+  Query query = new Query();
   // 查询某一文件分类下的所有文件
-  query.compare('category_name', '=', categoryName);
+  Where where = Where.compare('category_name', '=', categoryName);
   // 查询文件名包含指定字符串的文件
-  query.contains('name', substr);
+  Where where = Where.contains('name', substr);
 
+  query.where(where);
   CloudFileList cloudFiles = await FileManager.find(query);
   // 操作成功
-} on HError catch(e) {
+} on HError catch (e) {
   // 操作失败
 }
 ```
@@ -144,6 +152,8 @@ try {
 **示例代码**
 
 ```Dart
+import 'package:minapp/minapp.dart';
+
 try {
   Query query = Query();
   query.orderBy('-created_at');
@@ -160,6 +170,8 @@ try {
 **示例代码**
 
 ```Dart
+import 'package:minapp/minapp.dart';
+
 try {
   Query query = Query();
   query
@@ -187,6 +199,8 @@ try {
 **示例代码**
 
 ```Dart
+import 'package:minapp/minapp.dart';
+
 try {
   FileCategory cate = await FileManager.getCategory('5a2fe91508443e3123dbe1cb');
   // 操作成功
@@ -202,6 +216,8 @@ try {
 **示例代码**
 
 ```Dart
+import 'package:minapp/minapp.dart';
+
 try {
   Query query = Query();
   Where where = Where.compare('category_id', '=', '5a2fe91508443e3123dbe1cb');
@@ -226,6 +242,8 @@ try {
 文件分类查询与[数据表查询](../schema/query.md)方法一致，但只支持以下指定字段的筛选：
 
 ```Dart
+import 'package:minapp/minapp.dart';
+
 try {
   FileCategoryList cates = await FileManager.getCategoryList();
   // 操作成功
@@ -296,6 +314,8 @@ res:
 **示例代码**
 
 ```Dart
+import 'package:minapp/minapp.dart';
+
 try {
   Map<String, dynamic> params = {
     "source": "xxxxxxxxxx",
@@ -303,7 +323,7 @@ try {
     "point": "00:00:10",
     "category_id": "5c18bc794e1e8d20dbfcddcc",
     "random_file_link": false
-  }
+  };
   Map<String, dynamic> cover = await FileManager.genVideoSnapshot(params)
   // 操作成功
 } on HError catch(e) {
@@ -369,13 +389,20 @@ Map<String, dynamic> res:
 **示例代码**
 
 ```Dart
-Map<String, dynamic> params = {
-  "m3u8s": ["xxxxxxxxxx", "xxxxxxxxxx"],
-  "save_as": "hello.m3u8",
-  "category_id": "5c18bc794e1e8d20dbfcddcc",
-  "random_file_link": false,
+import 'package:minapp/minapp.dart';
+
+try {
+  Map<String, dynamic> params = {
+    "m3u8s": ["xxxxxxxxxx", "xxxxxxxxxx"],
+    "save_as": "hello.m3u8",
+    "category_id": "5c18bc794e1e8d20dbfcddcc",
+    "random_file_link": false,
+  };
+  Map<String, dynamic> result = await FileManager.videoConcat(params);
+  // 操作成功
+} on HError catch (e) {
+  // 操作失败
 }
-Map<String, dynamic> 
 ```
 
 HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
@@ -441,6 +468,8 @@ res:
 **示例代码**
 
 ```Dart
+import 'package:minapp/minapp.dart';
+
 try {
   Map<String, dynamic> params = {
     "m3u8": "xxxxxxxxxx",
@@ -449,14 +478,14 @@ try {
     "category_id": "5c18bc794e1e8d20dbfcddcc",
     "random_file_link": false
   };
-  Map<String, dynamic> video = FileManager.videoConcat(params);
+  Map<String, dynamic> video = await FileManager.videoConcat(params);
   // 操作成功
 } on HError catch(e) {
   // 操作失败
 }
 ```
 
-HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 
 **返回示例**
 
@@ -508,11 +537,13 @@ meta 参数说明：
 **示例代码**
 
 ```Dart
+import 'package:minapp/minapp.dart';
+
 try {
-  let params = {
+  Map<String, dynamic> params = {
     "m3u8": "xxxxxxxxxx"
   };
-  Map<String, dynamic> meta = FileManager.videoMeta(params);
+  Map<String, dynamic> meta = await FileManager.videoMeta(params);
   // 操作成功
 } on HError catch(e) {
   // 操作失败
@@ -602,6 +633,8 @@ streams 参数说明：
 **示例代码**
 
 ```Dart
+import 'package:minapp/minapp.dart';
+
 try {
   Map<String, dynamic> params = {
     "source": "xxxxxxxxxx"

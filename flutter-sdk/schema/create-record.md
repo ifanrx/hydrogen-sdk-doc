@@ -271,7 +271,7 @@ TableRecordOperationList response = await tableObject.createMany(data);
 | total_count | int | 总的待插入记录数 |
 | operation_result | List | TableRecordOperation 数组，包含每条数据是否成功被创建等信息 |
 
-TableRecordOperation 类型具体请参考：[数据类型](/flutter-sdk/data-type.md)
+TableRecordOperation 类型具体请参考：[数据类型](/flutter-sdk/schema/data-type.md)
 
 err 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 

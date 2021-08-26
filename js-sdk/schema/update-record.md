@@ -432,7 +432,7 @@ product.uAppend('desc', 'sweet')
 | value | Array 或 Array item | 是  | 如果元素类型是 geojson、object、file，则只能是 Array item，或 length 为 1 的 Array |
 
 > **info**
-> 如果 array 类型字段的子元素类型是 geojson、object 或 file，则 value 只能是 Array item 或 length 为 1 的 Array,
+> 如果 array 类型字段的子元素类型是 geojson、object 或 file，则 value 只能是 Array item,
 > value 数组中多余的项，将会被忽略。
 
 > 下面的操作是能按预期执行的:
@@ -440,10 +440,6 @@ product.uAppend('desc', 'sweet')
 > `product.remove('array_obj', {a: 10})`
 
 > `product.remove('array_obj', [{a: 10}])`
-
-> 下面的 `{a: 30}`，将会被忽略:
-
-> `product.remove('array_obj', [{a: 10}, {a: 30}])`
 
 **请求示例**
 

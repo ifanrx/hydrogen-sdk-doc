@@ -36,7 +36,7 @@ tableName 和 tableID 二选一，不能同时存在
 
 2.通过数据行 id（以下用 `recordId` 参数名表示） 设置指定数据行
 
-`TableRecord product = myTableObject.getWithoutData(recordId: recordId)`
+`TableRecord product = myTableObject.getWithoutData(recordId: recordId);`
 
 **参数说明**
 
@@ -56,7 +56,7 @@ a. set 操作
 
 | 参数  | 类型              | 必填 | 说明 |
 | :---- | :---------------- | :-- | :-- |
-| key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
+| key   | String            | 是  | 需要更新的字段名 |
 | value | any               | 是  | 与 key 字段的类型保持一致 |
 | obj   | Map<String, dynamic>            | 是  | 一次性赋值的键值对对象, 如 `{a: 10, b: 20}` |
 
@@ -70,7 +70,7 @@ b. unset 操作
 
 | 参数  | 类型              | 必填 | 说明 |
 | :---- | :---------------- | :-- | :-- |
-| key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
+| key   | String            | 是  | 需要清空的字段名 |
 | obj   | Map<String, dynamic>            | 是  | 一次性赋值的键值对对象, 如 `{a: '', b: ''}` |
 
 set 和 unset 方法都支持两种类型的赋值操作：
@@ -87,8 +87,8 @@ product.set({
 b. 逐个赋值：
 
 ```dart
-product.set(key1, value1)
-product.set(key2, value2)
+product.set(key1, value1);
+product.set(key2, value2);
 ```
 
 > **info**
@@ -124,9 +124,9 @@ TableRecord response = await record.update();
 
 | 名称 | 类型 | 说明 |
 | ---- | ---- | ---- |
-| response | TableRecord | 返回 TableRecord 类型，详见 [数据类型](/flutter-sdk/data-type.md) |
+| response | TableRecord | 返回 TableRecord 类型，详见 [数据类型](/flutter-sdk/schema/data-type.md) |
 
-err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+err 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 
 常见错误：
 
@@ -282,7 +282,7 @@ product.uAppend('desc', 'sweet');
 | value | List 或 List item | 是  | 如果元素类型是 geojson、object、file，则只能是 List item，或 length 为 1 的 List |
 
 > **info**
-> 如果 array 类型字段的子元素类型是 geojson、object 或 file，则 value 只能是 Array item 或 length 为 1 的 Array,
+> 如果 array 类型字段的子元素类型是 geojson、object 或 file，则 value 只能是 Array item,
 > value 数组中多余的项，将会被忽略。
 
 > 下面的操作是能按预期执行的:
@@ -291,16 +291,12 @@ product.uAppend('desc', 'sweet');
 
 > `product.remove('array_obj', [{a: 10}]);`
 
-> 下面的 `{a: 30}`，将会被忽略:
-
-> `product.remove('array_obj', [{a: 10}, {a: 30}]);`
-
 **请求示例**
 
-```js
-product.remove('desc', ['sweet'])
+```dart
+product.remove('desc', ['sweet']);
 // or
-product.remove('desc', 'sweet')
+product.remove('desc', 'sweet');
 ```
 
 > **info**
@@ -360,11 +356,11 @@ TableRecordOperationList response = await record.update();
 | total_count | int | 总的待插入记录数 |
 | operation_result | List | TableRecordOperation 数组，包含每条数据是否成功被创建等信息 |
 
-TableRecordOperation 类型具体请参考：[数据类型](/flutter-sdk/data-type.md)
+TableRecordOperation 类型具体请参考：[数据类型](/flutter-sdk/schema/data-type.md)
 
 catch 回调中的 err 对象:
 
-请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 
 **状态码说明**
 

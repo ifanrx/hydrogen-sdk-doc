@@ -21,7 +21,7 @@ TableRecord record = product.create();
 try {
   record.set(123);
 } catch (err) {
-  console.log(err.code) // 605
+  print(err.code); // 605
 }
 
 ```

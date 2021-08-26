@@ -67,7 +67,7 @@ query.where(where);
 
 **返回结果**
 
-返回 `TableRecordList` 类型，详见：[数据类型](/flutter-sdk/data-type.md)
+返回 `TableRecordList` 类型，详见：[数据类型](/flutter-sdk/schema/data-type.md)
 
 ## 示例
 
@@ -100,9 +100,9 @@ try {
 
 **返回结果**
 
-返回 `TableRecordList` 类型，详见：[数据类型](/flutter-sdk/data-type.md)
+返回 `TableRecordList` 类型，详见：[数据类型](/flutter-sdk/schema/data-type.md)
 
-err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+err 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 
 常见错误：
 
@@ -361,7 +361,7 @@ try {
 
 **返回示例**
 
-返回 `TableRecordList` 类型，详见：[数据类型](/flutter-sdk/data-type.md)
+返回 `TableRecordList` 类型，详见：[数据类型](/flutter-sdk/schema/data-type.md)
 
 **不使用 expand 方法的示例**
 
