@@ -44,9 +44,9 @@ try {
 
 **返回结果**
 
-返回 `TableRecord` 示例，详见：[数据类型](/flutter-sdk/data-type.md)
+返回 `TableRecord` 示例，详见：[数据类型](/flutter-sdk/schema/data-type.md)
 
-err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+err 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 
 常见错误：
 

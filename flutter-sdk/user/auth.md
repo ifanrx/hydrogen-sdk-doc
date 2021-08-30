@@ -45,7 +45,7 @@ HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code
 **示例代码**
 ```Dart
 try {
-  CurrentUser currentUse = await Auth.registerWithUsername(username: "test", password: "111");
+  CurrentUser currentUser = await Auth.registerWithUsername(username: "test", password: "111");
   // 操作成功
 } on HError catch(e) {
   // 操作成功
@@ -246,7 +246,7 @@ try {
   // 1. 发送验证码
   await sendSmsCode(phone: "150****7274");
   // 2. 手机号 + 验证码登录
-  Auth.loginWithSmsVerificationCode("150****7274", code: "12345", createUser: true);
+  Auth.loginWithSmsVerificationCode("150****7274", "12345", createUser: true);
   // 操作成功
 } on HError catch(e) {
   // 操作失败
@@ -299,7 +299,7 @@ HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code
 `Auth.requestPasswordReset(String emial)`
 
 > **info**
-> 只有通过验证的邮箱才能使用邮件找回密码功能。
+> 只有通过验证的邮箱才能使用邮件找回密码功能。[点此查看邮箱验证](https://doc.minapp.com/flutter-sdk/user/account.html#%E9%82%AE%E7%AE%B1%E9%AA%8C%E8%AF%81)
 
 **示例代码**
 
