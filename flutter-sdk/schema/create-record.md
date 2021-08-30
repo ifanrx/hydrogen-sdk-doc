@@ -114,7 +114,7 @@ err 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md
 数据表允许添加时间日期类型的列，为该类型的记录赋值，需要使用 ISO Date 格式的字符串，如 Product 表定义一个时间日期类型的列 expiration_time，创建一条记录时，该字段的赋值操作如下：
 
 ```dart
-String isoStr = DateTime.now().toIso8601String();
+String isoStr = (DateTime.now().toUtc()).toIso8601String();
 record.set('expiration_time', isoStr);
 ```
 
