@@ -58,6 +58,36 @@ try {
 
 HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 
+### 设置用户头像
+
+> **danger**
+> 该操作适用于 SDK version >= 1.0.0-alpha-5
+
+<!-- 分隔两个 info -->
+
+> **info**
+> 临时用户无法调用
+
+**示例代码**
+
+```Dart
+try {
+  String avatarUrl = 'https://cdn.ifanr.cn/ifanr/default_avatar.png?ssl=1';
+  await currentUser.setAvatar(avatarUrl);
+  // 操作成功
+} on HError catch(e) {
+  // 操作失败
+}
+```
+
+**参数说明**
+
+| 名称       | 类型           | 说明        |
+| :-------- | :------------  | :------    |
+| avatar  | String         | 新的用户头像链接   |
+
+HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
+
 ### 设置邮箱
 
 `currentUser.setEmail(String email, {bool sendVerificationEmail = false})`

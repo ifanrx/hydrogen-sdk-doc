@@ -42,11 +42,14 @@ HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code
 
 ## 校验短信验证码
 
-`verifySmsCode({@required String phone, @required num code})`
+> **info**
+> 在 1.0.0-alpha-5 及以上版本 code 更改为 String 类型
+
+`verifySmsCode({@required String phone, @required String code})`
 
 ```Dart
 try {
-  await verifySmsCode(phone: "1508805****", code: 11111);
+  await BaaS.verifySmsCode(phone: "1508805****", code: '012345');
   // 操作成功
 } on HError catch(e) {
   // 操作失败
