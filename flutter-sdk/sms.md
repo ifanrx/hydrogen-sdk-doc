@@ -61,7 +61,7 @@ try {
 | 参数名   | 类型   | 说明     | 必填  |
 |----------|--------|----------|-----|
 | phone   | String   | 手机号 | Y |
-| code    | num      | 验证码 |  Y |
+| code    | String      | 验证码 |  Y |
 
 HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 
