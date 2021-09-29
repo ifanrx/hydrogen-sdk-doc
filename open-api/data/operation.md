@@ -121,6 +121,9 @@ curl_close($ch);
 
 ## 获取单个导出任务信息
 
+> **info**
+> 通过开放 API 获取导出任务信息需要在知晓云控制台开通权限，操作位置为控制台>设置> SDK > 通用设置。
+
 **接口**
 
 `GET https://cloud.minapp.com/oserve/v1.5/table/:table_id/export/:job_id/`
@@ -222,6 +225,9 @@ curl_close($ch);
 
 
 ## 批量获取导出任务信息
+
+> **info**
+> 通过开放 API 获取导出任务信息需要在知晓云控制台开通权限，操作位置为控制台>设置> SDK > 通用设置。
 
 **接口**
 
