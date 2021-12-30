@@ -58,7 +58,7 @@ tableName 二选一，不能同时存在
 {% content "deleteRecordAsync" %}
 ```js
 // 删除 tableName 为 product 的数据表中数据行 id 为 '59897882ff650c0477f00485' 的数据项
-async function deleteRecord() {
+exports.main = async function deleteRecord() {
   try {
     let tableName = 'product'
     let recordID = '59897882ff650c0477f00485'
@@ -127,7 +127,7 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
 {% tabs deleteRecordsAsync="async/await", deleteRecordsPromise="promise" %}
 {% content "deleteRecordsAsync" %}
 ```js
-async function deleteRecords() {
+exports.main = async function deleteRecords() {
   try {
     let MyTableObject = new BaaS.TableObject(tableName)
 
@@ -206,7 +206,7 @@ err 对象结构请参考[错误码和 HError 对象](../error.md)
 {% tabs batchDeleteAsync="async/await", batchDeletePromise="promise" %}
 {% content "batchDeleteAsync" %}
 ```js
-async function batchDelete() {
+exports.main = async function batchDelete() {
   try {
     let res = await MyTableObject.delete(query, {enableTrigger: false})
     console.log(res)
