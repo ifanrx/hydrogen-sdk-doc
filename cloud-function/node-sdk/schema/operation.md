@@ -36,7 +36,7 @@
 {% tabs exportDataAsync="async/await", exportDataPromise="promise" %}
 {% content "exportDataAsync" %}
 ```js
-async function exportData() {
+exports.main = async function exportData() {
   try {
     let MyTableObject = new BaaS.TableObject(tableID)
     let res = await MyTableObject.exportData('json', 'all')
@@ -90,7 +90,7 @@ res.data:
 {% tabs importDataAsync="async/await", importDataPromise="promise" %}
 {% content "importDataAsync" %}
 ```js
-async function importData() {
+exports.main = async function importData() {
   try {
     /* url */
     let MyTableObject = new BaaS.TableObject(tableID)

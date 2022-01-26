@@ -122,7 +122,7 @@ MyRecord.set(key2, value2)
 {% content "updateRecordAsync" %}
 ```js
 // 更新 tableID 为 10 的数据表中 recordID 为 59897882ff650c0477f00485 的数据项的 price 字段
-async function updateRecord() {
+exports.main = async function updateRecord() {
   try {
     let tableID = 10
     let recordID = '59897882ff650c0477f00485'
@@ -240,7 +240,7 @@ product.update().then(res => {}, err => {})
 {% tabs updatePointerAsync="async/await", updatePointerPromise="promise" %}
 {% content "updatePointerAsync" %}
 ```js
-async function updatePointer() {
+exports.main = async function updatePointer() {
   try {
     // 获取一个 tableRecord 实例
     let Customer = new BaaS.TableObject('customer')
@@ -422,7 +422,7 @@ order.update()
 {% content "updatePopAsync" %}
 
 ```js
-async function updateRecord() {
+exports.main = async function updateRecord() {
   try {
     let tableName = 'product'
     let recordID = '59897882ff650c0477f00485'
@@ -495,7 +495,7 @@ function updateRecord() {
 {% content "updateShiftAsync" %}
 
 ```js
-async function updateRecord() {
+exports.main = async function updateRecord() {
   try {
     let tableName = 'product'
     let recordID = '59897882ff650c0477f00485'
@@ -568,7 +568,7 @@ function updateRecord() {
 {% tabs updateDataAsync="async/await", updateDataPromise="promise" %}
 {% content "updateDataAsync" %}
 ```js
-async function updateData() {
+exports.main = async function updateData() {
   try {
     let MyTableObject = new BaaS.TableObject(tableName)
 
@@ -678,7 +678,7 @@ function updateData() {
 {% tabs batchUpdateAsync="async/await", batchUpdatePromise="promise" %}
 {% content "batchUpdateAsync" %}
 ```js
-async function batchUpdate() {
+exports.main = async function batchUpdate() {
   try {
     let MyTableObject = new BaaS.TableObject(tableName)
 
@@ -840,7 +840,7 @@ record.patchObject('obj1', patch)
 {% tabs updateACLAsync="async/await", updateACLPromise="promise" %}
 {% content "updateACLAsync" %}
 ```js
-async function updateACL() {
+exports.main = async function updateACL() {
   try {
     let Product = new BaaS.TableObject('product')
     let record = Product.getWithoutData('5bffbab54b30640ba8135650')

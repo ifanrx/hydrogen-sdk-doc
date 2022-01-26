@@ -32,7 +32,7 @@ tableID 和 tableName 二选一，不能同时存在
 {% tabs getRecordAsync="async/await", getRecordPromise="promise" %}
 {% content "getRecordAsync" %}
 ```js
-async function getRecord() {
+exports.main = async function getRecord() {
   try {
     let tableName = 'product'
     let recordID = '59897882ff650c0477f00485'
