@@ -4,7 +4,7 @@
 
 当调用微信小程序接口获取敏感信息时，返回的数据往往是经过加密的，开发者如需获取这些敏感数据，需要对接口返回的加密数据进行对称解密。
 
-`wx.BaaS.wxDecryptData(encryptedData, iv, type)`
+`wx.BaaS.wxDecryptData(encryptedData, iv, type, code)`
 
 **参数说明**
 
@@ -13,6 +13,7 @@
 | encryptedData | String  | Y   | 加密的数据，可通过 wx.getWeRunData 等微信 api 返回获取 |
 | iv            | String  | Y   | 加密算法的初始向量，可通过 wx.getWeRunData 等微信 api 返回获取 |
 | type          | String  | Y   | 数据类型，现支持 'we-run-data', 'phone-number', 'open-gid'|
+| code          | String  | N   | 小程序基础库大于等于 v2.21.2 且 SDK 版本大于 v3.22.0 且 type 为 'phone-number' 时必填。可通过 open-type 为 getPhoneNumber 的 button 回调中获取，如 e.detail.code |
 
 当前支持解密的数据包括：
 - 通过调用 [`wx.getWeRunData`](https://developers.weixin.qq.com/miniprogram/dev/api/open-api/werun/wx.getWeRunData.html) 获取到的微信用户的微信运动步数，此时设置 type = 'we-run-data'
