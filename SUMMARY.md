@@ -33,7 +33,6 @@
         * [API 网关](dashboard/basic-services/api-gateway.md)
         * [设置](dashboard/basic-services/set-up.md)
         * [ACL 简介](dashboard/basic-services/acl.md)
-        * [API 网关](dashboard/basic-services/api-gateway.md)
     * [运营](dashboard/operation/README.md)
         * [运营后台](dashboard/operation/user-dash.md)
         * [短信](dashboard/operation/sms.md)
