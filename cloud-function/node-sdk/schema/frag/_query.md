@@ -168,7 +168,7 @@ this, 即当前 Query 实例
 
 ### exists(fieldName)
 
-查询 fieldName 的值为空的数据行
+查询 fieldName 的值不为空的数据行
 
 **参数说明**
 
@@ -183,7 +183,7 @@ this, 即当前 Query 实例
 
 ### notExists(fieldName)
 
-查询 fieldName 的值不为空的数据行
+查询 fieldName 的值为空的数据行
 
 **参数说明**
 

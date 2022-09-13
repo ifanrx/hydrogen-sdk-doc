@@ -31,7 +31,7 @@
 | :----- | :------ | :-- |
 | image  | String  | 二维码的 base64 编码 |
 | download_url  | String  | 请求参数 cdn=true 时返回，二维码的下载链接 |
-| uploaded_file | Object  | 请求参数 cdn=true 时返回，图片文件对象。{% if apiPrefix %}SDK >= 3.7.0 {% else %}SDK >= v3.4 {% endif %}返回改参数 |
+| uploaded_file | Object  | 请求参数 cdn=true 时返回，图片文件对象。{% if apiPrefix %}SDK >= 3.7.0 {% else %}SDK >= v3.4 {% endif %}返回该参数 |
 
 uploaded_file 参数说明：
 
