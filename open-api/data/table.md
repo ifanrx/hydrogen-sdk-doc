@@ -651,3 +651,244 @@ curl_close($ch);
 **状态码说明**
 
 `204`: 删除成功
+
+# 索引
+
+## 获取 schema 下所有的唯一索引
+
+**接口**
+
+`GET https://cloud.minapp.com/oserve/v2.6/schema/:schema_id/index/`
+
+**代码示例**
+
+{% tabs getIndexCurl="Curl", getIndexNode="Node", getIndexPHP="PHP" %}
+
+{% content "getIndexCurl" %}
+
+```
+curl -X GET \
+-H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "Content-Type: application/json" \
+https://cloud.minapp.com/oserve/v2.6/schema/20/index/
+```
+
+{% content "getIndexNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://cloud.minapp.com/oserve/v2.6/schema/20/index/',
+  headers:
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
+  	 json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+{% content "getIndexPHP" %}
+
+```php
+<?php
+$shema_id = 1; // 索引 ID
+$url = "https://cloud.minapp.com/oserve/v2.6/schema/{$shema_id}/index/";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```json
+{
+  "meta": {
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total_count": 2
+  },
+  "objects": [
+    {
+      "fields": ["name"],
+      "index": "name_1"
+    },
+    {
+      "fields": ["name", "description"],
+      "index": "name_1_description_1"
+    }
+  ]
+}
+```
+
+**状态码说明**
+
+`200:`成功
+
+`401:`未授权
+
+## 建立（联合）唯一索引
+
+**接口**
+
+`POST https://cloud.minapp.com/oserve/v2.6/schema/:schema_id/index/`
+
+**提交示例**
+
+{% tabs createIndexCurl="Curl", createIndexNode="Node", createIndexPHP="PHP" %}
+
+{% content "createIndexCurl" %}
+
+```
+curl -X POST \
+-H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "Content-Type: application/json" \
+-d '{
+      "fields":["name","description"]
+    }' \
+https://cloud.minapp.com/oserve/v2.6/schema/20/index/
+```
+
+{% content "createIndexNode" %}
+
+```js
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://cloud.minapp.com/oserve/v2.6/schema/20/index/',
+  headers:
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4' },
+     body: { fields: ["name","description"] },
+  	 json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+{% content "createIndexPHP" %}
+
+```php
+<?php
+$shema_id = 1; // 索引 ID
+$url = "https://cloud.minapp.com/oserve/v2.6/schema/{$shema_id}/index/";
+$param['fields'] = ["name","description"];
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
+```
+
+{% endtabs %}
+
+**返回示例**
+
+```json
+[
+  {
+    "fields": ["name"],
+    "index": "name_1"
+  },
+  {
+    "fields": ["name", "description"],
+    "index": "name_1_description_1"
+  }
+]
+```
+
+**状态码说明**
+
+`201:`成功
+
+## 删除索引
+
+**接口**
+
+`DELETE https://cloud.minapp.com/oserve/v2.6/schema/:schema_id/index/:index_name`
+
+**代码示例**
+
+{% tabs deleteIndexCurl="Curl", deleteIndexPHP="PHP" %}
+
+{% content "createIndexCurl" %}
+
+```
+curl -X DELETE \
+-H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
+-H "Content-Type: application/json" \
+https://cloud.minapp.com/oserve/v2.6/schema/20/index/name_1
+```
+
+{% content "deleteIndexPHP" %}
+
+```php
+<?php
+$shema_id = 1; // 关联表 ID
+$index_name = "name_1"; // 索引名
+$url = "https://cloud.minapp.com/oserve/v2.6/schema/{$shema_id}/index/{$index_name}";
+
+$ch = curl_init();
+$header = array(
+  "Authorization: Bearer {$token}",
+  'Content-Type: application/json; charset=utf-8'
+);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$res['response'] = curl_exec($ch); // 反馈结果
+$res['status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 请求状态码
+curl_close($ch);
+```
+
+{% endtabs %}
+
+**状态码说明**
+
+`204:`成功
+
+
+
