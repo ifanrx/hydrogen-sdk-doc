@@ -843,7 +843,7 @@ curl_close($ch);
 
 **接口**
 
-`DELETE https://cloud.minapp.com/oserve/v2.6/schema/:schema_id/index/:index_name`
+`DELETE https://cloud.minapp.com/oserve/v2.6/schema/:schema_id/index/:index_name/`
 
 **代码示例**
 
