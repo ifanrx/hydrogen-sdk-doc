@@ -855,7 +855,7 @@ curl_close($ch);
 curl -X DELETE \
 -H "Authorization: Bearer cfb5912724dd7ff0b0c17683cc3074bb548bc7f4" \
 -H "Content-Type: application/json" \
-https://cloud.minapp.com/oserve/v2.6/schema/20/index/name_1
+https://cloud.minapp.com/oserve/v2.6/schema/20/index/name_1/
 ```
 
 {% content "deleteIndexPHP" %}
@@ -864,7 +864,7 @@ https://cloud.minapp.com/oserve/v2.6/schema/20/index/name_1
 <?php
 $shema_id = 1; // 关联表 ID
 $index_name = "name_1"; // 索引名
-$url = "https://cloud.minapp.com/oserve/v2.6/schema/{$shema_id}/index/{$index_name}";
+$url = "https://cloud.minapp.com/oserve/v2.6/schema/{$shema_id}/index/{$index_name}/";
 
 $ch = curl_init();
 $header = array(
