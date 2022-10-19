@@ -14,7 +14,7 @@ options 是对象类型,包含以下参数:
 | 参数         | 类型   | 必填 | 说明                       |
 | ------------ | ------ | ---- | -------------------------- |
 | openid       | String | Y    | 用户的 openid              |
-| clientIp     | String | Y    | 用户访问源 IP              |
+| clientIP     | String | Y    | 用户访问源 IP              |
 | scene        | Number | Y    | 场景值，0:注册，1:营销作弊 |
 | mobileNo     | String | N    | 用户手机号                 |
 | emailAddress | String | N    | 用户邮箱地址               |
