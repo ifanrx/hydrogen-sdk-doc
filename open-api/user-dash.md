@@ -12,14 +12,14 @@ Content-Type: `application/json`
 
 | 参数           | 类型   | 必填 | 说明 |
 | :------------ | :----- | :-- | :-- |
-| repository_path      | String | N   | 自定义管理后台部署压缩包地址，需要先调用上传文件接口获取文件上传成功后的访问地址 |
+| repository_path      | String | N   | 自定义管理后台部署压缩包地址，需要先调用[上传文件接口](./file/file-upload.md)获取文件上传成功后的访问地址 |
 | url_refresh   | String | N   | 是否刷新管理后台部署地址，取值为：true or false，可为空，默认为 true |
 
 **代码示例**
 
-{% tabs getTokenV21Curl="Curl", getTokenV21Node="Node", getTokenV21PHP="PHP" %}
+{% tabs createCustomUserDashCurl="Curl", createCustomUserDashNode="Node", createCustomUserDashPHP="PHP" %}
 
-{% content "getTokenV21Curl"%}
+{% content "createCustomUserDashCurl"%}
 
 ```
 curl -X POST \
@@ -32,7 +32,7 @@ curl -X POST \
 https://cloud.minapp.com/oserve/v2.6/miniapp/custom-userdash/
 ```
 
-{% content "getTokenV21Node"%}
+{% content "createCustomUserDashNode"%}
 
 ```js
 var request = require('request');
@@ -54,7 +54,7 @@ request(opt, function(err, res, body) {
 })
 ```
 
-{% content "getTokenV21PHP"%}
+{% content "createCustomUserDashPHP"%}
 
 ```php
 <?php
