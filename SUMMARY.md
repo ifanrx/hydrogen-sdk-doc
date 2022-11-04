@@ -276,6 +276,7 @@
         * [组集操作](open-api/group/super-group.md)
     * [云函数](open-api/cloud-function.md)
     * [短信服务](open-api/sms.md)
+    * [运营后台](open-api/user-dash.md)
 
 ----
 
