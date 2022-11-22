@@ -2,8 +2,6 @@
 
 > **danger**
 > 从 2022 年 11 月 8 日 24 时开始，小程序 `wx.getUserProfile` 和 `wx.getUserInfo` 接口将被微信收回，其中获取用户头像将统一返回默认灰色头像，昵称将统一返回“微信用户”。请参考 [小程序用户头像昵称获取规则调整公告](https://developers.weixin.qq.com/community/develop/doc/00022c683e8a80b29bed2142b56c01)。
->
-> 为应对微信的调整，小程序 SDK 提供更新头像和昵称支持。通过 `wx.BaaS.auth.getCurrentUser()` 获取当前用户，并执行内置的 `update()` 方法即可达成更新。详见 [设置头像和昵称](../account.md#设置头像和昵称)。
 
 <!-- 分隔符 -->
 > **info**
