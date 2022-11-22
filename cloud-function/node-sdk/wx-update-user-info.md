@@ -1,5 +1,9 @@
-# 微信更新用户信息
+# <span style="color: #f04134;">`已废弃`</span>  微信更新用户信息
 
+> **danger**
+> 从 2022 年 11 月 8 日 24 时开始，小程序 `wx.getUserProfile` 和 `wx.getUserInfo` 接口将被微信收回，其中获取用户头像将统一返回默认灰色头像，昵称将统一返回“微信用户”。请参考 [小程序用户头像昵称获取规则调整公告](https://developers.weixin.qq.com/community/develop/doc/00022c683e8a80b29bed2142b56c01)。
+
+<!-- 分隔符 -->
 > **info**
 > SDK >= 3.17.0
 
