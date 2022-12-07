@@ -8,7 +8,7 @@
 ## 创建私密消息的 activity_id
 
 `wx.BaaS.wxCreateActivityID()`
-
+ 
 **返回字段说明**
 
 | 属性            | 类型   | 说明                                         |
