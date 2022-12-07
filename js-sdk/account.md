@@ -173,7 +173,7 @@ wx.BaaS.auth.getCurrentUser().then(user => {
 ### 初始化账号信息
 
 > **info**
-> 临睡用户无法调用
+> 临时用户无法调用
 
 `currentUser.setAccount({username, email, password})`
 
@@ -238,6 +238,38 @@ wx.BaaS.auth.getCurrentUser()
 user 为 currentUser 对象，该对象的说明见上文
 
 err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+### 设置头像和昵称
+
+设置头像和昵称与[数据表更新数据项](schema/update-record.md)方法基本一致。
+
+> **info**
+> 基于安全考虑，设置头像和昵称需先进行违规检测。详见 [检测违规图片、音频、文本](./wechat/censor.md)。
+
+**请求示例**
+
+{% ifanrxCodeTabs %}
+```js
+// 下面以更新昵称为例：
+const updateNickname = async () => {
+  const nickname = 'John Doe'
+
+  try {
+    const censor = await wx.BaaS.wxCensorText(nickname)
+
+    if (censor.data.risky) {
+      // 处理昵称文本不合法的情况...
+      return
+    }
+
+    const user = await wx.BaaS.auth.getCurrentUser()
+    user.set('nickname', nickname).update()
+  } catch (error) {
+    // 处理错误情况 HError
+  }
+}
+```
+{% endifanrxCodeTabs %}
 
 
 ### 设置邮箱

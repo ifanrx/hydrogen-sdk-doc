@@ -12,7 +12,7 @@
 {% tabs pagingAsync="async/await", pagingPromise="promise" %}
 {% content "pagingAsync" %}
 ```js
-async function paging() {
+exports.main = async function paging() {
   try {
     var Product = new BaaS.TableObject(tableName)
 
@@ -55,7 +55,7 @@ function paging() {
 {% tabs sortingAsync="async/await", sortingPromise="promise" %}
 {% content "sortingAsync" %}
 ```js
-async function sorting() {
+exports.main = async function sorting() {
   try {
     var Product = new BaaS.TableObject(tableName)
 

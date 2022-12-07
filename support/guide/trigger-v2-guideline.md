@@ -10,13 +10,13 @@
 
 |触发器触发类型|可使用对象|对象含义|使用示例|
 |------------|--------|-------|-------|
-|数据表|`after`|事件发生后的数据行，如创建后/更新后|`{{ after.nickname }}`|
-|数据表|`before`|事件发生前的数据行，如更新前/删除前|`{{ before.nickname }}`|
-|微信支付回调|`payload`|支付订单对象|`{{ payload.trade_no }}`|
-|支付宝支付回调|`payload`|支付订单对象|`{{ payload.trade_no }}`|
-|QQ 支付回调|`payload`|支付订单对象|`{{ payload.trade_no }}`|
-|百度支付回调|`payload`|支付订单对象|`{{ payload.trade_no }}`|
-|文件操作|`payload`|文件创建者对象|`{{ payload.created_by.nickname }}`|
+|数据表|`after`|事件发生后的数据行，如创建后/更新后|{% raw %} {{ after.nickname }} {% endraw %}|
+|数据表|`before`|事件发生前的数据行，如更新前/删除前|{% raw %} {{ before.nickname }} {% endraw %}|
+|微信支付回调|`payload`|支付订单对象|{% raw %} {{ payload.trade_no }} {% endraw %}|
+|支付宝支付回调|`payload`|支付订单对象|{% raw %} {{ payload.trade_no }} {% endraw %}|
+|QQ 支付回调|`payload`|支付订单对象|{% raw %} {{ payload.trade_no }} {% endraw %}|
+|百度支付回调|`payload`|支付订单对象|{% raw %} {{ payload.trade_no }} {% endraw %}|
+|文件操作|`payload`|文件创建者对象|{% raw %} {{ payload.created_by.nickname }} {% endraw %}|
 
 > 数据表的 `after` 对象仅会在触发器事件类型为 `create` 或者 `update` 时才有相对应的数据行。
 

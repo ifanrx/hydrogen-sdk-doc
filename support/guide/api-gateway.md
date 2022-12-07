@@ -2,7 +2,7 @@
 
 API 网关分成前后端服务，前端主要为接收客户端请求，并对其进行有效性校验及请求参数格式化后，再交给后端进行处理。
 
-详细的控制台配置流程参考：[点我直达](/dashboard/basic-services/api-gateway.md)
+详细的控制台配置流程参考：[点我直达](../../dashboard/basic-services/api-gateway.md)
 
 > 后端服务暂只支持云函数
 
@@ -266,3 +266,58 @@ API 网关支持开发者使用自有域名作为网关请求域名。
 即，若开发者已在知晓云接入 `example.com` 的 API 域名备案，则开发者可使用形如 `example.example.com` 的域名进行 API 网关自有域名绑定。
 
 在绑定 API 网关自有域名后，开发者需要在域名服务商处[解析 CNAME](http://support.minapp.com/hc/kb/article/1320479/)。
+
+
+## CORS 启用
+
+[跨源资源共享](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)(CORS) 是一项浏览器安全功能，该功能限制从在浏览器中运行的脚本启动的跨源 HTTP 请求。若开发者需要跨源访问 API 网关中添加的路由，则需要在控制台中为 API 网关路由手动启用 CORS 功能。
+
+> **info**
+> 勾选支持 CORS 以后需要填写正确的安全域名，只有在指定域名下，才能正常请求该 API 网关路由。假设开发者将从 http://localhost:8080/ 发起请求，则在安全域名配置框中输入 http://localhost:8080 即可。
+
+![API 网关路由配置](/images/dashboard/basic-services/gateway-update-cors.png)
+
+**代码示例**
+
+```js
+var axios = require('axios')
+
+axios({
+  url: 'https://example.minapp-faas.com/example/',
+  method: 'post',
+  data: {
+    test: 'example'
+  }
+}).then(res => {
+  console.log(res.data)
+})
+```
+
+**返回示例**
+
+```json
+{
+  "data": {
+    "test": "example"
+  },
+  "debug": false,
+  "eventType": "api_gateway",
+  "jobId": "11****************************62",
+  "miniappId": 1,
+  "request": {
+    "meta": {
+      "headers": {},
+      "ip_address": "127.0.0.1",
+      "named_arguments": {},
+      "nested_arguments": [],
+      "query_string": {},
+      "request_method": "POST",
+      "request_path": "/example/",
+      "user_agent": "user-agent"
+    }
+  },
+  "signKey": "iG****************************Qw",
+  "timeLimitInMS": 5000,
+  "timezone": "Asia/Shanghai"
+}
+```

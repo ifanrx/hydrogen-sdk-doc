@@ -18,7 +18,7 @@
 | FileCategory.FILES      | Long   | Y   | 分类下的文件数 |
 | FileCategory.ID         | String | Y   | 分类 ID |
 | FileCategory.NAME       | String | Y   | 分类名 |
-| FileCategory.UPDATE_AT  | Long   | Y   | 分裂更新时间 |
+| FileCategory.UPDATE_AT  | Long   | Y   | 分类更新时间 |
 
 **示例代码**
 

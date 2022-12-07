@@ -26,6 +26,8 @@ this，即当前 TableRecord 实例
 
 ### incrementBy(key, value)
 
+对数字类型的字段进行原子性增减操作。当请求同时对一个数据进行增减时，原子性使得冲突和覆盖导致的数据不正确的情况不会出现。
+
 **参数说明**
 
 | 参数   | 类型              | 必填 | 说明 |
@@ -38,6 +40,8 @@ this，即当前 TableRecord 实例
 this，即当前 TableRecord 实例
 
 ### append(key, value)
+
+数组原子性更新，将 *待插入的数组* 加到原数组末尾
 
 **参数说明**
 
@@ -53,6 +57,8 @@ this，即当前 TableRecord 实例
 
 ### uAppend(key, value)
 
+数组原子性更新，将 *待插入的数组* 中不包含在原数组的数据加到原数组末尾
+
 **参数说明**
 
 | 参数   | 类型                | 必填 | 说明 |
@@ -67,6 +73,8 @@ this，即当前 TableRecord 实例
 
 ### remove(key, value)
 
+数组原子性更新，从原数组中删除指定的值
+
 **参数说明**
 
 | 参数   | 类型                | 必填 | 说明 |
@@ -79,6 +87,8 @@ this，即当前 TableRecord 实例
 this，即当前 TableRecord 实例
 
 ### patchObject(key, value)
+
+Object 的原子性更新，修改 Object 的指定字段。
 
 **参数说明**
 

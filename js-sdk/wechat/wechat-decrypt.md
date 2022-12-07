@@ -4,29 +4,30 @@
 
 当调用微信小程序接口获取敏感信息时，返回的数据往往是经过加密的，开发者如需获取这些敏感数据，需要对接口返回的加密数据进行对称解密。
 
-`wx.BaaS.wxDecryptData(encryptedData, iv, type)`
+`wx.BaaS.wxDecryptData(encryptedData, iv, type, code)`
 
 **参数说明**
 
 | 参数           | 类型    | 必填 | 说明 |
 | :------------ | :------ | :-- | :-- |
-| encryptedData | String  | Y   | 加密的数据 |
-| iv            | String  | Y   | 加密算法的初始向量 |
-| type          | String  | Y   | 数据类型，现支持 'we-run-data', 'phone-number', 'open-gid' |
+| encryptedData | String  | Y   | 加密的数据，可通过 wx.getWeRunData 等微信 api 返回获取 |
+| iv            | String  | Y   | 加密算法的初始向量，可通过 wx.getWeRunData 等微信 api 返回获取 |
+| type          | String  | Y   | 数据类型，现支持 'we-run-data', 'phone-number', 'open-gid'|
+| code          | String  | N   | 小程序基础库大于等于 v2.21.2 且 SDK 版本大于 v3.22.0 且 type 为 'phone-number' 时必填。可通过 open-type 为 getPhoneNumber 的 button 回调中获取，如 e.detail.code |
 
 当前支持解密的数据包括：
-- 通过调用 [`wx.getWeRunData`](https://mp.weixin.qq.com/debug/wxadoc/dev/api/we-run.html#wxgetwerundataobject) 获取到的微信用户的微信运动步数，此时设置 type = 'we-run-data'
-- 通过设置 button 的 open-type 为 [`getPhoneNumber`](https://mp.weixin.qq.com/debug/wxadoc/dev/api/getPhoneNumber.html) 获取到的微信用户绑定的手机号，，此时设置 type = 'phone-number'
-- 通过调用 [`wx.getShareInfo`](https://mp.weixin.qq.com/debug/wxadoc/dev/api/share.html#wxgetshareinfoobject) 获取到的转发详细信息，此时设置 type = 'open-gid'
+- 通过调用 [`wx.getWeRunData`](https://developers.weixin.qq.com/miniprogram/dev/api/open-api/werun/wx.getWeRunData.html) 获取到的微信用户的微信运动步数，此时设置 type = 'we-run-data'
+- 通过设置 button 的 open-type 为 [`getPhoneNumber`](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html) 获取到的微信用户绑定的手机号，此时设置 type = 'phone-number'
+- 通过调用 [`wx.getShareInfo`](https://developers.weixin.qq.com/miniprogram/dev/api/share/wx.getShareInfo.html) 获取到的转发详细信息，此时设置 type = 'open-gid'
 
 > **danger**
 > 该功能涉及到敏感数据接口使用，需前往 [知晓云管理后台-小程序设置页面-SDK 功能设置](https://cloud.minapp.com/dashboard/#/app/[[app_id | addSlashPostfixIfNotEmpty]]settings/sdk/) 手动开启。
 
 **请求示例**
 
-对微信加密数据进行解密需要使用到本次登录的会话密钥（session_key），因此，在调用该接口前，最好先调用一下 `wx.checkSession` 检查一下 session_key 是否过期，如果过期的话，可以先调用 `wx.BaaS.logout` 再调用 `wx.BaaS.login` 接口进行重新登录。
+对微信加密数据进行解密需要使用到本次登录的会话密钥（session_key），因此，在调用该接口前，最好先调用一下 `wx.checkSession` 检查一下 session_key 是否过期，如果过期的话，可以先调用 `wx.BaaS.auth.logout` 再调用 `wx.BaaS.auth.loginWithWechat` 接口进行重新登录。
 
-```
+```javascript
 wx.getWeRunData({
   success(res) {
     wx.checkSession({
@@ -39,8 +40,8 @@ wx.getWeRunData({
         })
       },
       fail: function() {
-        wx.BaaS.logout()
-        wx.BaaS.login()
+        wx.BaaS.auth.logout();
+        wx.BaaS.auth.loginWithWechat();
       }
     })
   }

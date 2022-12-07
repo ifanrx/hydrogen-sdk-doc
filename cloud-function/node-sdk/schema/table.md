@@ -150,7 +150,7 @@ const schemaInfo = {
   ]
 }
 
-async function createSchema() {
+exports.main = async function createSchema() {
   try {
     let tableSchema = new BaaS.TableSchema()
     let res = await tableSchema.createSchema(schemaInfo)
@@ -289,7 +289,7 @@ function createSchema() {
 {% tabs getSchemaAsync="async/await", getSchemaPromise="promise" %}
 {% content "getSchemaAsync" %}
 ```js
-async function getSchema() {
+exports.main = async function getSchema() {
   try {
     let tableSchema = new BaaS.TableSchema()
     let res = await tableSchema.getSchema(1)
@@ -462,7 +462,7 @@ const schemaInfo = {
   name: "table"
 }
 
-async function updateSchema() {
+exports.main = async function updateSchema() {
   try {
     let res = await tableSchema.updateSchema(1, schemaInfo)
     // success
@@ -540,7 +540,7 @@ res.data 接口如下
 {% tabs deleteSchemaAsync="async/await", deleteSchemaPromise="promise" %}
 {% content "deleteSchemaAsync" %}
 ```js
-async function deleteSchema() {
+exports.main = async function deleteSchema() {
   try {
     let res = await tableSchema.deleteSchema(1)
     // success

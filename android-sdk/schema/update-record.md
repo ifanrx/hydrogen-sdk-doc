@@ -1,5 +1,18 @@
 # 更新数据项
 
+`Record.save(SaveOptions)`
+
+**参数说明**
+
+SaveOptions:
+
+| 字段          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| enableTrigger | Boolean |  否  | null | 是否触发触发器 |
+| withCount     | Boolean |  否  | null | 是否返回 total_count |
+| expand        | List |  否  | null | 是否返回对应字段扩展 |
+
+
 ## 操作步骤
 
 1.通过 `tableName` 实例化一个 `Table` 对象，操作该对象即相当于操作对应的数据表
@@ -87,6 +100,53 @@ record.saveInBackground(new Callback<Record>() {
 | 400            | 1. 提交的数据不合法、2. 重复创建数据（设置了唯一索引）    |
 | 403            | 没有权限更新数据    |
 | 404            | 数据行不存在    |
+
+
+## 更新 object 类型内的属性
+```java
+Record.patchObject("obj1", record);
+```
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-  | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Object |
+| value | Record              | 是  | 更新的对象 |
+
+> **info**
+> 该操作的效果浅合并，也就是只合并第一层，嵌套的属性仍然是被替换。
+> 对象内的属性名只能包含字母、数字和下划线，必须以字母开头，比如 `{$ifanr.x: 123}` 和 `{知晓云: "test"}` 是错误的
+
+**请求示例**
+假设数据表 Product 中有数据行如下
+```javascript
+[{
+   id: "7",
+   obj1: {a: [1, 2, 3], b: 666, c: {age: 100}}
+}]
+```
+
+```java
+Table product = new Table("Product");
+Record record = product.fetchWithoutData("7");
+Record patch = product.createRecord();
+patch.put("a", new int[]{222});
+patch.put("b", 555);
+patch.put("d", 888);
+record.patchObject("obj1", patch);
+
+```
+执行结果
+
+```javascript
+[
+  {
+    id: '7',
+    obj1: {a: [222], b: 555, c: {age: 100}, d: 888}
+  }
+]
+```
 
 
 ## 更新 pointer 类型字段
@@ -216,6 +276,87 @@ record.put('amount', 10)
 record.put('date', 'abc')
 record.save()
 ```
+
+### 从原数组中删除最后一项
+
+`Record.pop(key)`
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-- | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+
+**请求示例**
+
+```java
+Table table = new Table("product");
+Record record = table.fetchWithoutData("59897882ff650c0477f00485");
+record.pop("array_i");  // array_i: [1, 2, 3, 4]
+record.saveInBackground(new BaseCallback<Record>() {
+    @Override
+    public void onSuccess(Record record) {
+        // array_i: [1, 2, 3]
+    }
+
+    @Override
+    public void onFailure(Throwable e) {}
+});
+```
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "59897882ff650c0477f00485",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "59897882ff650c0477f00485",
+    "array_i": [1, 2, 3]
+}
+```
+
+### 从原组中删除第一项
+
+`Record.shift(key)`
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-- | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+
+**请求示例**
+
+```java
+Table table = new Table("product");
+Record record = table.fetchWithoutData("59897882ff650c0477f00485");
+record.shift("array_i");  // array_i: [1, 2, 3, 4]
+record.saveInBackground(new BaseCallback<Record>() {
+    @Override
+    public void onSuccess(Record record) {
+        // array_i: [2, 3, 4]
+    }
+
+    @Override
+    public void onFailure(Throwable e) {}
+});
+```
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "59897882ff650c0477f00485",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "59897882ff650c0477f00485",
+    "array_i": [2, 3, 4]
+}
+```
+
 
 ## 按条件批量更新数据项
 

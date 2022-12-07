@@ -60,9 +60,10 @@ user.set(key2, value2)
 
 | 属性            | 类型    | 必填 | 说明 |
 | :-------------- | :------ | :--- | :--- |
-| _username        | String  | `_username`、`_phone`、`_email` 其中至少一项必填  | 用户名 |
-| _phone          | String  | `_username`、`_phone`、`_email` 其中至少一项必填  | 手机号 |
-| _email           | String  | `_username`、`_phone`、`_email` 其中至少一项必填  | 邮箱 |
+| _username        | String  | `_username`、`_phone`、`_email`、`_provider` 其中至少一项必填  | 用户名 |
+| _phone          | String  | `_username`、`_phone`、`_email`、`_provider` 其中至少一项必填  | 手机号 |
+| _email           | String  | `_username`、`_phone`、`_email`、`_provider` 其中至少一项必填  | 邮箱 |
+| _provider   | Object | `_username`、`_phone`、`_email`、`_provider` 其中至少一项必填 | 用户在平台方的用户信息，具体用法请参考 `_provider 传入说明` |
 | _password        | String  | 传入了 `_username`、`_email` 时必填  | 密码 |
 | _phone_verified  | Boolean | 否 | 手机号是否已验证 |
 | _email_verified   | Boolean | 否 | 邮箱是否已验证 |
@@ -73,11 +74,51 @@ user.set(key2, value2)
 | province        | String  | 否 | 省份 |
 | city            | String  | 否 | 城市 |
 | language        | String  | 否 | 语言 |
+| is_authorized        | Boolean  | 否 | 微信是否授权，默认为 `undefined` |
 
 除了以上字段外，还支持用户表的自定义字段
 
 > **info**
 > 对同一字段进行多次 `set` 操作，后面的数据会覆盖掉前面的数据
+
+**_provider 传入说明**
+
+在传入 `_provider` 的时候，如传入的参数不符合规范，则不会写入数据库中，正确的格式如下：
+
+```js
+{
+  '_provider': {
+    'platform': {
+      'keyword': ''
+    }
+  }
+}
+```
+
+> **info**
+> 在传入了 _provider 的同时，也传入了 `_username`，`_email` 其中一个，则必须传入有效的 `_password`
+
+`keyword` 必须传入平台支持的有效值：`[openid, unionid, user_id]`。
+
+而 `platform` 必须在支持的平台范围内，目前支持的平台如下：
+
+| 名称            | 平台 | keyword 有效值 |
+| :-------------- | :---      | :--- |
+| wechat          | 微信小程序 | `openid`，`unionid`（非必填）| 
+| qq_miniapp      | QQ 小程序   | `openid`          | 
+| baidu_miniapp   | 百度小程序  | `openid`          | 
+| douyin          | 抖音小程序  | `openid`          | 
+| toutiao         | 头条小程序  | `openid`          | 
+| bytedance_devtools | 字节跳动小程序开发者工具| `openid`| 
+| news_article_lite | 头条极速版小程序| `openid`      |
+| jd_miniapp      | 京东小程序  | `openid`          | 
+| alipay          | 支付宝小程序 | `user_id`        | 
+| oauth_wechat_mp | 微信公众号  | `openid`，`unionid`（非必填）| 
+| oauth_wechat_web | 微信网页版 | `openid`，`unionid`（非必填）| 
+| oauth_weibo     | 微博用户  | `openid`            | 
+| oauth_weibo_native | 微博客户端 | `openid`        | 
+| oauth_wechat_native | 微信客户端| `openid`，`unionid`（非必填）| 
+| oauth_apple_native | 苹果客户端 | `openid`        | 
 
 4.将创建的用户保存到服务器
 
@@ -95,7 +136,7 @@ user.set({
   _email: '***',
   _password: '***',
 })
-cosnt res = await user.save()
+const res = await user.save()
 ```
 
 **返回示例**
@@ -388,7 +429,7 @@ options:
 {% tabs batchUpdateAsync="async/await", batchUpdatePromise="promise" %}
 {% content "batchUpdateAsync" %}
 ```js
-async function batchUpdate() {
+exports.main = async function batchUpdate() {
   try {
     let User = new BaaS.User()
     let query = new BaaS.Query()
@@ -482,7 +523,7 @@ function batchUpdate() {
 {% tabs batchUpdateWithoutTriggerAsync="async/await", batchUpdateWithoutTriggerPromise="promise" %}
 {% content "batchUpdateWithoutTriggerAsync" %}
 ```js
-async function batchUpdate() {
+exports.main = async function batchUpdate() {
   try {
     let User = new BaaS.User()
     let query = new BaaS.Query()

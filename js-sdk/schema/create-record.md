@@ -1,7 +1,27 @@
 # 新增数据记录
 
+`BaaS.TableRecord#save(options)`
+
+**参数说明**
+
+options:
+
+| 参数          | 类型    | 必填 | 默认 | 说明 |
+| :------------ | :------ | :--- | :--- |:--- |
+| expand        | string 或 string[] |  否  | 空字符串 | 是否返回对应字段扩展 |
+
 > **info**
 > 临时用户新增数据记录，请先查看[数据表匿名读写权限特别说明](/js-sdk/schema/#数据表匿名读写权限特别说明)
+
+<!-- 分隔两个 info -->
+> **info**
+> SDK 3.14.5 及以上版本提供单条数据新增返回字段扩展的支持。expand 属性可传入字符串或者包含字符串的数组。例如：
+>
+> `record.save({expand: 'created_by'})`
+>
+> `record.save({expand: ['created_by']})`
+>
+> 有关字段扩展的介绍，请查看[字段扩展](/js-sdk/schema/select-and-expand.html/#字段扩展)。
 
 ## 操作步骤
 

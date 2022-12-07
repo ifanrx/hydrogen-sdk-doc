@@ -8,6 +8,9 @@
 
 {% content "second" %}
 
+> **info**
+> wxParser 文件版已停止维护，推荐使用插件版。
+
 ## 使用步骤
 
 1. 下载 [小程序内容渲染包 wxParser](https://github.com/ifanrx/wxParser/tree/master/wxParser)

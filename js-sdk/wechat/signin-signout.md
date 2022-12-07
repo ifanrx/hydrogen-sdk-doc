@@ -14,9 +14,21 @@
 SDK 提供了快速登录小程序的接口，省去使用微信登录接口时获取 code, session_key 等辅助操作。
 
 > **danger**
-> 从 2018 年 4 月 30 日开始，在小程序的体验版和开发版调用 wx.getUserInfo 接口，将默认调用失败。为应对微信的调整，我们在 SDK v1.4.0 中增加了对新的登录流程的支持，因此也推荐你使用新的 SDK 接口来完成登录和获取用户信息功能。关于最佳的登录实践，可参考 [微信登录能力优化](https://mp.weixin.qq.com/s?__biz=MjM5NDAxMDg4MA==&mid=2650959412&idx=1&sn=9a140ac9622845b4c362ab686a877197)
+> 从 2022 年 11 月 8 日 24 时开始，小程序 `wx.getUserProfile` 和 `wx.getUserInfo` 接口将被微信收回，其中获取用户头像将统一返回默认灰色头像，昵称将统一返回“微信用户”。请参考 [小程序用户头像昵称获取规则调整公告](https://developers.weixin.qq.com/community/develop/doc/00022c683e8a80b29bed2142b56c01)。
+>
+> 为应对微信的调整，小程序 SDK 提供更新头像和昵称支持。通过 `wx.BaaS.auth.getCurrentUser()` 获取当前用户，并执行内置的 `update()` 方法即可达成更新。详见 [设置头像和昵称](../account.md#设置头像和昵称)。
 
-小程序建议的登录流程是，通过 `wx.BaaS.auth.loginWithWechat()` 获取用户 openID, 这时无需弹框授权，开发者拿到 openID 可以建立自身的帐号 ID。当必须要获得用户的头像昵称等信息时，才让用户点击 button（open-type="getUserInfo" ），弹框授权。
+<!-- 分隔符 -->
+> **danger**
+> 从 2021 年 4 月 28 日后发布的小程序新版本，无法通过 wx.getUserInfo 与 `<button open-type="getUserInfo"/>` 获取加密的用户个人信息，而需要通过新增的 getUserProfile 接口获取。请参考 [小程序登录、用户信息相关接口调整说明](https://developers.weixin.qq.com/community/develop/doc/000cacfa20ce88df04cb468bc52801?blockType=1)。
+> 
+> 为应对微信的调整，小程序 SDK v3.18.0 中将会调整 `wx.BaaS.auth.loginWithWechat()` 登录方法，只保留静默登录和一键授权手机号登录两部分，并提供新的更新用户信息方法 `wx.BaaS.auth.updateUserInfo()`。弹框授权个人信息的执行时机将会返回给开发者自行判断。
+
+<!-- 分隔符 -->
+> **info**
+> 注意：新发布的小程序中，开发者在用户登录时可直接获取到 unionID。
+
+小程序建议的登录流程是，可通过 `wx.BaaS.auth.loginWithWechat()` 获取用户 openID，这时无需弹框授权，开发者拿到 openID 可以建立自身的帐号 ID。
 
 ## 静默登录
 
@@ -63,42 +75,49 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 详情请参考 [更新用户名](../account.md) 和 [更新邮箱](../account.md)
 
-## 请求用户授权
+## 用户一键授权手机号登录
 
-开发者需要提供按钮的方式，令用户触发授权操作
+开发者需要提供按钮的方式，令用户触发授权手机号操作，即可通过加密后的手机号，结合 `wx.login()` 获取到的 `code` 进行知晓云微信小程序登录。登录成功后用户表的 `phone_verified` 字段会更新为 `true` ，省掉了验证手机号的过程。
 
-`wx.BaaS.auth.loginWithWechat(data, {createUser, syncUserProfile})`
+`wx.BaaS.auth.loginWithWechat(data, {code, createUser})`
 
 **参数说明**
 
 | 参数            | 类型    | 说明         |
 | :-------------- | :------ | :----------- |
-| data            | object | bindgetuserinfo 事件回调返回的参数 |
+| data            | object | bindgetphonenumber 事件回调返回的参数 |
+| code            | string | 调用 wx.login() 获取的临时登录凭证  |
 | createUser | Boolean | 是否创建用户，默认为 true |
-| syncUserProfile | String | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx` |
-| withUnionID     | Boolean | （SDK version >= 3.8.0）是否使用 [unionid 登录](/js-sdk/wechat/unionid-login.md)，默认为 `false`，可选 |
+
+`code`参数说明：由于在回调中调用 `wx.login()` 登录，可能会刷新登录态，此时服务器使用 `code` 换取的 `sessionKey` 不是加密时使用的 `sessionKey`， 导致解密失败。因此要求开发者提前进行 `wx.login()`。
 
 `createUser` 参数决定了一个新的微信用户第一次登录时的服务端处理行为。
-默认为 `true`，服务端会有该用户创建一个知晓云用户记录。
-当 `createUser` 为 `false` 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见 [多平台用户统一登录](#多平台用户统一登录) 说明
-
-{% include "/js-sdk/frag/_sync_user_profile_param.md" %}
-
-{{ userInfoAlert() }}
+默认为 `true`，服务端会为该用户创建一个知晓云用户记录。
+当 `createUser` 为 `false` 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见 [多平台用户统一登录](#多平台用户统一登录) 说明。
 
 ```html
-<button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
+<button open-type="getPhoneNumber" bindgetphonenumber="phoneNumberHandler" catchtap="wxLogin">用户授权手机号登录</button>
 ```
 
-用户点击该按钮时，会返回获取到的用户信息，其中包括加密的敏感信息，开发者需在回调中调用 `wx.BaaS.loginWithWechat` 方法，以获得解密后的全部用户信息。
+用户点击该按钮时，会触发 `wxLogin()`获取到临时登录凭证 `code`，同时弹出授权手机号面板；点击授权面板会触发 `phoneNumberHandler()` 方法，返回获取到的用户加密手机号信息；开发者需在回调中调用 `wx.BaaS.auth.loginWithWechat` 方法，以使用加密的手机号，结合 `wx.login()` 获取到的 `code` 进行知晓云微信小程序登录。
 
 **请求示例**
 
 ```js
 Page({
   // ...
-  userInfoHandler(data) {
-    wx.BaaS.auth.loginWithWechat(data).then(user => {
+  wxLogin () {
+    wx.login({
+        success: (res) => {
+            // 获取临时登录凭证 code
+        }
+    })
+  },
+  phoneNumberHandler(data) {
+    wx.BaaS.auth.loginWithWechat(data,{
+        // 通过 wx.login() 获取的临时登录凭证 code
+        code: '071Jwd000ACg4L1A1Z300nzYGz1JwLxx'
+    }).then(user => {
         // user 包含用户完整信息，详见下方描述
       }, err => {
         // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
@@ -130,66 +149,94 @@ catch 回调中的 res 对象示例：
 
 res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
+## 更新用户手机号
+
+开发者需要提供按钮的方式，令用户触发授权手机号操作。更新之后，用户表的 phone_verified 字段会更新为 true ，省掉了验证手机号的过程。
+
+`wx.BaaS.auth.updatePhoneNumber(data, {overwrite})`
+
+**参数说明**
+
+| 参数            | 类型    | 说明         |
+| :-------------- | :------ | :----------- |
+| data            | object | bindgetphonenumber 事件回调返回的参数 |
+| overwrite | Boolean | 默认为 true。如果设置为 false，用户原本绑定了其他手机号会返回 400 错误|
+
+```html
+<button open-type="getPhoneNumber" bindgetphonenumber="phoneNumberUpdate">更新用户手机号</button>
+```
+
+用户点击该按钮时，会返回获取到的用户加密手机号信息，开发者需在回调中调用 `wx.BaaS.auth.updatePhoneNumber` 方法，以更新用户手机号。
+
+**请求示例**
+
+```js
+Page({
+  // ...
+  phoneNumberUpdate(data) {
+    wx.BaaS.auth.updatePhoneNumber(data).then(user => {
+        // user 包含用户完整信息，详见下方描述
+      }, err => {
+        // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
+    })
+  },
+  // ...
+})
+```
+
+**用户同意授权返回示例**
+then 回调中的 user 对象为 currentUser 对象，请参考[currentUser 小节](../account.md) ：
+
+
+**用户拒绝授权示例**
+ catch 回调中的 HError 对象示例：
+
+```json
+{
+  "id": 61736923,
+  "openid": "ofo380BgVHDSf3gz0QK1DYPGnLxx",
+  "unionid": "",
+  "code": 603,
+  "message": "unauthorized"
+}
+```
+
+**其他错误**
+catch 回调中的 res 对象示例：
+
+res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 > **info**
-> `wx.BaaS.auth.loginWithWechat` 默认会检查用户是否已登录，若未登录，该接口默认会先执行登录操作
+> `wx.BaaS.auth.updatePhoneNumber` 需要用户已登录，若未登录，该接口会返回 604 错误。
 
 ## 关联微信小程序
 
 通过此方法可将通用注册登录用户（在已登录状态下）关联微信小程序账号。
 
-`UserRecord.linkWechat(data, {syncUserProfile})`
+`UserRecord.linkWechat({withUnionID})`
+
+> **danger**
+> 从 2021 年 4 月 28 日后发布的小程序新版本，无法通过 wx.getUserInfo 与 `<button open-type="getUserInfo"/>` 获取加密的用户个人信息，而需要通过新增的 getUserProfile 接口获取。请参考 [小程序登录、用户信息相关接口调整说明](https://developers.weixin.qq.com/community/develop/doc/000cacfa20ce88df04cb468bc52801?blockType=1)。
+> 
+> 为应对微信的调整，小程序 SDK v3.18.0 中将会调整关联微信小程序方法，只保留 unionid 登录，原有通过 `getUserInfo` 获取用户信息并作参数传入关联微信方法会被废弃。
 
 **参数说明**
 
 | 参数    | 类型    | 说明         |
 | :------| :------ | :----------- |
-| data            | object | bindgetuserinfo 事件回调返回的参数 |
-| syncUserProfile | String | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx` |
 | withUnionID     | Boolean | （SDK version >= 3.8.0）是否使用 [unionid 登录](/js-sdk/wechat/unionid-login.md) 并关联，默认为 `false`，可选 |
 
-{% include "/js-sdk/frag/_sync_user_profile_param.md" %}
-
-{{ userInfoAlert() }}
-
-
 **请求示例**
-
-1. 不获取用户信息:
-
-  ```javascript
-  // 必须在用户通过 login API 登录后才能进行绑定
-  wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
-    // user 为 currentUser 对象
-    return user.linkWechat()
-  }).then(res=>{
-    // success
-    // 用户可以通过微信授权登录同一个账户了
-  })
-  ```
-
-2. 获取用户信息:
-
-  ```html
-  <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
-  ```
-
-  ```js
-  Page({
-    // ...
-    userInfoHandler(data) {
-      // 必须在用户通过 login API 登录后才能进行绑定
-      wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
-        // user 为 currentUser 对象
-        user.linkWechat(data).then(res=>{
-          // 关联成功
-          console.log(res.statusCode)
-        })
-      })
-    },
-    // ...
-  })
-  ```
+```javascript
+// 必须在用户通过 login API 登录后才能进行绑定
+wx.BaaS.auth.login({username: 'ifanrx', password: '111111'}).then(user =>{
+  // user 为 currentUser 对象
+  return user.linkWechat()
+}).then(res=>{
+  // success
+  // 用户可以通过微信授权登录同一个账户了
+})
+```
 
 **返回示例**
 ```JSON
@@ -273,6 +320,192 @@ wx.getUserInfo({
   }
 })
 ```
+
+## 请求用户授权
+
+开发者需要提供按钮的方式，令用户触发授权操作
+
+`wx.BaaS.auth.loginWithWechat(data, {createUser, syncUserProfile})`
+
+**参数说明**
+
+| 参数            | 类型    | 说明         |
+| :-------------- | :------ | :----------- |
+| data            | object | bindgetuserinfo 事件回调返回的参数 |
+| createUser | Boolean | 是否创建用户，默认为 true |
+| syncUserProfile | String | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为`setnx` |
+| withUnionID     | Boolean | （SDK version >= 3.8.0）是否使用 [unionid 登录](/js-sdk/wechat/unionid-login.md)，默认为 `false`，可选 |
+
+`createUser` 参数决定了一个新的微信用户第一次登录时的服务端处理行为。
+默认为 `true`，服务端会有该用户创建一个知晓云用户记录。
+当 `createUser` 为 `false` 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见 [多平台用户统一登录](#多平台用户统一登录) 说明
+
+{% include "/js-sdk/frag/_sync_user_profile_param.md" %}
+
+{{ userInfoAlert() }}
+
+```html
+<button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
+```
+
+用户点击该按钮时，会返回获取到的用户信息，其中包括加密的敏感信息，开发者需在回调中调用 `wx.BaaS.loginWithWechat` 方法，以获得解密后的全部用户信息。
+
+**请求示例**
+
+```js
+Page({
+  // ...
+  userInfoHandler(data) {
+    wx.BaaS.auth.loginWithWechat(data).then(user => {
+        // user 包含用户完整信息，详见下方描述
+      }, err => {
+        // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
+    })
+  },
+  // ...
+})
+```
+
+**用户同意授权返回示例**
+then 回调中的 user 对象为 currentUser 对象，请参考[currentUser 小节](../account.md) ：
+
+
+**用户拒绝授权示例**
+ catch 回调中的 HError 对象示例：
+
+```json
+{
+  "id": 61736923,
+  "openid": "ofo380BgVHDSf3gz0QK1DYPGnLxx",
+  "unionid": "",
+  "code": 603,
+  "message": "unauthorized"
+}
+```
+
+**其他错误**
+catch 回调中的 res 对象示例：
+
+res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+
+> **info**
+> `wx.BaaS.auth.loginWithWechat` 默认会检查用户是否已登录，若未登录，该接口默认会先执行登录操作
+
+
+## <span style="color: #f04134;">`已废弃`</span>  更新用户信息
+
+开发者需要提前调用 `wx.getUserProfile` 获取用户信息，并调用以下方法更新。
+
+`wx.BaaS.auth.updateUserInfo(data, {code, syncUserProfile})`
+
+> **danger**
+> 注意：在微信开发者工具中使用基础库版本小于 2.16.0 并调用 `wx.getUserProfile` 时是无法获取到 iv、rawData、signature 和 encryptedData 等字段的。为应对微信的调整，小程序基础库版本大于等于 2.16.0 时开发者需要先通过 `wx.login` 获取用户登录凭证 `code`，并调用 `wx.getUserProfile` 获取用户信息，再传入 `updateUserInfo` 方法。基础库版本小于 2.16.0 则无需调用 wx.login 方法，直接调用 wx.getUserProfile 即可。
+> 
+> 同时，由于微信限制了 wx.getUserProfile 不能直接在 wx.login 的回调中调用，因此开发者需注意调用方法的顺序。也就是说，先调用 `wx.login` 方法，再调用 `wx.getUserProfile`。SDK 推荐使用 Promise.all 的方式处理上述问题。
+
+<!-- 分隔两个 info -->
+> **info**
+> 由于 `wx.getUserProfile` 必须在点击事件里触发，无法直接在回调中调用，因此开发者需要注意区分登录 `wx.BaaS.auth.loginWithWechat` 和 `wx.getUserProfile` 的调用时机。
+
+**参数说明**
+
+| 参数            | 类型    | 必填         | 说明         |
+| :-------------- | :------  | :------ | :----------- |
+| data            | Object | 是 | wx.getUserProfile 事件回调返回的参数 |
+| code            | Object | 否 | 用户登录凭证，基础库大于等于 2.16.0 时必填 |
+| syncUserProfile | String | 否 | 是否[同步第一层级用户信息](/js-sdk/account.md#同步第一层级用户信息)，可选值为 `overwrite`、`setnx`、`false`，默认值为 `setnx`|
+
+**请求示例**
+
+基础库版本大于等于 `2.16.0`：
+
+```js
+Page({
+  // ...
+  updateUserInfo() {
+    const _getLoginCode = new Promise(resolve => {
+      wx.login({
+        success: res => resolve(res.code)
+      })
+    })
+
+    const _getUserProfile = new Promise(resolve => {
+      wx.getUserProfile({
+        desc: '获取用户信息',
+        success: res => resolve(res)
+      })
+    })
+
+    Promise.all([_getLoginCode, _getUserProfile]).then(result => {
+      const [code, userProfile] = result
+      wx.BaaS.auth.updateUserInfo(userProfile, {code}).then(res => {
+        // user 包含用户完整信息，详见下方描述
+      }, err => {
+        // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
+      })
+    })
+  },
+  // ...
+})
+```
+
+基础库小于 `2.16.0`：
+
+```js
+Page({
+  // ...
+  updateUserInfo() {
+    wx.getUserProfile({
+      desc: '更新用户信息',
+      success: data => {
+        wx.BaaS.auth.updateUserInfo(data).then(user => {
+            // user 包含用户完整信息，详见下方描述
+          }, err => {
+            // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
+        })
+      }
+    })
+  },
+  // ...
+})
+```
+
+**用户同意授权返回示例**
+then 回调中的 user 对象为 currentUser 对象，请参考[currentUser 小节](../account.md) ：
+
+
+**用户拒绝授权示例**
+ catch 回调中的 HError 对象示例：
+
+```json
+{
+  "id": 61736923,
+  "openid": "ofo380BgVHDSf3gz0QK1DYPGnLxx",
+  "unionid": "",
+  "code": 603,
+  "message": "unauthorized"
+}
+```
+
+**其他错误**
+catch 回调中的 res 对象示例：
+
+res 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+
+> **info**
+> `wx.BaaS.auth.updateUserInfo` 需要用户已登录，若未登录，该接口会返回 604 错误。
+> 如果未在控制台开启“允许在 SDK 更新用户信息”开关，该接口会返回 616 错误。
+
+
+## <span style="color: #f04134;">`已废弃`</span>  登入登出（SDK < 3.18.0）
+
+
+> **danger**
+> 从 2018 年 4 月 30 日开始，在小程序的体验版和开发版调用 wx.getUserInfo 接口，将默认调用失败。为应对微信的调整，我们在 SDK v1.4.0 中增加了对新的登录流程的支持，因此也推荐你使用新的 SDK 接口来完成登录和获取用户信息功能。关于最佳的登录实践，可参考 [微信登录能力优化](https://mp.weixin.qq.com/s?__biz=MjM5NDAxMDg4MA==&mid=2650959412&idx=1&sn=9a140ac9622845b4c362ab686a877197)
+
+小程序建议的登录流程是，通过 `wx.BaaS.auth.loginWithWechat()` 获取用户 openID, 这时无需弹框授权，开发者拿到 openID 可以建立自身的帐号 ID。当必须要获得用户的头像昵称等信息时，才让用户点击 button（open-type="getUserInfo" ），弹框授权。
+
 
 ## <span style="color: #f04134;">`已废弃`</span>  登入登出（SDK < 2.0.0）
 

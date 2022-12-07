@@ -8,6 +8,10 @@
 该接口给特定的用户发送一个特定的订阅消息
 
 > **info**
+> 发送 QQ 订阅消息需要 3.11 以上版本。
+
+<!-- 分隔两个 info -->
+> **info**
 > 可以通过查询接口在发送前查询可用订阅
 
 > 智能过滤需要`个人版`及以上套餐版本
@@ -32,6 +36,7 @@ data 是 Object 类型，它包括以下几个属性
 | schema_name     | String | 否   | 数据表名，如果 recipient_type 为 schema_user 则为必填项，表示对该表名的数据表进行用户筛选  |
 | page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
 | can_send_subscription_message  | Boolean | 否   | 是否过滤无效用户  |
+| miniprogram_state  | String | 否   | 跳转小程序类型：developer 为开发版；trial 为体验版；formal 为正式版；默认为正式版  |
 {% else %}
 | 参数            | 类型   | 必填  | 说明 |
 | :-------------- | :----- | :--- | :-- |
@@ -185,7 +190,7 @@ let data = {
   user_profile_filters: {
     "$and": [
       {
-        "is_authorize": true
+        "is_authorized": {"$eq": true}
       },
       {
         "array_field": {
@@ -212,7 +217,7 @@ let data = {
   user_profile_filters: {
     "$and": [
       {
-        "is_authorize": true
+        "is_authorized": {"$eq": true}
       },
       {
         "array_field": {

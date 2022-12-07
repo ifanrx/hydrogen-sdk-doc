@@ -13,19 +13,19 @@ b. 将下载解压后得到的 SDK js 文件放在小程序项目目录中
 <pre>
 <code class="lang-js">
 // app.js
+import './sdk-v{{ book.latestVersionBaidu }}.js'
 
 App({
   onLaunch() {
-    // require SDK
-    require('./sdk-v{{ book.latestVersionBaidu }}')
+    ...
   }
 })
 </code>
 </pre>
 
-### 初始化 SDK
+### 初始化 SDK  
 
-{{ sdkInit.renderIntoPlatform('baidu') }}
+{{ sdkInit.renderIntoPlatform('baidu') }}  
 
 通过初始化 SDK ，知晓云服务可以验证当前的小程序是否是有效合法的，只有通过验证的小程序才能使用 SDK 提供的全部功能。
 

@@ -2,7 +2,31 @@
 
 ## 字段过滤
 
-使用 `Query.keys(...)` 来控制请求返回的字段
+1. 使用 `Query.select(...)` 来控制请求返回的字段
+
+  例如：
+
+  `Query.select("created_by")`
+
+  `Query.select("pointer", "created_by")`
+
+2. 通过 `select("pointer.attr")` 指定 pointer 展开后只返回 pointer 中的某些字段
+
+  > **info**
+  > `pointer` 字段已经设置了 `expand`，该操作才生效，否则会被忽略。
+  >
+  > `expand` 的使用请参照下文「字段扩展」章节
+
+  例如：
+
+  `Query.expand("created_by", "pointer").select("created_by.nickname", "pointer.count")`
+
+> **info**
+> `select("field")` `select("field_a", "field_b")` 为“规定返回”，
+>
+> `select("-field")` `select("-field_a", "-field_b")` 为“规定不返回”，
+>
+> “规定返回”和“规定不返回”不能同时使用，否则该操作不生效，接口将会直接返回所有字段。
 
 **在 `Table.fetchRecord` 方法中使用**
 
@@ -13,10 +37,10 @@ try {
     Query query = new Query();
 
     // 规定返回特定字段
-    query.keys("created_at", "created_by");
+    query.select("created_at", "created_by");
 
     // 规定不返回特定字段
-    query.keys("-created_at", "-created_by");
+    query.select("-created_at", "-created_by");
     Record record = table.fetchRecord(id, query);
 
     // 或者使用便利方法
@@ -36,10 +60,10 @@ try {
     Query query = new Query().offset(0).limit(15);
 
     // 规定返回特定字段
-    query.keys(Record.CREATED_AT, Record.CREATED_BY);
+    query.select(Record.CREATED_AT, Record.CREATED_BY);
 
     // 规定不返回特定字段
-    query.keys("-created_at", "-created_by");
+    query.select("-created_at", "-created_by");
     PagedList<Record> records = table.query(query);
 
     // 操作成功
@@ -48,9 +72,6 @@ try {
 }
 ```
 
-<span class="attention">注：</span>
-
-通过数组控制请求返回字段时，若数组内元素同时存在“规定返回”和“规定不返回”的字段，如：`['-created_at', 'created_by']`。后端服务会忽略掉此次操作，直接返回所有字段。
 
 ## 字段扩展
 

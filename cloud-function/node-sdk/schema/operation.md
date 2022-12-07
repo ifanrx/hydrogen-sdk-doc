@@ -1,19 +1,16 @@
 # 数据导入导出操作
 
-数据的导入、导出任务一旦成功建立，结果将以邮件的形式发送到创建任务的用户邮箱里。
+数据的导入、导出任务一旦成功建立，结果将以邮件的形式发送到企业创建者的邮箱中。
 
 通过 `数据表 ID` 或 `数据表名` 实例化一个 `TableObject` 对象，以下操作都是在该对象上进行操作：
 
-`let MyTableObject = new BaaS.TableObject(tableID | tableName)`
+`let MyTableObject = new BaaS.TableObject(tableID)`
 
 **参数说明**
-
-tableID 和 tableName 二选一，不能同时存在
 
 | 参数名    | 类型    | 说明                                 |
 |-----------|---------|--------------------------------------|
 | tableID   | integer | 数据表的 ID                          |
-| tableName | string  | 数据表名                             |
 
 ## 数据导出
 
@@ -39,9 +36,9 @@ tableID 和 tableName 二选一，不能同时存在
 {% tabs exportDataAsync="async/await", exportDataPromise="promise" %}
 {% content "exportDataAsync" %}
 ```js
-async function exportData() {
+exports.main = async function exportData() {
   try {
-    let MyTableObject = new BaaS.TableObject(tableName)
+    let MyTableObject = new BaaS.TableObject(tableID)
     let res = await MyTableObject.exportData('json', 'all')
     // success
     return res
@@ -55,7 +52,7 @@ async function exportData() {
 {% content "exportDataPromise" %}
 ```js
 function exportData() {
-  let MyTableObject = new BaaS.TableObject(tableName)
+  let MyTableObject = new BaaS.TableObject(tableID)
   MyTableObject.exportData('json', 'all').then(res => {
     // success
     callback(null, res)
@@ -93,10 +90,10 @@ res.data:
 {% tabs importDataAsync="async/await", importDataPromise="promise" %}
 {% content "importDataAsync" %}
 ```js
-async function importData() {
+exports.main = async function importData() {
   try {
     /* url */
-    let MyTableObject = new BaaS.TableObject(tableName)
+    let MyTableObject = new BaaS.TableObject(tableID)
     let res = await MyTableObject.importData({dataFileUrl: dataUrl}, 'csv')
     // success
 
@@ -113,7 +110,7 @@ async function importData() {
 
     /* Buffer */
     let res = await BaaS.request.get(dataUrl)
-    let MyTable = new BaaS.TableObject(tableName)
+    let MyTable = new BaaS.TableObject(tableID)
     let importRes = await MyTable.importData({dataFile: Buffer.from(res.data)}, 'csv')
     // success
     return res
@@ -128,7 +125,7 @@ async function importData() {
 ```js
 function importData() {
   /* url */
-  let MyTableObject = new BaaS.TableObject(tableName)
+  let MyTableObject = new BaaS.TableObject(tableID)
   MyTableObject.importData({dataFileUrl: dataUrl}, 'csv').then(res => {
     // success
     callback(null, res)
@@ -155,7 +152,7 @@ function importData() {
 
   /* Buffer */
   BaaS.request.get(dataUrl).then(res => {
-    let MyTable = new BaaS.TableObject(tableName)
+    let MyTable = new BaaS.TableObject(tableID)
     MyTable.importData({dataFile: Buffer.from(res.data)}, 'csv').then(res => {
       // success
       callback(null, res)

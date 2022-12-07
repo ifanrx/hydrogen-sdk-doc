@@ -231,7 +231,7 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 `createUser` 参数决定了一个新手机号用户第一次登录时的服务端处理行为。
 默认为 `true`，服务端会有该用户创建一个知晓云用户记录。
-当 `createUser` 为 `false` 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见 [多平台用户统一登录](#多平台用户统一登录) 说明
+当 `createUser` 为 `false` 时，服务端会终止登录过程，返回 404 错误码，开发者可根据该返回结果进行多平台账户绑定的处理。详见 [多平台用户统一登录](#多平台用户统一登录) 说明。
 
 **示例代码**
 
@@ -244,6 +244,11 @@ wx.BaaS.auth.loginWithSmsVerificationCode('15000000000', '123456').then(user => 
 })
 ```
 {% endifanrxCodeTabs %}
+
+### 多平台用户统一登录
+如业务需要同时支持多个小程序和 web 端、客户端登录，为解决用户身份统一问题，需要各小程序、客户端的新用户关联到已经注册好的用户账户（如 `email` 注册或手机号注册），才能登录成功。 可以通过 `loginWithXXX` 的参数 `createUser` 设置为 `false`，此时，服务端会判断该用户是否已经有账户记录， 如果没有，则返回 `404` 状态码。开发者可根据此状态码，跳转到需要填写用户名密码页面，进行已有账户的关联或新的账户的创建，完成后，调用 `linkXXX` 方法完成当前小程序或客户端的用户与指定账户的绑定。下一次用户再次调用 `loginWithXXX` 登录时，则会直接登录成功。
+
+详细代码示例见以各平台登录方法说明文档页面中的 `多平台用户统一登录` 一节。
 
 ### 微信小程序登录
 请参考[微信小程序登录](./wechat/signin-signout.md)
@@ -260,14 +265,38 @@ wx.BaaS.auth.loginWithSmsVerificationCode('15000000000', '123456').then(user => 
 ### 百度小程序登录
 请参考[百度小程序登录](./baidu/signin-signout.md)
 
+### 京东小程序登录
+请参考[京东小程序登录](./jingdong/signin-signout.md)
+
+### 字节跳动小程序登录
+请参考[字节跳动小程序登录](./bytedance/signin-signout.md)
+
+### 快手小程序登录
+请参考[快手小程序登录](./kuaishou/signin-signout.md)
+
 ## 关联小程序账户
 用户在完成登录后，可以关联小程序账户，这样用户可以在下次通过多种方式登录同一账户。
 
 ### 关联微信小程序
-请参考[关联微信小程序](./wechat/signin-signout.md)
+请参考[关联微信小程序](./wechat/signin-signout.html#关联微信小程序)
 
 ### 关联支付宝小程序
-请参考[关联支付宝小程序](./alipay/signin-signout.md)
+请参考[关联支付宝账号](./alipay/signin-signout.html#关联支付宝账号)
+
+### 关联 QQ 小程序
+请参考[关联 QQ 小程序](./qq/signin-signout.html#关联-qq-小程序)
+
+### 关联百度小程序
+请参考[关联百度小程序](./baidu/signin-signout.html#关联百度小程序)
+
+### 关联京东小程序
+请参考[关联京东小程序](./jingdong/signin-signout.html#关联京东小程序)
+
+### 关联字节跳动小程序
+请参考[关联字节跳动小程序](./bytedance/signin-signout.html#关联字节跳动小程序)
+
+### 关联快手小程序
+请参考[关联快手小程序](./kuaishou/signin-signout.html#关联快手小程序)
 
 ## 登出
 
@@ -297,7 +326,7 @@ wx.BaaS.auth.logout().then(res => {
 `BaaS.auth.requestPasswordReset({email})`
 
 > **info**
-> 只有通过验证的邮箱才能使用邮件找回密码功能
+> 只有通过验证的邮箱才能使用邮件找回密码功能。[点此查看邮箱验证](https://doc.minapp.com/js-sdk/account.html#%E9%82%AE%E7%AE%B1%E9%AA%8C%E8%AF%81)
 
 **示例代码**
 

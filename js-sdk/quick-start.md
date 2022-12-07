@@ -12,6 +12,8 @@
 * [QQ 小程序](/newbies/qq.md)
 * [百度小程序](/newbies/baidu.md)
 * [字节跳动（头条、抖音等）小程序](/newbies/bytedance.md)
+* [京东小程序](/newbies/jingdong.md)
+* [快手小程序](/newbies/kuaishou.md)
 
 以下以微信小程序平台为例，介绍引入 SDK 并初始化的方法，快速上手使用 SDK 进行开发。
 
@@ -83,11 +85,11 @@ b. 将下载解压后得到的 SDK js 文件放在小程序项目目录中
 <pre>
 <code class="lang-js">
 // app.js
+import './sdk-v{{ book.latestVersionWechat }}.js'
 
 App({
   onLaunch() {
-    // require SDK
-    require('./sdk-v{{ book.latestVersionWechat }}')
+    ...
   }
 })
 </code>

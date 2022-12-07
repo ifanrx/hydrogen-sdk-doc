@@ -33,6 +33,7 @@ exports.main = function helloWorld(event, callback) {
 | timeLimitInMS    | Number           | 当前函数的 timeout 时间                                                                                                     |
 | signKey          | string           | 密钥，用于获取微信小程序的 access token 时解密，使用参考：[获取微信 ACCESS_TOKEN](/cloud-function/node-sdk/access-token.md) |
 | flex_schema_name | String           | 当数据表触发器触发执行云函数时，其值为触发执行的数据表名称，其他情况没有此字段                                              |
+| env              | Object           | 若云函数属于测试环境，则此处传入环境 ID 及名称                                                                                                          |
 
 
 request 结构说明
@@ -62,6 +63,22 @@ request 示例如下
     "openid": null,
     "unionid": null
   }
+}
+```
+
+env 结构说明
+
+| 参数            | 类型    | 描述                               |
+| :-------------- | :------ | :--------------------------------- |
+| id              | String  | 环境 ID                           |
+| name            | String  | 环境名称                           |
+
+env 示例如下
+
+```json
+{
+  "id": "a4d2d62965ddb57fa4xx",
+  "name": "test"
 }
 ```
 

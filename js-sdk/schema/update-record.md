@@ -10,14 +10,35 @@ options（批量更新时需要设置）:
 
 | 参数          | 类型    | 必填 | 默认 | 说明 |
 | :------------ | :------ | :--- | :--- |:--- |
-| enableTrigger | boolean |  否  | true | 是否触发触发器 |
+| enableTrigger | boolean |  否  | `true` | 是否触发触发器 |
 | withCount     | boolean |  否  | `false` | 是否返回 total_count |
+| expand        | string 或 string[] |  否  | 空字符串 | 是否返回对应字段扩展 |
 
 {{totalCount.withCountTips()}}
 
 <!-- 分隔两个 info -->
 > **info**
+> 更新单条记录，若要使用 `enableTrigger`， 则需要 SDK 3.14.4 及以上版本
+
+<!-- 分隔两个 info -->
+> **info**
 > 临时用户更新数据，请先查看[数据表匿名读写权限特别说明](/js-sdk/schema/#数据表匿名读写权限特别说明)
+
+<!-- 分隔两个 info -->
+> **info**
+> SDK 3.14.5 及以上版本提供单条数据更新返回字段扩展的支持。expand 属性可传入字符串或者包含字符串的数组。例如：
+>
+> `record.update({expand: 'created_by'})`
+>
+> `record.update({expand: ['created_by']})`
+>
+> 有关字段扩展的介绍，请查看[字段扩展](/js-sdk/schema/select-and-expand.html/#字段扩展)。
+
+<!-- 分隔两个 info -->
+> **info**
+> 3.15.1 版本前，数据更新操作会结合用户输入数据以及原有的数据行其余字段数据，使用整个数据对象进行保存；
+
+> 3.15.1 版本后（包含 3.15.1），数据更新操作仅会针对用户输入数据对字段进行单独更新。
 
 ## 操作步骤
 
@@ -164,6 +185,69 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | 404            | 数据行不存在    |
 
 
+## 更新 file 类型数据
+
+使用 SDK 1.1.2 及以上版本，操作如下：
+
+{% ifanrxCodeTabs %}
+```js
+let MyFile = new wx.BaaS.File()  // 具体操作查看「文件操作」章节
+MyFile.upload(params).then(res => {
+  product.set('file', res.data.file)
+  product.update().then(res => {
+    console.log(res)
+  }).catch(err=>{
+    console.log(err)
+  })
+})
+```
+{% endifanrxCodeTabs %}
+
+**返回示例**
+
+res 结构如下
+
+```json
+{
+  "statusCode": 200,
+  "data": {
+    "_id": "5bbac6e7bd66033df7fd0aac",
+    "created_at": 1538967271,
+    "created_by": 61736923,
+    "file": {
+      "cdn_path": "1g9LgkbXEdbXwAJT.jpg",
+      "created_at": 1538967271,
+      "id": "5bbac6e6bd66033efcfd0a95",
+      "mime_type": "image/jpeg",
+      "name": "wxc6b86e382a1e3294.o6zAJs5dCuYRqqJOq0MwNPlGiFVM.UxdrZqves41D1cd738e01dc1c7417c03d046e96408cc.jpg",
+      "path": "https://cloud-minapp-11033.cloud.ifanrusercontent.com/1g9LgkbXEdbXwAJT.jpg",
+      "size": 6151
+    },
+    "id": "5bbac6e7bd66033df7fd0aac",
+    "name": "new",
+    "read_perm": ["user:*"],
+    "updated_at": 1538967271,
+    "write_perm": ["user:*"]
+  }
+}
+```
+
+使用 SDK 1.1.2 以下版本，操作如下：
+
+{% ifanrxCodeTabs %}
+```
+wx.BaaS.uploadFile(params).then(res => {
+  let data = JSON.parse(res.data)
+  product.set('file', data.file)
+  product.update()
+})
+  ```
+  {% endifanrxCodeTabs %}
+
+## 更新 geojson 类型数据
+
+查看 [地理位置操作](./geo.md) 章节
+
 ## 更新 object 类型内的属性
 ```javascript
 product.patchObject('obj1', {name: '123'})
@@ -278,7 +362,7 @@ product.update().then(res=>{
 
 | 参数   | 类型              | 必填 | 说明 |
 | :---- | :---------------- | :-- | :-- |
-| key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer |
+| key   | String            | 是  | 在数据表中的类型必须是 Number 或 Integer，也可以为 Object 类型中的 Number 或 Integer 字段，具体参考请求示例 |
 | value | Number 或 Integer | 是  | 与 key 的类型保持一致 |
 
 **请求示例**
@@ -288,6 +372,13 @@ product.incrementBy('amount', 1)
 product.update().then(res => {}, err => {})
 ```
 
+更新数据表里 Object 类型中某个字段是 Number 或 Integer 的数据：
+
+```js
+// 例如现有数据表中类型为 Object 的字段 obj，且具体内容为 {amount: 1}
+product.incrementBy('obj.amount', 1)
+product.update().then(res => {}, err => {})
+```
 
 ## 数组原子性更新
 
@@ -341,7 +432,7 @@ product.uAppend('desc', 'sweet')
 | value | Array 或 Array item | 是  | 如果元素类型是 geojson、object、file，则只能是 Array item，或 length 为 1 的 Array |
 
 > **info**
-> 如果 array 类型字段的子元素类型是 geojson、object 或 file，则 value 只能是 Array item 或 length 为 1 的 Array,
+> 如果 array 类型字段的子元素类型是 geojson、object 或 file，则 value 只能是 Array item,
 > value 数组中多余的项，将会被忽略。
 
 > 下面的操作是能按预期执行的:
@@ -349,10 +440,6 @@ product.uAppend('desc', 'sweet')
 > `product.remove('array_obj', {a: 10})`
 
 > `product.remove('array_obj', [{a: 10}])`
-
-> 下面的 `{a: 30}`，将会被忽略:
-
-> `product.remove('array_obj', [{a: 10}, {a: 30}])`
 
 **请求示例**
 
@@ -377,6 +464,86 @@ let order = Order.getWithoutData(orderID)
 order.set('amount', 10)
 order.set('date', 'abc')
 order.update()
+```
+
+### 从原数组中删除最后一项
+
+`product.pop(key)`
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-- | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+
+**请求示例**
+
+{% ifanrxCodeTabs %}
+```js
+let tableName = 'product'
+let recordID = '59897882ff650c0477f00485'
+let Product = new wx.BaaS.TableObject(tableName)
+let product = Product.getWithoutData(recordID)
+product.pop('array_i') // array_i: [1, 2, 3, 4]
+product.update().then(res => {
+  console.log(res) // array_i: [1, 2, 3]
+}).catch(err => {
+  console.log(err)
+})
+```
+{% endifanrxCodeTabs %}
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "59897882ff650c0477f00485",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "59897882ff650c0477f00485",
+    "array_i": [1, 2, 3]
+}
+```
+
+### 从原组中删除第一项
+
+`product.shift(key)`
+
+**参数说明**
+
+| 参数   | 类型                | 必填 | 说明 |
+| :---- | :------------------ | :-- | :-- |
+| key   | String              | 是  | 在数据表中的类型必须是 Array |
+
+**请求示例**
+
+{% ifanrxCodeTabs %}
+```js
+let tableName = 'product'
+let recordID = '59897882ff650c0477f00485'
+let Product = new wx.BaaS.TableObject(tableName)
+let product = Product.getWithoutData(recordID)
+product.shift('array_i') // array_i: [1, 2, 3, 4]
+product.update().then(res => {
+  console.log(res) // array_i: [2, 3, 4]
+}).catch(err => {
+  console.log(err)
+})
+```
+{% endifanrxCodeTabs %}
+
+**返回示例**
+```json
+{
+  "status": 200,
+  "data": {
+    "_id": "59897882ff650c0477f00485",
+    "created_at": 1541744690,
+    "created_by": 3,
+    "id": "59897882ff650c0477f00485",
+    "array_i": [2, 3, 4]
+}
 ```
 
 ## 按条件批量更新数据项

@@ -62,6 +62,7 @@ qq.subscribeAppMsg({
   tmplIds: [this.data.id],
   subscribe: true,
   success: (res) => {
+    // 用户在真机上同意订阅消息后才上报订阅消息，否则订阅记录无效
     let subscription = []
     subscription.push({
       template_id: this.data.id,
