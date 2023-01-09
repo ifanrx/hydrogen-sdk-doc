@@ -101,15 +101,15 @@ fields 详细参数
 | 字段类型  | 支持的查询操作符                                   |
 | :------ | :--------------                                  |
 | id      | =, in, range, !=, not in                        |
-| string  | =, in, contains, !=, isnull, not in, regex      |
-| integer | =, >, >=, <, <=, in, range, !=, not in, isnull  |
-| number  | =, >, >=, <, <=, in, range, !=, not in, isnull  |
+| string  | =, in, contains, !=, is null, not in, regex      |
+| integer | =, >, >=, <, <=, in, range, !=, not in, is null  |
+| number  | =, >, >=, <, <=, in, range, !=, not in, is null  |
 | boolean | =, exists                                       |
 | array   | =, in, not in, is null, all                     |
 | geojson  | center, intersects, nearsphere                 |
 | date    | =, >, >=, <, <=, range                          |
-| file    | isnull                                          |
-| object  | =, hasKey, isnull                               |
+| file    | is null                                          |
+| object  | =, has_key, is null                               |
 | pointer | =, in, range, !=, not in                        |
 
 操作符介绍及使用规则
@@ -129,7 +129,7 @@ fields 详细参数
 | regex       | 正则表达式                     |
 | not in      | 不存在于在数组中                |
 | is null     | 是否为空                       |
-| hasKey      | 是否存在属性（仅限 Object 类型） |
+| has_key      | 是否存在属性（仅限 Object 类型） |
 | center      | 请参考 [withincircle](/js-sdk/schema/geo.md)  |
 | intersects  | 请参考 [include](/js-sdk/schema/geo.md)       |
 | nearsphere  | 请参考 [withinRegion](/js-sdk/schema/geo.md)  |
