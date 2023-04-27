@@ -429,7 +429,7 @@ options:
 {% tabs batchUpdateAsync="async/await", batchUpdatePromise="promise" %}
 {% content "batchUpdateAsync" %}
 ```js
-async function batchUpdate() {
+exports.main = async function batchUpdate() {
   try {
     let User = new BaaS.User()
     let query = new BaaS.Query()
@@ -523,7 +523,7 @@ function batchUpdate() {
 {% tabs batchUpdateWithoutTriggerAsync="async/await", batchUpdateWithoutTriggerPromise="promise" %}
 {% content "batchUpdateWithoutTriggerAsync" %}
 ```js
-async function batchUpdate() {
+exports.main = async function batchUpdate() {
   try {
     let User = new BaaS.User()
     let query = new BaaS.Query()

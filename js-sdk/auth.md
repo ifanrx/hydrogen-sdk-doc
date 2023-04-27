@@ -326,7 +326,7 @@ wx.BaaS.auth.logout().then(res => {
 `BaaS.auth.requestPasswordReset({email})`
 
 > **info**
-> 只有通过验证的邮箱才能使用邮件找回密码功能
+> 只有通过验证的邮箱才能使用邮件找回密码功能。[点此查看邮箱验证](https://doc.minapp.com/js-sdk/account.html#%E9%82%AE%E7%AE%B1%E9%AA%8C%E8%AF%81)
 
 **示例代码**
 

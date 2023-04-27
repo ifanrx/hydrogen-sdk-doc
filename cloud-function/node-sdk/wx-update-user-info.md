@@ -1,12 +1,16 @@
-# 微信更新用户信息
+# <span style="color: #f04134;">`已废弃`</span>  微信更新用户信息
 
+> **danger**
+> 从 2022 年 11 月 8 日 24 时开始，小程序 `wx.getUserProfile` 和 `wx.getUserInfo` 接口将被微信收回，其中获取用户头像将统一返回默认灰色头像，昵称将统一返回“微信用户”。请参考 [小程序用户头像昵称获取规则调整公告](https://developers.weixin.qq.com/community/develop/doc/00022c683e8a80b29bed2142b56c01)。
+
+<!-- 分隔符 -->
 > **info**
 > SDK >= 3.17.0
 
 <!-- 分隔两个 info -->
 
 > **danger**
-> 从 2021 年 4 月 13 日后发布的小程序新版本，无法通过 wx.getUserInfo 与 `<button open-type="getUserInfo"/>` 获取加密的用户个人信息，而需要通过新增的 getUserProfile 接口获取。请参考 [小程序登录、用户信息相关接口调整说明](https://developers.weixin.qq.com/community/develop/doc/000cacfa20ce88df04cb468bc52801?blockType=1)。
+> 从 2021 年 4 月 28 日后发布的小程序新版本，无法通过 wx.getUserInfo 与 `<button open-type="getUserInfo"/>` 获取加密的用户个人信息，而需要通过新增的 getUserProfile 接口获取。请参考 [小程序登录、用户信息相关接口调整说明](https://developers.weixin.qq.com/community/develop/doc/000cacfa20ce88df04cb468bc52801?blockType=1)。
 > 
 > 为应对微信的调整，云函数 SDK v3.17.0 中将会提供新的更新用户信息方法 `BaaS.wechat.updateUserInfo()`。
 
@@ -41,7 +45,7 @@ exports.main = async function updateUserInfo(event, callback) {
 wx.getUserProfile({
   //...
   success: function(data) {
-    app.BaaS.auth.getCurrentUser().then(user => {
+    wx.BaaS.auth.getCurrentUser().then(user => {
       wx.BaaS.invoke("update_wechat_user_info", {
         userID: user.id,
         data: data,

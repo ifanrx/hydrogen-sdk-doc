@@ -20,6 +20,8 @@
 
 {% if apiPrefix == 'swan' %}
 `{{apiPrefix}}.BaaS.pay(OBJECT, bannedChannels)`
+{% elif apiPrefix == 'wx' %}
+`{{apiPrefix}}.BaaS.pay(OBJECT, fn)`
 {% else %}
 `{{apiPrefix}}.BaaS.pay(OBJECT)`
 {% endif %}
@@ -45,6 +47,12 @@
 | merchandiseRecordID    | String  | N   | 商品数据行 ID，可用于定位用户购买的物品 |
 | merchandiseSnapshot    | Object  | N   | 根据业务需求自定义的数据 |
 | profitSharing          | Boolean | N   | 当前订单是否需要分账。分账操作，请查看[微信直连商户分账](/cloud-function/node-sdk/order.html#微信直连商户分账) |
+
+**fn 参数说明（3.21.5 及以上版本支持）**
+
+| 参数                   | 类型    | 必填 | 参数描述 |
+| :--------------------- | :------ | :-- | :------ |
+| fn              | Function  | N   | 调用该函数可提前获取订单信息如 trade_no, transaction_no。可用于订单查询 |
 
 {{ profitSharing.versionWarning() }}
 <!-- 分隔两个 info -->
@@ -109,6 +117,25 @@
 
 **示例代码**
 
+{% if apiPrefix == 'wx' %}
+```js
+// 支付示例代码
+let params = {
+  totalCost: 0.1,
+  merchandiseDescription: '深蓝色秋裤'
+}
+
+// 可在用户点击支付完成前在 order 中拿到 transaction_no 和 trade_no
+const cb = order => console.log(order)
+
+wx.BaaS.pay(params, cb).then(res => {
+  // success. 支付请求成功响应，可以在 res 中拿到 transaction_no 和支付结果信息
+}, err => {
+  // 未完成用户授权或发生网络异常等
+  console.log(err)
+})
+```
+{% else %}
 ```js
 // 支付示例代码
 let params = {
@@ -123,6 +150,7 @@ let params = {
   console.log(err)
 })
 ```
+{% endif %}
 
 **支付成功返回示例**
 

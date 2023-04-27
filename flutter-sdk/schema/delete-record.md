@@ -68,7 +68,7 @@ try {
 }
 ```
 
-err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+err 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 
 常见错误：
 
@@ -117,7 +117,7 @@ then 回调中的 res 对象结构如下：
 }
 ```
 
-err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
+err 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code.md)
 
 常见错误：
 

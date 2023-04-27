@@ -87,11 +87,12 @@ HError 对象结构请参考[错误码和 HError 对象](/flutter-sdk/error-code
 
 ```Dart
 try {
+  Query query = new Query();
   Where where = Where.compare("age", '=', 25);
-  let query = Query();
   query.where(where);
-  UserList users = await User.find(query);
-}
+
+  UserList users = await User.find(query: query);
+} catch(e) {}
 ```
 
 **参数说明**

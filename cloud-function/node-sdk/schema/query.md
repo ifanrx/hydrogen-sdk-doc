@@ -392,7 +392,7 @@ order 表部分字段结构如下：
 {% tabs queryPointerAsync="async/await", queryPointerPromise="promise" %}
 {% content "queryPointerAsync" %}
 ```js
-async function queryPointer() {
+exports.main = async function queryPointer() {
   try {
     var query = new wx.BaaS.Query()
     var Customer = new BaaS.TableObject('customer')
@@ -576,7 +576,7 @@ let orQuery = BaaS.Query.or(andQuery, query3)
 {% tabs queryTotalAsync="async/await", queryTotalPromise="promise" %}
 {% content "queryTotalAsync" %}
 ```js
-async function queryTotal() {
+exports.main = async function queryTotal() {
   try {
     let Product = new BaaS.TableObject(tableName)
     let query = new BaaS.Query()

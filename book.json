@@ -40,15 +40,15 @@
   ],
   "title": "知晓云平台开发文档 2.0+",
   "variables": {
-    "latestVersionWechat": "3.18.0",
-    "latestVersionAlipay": "3.18.0",
-    "latestVersionWeb": "3.18.0",
-    "latestVersionQQ": "3.18.0",
-    "latestVersionBaidu": "3.18.0",
-    "latestVersionWechatPlugin": "3.18.0",
-    "latestVersionBytedance": "3.18.0",
-    "latestVersionJingdong": "3.18.0",
-    "latestVersionKuaishou": "3.19.1",
+    "latestVersionWechat": "3.22.0",
+    "latestVersionAlipay": "3.22.0",
+    "latestVersionWeb": "3.22.0",
+    "latestVersionQQ": "3.22.0",
+    "latestVersionBaidu": "3.22.0",
+    "latestVersionWechatPlugin": "3.22.0",
+    "latestVersionBytedance": "3.22.0",
+    "latestVersionJingdong": "3.22.0",
+    "latestVersionKuaishou": "3.22.0",
     "imgURLClipDemo": "https://cloud-minapp-6.cloud.ifanrusercontent.com/1fco21YvWNpWfukk.png!/both/400x400"
   },
   "pluginsConfig": {
@@ -93,11 +93,11 @@
       "options": [
         {
           "value": "https://rackt.github.io/history/v1.3.0/",
-          "text": "Version 1.3.0"
+          "text": "Version 2.3.0"
         },
         {
           "value": "https://rackt.github.io/history/v1.4.0/",
-          "text": "Version 1.4.0",
+          "text": "Version 2.4.0",
           "selected": true
         }
       ]

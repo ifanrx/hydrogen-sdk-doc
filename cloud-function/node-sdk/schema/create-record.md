@@ -61,7 +61,7 @@ MyRecord.set(key2, value2)
 {% tabs createProductAsync="async/await", createProductPromise="promise" %}
 {% content "createProductAsync" %}
 ```js
-async function createProduct() {
+exports.main = async function createProduct() {
   try {
     let tableName = 'product'
     let Product = new BaaS.TableObject(tableName)
@@ -189,7 +189,7 @@ product.set('expiration_time', isoStr)
 {% tabs addFileAsync="async/await", addFilePromise="promise" %}
 {% content "addFileAsync" %}
 ```js
-async function addFile() {
+exports.main = async function addFile() {
   try {
     let MyFile = new BaaS.File()
     await MyFile.upload(params)
@@ -344,7 +344,7 @@ user 字段指向了 _userprofile 表中 id 为 69147880 的数据行
 {% tabs addPointerAsync="async/await", addPointerPromise="promise" %}
 {% content "addPointerAsync" %}
 ```js
-async function addPointer() {
+exports.main = async function addPointer() {
   try {
     // 获取一个 tableRecord 实例
     let Comment = new BaaS.TableObject('Comment')
@@ -443,7 +443,7 @@ res 结构如下
 {% tabs createManyAsync="async/await", createManyPromise="promise" %}
 {% content "createManyAsync" %}
 ```js
-async function createMany() {
+exports.main = async function createMany() {
   try {
     let MyTableObject = new BaaS.TableObject(tableName)
 
@@ -600,7 +600,7 @@ MyTableObject.createMany(records, {enableTrigger: false}).then(res => {
 {% tabs setACLAsync="async/await", setACLPromise="promise" %}
 {% content "Async" %}
 ```js
-async function setACL() {
+exports.main = async function setACL() {
   try {
     let Product = new BaaS.TableObject('product')
     let record = Product.create()

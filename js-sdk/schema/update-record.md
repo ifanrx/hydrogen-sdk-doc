@@ -185,6 +185,69 @@ err 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | 404            | 数据行不存在    |
 
 
+## 更新 file 类型数据
+
+使用 SDK 1.1.2 及以上版本，操作如下：
+
+{% ifanrxCodeTabs %}
+```js
+let MyFile = new wx.BaaS.File()  // 具体操作查看「文件操作」章节
+MyFile.upload(params).then(res => {
+  product.set('file', res.data.file)
+  product.update().then(res => {
+    console.log(res)
+  }).catch(err=>{
+    console.log(err)
+  })
+})
+```
+{% endifanrxCodeTabs %}
+
+**返回示例**
+
+res 结构如下
+
+```json
+{
+  "statusCode": 200,
+  "data": {
+    "_id": "5bbac6e7bd66033df7fd0aac",
+    "created_at": 1538967271,
+    "created_by": 61736923,
+    "file": {
+      "cdn_path": "1g9LgkbXEdbXwAJT.jpg",
+      "created_at": 1538967271,
+      "id": "5bbac6e6bd66033efcfd0a95",
+      "mime_type": "image/jpeg",
+      "name": "wxc6b86e382a1e3294.o6zAJs5dCuYRqqJOq0MwNPlGiFVM.UxdrZqves41D1cd738e01dc1c7417c03d046e96408cc.jpg",
+      "path": "https://cloud-minapp-11033.cloud.ifanrusercontent.com/1g9LgkbXEdbXwAJT.jpg",
+      "size": 6151
+    },
+    "id": "5bbac6e7bd66033df7fd0aac",
+    "name": "new",
+    "read_perm": ["user:*"],
+    "updated_at": 1538967271,
+    "write_perm": ["user:*"]
+  }
+}
+```
+
+使用 SDK 1.1.2 以下版本，操作如下：
+
+{% ifanrxCodeTabs %}
+```
+wx.BaaS.uploadFile(params).then(res => {
+  let data = JSON.parse(res.data)
+  product.set('file', data.file)
+  product.update()
+})
+  ```
+  {% endifanrxCodeTabs %}
+
+## 更新 geojson 类型数据
+
+查看 [地理位置操作](./geo.md) 章节
+
 ## 更新 object 类型内的属性
 ```javascript
 product.patchObject('obj1', {name: '123'})
@@ -369,7 +432,7 @@ product.uAppend('desc', 'sweet')
 | value | Array 或 Array item | 是  | 如果元素类型是 geojson、object、file，则只能是 Array item，或 length 为 1 的 Array |
 
 > **info**
-> 如果 array 类型字段的子元素类型是 geojson、object 或 file，则 value 只能是 Array item 或 length 为 1 的 Array,
+> 如果 array 类型字段的子元素类型是 geojson、object 或 file，则 value 只能是 Array item,
 > value 数组中多余的项，将会被忽略。
 
 > 下面的操作是能按预期执行的:
@@ -377,10 +440,6 @@ product.uAppend('desc', 'sweet')
 > `product.remove('array_obj', {a: 10})`
 
 > `product.remove('array_obj', [{a: 10}])`
-
-> 下面的 `{a: 30}`，将会被忽略:
-
-> `product.remove('array_obj', [{a: 10}, {a: 30}])`
 
 **请求示例**
 
