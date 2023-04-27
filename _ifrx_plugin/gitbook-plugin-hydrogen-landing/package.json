@@ -27,9 +27,9 @@
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^8.2.1",
     "vue-style-loader": "^1.0.0",
-    "webpack": "^1.12.2",
+    "webpack": "^1.15.0",
     "webpack-assets-manifest": "1",
-    "webpack-dev-server": "^1.12.0"
+    "webpack-dev-server": "^1.16.5"
   },
   "dependencies": {
     "babel-runtime": "^6.0.0",
