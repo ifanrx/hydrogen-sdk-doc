@@ -3,6 +3,13 @@
 > **info**
 > SDK >= 3.14
 
+<!-- 分隔上下两个 info，请不要删除 -->
+
+> **info**
+> 1.每个 URL Scheme 或 URL Link 有效期最长为 30 天
+> 
+> 2.每个独立的链接被用户访问后，仅此用户可以再次访问并打开对应小程序，其他用户无法再次通过相同链接打开该小程序
+
 ## 获取微信小程序 URL Scheme 码列表
 
 `BaaS.wechat.UrlScheme#getUrlSchemeList()`
@@ -80,7 +87,7 @@ options 是对象类型,包含以下参数:
 
 | 参数        | 类型    | 必填 | 说明                                                                                                                 |
 | :---------- | :------ | :--- | :------------------------------------------------------------------------------------------------------------------- |
-| is_expire   | Boolean | Y    | 生成的 scheme 码类型，到期失效：true，永久有效：false，默认 false                                                    |
+| is_expire   | Boolean | Y    | 生成的 scheme 码类型，到期失效：true，必须传入 true                                                   |
 | expire_time | Integer | N    | 到期失效的 scheme 码的失效时间，为 Unix 时间戳。生成的到期失效 scheme 码在该时间前有效。生成到期失效的 scheme 时必填 |
 | jump_wxa    | Object  | N    | 跳转到的目标小程序信息，非必填                                                                                       |
 
