@@ -85,10 +85,8 @@ let data = {
     }
   },
   subscription_message_rate_limit: {
-    {
-      "interval": 10,  // 间隔秒数
-      "limit": 1000    // 每批数量
-    }
+    "interval": 10,  // 间隔秒数
+    "limit": 1000    // 每批数量
   }
 }
 
