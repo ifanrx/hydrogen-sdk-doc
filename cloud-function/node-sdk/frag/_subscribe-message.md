@@ -37,6 +37,9 @@ data 是 Object 类型，它包括以下几个属性
 | page            | String | 否   | 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数。该字段不填则模板无跳转。|
 | can_send_subscription_message  | Boolean | 否   | 是否过滤无效用户  |
 | miniprogram_state  | String | 否   | 跳转小程序类型：developer 为开发版；trial 为体验版；formal 为正式版；默认为正式版  |
+| subscription_message_rate_limit  | Object | 否   | 订阅消息限流控制，参数详见下方 RateLimit 类型说明  |
+| template_message_rate_limit  | Object | 否   | 模版消息限流控制，参数详见下方 RateLimit 类型说明  |
+
 {% else %}
 | 参数            | 类型   | 必填  | 说明 |
 | :-------------- | :----- | :--- | :-- |
@@ -80,6 +83,10 @@ let data = {
     number01: {
       value: "50.5",
     }
+  },
+  subscription_message_rate_limit: {
+    "interval": 10,  // 间隔秒数
+    "limit": 1000    // 每批数量
   }
 }
 
