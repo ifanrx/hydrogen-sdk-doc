@@ -202,6 +202,86 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 > **info**
 > file 字段可用于含有 file 类型的数据表的数据操作，详细见 [新增数据项](../schema/create-record.md)
 
+## 大文件断点续传
+
+`MyFile.multipartUpload(fileParams, metaData)`
+
+为大文件上传提供断点续传功能。断点续传未完成的文件，会保存 24 小时，超过后，文件会被删除。
+
+> **info**
+> SDK >= 3.23
+
+**fileParams 参数说明（必须）**
+
+| 参数                 |  类型   | 必填 | 说明 |
+| :-------------------| :----- | :--- | :--------- |
+| fileParams.fileObj | String |  Y  | 文件对象（在 Web 端上传时提供该参数）|
+| fileParams.fileName | String | N | 文件名 |
+
+**metaData 参数说明（可选）**
+
+| 参数                   |  类型  | 必填 | 说明 |
+| :---------------------| :----- | :--- | :--- |
+| metaData.categoryID   | String |  N  | 要上传的文件分类 ID |
+| metaData.categoryName | String |  N  | 要上传的文件分类名 |
+| metaData.randomFileLink | String | N | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true |
+
+> **info**
+> 1.请勿同时填写 categoryID 和 categoryName，默认只使用 categoryID
+
+> 2.randomFileLink 举例说明：
+
+> `metaData.randomFileLink` 为 `true` 时，如果 `fileParams.fileName` 为 `avatar.png`，
+> 则返回值中 res.data.file.path 为 `https://cloud-minapp-xxx.cloud.ifanrusercontent.com/1j6ZGvnzSpJ7YBZ8.png`
+
+> `metaData.randomFileLink` 为 `false` 时，如果 `fileParams.fileName` 为 `avatar.png`，
+> 则返回值中 res.data.file.path 为 `https://cloud-minapp-xxx.cloud.ifanrusercontent.com/avatar.png`
+
+**返回参数说明**
+
+res.data:
+
+|   参数  | 类型   | 说明 |
+| :----- | :----- | :-- |
+| status | String | 成功返回 'ok' |
+| path   | String | 上传成功后的访问地址 URL |
+| file   | Object | 包含文件详细信息，详见以下 |
+
+file 参数说明：
+
+| 参数        |  类型  | 说明 |
+| :--------- | :----- | :------ |
+| path       | String | 上传成功后的访问地址 URL |
+| cdn_path   | String | 文件在 CDN 中的相对路径 |
+| created_at | String | 文件上传时间 |
+| id         | Object | 文件 ID |
+| mime_type  | String | 文件媒体类型 |
+| name       | String | 文件名 |
+| size       | Number | 以字节为单位 |
+
+**示例代码**
+
+{% tabs first="Web" %}
+
+{% content "first" %}
+```html
+<input type="file" id="file">
+```
+```javascript
+var f = document.getElementById('file')
+
+f.addEventListener('change', function(e) {
+   let File = new BaaS.File()
+   let fileParams = {fileObj: e.target.files[0]}
+
+   File.multipartUpload(fileParams).then(res => {
+     console.log(res)
+   }, err => {
+   // HError
+   })
+})
+```
+{% endtabs %}
 
 ## 获取文件详情
 
