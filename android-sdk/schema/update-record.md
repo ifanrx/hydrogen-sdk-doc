@@ -513,7 +513,7 @@ table.batchUpdateInBackground(query, updateOption, new BaseCallback<BatchResult>
 
 ```json
 {
-    "statys": "ok",
+    "status": "ok",
     "operation_id": 1 // 可以用来查询到最终执行的结果
 }
 ```

@@ -702,7 +702,7 @@ records.update({enableTrigger: false}).then(res => {}, err => {})
 {
   "statusCode": 200, // 200 表示更新成功, 注意这不代表所有数据都更新成功，具体要看 operation_result 字段
   "data": {
-    "statys": "ok",
+    "status": "ok",
     "operation_id": 1 // 可以用来查询到最终执行的结果
   }
 }

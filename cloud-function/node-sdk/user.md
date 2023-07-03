@@ -611,7 +611,7 @@ function batchUpdate() {
 {
   "status": 200,
   "data": {
-    "statys": "ok",
+    "status": "ok",
     "operation_id": 1 // 可以用来查询到最终执行的结果
   }
 }
