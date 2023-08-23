@@ -261,9 +261,27 @@ file 参数说明：
 
 **示例代码**
 
-{% tabs first="Web" %}
+{% tabs lgFirst="微信小程序", lgSecond="Web" , lgThird="支付宝小程序" %}
 
-{% content "first" %}
+{% content "lgFirst" %}
+```javascript
+wx.chooseVideo({
+  success: function (res) {
+    let File = new app.BaaS.File()
+    let fileParams = { filePath: res.tempFilePath, fileSize: res.size }
+    // 方式一，参数为文件分类名
+    let metaData = {categoryName: 'SDK'}
+    File.multipartUpload(fileParams, metaData)
+    .then(
+      res => {
+        ...
+      },
+    )
+  }
+})
+```
+
+{% content "lgSecond" %}
 ```html
 <input type="file" id="file">
 ```
@@ -279,6 +297,24 @@ f.addEventListener('change', function(e) {
    }, err => {
    // HError
    })
+})
+```
+
+{% content "lgThird" %}
+```javascript
+my.chooseVideo({
+  success: function (res) {
+    let File = new app.BaaS.File()
+    let fileParams = { filePath: res.tempFilePath, fileSize: res.size }
+    // 方式一，参数为文件分类名
+    let metaData = {categoryName: 'SDK'}
+    File.multipartUpload(fileParams, metaData)
+    .then(
+      res => {
+        ...
+      },
+    )
+  }
 })
 ```
 {% endtabs %}
