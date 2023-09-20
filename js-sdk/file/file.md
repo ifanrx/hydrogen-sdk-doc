@@ -40,7 +40,7 @@
 | :---------------------| :----- | :--- | :--- |
 | metaData.categoryID   | String |  N  | 要上传的文件分类 ID |
 | metaData.categoryName | String |  N  | 要上传的文件分类名 |
-| metaData.randomFileLink | String | N | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true(v3.21.0 版本新增) |
+| metaData.randomFileLink | Boolean | N | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true(v3.21.0 版本新增) |
 
 > **info**
 > 1.请勿同时填写 categoryID 和 categoryName，默认只使用 categoryID
@@ -224,7 +224,7 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 | :---------------------| :----- | :--- | :--- |
 | metaData.categoryID   | String |  N  | 要上传的文件分类 ID |
 | metaData.categoryName | String |  N  | 要上传的文件分类名 |
-| metaData.randomFileLink | String | N | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true |
+| metaData.randomFileLink | Boolean | N | 是否使用随机字符串作为文件的下载地址，不随机可能会覆盖之前的文件，默认为 true |
 
 > **info**
 > 1.请勿同时填写 categoryID 和 categoryName，默认只使用 categoryID
