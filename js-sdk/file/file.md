@@ -177,7 +177,7 @@ f.addEventListener('change', function(e) {
 ```js
 my.chooseImage({
   success: function(res) {
-    let MyFile = new wx.BaaS.File()
+    let MyFile = new my.BaaS.File()
     let fileParams = {
       filePath: res.apFilePaths[0],
       fileType: 'image',
@@ -267,7 +267,7 @@ file 参数说明：
 ```javascript
 wx.chooseVideo({
   success: function (res) {
-    let File = new app.BaaS.File()
+    let File = new wx.BaaS.File()
     let fileParams = { filePath: res.tempFilePath, fileSize: res.size }
     // 方式一，参数为文件分类名
     let metaData = {categoryName: 'SDK'}
@@ -304,7 +304,7 @@ f.addEventListener('change', function(e) {
 ```javascript
 my.chooseVideo({
   success: function (res) {
-    let File = new app.BaaS.File()
+    let File = new my.BaaS.File()
     let fileParams = { filePath: res.tempFilePath, fileSize: res.size }
     // 方式一，参数为文件分类名
     let metaData = {categoryName: 'SDK'}
