@@ -215,6 +215,8 @@ HError 对象结构请参考[错误码和 HError 对象](/js-sdk/error-code.md)
 
 | 参数                 |  类型   | 必填 | 说明 |
 | :-------------------| :----- | :--- | :--------- |
+| fileParams.filePath | String |  Y  | 本地文件资源路径（小程序上传时提供该参数） |
+| fileParams.size | integer |  Y  | 本地文件大小（小程序上传时提供该参数） |
 | fileParams.fileObj | String |  Y  | 文件对象（在 Web 端上传时提供该参数）|
 | fileParams.fileName | String | N | 文件名 |
 
