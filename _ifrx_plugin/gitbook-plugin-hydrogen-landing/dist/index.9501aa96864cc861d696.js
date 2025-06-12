@@ -82,11 +82,52 @@
 
 	  var node = document.createElement('a');
 	  node.id = 'ifanrx-customer-btn';
-	  node.title = '提工单';
-	  node.href = 'http://support.minapp.com/hc/';
-	  node.target = '_blank';
+	  node.title = '提交工单';
 	  node.innerHTML = '<p>提交工单</p>';
+	  node.style.cursor = 'pointer';
+	  node.addEventListener('click', function (e) {
+	    e.preventDefault();
+	    showTicketModal();
+	  });
 	  document.body.appendChild(node);
+	}
+
+	function showTicketModal() {
+	  var modal = document.querySelector('#ifanrx-customer-modal');
+	  if (!modal) {
+	    modal = document.createElement('div');
+	    modal.id = 'ifanrx-customer-modal';
+	    modal.innerHTML = '\n      <div class="ifrx-modal-mask"></div>\n      <div class="ifrx-modal-content">\n        <span class="ifrx-modal-close" id="ifrx-modal-close-btn">&times;</span>\n        <h2 class="ifrx-modal-title">\u63D0\u4EA4\u5DE5\u5355</h2>\n        <div class="ifrx-modal-desc">\n          \u5982\u9700\u63D0\u4EA4\u5DE5\u5355\uFF0C\u8BF7\u53D1\u9001\u90AE\u4EF6\u81F3\n          <a href="mailto:mincloud@ifanr.com" class="ifrx-modal-mail" id="ifrx-modal-mail-link">mincloud@ifanr.com</a>\uFF0C\n          \u6211\u4EEC\u5C06\u5C3D\u5FEB\u4E3A\u60A8\u5904\u7406\uFF0C\u8C22\u8C22\uFF01\n        </div>\n        <button class="ifrx-modal-copy-btn" id="ifrx-modal-copy-btn">\u590D\u5236\u90AE\u7BB1</button>\n      </div>\n    ';
+	    document.body.appendChild(modal);
+
+	    document.getElementById('ifrx-modal-close-btn').onclick = function () {
+	      modal.style.display = 'none';
+	    };
+	    modal.querySelector('.ifrx-modal-mask').onclick = function () {
+	      modal.style.display = 'none';
+	    };
+
+	    document.getElementById('ifrx-modal-copy-btn').onclick = function () {
+	      var _this = this;
+
+	      var email = 'mincloud@ifanr.com';
+	      if (navigator.clipboard) {
+	        navigator.clipboard.writeText(email);
+	      } else {
+	        var input = document.createElement('input');
+	        input.value = email;
+	        document.body.appendChild(input);
+	        input.select();
+	        document.execCommand('copy');
+	        document.body.removeChild(input);
+	      }
+	      this.innerText = '已复制';
+	      setTimeout(function () {
+	        _this.innerText = '复制邮箱';
+	      }, 1500);
+	    };
+	  }
+	  modal.style.display = 'block';
 	}
 
 	function addPlanningBtn() {
@@ -159,7 +200,7 @@
 	    addRecordNumber();
 
 	    setTimeout(function () {
-	      $(".book-body .page-inner").append('<div id="vote-container"></div>');
+	      $('.book-body .page-inner').append('<div id="vote-container"></div>');
 	      sidebarScrollIntoView();
 	      initVueInstance();
 	    }, 300);
@@ -10718,7 +10759,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-22d18702/app-selector.vue"
+	  var id = "_v-07f167ff/app-selector.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -12021,7 +12062,7 @@
 	    },
 	    template: '<vote v-bind:page-id="id" />',
 	    components: {
-	      'vote': vote
+	      vote: vote
 	    }
 	  });
 	};
@@ -12036,7 +12077,7 @@
 	__vue_script__ = __webpack_require__(81)
 	if (Object.keys(__vue_script__).some(function (key) { return key !== "default" && key !== "__esModule" })) {
 	  console.warn("[vue-loader] src/js/components/vote.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(85)
+	__vue_template__ = __webpack_require__(90)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -12052,7 +12093,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-87d8613e/vote.vue"
+	  var id = "_v-3d0efd5e/vote.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -12076,8 +12117,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-87d8613e&scoped=true!../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./vote.vue", function() {
-				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-87d8613e&scoped=true!../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./vote.vue");
+			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3d0efd5e&scoped=true!../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./vote.vue", function() {
+				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3d0efd5e&scoped=true!../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./vote.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12095,7 +12136,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#vote[_v-87d8613e] {\n  border: solid 1px lightgrey;\n  margin-top: 40px;\n  padding: 20px;\n  border-radius: 5px;\n  font-size: 14px;\n  color: #333;\n}\n\n#vote img[_v-87d8613e] {\n  width: 25px;\n  height: 25px;\n}\n\n#vote .title[_v-87d8613e] {\n  font-size: 18px;\n  font-weight: bold;\n}\n\n#vote .vote-info[_v-87d8613e] {\n  margin: 20px 0;\n  display: -ms-flexbox;\n  display: flex;\n}\n\n#vote .vote-info .vote[_v-87d8613e] {\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: center;\n      justify-content: center;\n  -ms-flex-align: center;\n      align-items: center;\n  cursor: pointer;\n}\n\n#vote .vote-info .down-vote[_v-87d8613e] {\n  margin-left: 30px;\n}\n\n#vote .vote-count[_v-87d8613e] {\n  margin-left: 5px;\n}\n\n#vote .iconfont[_v-87d8613e] {\n  font-size: 25px;\n}\n\n#vote .iconfont.icon-up-vote-active[_v-87d8613e],\n#vote .iconfont.icon-down-vote-active[_v-87d8613e] {\n  color: #128bf8;\n}\n", ""]);
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#vote[_v-3d0efd5e] {\n  padding: 20px;\n  margin-top: 40px;\n  font-size: 14px;\n  color: #333;\n  border: solid 1px lightgrey;\n  border-radius: 5px;\n}\n\n#vote img[_v-3d0efd5e] {\n  width: 25px;\n  height: 25px;\n}\n\n#vote .title[_v-3d0efd5e] {\n  font-size: 18px;\n  font-weight: bold;\n}\n\n#vote .vote-info[_v-3d0efd5e] {\n  display: -ms-flexbox;\n  display: flex;\n  margin: 20px 0;\n}\n\n#vote .vote-info .vote[_v-3d0efd5e] {\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-align: center;\n      align-items: center;\n  -ms-flex-pack: center;\n      justify-content: center;\n  cursor: pointer;\n}\n\n#vote .vote-info .down-vote[_v-3d0efd5e] {\n  margin-left: 30px;\n}\n\n#vote .vote-count[_v-3d0efd5e] {\n  margin-left: 5px;\n}\n\n#vote .iconfont[_v-3d0efd5e] {\n  font-size: 25px;\n}\n\n#vote .iconfont.icon-up-vote-active[_v-3d0efd5e],\n#vote .iconfont.icon-down-vote-active[_v-3d0efd5e] {\n  color: #128bf8;\n}\n\n#vote .help-link[_v-3d0efd5e] {\n  color: #008cff;\n  cursor: pointer;\n}\n\n#vote .help-link[_v-3d0efd5e]:hover {\n  text-decoration: underline;\n}\n", ""]);
 
 	// exports
 
@@ -12334,8 +12375,10 @@
 	var downvoteIcon = __webpack_require__(84);
 	var constants = __webpack_require__(72);
 	var utils = __webpack_require__(73);
+	var TicketModal = __webpack_require__(85);
 
 	module.exports = {
+	  components: { 'ticket-modal': TicketModal },
 	  name: 'vote',
 	  delimiters: ['[[', ']]'],
 	  props: ['pageId'],
@@ -12348,7 +12391,7 @@
 	      hasAddDownvote: false,
 	      upvoteIcon: upvoteIcon,
 	      downvoteIcon: downvoteIcon,
-	      supportUrl: 'http://support.minapp.com/hc/'
+	      ticketModalVisible: false
 	    };
 	  },
 	  created: function created() {
@@ -12478,9 +12521,124 @@
 
 /***/ }),
 /* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
+	__webpack_require__(86)
+	__vue_script__ = __webpack_require__(88)
+	if (Object.keys(__vue_script__).some(function (key) { return key !== "default" && key !== "__esModule" })) {
+	  console.warn("[vue-loader] src/js/components/ticket-modal.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(89)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+	if (__vue_template__) {
+	__vue_options__.template = __vue_template__
+	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-342143c0/ticket-modal.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(87);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(80)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-342143c0&scoped=true!../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ticket-modal.vue", function() {
+				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-342143c0&scoped=true!../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ticket-modal.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.ifrx-modal-wrapper[_v-342143c0] {\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 9999;\n}\n\n.ifrx-modal-mask[_v-342143c0] {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  background: rgba(0, 0, 0, 0.25);\n}\n\n.ifrx-modal-content[_v-342143c0] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  min-width: 420px;\n  padding: 40px 48px 32px 48px;\n  background: #fff;\n  border-radius: 12px;\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);\n  transform: translate(-50%, -50%);\n}\n\n.ifrx-modal-title[_v-342143c0] {\n  margin-bottom: 24px;\n  font-size: 26px;\n  font-weight: bold;\n  color: #333;\n}\n\n.ifrx-modal-desc[_v-342143c0] {\n  margin-bottom: 32px;\n  font-size: 18px;\n  color: #333;\n}\n\n.ifrx-modal-mail[_v-342143c0] {\n  color: #008cff;\n}\n\n.ifrx-modal-mail[_v-342143c0]:hover {\n  color: #008cff;\n}\n\n.ifrx-modal-copy-btn[_v-342143c0] {\n  display: block;\n  width: 136px;\n  padding: 10px 0;\n  margin-left: auto;\n  font-size: 18px;\n  color: #fff;\n  text-align: center;\n  cursor: pointer;\n  background: #008cff;\n  border: none;\n  border-radius: 24px;\n  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.08);\n  transition: background 0.2s;\n}\n\n.ifrx-modal-close[_v-342143c0] {\n  position: absolute;\n  top: 24px;\n  right: 24px;\n  font-size: 28px;\n  font-weight: bold;\n  color: #b0bec5;\n  cursor: pointer;\n  transition: color 0.2s;\n}\n\n.ifrx-modal-close[_v-342143c0]:hover {\n  color: #008cff;\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 88 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<div id=\"vote\" _v-87d8613e=\"\">\n  <div class=\"title\" _v-87d8613e=\"\">文档对你是否有帮助？</div>\n  <div class=\"vote-info\" _v-87d8613e=\"\">\n    <div class=\"vote up-vote\" @click=\"vote('up')\" _v-87d8613e=\"\">\n      <i class=\"iconfont\" :class=\"{'icon-up-vote': !hasAddUpvote, 'icon-up-vote-active': hasAddUpvote}\" _v-87d8613e=\"\"></i>\n      <div class=\"vote-count\" _v-87d8613e=\"\">[[upvote]]</div>\n    </div>\n    <div class=\"vote down-vote\" @click=\"vote('down')\" _v-87d8613e=\"\">\n      <i class=\"iconfont\" :class=\"{'icon-down-vote': !hasAddDownvote, 'icon-down-vote-active': hasAddDownvote}\" _v-87d8613e=\"\"></i>\n      <div class=\"vote-count\" _v-87d8613e=\"\">[[downvote]]</div>\n    </div>\n  </div>\n  <div class=\"help\" _v-87d8613e=\"\">如果开发遇到问题，你可以<a :href=\"supportUrl\" target=\"_blank\" _v-87d8613e=\"\">提交工单</a>寻求帮助。</div>\n</div>\n";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  name: 'TicketModal',
+	  delimiters: ['[[', ']]'],
+	  data: function data() {
+	    return {
+	      email: 'mincloud@ifanr.com',
+	      copyText: '复制邮箱'
+	    };
+	  },
+
+	  methods: {
+	    close: function close() {
+	      this.$emit('close');
+	    },
+	    onCopy: function onCopy() {
+	      var _this = this;
+
+	      navigator.clipboard.writeText(this.email);
+	      this.copyText = '已复制';
+	      setTimeout(function () {
+	        _this.copyText = '复制邮箱';
+	      }, 1500);
+	    }
+	  }
+	};
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports) {
+
+	module.exports = "\n<div class=\"ifrx-modal-wrapper\" _v-342143c0=\"\">\n  <div class=\"ifrx-modal-mask\" @click=\"close\" _v-342143c0=\"\"></div>\n  <div class=\"ifrx-modal-content\" _v-342143c0=\"\">\n    <span class=\"ifrx-modal-close\" @click=\"close\" _v-342143c0=\"\">×</span>\n    <h2 class=\"ifrx-modal-title\" _v-342143c0=\"\">提交工单</h2>\n    <div class=\"ifrx-modal-desc\" _v-342143c0=\"\">\n      如需提交工单，请发送邮件至\n      <a :href=\"`mailto:${email}`\" class=\"ifrx-modal-mail\" _v-342143c0=\"\">[[email]]</a>，我们将尽快为您处理，谢谢！\n    </div>\n    <button class=\"ifrx-modal-copy-btn\" @click=\"onCopy\" _v-342143c0=\"\">[[copyText]]</button>\n  </div>\n</div>\n";
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports) {
+
+	module.exports = "\n<div id=\"vote\" _v-3d0efd5e=\"\">\n  <div class=\"title\" _v-3d0efd5e=\"\">文档对你是否有帮助？</div>\n  <div class=\"vote-info\" _v-3d0efd5e=\"\">\n    <div class=\"vote up-vote\" @click=\"vote('up')\" _v-3d0efd5e=\"\">\n      <i class=\"iconfont\" :class=\"{ 'icon-up-vote': !hasAddUpvote, 'icon-up-vote-active': hasAddUpvote }\" _v-3d0efd5e=\"\"></i>\n      <div class=\"vote-count\" _v-3d0efd5e=\"\">[[upvote]]</div>\n    </div>\n    <div class=\"vote down-vote\" @click=\"vote('down')\" _v-3d0efd5e=\"\">\n      <i class=\"iconfont\" :class=\"{ 'icon-down-vote': !hasAddDownvote, 'icon-down-vote-active': hasAddDownvote }\" _v-3d0efd5e=\"\"></i>\n      <div class=\"vote-count\" _v-3d0efd5e=\"\">[[downvote]]</div>\n    </div>\n  </div>\n  <div class=\"help\" _v-3d0efd5e=\"\">\n    如果开发遇到问题，你可以<span class=\"help-link\" @click=\"ticketModalVisible = true\" _v-3d0efd5e=\"\">提交工单</span>寻求帮助。\n  </div>\n  <ticket-modal v-if=\"ticketModalVisible\" @close=\"ticketModalVisible = false\" _v-3d0efd5e=\"\"></ticket-modal>\n</div>\n";
 
 /***/ })
 /******/ ]);
