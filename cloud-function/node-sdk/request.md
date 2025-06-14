@@ -22,12 +22,11 @@ exports.main = function testSDKNetwork(event, callback) {
 更多用法，你可以参考 axios 的 [文档](https://github.com/axios/axios)
 
 > **warning**
-> 即日起，我们对网络请求出口 IP 进行扩容升级，请及时更新 IP 白名单。
+> 我们正在进行网络请求出口 IP 的扩容升级，以提供更稳定可靠的服务。请及时将以下 IP 地址更新至您的白名单配置中。
 
-> **info**
-> 网络请求出口 IP
->
-> 如果外部接口需要对请求 IP 进行限制，可以将以下 IP 放入 IP 访问白名单中：
+## 网络请求出口 IP 白名单配置
+
+如果您的服务需要对接外部接口，且该接口有 IP 白名单限制，请将以下 IP 地址添加至白名单中：
 
 ```
 23.143.8.1
