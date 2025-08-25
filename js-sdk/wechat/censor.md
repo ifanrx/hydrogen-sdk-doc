@@ -68,27 +68,68 @@ HError 对象结构请参考[错误码和 HError 对象](../error-code.md)
 
 ## 检测违规文本
 
-`wx.BaaS.wxCensorText(text)`
+{% if apiPrefix %}
+> **info**
+> 以下操作仅适用于 SDK version >= 3.24.0
+{% endif %}
+
+`wx.BaaS.wxCensorText(params)`
 {% endblock censorTextSign %}
 
 **参数说明**
 
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
-| text     | String | 要检测的文本 |
+| content     | String | 必填，需要检测的内容 |
+| scene     | String | 必填，场景枚举值。必须为以下四个值之一：data: 资料；comment: 评论；forum: 论坛；social_log: 社交日志 |
+| nickname     | String | 选填，用户昵称 |
+| signature     | String | 选填，个性签名 |
+| title     | String | 选填，文本标题 |
 
 
 **返回参数说明**
 
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
-| risky         | Boolean | 是否为违规内容，true 为风险，false 为未检测到风险，null 为微信尚未推送检查结果  |
+| result         | Object | 检测结果 |
+| detail         | Array | 检测详情 |
 
 **返回示例**
 
 ```javascript
 {
-  risky: true
+  "errcode": 0,
+  "errmsg": "ok",
+  "result": {
+      "suggest": "risky",
+      "label": 20001
+  },
+  "detail": [
+      {
+          "strategy": "content_model",
+          "errcode": 0,
+          "suggest": "risky",
+          "label": 20006,
+          "prob": 90
+      },
+      {
+          "strategy": "keyword",
+          "errcode": 0,
+          "suggest": "pass",
+          "label": 20006,
+          "level": 20,
+          "keyword": "命中的关键词1"
+      },
+      {
+          "strategy": "keyword",
+          "errcode": 0,
+          "suggest": "risky",
+          "label": 20006,
+          "level": 90,
+          "keyword": "命中的关键词2"
+      }
+  ],
+  "trace_id": "60ae120f-371d5872-7941a05b"
 }
 ```
 **示例代码**
@@ -107,7 +148,7 @@ HError 对象结构请参考[错误码和 HError 对象](../error-code.md)
 
 {% endblock censorTextCode %}
 
-{% block censorAsync %}
+
 
 {% macro returns() %}
 **返回参数说明**
@@ -125,15 +166,18 @@ HError 对象结构请参考[错误码和 HError 对象](../error-code.md)
 
 异步校验图片/音频是否含有违法违规内容。
 
+{% block censorAsync %}
+
 ### 检测请求
 
-`wx.BaaS.censorAsync(fileID)`
+`wx.BaaS.censorAsync(fileID, scene)`
 
 **参数说明**
 
 | 参数名   | 类型   | 说明     |
 |----------|--------|----------|
 | fileID   | String | 文件 ID  |
+| scene   | String | （SDK version >= 3.24.0）场景枚举值。必填，必须为以下四个值之一：data: 资料；comment: 评论；forum: 论坛；social_log: 社交日志 |
 
 {{returns()}}
 
@@ -145,7 +189,9 @@ HError 对象结构请参考[错误码和 HError 对象](../error-code.md)
   "error_code": 0,
   "risky": null,
   "status_code": null,
-  "id": 1
+  "id": 1,
+  "result": null, //（SDK version >= 3.24.0）检测结果，null 为微信尚未推送检查结果
+  "detail": null //（SDK version >= 3.24.0）检测详情，null 为微信尚未推送检查结果
 }
 ```
 
@@ -191,7 +237,36 @@ wx.BaaS.censorAsync("...").then(res => {
   "error_code": 0,
   "risky": null,
   "status_code": null,
-  "id": 1
+  "id": 1,
+  "result": { // （SDK version >= 3.24.0）检测结果
+    "suggest": "risky",
+    "label": 20001
+  },
+  "detail": [ // （SDK version >= 3.24.0）检测详情
+    {
+        "strategy": "content_model",
+        "errcode": 0,
+        "suggest": "risky",
+        "label": 20006,
+        "prob": 90
+    },
+    {
+        "strategy": "keyword",
+        "errcode": 0,
+        "suggest": "pass",
+        "label": 20006,
+        "level": 20,
+        "keyword": "命中的关键词1"
+    },
+    {
+        "strategy": "keyword",
+        "errcode": 0,
+        "suggest": "risky",
+        "label": 20006,
+        "level": 90,
+        "keyword": "命中的关键词2"
+    }
+  ]
 }
 ```
 
@@ -215,3 +290,63 @@ wx.BaaS.getCensorResult("...").then(res => {
 ```
 
 {% endblock censorAsync %}
+
+{% block censorTextSignOld %}
+
+## <span style="color: #f04134;">`已废弃`</span> 检测违规文本（SDK < 3.24.0）
+
+`wx.BaaS.wxCensorText(text)`
+{% endblock censorTextSignOld %}
+
+**参数说明**
+
+| 参数名   | 类型   | 说明     |
+|----------|--------|----------|
+| text     | String | 要检测的文本 |
+
+
+**返回参数说明**
+
+| 参数名   | 类型   | 说明     |
+|----------|--------|----------|
+| risky         | Boolean | 是否为违规内容，true 为风险，false 为未检测到风险，null 为微信尚未推送检查结果  |
+
+**返回示例**
+
+```javascript
+{
+  risky: true
+}
+```
+**示例代码**
+
+{% block censorTextCodeOld %}
+
+```javascript
+  wx.BaaS.wxCensorText({
+    content: "测试文本",
+    scene: "data"
+  }).then(res => {
+       console.log(res.data.risky)
+    }, err => {
+      // HError 对象
+    })
+```
+
+HError 对象结构请参考[错误码和 HError 对象](../error-code.md)
+
+{% endblock censorTextCodeOld %}
+
+
+
+{% macro returns() %}
+**返回参数说明**
+
+| 参数名   | 类型   | 说明     |
+|----------|--------|----------|
+| id            | String | 检测记录 id  |
+| error_code    | Integer | 错误码 |
+| error_message | String | 错误信息  |
+| status_code   | Number | 默认为：0，4294966288(-1008)为链接无法下载  |
+| risky         | Boolean | 是否为违规内容，true 为风险，false 为未检测到风险，null 为微信尚未推送检查结果  |
+{% endmacro %}
